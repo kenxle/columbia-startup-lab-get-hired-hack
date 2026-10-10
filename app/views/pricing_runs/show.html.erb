@@ -1,0 +1,118 @@
+<% content_for :title, "Price check #{@quote.reference}" %>
+<header class="page-header">
+  <div>
+    <p class="eyebrow"><%= link_to @quote.reference, quote_path(@quote), class: "crumb" %></p>
+    <h1 class="page-title">Price check</h1>
+    <p class="page-lede">Each item is checked against current supplier pages and published material data. Target gross margin: 15%. Minimum: 8%.</p>
+  </div>
+</header>
+
+<section class="panel" aria-labelledby="pricing-input-heading">
+  <div class="panel__head"><h2 id="pricing-input-heading" class="panel__title">Delivery and price request</h2></div>
+  <%= form_with url: quote_pricing_path(@quote), scope: :pricing, class: "pricing-form" do |form| %>
+    <%= hidden_field_tag :reviewed_version, @quote.review_revision %>
+    <p><%= form.label :country, "Destination country (two letters)" %>
+      <%= form.text_field :country, value: @run&.destination&.dig("country"), required: true, maxlength: 2, pattern: "[A-Za-z]{2}", placeholder: "US" %></p>
+    <p><%= form.label :postal_code, "Destination postal code" %>
+      <%= form.text_field :postal_code, value: @run&.destination&.dig("postal_code"), required: true, maxlength: 20 %></p>
+    <p><%= form.label :currency, "Currency" %>
+      <%= form.text_field :currency, value: @run&.currency || "USD", required: true, maxlength: 3, pattern: "[A-Za-z]{3}" %></p>
+    <p><%= form.label :delivery_by, "Required delivery date (optional)" %>
+      <%= form.date_field :delivery_by, value: @run&.delivery_by, min: Date.current.iso8601 %></p>
+    <%= form.submit "Check current prices", class: "button button--primary" %>
+  <% end %>
+  <p>Every new check refreshes sources. Unknown freight, stock, certifications or fewer than five comparable competitors hold the item for supplier evidence. Public product prices are separate from delivered quotes.</p>
+</section>
+
+<% if @run %>
+  <section class="panel" aria-labelledby="pricing-status-heading">
+    <div class="panel__head"><h2 id="pricing-status-heading" class="panel__title"><%= @run.status.humanize %></h2></div>
+    <p>Requested <%= @run.queued_at.iso8601 %>. <%= @run.error_message %></p>
+    <% if @run.active? %>
+      <p role="status">Supplier checks are queued or running. <%= link_to "Refresh price check", quote_pricing_path(@quote) %></p>
+    <% elsif !@run.current_for?(@quote) %>
+      <p role="alert">The RFQ changed. These results are retained for audit and are not shown as the current quote. Start a new check.</p>
+    <% end %>
+  </section>
+<% end %>
+
+<% if @output %>
+  <section class="panel" aria-labelledby="pricing-total-heading">
+    <div class="panel__head"><h2 id="pricing-total-heading" class="panel__title">Quote pricing</h2></div>
+    <% if @prices_current %>
+      <p><strong><%= @output.dig("quote", "currency") %> <%= @output.dig("quote", "total") %></strong>, delivered excluding tax.</p>
+      <p>Valid until <%= @output.dig("quote", "valid_until") %>. Rep approval is required before sending.</p>
+    <% else %>
+      <p><strong>Quote pricing is held or expired.</strong> No complete current quote total is available. Review the item holds below.</p>
+    <% end %>
+    <p>No purchase or customer message was sent. Rep edits are preserved. <%= Array(@run.applied_line_ids).length %> fully matched, unedited quote lines received current prices. <%= link_to "Review quote", quote_path(@quote) %>.</p>
+    <p><%= @output.dig("quote", "ready_lines") %> priced items; <%= @output.dig("quote", "held_lines") %> held items. Calculated <%= @output["calculated_at"] %>.</p>
+    <% Array(@output["warnings"]).each do |warning| %><p role="alert"><%= warning %></p><% end %>
+  </section>
+  <% @output.fetch("lines", []).each_with_index do |line, index| %>
+    <% price = line.fetch("pricing", {}); market = line.fetch("material_market", {}); coverage = line.fetch("competitor_coverage", {}) %>
+    <section class="panel" aria-labelledby="pricing-line-<%= index %>">
+      <div class="panel__head"><h2 id="pricing-line-<%= index %>" class="panel__title"><%= line.dig("catalog_item", "part_number") || "Item #{index + 1}" %>: <%= price["status"].to_s.humanize %></h2></div>
+      <p><%= line["original_text"] %></p>
+      <p>Quantity <%= line["quantity"] %> <%= line["unit"] %>.</p>
+      <% timing = line["lead_time_estimate"] || {} %>
+      <p><strong>Estimated lead time:</strong> <%= timing["text"] || "Lead time to confirm with supplier" %> (<%= timing["status"].to_s.humanize %>).</p>
+      <% if (url = PricingRun.safe_source_url(timing["source_url"])) %><p><%= link_to "Lead-time source", url, rel: "noopener noreferrer", target: "_blank" %>, checked <%= timing["checked_at"] %>.</p><% end %>
+      <% Array(timing["assumptions"]).each do |assumption| %><p><%= assumption %></p><% end %>
+      <% line_price_current = price["status"] == "ready" && (Time.iso8601(price["quote_valid_until"]) > Time.current rescue false) %>
+      <% if line_price_current %>
+        <p><strong><%= price["currency"] %> <%= price["unit_price"] %> per <%= line["unit"] %></strong>. Line total <%= price["quote_total"] %>. Valid until <%= price["quote_valid_until"] %>.</p>
+        <p>Realized gross margin <%= price.dig("pricing_analysis", "realized_margin") %>. Delivered cost <%= price.dig("cost_breakdown", "total_cost") %>.</p>
+      <% else %>
+        <p>A current price for this item is not released.</p>
+      <% end %>
+      <p>Comparable delivered competitors: <%= coverage["comparable_delivered_suppliers"] || 0 %> of <%= coverage["required"] || 5 %>. Remaining gap: <%= coverage["gap"] || 5 %>.</p>
+      <% (Array(price["buyer_questions"]) + Array(price["procurement_tasks"])).uniq.each do |task| %><p><%= task %></p><% end %>
+      <% if market.present? %>
+        <p>Material context: <%= market["status"] %>, <%= market["value"] %> <%= market["units"] || market["unit"] %>. Observation <%= market["observation_date"] %>; retrieved <%= market["refreshed_at"] || market["checked_at"] %>. An index supplies context, not a finished item purchase price.</p>
+        <% if (url = PricingRun.safe_source_url(market["source_url"])) %><p><%= link_to "Material source", url, rel: "noopener noreferrer", target: "_blank" %></p><% end %>
+      <% end %>
+      <% public_prices = Array(line["public_market_prices"]) %>
+      <% if public_prices.any? %>
+        <h3>Current public product prices</h3>
+        <table class="lines-table"><thead><tr><th>Supplier</th><th>SKU</th><th>Product price</th><th>Retrieved</th><th>Source</th></tr></thead><tbody>
+          <% public_prices.each do |record| %>
+            <tr><td><%= record["supplier"] %></td><td><%= record["supplier_sku"] || record["part_number"] %></td><td><%= record["currency"] %> <%= record["unit_price"] %> / <%= record["unit"].presence || "sale unit to confirm" %></td><td><%= record["retrieved_at"] %></td><td><% if (url = PricingRun.safe_source_url(record["source_url"])) %><%= link_to "Supplier page", url, rel: "noopener noreferrer", target: "_blank" %><% end %></td></tr>
+          <% end %>
+        </tbody></table>
+        <p>Product prices exclude unconfirmed freight, taxes and certification charges. They are not committed inventory or executable delivered prices.</p>
+      <% end %>
+      <% selected = price["selected_offer"] || {} %>
+      <% comparisons = Array(price["benchmark_comparisons"]) %>
+      <% if comparisons.any? %>
+        <h3>Delivered competitor comparisons</h3>
+        <table class="lines-table"><thead><tr><th>Supplier</th><th>Requested quantity total</th><th>Comparable</th><th>Checked</th><th>Source</th></tr></thead><tbody>
+          <% comparisons.each do |comparison| %>
+            <% source = comparison.fetch("source", {}) %>
+            <tr><td><%= source["supplier"] %></td><td><%= source["currency"] %> <%= comparison["total_price"] %></td><td><%= comparison["comparable"] ? "Yes" : "Held" %>: <%= Array(comparison["reasons"]).join(" ") %></td><td><%= source["retrieved_at"] %></td><td><% if (url = PricingRun.safe_source_url(source["source_url"])) %><%= link_to "Competitor source", url, rel: "noopener noreferrer", target: "_blank" %><% end %></td></tr>
+          <% end %>
+        </tbody></table>
+      <% end %>
+      <% if selected.present? %>
+        <h3>Selected acquisition supplier</h3><p><%= selected["supplier"] %>, SKU <%= selected["supplier_sku"] %>, checked <%= selected["retrieved_at"] %>.</p>
+        <% %w[source_url quote_url buy_url].each do |key| %><% if (url = PricingRun.safe_source_url(selected[key])) %><p><%= link_to key.humanize, url, rel: "noopener noreferrer", target: "_blank" %></p><% end %><% end %>
+      <% end %>
+      <% Array(line["supplier_routes"]).each do |route| %>
+        <p><%= route["supplier"] || route["manufacturer"] %>: <% if (url = PricingRun.safe_source_url(route["quote_url"] || route["source_url"])) %><%= link_to "Request supplier terms", url, rel: "noopener noreferrer", target: "_blank" %><% end %></p>
+      <% end %>
+      <% checks = Array(line["live_source_checks"]) %>
+      <% if checks.any? %>
+        <details><summary>Source refresh checks</summary>
+          <% checks.each do |check| %><p><%= check["supplier"] %>: <%= check["ok"] == true ? "Retrieved" : "Unavailable" %>, <%= check["retrieved_at"] %>.</p><% end %>
+        </details>
+      <% end %>
+      <% if price["cost_breakdown"].is_a?(Hash) %>
+        <details><summary>Cost and market comparison</summary>
+          <dl><% price["cost_breakdown"].each do |key, value| %><% unless value.is_a?(Hash) || value.is_a?(Array) %><dt><%= key.humanize %></dt><dd><%= value %></dd><% end %><% end %></dl>
+          <p>Market low <%= price.dig("pricing_analysis", "market_low_unit_price") %>; median <%= price.dig("pricing_analysis", "market_median_unit_price") %>; high <%= price.dig("pricing_analysis", "market_high_unit_price") %>.</p>
+          <p><%= price.dig("pricing_analysis", "comparison_basis") %></p>
+        </details>
+      <% end %>
+    </section>
+  <% end %>
+<% end %>

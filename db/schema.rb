@@ -66,6 +66,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_205000) do
     t.index ["client_id"], name: "index_match_requests_on_client_id"
   end
 
+  create_table "pricing_runs", force: :cascade do |t|
+    t.integer "quote_id", null: false
+    t.string "status", default: "queued", null: false
+    t.string "source_revision", null: false
+    t.string "applied_revision"
+    t.json "applied_line_ids", default: [], null: false
+    t.string "source_digest", null: false
+    t.json "destination", null: false
+    t.string "currency", null: false
+    t.date "delivery_by"
+    t.json "result"
+    t.text "error_message"
+    t.datetime "queued_at", null: false
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id", "status"], name: "index_pricing_runs_on_quote_id_and_status"
+    t.index ["quote_id"], name: "index_pricing_runs_on_quote_id"
+  end
+
   create_table "processing_runs", force: :cascade do |t|
     t.integer "quote_id", null: false
     t.string "status", default: "queued", null: false
@@ -138,6 +159,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_205000) do
   add_foreign_key "buyer_question_deliveries", "quotes", on_delete: :cascade
   add_foreign_key "client_terms", "clients", on_delete: :cascade
   add_foreign_key "match_requests", "clients", on_delete: :cascade
+  add_foreign_key "pricing_runs", "quotes", on_delete: :cascade
   add_foreign_key "processing_runs", "quotes", on_delete: :cascade
   add_foreign_key "quote_lines", "quotes", on_delete: :cascade
 end

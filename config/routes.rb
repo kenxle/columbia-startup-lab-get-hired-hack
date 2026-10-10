@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :buyer_answers, only: :create
     resources :buyer_terms, only: :create
     resource :processing, only: :create, controller: "processing_runs"
+    resource :pricing, only: %i[show create], controller: "pricing_runs"
   end
 
   # Tisch: catalog matching agent (client description -> catalog items -> RFQ).

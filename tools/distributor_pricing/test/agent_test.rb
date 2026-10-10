@@ -82,6 +82,8 @@ class DistributorAgentTest < Minitest::Test
     assert result.dig("quote", "human_approval_required")
     refute result.dig("quote", "automatic_send")
     refute result.dig("quote", "purchased")
+    assert_equal "supplier_confirmed", result.dig("lines", 0, "lead_time_estimate", "status")
+    assert_equal 2, result.dig("lines", 0, "lead_time_estimate", "total_calendar_days")
   end
 
   def test_each_quote_fetches_sources_and_market_again
@@ -122,6 +124,17 @@ class DistributorAgentTest < Minitest::Test
     result = quote(agent(feed: nil))
     assert_nil result.dig("quote", "total")
     assert_equal "needs_procurement", result.dig("lines", 0, "pricing", "status")
+    assert_equal "needs_supplier_confirmation", result.dig("lines", 0, "lead_time_estimate", "status")
+  end
+
+  def test_public_dispatch_policy_is_only_a_partial_estimate_and_requires_quantity_stock
+    source = { "dispatch_policy" => { "ok" => true, "verified_same_day_policy" => true, "retrieved_at" => NOW.iso8601 },
+               "offers" => [{ "supplier" => "Aircraft Spruce", "stock_quantity" => 2, "source_url" => "https://test.example/stock" }] }
+    result = DistributorPricing::LeadTime.for_line(pricing: {}, source: source, quantity: "1")
+    assert_equal "partial_estimate", result["status"]
+    assert_nil result["total_calendar_days"]
+    refute result["is_delivery_commitment"]
+    assert_equal "needs_supplier_confirmation", DistributorPricing::LeadTime.for_line(pricing: {}, source: source, quantity: "3")["status"]
   end
 
   def test_multiple_items_are_processed_separately
@@ -160,6 +173,30 @@ class DistributorAgentTest < Minitest::Test
     result = quote(agent, "Hello and thank you")
     assert_equal "intake_held", result["status"]
     assert_nil result.dig("quote", "total")
+  end
+
+  def test_unknown_requested_items_are_not_silently_dropped_from_a_complete_quote
+    result = quote(agent, "AN3-13A qty 1 ea\nHYDRAULIC-PUMP-UNKNOWN qty 2 ea")
+    assert_equal 2, result["lines"].size
+    assert_nil result.dig("quote", "total")
+    assert_equal "no_match", result.dig("lines", 1, "pricing", "status")
+  end
+
+  def test_requested_certifications_reach_the_live_procurement_adapter
+    feed = Feed.new
+    captured = nil
+    wrapper = Object.new
+    wrapper.define_singleton_method(:refresh) { |request:| captured = request; feed.refresh(request: request) }
+    quote(agent(feed: wrapper), "AN3-13A qty 1 ea MTR required")
+    assert_includes captured.dig("items", 0, "requirements", "certifications"), "MTR"
+  end
+
+  def test_bad_requests_fail_before_any_live_source_call
+    book = Book.new
+    instance = agent(book: book)
+    assert_raises(ArgumentError) { instance.call(rfq: "AN3-13A qty 1 ea", requirements: "invalid") }
+    assert_raises(ArgumentError) { instance.call(rfq: "AN3-13A qty 1 ea", currency: "usd") }
+    assert_equal 0, book.calls
   end
 
   def test_weight_and_rudco_grade_are_retained

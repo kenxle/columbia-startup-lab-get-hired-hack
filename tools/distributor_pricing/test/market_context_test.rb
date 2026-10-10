@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
+require "minitest/mock"
 require_relative "../lib/distributor_pricing/market_context"
 
 class DistributorPricingMarketContextTest < Minitest::Test
@@ -307,5 +308,39 @@ class DistributorPricingHttpClientTest < Minitest::Test
   def test_malformed_http_is_structured_failure
     @responses = [Net::HTTPBadResponse.new("not HTTP")]
     assert_equal "network_error", client.get(URL).dig("error", "code")
+  end
+
+  def test_authenticated_post_validates_tls_and_never_follows_redirects
+    @responses = [FakeResponse.new(code: 302, headers: { "location" => "https://evil.example/key" })]
+    result = client.post_json(URL, { "text" => "SYNTHETIC RFQ" }, token: "SYNTHETIC-TOKEN")
+    refute result["ok"]
+    assert_equal 1, @connections.size
+    assert_equal "Bearer SYNTHETIC-TOKEN", @connections.first.requests.first["Authorization"]
+    assert_equal "POST", @connections.first.requests.first.method
+    assert_match(/302/, result.dig("error", "message"))
+    result = client.post_json(URL, {}, token: "bad\nheader")
+    assert_equal "invalid_token", result.dig("error", "code")
+    assert_equal 1, @connections.size
+  end
+
+  def test_native_transport_ignores_curl_config_and_proxies_and_keeps_secret_out_of_arguments
+    http = client
+    http.instance_variable_set(:@native_curl, "SYNTHETIC-CURL")
+    observed = nil
+    runner = lambda do |*args, **options|
+      observed = [args, options]
+      ["HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{}", "", Struct.new(:exitstatus) { def success? = true }.new(0)]
+    end
+    Open3.stub(:capture3, runner) do
+      assert http.post_json(URL, { "text" => 'literal "quote" and \\ slash' }, token: "SYNTHETIC-SECRET")["ok"]
+    end
+    args, options = observed
+    assert_equal "--disable", args[1]
+    assert_includes args, "--noproxy"
+    assert_includes args, "--resolve"
+    refute args.join(" ").include?("SYNTHETIC-SECRET")
+    assert_includes options[:stdin_data], "Authorization: Bearer SYNTHETIC-SECRET"
+    config_value = options[:stdin_data].lines.find { |line| line.start_with?("data = ") }.delete_prefix("data = ").strip
+    assert_equal 'literal "quote" and \\ slash', JSON.parse(JSON.parse(config_value))["text"]
   end
 end

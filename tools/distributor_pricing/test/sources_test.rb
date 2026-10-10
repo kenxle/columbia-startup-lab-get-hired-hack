@@ -93,6 +93,14 @@ class DistributorSourcesTest < Minitest::Test
     assert_nil DistributorPricing::AdditionalSources.price("var BCData = #{JSON.generate(data)};", route)
   end
 
+  def test_wicks_exact_price_without_current_sale_unit_is_visible_but_cannot_price_an_each_quote
+    row = @rows.find { |entry| entry["supplier"] == "Wicks Aircraft" && entry["canonical_part_number"] == "AN3-13A" }
+    html = @http.get(row["source_url"])["body"].sub('data-field-name="sold by" data-field-value="Each"', '')
+    observed = @book.send(:live_listing, html, row)
+    assert_equal "1.11", observed["price"]
+    assert_nil observed["unit"]
+  end
+
   def test_pegasus_tier_evidence_keeps_exact_part_and_individual_basis
     route = DistributorPricing::AdditionalSources.routes(@item)[1]
     body = 'Sold individually <tr><p>AN3-13A<br><span itemprop="sku">31107</span></p><meta itemprop="priceCurrency" content="USD">1 to 11: $0.49 12 &amp; up: $0.45</tr>'
@@ -115,7 +123,7 @@ class DistributorGatewayAndFeedTest < Minitest::Test
     end
     def post_json(url, payload, token:)
       @requests << payload
-      { "ok" => true, "retrieved_at" => NOW.iso8601, "body" => JSON.generate("choices" => [{ "message" => { "content" => @content } }]) }
+      { "ok" => true, "retrieved_at" => NOW.iso8601, "body" => JSON.generate("model" => "anthropic/claude-opus-5", "choices" => [{ "message" => { "content" => @content } }]) }
     end
     def get(url)
       @requests << URI(url)
