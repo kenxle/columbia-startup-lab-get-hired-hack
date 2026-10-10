@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+!.env.example
+.claude
+.agent-owner
+.claude-commit*
+.codex-commit*
+storage/*
+!storage/.keep
+tmp/*
+!tmp/.keep
+log/*
+!log/.keep
+node_modules
+data/aviation/raw
+.local-tools

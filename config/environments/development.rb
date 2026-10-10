@@ -59,4 +59,15 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Hosted demo (Railway). Unset locally, so local behavior is unchanged.
+  # RAILS_ALLOWED_HOSTS: comma-separated public hostnames to accept.
+  if ENV["RAILS_ALLOWED_HOSTS"].present?
+    config.hosts.concat(ENV["RAILS_ALLOWED_HOSTS"].split(",").map(&:strip).reject(&:empty?))
+  end
+  # HOSTED_DEMO: hide stack traces, /rails/info and mailer previews from outside visitors.
+  if ENV["HOSTED_DEMO"].present?
+    config.consider_all_requests_local = false
+    config.action_mailer.show_previews = false
+  end
 end
