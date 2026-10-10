@@ -86,3 +86,5 @@ keeps source files, warnings, revision and processing run details out of exports
 It replaces review and source together, inserts detail directly under the row,
 focuses and scrolls the heading, and preserves ordinary navigation on failure.
 Unsaved form changes require confirmation before another line replaces them.
+
+Marketing pages use `marketing/icon` for seven official Lucide 0.462.0 SVGs, with the ISC license preserved in that partial. The hero references `/brand/rudco-metals-hero.png`, uses 3px blur and 1.05 scale, then navy65% and black15% overlays. The orange divider and Explore/Contact footer follow RudCo’s company pages. These rules live in `marketing.css` and do not change the quote workspace.

@@ -13,6 +13,10 @@ class MarketingPagesTest < ActionDispatch::IntegrationTest
       assert_select 'nav[aria-label="Product"] a[href=?]', quotes_path
       assert_select ".sidebar", count: 0
       assert_select "form", count: 0
+      assert_select 'svg.marketing-icon[aria-hidden="true"][focusable="false"]', minimum: 3
+      assert_select 'footer nav[aria-label="RudCo company"] a[href="https://www.rud-co.com/platform"]'
+      assert_select 'footer a[href="mailto:sales@rud-co.com"]', text: "sales@rud-co.com"
+      assert_select 'footer a[href="tel:+18559783326"]', text: "(855) 978-3326"
     end
   end
 

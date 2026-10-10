@@ -1,7 +1,8 @@
 <% content_for :title, "Compare" %>
 
-<section class="marketing-hero marketing-hero--compact marketing-container" aria-labelledby="comparison-title">
-  <p class="marketing-eyebrow">The comparison, with sources</p>
+<section class="marketing-hero marketing-hero--compact marketing-hero--photo" aria-labelledby="comparison-title">
+  <div class="marketing-container">
+  <p class="marketing-eyebrow marketing-eyebrow--badge"><%= render "marketing/icon", name: "boxes" %> The comparison, with sources</p>
   <h1 id="comparison-title">A quote the rep can inspect.</h1>
   <p class="marketing-lede">Quote Desk puts the RFQ, the reading, and the reason beside each other. Here is how that focus sits alongside three other ways to prepare quotes or order materials.</p>
   <div class="marketing-actions">
@@ -9,7 +10,9 @@
     <%= link_to "See the product", product_path, class: "button button--quiet" %>
   </div>
   <p class="marketing-note">First draft for review · As of <time datetime="2026-10-10">October 10, 2026</time>. Vendor descriptions come from their own linked pages. We have not tested their products.</p>
+  </div>
 </section>
+<div class="marketing-signal" aria-hidden="true"></div>
 
 <section class="marketing-section marketing-container" aria-labelledby="vendor-title">
   <div class="marketing-section-heading">
@@ -20,19 +23,19 @@
   <div class="marketing-cards">
     <article class="marketing-card">
       <p class="marketing-eyebrow">Distributor software</p>
-      <h3>Proton</h3>
+      <h3 class="marketing-icon-heading"><%= render "marketing/icon", name: "file-text" %>Proton</h3>
       <p>Describes reading emailed requests and attachments, matching catalog items, applying pricing and availability, and sending approved quotes or orders to an ERP. It also says it learns customer nicknames and rep edits.</p>
       <a href="https://www.proton.ai/order-and-quote-entry">Source: Proton order and quote entry</a>
     </article>
     <article class="marketing-card">
       <p class="marketing-eyebrow">Distributor software</p>
-      <h3>Canals</h3>
+      <h3 class="marketing-icon-heading"><%= render "marketing/icon", name: "boxes" %>Canals</h3>
       <p>Describes turning customer requests in formats including PDF, email, and spreadsheets into quotes or orders for rep approval and ERP entry. It says usage improves its knowledge of customers and products.</p>
       <a href="https://www.canals.ai/">Source: Canals, quotes and orders</a>
     </article>
     <article class="marketing-card">
       <p class="marketing-eyebrow">Metals supplier</p>
-      <h3>Nox Metals</h3>
+      <h3 class="marketing-icon-heading"><%= render "marketing/icon", name: "factory" %>Nox Metals</h3>
       <p>Provides an aluminum quote builder with alloy, temper, compliance, dimensions, and quantity fields. Its page promises pricing and a ship date before ordering, plus mill certificates and traceability with each order.</p>
       <a href="https://noxmetals.co/quote">Source: Nox quote builder</a>
     </article>
@@ -57,22 +60,22 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Where did that reading come from?</th>
+          <th scope="row"><%= render "marketing/icon", name: "file-text" %><span>Where did that reading come from?</span></th>
           <td>The rep can inspect field-level source evidence and the original RFQ alongside the normalized spec.</td>
           <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes confidence flags. Field-level links to RFQ wording are not stated on the reviewed <a href="https://www.proton.ai/order-and-quote-entry">Proton page</a> or <a href="https://www.canals.ai/">Canals page</a>.</td>
         </tr>
         <tr>
-          <th scope="row">What happens when a line is unclear?</th>
+          <th scope="row"><%= render "marketing/icon", name: "clock" %><span>What happens when a line is unclear?</span></th>
           <td>A question is drafted. The rep can record the buyer's answer and rerun the affected line. Email delivery is not connected.</td>
           <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes flagging uncertainty for rep confirmation. <a href="https://noxmetals.co/quote">Nox</a> offers a sales request for specifications its builder cannot handle.</td>
         </tr>
         <tr>
-          <th scope="row">Who controls a learned meaning?</th>
+          <th scope="row"><%= render "marketing/icon", name: "shield-check" %><span>Who controls a learned meaning?</span></th>
           <td>The rep explicitly teaches a buyer term. The approved meaning and source RFQ are saved. Showing that RFQ reference on the next reading remains unfinished.</td>
           <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes learning nicknames and edits. <a href="https://www.canals.ai/">Canals</a> describes learning through use. A prior-RFQ citation beside a learned reading is not stated on either reviewed page.</td>
         </tr>
         <tr>
-          <th scope="row">What happens after review?</th>
+          <th scope="row"><%= render "marketing/icon", name: "circle-check" %><span>What happens after review?</span></th>
           <td>The rep approves the quote and can export PDF or CSV. The demo does not submit an order to an ERP or confirm available inventory.</td>
           <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> and <a href="https://www.canals.ai/">Canals</a> describe ERP handoffs. <a href="https://noxmetals.co/quote">Nox</a> presents checkout, delivery, and payment steps.</td>
         </tr>

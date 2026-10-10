@@ -185,3 +185,7 @@ Keep each section short. Detail lives in your own docs; link to them from here.
 The unsafe matcher shortcut that treated a numeric difference within five percent as buyer confirmation is removed. Plain normalized `given` values can fill missing fields but cannot override explicit source numbers. A new vetted confirmation interface still needs agreement with Yuval and Ken. Catalog model responses must identify the requested model exactly, allowing only explicit dated variants, never a missing identity or an Opus 5.5 prefix match.
 
 Hirsh’s live check found the configured Opus 5 in the gateway model list, but inference returned HTTP 502 twice. The app switch remains off. Configuration and a model-list response are not evidence of a successful model reading.
+
+### Marketing pages, RudCo alignment
+
+Product and Compare share the supplied RudCo metals hero image with the approved navy overlays, Lucide 0.462.0 outline icons, orange platform divider and company footer. The icon partial includes the ISC license. Marketing styles remain scoped to the marketing layout; quote screens and approved comparison claims are unchanged.

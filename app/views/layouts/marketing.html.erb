@@ -32,12 +32,40 @@
     <main id="main" tabindex="-1"><%= yield %></main>
     <footer class="marketing-footer">
       <div class="marketing-container">
-        <p>RudCo Quote Desk. Every line shows its work.</p>
-        <nav aria-label="Footer">
-          <%= link_to "Product", product_path %>
-          <%= link_to "Compare", comparison_path %>
-          <%= link_to "Open Quote Desk", quotes_path %>
-        </nav>
+        <div class="marketing-footer-grid">
+          <div>
+            <div class="marketing-footer-brand"><%= image_tag "/brand/rudco-mark.png", alt: "", width: 32, height: 32 %><span>RudCo</span></div>
+            <p>Industrial materials simplified.<br>Precision. Transparency. Trust.</p>
+          </div>
+          <div>
+            <h2>Explore</h2>
+            <nav aria-label="RudCo company">
+              <a href="https://www.rud-co.com/materials">Materials Catalog</a>
+              <a href="https://www.rud-co.com/contact">Request Quote</a>
+              <a href="https://www.rud-co.com/platform">Platform</a>
+              <span><a href="https://www.rud-co.com/abrasives">Abrasives</a> · <a href="https://www.rud-co.com/metals">Metals</a></span>
+              <a href="https://www.rud-co.com/industries">Industries</a>
+              <a href="https://www.rud-co.com/resources">Resources &amp; Guides</a>
+            </nav>
+          </div>
+          <div>
+            <h2>Contact</h2>
+            <nav aria-label="RudCo contact">
+              <a href="mailto:sales@rud-co.com">sales@rud-co.com</a>
+              <a href="tel:+18559783326">(855) 978-3326</a>
+            </nav>
+          </div>
+        </div>
+        <div class="marketing-footer-bottom">
+          <p>© <%= Date.current.year %> RudCo · Quote Desk prototype</p>
+          <nav aria-label="Footer">
+            <%= link_to "Product", product_path %>
+            <%= link_to "Compare", comparison_path %>
+            <%= link_to "Open Quote Desk", quotes_path %>
+            <a href="https://www.rud-co.com/privacy">Privacy</a>
+            <a href="https://www.rud-co.com/terms">Terms</a>
+          </nav>
+        </div>
       </div>
     </footer>
   </body>
