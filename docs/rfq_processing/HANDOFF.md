@@ -14,7 +14,7 @@ RudCo Quote Desk: an agent that turns a messy industrial RFQ (email, PDF, spread
 4. [docs/ARCHITECTURE.md](../ARCHITECTURE.md): the four parts and the contracts. Yuval's section is "RFQ processing". Update it in the same commit as any contract or status change.
 5. [PLAN.md](PLAN.md), [RESULT-FORMAT.md](RESULT-FORMAT.md) (the hash the app accepts; the matcher contract; buyer answers; alternates; buyer terms), [TEST-RESULTS.md](TEST-RESULTS.md).
 
-## 2. The people and what is between us
+## 2. Original pickup ownership (historical, current handoffs are in section 7)
 
 | Person | Handle | Owns | Waiting on Yuval for | Yuval waiting on them for |
 |---|---|---|---|---|
@@ -101,32 +101,28 @@ Posting on the board: insert a row right under the header line `|------|------|-
 
 Each worker gets one task, acceptance criteria, owned paths, the starting commit, and the exact rspec command, and returns changed paths and the rspec summary.
 
-## 7. State at handoff (14:08): read this carefully
+## 7. Current handoff and open work (15:11)
 
-**On main (pushed):** all board rows through 14:04 answered. Lane docs updated: Opus 5 and Nicrron decisions, `revision.llm`, the alternates contract (`processing.alternates`, fields agreed with Hirsh at 14:00 and 14:03), the buyer terms contract (`confirmed_on`), `bin/watch-board`.
+The inherited Claude work is finished and pushed after teammate inspection. No inherited worker file remains uncommitted.
 
-**In the working tree, UNCOMMITTED, not yet reviewed by Yuval.** Lane spec suite on this tree: 202 examples, 0 failures at 14:06. Three worker agents from the previous session may still have been writing when that session ended, so run the suite first and read `git diff` before trusting any of it:
-
-| Files | By | State |
+| Batch | Published | Review |
 |---|---|---|
-| `lib/rfq_processing/llm_parser.rb`, `lib/rfq_processing/openai_compatible_client.rb` (new), `spec/rfq_processing/llm_parser_spec.rb`, `spec/rfq_processing/openai_compatible_client_spec.rb` (new), `bin/llm-smoke` (new) | llm worker | Done and reported: 192 then 196 green. Two judgment calls to confirm: `RFQ_LLM_PROVIDER` naming a provider with no key returns nil with a warning instead of falling through; the model check rejects `claude-opus-5-5` for `claude-opus-5`. A read-only review of these files was running at handoff; its findings were not received. |
-| `lib/rfq_processing/pipeline.rb`, `result_builder.rb`, `answers.rb`, `catalog_match_adapter.rb`, `spec/rfq_processing/answers_spec.rb`, `result_builder_spec.rb`, `bin/e2e-answers.rb` (new) | integration worker | In progress, three tasks in order: (1) `revision.llm` from `@llm.describe` and `bin/e2e-answers.rb` (answers end to end through `ApplyResult` in the Rails test env, plus a report on Tisch's `CatalogMatch::PricingHandoff`); (2) `processing.alternates` per RESULT-FORMAT.md with fixture `spec/fixtures/results/ambiguous_with_options.json`; (3) the `pick_item` guard: only a candidate at or above the threshold on an ambiguous or scored match can be chosen, otherwise the match is unchanged and a conflict is recorded. Not reported at handoff. |
-| `lib/rfq_processing/buyer_profile.rb`, `spec/rfq_processing/buyer_profile_spec.rb`, possibly the BuyerProfile evidence lines of `rules_parser.rb` | data worker | In progress: `confirmed_on` on a term gives "Read as thickness 0.0625 in, as you confirmed on RFQ-0001" (learned) or "as the rep taught on RFQ-0001" (taught); `learn(..., confirmed_on:)`. Not reported at handoff; no changes on disk yet at 14:06. |
+| Parser and buyer-term RFQ provenance | `9fa2c86` | Hirsh 14:52 |
+| Provider adapters and sanitized diagnostics | `7e3d2c6` | Hirsh 14:58, disabled app paths |
+| Extraction, compliance, answers, alternates, selection guards and e2e scripts | `e4ec750` | Hirsh 14:58 and final extraction reproduction 15:07 |
 
-**What to do with it:** run the suite and `script/check`. Commit each worker's files with explicit paths once green and once Yuval has looked at the diff. Then post one board row listing what landed (Hirsh is waiting for `processing.alternates`, the guard, and `revision.llm`).
+All 297 lane specs, 451 Rails tests / 3721 assertions and 12 PDF specs pass. Matcher, answers, email/PDF/CSV and demo-pair end-to-end checks pass. Teaching safety is a separate blocked diagnostic, not a passing check.
 
-**Open, in priority order for the demo:**
-
-1. Finish and push the three worker batches above. Then run `bin/e2e-answers.rb` and `bin/e2e-tisch-matcher.rb` in the Rails test env; both must print ACCEPTED.
-2. The live Nicrron smoke test when `NICRRON_API_KEY` is in `.env` (section 4). Hirsh's own minimal request to `/v1/chat/completions` with model `anthropic/claude-opus-5` returned HTTP 502 at 13:47, so first check `--models`. Post the result either way. The demo must stay green on rules alone.
-3. Ken's demo checklist row 4 needs one Ready, one Needs the buyer, and one No match line on the same RFQ. With Hirsh's intake (rudco and metals catalogs only) the AN3 bolt line in `spec/fixtures/demo_rfq_email.txt` should be the No match line; confirm in the app at `http://127.0.0.1:3100` (`script/setup`, then `script/dev`, paste the email). Tisch's final demo email, when it lands in `docs/product/demo_rfq/`, must be run through `bin/e2e-tisch-matcher.rb` (edit the text in the script); lead with the gauge line.
-4. Beat 6: when Hirsh's answer entry is on main, enter the buyer's answer on a held line in the app and check it turns Ready.
-5. Beat 8: when Tisch adds `confirmed_on` and the teachable fields and Hirsh passes them, teach "16 ga" on one RFQ and check the second RFQ shows the source wording.
-6. Keep `docs/ARCHITECTURE.md` and `PLAN.md` current with every change, and post on the board at every handoff.
+1. Hirsh owns the already-started numeric confirmation fix. Await his exact trusted same-phrase interface before changing our adapter. Generic given values must not override explicit source numbers. Run `e2e-teaching-match.rb`; exit 2 means blocked.
+2. Hirsh tested Nicrron at 15:10: model listing succeeds, inference returns HTTP502 twice, no returned model identity or filled fields. Fallback preserves rules. App activation remains off pending live success and Ken's staged-activation decision. Local credentials are absent.
+3. Ken is coordinating the catalog/pricing takeover requested by Hirsh at 15:10. Route metals prices, supplier evidence and sourced lead-time needs to Ken; do not silently edit those domains.
+4. Jev doubtful-compliance diagnostics await usable local key, Ruby client and calibration inputs. `script/load-jev-key` confirmed no accessible local Keychain entry. All deterministic flags must remain intact.
+5. The accepted demo pair works in browser records `/quotes/14` and `/quotes/17`. Buyer-answer transition and taught RFQ wording were verified; safe end-to-end taught matching remains blocked. Unknown lead times stay explicit.
+6. Continue pulling, answering the bulletin, and recording every handoff. Do not rerun completed implementation tasks from historical log entries.
 
 ## 8. Opening prompt for the new session
 
-> Read docs/rfq_processing/HANDOFF.md and follow it exactly. You work for Yuval. Pull, read the bulletin board rows newer than 14:04, run the lane specs and script/check, read the uncommitted lane files listed in section 7 and finish or verify them, then post one row on the board and keep working on the open items in order. Publish code after teammate inspection; Yuval no longer requires personal review. Publish board rows and lane docs right away. Give Yuval short reports. Run a board agent that fetches every 5 minutes and tells you and the workers what changed.
+> Read docs/rfq_processing/HANDOFF.md and AGENTS.md. You work for Yuval. Pull and read board rows newer than the latest status log. Run the checks in section 4, then work the current open items in section 7. All inherited batches are pushed; do not recreate them. Publish code after teammate inspection and publish coordination rows directly. Keep local Ruflo available, use authorized Astra workers when needed, and do not claim unavailable Opus review. Post on the board at each handoff.
 
 ## Current session, 2026-10-10 at 15:09
 
