@@ -12,7 +12,12 @@ module RfqProcessing
       unresolved = (reading.unknowns.map { |u| u["field"] } + reading.conflicts.flat_map { |c| c["fields"] }).uniq
       unresolved -= ["form"] if reading.fields["part_number"] # hardware needs no metals form
 
-      if reading.conflicts.any? || unresolved.any?
+      # An unsupported screw stays unquotable, but asking its material cannot
+      # resolve the catalog's explicit no-match result. Preserve the missing field.
+      if match && match["status"] == "no_match" && reading.fields["form"] == "screw" &&
+         reading.conflicts.empty? && unresolved == ["material"]
+        Decision.new(state: "no_match", question: no_match_question(reading, position), unresolved_fields: unresolved, choices: [])
+      elsif reading.conflicts.any? || unresolved.any?
         choices = choices_for(reading)
         if match && match["status"] == "ambiguous"
           Array(match["candidates"]).each do |c|
