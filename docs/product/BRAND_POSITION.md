@@ -71,8 +71,8 @@ Each sits under "Precision. Transparency. Trust."
 | quote, line, RFQ, buyer, rep | "AI-powered", "autonomous", "magic" |
 | read as, matched to, priced against | "cheapest", "lowest price", "best price" |
 | benchmark, dated, published metal cost plus RudCo's margin | "real-time" or "live" pricing (the data is sample data) |
-| flag, mill test report (MTR), certificate of analysis (COA), country of origin, DFARS, REACH, RoHS | "certified" or "compliant" (we flag what the buyer needs; we do not certify stock) |
-| lead time, ships in 24 to 48 hours (stocked lines), to confirm | "in stock" or a ship date for an item the sample catalog does not mark as stocked |
+| compliance, compliance flag, mill test report (MTR), certificate of analysis (COA), country of origin, DFARS, REACH, RoHS | "certified" (we flag what the buyer needs; we do not certify stock) |
+| lead time, in stock, ships in 24 to 48 hours (stocked lines), to confirm | |
 | ask, question, needs the buyer, the conversation | "replaces your rep", "hands-free" |
 | sample data | "instant", "guaranteed" |
 
