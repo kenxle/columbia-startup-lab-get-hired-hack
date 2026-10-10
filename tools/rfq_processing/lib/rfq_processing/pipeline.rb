@@ -19,15 +19,19 @@ module RfqProcessing
     LIST_MARKER = /\A\s*(?:\d{1,3}[.)]|[-*•])\s+/
     SIZE_OR_QTY = /\d\s*(?:x|×|by|ga\b|gauge|"|'|in\b|ft\b|lbs?\b|pcs?\b|ea\b|each|sheets?|bags?|qty)|\bx\s*\d|\bqty\b|\d+\/\d+|\bAN\d|\b[SG]-\d{2,3}\b|\bP1020\b|\b356\b/i
 
+    SPELLED_NUMBER = /one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred/i
+    WORD_SIZE_OR_QTY = /\b(?:#{SPELLED_NUMBER})\s+(?:sheets?|plates?|bars?|tubes?|pipes?|pieces?|pounds?|lbs?|bags?|kg|kilograms?|ga(?:ge|uge)?|(?:by|x)\s+(?:#{SPELLED_NUMBER}))\b/i
+
     # buyer_terms: this buyer's learned or taught words, in the app's ClientTerm shape (see BuyerProfile).
-    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: false, context: {}, llm: nil, buyer_terms: [])
-      new(catalog: catalog, matcher: matcher, llm: llm).process(content: content, type: type, filename: filename,
+    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: false, context: {}, llm: nil, buyer_terms: [], jev: nil)
+      new(catalog: catalog, matcher: matcher, llm: llm, jev: jev).process(content: content, type: type, filename: filename,
                                                                  sample_data: sample_data, context: context, buyer_terms: buyer_terms)
     end
 
     # llm: pass false to force rules only; nil picks the Claude step up from the environment when a key exists.
-    def initialize(catalog: [], matcher: nil, llm: nil)
+    def initialize(catalog: [], matcher: nil, llm: nil, jev: nil)
       @matcher = matcher || CatalogMatcher.new(catalog)
+      @jev = jev == true ? JevClient.from_env : (jev || nil)
       @llm = llm.nil? ? (defined?(LlmParser) ? LlmParser.from_env : nil) : (llm || nil)
     end
 
@@ -85,12 +89,16 @@ module RfqProcessing
       if confirmed.any? && @matcher.method(:match).parameters.any? { |kind, name| kind == :keyrest || %i[key keyreq].include?(kind) && name == :confirmed_terms }
         match_input[:confirmed_terms] = confirmed
       end
-      match = @matcher.match(**match_input)
+      alternative_match = AbrasiveAlternatives.match(text: line.text, reading: reading, matcher: @matcher,
+        position: position, location: line.location, buyer_terms: buyer_terms, overrides: overrides)
+      match = alternative_match || @matcher.match(**match_input)
       match, rejected = pick_item(match, chosen_item) if chosen_item
+      AbrasiveAlternatives.apply_choice(reading, match, line.text, line.location) if alternative_match && chosen_item
       decision = Readiness.decide(reading, match: match, position: position)
       # Recorded after the decision, so the line keeps its state; Answers.apply turns it into a warning.
       reading.conflicts << rejected if rejected
       compliance = defined?(Compliance) ? Compliance.flags(text: line.text, body_text: extra_text, spec: spec, context: context) : []
+      compliance = JevCompliance.new(client: @jev).annotate(flags: compliance, text: line.text, spec: spec, body_text: extra_text, context: context) if @jev
       result = ResultBuilder.build(reading: reading, decision: decision, match: match, compliance: compliance,
                           position: position, original_text: line.text, location: line.location)
       requirement_body = Compliance.requirement_text(extra_text)
@@ -172,10 +180,11 @@ module RfqProcessing
     def item_line?(text)
       return false if text.length < 4
       return false if Compliance::FAMILY_SCOPE.match?(text) && !Compliance.requirement_text(text).empty? && !SIZE_OR_QTY.match?(text)
-      return false if PROSE_HINT.match?(text) && !SIZE_OR_QTY.match?(text)
-      return false if text.split.size > 12 && text.end_with?(".") && !SIZE_OR_QTY.match?(text)
+      measurable = SIZE_OR_QTY.match?(text) || WORD_SIZE_OR_QTY.match?(text)
+      return false if PROSE_HINT.match?(text) && !measurable
+      return false if text.split.size > 12 && text.end_with?(".") && !measurable
 
-      ITEM_HINT.match?(text) && (SIZE_OR_QTY.match?(text) || text.split.size <= 8)
+      ITEM_HINT.match?(text) && (measurable || text.split.size <= 8)
     end
   end
 
