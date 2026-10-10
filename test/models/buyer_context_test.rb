@@ -97,4 +97,33 @@ class BuyerContextTest < ActiveSupport::TestCase
     @quote.workspace_token = nil
     assert_raises(ActiveRecord::RecordInvalid) { context }
   end
+
+  test "confirmation provenance requires the persisted line on the verified source quote" do
+    source = QuoteWorkspace::Demo.create!(workspace_token: @quote.workspace_token)
+    source.update!(buyer_name: @quote.buyer_name)
+    line = source.quote_lines.first
+    record = QuoteWorkspace::TeachBuyerTerm.call(quote: source, quote_line_id: line.id,
+      expected_revision: source.review_revision, term: "KB", field: "finish", value: "#4")
+    term = context[:buyer_terms].sole
+    assert_equal source.reference, term["confirmed_on"]
+    assert_equal line.id, term.dig("meaning", "provenance", "quote_line_id")
+    assert_equal term["provenance"], term.dig("meaning", "provenance")
+
+    other = QuoteWorkspace::Demo.create!(workspace_token: @quote.workspace_token)
+    stored = record.meaning.deep_dup
+    stored["provenance"]["quote_line_id"] = other.quote_lines.first.id
+    record.update!(meaning: stored)
+    rejected = context[:buyer_terms].sole
+    refute rejected.key?("confirmed_on")
+    refute rejected["meaning"].key?("provenance")
+
+    stored["provenance"]["quote_line_id"] = line.id
+    stored["confirmed_on"] = "RFQ-FORGED"
+    record.update!(meaning: stored)
+    refute context[:buyer_terms].sole.key?("confirmed_on")
+    stored["confirmed_on"] = source.reference
+    record.update!(meaning: stored)
+    source.quote_lines.where(id: line.id).delete_all
+    refute context[:buyer_terms].sole.key?("confirmed_on")
+  end
 end

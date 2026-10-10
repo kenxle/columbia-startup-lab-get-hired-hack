@@ -32,18 +32,27 @@ module QuoteWorkspace
       # The catalog matcher has its own optional provider, independent of the
       # processing pipeline's llm flag. Keep catalog reads local until their
       # model-filled fields and evidence can be shown in the review contract.
-      def call_service(text, spec = {}, quantity = nil)
+      def call_service(text, spec = {}, quantity = nil, confirmed_terms: [])
         unless @service.equal?(CatalogMatch::Matcher)
-          return super(text) if method(:call_service).super_method.arity == 1
+          parent_method = method(:call_service).super_method
+          return super(text) if parent_method.arity == 1
+          if accepts_confirmed_terms?(parent_method)
+            return super(text, spec, quantity, confirmed_terms: confirmed_terms)
+          end
           return super(text, spec, quantity)
         end
 
         arguments = { client: nil, llm: false }
         arguments[:catalog] = @catalog if @catalog
         arguments[:given] = given_spec(spec, quantity: quantity) if respond_to?(:given_spec, true)
+        arguments[:confirmed_terms] = confirmed_terms if accepts_confirmed_terms?(@service.method(:call))
         @service.call(text, **arguments)
       rescue StandardError
         nil # match turns unavailable matching into the existing safe failure.
+      end
+
+      def accepts_confirmed_terms?(callable)
+        callable.parameters.any? { |kind, name| kind == :keyrest || ([:key, :keyreq].include?(kind) && name == :confirmed_terms) }
       end
 
       # The upstream PN shortcut does not verify other stated attributes.
