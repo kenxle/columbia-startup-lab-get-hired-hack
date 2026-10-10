@@ -85,7 +85,9 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 
 ## Project overview
 
-TBD. Fill in once the team picks what to build: the problem, the user, and the demo.
+We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing).
+
+Research behind it lives in [docs/research/](docs/research/).
 
 ## Repo structure
 
@@ -95,6 +97,8 @@ columbia-startup-lab-get-hired-hack/
 ├── CLAUDE.md              # Pointer to this file
 ├── README.md              # Public-facing overview
 ├── docs/
+│   ├── product/PRD.md     # Product brief (read before building)
+│   ├── research/          # Research reports
 │   ├── BULLETIN.md        # Live bulletin board (read every pull)
 │   ├── BULLETIN-ARCHIVE.md
 │   └── diagrams/          # Mermaid diagrams of key flows

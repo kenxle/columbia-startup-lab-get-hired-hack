@@ -1,13 +1,13 @@
 # RFQ to Quote: Product Brief
 
-**Status:** Draft for Ken's review.
+**Status:** Approved by Ken, 2026-10-10. Every agent reads this before building.
 
 **Read with:** [the bulletin board](../BULLETIN.md) (who is doing what), [AGENTS.md](../../AGENTS.md) (team rules), and the [Devpost page](https://get-hired-hack-nyc.devpost.com/) (the challenge and the rules).
 
 ## Open questions
 
 - **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table and label them as sample data on screen. Yuval is finding this out.
-- **Q2. What is our sharper angle?** Uniqueness is a quarter of the score. Candidates are under [A sharper angle](#a-sharper-angle). Ken picks one.
+- **Q2. What is our sharper angle?** Uniqueness is a quarter of the score. Candidates are under [A sharper angle](#a-sharper-angle). Ken picks one once the [research](../research/20261010.01_rfq_sharper_angle/) lands.
 
 ---
 
