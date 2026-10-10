@@ -23,7 +23,8 @@ module CatalogMatch
       end
 
       def benchmark(item)
-        matches = for_item(item)
+        # Provisional listings (spec not verified) are references, never price inputs.
+        matches = for_item(item).reject { |observation| observation["provisional"] }
         suppliers = matches.group_by { |observation| observation["supplier"].to_s.downcase.strip }
         return nil if suppliers.size < 2
 

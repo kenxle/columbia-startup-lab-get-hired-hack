@@ -31,6 +31,13 @@ module CatalogMatch
       Leave out any field the line does not settle.
     PROMPT
 
+    # Block Convey / PRISM tracing (Hirsh, 15:05): set a callable in an
+    # initializer and it receives {model:, elapsed_ms:, outcome:, request_id:}
+    # after every gateway call. Tracing failures never affect the reading.
+    class << self
+      attr_accessor :trace_listener
+    end
+
     def self.default
       return nil if Rails.env.test? && ENV["CATALOG_MATCH_LLM_IN_TEST"].blank?
 
@@ -56,16 +63,27 @@ module CatalogMatch
       text = text.to_s.strip
       return nil if text.empty?
 
+      started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       body = post(text)
-      return nil if body.nil?
-
-      parsed = parse_json(body)
-      return nil unless parsed
-
-      accept(parsed, text)
+      parsed = body && parse_json(body)
+      given = parsed && accept(parsed, text)
+      trace(started, body.nil? ? "gateway_error" : (parsed ? "ok" : "unparseable"), body)
+      given
     rescue StandardError => error
       Rails.logger.warn("CatalogMatch::LlmReader: #{error.class}: #{error.message}")
+      trace(started, "error", nil)
       nil
+    end
+
+    def trace(started, outcome, body)
+      listener = self.class.trace_listener
+      return unless listener && started
+
+      request_id = body && (JSON.parse(body)["id"] rescue nil)
+      listener.call(model: @model, elapsed_ms: ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - started) * 1000).round,
+                    outcome: outcome, request_id: request_id)
+    rescue StandardError => error
+      Rails.logger.warn("CatalogMatch::LlmReader trace: #{error.class}: #{error.message}")
     end
 
     private

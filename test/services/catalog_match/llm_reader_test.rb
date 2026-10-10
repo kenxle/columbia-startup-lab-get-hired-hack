@@ -58,3 +58,19 @@ class CatalogMatch::LlmReaderTest < ActiveSupport::TestCase
     assert_nil CatalogMatch::LlmReader.default
   end
 end
+
+class CatalogMatch::LlmReaderTraceTest < ActiveSupport::TestCase
+  teardown { CatalogMatch::LlmReader.trace_listener = nil }
+
+  test "a trace listener hears every gateway call without affecting the reading" do
+    heard = []
+    CatalogMatch::LlmReader.trace_listener = ->(event) { heard << event }
+    transport = ->(_) { { "id" => "gen-1", "model" => "anthropic/claude-opus-5", "choices" => [ { "message" => { "content" => '{"fields":{},"evidence":{}}' } } ] }.to_json }
+    assert_equal({}, CatalogMatch::LlmReader.new(api_key: "t", transport: transport).read("something"))
+    assert_equal [ "ok" ], heard.map { |event| event[:outcome] }
+    assert_equal "gen-1", heard.first[:request_id]
+
+    CatalogMatch::LlmReader.trace_listener = ->(_) { raise "tracing broke" }
+    assert_equal({}, CatalogMatch::LlmReader.new(api_key: "t", transport: transport).read("something"))
+  end
+end
