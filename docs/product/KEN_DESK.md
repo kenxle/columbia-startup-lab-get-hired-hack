@@ -2,39 +2,39 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 14:26, from the bulletin board through 14:22.
+**Last updated:** 2026-10-10 14:56, from the bulletin board through 14:52.
 
 ## Needs your call
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **11. Show a price on metals lines in the video, or leave them unpriced?** Tisch's pricer (14:12) reads live steel and aluminum prices from FRED and checks two dealers, with a 15% target margin and an 8% floor. But Tisch keeps the firm price empty until freight, supplier stock, certification and terms are known. So metals lines would show no price in the video. *Recommendation:* show an **indicative price** on metals lines: the dated FRED benchmark plus the target margin, labeled "Indicative, from [benchmark, date]. Final price after freight." It answers the challenge's "price each line against market benchmarks" and keeps the no-hallucination rule, because every number shows its source. Waiting: Tisch, Hirsh.
+- [ ] **12. Hirsh asks you to step in on Tisch's work** (board, 14:52). Tisch is the bottleneck. Hirsh wants you to take or assign: (a) rebuilding the demo PDF, which is corrupt in the repo, so the PDF path fails; (b) cleaning up source data; (c) stock and lead-time evidence for the four clean-demo SKUs: S-330, G-40, S-170, G-25. *Recommendation:* Claude takes (a) and (b) now, after agreeing exact files with Tisch on the board. For (c), apply your production-data rule: the demo catalog marks those four SKUs as stocked, so they show RudCo's 24 to 48 hour lead time. Hirsh's board note says missing evidence must stay unknown, so this needs your word. Say "go" and which parts.
+- [ ] **13. Jev key and Ruby client.** Hirsh (W1 question check) and Yuval (doubtful compliance hits) are waiting on a `JEV_API_KEY` and Herald's client, shared privately. Herald's client is `herald/app/services/classify/jev_client.rb`. Waiting: you.
+- [ ] **14. Review the product page and comparison page.** First drafts are up on the running app: [Product](http://127.0.0.1:3100/product) and [Compare](http://127.0.0.1:3100/compare) (Hirsh, 14:38). Leave comments right on the pages.
 
 ## Coming to you soon
 
-- **Ken's 14:10 and 14:11 fixes:** the evidence pill in the quote header, and a line click that opens the line in place. Hirsh's workers are on them.
-- **The demo RFQ email.** Still with Tisch. Hirsh is ready to load it the moment it lands.
-- **Buyer shorthand examples** from our research, for the learn-the-buyer beat. A subagent is collecting them.
+- **Promo video v2**, built from the shot list, with a full price on the metals line as you asked. A subagent is rendering it.
+- **Two clean demo RFQs** (Yuval, 14:50): four abrasive lines (S-330, G-40, S-170, G-25), all Ready with RudCo prices and COA flags; and the same RFQ with one quantity missing, so one line asks the buyer. Hirsh is loading them as demo records.
+- **Auto-sent question tracking:** each question shows time, recipient and text, through the local mail preview. Two Hirsh workers on it.
 - **Dry run of the demo script at 3:15**, run by Hirsh.
 
 ## Where things stand
 
-From the bulletin board through 14:22. Recording is about 3:45.
+From the bulletin board through 14:52. Recording is about 3:45.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Twelve varied RFQs fill the Quotes list, with live 24-hour countdowns and sent times. The demo email is still with Tisch. |
-| 2. Pull the data | 🟡 | Yuval | A real 35-page tender (Transnet steel shot, from Tisch) came out as 257 held lines and none Ready: boilerplate read as items, packaging read as orders. Fine for the compact demo email; a real limit for real RFQs. Yuval is on table and item boundaries. |
-| 3. Parse | ✅ | Yuval | The Opus 5 gateway client is written but not pushed. Yuval's session is moving to a new agent, with a [handoff note](../rfq_processing/HANDOFF.md). |
-| 4. Match | ✅ | Tisch | Screws, nuts and washers added; quantities read before forms. |
-| 5. Price, flags, lead time | 🟡 | Tisch | Pricer with live FRED and two-dealer checks, being tested before push. Firm prices stay empty (item 11 above). |
-| Alternates | 🟡 | Hirsh, Yuval, Tisch | The app shows options apart from the subtotal. Waits on Yuval's push and Tisch's prices. |
-| 6. Buyer questions | ✅ for the demo | Hirsh | The rep enters the buyer's answer, and only that line reruns. Sending email and the buyer's click are not built. |
-| 7. Review and approve | ✅ | Hirsh | Sidebar-only nav, full height, attention-first, the whole original RFQ with highlights, subtotal tooltip. 364 tests pass. |
-| 8. Send the reply | 🟡 | Hirsh | Approved PDF, CSV and email draft with local preview. Real delivery not built. |
-| 9. Learn the buyer | 🟡 | Hirsh, Tisch, Yuval | Teaching on a quote records the source RFQ. Tisch's teachable gauge fields are in. Waits on Yuval's "as you confirmed on" wording push. |
-
-**Also:** a 30-second promo video is in [docs/product/promo/](promo/), committed from your account at 14:20.
+| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Busy Quotes list done: varied receipt ages, amber under 8 hours, red overdue, soonest due first, sent last. The Northline demo email loads, but the demo PDF is corrupt in the repo. |
+| 2. Pull the data | 🟡 | Yuval | Fixes for false items (headers, titles, "Same sheet as last week"), packaging read as quantity, and compliance scope are local, waiting on review before push. The Transnet tender now extracts its one real S390 row. |
+| 3. Parse | ✅ | Yuval | Shorthand misreads being fixed: glass bead size vs finish, stainless shot, "16 Gage x 4 x 8". |
+| 4. Match | 🟡 | Tisch, Yuval | A taught thickness (0.060 in read as 0.0625) still matches with "close, confirm", so the second RFQ stays held. Needs Tisch's matcher change. |
+| 5. Price, flags, lead time | 🟡 | Tisch | RudCo list prices work on abrasives (USD 0.38 to 0.42 per lb). Tisch's distributor pricer is built (98 tests) but now requires five competitor offers per item, so metals stay unpriced. Lead time reads "to confirm" for all 96 RudCo rows (item 12). |
+| 6. Buyer questions | ✅ for the demo | Hirsh | Answer "100 lb" on a held S-330 line, and the line turns Ready at USD 0.40 per lb. "Question to send" label is live. Auto-send tracking in progress. |
+| 7. Review and approve | ✅ | Hirsh | Evidence pill and in-place line opening done. 400 tests pass. |
+| 8. Send the reply | 🟡 | Hirsh | PDF, CSV and email draft with local preview. Real delivery not built. |
+| 9. Learn the buyer | 🟡 | Hirsh, Yuval, Tisch | Teaching "0.060 in" as 0.0625 works from the quote form, with the source RFQ saved. Blocked at matching (row 4). |
+| Marketing pages | 🟡 | Hirsh | Product and Compare drafts ready for you (item 14). |
 
 ## Build map
 
@@ -111,6 +111,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Item 11 decided: the promo shows a full price; it can assume ideal conditions.
 
 - 24-hour quote promise is now a core requirement, and unclear lines get quoted as alternates. Posted to the team; docs being updated.
 
