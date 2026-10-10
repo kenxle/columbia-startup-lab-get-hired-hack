@@ -75,7 +75,9 @@ Solid lines exist or are being built. Dotted lines are planned.
   - Any edit clears approval. A stale review cannot approve newer content (`Quote#review_revision`).
   - Held lines never count toward the subtotal. Sample data is labeled SAMPLE.
 - **Processing integration:** stores optional `revision` as `Quote#processing_revision`, plus each line's `line_id` and `processing` JSON. Existing schema-version-1 payloads still work. Metadata is validated and stored atomically with the result; it never grants readiness or approval.
+- **Incoming catalog services:** Tisch's `app/services/catalog_match/` and client/match-request models are on main; their migration is applied locally. No quote UI route invokes them yet. The description/struct-based matcher and direct line writer need reconciliation with Yuval's single-result contract before wiring. Integration findings are on the bulletin at 13:06.
 - **Checked:** 125 Rails tests / 918 assertions and 12 PDF utility specs pass. Opus 5.5 reviewed fixed UI and metadata snapshots; findings were fixed. Desktop/mobile review navigation, question-edit return and actual draft download were verified in the browser.
+- **Latest teammate sync:** 148 Rails tests / 1,028 assertions, 12 PDF specs and the standalone reader's 9 tests / 222 assertions pass with the 500-item aviation catalog. These checks do not establish that the unwired matcher and processing contracts agree.
 - **Remaining gaps:** real parser invocation, result `source`/`warnings` presentation, email transport, buyer-choice response endpoints and re-quote history/redlines. Preview/download are read-only and never report a sent message. Stored choice/revision metadata prepares replies but does not implement them.
 
 ### RFQ processing (Yuval)
