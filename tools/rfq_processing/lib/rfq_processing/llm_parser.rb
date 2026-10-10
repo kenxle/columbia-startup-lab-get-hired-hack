@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require_relative "openai_compatible_client"
 
 module RfqProcessing
   # Claude reads one RFQ line into the same field names the rules use. The
@@ -8,12 +9,20 @@ module RfqProcessing
   # lookup, dimension parsing); Claude only fills what the rules left empty,
   # and every value it adds must quote words that are actually in the line.
   #
-  # The anthropic gem is required lazily in build_client, so this file loads
-  # without it and the specs run against a stub client.
+  # Two ways to reach Claude Opus 5, both decided by the team on 2026-10-10:
+  # the Nicrron gateway (OpenAI-compatible chat completions, OpenAiCompatibleClient)
+  # or the Anthropic API through the anthropic gem. The gem is required lazily in
+  # build_client, so this file loads without it and the specs run against stubs.
+  # A response that names a different model than the one asked for is dropped,
+  # never used: no silent model substitution.
   class LlmParser
-    MODEL = "claude-opus-5-5"
+    ANTHROPIC_MODEL = "claude-opus-5"
+    MODEL = ANTHROPIC_MODEL
+    NICRRON_MODEL = "anthropic/claude-opus-5"
+    NICRRON_BASE_URL = "https://api.nicrron.ai/v1"
+    PROVIDERS = %w[anthropic nicrron].freeze
     MAX_TOKENS = 2048
-    HIGH_CONFIDENCE = 0.9    # Claude must be at least this sure before a disagreement is recorded
+    HIGH_CONFIDENCE = 0.9    # minimum confidence for a fill or a disagreement
     NUMERIC_TOLERANCE = 0.01 # numbers within 1% of the rules' value are the same number
 
     NUMBER_FIELDS = %w[thickness_in wall_in width_in length_in diameter_in quantity].freeze
@@ -66,14 +75,45 @@ module RfqProcessing
 
     # nil when no credentials are configured, so the pipeline skips the step.
     # A client passed in is used as is (for tests, or a client built elsewhere).
+    #
+    # Environment: NICRRON_API_KEY picks the Nicrron gateway (NICRRON_BASE_URL and
+    # NICRRON_MODEL override the defaults); otherwise ANTHROPIC_API_KEY or
+    # ANTHROPIC_AUTH_TOKEN picks the Anthropic API (ANTHROPIC_MODEL overrides the
+    # model). With both keys, Nicrron wins unless RFQ_LLM_PROVIDER names one. A
+    # forced provider without its key, or an unknown name, turns the step off with
+    # a warning rather than quietly using the other one.
     def self.from_env(client: nil)
       return new(client: client) if client
 
+      nicrron_key = presence(ENV.fetch("NICRRON_API_KEY", nil))
       api_key = presence(ENV.fetch("ANTHROPIC_API_KEY", nil))
       auth_token = presence(ENV.fetch("ANTHROPIC_AUTH_TOKEN", nil))
-      return nil if api_key.nil? && auth_token.nil?
+      available = []
+      available << "nicrron" if nicrron_key
+      available << "anthropic" if api_key || auth_token
 
-      new(client: build_client(api_key: api_key, auth_token: auth_token))
+      case choose_provider(available)
+      when "nicrron"
+        model = presence(ENV.fetch("NICRRON_MODEL", nil)) || NICRRON_MODEL
+        base_url = presence(ENV.fetch("NICRRON_BASE_URL", nil)) || NICRRON_BASE_URL
+        new(client: OpenAiCompatibleClient.new(api_key: nicrron_key, base_url: base_url, model: model), model: model)
+      when "anthropic"
+        model = presence(ENV.fetch("ANTHROPIC_MODEL", nil)) || ANTHROPIC_MODEL
+        new(client: build_client(api_key: api_key, auth_token: auth_token), model: model)
+      end
+    end
+
+    def self.choose_provider(available)
+      forced = presence(ENV.fetch("RFQ_LLM_PROVIDER", nil))&.downcase
+      return available.first if forced.nil?
+      return forced if available.include?(forced)
+
+      if PROVIDERS.include?(forced)
+        warn "LlmParser: configured provider key is not set; the Claude step is off"
+      else
+        warn "LlmParser: unsupported provider configuration; the Claude step is off"
+      end
+      nil
     end
 
     def self.build_client(api_key:, auth_token:)
@@ -85,31 +125,44 @@ module RfqProcessing
       value = value.to_s.strip
       value.empty? ? nil : value
     end
-    private_class_method :build_client, :presence
+    private_class_method :choose_provider, :build_client, :presence
 
-    def initialize(client:, model: MODEL)
+    # No silent model substitution. True when the answered name is the asked one, or the asked
+    # one with a dated snapshot suffix, after lowercasing both and removing a "provider/" prefix.
+    # "claude-opus-5-5" is not "claude-opus-5". Shared with bin/llm-smoke --models.
+    def self.same_model?(asked, answered)
+      asked = bare_model_name(asked)
+      got = bare_model_name(answered)
+      got == asked || got.match?(/\A#{Regexp.escape(asked)}[-@]\d{8}\z/)
+    end
+
+    def self.bare_model_name(name)
+      name.to_s.strip.downcase.sub(%r{\A[^/]+/}, "")
+    end
+
+    attr_reader :client, :provider, :model
+
+    # A client that responds to chat is an OpenAI-compatible gateway client (provider
+    # "nicrron"); anything else is treated as the Anthropic SDK client. The model
+    # defaults to the gateway client's own model, or to the Opus 5 id for each provider.
+    def initialize(client:, model: nil)
       @client = client
-      @model = model
+      @provider = client.respond_to?(:chat) ? "nicrron" : "anthropic"
+      @model = (model || default_model).to_s
+    end
+
+    # Goes into the result hash as revision.llm. Keep these two keys.
+    def describe
+      { "provider" => @provider, "model" => @model }
     end
 
     # One Claude call. A Hash with string keys: "fields", "evidence", "unclear".
     # Never raises on API errors: warns and returns nil.
     def read(text)
-      response = @client.messages.create(
-        model: @model,
-        max_tokens: MAX_TOKENS,
-        system_: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: text.to_s }],
-        output_config: { format: { type: "json_schema", schema: SCHEMA } }
-      )
-      block = Array(response.content).find { |b| b.type.to_s == "text" }
-      if block.nil?
-        warn "LlmParser: Claude returned no text block"
-        return nil
-      end
-      normalize(JSON.parse(block.text))
+      parsed = @provider == "nicrron" ? read_through_gateway(text) : read_through_anthropic(text)
+      parsed.nil? ? nil : normalize(parsed)
     rescue StandardError => e
-      warn "LlmParser: Claude read failed (#{e.class}: #{e.message})"
+      warn "LlmParser: Claude read failed (#{e.class})"
       nil
     end
 
@@ -126,26 +179,91 @@ module RfqProcessing
       reading.conflicts ||= []
       reading.unknowns ||= []
       line = text.to_s
+      used = false
 
       claude["fields"].each do |field, value|
         next if value.nil?
 
         quote = claude["evidence"].find { |e| e["field"] == field }
         next if quote.nil? || !quoted?(quote["text"], line) # no source words in the line: not used
+        next unless quote["confidence"].finite? && (HIGH_CONFIDENCE..1.0).cover?(quote["confidence"])
 
         current = reading.fields[field]
         if current.nil?
           fill(reading, field, value, quote)
-        elsif quote["confidence"] >= HIGH_CONFIDENCE && differs?(current, value)
+          used = true
+        elsif differs?(current, value)
           reading.conflicts << { "code" => "llm_disagrees",
                                  "message" => "Claude read #{field} as #{value} from \"#{quote['text']}\"; the rules read #{current}. The rules' value is kept.",
                                  "fields" => [field] }
+          used = true
         end
       end
+      # Do not let fields filled by Claude make a line Ready while that same
+      # response declares uncertainty. Existing rules holds already cover this.
+      if claude["unclear"].any? { |note| !note.strip.empty? } && reading.conflicts.empty? && reading.unknowns.empty?
+        reading.conflicts << { "code" => "llm_unclear", "fields" => [],
+                               "message" => "Claude could not settle this line. Please confirm its reading." }
+        used = true
+      end
+      reading.rules_used << "Claude model: #{@model}" if used
       reading
     end
 
     private
+
+    def default_model
+      return ANTHROPIC_MODEL unless @provider == "nicrron"
+
+      name = @client.respond_to?(:model) ? @client.model.to_s.strip : ""
+      name.empty? ? NICRRON_MODEL : name
+    end
+
+    def read_through_anthropic(text)
+      response = @client.messages.create(
+        model: @model,
+        max_tokens: MAX_TOKENS,
+        system_: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: text.to_s }],
+        output_config: { format: { type: "json_schema", schema: SCHEMA } }
+      )
+      return nil unless same_model?(response.respond_to?(:model) ? response.model : nil)
+
+      block = Array(response.content).find { |b| b.type.to_s == "text" }
+      if block.nil?
+        warn "LlmParser: Claude returned no text block"
+        return nil
+      end
+      JSON.parse(block.text)
+    end
+
+    def read_through_gateway(text)
+      reply = @client.chat(system: SYSTEM_PROMPT, user: text.to_s, schema: SCHEMA, max_tokens: MAX_TOKENS)
+      return nil if reply.nil? # the client already said why
+      return nil unless same_model?(reply["model"])
+
+      JSON.parse(strip_fences(reply["text"]))
+    rescue JSON::ParserError => e
+      warn "LlmParser: the gateway's reply is not JSON (#{e.class})"
+      nil
+    end
+
+    # "```json\n{...}\n```" or "```\n{...}\n```" to "{...}"; anything else is returned trimmed.
+    def strip_fences(content)
+      text = content.to_s.strip
+      fenced = /\A```[A-Za-z0-9_-]*[ \t]*\r?\n?(.*?)\r?\n?[ \t]*```\z/m.match(text)
+      (fenced ? fenced[1] : text).strip
+    end
+
+    # The answer's model name must pass LlmParser.same_model?; a reading from another model is
+    # dropped with a warning. A missing name cannot establish model identity.
+    def same_model?(answered)
+      answered = answered.to_s.strip
+      return true if !answered.empty? && self.class.same_model?(@model, answered)
+
+      warn "LlmParser: #{answered.empty? ? 'no model identity' : 'model identity mismatch'}; reading dropped"
+      false
+    end
 
     def fill(reading, field, value, quote)
       reading.fields[field] = value
@@ -159,7 +277,11 @@ module RfqProcessing
     # Claude's quoted words must be in the line, case-insensitively; whitespace runs are collapsed.
     def quoted?(words, line)
       words = words.to_s.strip.gsub(/\s+/, " ")
-      !words.empty? && line.gsub(/\s+/, " ").downcase.include?(words.downcase)
+      return false if words.empty?
+
+      lead = words.match?(/\A[[:alnum:]]/) ? "(?<![[:alnum:]])" : ""
+      trail = words.match?(/[[:alnum:]]\z/) ? "(?![[:alnum:]])" : ""
+      Regexp.new("#{lead}#{Regexp.escape(words)}#{trail}", Regexp::IGNORECASE).match?(line.gsub(/\s+/, " "))
     end
 
     def differs?(current, value)
@@ -193,7 +315,10 @@ module RfqProcessing
 
       if NUMBER_FIELDS.include?(field)
         number = value.is_a?(Numeric) ? value : Float(value.to_s, exception: false)
-        number && Units.tidy(number)
+        return nil unless number && number.finite? && number.positive?
+
+        rounded = Units.tidy(number)
+        rounded.positive? ? rounded : nil
       else
         text = value.to_s.strip
         text.empty? ? nil : text

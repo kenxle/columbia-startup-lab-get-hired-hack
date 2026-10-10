@@ -1,0 +1,167 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Reads one RFQ through the rules and then through Claude, and prints what Claude added.
+#
+#   bin/llm-smoke [path]                  # default: spec/fixtures/demo_rfq_email.txt
+#   bin/llm-smoke --models                # GET <base_url>/models: list the ids, say whether ours is there
+#   RFQ_LLM_SMOKE_STUB=1 bin/llm-smoke    # a fixed stub reading, no network, no key (also with --models)
+#
+# Run from tools/rfq_processing. The provider comes from the environment the way the
+# pipeline picks it (NICRRON_API_KEY, or ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN, with
+# RFQ_LLM_PROVIDER to force one). This script reads no .env file; set the variables
+# in the shell. Exit 2 when no key is set; with --models, exit 1 when the listing fails,
+# 0 otherwise (listed or not). Nothing is written anywhere.
+
+require_relative "../lib/rfq_processing"
+require "json"
+
+# Stands in for the gateway client: the same fixed reading for every line, fenced the way
+# a chat model fences JSON. The rules keep their own values, so on the demo RFQ this shows
+# an llm_disagrees conflict on width (36 from "4x8", which the rules read as 48) and no
+# fills, because the rules already read the material and grade. Evidence must match
+# complete tokens: the stub's "SS" is not accepted inside "Stnless" or "brass".
+class SmokeStubClient
+  READING = {
+    "fields" => { "material" => "stainless steel", "grade" => "304", "width_in" => 36 },
+    "evidence" => [
+      { "field" => "material", "text" => "SS", "note" => "SS is stainless steel", "confidence" => 0.9 },
+      { "field" => "grade", "text" => "304", "note" => "grade as written", "confidence" => 0.95 },
+      { "field" => "width_in", "text" => "4x8", "note" => "stub reads the width wrong on purpose", "confidence" => 0.95 }
+    ],
+    "unclear" => []
+  }.freeze
+
+  MODELS = ["anthropic/claude-opus-5", "anthropic/claude-opus-5-5", "anthropic/claude-sonnet-4-6"].freeze
+
+  attr_reader :model, :last_status
+
+  def initialize
+    @model = RfqProcessing::LlmParser::NICRRON_MODEL
+    @last_status = nil
+  end
+
+  def chat(system:, user:, schema:, max_tokens:)
+    @last_status = 200
+    { "text" => "```json\n#{JSON.pretty_generate(READING)}\n```", "model" => @model }
+  end
+
+  def models_url = "stub://models"
+
+  def models
+    @last_status = 200
+    MODELS.dup
+  end
+end
+
+def source_type(path)
+  case File.extname(path).downcase
+  when ".pdf" then "pdf"
+  when ".csv" then "csv"
+  when ".xlsx", ".xls" then "xlsx"
+  else "email"
+  end
+end
+
+# The item lines the pipeline reads, picked the way Pipeline#process picks them.
+def item_lines(extraction)
+  picker = RfqProcessing::Pipeline.new(llm: false)
+  extraction.lines.filter_map do |line|
+    next if RfqProcessing::Pipeline::HEADER.match?(line.text)
+    next unless picker.item_line?(line.text)
+
+    RfqProcessing::Extractor::Line.new(text: line.text.sub(RfqProcessing::Pipeline::LIST_MARKER, ""), location: line.location)
+  end
+end
+
+def show_fields(fields)
+  pairs = fields.reject { |_, v| v.nil? }.map { |k, v| "#{k}=#{v}" }
+  pairs.empty? ? "(none)" : pairs.join("  ")
+end
+
+args = ARGV.dup
+models_mode = !args.delete("--models").nil?
+path = args[0] || File.expand_path("../spec/fixtures/demo_rfq_email.txt", __dir__)
+if !models_mode && !File.file?(path)
+  warn "llm-smoke: no such file: #{path}"
+  exit 1
+end
+
+parser = if ENV["RFQ_LLM_SMOKE_STUB"] == "1"
+           RfqProcessing::LlmParser.from_env(client: SmokeStubClient.new)
+         else
+           RfqProcessing::LlmParser.from_env
+         end
+if parser.nil?
+  puts "No LLM key in the environment. Set NICRRON_API_KEY (or ANTHROPIC_API_KEY), or RFQ_LLM_SMOKE_STUB=1 for the stub."
+  exit 2
+end
+
+described = parser.describe
+puts "provider: #{described['provider']}  model: #{described['model']}#{ENV['RFQ_LLM_SMOKE_STUB'] == '1' ? '  (stub client, no network)' : ''}"
+
+# --models: a diagnostic for the gateway. Lists what GET <base_url>/models returns and whether
+# the configured model is among the ids, compared the way readings are checked (prefix and
+# case ignored, a dated snapshot of the same model counts).
+if models_mode
+  client = parser.client
+  # Only the gateway client: the Anthropic SDK client has a models resource of its own, so a duck check is not enough.
+  unless parser.provider == "nicrron" && client.respond_to?(:models)
+    puts "--models lists the Nicrron gateway's /models; provider is #{described['provider']}. Set NICRRON_API_KEY (or RFQ_LLM_PROVIDER=nicrron) to check the gateway."
+    exit 1
+  end
+  ids = client.models
+  where = client.respond_to?(:models_url) ? client.models_url : "models"
+  if ids.nil?
+    status = client.respond_to?(:last_status) ? client.last_status : nil
+    puts "GET #{where}: failed#{status ? " with status #{status}" : ' before any answer'} (see the warning above)"
+    exit 1
+  end
+  puts "GET #{where}: status #{client.respond_to?(:last_status) ? client.last_status : '2xx'}, #{ids.size} model id#{ids.size == 1 ? '' : 's'}"
+  ids.each { |id| puts "  #{id}" }
+  listed = ids.select { |id| RfqProcessing::LlmParser.same_model?(parser.model, id) }
+  if listed.empty?
+    puts "configured model #{parser.model} is NOT among them"
+  else
+    puts "configured model #{parser.model} is listed as #{listed.join(', ')}"
+  end
+  exit 0
+end
+
+puts "file: #{path}"
+
+type = source_type(path)
+content = type == "pdf" ? File.binread(path) : File.read(path)
+extraction = RfqProcessing::Extractor.extract(content, type: type, filename: File.basename(path))
+extraction.warnings.each { |w| puts "warning: #{w}" }
+lines = item_lines(extraction)
+
+added_lines = 0
+conflict_lines = 0
+lines.each_with_index do |line, i|
+  reading = RfqProcessing::RulesParser.parse(line.text, position: i + 1, location: line.location)
+  before = reading.fields.dup
+  conflicts_before = reading.conflicts.size
+  parser.refine(reading, line.text)
+
+  added = reading.fields.select { |field, value| before[field].nil? && !value.nil? }
+  disagreements = reading.conflicts.drop(conflicts_before).select { |c| c["code"] == "llm_disagrees" }
+  added_lines += 1 unless added.empty?
+  conflict_lines += 1 unless disagreements.empty?
+
+  puts
+  puts "#{i + 1}. [#{line.location}] #{line.text}"
+  puts "   rules:        #{show_fields(before)}"
+  if added.empty?
+    puts "   claude added: (nothing)"
+  else
+    added.each do |field, value|
+      quote = reading.evidence.dig(field, "text")
+      puts "   claude added: #{field}=#{value}  quoting \"#{quote}\"  (confidence #{reading.confidence[field]})"
+    end
+  end
+  disagreements.each { |c| puts "   llm_disagrees: #{c['message']}" }
+end
+
+puts
+puts "lines: #{lines.size}  lines where Claude added fields: #{added_lines}  lines with llm_disagrees conflicts: #{conflict_lines}"
