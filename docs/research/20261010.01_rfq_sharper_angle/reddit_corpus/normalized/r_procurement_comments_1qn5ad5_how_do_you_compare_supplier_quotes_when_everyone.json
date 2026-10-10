@@ -5,9 +5,145 @@
   "title": "How do you compare supplier quotes when everyone sends info in different formats?",
   "author": "CellInitial2394",
   "created_iso": "2026-01-26T03:51:59Z",
-  "score": 0,
+  "score": 1,
   "num_comments": 24,
   "selftext": "O.M.G...comparing quotes is turning into a bigger pain than finding suppliers.\n\nEven when suppliers reply, the info comes back in completely different formats. One gives unit price only. Another gives MOQ but no lead time. Another mentions “shipping extra” but doesn’t say how much. And then you’re stuck doing follow-ups just to make quotes comparable. Do you have a standard RFQ template you force suppliers to fill? Or do you normalize everything manually?\n\nWhat are the “must-have fields” you need before you even consider price? How do you deal with hidden costs that show up late (packaging, tooling, shipping, payment terms)?\n\nhas anyone tried using AI to structure quote info and flag missing/non-comparable items? Did it actually help or just add noise?",
-  "comments": [],
+  "comments": [
+    {
+      "id": "o1repzc",
+      "author": "el_c0mandante",
+      "created_iso": "2026-01-26T04:27:04Z",
+      "score": 9,
+      "depth": 0,
+      "body": "Yes we have a standard RFT response template we expect them to fill in and non-negotiable fields. Recently seems to help drive a uniform approach in terms of responses.",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1repzc/"
+    },
+    {
+      "id": "o1sb566",
+      "author": "CellInitial2394",
+      "created_iso": "2026-01-26T08:35:57Z",
+      "score": -2,
+      "depth": 1,
+      "body": "yeah thats right, the standard RFT template + non-negotiable fields sounds like a way to kill quote chaos. Quick Qs if you don’t mind: what are your must-have fields (top \\~10) before a quote is even comparable? Which fields do suppliers most often leave blank / push back on? And did the template actually reduce follow-ups (like fewer back-and-forth rounds), or did it mainly help with formatting/comparability? Also curious if you include anything to confirm supplier role (factory vs trading/middleman) + basic compliance docs upfront.",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1sb566/"
+    },
+    {
+      "id": "o1swrpt",
+      "author": "_Kerrick_",
+      "created_iso": "2026-01-26T11:46:53Z",
+      "score": 9,
+      "depth": 0,
+      "body": "Just another vendor fishing to help build their app",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1swrpt/"
+    },
+    {
+      "id": "o1rvvaq",
+      "author": "AlwayHappyResearcher",
+      "created_iso": "2026-01-26T06:27:17Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Yeah well, it is part of the job, suppliers are known for cutting corners, that's how they try and screw you. \n\n\n&gt;How do you deal with hidden costs that show up late (packaging, tooling, shipping, payment terms)?\n\nwith \"fool me once\" \n\n\n&gt;has anyone tried using AI to structure quote info and flag missing/non-comparable items? Did it actually help or just add noise?\n\nAs anything with AI it is highly risky and hit-and-miss, as all models hallucinate AF you still have to check manually so there is no point.",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1rvvaq/"
+    },
+    {
+      "id": "o1sij8j",
+      "author": "CellInitial2394",
+      "created_iso": "2026-01-26T09:43:45Z",
+      "score": -1,
+      "depth": 1,
+      "body": "then what kind of measurement do u take to avoid such problem and what information do u value most when you'are filting a supplier?\n\nand you dont trust AI? it could be a tool that reduces your sourcing time",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1sij8j/"
+    },
+    {
+      "id": "o1ry7f1",
+      "author": "LunchZestyclose",
+      "created_iso": "2026-01-26T06:45:48Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Send them an excel template. \n\nIf small spec, use www.chatgpt.com or www.gemini.google.com. \n\nIf larger specs, defensibility and weights are key use www.perspix.ai. Can also auto create template from a pdf spec. \n\nIf you want custom stuff, have a look at www.hebba.ai. \n\nGL!",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1ry7f1/"
+    },
+    {
+      "id": "o1scad1",
+      "author": "CellInitial2394",
+      "created_iso": "2026-01-26T08:46:18Z",
+      "score": -1,
+      "depth": 1,
+      "body": "Thanks — super helpful 🙏 A couple quick follow-ups to make this actionable for operators: For the Excel template: what are your non-negotiable fields (top \\~10) you require before a quote is ‘comparable’? When you say ‘defensibility and weights are key’ for larger specs — what do you actually weight?",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1scad1/"
+    },
+    {
+      "id": "o1sibkw",
+      "author": "LunchZestyclose",
+      "created_iso": "2026-01-26T09:41:46Z",
+      "score": 6,
+      "depth": 2,
+      "body": "I spot ChatGPT answer I stop answering. GL.",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1sibkw/"
+    },
+    {
+      "id": "o1spn5a",
+      "author": "Sufficient-Opposite3",
+      "created_iso": "2026-01-26T10:47:34Z",
+      "score": 1,
+      "depth": 0,
+      "body": "You need to set the format before asking for quotes.",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1spn5a/"
+    },
+    {
+      "id": "o1thxha",
+      "author": "Hydra_AlexFG",
+      "created_iso": "2026-01-26T14:00:40Z",
+      "score": 1,
+      "depth": 0,
+      "body": "A standard response template is the answer and since your on the receiving end of the confusion you need to send the template for them to fill out and return in the format you want",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1thxha/"
+    },
+    {
+      "id": "o22pp37",
+      "author": "Leather-Application7",
+      "created_iso": "2026-01-27T19:37:57Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Make them reply in YOUR format. \"Quotes will only be accepted in the attached Excel document.\"",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o22pp37/"
+    },
+    {
+      "id": "o2k9136",
+      "author": "lewisluther666",
+      "created_iso": "2026-01-30T07:06:01Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I mean, put it in Excel and to m do a side by side comparison. \nIf you really want to use AI because the format is wild, then just upload them to chat got to make a table for you",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o2k9136/"
+    },
+    {
+      "id": "o1razc6",
+      "author": "DIGITIFYU",
+      "created_iso": "2026-01-26T04:03:42Z",
+      "score": 0,
+      "depth": 0,
+      "body": "Would you like to use a solutions which compares and give your better summary to decide ?",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1razc6/"
+    },
+    {
+      "id": "o1si9r4",
+      "author": "CellInitial2394",
+      "created_iso": "2026-01-26T09:41:19Z",
+      "score": 2,
+      "depth": 1,
+      "body": "what solution do u mean here?",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1si9r4/"
+    },
+    {
+      "id": "o1sk3hm",
+      "author": "DIGITIFYU",
+      "created_iso": "2026-01-26T09:58:11Z",
+      "score": 1,
+      "depth": 2,
+      "body": "AI Solution",
+      "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/o1sk3hm/"
+    }
+  ],
   "drilldown_candidates": []
 }

@@ -5,9 +5,487 @@
   "title": "Estimating Costs - Swiss Lathe",
   "author": "Homeboi-Jesus",
   "created_iso": "2026-04-21T00:24:54Z",
-  "score": 12,
+  "score": 11,
   "num_comments": 53,
   "selftext": "As a design engineer, I often undergo a lot of part iterations/rev changes for early stage R&amp;D. Part of the process is based off feedback from how much it'll cost. The problem with that is that I need an idea of what it'll cost in the first place!\n\n  \nTypically when I reach a point where the design is solid enough, I'll send it out for RFQ. But I know that wastes everybody's time because it isn't the final version of it. I want to be able to get an estimate myself. I can get raw material costs pretty easily (for the part above it's \\~$0.13 for the latest rev), but it's the machining costs that are a wild card.\n\n  \nI've attached an older rev of the part in question (metric units), it is a polymer material. What I want to know is, how would you guys go about quoting this part? What is the process like? I've seen some say it's machine rate / parts per hour; but that won't tell me anything without even knowing how many of these can be made in an hour. I know quantity plays a big role in it too, but for this type of part we are talking in the 10k+ territory.\n\n  \nAny advice on this topic, so I don't have to keep relying on RFQ-ing from outside until we are ready to actually buy it?",
-  "comments": [],
+  "comments": [
+    {
+      "id": "ohd0q0v",
+      "author": "Far_Development2556",
+      "created_iso": "2026-04-21T00:50:04Z",
+      "score": 13,
+      "depth": 0,
+      "body": "Yea definitely give it more wall thickness if you can. Material might be more money than you’re thinking, some Swiss shops buy precision ground bar(even in plastics) as the bars need to all be a consistent size for the guide bushing. It looks like a good Swiss part. If you’re still in the R&amp;D phase don’t be afraid to quote some lower quantities. The Swiss shop we use made us a run of 100 pcs, that doesn’t always happen though ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd0q0v/"
+    },
+    {
+      "id": "ohd23n7",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T00:58:02Z",
+      "score": 3,
+      "depth": 1,
+      "body": "Hmmm that is a bit concerning. The tolerance on the material says +0- +0.035in. Is that too loose for the Swiss? \n\nI do put on for prototype quantities, usually 250. My problem is that IDK how feasible the part is though. For reference, the part is a munitions part. It is expendable and needs to be cheap. The polymer raw costs looks good and doesn'traise a red flag. Assuming maching costs of $0.50 , so per part cost of $0.63 is quite steep honestly. But in my mind, this looks like an easy automated part to shape the outside, drill the hole, cut it off. It's just hard to gage whether we can get unit cost within budget or if I have to rethink the entire concept.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd23n7/"
+    },
+    {
+      "id": "ohd511v",
+      "author": "Acceptable_Trip4650",
+      "created_iso": "2026-04-21T01:15:26Z",
+      "score": 4,
+      "depth": 2,
+      "body": "It’s only a 10mm long part? I wouldn’t need ground stock for that. I can run it guide-bushing-less. The 0.25mm wall is probably not an issue depending on the tolerance for it and what kind of inside corner radius you need. \n\nWhat you need is a good relationship with a local and creative swiss shop that you can bounce ideas off of to be honest. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd511v/"
+    },
+    {
+      "id": "ohd98dn",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:40:46Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Yes, quite the small part indeed! Wall tolerance was +/-0.1mm. But like I've said in some other comments, I can increase the thickness to make it more manageable. Corner radius is tricky, I have a part that is slightly undersized that fits inside that hole. Ideally it would be minimal/not measurable. Probably around 0.2mm if I had to eyeball what would be fine.\n\n  \nLocally I think I've only got 2 Swiss shops, but I've never worked with either before. I tend to toss quotes for them to help out locally, but I don't really know if they are able to hit the low costs needed. Unfortunately all my friends work in sheet metal, so I don't have any good contacts in this line of work!",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd98dn/"
+    },
+    {
+      "id": "ohd9tve",
+      "author": "Acceptable_Trip4650",
+      "created_iso": "2026-04-21T01:44:24Z",
+      "score": 3,
+      "depth": 4,
+      "body": "Ha yeah, I feel that. Maybe you can stalk their foreman or programmer and invite them out to lunch for a brain session :)\n\nIf you are serious about your quantities, I am sure there are shops that would be interested in the relationship. From my end, it is just difficult to gauge a cold-rfq, but I do try to help out people as much as I can if they put in some notes in the email. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd9tve/"
+    },
+    {
+      "id": "ohd4b4f",
+      "author": "bszern",
+      "created_iso": "2026-04-21T01:11:08Z",
+      "score": 2,
+      "depth": 2,
+      "body": "That length could be run without the guide bushing so material diameter variation would not be an issue. However, some shops have machines that cannot run without a bushing (all of mine are convertible). If you need feedback, honestly just post it here or on one of the Swiss machine groups on Facebook. We all don’t mind giving you feedback. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd4b4f/"
+    },
+    {
+      "id": "ohd4u53",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T01:14:18Z",
+      "score": 2,
+      "depth": 2,
+      "body": "DGWorks Manufacturing would be more than happy to work with you.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd4u53/"
+    },
+    {
+      "id": "ohdusj5",
+      "author": "Redhighlighter",
+      "created_iso": "2026-04-21T03:55:32Z",
+      "score": 1,
+      "depth": 2,
+      "body": "If this is a munitions part this material may be ITAR/ export controlled and you may want to remove this info just as a CYA",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdusj5/"
+    },
+    {
+      "id": "ohdviop",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T04:00:34Z",
+      "score": 2,
+      "depth": 3,
+      "body": "It's non DoD/private research. Old rev as well, this piece was rejected in the simulation process, so it's nothing of value is associated with it. Appreciate the concern though! It's actually surprising that you can find drawings and dimensions of even current use small arms projectiles online (not just ball ammo, but AP as well), either the engineering print or academic studies.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdviop/"
+    },
+    {
+      "id": "ohd4oo6",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T01:13:23Z",
+      "score": 1,
+      "depth": 1,
+      "body": "I do small runs, no problem. My maximum diameter envelope is currently .625\" though.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd4oo6/"
+    },
+    {
+      "id": "ohcyx0g",
+      "author": "jamiethekiller",
+      "created_iso": "2026-04-21T00:39:32Z",
+      "score": 15,
+      "depth": 0,
+      "body": "This would probably get no quoted since .25mm wall thickness is hard as hell to hold",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohcyx0g/"
+    },
+    {
+      "id": "ohcz5ga",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T00:40:55Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Fair point. 0.25mm isn't mandatory. I could open it up to even 1mm. As part of the process, that's the information I am looking for, recommendations on what needs to change.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohcz5ga/"
+    },
+    {
+      "id": "ohd02g6",
+      "author": "jamiethekiller",
+      "created_iso": "2026-04-21T00:46:15Z",
+      "score": 9,
+      "depth": 2,
+      "body": "More Ops means more money.\n\nLotta times it's just a quantity issue and finding the right shop with the right equipment.\n\nSmaller shop might be 2 ops for this.  Another shop might be automated lights out 1 operation with an auto feed",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd02g6/"
+    },
+    {
+      "id": "ohd2jez",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:00:36Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Agreed about the operations; I had been keeping the process in mind when designing it. It seemed like it could be done on a single machine pretty easily. Machine the outer shape with 1 pass, 2nd pass for the OD tolerance, drill hole, finish with cutting from bar stock.\n\nBut what's the lower limit for part cost on a Swiss? Is it even possible to get the piece cost &lt;$0.63? ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd2jez/"
+    },
+    {
+      "id": "ohd8z5o",
+      "author": "Acceptable_Trip4650",
+      "created_iso": "2026-04-21T01:39:14Z",
+      "score": 4,
+      "depth": 4,
+      "body": "Yeah, I think you could get under $0.63ea, especially by 10k quantity. McMaster prices for 5ft of Ultem PEI is like $24.75/bar with a yield of about 130-140 pieces/bar. I would expect cycle times to be very quick. I would target 15-20sec easily, maybe faster. So you could be looking at $0.50ea maybe without too much optimization. This is just rough math and without a “real” material quote, which I expect to be less than McMaster…\n\nA lot of this depends on what kind of hole quality you need. I would be trying for a flat bottom drill in one shot, though sometimes they leave a little swirl line when retracting. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd8z5o/"
+    },
+    {
+      "id": "ohdab90",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:47:21Z",
+      "score": 2,
+      "depth": 5,
+      "body": "That would be awesome if we could hit budget with the part! For raw costs, I used ePlastics natural ULEM 1000, 10ft. \\~240 parts -&gt; $0.13 raw material costs. I factored $0.50 for machining ops. Ideally getting that lower will increase our competitiveness and demand; but we can make do with that budget. \n\n  \nHole just needs to be bigger than the insert but not so loose it loses concentricity, and needs to be at least the depth called out. The quality of the bottom face of the hole doesn't really matter much, we inject a small amount of epoxy to bound the 2 parts together. The insert is inserted via a mechanical press.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdab90/"
+    },
+    {
+      "id": "ohdb330",
+      "author": "Acceptable_Trip4650",
+      "created_iso": "2026-04-21T01:51:59Z",
+      "score": 3,
+      "depth": 6,
+      "body": "Haha, yeah. Shipping also kills short runs. McMaster says it is more expensive (+$25) to ship one bar than the price of the bar itself. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdb330/"
+    },
+    {
+      "id": "ohf3d80",
+      "author": "graffiti81",
+      "created_iso": "2026-04-21T10:26:05Z",
+      "score": 5,
+      "depth": 2,
+      "body": "Honestly, as a swiss guy, that wall thickness probably wouldn't be a problem, depending on material. Something like delrin would hold fine. if it's something like rubber it might be more of an issue. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohf3d80/"
+    },
+    {
+      "id": "ohdxc2b",
+      "author": "FalseRelease4",
+      "created_iso": "2026-04-21T04:13:45Z",
+      "score": 2,
+      "depth": 2,
+      "body": "absolutely make it as thick as possible, it will be much easier to produce",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdxc2b/"
+    },
+    {
+      "id": "ohczx2f",
+      "author": "BeastWR",
+      "created_iso": "2026-04-21T00:45:23Z",
+      "score": 9,
+      "depth": 0,
+      "body": "If you want quick price comparison over iterations, Xometry is near instantaneous and free, and won’t waste another human’s time.\n\nHowever, they won’t give you the practical and  essential feedback as you got here from u/jamiethekiller to help steer you to better DFM. \n\n",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohczx2f/"
+    },
+    {
+      "id": "ohd0jc4",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T00:49:00Z",
+      "score": 2,
+      "depth": 1,
+      "body": "I've tried Xometry in the past, but they've been over 2-5x the costs I get back. They also didn't have the material this'll be made out of. They were quoting like $1.50 each out of a cheap plastic I plugged in instead.\n\nCompletely agreed on practical advice. Wasn't sure how achievable 0.25mm was, but I had seen it in similar parts!",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd0jc4/"
+    },
+    {
+      "id": "ohd4hta",
+      "author": "BeastWR",
+      "created_iso": "2026-04-21T01:12:16Z",
+      "score": 4,
+      "depth": 2,
+      "body": "Oh, agreed. I often use Xometry to figure out proportional price comparison between design iterations, and once I settle on my design from that info, then I start calling around to humans in my network for project pricing and the practical input ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd4hta/"
+    },
+    {
+      "id": "ohd5ygr",
+      "author": "Trivi_13",
+      "created_iso": "2026-04-21T01:21:00Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Cost is dependent on tolerance and volume. \n\nIf you want only 20 parts, you still have to pay for the 6m rod and all that setup time. \n\nNext is what machine will it be running on? A multispindle machine can spit out one part every 3-3.5 seconds. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd5ygr/"
+    },
+    {
+      "id": "ohd7hwl",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:30:15Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Yes, production volumes are being quoted for over 10k.\n\n  \nAs for machines, I don't have an answer for that! I am not familiar enough with the distinctions besides a Swiss lathe and a regular lathe.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd7hwl/"
+    },
+    {
+      "id": "ohd8u7x",
+      "author": "Trivi_13",
+      "created_iso": "2026-04-21T01:38:25Z",
+      "score": 2,
+      "depth": 2,
+      "body": "To add to your confusion,  I would run that part in the chucker mode, no guide bushing. \n\nThe part's length to diameter ratio is under 3:1 so you can do it. \n\nAbout 80mm more yield from the barstock. \n\n",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd8u7x/"
+    },
+    {
+      "id": "ohczuk8",
+      "author": "LegitimateFig5311",
+      "created_iso": "2026-04-21T00:44:59Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I mean yeah it depends how many can be made in an hour/day.so if shop rate is $150/hour, and u can make 45 of these in an hour then thats 360 a day assuming its a 1 shift shop.if u need 10k parts at 45 an hour thats roughly 28 days so 224 hours so $33.6k for the job. These r all just random numbers, not saying any of that is accurate. But that changes to if u want 100 prototype, cost will probably go up. But depends on shop rate, how busy they r, their capabilities etc. So a RFQ is just going to be part of it ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohczuk8/"
+    },
+    {
+      "id": "ohd0u4s",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T00:50:43Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Are there any CAD packages that could simulate run time for models like these with operations in mind? Maybe that would be the route to go, assume a fixed rate for the shop, get a rough time to machine, and go from there?",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd0u4s/"
+    },
+    {
+      "id": "ohd3rqo",
+      "author": "bszern",
+      "created_iso": "2026-04-21T01:07:54Z",
+      "score": 3,
+      "depth": 2,
+      "body": "Absolutely not, I have Tsugamis that are good at some stuff and citizens that are better at other stuff. Some people have Swiss lathes that aren’t good at anything. You can’t simulate a run time without knowing what machine it’s going to be on and what the tooling is going to be. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd3rqo/"
+    },
+    {
+      "id": "ohd76dk",
+      "author": "LegitimateFig5311",
+      "created_iso": "2026-04-21T01:28:16Z",
+      "score": 2,
+      "depth": 2,
+      "body": "U can assume a fixed rate all day long but ur going to get different answers from every shop. And like someone else said, one guy might have a super fast Swiss lathe with a bar feeder and know these out. Or u might have a guy with a slower rapid machine and no bar feeder. Lots of variables ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd76dk/"
+    },
+    {
+      "id": "ohd56ij",
+      "author": "dpolseno41",
+      "created_iso": "2026-04-21T01:16:22Z",
+      "score": 2,
+      "depth": 0,
+      "body": "What exact plastic are we talking about here?",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd56ij/"
+    },
+    {
+      "id": "ohd7j5d",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:30:28Z",
+      "score": 1,
+      "depth": 1,
+      "body": "ULTEM 1000 or Polycarbonate",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd7j5d/"
+    },
+    {
+      "id": "ohddahp",
+      "author": "dpolseno41",
+      "created_iso": "2026-04-21T02:04:59Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Ultem machines great. I'd be at $.85 per on these out of Ultem but I know I'm not the cheapest shop around. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohddahp/"
+    },
+    {
+      "id": "ohdembg",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T02:12:52Z",
+      "score": 2,
+      "depth": 3,
+      "body": "Yeah that's what I'm afraid of. $0.85 is on the steeper side. That rivals the cost of the insert which is made of a novel alloy that we came up with for powder metallurgy. Quite crazy to think about really, how taking raw powders, milling it, drying it, spraying it, pressing it, and sintering it can be almost the same cost as machining when looking at piece cost.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdembg/"
+    },
+    {
+      "id": "ohdg8vw",
+      "author": "dpolseno41",
+      "created_iso": "2026-04-21T02:22:35Z",
+      "score": 3,
+      "depth": 4,
+      "body": "Existing is expensive :(",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdg8vw/"
+    },
+    {
+      "id": "ohewwj8",
+      "author": "singul4r1ty",
+      "created_iso": "2026-04-21T09:27:37Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I mean I do just rely on RFQing from outside but I have friendly machinists I've built a relationship with who know what I'm doing. I'll say \"looking for feedback of this in advance of an order\" and critically once we iterate down I will then place the order with them. They recognise that I'm not only trying to give them money, I'm also trying to make their lives easier. \n\n\nThat said I've never done any quantities of that scale, I mostly do this for shorter run stuff/prototyping, so it's smaller shops where the person quoting is often the person running the parts. Maybe it'd change for bigger runs\n\n",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohewwj8/"
+    },
+    {
+      "id": "ohd3j5w",
+      "author": "baudeagle",
+      "created_iso": "2026-04-21T01:06:28Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Do you need a flat bottom hole?  ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd3j5w/"
+    },
+    {
+      "id": "ohd3xet",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:08:50Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Strongly preferred. I could try to design around it, but it'd be hard given a flat bottom part sits in it.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd3xet/"
+    },
+    {
+      "id": "ohdnxaz",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T03:09:31Z",
+      "score": 3,
+      "depth": 2,
+      "body": "The flat bottom is attainable. It's just a matter of what finish you require on the floor and corners.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohdnxaz/"
+    },
+    {
+      "id": "ohd47h9",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T01:10:32Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Material type and standard tolerancing would be things to know.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd47h9/"
+    },
+    {
+      "id": "ohd4j45",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:12:30Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Material I guess I can say, I'm eyeing ULTEM 1000, Polycarbonate is a backup option. I have to do some simulations and compare the 2 before I can make a call on which is the top candidate.\n\nTolerancing is standard tolerances on everything without a specific callout. I only really care about OD, length, hole diameter, and hole depth. The rest doesn't impact function.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd4j45/"
+    },
+    {
+      "id": "ohd5533",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T01:16:07Z",
+      "score": 2,
+      "depth": 2,
+      "body": "I have plenty of experience in machining those and other plastics as well.\n\nThe .25mm thin wall would be questionable as far as consistency goes through production. Deflection and material stresses would show up more than likely. This might be an injection molded part.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd5533/"
+    },
+    {
+      "id": "ohd89qg",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T01:34:58Z",
+      "score": 2,
+      "depth": 3,
+      "body": "Thanks for the recommendation. If you don't mind quoting it, I can toss you the updated rev .STEP file and drawing tomorrow for it. 0.25mm wall can increase to 1mm and not really effect anything. I drafted it assuming the maximum condition for the internal part.\n\n  \nWe are trying to avoid injection molding. Some bad experiences with that industry and being able to achieve expected tolerances without a tall budget. Plus the large tooling cost would make this project a lot harder to get moving. 3D printing would've been ideal if the tolerances were good and the materials I need could be used. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd89qg/"
+    },
+    {
+      "id": "ohd9k5w",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T01:42:46Z",
+      "score": 2,
+      "depth": 4,
+      "body": "I don't mind at all. Let's see what the quoting software spits out. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohd9k5w/"
+    },
+    {
+      "id": "ohhqdu2",
+      "author": "Bluestuffedelephant",
+      "created_iso": "2026-04-21T18:46:37Z",
+      "score": 1,
+      "depth": 4,
+      "body": "AFAIK Ultem 1000 can be printed. That being said, 3d printing is not the right process for large quantities. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohhqdu2/"
+    },
+    {
+      "id": "ohek21p",
+      "author": "whiskeyfoxtx",
+      "created_iso": "2026-04-21T07:22:56Z",
+      "score": 1,
+      "depth": 0,
+      "body": "So its a sabot?",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohek21p/"
+    },
+    {
+      "id": "ohfr101",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T13:03:40Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Yes and no. It is not discarded. It's closer to what I call a 'shell'.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohfr101/"
+    },
+    {
+      "id": "oheto7j",
+      "author": "cobblestone_road",
+      "created_iso": "2026-04-21T08:56:21Z",
+      "score": 1,
+      "depth": 0,
+      "body": "This part should really be injection molded. Then you have price of the mold divided by desired part quantity + material labor and shipping.\n\n\nThe wall thickness is really small and it's plastic material. How can you check the OD tolerance without deforming the part?",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/oheto7j/"
+    },
+    {
+      "id": "ohfrwzn",
+      "author": "Homeboi-Jesus",
+      "created_iso": "2026-04-21T13:08:34Z",
+      "score": 2,
+      "depth": 1,
+      "body": "I've had bad experiences with injection molding. Worked in the industry, it feels like they took all engineering knowledge and threw it out the window and invented their own... My experiences are they cannot be trusted to hit target dimensions without a VERY costly mold and manufacturer. Add on the cost of a mold, and suddenly the most expensive aspect of the design (the insert) becomes the cheapest.\n\nI'd likely use go/no-go gages for production. The polymer is on the stiffer side, not like a rubber.",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohfrwzn/"
+    },
+    {
+      "id": "ohf3p1d",
+      "author": "Just_gun_porn",
+      "created_iso": "2026-04-21T10:28:52Z",
+      "score": 1,
+      "depth": 0,
+      "body": "This looks a lot like a poly tite tube ferrule. Parker sells them for .31 cent, out of acetal. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohf3p1d/"
+    },
+    {
+      "id": "ohi6isc",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-21T20:02:20Z",
+      "score": 2,
+      "depth": 1,
+      "body": "A ferrule would have a thru hole, ya? Every ferrule I've ever made was for tubing. 🤷‍♂️",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohi6isc/"
+    },
+    {
+      "id": "ohlu6v8",
+      "author": "Just_gun_porn",
+      "created_iso": "2026-04-22T10:25:04Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Oh sh*t, I missed the important part. Sorry for jumping in the deep end without a life vest. ",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohlu6v8/"
+    },
+    {
+      "id": "ohmgyl6",
+      "author": "Routine_Guitar_5519",
+      "created_iso": "2026-04-22T12:54:52Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Homie, you're an Olympic swimmer!",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohmgyl6/"
+    },
+    {
+      "id": "ohgghox",
+      "author": "MrPancake221b",
+      "created_iso": "2026-04-21T15:13:01Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I run our swiss dept, we do loads of work all over the industry. You have to get ground stock for a job ike this unless you can get cold drawn that's within .002in diameter. Otherwise you'll be fighting the material the entire time and that's never fun. For how much the work would cost, l I feel like I could make 60 of these in an hour, even with that thin wall. shop rates vary between everyone and what their work loads look like, but I'd quote you 1.76 per part. This is also us supplying the materials so that factors into that price",
+      "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/ohgghox/"
+    }
+  ],
   "drilldown_candidates": []
 }

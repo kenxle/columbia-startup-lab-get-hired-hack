@@ -5,9 +5,1648 @@
   "title": "Why are US Machine Shops so difficult to work with?",
   "author": "I-AM-A-DUMBO",
   "created_iso": "2026-03-30T20:02:05Z",
-  "score": 225,
+  "score": 222,
   "num_comments": 256,
   "selftext": "It’s such a pain in the ass finding a good machine shop to make a part in the US, you put in your information, send step files and drawings, 90% of the time they don’t even ever reach out to you, then the other 9% do reach out and tell you they won’t quote it because it’s impossible or below them and that they are insulted that I would even think they would do such a low quantity (a few thousand a year), and the 1% who do call you back or email you will tell you that they have problems with the design and they don’t have the tooling or time to do it without offering any solutions. \n\nCompare that to China, send in a quote on an online quoting tool, get quote within 24hours or sometimes instantly. Get dfm analysis that you can view, real engineers reach out about any concerns/problems with the design and offer solutions to fix the problem. The funny thing is, the Chinese will actually bust their asses trying to help you out to earn your business and they are 1/10th the price. \n\nWhy in the world is the machining industry like this? Are you guys just overworked? Burnt out? \n\nI want my shit made in the USA and I would pay more for it but man it’s such a pain in the ass trying to find someone willing to do the work. ",
-  "comments": [],
+  "comments": [
+    {
+      "id": "oddnkvh",
+      "author": "I_G84_ur_mom",
+      "created_iso": "2026-03-30T20:32:34Z",
+      "score": 157,
+      "depth": 0,
+      "body": "I feel like you gotta post a picture of the part and drawing of the part you’re getting made so we can see if it’s a you issue or a machine shop issue. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddnkvh/"
+    },
+    {
+      "id": "oddrbqp",
+      "author": "Shaggy_One",
+      "created_iso": "2026-03-30T20:50:15Z",
+      "score": 56,
+      "depth": 1,
+      "body": "This. If every shop is ghosting or telling you the part can't be produced, you should really look at the part again and figure out a different method of production.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddrbqp/"
+    },
+    {
+      "id": "odfk7la",
+      "author": "E1F0B1365",
+      "created_iso": "2026-03-31T02:41:54Z",
+      "score": 26,
+      "depth": 2,
+      "body": "Except not every shop is ghosting them, OP says China is supplying good work, cheap. It's a bittersweet truth that China is simply nasty at manufacturing.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfk7la/"
+    },
+    {
+      "id": "odfsb3s",
+      "author": "exoriare",
+      "created_iso": "2026-03-31T03:33:47Z",
+      "score": 14,
+      "depth": 3,
+      "body": "China graduates more engineers in an average year than exist in the whole US.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfsb3s/"
+    },
+    {
+      "id": "odi1h5s",
+      "author": "sabautil",
+      "created_iso": "2026-03-31T13:45:21Z",
+      "score": 8,
+      "depth": 4,
+      "body": "They have a billion people...is that surprising.?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odi1h5s/"
+    },
+    {
+      "id": "ody4xxv",
+      "author": "MerelyMortalModeling",
+      "created_iso": "2026-04-02T20:17:56Z",
+      "score": 2,
+      "depth": 5,
+      "body": "We have 350 million, we should be producing about 1/4 the number they are but we are far, far behind.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ody4xxv/"
+    },
+    {
+      "id": "odg959r",
+      "author": "Seaguard5",
+      "created_iso": "2026-03-31T05:37:31Z",
+      "score": 8,
+      "depth": 4,
+      "body": "It is not about volume and you know it.\n\nIt’s pay disparity.\n\nYou work in the USA? You get paid more than overseas (China, India, ETC). Globalization. The shop is far more expensive than overseas manufacturing for the exact same work.\n\nThe amount of underemployed engineers in the USA is too damn high. \n\nI would know- I’m one of them",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg959r/"
+    },
+    {
+      "id": "odhagq5",
+      "author": "Roadkill215",
+      "created_iso": "2026-03-31T11:06:00Z",
+      "score": 6,
+      "depth": 5,
+      "body": "There’s also an abundance of them that are terrible at what they do and should find new career paths ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhagq5/"
+    },
+    {
+      "id": "odnw1zj",
+      "author": "that_dutch_dude",
+      "created_iso": "2026-04-01T09:26:43Z",
+      "score": 2,
+      "depth": 5,
+      "body": "Plenty of companies do not care what it costs if they can get the work done across the road and reliably. That isnt the case in the US so you are forced to go to china or europe.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odnw1zj/"
+    },
+    {
+      "id": "oevet4p",
+      "author": "Seaguard5",
+      "created_iso": "2026-04-07T20:38:29Z",
+      "score": 1,
+      "depth": 6,
+      "body": "What I’m saying is that getting the work done across the road in those places costs infinitely less than shipping it from place to place just to perform one function of production.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oevet4p/"
+    },
+    {
+      "id": "odiw1w8",
+      "author": "exoriare",
+      "created_iso": "2026-03-31T16:06:54Z",
+      "score": 1,
+      "depth": 5,
+      "body": "It's about both. If engineers are exotic animals, their pay will reflect that. If your schools spam engineers, the increased supply will prevent wage inflation. \n\nAverage wages for mechanical engineers in Shenzhen are ~$58k USD. \n\nhttps://www.salaryexpert.com/salary/job/engineer/china/shenzhen\n\nThat's certainly cheaper than you'd get in the US, but if the US spammed M.E.'s, you might get wages deep enough in the ballpark (~$100k) to be competitive.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odiw1w8/"
+    },
+    {
+      "id": "odv6grw",
+      "author": "Treble_Bolt",
+      "created_iso": "2026-04-02T11:39:50Z",
+      "score": 1,
+      "depth": 6,
+      "body": "Well that kind of data needs culture to be a part of it.\n\n \nYou need to be under 35 years old (a bit complicated to explain but basically if you are over 35, you are considered too old and thus unemployable/not worth the \"high\" pay). It's absolutely not about experience in this regard. \n\n\nThose who put in the data to this western website are very likely foreigners or are submissions by employers who work with foreign companies and boost numbers (both cases will create average higher wages than reality, whether separately or combined). \n\n\nChina is currently in the throes of an economic recession, with high unemployment (worse than 08 in the US and arguably comparable to the Great Depression in the US). Homelessness is extremely high among those under 35 currently (with over 30% unemployment in that demographic). Those over 35 are struggling even more. For more information, start with Evergrande and Country Garden. \n\n\nNot saying the data inaccurate, but if dealing with China, there are very necessary questions to ask regarding any data available to the US. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odv6grw/"
+    },
+    {
+      "id": "odj9sa7",
+      "author": "Zhombe",
+      "created_iso": "2026-03-31T17:08:28Z",
+      "score": 4,
+      "depth": 3,
+      "body": "China is desperate to undercut everyone including themselves right now. US machine shops that did this all died the last decade. \n\nIf it’s hard to quote, and you’re just fishing you’re going to get ghosted. They’re not going to toss it into an AI estimator and hope for the best. They need to work up the tooling setup, acquisition, programming, and run time to give you an accurate quote and like a good mechanic you won’t know until they really get the job. \n\nYou’ll need to sign an intent letter with some money up front for some shops to bother. \n\nFind a shop that has the competency and capability and give them the work. \n\nShopping the rates around isn’t going to get you anywhere good with complex machining and low volumes. \n\nChina only does this because they have to stay busy or they’re out of business and the labor and machine time cost is minuscule in comparison. They can afford to cut corners and take a loss on some things. US manufacturers need to make profit every time possible to cover the failures that do occur that they have to eat. \n\nThe higher the complexity the higher the risk of failure and underbidding. So better to pass and take work that is more likely profitable and safer. \n\nPay the best or get the rest. US manufacturing stopped playing the race to the bottom game last decade when those people all ate dirt. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odj9sa7/"
+    },
+    {
+      "id": "odjfnt2",
+      "author": "Liizam",
+      "created_iso": "2026-03-31T17:34:16Z",
+      "score": 6,
+      "depth": 4,
+      "body": "My god people, just quote per setup and volume with some margin. It’s not that hard to do a bulk part quote. \n\nPart too hard to machine and dumb ? Offer 30 min consult fee. I’m mechanical engineer and working with USA shops is such a pain \n",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjfnt2/"
+    },
+    {
+      "id": "odjfufq",
+      "author": "Zhombe",
+      "created_iso": "2026-03-31T17:35:04Z",
+      "score": 1,
+      "depth": 5,
+      "body": "Figuring out the setup takes time. Unpaid time. Pay for them to figure it out or don’t. They don’t work for free when they have work already.\n\nYou can blame the US automotive industry for ruining manufacturing quoting in the US. They’d shoo price endlessly and threaten smaller manufacturers with taking away work just to lower the price to what some other desperate shop quoted. So they all collectively stopped.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjfufq/"
+    },
+    {
+      "id": "odmstxs",
+      "author": "Liizam",
+      "created_iso": "2026-04-01T03:54:41Z",
+      "score": 2,
+      "depth": 6,
+      "body": "I’ve quoted murals and engineering work. It’s l not that hard to give bulk part quote ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odmstxs/"
+    },
+    {
+      "id": "odmszzy",
+      "author": "Zhombe",
+      "created_iso": "2026-04-01T03:55:49Z",
+      "score": 1,
+      "depth": 7,
+      "body": "Depends. Gas and aerospace parts are not easy. Just the material sourcing alone is a nightmare. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odmszzy/"
+    },
+    {
+      "id": "odppkcd",
+      "author": "[deleted]",
+      "created_iso": "2026-04-01T15:46:22Z",
+      "score": 2,
+      "depth": 4,
+      "body": "That's a whole lot of words to say that China makes things faster and cheaper like they always have. Cope? Seems like china has better machines than us just overall, you sure our quality is our strength? It's more like this economy has no room for manufacturing of any kind because it doesnt happen in a bank office. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odppkcd/"
+    },
+    {
+      "id": "odec94j",
+      "author": "CatchinDeers81",
+      "created_iso": "2026-03-30T22:35:32Z",
+      "score": 12,
+      "depth": 2,
+      "body": "Lol, anytime someone starts with \"I can't find anyone to do this, ive reached out to a dozen shops\" i know its something dumb or wanting something done crazy cheap....usually involving expensive ass tooling (they dont want to pay for) in order to meet their timelines and price.\n\nIm really curious to see what OP is trying to have done here",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odec94j/"
+    },
+    {
+      "id": "odgist5",
+      "author": "Radiant-Video7257",
+      "created_iso": "2026-03-31T07:02:00Z",
+      "score": 5,
+      "depth": 1,
+      "body": "amazing username",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgist5/"
+    },
+    {
+      "id": "odjacb8",
+      "author": "xXxCREECHERxXx",
+      "created_iso": "2026-03-31T17:10:54Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Pls explain for the hobby guys like me that don't have the gcodes memorized ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjacb8/"
+    },
+    {
+      "id": "odjpfb1",
+      "author": "DrSFalken",
+      "created_iso": "2026-03-31T18:17:16Z",
+      "score": 2,
+      "depth": 3,
+      "body": "It's a tapping cycle. It's an \"I fucked your mom\" joke :)",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjpfb1/"
+    },
+    {
+      "id": "odjf2pg",
+      "author": "Liizam",
+      "created_iso": "2026-03-31T17:31:41Z",
+      "score": 1,
+      "depth": 1,
+      "body": "I don’t think it matters. \nProtolabs, sentcutsent, xometry all have design guides for what they are capable of. \n\nI don’t know why machinist can’t put their design guides on their website. \n\nIt’s not that hard to have a boiler plate response to this part is too complicated to machine. \n",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjf2pg/"
+    },
+    {
+      "id": "ode2rrq",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:46:10Z",
+      "score": -10,
+      "depth": 1,
+      "body": "I can’t think of any way to share drawings without sharing too much about my part publicly. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode2rrq/"
+    },
+    {
+      "id": "odefcp1",
+      "author": "SmugDruggler95",
+      "created_iso": "2026-03-30T22:52:15Z",
+      "score": 33,
+      "depth": 2,
+      "body": "The drawings dont matter. \n\nYoure right. China will just make it. Regardless of the drawing. And its usually good if you pay the money. (Which is still cheap compared to Western prices). \n\nTheres parts we purchase that surpass machining, closer to semi conductor tech. And China will just build a test batch for trials before a Western company has got back in touch on the RFQ.\n\nIts crazy, their approach to manufacturing is insane and its naive for people to suggest its because your part is too complex for Western Engineers to look at.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odefcp1/"
+    },
+    {
+      "id": "odfocro",
+      "author": "wackyvorlon",
+      "created_iso": "2026-03-31T03:07:47Z",
+      "score": 7,
+      "depth": 3,
+      "body": "Also the tech markets in Shenzhen. Everything a manufacturer could want, available immediately and easily. There’s nothing like that in the U.S.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfocro/"
+    },
+    {
+      "id": "odfpfrp",
+      "author": "DeadMansMuse",
+      "created_iso": "2026-03-31T03:14:48Z",
+      "score": 4,
+      "depth": 4,
+      "body": "They even have their own little fast tracked courier ecosystem to run bits between different factorys/businesses, its nuts!",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfpfrp/"
+    },
+    {
+      "id": "odg9cnu",
+      "author": "Seaguard5",
+      "created_iso": "2026-03-31T05:39:15Z",
+      "score": 0,
+      "depth": 5,
+      "body": "Why would factories not just maintain all the bits they need on site?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg9cnu/"
+    },
+    {
+      "id": "odh1ltt",
+      "author": "npre",
+      "created_iso": "2026-03-31T09:55:25Z",
+      "score": 6,
+      "depth": 6,
+      "body": "You've been downvoted, but honestly questions like this are the reason China is doing so well with manufacturing. You don't want to become 100% of your supply chain because then you spend a lot of resources investing in parts of the supply chain where you don't add optimal value. Why would you start up an anodizing line when the guy down the road has the setup and people to do it already? Do you want to make packaging and labels too? Chinese companies form partnerships quickly so each can commit to their one purpose of adding value at a specific point in the supply chain instead of trying to do everything.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odh1ltt/"
+    },
+    {
+      "id": "odh3g6p",
+      "author": "busted_flush",
+      "created_iso": "2026-03-31T10:10:58Z",
+      "score": 3,
+      "depth": 7,
+      "body": "&gt; Why would you start up an anodizing line\n\nThis exactly. Literally everything I need done on my parts after I make them has to be shipped. Sometimes to multiple states across the country. They are expensive parts so insurance and risk of loss becomes a real issue.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odh3g6p/"
+    },
+    {
+      "id": "odjg940",
+      "author": "grapht-",
+      "created_iso": "2026-03-31T17:36:51Z",
+      "score": 1,
+      "depth": 8,
+      "body": "Yeah, I read that they build cities/neighborhoods specifically around supply chains, so for instance the anodizing folks build their building right next to the machining folks and so on. Each business can focus but the support system is all literally next door.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjg940/"
+    },
+    {
+      "id": "odjsccg",
+      "author": "scorb1",
+      "created_iso": "2026-03-31T18:30:17Z",
+      "score": 1,
+      "depth": 9,
+      "body": "This is how red bull builds their factories as well.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjsccg/"
+    },
+    {
+      "id": "odgz5sb",
+      "author": "I_G84_ur_mom",
+      "created_iso": "2026-03-31T09:33:55Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Feel free to dm me a picture of it, I have a garage shop at home with a CNC mill and CNC lathe located in Pennsylvania ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgz5sb/"
+    },
+    {
+      "id": "odj6ij0",
+      "author": "Zealousideal-Fix9464",
+      "created_iso": "2026-03-31T16:54:03Z",
+      "score": 2,
+      "depth": 2,
+      "body": "It won't matter if you send it to China.  IP theft is the cost of doing business with them.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odj6ij0/"
+    },
+    {
+      "id": "oddnkm1",
+      "author": "rayjax82",
+      "created_iso": "2026-03-30T20:32:32Z",
+      "score": 80,
+      "depth": 0,
+      "body": "I would need to look at your drawing but chances are there's a lot of fuckery afoot with it if you're getting no bids.\n\nCommon things I see.\n1. Stupid tight tolerances for no reason.\n2. Geometry that isn't machineable.\n3. Unrealistic demand time.\n4. Your target price is too low if you send it.\n5. You're not fun to deal with.\n6. Your payment terms suck.\n7. Datum structure doesn't make sense.\n\nIf you reach out I'm happy to give you DFM feedback or any other feedback. I've done that for quite a few customers.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddnkm1/"
+    },
+    {
+      "id": "oddz8v7",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:28:43Z",
+      "score": 26,
+      "depth": 1,
+      "body": "DM me your email and I’ll send over the files. I don’t even get to the talking stage with a lot of these us shops which is the problem. \n\nThe Chinese will tell me their capabilities, what specific features they are unable to do and then I alter my part based on their feedback. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddz8v7/"
+    },
+    {
+      "id": "ode0mqa",
+      "author": "inZania",
+      "created_iso": "2026-03-30T21:35:30Z",
+      "score": 26,
+      "depth": 2,
+      "body": "It sucks that you get better feedback from China. But fwiw, on the machinist side, “non-machinable parts” is a huge red flag that the client is going to be a problem for us. Often, I have found its a huge waste of time to try to explain to such clients what’s wrong, and I am guilty of ghosting such clients. Very very very few cold-outreach clients will take the feedback and spend the time to make the necessary changes. Some will argue and insult. Others will ignore advice that the part is not well suited, tell us to just do it anyways and (when they get the predictably bad results) they get mad.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode0mqa/"
+    },
+    {
+      "id": "ode2c38",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:43:59Z",
+      "score": 9,
+      "depth": 3,
+      "body": "I understand completely, I am not a machinist, so I may not know what is or is not possible and that’s why a machinists opinion is so important so I can make changes. Even if it is technically machine able, I want to do anything I can do to make the part less of a pain in the ass for you to make. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode2c38/"
+    },
+    {
+      "id": "ode2swd",
+      "author": "inZania",
+      "created_iso": "2026-03-30T21:46:20Z",
+      "score": 4,
+      "depth": 4,
+      "body": "Yeah, understood where you’re coming from, just answering the original question of “why.” Hopefully the commenter above can help you out. AI might also be decent at spotting problems for you, I’d guess. Or as a last result, fiverr etc. could perhaps offer folks willing to sanity check your designs.\n\nEdit/note: obv I support paying artists over AI, but for a budget conscious individual doing a sanity check of a finished product IMHO this is a fine use of AI.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode2swd/"
+    },
+    {
+      "id": "odhb4y0",
+      "author": "SkaMateria",
+      "created_iso": "2026-03-31T11:10:51Z",
+      "score": 1,
+      "depth": 4,
+      "body": "[Obligatory](https://youtu.be/0CutVc9WRc4)",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhb4y0/"
+    },
+    {
+      "id": "odf7c25",
+      "author": "rayjax82",
+      "created_iso": "2026-03-31T01:27:51Z",
+      "score": 8,
+      "depth": 2,
+      "body": "Done. I'll give you some feedback. Let me know part quantities, target price, or any other info you feel is pertinent.\n\nIf there's a mating assembly that's also really helpful to view.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf7c25/"
+    },
+    {
+      "id": "ode9xwg",
+      "author": "TechNickL",
+      "created_iso": "2026-03-30T22:23:02Z",
+      "score": -2,
+      "depth": 2,
+      "body": "Yeah because China needs business.\n\nUS machine shops don't need your business that badly. They figure if you don't have an engineer who knows how to make a part they can work with, you're not worth dealing with next to the dozens of other clients who do.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode9xwg/"
+    },
+    {
+      "id": "odek671",
+      "author": "framedposters",
+      "created_iso": "2026-03-30T23:18:11Z",
+      "score": 10,
+      "depth": 3,
+      "body": "Hmmm my buddy who has made an excellent living for himself buying up machine shops that are going under and auctioning off their equipment would disagree. The amount of poorly run shops is incredible. They are usually just a few repeat customers away from going under and usually have a lot of debt.\n\nChina has the capacity for as much business as the world can throw at them. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odek671/"
+    },
+    {
+      "id": "odf0436",
+      "author": "SunTzuLao",
+      "created_iso": "2026-03-31T00:47:29Z",
+      "score": 2,
+      "depth": 4,
+      "body": "You said it there. Poorly run. Know how many restaurants close down every month? Retail places, small businesses etc. Established shops or shops that are well run are often swatting away work, or unwilling to take work before their dollar/hour threshold. Lowest place I've worked was $75",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf0436/"
+    },
+    {
+      "id": "odgjuj7",
+      "author": "TechNickL",
+      "created_iso": "2026-03-31T07:11:31Z",
+      "score": 2,
+      "depth": 4,
+      "body": "Sure but that's all businesses. New smaller shops spin up to replace them. Who do you think is buying the auctioned inventory?\n\nA lot of shops active in the US are active for defense reasons. DoD contractors will not allow their part files to go overseas for any reason. Those shops are in zero danger right now.\n\nIf you were just making a slightly custom valve for some random company that might die out any day now? Yeah you're not gonna make it much longer but you were never going to build a generational enterprise off of odd jobs and one off parts. I literally got my current job because it's now more cost effective for a business that truly needs custom machined parts on a regular basis to just buy a decent haas mill and hire an on-site machinist.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgjuj7/"
+    },
+    {
+      "id": "odk0u0e",
+      "author": "framedposters",
+      "created_iso": "2026-03-31T19:08:37Z",
+      "score": 1,
+      "depth": 5,
+      "body": "A lot of the inventory goes to resellers, Mexico, and small, independent fab shops that aren’t professional machine shops. They don’t tend to buy used stuff that has a lot of hours on it.\n\nI hear you on the DoD work though. He actually just bought a shop that made various gun accessories that went under.\n\nBut you are correct, for making simple prototypes and small volume runs, it is definitely a new world out there where people like yourself can add tons of value to businesses to keep stuff in house.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odk0u0e/"
+    },
+    {
+      "id": "odn2763",
+      "author": "TechNickL",
+      "created_iso": "2026-04-01T05:02:39Z",
+      "score": 1,
+      "depth": 6,
+      "body": "Yeah, and I'm not necessarily even talking guns. My buddy runs a shop in WA and they do a lot of work for Boeing and Lockheed Martin and he's not legally allowed to say what they make (it could be cupholders and that would still be true) but they're not worried about business right now.\n\nOutside of that though, I definitely see a lot of smaller shops being eaten up by JLC and other services like that, which are acceptable for the majority of end users but not for businesses that need to be able to work directly with the machinists to ensure tolerances, etc or who can't abide the headaches that come from those services passing time costs off to the customer to stay profitable..",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odn2763/"
+    },
+    {
+      "id": "oddpqdi",
+      "author": "Joejoe317",
+      "created_iso": "2026-03-30T20:42:39Z",
+      "score": 4,
+      "depth": 1,
+      "body": "I’m interested in hearing the feedback, I hope he allows you to review it. Might be nice having an example with proper feedback so if someone researched this topic they might have some better clues. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddpqdi/"
+    },
+    {
+      "id": "odj718x",
+      "author": "rayjax82",
+      "created_iso": "2026-03-31T16:56:20Z",
+      "score": 3,
+      "depth": 2,
+      "body": "He sent me everything, I sent him my feedback. I'll let him decide if he wants to share it. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odj718x/"
+    },
+    {
+      "id": "oddrwj5",
+      "author": "Vegetable_Aside_4312",
+      "created_iso": "2026-03-30T20:52:58Z",
+      "score": 14,
+      "depth": 1,
+      "body": "Yes this.... I've seen +- .0002 on as-cast drawings, incomplete drawings, datums structures that make zero sense and organizations that turn 30 days into into an unknown 120+ after legal collection threats.\n\nCompanies want your business not the BS.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddrwj5/"
+    },
+    {
+      "id": "odfrok6",
+      "author": "mikedave42",
+      "created_iso": "2026-03-31T03:29:37Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Ive been getting no bids for calling out an H7 hole, like that is impossible, and getting grief from the salesman like I'm asking the impossible.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfrok6/"
+    },
+    {
+      "id": "oddzobc",
+      "author": "Pizza-love",
+      "created_iso": "2026-03-30T21:30:49Z",
+      "score": 4,
+      "depth": 1,
+      "body": "8. Your other requirements are no fun. Like, fulfilling a full PPAP level 3 or 4 for prototyping products or low quantities.\n\nI've chewed out sales for accepting an order that enforced a PPAP 3 or 4 for a one off of 5-10 products. It makes no sense freezing a production process and trying to improve process stability when there is no production.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddzobc/"
+    },
+    {
+      "id": "ode0866",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:33:30Z",
+      "score": 2,
+      "depth": 2,
+      "body": "I have no requirements besides a few critical tolerances and the shop must be able to do type 3 anodizing. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode0866/"
+    },
+    {
+      "id": "oddmrft",
+      "author": "pinkycatcher",
+      "created_iso": "2026-03-30T20:28:45Z",
+      "score": 43,
+      "depth": 0,
+      "body": "You might be unknowingly asking for something people don’t want to touch. There are tons of shops out there. But asking production shops for one offs is going to get you nowhere",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddmrft/"
+    },
+    {
+      "id": "odit19i",
+      "author": "CrashUser",
+      "created_iso": "2026-03-31T15:53:21Z",
+      "score": 2,
+      "depth": 1,
+      "body": "He did say something about a few thousand parts a year. That sounds like pretty low volume for most shops.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odit19i/"
+    },
+    {
+      "id": "ody7p8w",
+      "author": "Bug_406",
+      "created_iso": "2026-04-02T20:30:57Z",
+      "score": 1,
+      "depth": 1,
+      "body": "This is likely the answer.  Worked at my uncle's shop where we did mostly military contract parts.  He'd occasionally get one-off requests.  If he was friends, maybe he'd bang something out on the Bridgeport, but there was no way he was stopping the CNC for non-contract work.  Alot of \"I don't want to do that.\" quote prices I'd see.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ody7p8w/"
+    },
+    {
+      "id": "odeedbz",
+      "author": "rhythm-weaver",
+      "created_iso": "2026-03-30T22:46:58Z",
+      "score": 26,
+      "depth": 0,
+      "body": "Both - the difficulty dealing with US shops and the ease of dealing with Chinese - are direct results of the collapse of US machine shop in the 80s and the corresponding handoff of manufacturing prowess to China. \n\nIn the 80s there was tons of machining work - good mid-volume orders, customers who promptly paid bills, etc. US machine shops essentially became spoiled - they didn’t have to be competitive and they didn’t have to keep a diverse set of machines/skills - instead they often stripped their operations down to whatever was needed to fulfill the relatively narrow scope of contract work that was coming in. \n\nMoreover, US shops stopped acting like comprehensive solution providers and instead became specialists. Meaning you, the customer, has to figure out each step/vendor of each manufacturing process. \n\nChina became the opposite. They are now decades ahead of us in every category.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeedbz/"
+    },
+    {
+      "id": "odel4zc",
+      "author": "framedposters",
+      "created_iso": "2026-03-30T23:23:32Z",
+      "score": 19,
+      "depth": 1,
+      "body": "Best post in this thread. \n\nThis whole “you don’t know shit” and “no one will work with you if you aren’t an engineer” is exactly what China doesn’t care about. People go to China because they are often easier to work with than American shops. They play the long game that we don’t do for the most part in the U.S. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odel4zc/"
+    },
+    {
+      "id": "odgam56",
+      "author": "3deltapapa",
+      "created_iso": "2026-03-31T05:49:48Z",
+      "score": 7,
+      "depth": 2,
+      "body": "It is funny how nearly all the replies here are just reinforcing how much of a pita it is to work with American machine shops",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgam56/"
+    },
+    {
+      "id": "odk01ac",
+      "author": "framedposters",
+      "created_iso": "2026-03-31T19:05:01Z",
+      "score": 3,
+      "depth": 3,
+      "body": "Exactly. Two different posts have cited like not fun to work with or essentially not a good hang as reasons for not taking someone’s business. Unbelievable. If a person is an asshole that truly sucks, sure. That doesn’t seem to be what they are referencing though.\n\nVery glad I have my few people that are happy to do low volume &amp; prototype work for me. They’ll even give me a call if they see issues with my files and help me work through a solution.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odk01ac/"
+    },
+    {
+      "id": "odfm6q7",
+      "author": "Dry_Community5749",
+      "created_iso": "2026-03-31T02:53:57Z",
+      "score": 3,
+      "depth": 2,
+      "body": "You say the truth and you are the pariah.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfm6q7/"
+    },
+    {
+      "id": "ody8kvm",
+      "author": "Bug_406",
+      "created_iso": "2026-04-02T20:35:11Z",
+      "score": 2,
+      "depth": 1,
+      "body": "That part about not being a comprehensive shop made me giggle.  There were 3 other shops involved in one parts we ran thousands of a month, and they weren't across town, they were across the country from each other.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ody8kvm/"
+    },
+    {
+      "id": "oddrbt0",
+      "author": "Vegetable_Aside_4312",
+      "created_iso": "2026-03-30T20:50:16Z",
+      "score": 51,
+      "depth": 0,
+      "body": "\"they won’t quote it because it’s impossible \"  I'd like to see one of these no-quote parts. Asking the impossible or unreasonable gets you no-quotes.\n\nIt could be you...",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddrbt0/"
+    },
+    {
+      "id": "odh1ugm",
+      "author": "Lapidarist",
+      "created_iso": "2026-03-31T09:57:28Z",
+      "score": 17,
+      "depth": 1,
+      "body": "There's a dozen or so comments like this ITT, but why do none of you consider the fact that China *does* make the designs without much of a fuss.\n\nSo if your answer is \"it's an impossible design\", why are Chinese machinists able to produce it while you're not? You're not answering the question, just kicking the can down the road.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odh1ugm/"
+    },
+    {
+      "id": "odk4i13",
+      "author": "Egbuk-Scootin-Boogie",
+      "created_iso": "2026-03-31T19:25:20Z",
+      "score": 6,
+      "depth": 2,
+      "body": "I wish I could upvote this twice. 10 hours later and still not a single person explaining why the Chinese are able to produce these “impossible” designs when American shops can’t/wont.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odk4i13/"
+    },
+    {
+      "id": "odm2v2e",
+      "author": "KevinSevenSeven",
+      "created_iso": "2026-04-01T01:19:19Z",
+      "score": 3,
+      "depth": 3,
+      "body": "In the OP....\n\n\"\\[In China\\] real engineers reach out about any concerns/problems with the design and offer solutions to fix the problem\"\n\n  \nThe Chinese engineers fix the design themselves. US shops don't want to bother with fixing someone else's design.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odm2v2e/"
+    },
+    {
+      "id": "odl0szb",
+      "author": "Federal_Decision_608",
+      "created_iso": "2026-03-31T21:54:53Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Because China will apply common sense to nonsense tolerances since they know you will have to pay upfront and have no recourse after that. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odl0szb/"
+    },
+    {
+      "id": "ode0o3h",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:35:42Z",
+      "score": 21,
+      "depth": 1,
+      "body": "I’m sure it could be me. But if it’s so egregious surely it wouldn’t take a lot of time to say “x feature is not within our capabilities at this time” and then I could re-engineer that feature and then send out another quote. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode0o3h/"
+    },
+    {
+      "id": "odevvd3",
+      "author": "SquirrelNormal",
+      "created_iso": "2026-03-31T00:23:08Z",
+      "score": 27,
+      "depth": 2,
+      "body": "It's pretty much never just one thing, and it's not their job to unfuck your design for a quote. We'll do that for good repeat customers, not cold callers (because half the time, they take the fix and go to China anyways). Try asking a couple shops for a paid consult on the machinability of your design. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odevvd3/"
+    },
+    {
+      "id": "odf1594",
+      "author": "unurbane",
+      "created_iso": "2026-03-31T00:53:18Z",
+      "score": 3,
+      "depth": 2,
+      "body": "When dealing with people machine shops find it easier to just not bid, or that’s how I would put it.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf1594/"
+    },
+    {
+      "id": "odgsxjz",
+      "author": "funfacts_82",
+      "created_iso": "2026-03-31T08:36:28Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Dm me the part i will help you with the design if its possible to make it easier.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgsxjz/"
+    },
+    {
+      "id": "oddn8qt",
+      "author": "[deleted]",
+      "created_iso": "2026-03-30T20:31:00Z",
+      "score": 16,
+      "depth": 0,
+      "body": "[removed]",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddn8qt/"
+    },
+    {
+      "id": "odekg2g",
+      "author": "framedposters",
+      "created_iso": "2026-03-30T23:19:42Z",
+      "score": 12,
+      "depth": 1,
+      "body": "OP, talk to this guy. For low volume stuff, finding guys that have small shops or do it on the side has worked well for me.\n\nOr just use sendcutsend.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odekg2g/"
+    },
+    {
+      "id": "odej0z8",
+      "author": "AC2BHAPPY",
+      "created_iso": "2026-03-30T23:11:58Z",
+      "score": 8,
+      "depth": 0,
+      "body": "If we are being honest, China is the biggest, baddest machine shop in the world and its not even close. The entire country is a giant shop. They have the tools and abilities at their disposal to do anything because thats how theyve built themselves. The US constantly imposes restrictions upon ourselves. And even if we didnt it would take a long time to be even somewhat comparable. When you talk to china about a part you talk to the entire country. When you talk to a local shop, its just them.\n\nAlso, i know a shop that will quote anything and everything.. even when i know they cant and shouldnt. So be aware of that. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odej0z8/"
+    },
+    {
+      "id": "oddjxqv",
+      "author": "EntrepreneurParty863",
+      "created_iso": "2026-03-30T20:15:46Z",
+      "score": 48,
+      "depth": 0,
+      "body": "China is also absolutely going to steal your product",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddjxqv/"
+    },
+    {
+      "id": "oddr1d4",
+      "author": "Vegetable_Aside_4312",
+      "created_iso": "2026-03-30T20:48:52Z",
+      "score": 13,
+      "depth": 1,
+      "body": "Last I heard that it was about a sheet metal part.... Like four bends, six oblong holes was a national secret and China was going to step over the distributor and sell.\n\nSeriously, give it rest...",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddr1d4/"
+    },
+    {
+      "id": "ode2dev",
+      "author": "GL-Customs",
+      "created_iso": "2026-03-30T21:44:10Z",
+      "score": 15,
+      "depth": 2,
+      "body": "They stole one of my products and I machine it in house. You don't think they wont steal a product you give them? You give it a rest.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode2dev/"
+    },
+    {
+      "id": "odhlerd",
+      "author": "Vegetable_Aside_4312",
+      "created_iso": "2026-03-31T12:17:38Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Show me your marvel of design engineering... Let's see what you suggest China could not figure out all on their own and did a similar too design..... Picture, link or whatever..",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhlerd/"
+    },
+    {
+      "id": "oddot85",
+      "author": "Riptide360",
+      "created_iso": "2026-03-30T20:38:19Z",
+      "score": 4,
+      "depth": 0,
+      "body": "Gun parts?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddot85/"
+    },
+    {
+      "id": "oddwenr",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:14:50Z",
+      "score": 0,
+      "depth": 1,
+      "body": "Perchance ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddwenr/"
+    },
+    {
+      "id": "ode0ryl",
+      "author": "Sy4r42",
+      "created_iso": "2026-03-30T21:36:14Z",
+      "score": 11,
+      "depth": 2,
+      "body": "That's why they won't touch them... you need to find a job shop that has a firearms liscense",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode0ryl/"
+    },
+    {
+      "id": "odg0iel",
+      "author": "mitch_semen",
+      "created_iso": "2026-03-31T04:30:25Z",
+      "score": 2,
+      "depth": 3,
+      "body": "How is this not at the top of the thread? WhY wOnT pEoPlE mAkE mY pArTs??? Because they think this is a half-baked ATF sting or some shit",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg0iel/"
+    },
+    {
+      "id": "odeib6c",
+      "author": "AC2BHAPPY",
+      "created_iso": "2026-03-30T23:08:08Z",
+      "score": 4,
+      "depth": 2,
+      "body": "You cant just say perchance.\n\nHaha jk. Firearm stuff is tricky because of the liability. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeib6c/"
+    },
+    {
+      "id": "odep39g",
+      "author": "No_Swordfish5011",
+      "created_iso": "2026-03-30T23:45:06Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Post Example of the part you want made….otherwise this post makes you sound like a nightmare customer. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odep39g/"
+    },
+    {
+      "id": "odeq10g",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T23:50:14Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Already sent the part to plenty of shops who reached out to me via dm. Not posting specifics of my part publicly.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeq10g/"
+    },
+    {
+      "id": "odfo1tl",
+      "author": "wackyvorlon",
+      "created_iso": "2026-03-31T03:05:49Z",
+      "score": 3,
+      "depth": 0,
+      "body": "The advantage China has is not only in lower wages, Chinese companies make it extremely easy for you to give them your money. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfo1tl/"
+    },
+    {
+      "id": "odg51yb",
+      "author": "todd0x1",
+      "created_iso": "2026-03-31T05:04:26Z",
+      "score": 3,
+      "depth": 0,
+      "body": "I always wonder the same thing. I can have a part in hand from china before I can get a quote back here. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg51yb/"
+    },
+    {
+      "id": "odneqta",
+      "author": "couchbutt",
+      "created_iso": "2026-04-01T06:47:32Z",
+      "score": 3,
+      "depth": 0,
+      "body": "So..  I read that... And it sounds like Opie is saying...\n\n 100% of the replies I received had problems with a drawing or the manufacturability of the park.\n\n... Must totally be the machine shops that are the problem.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odneqta/"
+    },
+    {
+      "id": "odeo139",
+      "author": "Faroutman1234",
+      "created_iso": "2026-03-30T23:39:21Z",
+      "score": 2,
+      "depth": 0,
+      "body": "They know they can't compete with China and are probably wasting their time. US shops now can't make a profit unless it's FAA certified, nuclear, military or something with a lot of special requirements. You might just look into getting a few small machines and doing it yourself.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeo139/"
+    },
+    {
+      "id": "odeswy7",
+      "author": "kiltach",
+      "created_iso": "2026-03-31T00:06:28Z",
+      "score": 2,
+      "depth": 0,
+      "body": "The biggest one I see is the quoting fatigue.  \nThey're frankly just tired of 99% of the people quoting having no actual intent of buying the product from them.\n\nIf you actually give business to one, they will work with you alot, but they know odds are alot of times you're just trying to use them for prototype local before outsourcing a proven design for volume manufacturing.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeswy7/"
+    },
+    {
+      "id": "odf0liw",
+      "author": "Yes-but-also-yes",
+      "created_iso": "2026-03-31T00:50:13Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I do mixed volume in the north east if you are actually looking for someone to quote it",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf0liw/"
+    },
+    {
+      "id": "odfjpr6",
+      "author": "thealbertaguy",
+      "created_iso": "2026-03-31T02:38:57Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Have you received work from China? Talk is cheap... Quality control is worse. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfjpr6/"
+    },
+    {
+      "id": "odg4h0o",
+      "author": "Classic-Challenge-10",
+      "created_iso": "2026-03-31T05:00:00Z",
+      "score": 2,
+      "depth": 0,
+      "body": "The only shops with in house anodizing are very large shops and probably very expensive. The Chinese do this in house or very close to it.  My anodizing, black and clear are due in a week add another week for Hardcoat. \n\nI've seen a huge trend for non engineer design manufacturers only want to provide solid models.  Solid models are a tool for us machinist to help us understand what you want,  they are not the be all end all. They do not replace a real drawing. If you are too lazy or not adept to know how to properly draw a print and tolerance it,  dont' expect us to have a crystal ball or to spend the time to make a drawing from your model which will still lack the pertinent data we need to quote and make the part.  Using shite software to interpret your model and turn it into a quote is a recipe for disaster.  We are machinist not engineers. We expect you to do all of the analysis,  form, fit, etc on your end.  I encourage you to hire or outsource your engineering so that your drawings are easy to read so they can be quoted easily.  I haven't seen your RFQs but have seen so many that yours are sounding like the ones that I no quote.  I've quoted about 120 jobs this month and got 60 of them. So my time is spent working on the ones that aren't too difficult to quote.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg4h0o/"
+    },
+    {
+      "id": "odg8ybw",
+      "author": "Seaguard5",
+      "created_iso": "2026-03-31T05:35:54Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Have you seen [SmarterEveryDay’s video](https://youtu.be/3ZTGwcHQfLY?si=SFy81pt2rV1lY-PU) on attempting to make a product in America?\n\nYou should watch it and let me know what you think, OP.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg8ybw/"
+    },
+    {
+      "id": "odl62td",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-31T22:21:56Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Gave it a watch, I really enjoyed watching it. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odl62td/"
+    },
+    {
+      "id": "oevei2g",
+      "author": "Seaguard5",
+      "created_iso": "2026-04-07T20:36:51Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Right? We really needed that vid to illustrate the problems facing local manufacturing",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oevei2g/"
+    },
+    {
+      "id": "odgcybz",
+      "author": "bengee224",
+      "created_iso": "2026-03-31T06:10:02Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Send it my way :) ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odgcybz/"
+    },
+    {
+      "id": "odhd3ng",
+      "author": "KatMasque",
+      "created_iso": "2026-03-31T11:24:42Z",
+      "score": 2,
+      "depth": 0,
+      "body": "There is a lot of DFM reasoning here. Your response seems to acknowledge that aspect.\n\nAll of the reasonings stated may be valid, but the “Ghosting” issue way more simple. Companies receive zero incentive to ”Help” design your part. Emailing back and forth takes time and resources, if both parties don’t see eye to eye, hours of unbillable time is wasted. These first run parts can often times be a loss for the company when you look at the setup/programming time, only to have the part re-engineered before the next run. \n\nChinese companies don’t have equal overhead, so it becomes viable for them.\n\nIn my opinion, go to a prototyping company that offers DFM service and CNC services.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhd3ng/"
+    },
+    {
+      "id": "odhfat4",
+      "author": "WillDearborn19",
+      "created_iso": "2026-03-31T11:39:40Z",
+      "score": 2,
+      "depth": 0,
+      "body": "As one of these machine shops.... if you have people telling you it's impossible, there may be an aspect to your design that's questionable. If you send it to a quality shop, I'd be surprised if they don't ask questions of simple parts. The way it gets made has a huge impact on the price, and they should always attempt to clarify your expectations so you get the part you want and they're not gouging you in price.\n\nNot all shops are the same. Some are mass production shops, so they'll try to produce your part as quickly and efficiently as possible. Any time they're setting up is time they can't be making money, so they may require a minimum order size. Keep in mind they might be buying equipment to make your part specifically. Like... they have mills and lathes that run other parts 24/7 so they need to buy a mill or lathe to run your part because they have no available spindle time on their current machines...\n\nOther shops are job shops. They are more generalized, less specialized. They'll be able to do your parts, probably with the tooling and equipment on hand, but they're going to be less efficient about it. THEY'RE the ones that will ask you questions, because there's a hundred different ways to machine something and some of those ways are time consuming, require extra setups, different machines... etc... if they can not do a feature, or do it differently, they may save you a ton of time and money. \n\nChina doesn't gaf.... they have the machines, the labor is cheap, material is cheap, tooling is cheap. they're going to steal your design and make money on it later... who cares if you want 1k per year? They'll make 10k and sell the others themselves. They don't like how you designed it? They'll just change it without asking you and send you something. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhfat4/"
+    },
+    {
+      "id": "oe3tjfc",
+      "author": "Due-Shame6249",
+      "created_iso": "2026-04-03T17:15:01Z",
+      "score": 1,
+      "depth": 1,
+      "body": "They didn't mention that they want parts for firearm accessories. It was buried in the comments. No shit people dont want to take jobs from random people to make that. The liability alone is crazy, much less any other regulations. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe3tjfc/"
+    },
+    {
+      "id": "oe3tu9b",
+      "author": "WillDearborn19",
+      "created_iso": "2026-04-03T17:16:23Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Oh yeah, that's going to make things difficult. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe3tu9b/"
+    },
+    {
+      "id": "odhm3kv",
+      "author": "Efficient-Webs",
+      "created_iso": "2026-03-31T12:21:45Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I’ve sent out thousands of parts for quote to US, Canadian, and Chinese shops. I’ve gotten some “no-quotes” back, but not one single time has a Chinese shopnor engineer reached out with recommended changes. \n\nThey’ve just sent quotes and completed parts. \n\nI think you might need some DFMA training and experience (Design for Manufacture and Assembly)",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhm3kv/"
+    },
+    {
+      "id": "odhuzgh",
+      "author": "MikeT8314",
+      "created_iso": "2026-03-31T13:11:39Z",
+      "score": 2,
+      "depth": 0,
+      "body": "No. OP is right. I had the same problem finding a shop to do some prototype parts.  These parts would be considered rather simple for most shops.  I finally found someone small who does my parts locally but prior to that it was crickets.  \n\nIs it that our industrial base has been that gutted that existing shops are just overbooked?\n\nHell i am not even price sensitive.  I want my parts made in tue USA and to support American workers.  And was/am willing to pay for it.  \n\nI am set now save for a one or two parts that he can’t make due to machine limits but it was tough finding someone online.  \n\nIncidentally the best people i found were on this forum. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhuzgh/"
+    },
+    {
+      "id": "odjz24d",
+      "author": "Timbarna6715",
+      "created_iso": "2026-03-31T19:00:34Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Ill quote your stuff. Send me work.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odjz24d/"
+    },
+    {
+      "id": "odmuol5",
+      "author": "stuporcomputer",
+      "created_iso": "2026-04-01T04:07:18Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I can't get over the service I get from a seller on AliExpress. Nothing high-level oc like the OP's scene, but nevertheless the vibe I get is very similar, super keen and despite the relatively small amount of bucks involved.   \n  \nWhile ordering a custom-length ballscrew kit from them, they seemed very keen and of course v friendly, I took a chance and asked if they could possibly get me a part that wasn't actually listed on their shop (I was sick of shopping at that point). They replied 'wait a moment please' then 'yes' and then neatly facilitated the novel purchasing process at a price slightly better than I'd seen earlier.   \nFeeling cocky, I then asked if they could also machine some aluminium plate according to my drawings. Same reply. May have taken a few hours to get back with the 'yes'. They then confirmed back with their own drawing. All in maybe two days. It then arrived really well packaged and in good time at not much more cost than just buying the plate-stock from AliExpress.   \n  \nBetween these guys and the 3D printing guy who sells articulated dragons and orca at my local markets, my project parts are happening. At 0.05 mm.  \n  \nNext will be the bits for a Y upgrade to 400mm. Interested to see if my luck w these guys holds out..",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odmuol5/"
+    },
+    {
+      "id": "odefsnz",
+      "author": "SmugDruggler95",
+      "created_iso": "2026-03-30T22:54:38Z",
+      "score": 6,
+      "depth": 0,
+      "body": "A lot of hazing China here. \n\nNo one looking internally and wondering why customers have your mindset. \n\nVery sad to see.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odefsnz/"
+    },
+    {
+      "id": "odte9py",
+      "author": "Sal1160",
+      "created_iso": "2026-04-02T02:55:13Z",
+      "score": 1,
+      "depth": 1,
+      "body": "What we should be doing is taking notes and implementing changes to step up our game",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odte9py/"
+    },
+    {
+      "id": "oddw8ql",
+      "author": "Radiant-Video7257",
+      "created_iso": "2026-03-30T21:14:03Z",
+      "score": 5,
+      "depth": 0,
+      "body": "Without seeing a drawing, I can't be sure, but you or you're part probably meet one or two of these conditions.  \n1. Poorly designed for manufacturing.  \n2. Requires highly specialized tooling or Machines  \n3. Tolerances that don't make sense to the shop/Programmer.  \n4. Pricing is off  \n5. Rub people the wrong way with how you communicate  \nIf none of these apply you're likely talking to the wrong shop, you'd have a lot better luck actually talking to people in person rather than using an online tool like Xometry. Even phone calls are better than online quoting tools (in my opinion). If you can't find anyone local to take it you should look in California, Oregon, Washington, Florida, Texas for aerospace/medical. For automotive it's still best to look in the Midwest/South.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddw8ql/"
+    },
+    {
+      "id": "oddqj23",
+      "author": "Gym_Nasium",
+      "created_iso": "2026-03-30T20:46:27Z",
+      "score": 4,
+      "depth": 0,
+      "body": "China, India and Philippines all gladly make your parts... and then copy them... and either take over your contract or flood the mark... and they can make the part and ship it cheaper the the US material price alone a lot of the time... ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddqj23/"
+    },
+    {
+      "id": "oddup52",
+      "author": "jeffie_3",
+      "created_iso": "2026-03-30T21:06:27Z",
+      "score": 3,
+      "depth": 1,
+      "body": "I was making a part and selling it online. Doing good business. After a year my part starts showing up online at a tenth of the price. The part out of China was truly crap. But people see they can buy theirs for a tenth of what I was. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddup52/"
+    },
+    {
+      "id": "ode3ffk",
+      "author": "GL-Customs",
+      "created_iso": "2026-03-30T21:49:28Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Yep, same. They go through site and find what is popular and get a liaison to buy your product and send home to be copied. Had it happen to me. They even used my pictures for their listings lmao.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode3ffk/"
+    },
+    {
+      "id": "odk8av2",
+      "author": "jeffie_3",
+      "created_iso": "2026-03-31T19:42:38Z",
+      "score": 2,
+      "depth": 3,
+      "body": "I had one do that. I put out an install video. Spent a week convincing YouTube it belonged to me. They cut out my company name out of it. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odk8av2/"
+    },
+    {
+      "id": "odduf4s",
+      "author": "Glockamoli",
+      "created_iso": "2026-03-30T21:05:06Z",
+      "score": 1,
+      "depth": 1,
+      "body": "For real, they do black magic over there, I bought a keyless chuck the other day that came with adapter's for  1/4\" hex, 1/2 square drive socket, and sds drills\n\nThey could somehow manufacturer and ship all that for about $7 and there has to be some profit margin in there somehow as well",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odduf4s/"
+    },
+    {
+      "id": "oddsi3m",
+      "author": "plasticmanufacturing",
+      "created_iso": "2026-03-30T20:55:49Z",
+      "score": 4,
+      "depth": 0,
+      "body": "Lol, have you actually purchased anything from these Chinese shops?\n\nThis entire post is rooted in complete ignorance and the shitty tone won't exactly make people want to help.  I imagine that could be part of your problem with getting bids.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddsi3m/"
+    },
+    {
+      "id": "oddio7j",
+      "author": "kporter68",
+      "created_iso": "2026-03-30T20:09:57Z",
+      "score": 3,
+      "depth": 0,
+      "body": "We do low quantity, hi quality production runs everyday. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddio7j/"
+    },
+    {
+      "id": "oddll25",
+      "author": "borntolose1",
+      "created_iso": "2026-03-30T20:23:18Z",
+      "score": 3,
+      "depth": 0,
+      "body": "I’ll make it.  Send me money. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddll25/"
+    },
+    {
+      "id": "ode23he",
+      "author": "GL-Customs",
+      "created_iso": "2026-03-30T21:42:47Z",
+      "score": 3,
+      "depth": 0,
+      "body": "The Chinese are happy to be so helpful because they will absolutely steal your design and IP then undercut the shit out of you on your own product.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode23he/"
+    },
+    {
+      "id": "oddkfv3",
+      "author": "Claytonics",
+      "created_iso": "2026-03-30T20:18:02Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Try Canada ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkfv3/"
+    },
+    {
+      "id": "oddnoe5",
+      "author": "whateverworks-works",
+      "created_iso": "2026-03-30T20:33:02Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Sometimes it’s hard to get someone’s ear unless they know you’re serious about volume or paying the high single piece price.  Changing setups costs money and shops would rather not jump around from low volume job to low volume job. \nIn summary… you need to find a hungry job shop.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddnoe5/"
+    },
+    {
+      "id": "ode52d6",
+      "author": "Lord3lvan",
+      "created_iso": "2026-03-30T21:57:35Z",
+      "score": 1,
+      "depth": 0,
+      "body": "my shop is currently booked out the ass because of the war, been like that for over a year too",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/ode52d6/"
+    },
+    {
+      "id": "odeggln",
+      "author": "MikhailBarracuda91",
+      "created_iso": "2026-03-30T22:58:11Z",
+      "score": 1,
+      "depth": 0,
+      "body": "If everyone in the machine tool industry is no quoting you then it's probably your part. I go to 2 or 3 different machine shops every month here in the USA, they're all busy making parts.\n\nChinese shops will make anything. That's the difference ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeggln/"
+    },
+    {
+      "id": "odekg5d",
+      "author": "RoboModeTrip",
+      "created_iso": "2026-03-30T23:19:43Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I haven't had to deal with any machine shops since i've moved but my previous job we had like 5 different shops we could reach out for often. Potentially 2-3 more. All depends on how fast you need the part but never once did I get any push back for a part made. Doesn't matter I want 20 $600 pieces or 1 $90 piece. Usually got a quote within 24 hours. It's maybe a location problem but could be a you problem.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odekg5d/"
+    },
+    {
+      "id": "odeozsl",
+      "author": "geek66",
+      "created_iso": "2026-03-30T23:44:35Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The ratio of programming (labor) to operational cost is completely opposite",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeozsl/"
+    },
+    {
+      "id": "odeqiw9",
+      "author": "VonNeumannsProbe",
+      "created_iso": "2026-03-30T23:53:00Z",
+      "score": 1,
+      "depth": 0,
+      "body": "&gt;It’s such a pain in the ass finding a good machine shop to make a part in the US, you put in your information, send step files and drawings, 90% of the time they don’t even ever reach out to you, then the other 9% do reach out and tell you they won’t quote it because it’s impossible or below them and that they are insulted that I would even think they would do such a low quantity\n\n\nBecause they're used to real pain in the ass prototype work being floated to them and mass production being farmed out.\n\n\nHappens in big boy manufacturing too. Companies come in promising big business if you help them do their R&amp;D and then are never heard from again. I've made real off the wall shit not even close to our core business model because I was told to by marketing and it never leads to any profitable quantities.\n\n\nOP, 80-90% of the overhead effort is making the first part. That's why people aren't excited about low quantities.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeqiw9/"
+    },
+    {
+      "id": "odfhuhe",
+      "author": "Indyjunk",
+      "created_iso": "2026-03-31T02:27:53Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Make a post on [MFG.com](http://MFG.com) or Xometry? Hell send cut send is doing machining work now adays maybe they can make the part.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfhuhe/"
+    },
+    {
+      "id": "odfy24o",
+      "author": "Anen-o-me",
+      "created_iso": "2026-03-31T04:12:52Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Because the Chinese intend to steal your design, produce it themselves, and undercut you in the Chinese market then international. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfy24o/"
+    },
+    {
+      "id": "odg19c4",
+      "author": "borometalwood",
+      "created_iso": "2026-03-31T04:35:55Z",
+      "score": 1,
+      "depth": 0,
+      "body": "In the USA you have a good chance of getting a better part than you paid for, China will be happy to underbid then send you a worse part than you paid for. Not a hard and fast rule, but in general…",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg19c4/"
+    },
+    {
+      "id": "odg60bo",
+      "author": "pexican",
+      "created_iso": "2026-03-31T05:11:58Z",
+      "score": 1,
+      "depth": 0,
+      "body": " Reach out to Xometry or Protolabs\n\nYou’ll get the feedback and quotes / dfm ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg60bo/"
+    },
+    {
+      "id": "odg9g2n",
+      "author": "Seaguard5",
+      "created_iso": "2026-03-31T05:40:03Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Also, OP, if you get this made in China be prepared to get knocked off. Hard.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odg9g2n/"
+    },
+    {
+      "id": "odh3454",
+      "author": "Demand_",
+      "created_iso": "2026-03-31T10:08:10Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I think its you. I get things made at machine shops all of the time without issues. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odh3454/"
+    },
+    {
+      "id": "odhg28s",
+      "author": "ArtofJF",
+      "created_iso": "2026-03-31T11:44:41Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I work in a busy shop doing RnD parts. We're outsourcing a lot of our work because we don't have time to do it all. We're getting no-quotes for parts THAT I HAVE PREVIOUSLY MADE. We're seeing crazy long lead times. I think between increase in demand, and decrease in work force, machine shops are busy and picking easier jobs.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhg28s/"
+    },
+    {
+      "id": "odhnl7n",
+      "author": "Nice_Ebb5314",
+      "created_iso": "2026-03-31T12:30:33Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I’ve turned jobs away before from either having to buy special tooling for a small job(less than 50 parts) \n\nIf it takes me more than 2 hours to program or has 10 different sized tapped holes it’s not worth my time.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhnl7n/"
+    },
+    {
+      "id": "odhtmbz",
+      "author": "No-Guide8933",
+      "created_iso": "2026-03-31T13:04:23Z",
+      "score": 1,
+      "depth": 0,
+      "body": "This Machinst Reddit is well known to be snarky and self righteous, as are US machinists in general. I’m just a lowly hobbyist but the way I see it is either chineese are just ignoring your tolerances and doing what they think will work (if your new they might even know better than you, especially their engineering staff). That or US machinist just suck. Just scroll through the previous posts and responses on this subreddit and it’ll be pretty obvious ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odhtmbz/"
+    },
+    {
+      "id": "odia273",
+      "author": "JamusNicholonias",
+      "created_iso": "2026-03-31T14:27:04Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I think it would help if you understand manufacturing differences between countries before crying about it. Labor in China is significantly cheaper and most manufacturing metals are mined there. If you want a company to make 1 part, and the company has to ship in material and pay each employee $30/hr, vs a company that has the material within the borders and historically is known for cheap labor, what's your decision going to be? Also, 1 vs 100 parts changes pricing, and most shops in America are job shops that basically act as a middle man that expects to be paid. Buying from a direct manufacturer eliminates that middle man fee.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odia273/"
+    },
+    {
+      "id": "odie0k6",
+      "author": "inko75",
+      "created_iso": "2026-03-31T14:45:29Z",
+      "score": 1,
+      "depth": 0,
+      "body": "This sounds more like you aren’t reaching out to the right machine shop for the job 🤷🏼 ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odie0k6/"
+    },
+    {
+      "id": "odijs76",
+      "author": "me_too_999",
+      "created_iso": "2026-03-31T15:11:51Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I've gotten the best results by befriending a local machinist. \n\nSpend some time finding out who's busy, who's not too busy \n\nBig cities will have more choices.\n\nSmaller shops will be more flexible. \n\nOnce I've done a few jobs with them, they are usually way more accommodating on new work.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odijs76/"
+    },
+    {
+      "id": "odis7dc",
+      "author": "Puzzled_Hamster58",
+      "created_iso": "2026-03-31T15:49:42Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Um as a machinist that works for a company and runs my own. \n\nAre you saying you just send drawings/files with out contacting them first? \n\nI generally have to sign nda’s before I even see the part. \n\n\nAre you using a Middle man or contacting shops directly. \n\nAt times I’ll be swamped with work and just tell them I won’t even be able to start for a few months .",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odis7dc/"
+    },
+    {
+      "id": "odiudtu",
+      "author": "pyscle",
+      "created_iso": "2026-03-31T15:59:18Z",
+      "score": 1,
+      "depth": 0,
+      "body": "What do you got? We are always looking to expand outlet customer base. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odiudtu/"
+    },
+    {
+      "id": "odkf2ma",
+      "author": "AmateurOfCNC",
+      "created_iso": "2026-03-31T20:13:30Z",
+      "score": 1,
+      "depth": 0,
+      "body": "We have a CNC machining plant  in the UAE with some of the best minds from South India and use HAAS VMCs(up to 5 Axis) and Swiss Lathes for high volume items, and, of-course, super competitive pricing. For complex geometries we have a vendor that provides us customized cutters. HMU if you’re interested because i feel like our reverse engineering and solid customer service will fill your needs.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odkf2ma/"
+    },
+    {
+      "id": "odl5951",
+      "author": "Ubernoob2012",
+      "created_iso": "2026-03-31T22:17:34Z",
+      "score": 1,
+      "depth": 0,
+      "body": "https://youtu.be/3ZTGwcHQfLY?si=v-sHXxmdVtwdCTah\n\n\nDestin is one of the best science youtubers out there, he goes on a quest to make an all American made high quality grill scrubber. It took **years**.\n\n\nIt explains a lot.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odl5951/"
+    },
+    {
+      "id": "odl7j0x",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-31T22:29:36Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Someone else in the comments recommended the same video. I am familiar with his channel but I hadn’t seen that video until recently. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odl7j0x/"
+    },
+    {
+      "id": "odnikci",
+      "author": "InevitableType9192",
+      "created_iso": "2026-04-01T07:21:50Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Mandamelo in privato. Ho l'officina in Italia.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odnikci/"
+    },
+    {
+      "id": "odqhi53",
+      "author": "Shadowcard4",
+      "created_iso": "2026-04-01T17:51:55Z",
+      "score": 1,
+      "depth": 0,
+      "body": "A lot of times the cost to quote is high and so is shop rate that its not worth the time. Youd have to look for small shops, and try to have your order in a reasonable quantity. Like keep in mind on the low end shop rate is like $100, add in probably 4h setup if the part is nice and then the run time, and if something else pays better they're not going to run it. \n\nIts part of why xometry and such took off because theyll do small orders as its a connection of small shops with low rates and low opportunity cost. Also, overseas labor is dirt cheap and generally QC is sub par for many reasons, 1st world countries just cant do that or theyll go under, and they have to basically source materials from overseas, pay a US company for the QC on the material just to start.\n\nId be interested in seeing what youre trying to put through but im only 3 axis milling and manual lathe work right now, but I was supposed to be an engineer so i might be able to give some insight.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odqhi53/"
+    },
+    {
+      "id": "odtu2ov",
+      "author": "CunningLinguist78",
+      "created_iso": "2026-04-02T04:45:43Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I'm a fourth generation owner of a CNC job shop based in the Detroit area. 42 CNCs, 58 team members, running two shifts. Would welcome a chance to review the requirement and see if we can help. DM me for contact info if intetested.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odtu2ov/"
+    },
+    {
+      "id": "odvii17",
+      "author": "gte717v",
+      "created_iso": "2026-04-02T12:52:39Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Until you get a rejection from Send-cut-send, who is going to take this seriously?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odvii17/"
+    },
+    {
+      "id": "odvzw7i",
+      "author": "Frequent-Felcher",
+      "created_iso": "2026-04-02T14:21:45Z",
+      "score": 1,
+      "depth": 0,
+      "body": "We aren't a design firm. We make the parts to print, and if we can't, you'll receive a no-quote.\n\nNot desperate enough for work to have our engineers work unpaid to fix your prints and models.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odvzw7i/"
+    },
+    {
+      "id": "odzlqyw",
+      "author": "Owenleejoeking",
+      "created_iso": "2026-04-03T00:58:52Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Sendcutsend ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odzlqyw/"
+    },
+    {
+      "id": "oe0x9zd",
+      "author": "OrangeHatGuy__",
+      "created_iso": "2026-04-03T06:18:28Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I once wanted a steel bracket made, a shop quoted me 800, i believe they thought that it was beneath them. I got a quote from china, with shipping $60, it was exactly what I needed. 3 month later we had some complex gauges made through them too, it was a 9k order for 20 parts, we were happy to pay that.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe0x9zd/"
+    },
+    {
+      "id": "oe27paz",
+      "author": "beavertr",
+      "created_iso": "2026-04-03T12:33:58Z",
+      "score": 1,
+      "depth": 0,
+      "body": "That's frustrating, sorry you're dealing with that.\n\n\nIf your part is getting kicked back because they need to make tooling for it, there's a pretty good chance that I it's either legitimately complicated, or it's designed/tolerenced poorly.\n\n\nIf I were getting no quotes and requests for drawing updates or clarifications on a part, and suddenly one shop said \"yeah we can make that no problem and for a third of the cost\" I would be extremely leery of that shops actual ability to make my part to the spec I sent them. Are they using the exact material I spec'd? Are they hitting the tolerenced I spec'd? \n\n\nI work with both Chinese and American shops, Im in no way saying that Chinese shops are not full of talented machinists or in any way are less capable, but the language barrier is not insignificant, shipping adds a lot of time and cost when the parts have to cross an ocean, and re-work is basically impossible. \n\n\nI mean this with no offense, but you really should listen to that \"9%\" of shops that got back to you and redraw/redesign your part to incorporate the machinists feedback.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe27paz/"
+    },
+    {
+      "id": "oe2b753",
+      "author": "Arthur_Chips_65",
+      "created_iso": "2026-04-03T12:54:22Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The hard truth is that in the US, \"Liability\" is the silent deal-breaker. When you send a STEP file to a domestic shop, the owner sees an insurance risk. If we spend 20 hours fixing your DFM and the part still fails in assembly, we lose money and potentially our reputation. Chinese shops have massive engineering overhead to bridge that gap for you. In the States, we expect the client to bring a finished, bulletproof print. We aren't ignoring you because we’re busy; we’re ignoring you because your documentation suggests the \"hand-holding\" cost will exceed the profit of the run.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe2b753/"
+    },
+    {
+      "id": "oe98xnm",
+      "author": "Stooshie_Stramash",
+      "created_iso": "2026-04-04T14:00:24Z",
+      "score": 1,
+      "depth": 1,
+      "body": "I think that this is a very good set of points. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe98xnm/"
+    },
+    {
+      "id": "oe3zf9l",
+      "author": "Traditional_Ad_4128",
+      "created_iso": "2026-04-03T17:41:36Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I agree. Not only that but in my experience the Chinese parts are better. Had a simple part made in the US. Came in wrong, dirty and badly packaged. Had the same part made overseas for 1/4 the price. Came in perfect.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe3zf9l/"
+    },
+    {
+      "id": "oe4ibh2",
+      "author": "Feeling_Abrocoma_876",
+      "created_iso": "2026-04-03T19:09:16Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The Chinese machine shops are so willing to work with you so they can steal the IP ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe4ibh2/"
+    },
+    {
+      "id": "oe80fn6",
+      "author": "TheCumEnthusiast",
+      "created_iso": "2026-04-04T08:28:37Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Huge if true",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe80fn6/"
+    },
+    {
+      "id": "oe9i6u7",
+      "author": "InvitePatient9411",
+      "created_iso": "2026-04-04T14:48:53Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Comunque se in America avessero un Agentic AI per la Produzione si risolverebbe una volta per tutte. Capisco tutto ma aspettare giorni per un preventivo è troppo, almeno una ipotesi di costo dovrebbe arrivare nel giro di pochi minuti...",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oe9i6u7/"
+    },
+    {
+      "id": "oedkplu",
+      "author": "KCarrara42",
+      "created_iso": "2026-04-05T04:04:57Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Look into Marathon Precision out of Wheeling, IL.  Just named one of the Top Shops in the United States in 2025.  Ask for Mike!",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oedkplu/"
+    },
+    {
+      "id": "oefwy7x",
+      "author": "Longjumping-Tax2558",
+      "created_iso": "2026-04-05T14:46:26Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Agreed! Been trying to bring a patented product to market and I am just apalled at the unprofessional behavior and lack of response from the US shops. I want mine made in the US too but the sales guys are apalling.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oefwy7x/"
+    },
+    {
+      "id": "oga7y3a",
+      "author": "RapidDirect2019",
+      "created_iso": "2026-04-15T07:00:05Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The ghosting usually isn’t about volume; it’s an economic mismatch. Traditional shops quote manually, so if a part needs a bit of \"unfucking\" to be machinable, they’ll always prioritize their regulars over a cold-call quote that might not even convert.\n\nThat’s why digital platforms like Xometry, Protolabs, or us over at RapidDirect have taken off. We use automated DFM so that the \"is this even machinable?\" check is an instant, built-in feature rather than a billable service.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oga7y3a/"
+    },
+    {
+      "id": "p8lyniw",
+      "author": "Protofix_USA_CA",
+      "created_iso": "2026-09-08T19:50:35Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I think you’re right. A lot of traditional shops are set up for repeat production and established customers, so smaller jobs can fall to the bottom of the list.\n\nBut there’s really no reason a shop can’t at least explain the issue and suggest a solution. That’s where I think the industry can learn from the China model. Fast quoting + DFM feedback + engineers actually helping solve the problem makes a huge difference.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/p8lyniw/"
+    },
+    {
+      "id": "oddhyfl",
+      "author": "Extra-Fig-7425",
+      "created_iso": "2026-03-30T20:06:42Z",
+      "score": 1,
+      "depth": 0,
+      "body": "We have customers get us to make stuff in the UK then ship it over. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddhyfl/"
+    },
+    {
+      "id": "oddizzs",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T20:11:28Z",
+      "score": 2,
+      "depth": 1,
+      "body": "My particular part I’m trying to get quoted now has been rejected by UK machine shops due to European dual use laws. ITAR wise it’s fine but they don’t seem to want to touch it. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddizzs/"
+    },
+    {
+      "id": "odeg2qn",
+      "author": "SmugDruggler95",
+      "created_iso": "2026-03-30T22:56:06Z",
+      "score": 1,
+      "depth": 2,
+      "body": "They wont want to touch it.\n\nEnd User Undertaking and licensing is heavy paperwork",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odeg2qn/"
+    },
+    {
+      "id": "oddq5uy",
+      "author": "Thunderwulfe",
+      "created_iso": "2026-03-30T20:44:41Z",
+      "score": 1,
+      "depth": 0,
+      "body": "If you are on the East Coast and need it done give the place I work at a shot. DM me if you're interested. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddq5uy/"
+    },
+    {
+      "id": "oddzzps",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:32:21Z",
+      "score": 3,
+      "depth": 1,
+      "body": "Florida, but I’m willing to send out work anywhere in the US. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddzzps/"
+    },
+    {
+      "id": "odev9oi",
+      "author": "zim1109",
+      "created_iso": "2026-03-31T00:19:41Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I’m overworked, underpayed, and totally burnt out.  Just running through the motions at this point. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odev9oi/"
+    },
+    {
+      "id": "odf2cnq",
+      "author": "SunTzuLao",
+      "created_iso": "2026-03-31T00:59:58Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Why do I kinda feel like you're trying to low key fish around? All I can say is if xometry exists, your work must either be terrible, you are out of touch with what it costs (China does work as much to destroy their competitors as much as it does to make money, they want you dead after all) or you're up to something.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf2cnq/"
+    },
+    {
+      "id": "odf5jjo",
+      "author": "luigifelipe",
+      "created_iso": "2026-03-31T01:17:51Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I think you pretty much summarized the current state of US tool makers x overseas and why this industry will never come back. US tooling shops are very outdated, equipment are old and inefficient, good tool makers retired / are about to while China has the best skilled labor for high precision tooling, best equipment and technology, high level of automation AND appetite for business. I work in the industry as a tooling Buyer and I’ve been trying to deliver this message to my mgmt: don’t waste time trying to bring this business back. You’re going to pay more for less quality, higher lead times and crappy service. If you want top notch service and quality, don’t waste your time here. In case you want to pivot from China, try Malaysia, Taiwan, Vietnam… same responsiveness, similar quality and lower tariffs. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odf5jjo/"
+    },
+    {
+      "id": "oddjnmi",
+      "author": "[deleted]",
+      "created_iso": "2026-03-30T20:14:29Z",
+      "score": -10,
+      "depth": 0,
+      "body": "[deleted]",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddjnmi/"
+    },
+    {
+      "id": "oddk233",
+      "author": "thenewestnoise",
+      "created_iso": "2026-03-30T20:16:19Z",
+      "score": 22,
+      "depth": 1,
+      "body": "OP said step files _and_ drawings. If that's not the right thing to send, what is? That 100% sounds correct to me!",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddk233/"
+    },
+    {
+      "id": "oddkiy6",
+      "author": "nfitzsim",
+      "created_iso": "2026-03-30T20:18:26Z",
+      "score": 10,
+      "depth": 2,
+      "body": "If it’s a step 242 it can have model based definition as well. I don’t see any problem with OPs product definition method ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkiy6/"
+    },
+    {
+      "id": "oddyhnu",
+      "author": "I-AM-A-DUMBO",
+      "created_iso": "2026-03-30T21:25:01Z",
+      "score": 2,
+      "depth": 3,
+      "body": "I mainly use step ap214",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddyhnu/"
+    },
+    {
+      "id": "oddn7xv",
+      "author": "Clear_Ganache_1427",
+      "created_iso": "2026-03-30T20:30:53Z",
+      "score": 4,
+      "depth": 2,
+      "body": "Think there is confusion with STL files. Step files are fine for any CAM system. ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddn7xv/"
+    },
+    {
+      "id": "oddkm7b",
+      "author": "nippletumor",
+      "created_iso": "2026-03-30T20:18:51Z",
+      "score": 15,
+      "depth": 1,
+      "body": "I'm not going to disagree that prototyping is expensive.\nThat was my core business for many years.\nBut to say that STEP is not an acceptable file type for machining is pretty wild....\n",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkm7b/"
+    },
+    {
+      "id": "oddk3ie",
+      "author": "nfitzsim",
+      "created_iso": "2026-03-30T20:16:30Z",
+      "score": 15,
+      "depth": 1,
+      "body": "&gt; step files are not for CNC machining\n\nUhh, what file type do you want? ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddk3ie/"
+    },
+    {
+      "id": "oddkif4",
+      "author": "ShaggysGTI",
+      "created_iso": "2026-03-30T20:18:22Z",
+      "score": 12,
+      "depth": 2,
+      "body": "Dude wants mesh lol ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkif4/"
+    },
+    {
+      "id": "oddknw5",
+      "author": "nfitzsim",
+      "created_iso": "2026-03-30T20:19:04Z",
+      "score": 9,
+      "depth": 3,
+      "body": "Seriously lol. Gimme that point cloud data",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddknw5/"
+    },
+    {
+      "id": "oddo8ct",
+      "author": "albatroopa",
+      "created_iso": "2026-03-30T20:35:36Z",
+      "score": 5,
+      "depth": 3,
+      "body": "Nah bro, hit me with that csv file.  ",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddo8ct/"
+    },
+    {
+      "id": "oddtk7c",
+      "author": "Glockamoli",
+      "created_iso": "2026-03-30T21:00:53Z",
+      "score": 5,
+      "depth": 4,
+      "body": "Real pro's do all their programming in Excel",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddtk7c/"
+    },
+    {
+      "id": "oddkn3e",
+      "author": "whateverworks-works",
+      "created_iso": "2026-03-30T20:18:58Z",
+      "score": 9,
+      "depth": 1,
+      "body": "Did you mean stls? Step is a super common universal file type.",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkn3e/"
+    },
+    {
+      "id": "oddkgcu",
+      "author": "nthammer30",
+      "created_iso": "2026-03-30T20:18:06Z",
+      "score": 7,
+      "depth": 1,
+      "body": "Most of what I see are step files, how are those not for machining?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkgcu/"
+    },
+    {
+      "id": "oddkw41",
+      "author": "csmart01",
+      "created_iso": "2026-03-30T20:20:07Z",
+      "score": 5,
+      "depth": 1,
+      "body": "Stp + PMi is all you need today. Producing dimensioned drawings is a bit outdated",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/oddkw41/"
+    },
+    {
+      "id": "odfinha",
+      "author": "r2k-in-the-vortex",
+      "created_iso": "2026-03-31T02:32:38Z",
+      "score": 0,
+      "depth": 0,
+      "body": "Why do you want your shit made in US, are you masochist or angry at your money?",
+      "permalink": "/r/CNC/comments/1s81l5g/why_are_us_machine_shops_so_difficult_to_work_with/odfinha/"
+    }
+  ],
   "drilldown_candidates": []
 }

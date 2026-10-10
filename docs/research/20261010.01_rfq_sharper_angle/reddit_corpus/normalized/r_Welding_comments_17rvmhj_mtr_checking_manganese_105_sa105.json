@@ -8,6 +8,25 @@
   "score": 1,
   "num_comments": 2,
   "selftext": "HELLO, jUST COME ACROSS THIS ISSUE. MILL TEST REPOET FOR SA105 MATERIAL SHOWS CARBON AT .17 AND Mn AT 1.1. HOW DO WE KNOW IT SHOULD BE FLAGGED OR NOT.\n\nCOULD YOU EXPLAIN WITH  \"105 allows that for each .01% Carbon below .35, *an increase of .06% Manganese* is permitted over 1.05 to a maximum of 1.35. \"",
-  "comments": [],
+  "comments": [
+    {
+      "id": "k8lror3",
+      "author": "BadderBanana",
+      "created_iso": "2023-11-10T04:20:35Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I'm using ASTM A105 and my version is different than yours (ASME?).\n\n&gt;....for each .01% Carbon below .35, an increase of .06% Manganese is permitted over 1.05 to a maximum of ~~1.35~~ **1.65**%...\n\nThe maximum allowable C% is 0.35, your material is 0.17.   You're 0.18 below the max C%.   That means you're allowed an extra 1.08% Mn (18 \\* 0.06%), but it's capped by the new max 1.35 (your version) or 1.65 (my version).\n\nThere is carbon equivalency clause that takes into consideration Cr, Mo, V, Ni, Cu.   You may want to check into that, but you're already starting with a low C%, so it's be unlikely to trip anything up.\n\nI see no problem with this material.",
+      "permalink": "/r/Welding/comments/17rvmhj/mtr_checking_manganese_105_sa105/k8lror3/"
+    },
+    {
+      "id": "k8lv9i8",
+      "author": "Responsible_Map3253",
+      "created_iso": "2023-11-10T04:52:03Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Hi, Thanks for the reply.  I tried  to calculate that extra 1.08 %. My concern is as there is a cap of  max. 1.35, can we pass this MTR according to the code(ASME) or flag it, though the material might be okay ?",
+      "permalink": "/r/Welding/comments/17rvmhj/mtr_checking_manganese_105_sa105/k8lv9i8/"
+    }
+  ],
   "drilldown_candidates": []
 }

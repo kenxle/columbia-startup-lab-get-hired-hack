@@ -8,6 +8,115 @@
   "score": 1,
   "num_comments": 12,
   "selftext": "Help",
-  "comments": [],
+  "comments": [
+    {
+      "id": "jv7ozx9",
+      "author": "DanTheMachineDoctor",
+      "created_iso": "2023-08-07T21:14:25Z",
+      "score": 4,
+      "depth": 0,
+      "body": "Kaiser Aluminum is a great option, they are a huge US producer of aluminum. Most any metals vendor should be able to get you. \n\nSome vendors in my area are EMJ, Clinton Aluminum, Yarde, and Ryerson.",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7ozx9/"
+    },
+    {
+      "id": "jvalikq",
+      "author": "[deleted]",
+      "created_iso": "2023-08-08T12:58:09Z",
+      "score": 1,
+      "depth": 1,
+      "body": "You must be in Houston. EMJ has great prices and they are fast. I just found them last week and they added hundred$ to my margin!",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jvalikq/"
+    },
+    {
+      "id": "jv7co7a",
+      "author": "KosherCowboy0932",
+      "created_iso": "2023-08-07T19:58:36Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Aluminum is exempt from DFARS, so technically, there is no such thing as DFARS compliant aluminum",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7co7a/"
+    },
+    {
+      "id": "jv7cto7",
+      "author": "andydufrane101",
+      "created_iso": "2023-08-07T19:59:33Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Oh well that’s handy info but my customer still wants domestic source and will not take anything else",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7cto7/"
+    },
+    {
+      "id": "jv7d3fb",
+      "author": "KosherCowboy0932",
+      "created_iso": "2023-08-07T20:01:15Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Fair enough. Domestic is doable, just having the CMTR state DFARS compliant is the hard part. I'll see if I can find anything that's US manufactured",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7d3fb/"
+    },
+    {
+      "id": "jv7e3n1",
+      "author": "andydufrane101",
+      "created_iso": "2023-08-07T20:07:31Z",
+      "score": 2,
+      "depth": 3,
+      "body": "Thank you for taking the time to do that",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7e3n1/"
+    },
+    {
+      "id": "jv7elly",
+      "author": "KosherCowboy0932",
+      "created_iso": "2023-08-07T20:10:34Z",
+      "score": 3,
+      "depth": 4,
+      "body": "My pleasure. I'd look at Kaiser Aluminum. They have tons of domestic material and without knowing exactly what size and specific type you need I can't give a much better answer.",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7elly/"
+    },
+    {
+      "id": "jv7fe8f",
+      "author": "andydufrane101",
+      "created_iso": "2023-08-07T20:15:25Z",
+      "score": 1,
+      "depth": 5,
+      "body": "I need 3:16 7075 round",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7fe8f/"
+    },
+    {
+      "id": "jv7gv2x",
+      "author": "KosherCowboy0932",
+      "created_iso": "2023-08-07T20:24:25Z",
+      "score": 1,
+      "depth": 6,
+      "body": "Easiest bet then is to reach out to yarde metals in Ohio. Let them know what you need and they'll take care of you.",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7gv2x/"
+    },
+    {
+      "id": "jv7h7em",
+      "author": "andydufrane101",
+      "created_iso": "2023-08-07T20:26:31Z",
+      "score": 1,
+      "depth": 7,
+      "body": "I’ll give them a call I appreciate it",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7h7em/"
+    },
+    {
+      "id": "jv7ix1c",
+      "author": "KosherCowboy0932",
+      "created_iso": "2023-08-07T20:36:57Z",
+      "score": 1,
+      "depth": 8,
+      "body": "My pleasure. Hit me up if it doesn't work out. I can look more when I get back to my desk.",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv7ix1c/"
+    },
+    {
+      "id": "jv89yda",
+      "author": "BiggieAl93",
+      "created_iso": "2023-08-07T23:34:32Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Kaiser is a good suggestion, Service Center Metals is all domestic too if I recall correctly.",
+      "permalink": "/r/Machinists/comments/15kudev/looking_for_a_supplier_for_dfars_compliant_60/jv89yda/"
+    }
+  ],
   "drilldown_candidates": []
 }

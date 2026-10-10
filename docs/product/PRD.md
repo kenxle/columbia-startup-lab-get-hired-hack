@@ -80,7 +80,15 @@ The job the rep needs done:
 
 **Not wanted:** slide decks with no product, thin prompt wrappers, or anything built before 11:15 AM.
 
-## The jobs to be done
+## The job to be done
+
+> Send the buyer an accurate, competitive quote, faster than competitors.
+
+- **Accurate:** every line is read right, matched to the right stock item, and carries the paperwork the buyer needs.
+- **Competitive:** the price holds up against the market, and the quote says why.
+- **Faster:** the rep checks a draft instead of decoding every line by hand.
+
+## What it does
 
 These come from RudCo's challenge, in order.
 
@@ -155,8 +163,9 @@ These hold for every part of the build.
 
 ## How we know it works
 
-Each job has one test, run against a set of test RFQs we write early in the day.
+The job has one test, and each thing it does has one, run against our test RFQs.
 
+- **The job.** On our test RFQs, the rep goes from RFQ to a quote they would send in a few clicks, and every line is right.
 - **Read each line.** On our test RFQs, every line comes out with the right material, grade, size, quantity, and standard.
 - **Match to the catalog.** Each ready line points at the right catalog item. Lines with no fit are marked no match, never forced onto the closest item.
 - **Price and explain.** Each price sits next to its benchmark, and the explanation names that benchmark.

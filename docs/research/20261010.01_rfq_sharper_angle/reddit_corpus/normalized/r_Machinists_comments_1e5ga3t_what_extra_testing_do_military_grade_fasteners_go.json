@@ -5,9 +5,514 @@
   "title": "What extra testing do military grade fasteners go through?",
   "author": "Melonman3",
   "created_iso": "2024-07-17T11:53:15Z",
-  "score": 32,
+  "score": 30,
   "num_comments": 56,
   "selftext": "I was purchasing some 8-32 x3/8 flat head socket caps in 18-8ss today and \n\nhttps://www.mcmaster.com/94518A310\n\nAnd \n\nhttps://www.mcmaster.com/92210A192\n\nAre essentially the same thing, same tensile, both passivated, granted one is made in Taiwan and not dfars, but I know there's no way it takes 50x more to make it in the US.  I assume material certs, and batch testing reports, but it still just seems like an insane markup. Even not on McMaster we're looking at a 20x markup from the McMaster 100 pack.\n",
-  "comments": [],
+  "comments": [
+    {
+      "id": "ldllyym",
+      "author": "OpticalPrime",
+      "created_iso": "2024-07-17T12:24:44Z",
+      "score": 107,
+      "depth": 0,
+      "body": "Those certs are what you’re paying for. It takes man hours to do them and it adds up. All aerospace has a paper trial all the way back and it’s pricy having that done.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldllyym/"
+    },
+    {
+      "id": "ldltt1y",
+      "author": "bravoromeokilo",
+      "created_iso": "2024-07-17T13:18:10Z",
+      "score": 71,
+      "depth": 1,
+      "body": "Along every. Single. Step. Of. The. Way.\n\nFrom forge to shipping and storage. Traceability is costly.\n\nCuz if that bolt breaks we need to know who to blame and why.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldltt1y/"
+    },
+    {
+      "id": "ldm7f1u",
+      "author": "ToothlessTrader",
+      "created_iso": "2024-07-17T14:39:41Z",
+      "score": 50,
+      "depth": 2,
+      "body": "Not even that, because when you find out why you also need to find out where else you installed those bolts.\n\nYou wanna find out if the same bolts that broke on a Humvee went on critical parts of a ship.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm7f1u/"
+    },
+    {
+      "id": "ldnbyjj",
+      "author": "VonNeumannsProbe",
+      "created_iso": "2024-07-17T18:16:14Z",
+      "score": 4,
+      "depth": 3,
+      "body": "Odds are its in other humvees because people don't generally buy a lot of anything and install it across multiple things.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnbyjj/"
+    },
+    {
+      "id": "ldnfe9v",
+      "author": "noodleofdata",
+      "created_iso": "2024-07-17T18:34:26Z",
+      "score": 20,
+      "depth": 4,
+      "body": "Maybe not from the same batch, but if two different projects order from the same place around the same time they could both get parts from the same defective batch.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnfe9v/"
+    },
+    {
+      "id": "ldpf828",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:31:56Z",
+      "score": 5,
+      "depth": 4,
+      "body": "Bolts are, in fact, in lots of stuff.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpf828/"
+    },
+    {
+      "id": "ldnwhy9",
+      "author": "Pommeswerfer",
+      "created_iso": "2024-07-17T20:05:25Z",
+      "score": -2,
+      "depth": 3,
+      "body": "Bet the bolts aren't certified for a humvee. So no biggie.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnwhy9/"
+    },
+    {
+      "id": "ldm9qj7",
+      "author": "No_Blacksmith9025",
+      "created_iso": "2024-07-17T14:52:33Z",
+      "score": 18,
+      "depth": 2,
+      "body": "I’ve said for a while that if you print out all the certs for a given aircraft, you’ve likely got a pile of paperwork greater in volume than the aircraft itself.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm9qj7/"
+    },
+    {
+      "id": "ldmr9y5",
+      "author": "[deleted]",
+      "created_iso": "2024-07-17T16:27:06Z",
+      "score": 7,
+      "depth": 2,
+      "body": "It actually starts well before that. The ore from the mine that feeds the foundry needs to be certified not to contain conflict minerals. Eg. Silver from the Congo.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmr9y5/"
+    },
+    {
+      "id": "ldmuyqx",
+      "author": "Sometimes_Stutters",
+      "created_iso": "2024-07-17T16:46:31Z",
+      "score": 5,
+      "depth": 2,
+      "body": "Don’t forget the smelters. Gotta have certs saying no kids from the Congo died digging up the ore",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmuyqx/"
+    },
+    {
+      "id": "ldp2p3d",
+      "author": "Brohemoth1991",
+      "created_iso": "2024-07-18T00:10:25Z",
+      "score": 3,
+      "depth": 2,
+      "body": "My company does high purity fittings and valves... any material in the building always has a material tag with it in some way (on the machine, on the cart, wrapping in plastic wrap around the bars when we first get them)\n\nWe have a roll stamp in process for every single part we make, and if one of the letters is incomplete in any form anywhere in the \"company-material-heat code\" stamp it's a garbage part\n\nEach part has like 12 operations (material pulling, cnc, wash line, inspection, etc)... and your final count is double checked by someone else before it's moved along, if your count is wrong by even 1 part, it's a quality notification (you are only allowed 12 a year)\n\nEven shipping is insane at our shop lol... they own the building next door (the buildings share a parking lot)... someone accidentally ordered machine parts to go next door, they actually paid FedEx like $500 just to come grab it from one building and drive across the parking lot to our building, as anything entering and leaving the building has to be under appropriate channels\n\nEdit: I remember when I was newer someone had preloaded the bars for the next order, but they didn't finish, and our crew came in and thought they were for the current order, unfortunately they were from different batches of material, my company threw away something crazy like $40k worth of parts because there was no way to 100% verify where the old batch ended and new one began",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldp2p3d/"
+    },
+    {
+      "id": "ldmdzwg",
+      "author": "scotttr3b",
+      "created_iso": "2024-07-17T15:15:55Z",
+      "score": 18,
+      "depth": 1,
+      "body": "When people complain about bureaucracy, and about how a toilet seat costs 400$, I think about current events. The door blew off your airplane? The FAA steps in and grounds the fleet, no questions asked, no flying until they are happy. Poisoned baby formula? The FDA steps in, all product is removed and destroyed, nothing moves until they are happy. The manufacturer lost a small fortune? Tough shit, the safety of US citizens comes first. No where else in the world are there the processes and protections that we get for our taxes. Be thrilled to pay the price for small stuff like this, because that's what allows you to cover your ass.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmdzwg/"
+    },
+    {
+      "id": "ldmv7ku",
+      "author": "Sometimes_Stutters",
+      "created_iso": "2024-07-17T16:47:47Z",
+      "score": 4,
+      "depth": 2,
+      "body": "Fun fact- Every commercial aircraft in service has counterfeit parts on it.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmv7ku/"
+    },
+    {
+      "id": "ldn7gr2",
+      "author": "scotttr3b",
+      "created_iso": "2024-07-17T17:52:25Z",
+      "score": 8,
+      "depth": 3,
+      "body": "In God we trust, all others, bring facts.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldn7gr2/"
+    },
+    {
+      "id": "ldng6jr",
+      "author": "Sometimes_Stutters",
+      "created_iso": "2024-07-17T18:38:36Z",
+      "score": 4,
+      "depth": 4,
+      "body": "Used to work at an aerospace company. Had an issue with counterfeit parts and the FAA investigating it said that it’s a huge problem and that every commercial aircraft certainly had counterfeit parts",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldng6jr/"
+    },
+    {
+      "id": "ldnina0",
+      "author": "Finbar9800",
+      "created_iso": "2024-07-17T18:51:36Z",
+      "score": 3,
+      "depth": 3,
+      "body": "What do you mean by counterfeit parts?",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnina0/"
+    },
+    {
+      "id": "ldnkbpm",
+      "author": "Sometimes_Stutters",
+      "created_iso": "2024-07-17T19:00:29Z",
+      "score": 3,
+      "depth": 4,
+      "body": "Not made by certified aerospace suppliers, but sold as “certified” aerospace components",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnkbpm/"
+    },
+    {
+      "id": "ldnric9",
+      "author": "Finbar9800",
+      "created_iso": "2024-07-17T19:39:10Z",
+      "score": 3,
+      "depth": 5,
+      "body": "Ahhh ok thx for explaining",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnric9/"
+    },
+    {
+      "id": "ldpfr3z",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:35:23Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Do you feel okay? You sound like you're coming down with a case of piano-fell-on-me-itis.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpfr3z/"
+    },
+    {
+      "id": "ldni7f4",
+      "author": "DW_77_",
+      "created_iso": "2024-07-17T18:49:15Z",
+      "score": 5,
+      "depth": 1,
+      "body": "A proper paper trail prevents a long paper trial.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldni7f4/"
+    },
+    {
+      "id": "ldmj5pg",
+      "author": "[deleted]",
+      "created_iso": "2024-07-17T15:43:45Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Apparently not Boeing, lol.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmj5pg/"
+    },
+    {
+      "id": "ldmr1nv",
+      "author": "OpticalPrime",
+      "created_iso": "2024-07-17T16:25:53Z",
+      "score": 7,
+      "depth": 2,
+      "body": "Jokes aside, I worked inspection at an aerospace shop for a bit that supplied to Boeing. They had purchase inspectors that would come by, check that we had all certs, first article inspections, spot inspections, and they would hand check some parts and compare them to our findings before we could package and ship them.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmr1nv/"
+    },
+    {
+      "id": "ldnhf6d",
+      "author": "[deleted]",
+      "created_iso": "2024-07-17T18:45:05Z",
+      "score": 6,
+      "depth": 3,
+      "body": "Yeah, I've worked with many Aerospace companies and it's mandatory for their suppliers, but I've read only certain parts of their company follow the same standards they set for all of their suppliers.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnhf6d/"
+    },
+    {
+      "id": "ldpquso",
+      "author": "noodleq",
+      "created_iso": "2024-07-18T02:50:18Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Yup, I work in a machine shop doing a bunch of stuff like that......the fucking paper trails are insane. I ram these parts a few weeks back where every single part needed 100% check everything, which is overkill for sure.\n\nI've also seen some crazy shit with these huge parts we do for marine Corp thatvtake like 1 week to run one part. They rejected the parts because the counter sinks on the threaded holes were a few thousandth too big. A fucking countersink. That's why the military gets charged 100x more, because us people that make that shit have to go thru a while bunch of extra headache that would never apply to a \"normal\" job. \n\nPeople have always joked about government waste amd spending too much for a screw.....but it's not just the manufacturer being greedy. They want perfection amd that's what they get. But they pay out the ass for it.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpquso/"
+    },
+    {
+      "id": "ldlls91",
+      "author": "BarnOwl-9024",
+      "created_iso": "2024-07-17T12:23:24Z",
+      "score": 29,
+      "depth": 0,
+      "body": "You assume it is just the “few” minutes of an occasional test or two. It isn’t just the testing, it’s the documentation, certification, record keeping, expensive equipment for doing the testing, the added personnel to do the testing as well as maintain the documentation. The creation of a quality system and the maintenance of that system. The validation of vendors and the regular checking up on those vendors to ensure they are still doing their job right. And the liability involved with stating that *all* the produced parts meet a certain standard of performance. All of that adds expense. And since not all companies want to do that, you have a “premium” product you can charge more as a return for putting in the extra effort, because you might be the only company doing it.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldlls91/"
+    },
+    {
+      "id": "ldm2xle",
+      "author": "neonrev1",
+      "created_iso": "2024-07-17T14:14:05Z",
+      "score": 10,
+      "depth": 1,
+      "body": "I've never personally worked in aviation but it's a big industry here, the stuff I hear about how detailed the records they keep about every single wire on every bolt makes the medical industry look slapdash and lazy.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm2xle/"
+    },
+    {
+      "id": "ldm72as",
+      "author": "jeffbell",
+      "created_iso": "2024-07-17T14:37:43Z",
+      "score": 3,
+      "depth": 2,
+      "body": "And yet wires and crenelated nuts are why 737s are in the news. ",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm72as/"
+    },
+    {
+      "id": "ldm76s4",
+      "author": "neonrev1",
+      "created_iso": "2024-07-17T14:38:25Z",
+      "score": -1,
+      "depth": 3,
+      "body": "Heh, fair, not my local manufacturers work though.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm76s4/"
+    },
+    {
+      "id": "ldmqjkd",
+      "author": "Melonman3",
+      "created_iso": "2024-07-17T16:23:11Z",
+      "score": 3,
+      "depth": 1,
+      "body": "Yeah I got ya, it sounds like once you put the cert on it it becomes a high value added item. Depending on demand I can easily see the cost to make going up to $.5.  \n\nAdding 60% margins seems par for the course, then you get to distribution who must also maintain certs, and then there's the McMaster premium.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmqjkd/"
+    },
+    {
+      "id": "ldpgldb",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:40:54Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Just to be clear, it's rare for us to actually order flight hardware from McMaster. I'm. Sure it happens but it's not typical. High volume stuff is likely going to have subcontracts directly to manufacturers. Low volume, highly unique stuff probably have preferred vendors and don't need to pay the McMaster tax and don't need the magically fast McMaster shipping.\n\nActually probably nobody in defense needs McMaster delivery speeds. Shit moves SLOW in defense.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpgldb/"
+    },
+    {
+      "id": "ldlo7ci",
+      "author": "[deleted]",
+      "created_iso": "2024-07-17T12:40:43Z",
+      "score": 19,
+      "depth": 0,
+      "body": "Military grade is all paper trail and testing. I made these at a previous place. 100% inspections every 10 pieces. Tensile strength and shear test. Tolerances are way tighter. But think with military grade there are records of every hand that touched it all the way back to where the ore was mined",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldlo7ci/"
+    },
+    {
+      "id": "ldmvcu5",
+      "author": "El_Comanche-1",
+      "created_iso": "2024-07-17T16:48:32Z",
+      "score": 4,
+      "depth": 0,
+      "body": "You’re paying for traceability. So when the heads of a certain screw start to pop off of on a $3 million dollar machine and there are 1,200 of them used on it. It’s someone’s else’s ass and not yours…",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmvcu5/"
+    },
+    {
+      "id": "ldoghrp",
+      "author": "Disastrous-Store-411",
+      "created_iso": "2024-07-17T21:54:59Z",
+      "score": 6,
+      "depth": 0,
+      "body": "It's not military \"grade\".... it's military \"spec\".\n\nIt may seem like semantics, but grade and spec are quite different. Those screws may very well be the same grade(strength), but one doesn't meet the specifications.\n\nthe spec will require very tight scrutiny of all the factors.\n\nA few theoretical examples.\n\n*The root radius of the thread:* the MIL spec probably requires you inspect it. the non-spec does not.\n\n*the raw material*: MIL spec requires full traceability. the non spec does not.\n\n*The passivation*: MIL spec defines exactly how to perform this process. the non spec does not.\n\n*the hardness*: MIL spec requires testing of the hardness in a lab. the non spec does not.\n\netc, etc, etc.\n\nIt boils down to making the product ***exactly as defined*** and being able to prove it!",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldoghrp/"
+    },
+    {
+      "id": "ldm5n65",
+      "author": "Few-Explanation-4699",
+      "created_iso": "2024-07-17T14:29:41Z",
+      "score": 10,
+      "depth": 0,
+      "body": "I used to work in an aerospace mechanical test lab.\n\nIt is all about traceability and auditing.\n\nEach batch will have been made from certified material. Each batch will have a number of parts tested to ensure the batch meets a specified confidence level.\n\nThe lab has to be certified to a high level for the types of tests for that fastener.\n\nAll equipment must be calibrated. Amd that means everything. The tooling used, the micrometer\n\nRecords have to be kept for tracability for a very long time. Usually the life of the project plus 10 years\n\nAnd you have the auditors go through you book all the time.\n\nIn all quality and tracability equals cost",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm5n65/"
+    },
+    {
+      "id": "ldmprqp",
+      "author": "Melonman3",
+      "created_iso": "2024-07-17T16:19:04Z",
+      "score": 3,
+      "depth": 1,
+      "body": "Sounds a lot like iso 9001 with a bunch of extra steps.  We staff around 15 people just in our quality dept to keep up, I'd imagine that number balloons pretty quick with more requirements.\n\nIt also kinda sounds like it's the bits your saying + a limited supply/ what people are willing to deal with for a specific cost.  The \n\nThanks for the answer",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmprqp/"
+    },
+    {
+      "id": "ldnwxjc",
+      "author": "Few-Explanation-4699",
+      "created_iso": "2024-07-17T20:07:44Z",
+      "score": 3,
+      "depth": 2,
+      "body": "We were a [NATA](https://nata.com.au/) certified lab\n\nWhen the company went for ISO9001 the ISO assessor walked into the lab, looked at out NATA certification and said \"well that's you approved\"",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnwxjc/"
+    },
+    {
+      "id": "ldmv7yq",
+      "author": "Doinkmckenzie",
+      "created_iso": "2024-07-17T16:47:50Z",
+      "score": 3,
+      "depth": 0,
+      "body": "I work on an installation and we have multiple different “classifications” of fasteners. Our typical stuff is from McMaster-Carr grade 5-8 for standard fasteners. Stuff that goes on boats is classified by levels and that is tracked from foundry to end point with batch numbers so if one failed, they can recall the whole batch.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmv7yq/"
+    },
+    {
+      "id": "ldnevf1",
+      "author": "FaustinoAugusto234",
+      "created_iso": "2024-07-17T18:31:42Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Military grade means no Chinese vendors anywhere in the process.  But otherwise the lowest bidder.  Don’t forget your 8A set asides.   *shudder*\n\nhttps://preview.redd.it/uieyvl0hh4dd1.jpeg?width=503&amp;format=pjpg&amp;auto=webp&amp;s=f2edc6c87d29dc69a9f9b2f7060f30bcd1ed6356",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnevf1/"
+    },
+    {
+      "id": "ldlpr58",
+      "author": "SadWhereas3748",
+      "created_iso": "2024-07-17T12:51:22Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Also McMaster….",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldlpr58/"
+    },
+    {
+      "id": "ldltnnz",
+      "author": "AhaWassup",
+      "created_iso": "2024-07-17T13:17:13Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Honestly almost none, half the time I just make it to a specific spec",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldltnnz/"
+    },
+    {
+      "id": "ldly4ns",
+      "author": "IAA_ShRaPNeL",
+      "created_iso": "2024-07-17T13:45:26Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Like others said, it’s the trail of accountability. Documentation on where the material came from, testing on the raw material, verification and approval of the operations and program by the customer, documentation of who ran the parts and when, testing of finished parts, tolerances of dimensions, and in the end, the rate of non-conforming parts made.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldly4ns/"
+    },
+    {
+      "id": "ldmavo1",
+      "author": "whaler76",
+      "created_iso": "2024-07-17T14:58:48Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Along with all the traceability and testing, material and labor costs are far greater. I recently quoted a job and I knew the cost my customer would pay to have it made offshore, their cost from overseas (complete) was cheaper than just the material cost for me, absolutely ridiculous.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldmavo1/"
+    },
+    {
+      "id": "ldnx2zq",
+      "author": "Anon684930475",
+      "created_iso": "2024-07-17T20:08:32Z",
+      "score": 1,
+      "depth": 0,
+      "body": "“Military grade” made by the cheapest supplier more often than not.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnx2zq/"
+    },
+    {
+      "id": "ldp1po3",
+      "author": "[deleted]",
+      "created_iso": "2024-07-18T00:04:06Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Military grade = lowest bidder.... always remember that",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldp1po3/"
+    },
+    {
+      "id": "ldpiaqo",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:52:04Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Meh. The way people whine about taxation, it kinda has to be that way. Can you imagine the sobbing rage? \"They're *wasting* **OUR TAX DOLLARS** buying these bolts for $1.37 when the other vendor bid $1.35!!11 *and they want to feed hungry children?* They ShOuLd ElimIatE the WasTe FIrSt!!\"",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpiaqo/"
+    },
+    {
+      "id": "ldq0z6v",
+      "author": "[deleted]",
+      "created_iso": "2024-07-18T04:07:28Z",
+      "score": 0,
+      "depth": 2,
+      "body": "Lol I don't know if you're being serious or not...but government bids don't work like that.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldq0z6v/"
+    },
+    {
+      "id": "ldsohzd",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T16:52:32Z",
+      "score": 0,
+      "depth": 3,
+      "body": "I am directly involved in bid and proposal work for federal programs, but in any event my comment was based only on what you said about selecting the lowest bidder.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldsohzd/"
+    },
+    {
+      "id": "ldpdh4t",
+      "author": "inbloom1996",
+      "created_iso": "2024-07-18T01:20:26Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The are the same bolt. One has certs and one doesn’t.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpdh4t/"
+    },
+    {
+      "id": "ldpf2s9",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:30:58Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I'm sure there's some markup, but the way we do things in aerospace and defense really is much more costly, and honestly a lot of it is good reason. When it's taxpayer money and it's life- or mission-critical, you kind of want to know that it wasn't quietly subcontracted to China, without any quality control, that it meets all the standards the engineer determined it needs to, that nobody gave their cousin a sweet deal on the job, etc. There's a lot of inefficiency, sure, but there's also a boatload of legitimate costs to doing things the way you need to when it matters.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpf2s9/"
+    },
+    {
+      "id": "ldlocqq",
+      "author": "nylondragon64",
+      "created_iso": "2024-07-17T12:41:45Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Even regular fasteners made in Asia compared to US made are huge difference in quality.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldlocqq/"
+    },
+    {
+      "id": "ldnwvd7",
+      "author": "Pommeswerfer",
+      "created_iso": "2024-07-17T20:07:24Z",
+      "score": 3,
+      "depth": 1,
+      "body": "You can get high quality fasteners from asia, but you're paying for that.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnwvd7/"
+    },
+    {
+      "id": "ldm1haf",
+      "author": "BiggieAl93",
+      "created_iso": "2024-07-17T14:05:35Z",
+      "score": 0,
+      "depth": 0,
+      "body": "You’re paying for traceability.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm1haf/"
+    },
+    {
+      "id": "ldnbyx6",
+      "author": "Spodiodie",
+      "created_iso": "2024-07-17T18:16:17Z",
+      "score": 0,
+      "depth": 0,
+      "body": "Not cap screws btw.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldnbyx6/"
+    },
+    {
+      "id": "ldm5c23",
+      "author": "tjwashur94",
+      "created_iso": "2024-07-17T14:27:55Z",
+      "score": -1,
+      "depth": 0,
+      "body": "Labor, at least, is probably 50x more expensive in the US. Depending on the MIL Spec, material could be, too. As well as what others have said about testing and paper work associated with the spec. But those fasteners are only 2x expensive, so honestly, it's pretty reasonable, in my opinion.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldm5c23/"
+    },
+    {
+      "id": "ldllmrj",
+      "author": "antifaction",
+      "created_iso": "2024-07-17T12:22:16Z",
+      "score": -5,
+      "depth": 0,
+      "body": "No extra testing that I’m aware of- just made in the US.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldllmrj/"
+    },
+    {
+      "id": "ldpihk6",
+      "author": "FrickinLazerBeams",
+      "created_iso": "2024-07-18T01:53:18Z",
+      "score": 2,
+      "depth": 1,
+      "body": "&gt;that I’m aware of\n\n... Is doing a lot of work in that sentence.",
+      "permalink": "/r/Machinists/comments/1e5ga3t/what_extra_testing_do_military_grade_fasteners_go/ldpihk6/"
+    }
+  ],
   "drilldown_candidates": []
 }

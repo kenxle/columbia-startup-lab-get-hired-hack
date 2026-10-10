@@ -8,6 +8,61 @@
   "score": 3,
   "num_comments": 8,
   "selftext": "When you get 3+ RFQ responses, what fields do you refuse to leave vague before you compare them?\n\nThe checklist I see break decisions most often: sellable unit/basis, spec revision, MOQ/tier, Incoterm + named place, freight scope, tooling/sample charges, payment terms, lead time, validity date, origin/HS basis, quality/compliance docs, and explicit exceptions.\n\nCurious where procurement teams draw the line between \"good enough to shortlist\" and \"not decision-ready.\" Disclosure: I work on supplier/quote process tooling; no product link here.",
-  "comments": [],
+  "comments": [
+    {
+      "id": "p6mbmm2",
+      "author": "CosmoSourcing",
+      "created_iso": "2026-08-29T14:57:38Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Solid list; here's where it plays out in practice after 14 years of comparing quotes, because the fields aren't equally dangerous.\n\nThe two that break more shortlists than everything else combined: incoterm + named place and spec revision. Incoterms because they're the denominator; an EXW and a DDP quote aren't comparable numbers at all, and \"freight included\" without a named place is a number wearing a costume. We normalize everything to FOB named port before any comparison exists. Spec revision because the silent version is lethal: three suppliers quoting three different revisions look like a price spread but are actually a scope spread, and the cheapest one usually quoted the spec that's easiest to make, sometimes deliberately (\"quoted per your drawing\" with no revision number is the tell).\n\nThe field your list has that most teams still skip, and shouldn't: explicit exceptions. A quote's exceptions section is where the real quote lives. Forcing a \"we comply fully except:\" line flushes out what would otherwise surface at PO time as \"oh, that price assumed your packaging.\"\n\nTwo I'd add: defect allowance and remedy (what AQL applies at inspection and what happens at failure: rework, discount, or argument; suppliers who answer this crisply have systems, and it's unpriceable after the fact), and for anything with custom tooling, mold ownership stated in writing, not just the tooling charge, because who owns the tool determines whether you can ever leave.\n\nAnd the meta-point that makes the whole exercise worth it: the RFQ is a vetting instrument disguised as a pricing exercise. Suppliers who itemize cleanly and state exceptions honestly are showing you their systems; the ones who return a single \"best price, don't worry\" total are telling you exactly where the surprises will live. We've dropped lowest-price bidders purely on quote legibility, and it's been the right call more often than not, because how they quote is how they'll invoice, and how they invoice is how they'll behave when something goes wrong.\n\nWhere the shortlist line actually sits for us: a quote is decision-ready when a colleague who wasn't on any of the calls could build the landed-cost comparison from the documents alone. If comparing requires remembering what the salesperson said, it's not a quote yet, it's a conversation.",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6mbmm2/"
+    },
+    {
+      "id": "p6n5hjm",
+      "author": "MaxAtGoodsCommand",
+      "created_iso": "2026-08-29T17:19:00Z",
+      "score": 1,
+      "depth": 1,
+      "body": "That hierarchy matches what I see too: spec revision and Incoterm/named place decide whether the comparison is even valid; exceptions decide whether the supplier is actually agreeing to the same scope.\n\nThe defect/remedy point is a good add because it turns quality from a vague promise into a commercial term. I would put it near payment terms: if inspection fails, do they rework before balance payment, remake, discount, or dispute the standard? Same for tooling ownership: paid tooling without written ownership/maintenance/access terms is not really portable leverage.\n\nThe meta-rule I like is: every quote field should be either supplier-confirmed, buyer-entered, third-party/broker-confirmed, or explicitly missing. The dangerous state is a field that looks complete but nobody can say where it came from.",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6n5hjm/"
+    },
+    {
+      "id": "p6o8mbp",
+      "author": "worldwidemachinist",
+      "created_iso": "2026-08-29T20:24:25Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Spec revision and explicit exceptions are probably the most overlooked",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6o8mbp/"
+    },
+    {
+      "id": "p6o93l0",
+      "author": "MaxAtGoodsCommand",
+      "created_iso": "2026-08-29T20:26:49Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Agree. Those two catch a lot of false comparisons because they look administrative, but they change the deal.\n\nI like forcing an exceptions column next to every quoted line, not buried in footnotes: spec revision, excluded accessories/packaging, substitute material, test/cert assumptions, warranty/remedy limits, and any Incoterm or freight exclusions.\n\nIf it changes cost, risk, or lead time, it should be visible before the shortlist.",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6o93l0/"
+    },
+    {
+      "id": "p6t572u",
+      "author": "ProtectionBrief4078",
+      "created_iso": "2026-08-30T15:32:13Z",
+      "score": 1,
+      "depth": 0,
+      "body": "or me, the biggest issue is when suppliers technically answer the RFQ but don’t answer it on the same basis. A low unit price means very little if one quote includes freight, another doesn’t, or they’re using different UOMs/MOQs.\n\nI’d probably treat Incoterm + named place, UOM, MOQ/tier, lead time, payment terms, and freight scope as the minimum before calling quotes comparable. I’ve seen small differences in product descriptions or units create bigger headaches later, so I’d rather clarify them upfront than shortlist based on a misleading price.",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6t572u/"
+    },
+    {
+      "id": "p6trxiv",
+      "author": "MaxAtGoodsCommand",
+      "created_iso": "2026-08-30T17:15:08Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Yes, that \"answered on different basis\" problem is where a lot of shortlists go wrong.\n\nOne thing I like to keep separate is original supplier term vs normalized comparison term. For example: Supplier A wrote FOB Ningbo at 1,000 units, Supplier B wrote EXW factory at 800 units, and the comparison sheet has a normalized landed-cost view. That way the buyer can see both the cleaned comparison and the evidence trail back to what each supplier actually committed to.\n\nIt also makes clarification emails easier: instead of asking \"can you confirm your quote?\" you can ask for the exact missing field that blocks comparability.",
+      "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/p6trxiv/"
+    }
+  ],
   "drilldown_candidates": []
 }

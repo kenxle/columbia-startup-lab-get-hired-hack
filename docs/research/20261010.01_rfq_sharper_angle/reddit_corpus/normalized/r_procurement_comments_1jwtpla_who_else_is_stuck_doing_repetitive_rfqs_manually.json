@@ -8,6 +8,277 @@
   "score": 22,
   "num_comments": 37,
   "selftext": "Hey folks,\n\nI’m trying to get a better handle on how other teams are dealing with repetitive RFQ processes. In our business, we constantly get quote requests via email, and it turns into a mess of checking inboxes, digging up previous prices, googling suppliers, and replying manually — over and over.\n\nIt ends up eating way more time than it should (sometimes 10+ hours a week), and it feels like something that should be easier to automate.\n\nCurious — how are others handling this? Do you have a system or tool you use to streamline repetitive quoting tasks, or is it mostly still manual across the board?\n\nWould love to hear how others are approaching this — even if it’s duct tape and spreadsheets.\n\nThanks in advance!",
-  "comments": [],
+  "comments": [
+    {
+      "id": "mmlhx29",
+      "author": "[deleted]",
+      "created_iso": "2025-04-11T17:28:43Z",
+      "score": 15,
+      "depth": 0,
+      "body": "[deleted]",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlhx29/"
+    },
+    {
+      "id": "mmlwadk",
+      "author": "[deleted]",
+      "created_iso": "2025-04-11T18:39:56Z",
+      "score": 5,
+      "depth": 1,
+      "body": "+1 on this. Most exhausting part of the process is feeling like you’re starting from scratch with each RFQ. It is a pain at first to consolidate all that information but it helps in the long run.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlwadk/"
+    },
+    {
+      "id": "mml7ai4",
+      "author": "newfor2023",
+      "created_iso": "2025-04-11T16:36:56Z",
+      "score": 14,
+      "depth": 0,
+      "body": "Googling?\nI think we may have different sized organisations",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mml7ai4/"
+    },
+    {
+      "id": "mmlfe46",
+      "author": "ihatespunk",
+      "created_iso": "2025-04-11T17:16:28Z",
+      "score": 3,
+      "depth": 1,
+      "body": "So how do the big kids do it?",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlfe46/"
+    },
+    {
+      "id": "mmlqjen",
+      "author": "wtfINFP",
+      "created_iso": "2025-04-11T18:10:57Z",
+      "score": 3,
+      "depth": 2,
+      "body": "ERP system. YMMV because some are amazing and some are absolute dinosaurs",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlqjen/"
+    },
+    {
+      "id": "mml4qub",
+      "author": "DisastrousGoat1811",
+      "created_iso": "2025-04-11T16:24:11Z",
+      "score": 3,
+      "depth": 0,
+      "body": "I have been doing the same repetitive process since Covid lol.  I also would like to know if someone else has a better solution 😭",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mml4qub/"
+    },
+    {
+      "id": "p0s4wac",
+      "author": "ripguy1264",
+      "created_iso": "2026-07-31T00:37:32Z",
+      "score": 1,
+      "depth": 1,
+      "body": "You should try inboxpilot you can just include your documents or email templates/attachments you use to reply to these common inquiries and it’ll draft things for you takes 5 minutes to set up and works inside Gmail or outlook ",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/p0s4wac/"
+    },
+    {
+      "id": "mmlo223",
+      "author": "Griffin808",
+      "created_iso": "2025-04-11T17:58:32Z",
+      "score": 3,
+      "depth": 0,
+      "body": "You should ask chatgpt. I’m telling you it will help you immensely.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlo223/"
+    },
+    {
+      "id": "mmnfu7h",
+      "author": "taking_un_2_grave",
+      "created_iso": "2025-04-11T23:42:04Z",
+      "score": 2,
+      "depth": 1,
+      "body": "To second this, I actually wrote some software to automate RFQs out of boredom. If you don't code, you can get a \\*long\\* way with chatGPT, especially the \"pro\" plan ($200 / mo but their deep research is awesome).",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmnfu7h/"
+    },
+    {
+      "id": "mmsu5gg",
+      "author": "jyshen",
+      "created_iso": "2025-04-12T21:48:29Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Does chatgpt actually give you prices though? Hows the accuracy?",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmsu5gg/"
+    },
+    {
+      "id": "mmwbcb7",
+      "author": "mistahx4208",
+      "created_iso": "2025-04-13T14:06:52Z",
+      "score": 3,
+      "depth": 0,
+      "body": "I manage about 900m in indirect for indirect categories like facilties, mro, construction, and a few other categories. A tool can be helpful but not always necessary.  I can walk any of yall through some of our spreadsheets and how we structure it. 90% of our RFPs are excel and email. Shoot me a DM.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmwbcb7/"
+    },
+    {
+      "id": "mmlsz02",
+      "author": "marcodiaz16",
+      "created_iso": "2025-04-11T18:23:12Z",
+      "score": 2,
+      "depth": 0,
+      "body": "We use an e-sourcing platform called Jaggaer to run our RFX processes. It’s much better suited to direct material sourcing and physical goods (I am in services and it works alright). Best thing about it is that it has a central question hub that keeps everything organized and allows answers to be public or private. That way you don’t have to constantly make sure you haven’t missed an email. It also provides benchmarking and cost analysis tools as well which would be great for repetitive sourcing events. There’s probably lots of e-sourcing modules, but that’s the one we’ve been using.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlsz02/"
+    },
+    {
+      "id": "mmm4hzr",
+      "author": "best3175",
+      "created_iso": "2025-04-11T19:21:59Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Interesting. Thanks for the info.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmm4hzr/"
+    },
+    {
+      "id": "mmmo0lu",
+      "author": "Hot-Lock-8333",
+      "created_iso": "2025-04-11T21:01:41Z",
+      "score": 2,
+      "depth": 0,
+      "body": "1. Feed an AI agent your RFP and have it produce a questionnaire for vendors to complete based on that.\n2. Configure those questions into a questionnaire in your procurement software solution\n3. Ask an AI agent to find vendors that most closely match your requirements and rank the top 5, or how ever many you want to start with.\n4. For each of your top 5 vendors, create an RFP request that sends the questionnaire.\n5. Once they complete it, you can edit details and collaborate with your team toward choosing a winning vendor.\n6. Convert the winning vendor into a vendor onboarding workflow.\n\n90% of this can be done in a decent procurement orchestration solution.  And it can be very repeatable.  I share from personal experience doing this.\n\nBring on the deniers!",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmmo0lu/"
+    },
+    {
+      "id": "mms389s",
+      "author": "Katherine-Moller3",
+      "created_iso": "2025-04-12T19:17:03Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Agree. How does one find an AI Agent that fits?",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mms389s/"
+    },
+    {
+      "id": "mn342a5",
+      "author": "FootballAmericanoSW",
+      "created_iso": "2025-04-14T16:37:30Z",
+      "score": 2,
+      "depth": 2,
+      "body": "That's part of the challenge!  Many tools have AI built in now.  For step 1, ChatGPT or similar should work.  For step 3, most decent procurement orchestration solutions can do this now.   We use Opstream which does this profiling and comparison, but again, most do.   Alternatively, you can ask ChatGPT or similar, but won't be quite as good at it.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mn342a5/"
+    },
+    {
+      "id": "mmn3pax",
+      "author": "G0lden_Ticket",
+      "created_iso": "2025-04-11T22:29:27Z",
+      "score": 2,
+      "depth": 0,
+      "body": "We just got globality which includes AI analysis tools and AI chat bot helper. It’s been great so far surprisingly",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmn3pax/"
+    },
+    {
+      "id": "mmo9t6e",
+      "author": "Rockyt86",
+      "created_iso": "2025-04-12T02:54:09Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Using AI for RFPs/RFQs is something almost all large companies are investing in.  It’s not much revenue for the seller of the tech but it’s the easiest ROI for AI.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmo9t6e/"
+    },
+    {
+      "id": "mmlc8vg",
+      "author": "thelonelywifi",
+      "created_iso": "2025-04-11T17:01:03Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Fl",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmlc8vg/"
+    },
+    {
+      "id": "mmmkw2l",
+      "author": "CantaloupeInfinite41",
+      "created_iso": "2025-04-11T20:45:24Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Before suggesting a full-blown procurement software that includes RFX handling you could try Airtable with automated emails and follow ups or if you use Google Sheets you could customize/automatize with scripts.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmmkw2l/"
+    },
+    {
+      "id": "mmnj6af",
+      "author": "ExpertNetworkExpert",
+      "created_iso": "2025-04-12T00:02:25Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Check out marketdojo - affordable esourcing tool",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mmnj6af/"
+    },
+    {
+      "id": "mn3hrp1",
+      "author": "RefrigeratorOld99",
+      "created_iso": "2025-04-14T17:44:24Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Migrate to an ERP system to automate and store all historical data.",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mn3hrp1/"
+    },
+    {
+      "id": "mn9hv2m",
+      "author": "Shallot_Rough",
+      "created_iso": "2025-04-15T17:07:47Z",
+      "score": 1,
+      "depth": 0,
+      "body": "This seems like a good fit for AI agentic automation. If the retrieval of the information from different sources is the bottleneck, we have some tech we developed for Security Questionnaires / RFPs that could be easily adapted for this.\n\nOur tool (WinifyAI.com) focuses more on automating security questionnaires and RFP responses, but it’s been interesting to see how many procurement teams are reaching out with similar pain.\n\nIf you’re exploring smarter ways to streamline RFQs, I’d be curious to learn more about your process happy to connect and share ideas, even if our tool isn’t a direct fit (yet).",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mn9hv2m/"
+    },
+    {
+      "id": "mngshjk",
+      "author": "[deleted]",
+      "created_iso": "2025-04-16T19:58:33Z",
+      "score": 1,
+      "depth": 0,
+      "body": "u/randomlreasy  I am building a platform that helps automate the initial bids to fix this exact problem... allowing you to send more bids faster, without comitting as much time to them. Would yo be interested in checking it out?",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mngshjk/"
+    },
+    {
+      "id": "moqcv1i",
+      "author": "Low_Session_9244",
+      "created_iso": "2025-04-24T03:54:30Z",
+      "score": 1,
+      "depth": 0,
+      "body": "You should have templates to plug and play",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/moqcv1i/"
+    },
+    {
+      "id": "msf9r7c",
+      "author": "These_Ad1825",
+      "created_iso": "2025-05-15T10:10:55Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I totally get where you're coming from! AuraVMS was designed to help teams like yours streamline RFQ processes, reducing manual work and saving time. With our software, you can broadcast requirements to multiple suppliers, collect quotes through unique supplier links, and organize responses in a clean UI. Check it out at https://www.auravms.com",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/msf9r7c/"
+    },
+    {
+      "id": "n6tw9eg",
+      "author": "MAAYAAAI",
+      "created_iso": "2025-08-04T07:01:39Z",
+      "score": 1,
+      "depth": 0,
+      "body": "We built [Maayaa.ai](https://www.maayaa.ai) to automate that exact workflow. It can read RFQs from emails, fetch past pricing, and even draft responses, all without code. Super easy to set up and customize for your team. \n\n\n\nCheck it out in this link where you could book a demo, and watch a demo video on how it works: [https://maayaa.ai/](https://maayaa.ai/)",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/n6tw9eg/"
+    },
+    {
+      "id": "niea6y9",
+      "author": "shrimpthatfriedrice",
+      "created_iso": "2025-10-08T09:58:33Z",
+      "score": 1,
+      "depth": 0,
+      "body": "lol yes, this is our life too. older processes feel redundant to use at this point. hate to see a potentially 2 hr job become a long day hassle\n\nwe've started experimenting with Inventive AI recently. its pulling previous answers and flags things for review making things a bit faster for us rn, idk if this becomes a ubiquitous hybrid solution sort of",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/niea6y9/"
+    },
+    {
+      "id": "oev9oa2",
+      "author": "ERP_Insider",
+      "created_iso": "2026-04-07T20:08:01Z",
+      "score": 1,
+      "depth": 0,
+      "body": "I know this is a year old post, but what was the solution you found (if you found one)?",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/oev9oa2/"
+    },
+    {
+      "id": "mnk3pqn",
+      "author": "CasualSubredditer",
+      "created_iso": "2025-04-17T09:49:57Z",
+      "score": 0,
+      "depth": 0,
+      "body": "Totally get this — I’ve watched my wife (procurement manager) deal with endless repetitive procurement tasks — late nights, spreadsheets, and non-stop emails 😅\n\nThat’s what inspired us to build our platform— an AI tool that automates collecting, comparing, and selecting supplier offers. One of our clients cut that whole manual process down from days to minutes.\n\nIt plugs right into existing ERPs, and we’re now working on an AI-powered supplier discovery. We are open to hearing about your procurement challenges that we can help solve. We're ready to offer great terms so you can get to know the program better.\n\nHappy to chat more if it sounds useful!",
+      "permalink": "/r/procurement/comments/1jwtpla/who_else_is_stuck_doing_repetitive_rfqs_manually/mnk3pqn/"
+    }
+  ],
   "drilldown_candidates": []
 }

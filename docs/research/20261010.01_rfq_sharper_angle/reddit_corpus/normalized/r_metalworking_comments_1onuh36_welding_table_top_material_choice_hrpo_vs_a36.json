@@ -8,6 +8,61 @@
   "score": 2,
   "num_comments": 6,
   "selftext": "tldr: HRPO vs A36 for a welding table top for a hobbyist that's getting more serious and doing larger and larger projects?\n\nHobbyist here. Welding plans I bought for a welding table call for HRPO 1/2\" thick plate for the top of the welding/fab table. I got a couple quotes and one place wants $685.77 for a 43x67\" 1/2\" thick plate HRPO plus $150 for plasma cutting it to that size from the stock sheet. Another place which is a huge steel supplier but still deals with the public quoted me $417.24 but it's just A36 and not HRPO. \n\nThe table design has tabs and screws that adjust the height of the table making it flat so I should be able to flatten the table after the fact since one of the things I understand is HRPO is more dimensionally correct then regular hot-rolled steel?\n\nThe table in question: [https://www.youtube.com/watch?v=1F1qezitiN4](https://www.youtube.com/watch?v=1F1qezitiN4)",
-  "comments": [],
+  "comments": [
+    {
+      "id": "nn438fo",
+      "author": "zacmakes",
+      "created_iso": "2025-11-04T20:02:07Z",
+      "score": 2,
+      "depth": 0,
+      "body": "As far as I know, HRPO is just acid-dipped hot rolled A36 - the process removes the mill scale so it welds cleaner and takes paint better, but flatness is gonna be really similar between the two.",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn438fo/"
+    },
+    {
+      "id": "nn453ss",
+      "author": "DookieWaffle",
+      "created_iso": "2025-11-04T20:11:06Z",
+      "score": 2,
+      "depth": 1,
+      "body": "Good to know! I'll probably go with the A36 then, save a bit of money! It's crazy how variable the prices can be between suppliers. For the little guys/hobbyists anyway.",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn453ss/"
+    },
+    {
+      "id": "nn4gpd2",
+      "author": "zacmakes",
+      "created_iso": "2025-11-04T21:06:40Z",
+      "score": 2,
+      "depth": 2,
+      "body": "It really is! FWIW, I think folks have had success doing DIY pickling with white vinegar; if you wanted to try, you could use sheet plastic and some 2x4's to build a cheap tray.",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn4gpd2/"
+    },
+    {
+      "id": "nn4hfls",
+      "author": "DookieWaffle",
+      "created_iso": "2025-11-04T21:10:08Z",
+      "score": 2,
+      "depth": 3,
+      "body": "Tempting, but I might just sand off the millscale on the top face instead. I haven't decided yet.",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn4hfls/"
+    },
+    {
+      "id": "nn4imy8",
+      "author": "zacmakes",
+      "created_iso": "2025-11-04T21:15:51Z",
+      "score": 2,
+      "depth": 4,
+      "body": "A word to the wise... mill scale eats sandpaper for breakfast",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn4imy8/"
+    },
+    {
+      "id": "nn50mxt",
+      "author": "DookieWaffle",
+      "created_iso": "2025-11-04T22:43:38Z",
+      "score": 1,
+      "depth": 5,
+      "body": "I bought a surface conditioning tool from HF when it was last on sale so hopefully that will make it easier.",
+      "permalink": "/r/metalworking/comments/1onuh36/welding_table_top_material_choice_hrpo_vs_a36/nn50mxt/"
+    }
+  ],
   "drilldown_candidates": []
 }

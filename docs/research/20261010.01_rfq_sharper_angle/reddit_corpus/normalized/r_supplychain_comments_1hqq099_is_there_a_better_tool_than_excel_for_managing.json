@@ -8,6 +8,151 @@
   "score": 13,
   "num_comments": 18,
   "selftext": "I work for a company that purchases over 500 different products from more than 200 suppliers. These purchases are made weekly, and we handle quotes from suppliers to determine the best prices and make decisions that minimize our procurement costs.\n\nCurrently, I manage this process using Excel spreadsheets, but it’s not very efficient. I’m wondering if there’s a more optimized tool or software specifically designed for handling supplier quotes.\n\nI’ve been searching for alternatives, but so far, I haven’t found anything that suits my needs better than Excel.\n\nDoes anybody know of a tool that could streamline this process?\n\nThanks!",
-  "comments": [],
+  "comments": [
+    {
+      "id": "m4rlng6",
+      "author": "Jeeperscrow123",
+      "created_iso": "2024-12-31T22:55:09Z",
+      "score": 36,
+      "depth": 0,
+      "body": "Stop getting quotes every purchase, establish longer term pricing with a smaller supply base",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4rlng6/"
+    },
+    {
+      "id": "m4rtcx8",
+      "author": "AggressiveMedia728",
+      "created_iso": "2024-12-31T23:44:26Z",
+      "score": 0,
+      "depth": 1,
+      "body": "We tried that, but we work mostly with highly volatile commodities that changes prices daily.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4rtcx8/"
+    },
+    {
+      "id": "m4s5iq4",
+      "author": "Mr_McDonald",
+      "created_iso": "2025-01-01T01:01:12Z",
+      "score": 5,
+      "depth": 2,
+      "body": "Even with commodities that change daily, there are ways to handle this that don’t require getting quotes all the time. Which commodities are you working with? There are pricing formulas out there for all of them.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4s5iq4/"
+    },
+    {
+      "id": "m4t1kym",
+      "author": "itssosalty",
+      "created_iso": "2025-01-01T04:50:46Z",
+      "score": 2,
+      "depth": 2,
+      "body": "What commodities?",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4t1kym/"
+    },
+    {
+      "id": "m4wyy6l",
+      "author": "CharacterHistory9605",
+      "created_iso": "2025-01-01T22:15:37Z",
+      "score": 1,
+      "depth": 2,
+      "body": "What kind of products are we talking about, and what is the amount-per-purchase?\n\nIt seems like a waste of time to keep re-quoting every order/purchase.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4wyy6l/"
+    },
+    {
+      "id": "m614kch",
+      "author": "AggressiveMedia728",
+      "created_iso": "2025-01-08T10:56:27Z",
+      "score": 1,
+      "depth": 3,
+      "body": "Meat, dairy, etc. The amount varies from 100kg to 20000kg",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m614kch/"
+    },
+    {
+      "id": "m61booa",
+      "author": "CharacterHistory9605",
+      "created_iso": "2025-01-08T12:02:34Z",
+      "score": 1,
+      "depth": 4,
+      "body": "Seems like very normal things to make price agreements with suppliers about.\n\nYou could also negotiate extra discounts because it saves them so much time quoting an (you aswell)",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m61booa/"
+    },
+    {
+      "id": "m4rpr61",
+      "author": "[deleted]",
+      "created_iso": "2024-12-31T23:21:33Z",
+      "score": 3,
+      "depth": 0,
+      "body": "QuoteFx, QuoteWin are both SaaS that manage quotes and pricing data",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4rpr61/"
+    },
+    {
+      "id": "m4rtjtz",
+      "author": "AggressiveMedia728",
+      "created_iso": "2024-12-31T23:45:38Z",
+      "score": 1,
+      "depth": 1,
+      "body": "I ll take a look at it, thanks!",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4rtjtz/"
+    },
+    {
+      "id": "m4sk39r",
+      "author": "Who_Wouldnt_",
+      "created_iso": "2025-01-01T02:38:20Z",
+      "score": 3,
+      "depth": 0,
+      "body": "If you have MSExcel you may have MSAccess, if you do and you're resource limited, it is a much better vehicle for this task, but you will have to learn it.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4sk39r/"
+    },
+    {
+      "id": "m614m16",
+      "author": "AggressiveMedia728",
+      "created_iso": "2025-01-08T10:56:57Z",
+      "score": 1,
+      "depth": 1,
+      "body": "I’ll consider it, thanks for the advice!",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m614m16/"
+    },
+    {
+      "id": "m4sgngg",
+      "author": "[deleted]",
+      "created_iso": "2025-01-01T02:14:27Z",
+      "score": 1,
+      "depth": 0,
+      "body": "It would help to understand what you're optimizing for. Pricing? Leadtime? Quality? Delivery?",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4sgngg/"
+    },
+    {
+      "id": "m614p45",
+      "author": "AggressiveMedia728",
+      "created_iso": "2025-01-08T10:57:49Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Mainly pricing. We only work with suppliers that offers lead time, quality, etc that can match what we need.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m614p45/"
+    },
+    {
+      "id": "m65g6lp",
+      "author": "[deleted]",
+      "created_iso": "2025-01-09T01:16:57Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Ok, so yes, an erp will help you optimize for price and provide RFI/RFP/RFQ options",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m65g6lp/"
+    },
+    {
+      "id": "m4twszi",
+      "author": "[deleted]",
+      "created_iso": "2025-01-01T10:15:54Z",
+      "score": 1,
+      "depth": 0,
+      "body": "[deleted]",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m4twszi/"
+    },
+    {
+      "id": "m50pyxf",
+      "author": "Ephelus",
+      "created_iso": "2025-01-02T15:26:57Z",
+      "score": 1,
+      "depth": 1,
+      "body": "They didn’t ask for ChatGPT, and you didn’t actually answer the question.",
+      "permalink": "/r/supplychain/comments/1hqq099/is_there_a_better_tool_than_excel_for_managing/m50pyxf/"
+    }
+  ],
   "drilldown_candidates": []
 }

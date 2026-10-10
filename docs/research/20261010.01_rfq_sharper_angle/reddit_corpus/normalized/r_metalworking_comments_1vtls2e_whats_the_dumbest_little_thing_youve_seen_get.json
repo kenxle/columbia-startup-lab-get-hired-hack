@@ -5,9 +5,361 @@
   "title": "What’s the dumbest little thing you’ve seen get missed on a fab quote that ended up costing a pile of money?",
   "author": "williamguy48",
   "created_iso": "2026-08-20T14:55:48Z",
-  "score": 35,
+  "score": 34,
   "num_comments": 40,
   "selftext": "Not talking about steel being a few cents a pound off or somebody missing half an hour of welding. I mean the stupid little stuff that gets forgotten because nobody thinks it matters when the quote goes out. Extra trip to site, grinding that wasn’t called out clearly, handling big pieces, paint freight, field measuring, trial fitting, hardware, loading, whatever. What’s the one you’ve seen turn into way more money than anybody expected?",
-  "comments": [],
+  "comments": [
+    {
+      "id": "p4u2vcx",
+      "author": "AutoModerator",
+      "created_iso": "2026-08-20T14:55:48Z",
+      "score": 1,
+      "depth": 0,
+      "body": "The official Metalworking Discord is currently giving away a **$200 welding helmet!** The volunteer team is also giving away $20 gift cards to favorite websites to runner ups, so it's worth a shot!\n\n**To enter, join the [Metalworking Discord](https://discord.gg/EmwYe8zfqN) and post one of your recent projects in the [Giveaway Entries](https://discordapp.com/channels/811758265389023262/1523330611803324597) channel!** The volunteer mod team is grading projects based on visual appeal, how well the project is outlined from start to finish (tutorials?), and post quality!\n\nEntries close on July 31st at Midnight EST!\n\n\n*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/metalworking) if you have any questions or concerns.*",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4u2vcx/"
+    },
+    {
+      "id": "p4uegzv",
+      "author": "yourupinion",
+      "created_iso": "2026-08-20T15:45:24Z",
+      "score": 77,
+      "depth": 0,
+      "body": "I used to have a small fabrication shop. One day a friend of a friend calls me up and says he started a new job in the planning department of a big firm, and they were putting out bids for a big fabrication job. He tells me he can help me get the job by telling me what the other bids would be.\n\nOf course, I think this is fantastic. I don’t have those kinds of connections generally.\n\nI do the research and put together a bid, and he informs me that somebody else has bid at half that value. Then he tells me if I could match that price, he can give me the job.\n\nThe job was a very big metal structure that had to be sandblasted and painted with a special two-part epoxy paint. The whole thing would be sunk into a cooling pond.\n\nAccording to my research, half of the entire bid would be going to pay for sandblasting and the special paint.\n\nBy the time I paid for the blasting, painting, and material, there was no money left for labor. I told the guy I can’t do it at that price, and he said, “Well, the other guys can do it, why can’t you?” I told him I don’t understand how they could do the job at that price, but I definitely could not.\n\nAbout six months later, I was speaking to that guy again, and he told me that his company had not noticed that the bid they accepted specifically excluded blasting and painting. They didn’t catch it.\n\nThe entire structure was delivered to the job site without any finish on the metal. The general contractor had to pay to have people come out and blast and paint it on site before it could be submerged, and they also had to pay for the delay. I think they went out of business shortly after.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4uegzv/"
+    },
+    {
+      "id": "p4uwu0a",
+      "author": "LogicJunkie2000",
+      "created_iso": "2026-08-20T17:02:56Z",
+      "score": 11,
+      "depth": 1,
+      "body": "Damn, really gotta look at those details!",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4uwu0a/"
+    },
+    {
+      "id": "p4z7xpx",
+      "author": "dogdogj",
+      "created_iso": "2026-08-21T06:55:27Z",
+      "score": 4,
+      "depth": 1,
+      "body": "The number of times someone has badgered me to match a cheap quote, even after me declining. \n\nYou get them to send over the other quote, with the figures removed, and they either refuse or it turns out the other supplier hasn't accounted for X, Y or Z.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4z7xpx/"
+    },
+    {
+      "id": "p50daub",
+      "author": "IowaNative1",
+      "created_iso": "2026-08-21T12:08:21Z",
+      "score": 1,
+      "depth": 2,
+      "body": "Or, “but our internal costs $35 an hour, why are you so high?”  Yeah, half the cost of that job is applied to another job and they have no burden cost in that $35 number.  I used to hear it all the time.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p50daub/"
+    },
+    {
+      "id": "p5ne9ya",
+      "author": "AccordingBuffalo2720",
+      "created_iso": "2026-08-24T18:26:03Z",
+      "score": 1,
+      "depth": 2,
+      "body": "It always pisses me off when they say they've got a guy who will do it way cheaper. Obviously you either don't trust that guy or you are making him up or you'd simply be going with their quote! ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p5ne9ya/"
+    },
+    {
+      "id": "p5r5tev",
+      "author": "dogdogj",
+      "created_iso": "2026-08-25T06:44:26Z",
+      "score": 1,
+      "depth": 3,
+      "body": "100%. It's not always possible, but calling their bluff with \"go use them then\" is great. Especially when they backpedal and can suddenly afford your original price. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p5r5tev/"
+    },
+    {
+      "id": "p4zo349",
+      "author": "LazyWeldInspector",
+      "created_iso": "2026-08-21T09:11:10Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Had a kind of similar situation. \n\nThis guy that was a mechanical genius and a hell of a fabricator got bumped up to an office job putting bids together. The first several bids were fine.\n\nUntil, he presented a bid- which got accepted.. Only he left out the ~$50,000 worth of paint/coating work that we were going to sub out to ABC (Mare Island). When he was called out on it, he literally shrugged and said, \"oh well.\" \n\nThe company had to eat that loss, and that was the last I saw of him.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4zo349/"
+    },
+    {
+      "id": "p4u79mi",
+      "author": "dr_clyde31",
+      "created_iso": "2026-08-20T15:14:51Z",
+      "score": 54,
+      "depth": 0,
+      "body": "Weld size. Seems like quoting guys don’t understand that the cost between a 3/8” fillet weld and a 1/4” fillet weld can be 3x more. I’d even wager that most designers and engineers don’t understand that when you get above 1/4” or so, you usually always need to bump up to multiple passes.  \n\nIt doesn’t take much increase in weld size to add a LOT of passes, which takes a LOT of time. \n\nEarly in my career I missed a note calling out weld size. Print looked pretty straight forward, a pipe welded onto a plate, simple fillet weld. I put an hour on each part, figured I was covered. Never before had I got a PO so fast. \n\nThe parts showed up, 14” double extra heavy wall pipe welded to 3” plate, welds were like, 1-1/2” fillets or something huge. I was too embarrassed to even call the customer back and tell them I fucked up. I just sucked it up, did the like, 8 or 10 passes or whatever it took, and sent the parts back. I didn’t even send them the invoice for the 2 hours I quoted I was so ashamed of myself. Fortunately it was only 2 parts and I only lost a days labor and some extra weld wire. But still, I paid for my lesson on paying attention to weld size callouts that day. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4u79mi/"
+    },
+    {
+      "id": "p4z0jtg",
+      "author": "planx_constant",
+      "created_iso": "2026-08-21T05:56:15Z",
+      "score": 5,
+      "depth": 1,
+      "body": "Maybe one of the cheapest ways to learn that lesson",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4z0jtg/"
+    },
+    {
+      "id": "p4z3lxq",
+      "author": "maxyedor",
+      "created_iso": "2026-08-21T06:20:26Z",
+      "score": 4,
+      "depth": 1,
+      "body": "Back when I did structural work we were bidding a hospital expansion. Owner of the company handled all the estimation on this one and didn’t ask me to double check anything like he typically would on such a huge job.\n\nHe missed the column weld detail. They were pretty decent size wide flange beams, forget the size, but they had like a 2-2.5” thick flange and required full pen welds. He bid them assuming we’d bevel from each side, nope. The weld detail specifically required a single sided bevel and then a giant, like 1.5”, fillet on the opposite side. It was like 10x the weld he estimated, all with an inspector on site chainsmoking and billing by the hour the entire time. \n\nThen he made the same mistake again on the next big job, LMAO. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4z3lxq/"
+    },
+    {
+      "id": "p50cu7n",
+      "author": "pulledpork247",
+      "created_iso": "2026-08-21T12:05:44Z",
+      "score": 1,
+      "depth": 1,
+      "body": "Every time you double the weld size, you quadruple the amount of weld.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p50cu7n/"
+    },
+    {
+      "id": "p4vui51",
+      "author": "Anastephone",
+      "created_iso": "2026-08-20T19:25:16Z",
+      "score": 17,
+      "depth": 0,
+      "body": "A decimal point placement on gold plating. 10x too thick",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4vui51/"
+    },
+    {
+      "id": "p4ukw5y",
+      "author": "OkEfficiency3747",
+      "created_iso": "2026-08-20T16:12:35Z",
+      "score": 12,
+      "depth": 0,
+      "body": "A shop I used to sub at manufactured several big stainless food grade processing units made from 3/8\" 316 stainless plate. We're talking 30+ full plates. All the welds needed to be dual shield and the guy doing the welding didn't check the alloy and welded several of them up with steel wire.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4ukw5y/"
+    },
+    {
+      "id": "p4u6wvi",
+      "author": "tatpig",
+      "created_iso": "2026-08-20T15:13:20Z",
+      "score": 12,
+      "depth": 0,
+      "body": "Had the company ‘President’ ( owner’s son) miss an entire 3 story stair tower once. IDK how much that cost,but I know the company had to eat it.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4u6wvi/"
+    },
+    {
+      "id": "p4ug1ud",
+      "author": "StrandSSL",
+      "created_iso": "2026-08-20T15:52:02Z",
+      "score": 12,
+      "depth": 0,
+      "body": "Dude at my company (no longer here) didn’t add enough rod on some stainless pressure vessels (aerospace TIG) \n\nFucked up like 50 parts/ couple million dollar mistake. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4ug1ud/"
+    },
+    {
+      "id": "p4umjox",
+      "author": "dontsheeple",
+      "created_iso": "2026-08-20T16:19:36Z",
+      "score": 11,
+      "depth": 0,
+      "body": "The company bid on only one stadium when it was for two.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4umjox/"
+    },
+    {
+      "id": "p4u4jeg",
+      "author": "SGT_Wheatstone",
+      "created_iso": "2026-08-20T15:03:03Z",
+      "score": 10,
+      "depth": 0,
+      "body": "Missed the part where it said the welds are to be purged...",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4u4jeg/"
+    },
+    {
+      "id": "p4wcuhl",
+      "author": "-Silanah-",
+      "created_iso": "2026-08-20T20:45:57Z",
+      "score": 9,
+      "depth": 0,
+      "body": "Not paying attention to hardware requirements and quoting a couple cents each assuming that is going to cover it then finding out there is a 10,000 piece MOQ (or worse) or they costs several dollars each or they have to be imported from the EU and there's a 16 week lead time. I've see all of those - killer on small jobs.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4wcuhl/"
+    },
+    {
+      "id": "p50bt7x",
+      "author": "hades419",
+      "created_iso": "2026-08-21T11:59:47Z",
+      "score": 2,
+      "depth": 1,
+      "body": "I feel this,  not in metal work directly,  but we had a customer that wanted a quote on making an item,  we ended up quoting $x out the door per case of 24. They claimed that in the next year they would need 8000 cases, they actually needed 100 - we had rented extra space,  and quoted $x based on purchasing in bulk, purchasing in tiny quantities was actually 3x more expensive (or moqs were huge) for components - the contract had no provisions for this,  most we could upcharge was 10%.  Luckily it was only 100 cases,  but we lost our asses on those 2400 units.  \n\nThere was also a thing on that job with customer supplied equipment/process for finishing,  but that's a different story (short version, don't - customer equipment never works as advertised, and if you don't know the process,  it's gonna take you forever to get it right)",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p50bt7x/"
+    },
+    {
+      "id": "p4u8wte",
+      "author": "Sturmgeher",
+      "created_iso": "2026-08-20T15:21:54Z",
+      "score": 13,
+      "depth": 0,
+      "body": "When I was apprentice, the boss 'forgot' to buy steel sqare pipe witz 5mm thickness.\n\nWhen the production time came, he said \" just use the normal 4mm, they will never see it.\"\n\nSo we made a bog balcony construction, like 4-6 towers with 5-6 balconys each. Welded, covered in zinc, painted, wood for the floor. All brought to contruction site some 800 km away and installed.\n\n\nYou should know, sqare pipe is foldet while make it, so you can easily see (and measure) the thickness, if you have experience with it.\n\nyou know what, the buyer got experience. The result was a giant explosion on the final day. Everything went to scrap, all made new from the correct pipe. I dont know how much money was blown, but a long time bad vibe in that shop.\n\n\n\nI mean, boss couldt be at fault, so all the others rotate for guilt...",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4u8wte/"
+    },
+    {
+      "id": "p4ud3lk",
+      "author": "Ketaloge",
+      "created_iso": "2026-08-20T15:39:37Z",
+      "score": 9,
+      "depth": 1,
+      "body": "How would you determine the thickness? Bend radius maybe?",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4ud3lk/"
+    },
+    {
+      "id": "p4vwt8w",
+      "author": "Sturmgeher",
+      "created_iso": "2026-08-20T19:35:27Z",
+      "score": 6,
+      "depth": 2,
+      "body": "the edge is bended in the machinery that makes the sqare pipe.\n\nIs the thickness is small, the radius is small. If the thickness is high, the radius is much bigger.\n\n\nmaybe this picture helps \n\nhttps://www.ezzat.org/de/Querschnittswerte/gewalzt/HOHL/kaltre.php",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4vwt8w/"
+    },
+    {
+      "id": "p4w1cuu",
+      "author": "Ketaloge",
+      "created_iso": "2026-08-20T19:55:30Z",
+      "score": 5,
+      "depth": 3,
+      "body": "Oh I see! The inner bend radius is supposed to always be the same as the thickness, so the outer radius must be twice the thickness. Makes a lot of sense. I knew thickness and bend radius were correlated but I wouldnt have guessed it was so simple. Thank you!",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4w1cuu/"
+    },
+    {
+      "id": "p4uhuha",
+      "author": "LordBug",
+      "created_iso": "2026-08-20T15:59:34Z",
+      "score": 2,
+      "depth": 2,
+      "body": "Dunno how you could see it without cutting into it, but you can measure it with an ultrasonic thickness tester, I'm pretty sure anyway",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4uhuha/"
+    },
+    {
+      "id": "p4wsvwg",
+      "author": "101forgotmypassword",
+      "created_iso": "2026-08-20T22:01:09Z",
+      "score": 4,
+      "depth": 3,
+      "body": "4mm, 5mm, 6mm and 8mm quarter raduis gauge on the corner will show you the wall thickness against a manufactures chart on DIN series square tube. Usually 1/2 the radius is the thickness so a 4mm radius will be a 2mm wall thickness",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4wsvwg/"
+    },
+    {
+      "id": "p4zfhkq",
+      "author": "hunterbuilder",
+      "created_iso": "2026-08-21T07:58:33Z",
+      "score": 1,
+      "depth": 3,
+      "body": "You can see it if you're familiar with it. The radius difference is apparent.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4zfhkq/"
+    },
+    {
+      "id": "p4w0ody",
+      "author": "Pyropete125",
+      "created_iso": "2026-08-20T19:52:32Z",
+      "score": 5,
+      "depth": 0,
+      "body": "Spec and quote was for 316ss sch80 pipe.  316ss sch80 purchased.   Found out bender could do sch 80 customer said ok to sch40.304ss sch40 was purchased by mistake.   Everything was bent and installed and customer asked for a material credit for difference in weight.  Slight argument back and forth and invoice was produced and customer saw 304ss was purchased.  Customer flipped.  Had to remake all in 316 sch40 removed wrong material handrails and installed 316.  This was about 12 years ago and it was a $250k job that ended up costing close to $450k. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4w0ody/"
+    },
+    {
+      "id": "p4uqigy",
+      "author": "Disastrous-Tank-692",
+      "created_iso": "2026-08-20T16:36:24Z",
+      "score": 4,
+      "depth": 0,
+      "body": "Back in the early 90’s, my boss “took off” an entire high school duct job at 1/8” scale instead of 1/4” scale.  All the straight runs of duct were fabbed twice.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4uqigy/"
+    },
+    {
+      "id": "p4ulybm",
+      "author": "hazardx72",
+      "created_iso": "2026-08-20T16:17:05Z",
+      "score": 6,
+      "depth": 0,
+      "body": "I've recently come out the other side of integrating software for shop management and work flow. It was an excruciating 6 months to say the least. Anyway, I quoted a massive job (for our size shop), almost $100k in work. Turns out, the material pricing in the system wasn't getting updated like I thought it was. Labor was good, material was VERY bad and ended up only making, at best, $2-3k on the whole job. Should have been an easy $15-20k in profit. It was a few hundred hours of our laser's capacity, brought in extra help to get it all done.\n\nObviously in hindsight I should have got a material quote just for that job, it was a literal truck load of steel sheets.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4ulybm/"
+    },
+    {
+      "id": "p4yub30",
+      "author": "insiz",
+      "created_iso": "2026-08-21T05:07:32Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Following just the drawings when there were additional written instructions that added way more work.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4yub30/"
+    },
+    {
+      "id": "p4zh1ra",
+      "author": "hunterbuilder",
+      "created_iso": "2026-08-21T08:11:51Z",
+      "score": 3,
+      "depth": 0,
+      "body": "Almost cost a pile of money.   \nOwner's son in charge of his first big pipe project didn't realize that the drawings say \"Builder to verify all dimensions prior to construction.\"  Or didn't think it mattered.  \nHe almost built a whole pipe system (couple hundred feet of 3\"- 8\" sch80 in a dozen pieces with weldneck flanges, valving, control ports etc) off the engineers' drawings provided for the bid.  \nIt was fortuitous that I started on the project exactly the day they were about to start fabrication. I looked at the plans he gave me and the first thing I noticed was there were no hand notations. My master drawings are always covered in notes.  \n   \nI said \"Dude, did you measure this yourself?\" \n\"No, I assumed the engineers dimensions would be right.\"\n\"Engineers field dimensions are NEVER right man. That's why they put this disclaimer right here.\"   \n  \nSo before we started fabrication I got to take a road trip to the site with a helper, set of lasers, tapes and string to measure it out old school.  \n  \nHis eyes got real big when I got back and told him none of it would have fit.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4zh1ra/"
+    },
+    {
+      "id": "p4zq5jj",
+      "author": "LazyWeldInspector",
+      "created_iso": "2026-08-21T09:28:22Z",
+      "score": 3,
+      "depth": 0,
+      "body": "One guy left out ~$50,000 worth of paint on a bid that got accepted. The company had to eat the loss.\n\nA different guy, about 4 years ago, cut up $30,000 worth of material based on a p.o. that the customer hadn't signed off on yet.. The customer decide nevermind. We're still dealing with and slowly selling off about 15 tons of W21x44 and W24x50 that are cut to random lengths between anywhere from 16' to 44'.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4zq5jj/"
+    },
+    {
+      "id": "p4whd7x",
+      "author": "Smyley12345",
+      "created_iso": "2026-08-20T21:06:19Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Not metalworking but I saw the results of a company tacking in labelling pipes to a standard that is legible form ground level for all piping in a building at a petrochemical plant.  They got about a quarter the way through before they started complaining and were finally let off the hook at about 80%.  They lost money on a big project because of a one liner in the scope.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p4whd7x/"
+    },
+    {
+      "id": "p50uoul",
+      "author": "ImperatorMakarov",
+      "created_iso": "2026-08-21T13:37:36Z",
+      "score": 2,
+      "depth": 0,
+      "body": "I was welding up these huge seismic proof structures for lithium mining. After we finished multiple of these 40 foot by 15 foot frames, the company decided they wanted to add on more parts to the frames. \n\nWell that would have been alright, besides the fact on the revisions we would have to take apart multiple parts of this already fully welded and x rayed seismic proof structures. So we had to flame cut a bunch of triple welded pieces off the frame, order more metal, refab it, re triple weld it, re x rayed it. We had to do that 12 times.\n\nI’m not going to lie, the revisions themselves probably cost an extra $250,000 - 375,000. ",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p50uoul/"
+    },
+    {
+      "id": "p50xm4u",
+      "author": "Occifer-Lim-Jahey",
+      "created_iso": "2026-08-21T13:51:19Z",
+      "score": 2,
+      "depth": 0,
+      "body": "Draftsman gave me a job folder with material requirements. I ordered $80,000 worth of 7” XS seamless pipe to make 700 caps. He misinterpreted the P/O, what the customer actually wanted were shims for those caps. So we only needed a couple of 3/16 plates 4’ x 10’. That was 10 years ago and we haven’t sold an inch of that pipe.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p50xm4u/"
+    },
+    {
+      "id": "p56olz3",
+      "author": "worldwidemachinist",
+      "created_iso": "2026-08-22T08:32:01Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Not a fab quote exactly, but this machine installation project where the crew didn't price in foundation work because the facility was assumed to already have machine foundations from a prior tenant. and guess what...... It didn't, and mid excavation they hit an underground stream running under the building, a straightforward rig and set job turned into engineering a dewatering solution and digging over 10 feet down",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p56olz3/"
+    },
+    {
+      "id": "p5lwx72",
+      "author": "SourcePrevious3095",
+      "created_iso": "2026-08-24T14:37:27Z",
+      "score": 1,
+      "depth": 0,
+      "body": "Designed parts for a customer. They signed off on the designs.  Ordered 30 units.  First unit hits their employees.  They break stuff.  They request redesign, to employee proof the units.  Reject all units on the lot.\n\nWe get new drawings approved, rework the units on lot, new units take 40 additional manhours, that we had to eat.  We also ate all labor and material costs on revisions because we contracted 30 units at a fixed price.\n\nWe mo longer do business with that company.  We discovered that this company does it to all of their suppliers.",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p5lwx72/"
+    },
+    {
+      "id": "p5pbc0v",
+      "author": "claytons_war",
+      "created_iso": "2026-08-24T23:42:33Z",
+      "score": 1,
+      "depth": 0,
+      "body": "It's always a quote for some simple base plates with four holes...office ' it's only a 20min job...just cut on the guillotine and punch four holes\".\n\n'OK boss..its 25mm plate...our guillotine only cuts 20mm...plus the only 25mm plate we have is a full 2x1 metre in the rack'\n\nSo now I've gotta hand burn these 2 plates after I've spent an hour getting to the 25mm plate because everything else is stacked on top of it and can only be moved with the crane that 3 other people are using....oh and set up the burning equipment that's the other side of the shop...👌",
+      "permalink": "/r/metalworking/comments/1vtls2e/whats_the_dumbest_little_thing_youve_seen_get/p5pbc0v/"
+    }
+  ],
   "drilldown_candidates": []
 }
