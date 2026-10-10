@@ -127,7 +127,9 @@ Read what your work touches. Each link says what the document is for.
 
 **Catalog and pricing (Tisch)**
 - [Catalog and pricing method](docs/data/CATALOG_PRICING.md): how items and benchmarks are admitted.
-- [Aviation hardware catalog, 200 items](docs/data/AVIATION_ITEMS_200.md).
+- [Aviation hardware catalog, 500 items](docs/data/AVIATION_ITEMS_500.md): two real dealer prices per item, with specification holds shown.
+- [Catalog data and Rails reader](data/aviation/README.md): JSON schema, Ruby loading and validation, price basis, and source limitations.
+- [Original 200-item list](docs/data/AVIATION_ITEMS_200.md): historical subset; its item IDs are preserved in the 500-item catalog.
 
 **Tools**
 - [PDF to text](tools/pdf_text/README.md): extracts text from RFQ PDFs.

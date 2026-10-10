@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {inches, spruceBolts, wicksRows} from './parse_sources.mjs';
+import {inches, spruceBolts, spruceHardware, wicksRows} from './parse_sources.mjs';
 
 test('mixed fractions normalize but date-corrupted dimensions remain unknown', () => {
   assert.equal(inches('1-9/32'), 1.28125);
@@ -26,4 +26,22 @@ test('Wicks extraction keeps corrupted source values and out-of-stock status', (
   const [record]=wicksRows(html);
   assert.equal(record.fields['length grip'],'16-jan');
   assert.equal(record.price,0.41); assert.equal(record.in_stock,false);
+});
+
+test('Wicks conflicting embedded price cannot become market evidence',()=>{
+  const html='<tr><span itemprop="sku">MS35206-217</span><meta itemprop="lowPrice" content="0.16"><td class="list-price">$0.42</td></tr>';
+  assert.equal(wicksRows(html).length,0);
+});
+
+test('a mislabeled standard screw table row is rejected',()=>{
+  const p=Array(28).fill(null);p[1]='Synthetic screw';p[2]=0.12;p[27]='Each';
+  const html=`var products = ${JSON.stringify({'MS35206-217':p})};\nvar stock = {};\n<tr><td>MS35206-218</td><td>1/2</td><td>$0.12</td><td><input pn='MS35206-217'></td></tr>`;
+  assert.equal(spruceHardware(html).length,0);
+});
+
+test('same screw SKU with conflicting lengths is rejected',()=>{
+  const p=Array(28).fill(null);p[1]='Synthetic screw';p[2]=0.12;p[27]='Each';
+  const row=length=>`<tr><td>MS35206-217</td><td>${length}</td><td>$0.12</td><td><input pn='MS35206-217'></td></tr>`;
+  const html=`var products = ${JSON.stringify({'MS35206-217':p})};\nvar stock = {};\n${row('1/2')}${row('3/4')}`;
+  assert.equal(spruceHardware(html).length,0);
 });

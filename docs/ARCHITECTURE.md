@@ -43,13 +43,14 @@ flowchart TD
     subgraph MATCH["Matching and pricing (Tisch)"]
         MATCHER["Matcher: candidates with scores"]
         PRICER["Pricer: price from observations"]
+        READER["Ruby catalog reader: prices and source evidence"]
         CATALOG[("data/aviation catalog and price observations")]
     end
     IN --> INTAKE
     INTAKE --> EXTRACT
     EXTRACT --> PARSE --> NORM --> MATCHER
     MATCHER --> CATALOG
-    PRICER --> CATALOG
+    PRICER --> READER --> CATALOG
     MATCHER --> PRICER --> READY
     READY --> CLARIFY --> ASSEMBLE --> APPLY
     APPLY --> REVIEW --> APPROVE --> EXPORT
@@ -93,11 +94,13 @@ Solid lines exist or are being built. Dotted lines are planned.
 
 ### Matching and pricing (Tisch)
 
-- **Where:** `data/aviation/` (catalog and observations), `tools/catalog_research/` (Node scripts that fetch, parse, build, and validate), `docs/data/`.
-- **Data today:** 200 AN bolt part numbers (AN3 to AN8) and 400 public dealer price observations, two per item. Each has a source URL, retrieval time, and price basis. Labeled sample data. It does not claim RudCo stocks these items.
+- **Where:** `data/aviation/` (catalog and observations), `tools/catalog_research/catalog_reader.rb` (Ruby data adapter and validation), `tools/catalog_research/` (offline supplier-research scripts), `docs/data/`. The Rails app can read the JSON through Ruby without a Node runtime dependency.
+- **Data today:** [500 aviation hardware items](data/AVIATION_ITEMS_500.md) and 1,000 real public dealer price observations, two per item. Includes bolts, screws, nuts, washers and gaskets. Original AVI-001 through AVI-200 are preserved. Each observation has a URL, retrieval time and one-piece price basis. Both dealers report stock at retrieval. The assembled catalog is labeled sample data and does not claim RudCo stock.
+- **Specification status:** 225 items have agreeing readable dimensional fields. Another 275 have real same-part price evidence but need supplier specification confirmation. Readable conflicts were rejected. Explicit right-hand nut SKU mappings are recorded. None is certified for a particular helicopter or automatically ready to quote.
 - **Matcher contract** (from [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md)): callable from Ruby in-process, or as a JSON stdin/stdout command. Input is the normalized spec plus the line text. Output is candidates with scores and reasons. RFQ processing stays the single assembler of the hash the app receives.
-- **Pricing:** a two-dealer midpoint is the reference today. It is a product-only, single-piece price, not a delivered or bulk price. Suggested selling prices stay null until cost and margin are known.
-- **Status:** the catalog is built. The matcher and pricer are not yet in the repo.
+- **Pricing:** a two-dealer midpoint is the reference today. It is product only and single piece. Entries with supplier specification gaps carry a provisional qualification. The Ruby reader uses BigDecimal and exposes source evidence and gaps. Suggested selling prices stay null until actual order terms, costs and required charges are confirmed.
+- **Status:** the catalog and Ruby data reader are built and validated. Nine Ruby tests (222 assertions), seven research-parser tests and full verification of all 1,000 prices against saved supplier pages pass. The scored matcher and final selling-price policy remain to be implemented. Loading evidence is not the agreed matcher implementation.
+- **Reader interface:** `RfqCatalog::Reader.new(Rails.root.join("data/aviation"))`, `validate!`, `find(part_number)`, `offers_for(part_number)`, and `price_reference(part_number)`. Details and Rails example: [data README](../data/aviation/README.md).
 
 ### Email in and out (not built)
 
@@ -116,6 +119,7 @@ Solid lines exist or are being built. Dotted lines are planned.
 | Matcher input and output | RFQ processing ↔ Tisch | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Agreed in principle |
 | Stable `line_id` and `revision.id` | Processing → app → email | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored by the app. Reply validation and history still pending |
 | Question choice IDs | Processing → email → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored in `processing.question_choices`; response handler must bind choices to the originating revision |
+| Catalog evidence reader | Tisch → RFQ processing / Rails | [Data README](../data/aviation/README.md), `tools/catalog_research/catalog_reader.rb` | Built; Ruby tests pass; price evidence only, no result assembly |
 
 ## Data model
 
@@ -136,7 +140,7 @@ These come from the [product brief](product/PRD.md) commitments.
 ## Open questions and known gaps
 
 - **Lead time per line and in the export (Ken, 13:00).** Newly required, not implemented yet. Unknown timing must display "to confirm"; RudCo's 24 to 48 hour shipping promise applies only to confirmed stocked items, not an arbitrary match in the sample catalog. Owner: Hirsh, with stock/lead-time evidence from Yuval and Tisch.
-- **Which catalog the demo uses (W4).** The only catalog is aviation bolts. Metals lines will land as No match unless Tisch adds metal items. Owner: Tisch.
+- **Demo materials catalog (W4).** Tisch's current user-requested catalog is 500 aviation hardware items. Ken's 13:00 workflow requests steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate and the stainless gauge line. These need a separately sourced materials catalog; they are not fabricated or added to the aviation list in this change. Owner: Tisch.
 - **Processing data still awaiting presentation.** Hardware spec keys, `processing`, `line_id`, and `revision` now persist. Top-level extraction `source`/`warnings` are not yet stored or shown. Owner: Hirsh, coordinated with Yuval.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
 - **The confidence gate for auto-sending questions.** Hirsh proposed: every choice tied to catalog or spec evidence, no unresolved conflict outside the question, and a free-text fallback. Otherwise the rep reviews. Owner: Ken to confirm.

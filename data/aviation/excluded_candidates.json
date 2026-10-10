@@ -1,2672 +1,4756 @@
 [
   {
-    "part_number": "AN3-3",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
-    ]
-  },
-  {
-    "part_number": "AN3-3A",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
-    ]
-  },
-  {
     "part_number": "AN3C-3",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-3A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=15/32; Wicks=3/8",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN3-4",
-    "reasons": [
-      "grip unreadable: Spruce=1/8; Wicks=8-jan"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-4A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "grip unreadable: Spruce=1/8; Wicks=8-jan",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-4",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=17/32; Wicks=1/2",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-4A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=17/32; Wicks=1/2",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-5",
+    "source_id": "spruce-an3",
     "reasons": [
-      "grip unreadable: Spruce=1/4; Wicks=4-jan",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-5A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "grip unreadable: Spruce=1/4; Wicks=4-jan",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-5",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=21/32; Wicks=5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "21/32",
+        "wicks_aircraft": "5/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-5A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=21/32; Wicks=5/8",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN3-6",
-    "reasons": [
-      "grip unreadable: Spruce=3/8; Wicks=8-mar"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-6A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "grip unreadable: Spruce=3/8; Wicks=8-mar",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-6",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=25/32; Wicks=3/4",
-      "grip conflict: Spruce=3/8; Wicks=5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "25/32",
+        "wicks_aircraft": "3/4"
+      },
+      {
+        "field": "grip",
+        "aircraft_spruce": "3/8",
+        "wicks_aircraft": "5/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-6A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=25/32; Wicks=3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "25/32",
+        "wicks_aircraft": "3/4"
+      }
     ]
   },
   {
     "part_number": "AN3-7",
+    "source_id": "spruce-an3",
     "reasons": [
-      "grip unreadable: Spruce=1/2; Wicks=2-jan",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN3-7A",
-    "reasons": [
-      "grip unreadable: Spruce=1/2; Wicks=2-jan"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-7",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-7A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=29/32; Wicks=7/8"
-    ]
-  },
-  {
-    "part_number": "AN3-10",
-    "reasons": [
-      "grip unreadable: Spruce=5/8; Wicks=8-may"
-    ]
-  },
-  {
-    "part_number": "AN3-10A",
-    "reasons": [
-      "grip unreadable: Spruce=5/8; Wicks=8-may"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "29/32",
+        "wicks_aircraft": "7/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-10",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-1/32; Wicks=1"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-1/32",
+        "wicks_aircraft": "1"
+      }
     ]
   },
   {
     "part_number": "AN3C-10A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-1/32; Wicks=1"
-    ]
-  },
-  {
-    "part_number": "AN3-11",
-    "reasons": [
-      "grip unreadable: Spruce=3/4; Wicks=4-mar"
-    ]
-  },
-  {
-    "part_number": "AN3-11A",
-    "reasons": [
-      "grip unreadable: Spruce=3/4; Wicks=4-mar"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-1/32",
+        "wicks_aircraft": "1"
+      }
     ]
   },
   {
     "part_number": "AN3C-11",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-5/32",
+        "wicks_aircraft": "1 1/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-11A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-5/32; Wicks=1 1/8",
-      "grip conflict: Spruce=3/4; Wicks=5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-5/32",
+        "wicks_aircraft": "1 1/8"
+      },
+      {
+        "field": "grip",
+        "aircraft_spruce": "3/4",
+        "wicks_aircraft": "5/8"
+      }
     ]
   },
   {
     "part_number": "AN3-12",
+    "source_id": "spruce-an3",
     "reasons": [
-      "length conflict: Spruce=1-9/32; Wicks=1 7/32",
-      "grip unreadable: Spruce=7/8; Wicks=8-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-12A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "length conflict: Spruce=1-9/32; Wicks=1 7/32",
-      "grip unreadable: Spruce=7/8; Wicks=8-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-12",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-9/32",
+        "wicks_aircraft": "1 1/4"
+      }
     ]
   },
   {
     "part_number": "AN3C-12A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-9/32",
+        "wicks_aircraft": "1 1/4"
+      }
     ]
   },
   {
     "part_number": "AN3-13",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-13",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-13A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-13/32; Wicks=1 3/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-13/32",
+        "wicks_aircraft": "1 3/8"
+      }
     ]
   },
   {
     "part_number": "AN3-14",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-14A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-14",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-17/32; Wicks=1 1/2",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-14A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-17/32",
+        "wicks_aircraft": "1 1/2"
+      }
     ]
   },
   {
     "part_number": "AN3C-15",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-21/32; Wicks=1 5/8",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-15A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-21/32",
+        "wicks_aircraft": "1 5/8"
+      }
     ]
   },
   {
     "part_number": "AN3-16A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-16A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-25/32; Wicks=1 3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-25/32",
+        "wicks_aircraft": "1 3/4"
+      }
     ]
   },
   {
     "part_number": "AN3-17",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-17",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-17A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-29/32; Wicks=1 7/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-29/32",
+        "wicks_aircraft": "1 7/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-20",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-20A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-1/32; Wicks=2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-1/32",
+        "wicks_aircraft": "2"
+      }
     ]
   },
   {
     "part_number": "AN3C-21A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-5/32; Wicks=2 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-5/32",
+        "wicks_aircraft": "2 1/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-22A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-9/32; Wicks=2 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-9/32",
+        "wicks_aircraft": "2 1/4"
+      }
     ]
   },
   {
     "part_number": "AN3C-23A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-13/32; Wicks=2 3/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-13/32",
+        "wicks_aircraft": "2 3/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-24A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-17/32; Wicks=2 1/2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-17/32",
+        "wicks_aircraft": "2 1/2"
+      }
     ]
   },
   {
     "part_number": "AN3C-25A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3C-26A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-25/32; Wicks=2 3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-25/32",
+        "wicks_aircraft": "2 3/4"
+      }
     ]
   },
   {
     "part_number": "AN3-27",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3C-27A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-29/32; Wicks=2 7/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-29/32",
+        "wicks_aircraft": "2 7/8"
+      }
     ]
   },
   {
     "part_number": "AN3C-30A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=3-1/32; Wicks=3"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-1/32",
+        "wicks_aircraft": "3"
+      }
     ]
   },
   {
     "part_number": "AN3-35A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN3-42",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-45",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-50A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-51",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-54",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-56",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-56A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-57A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN3-62A",
+    "source_id": "spruce-an3",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN4-3",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
-    ]
-  },
-  {
-    "part_number": "AN4-3A",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4C-3",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4C-3A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=15/32; Wicks=3/8",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN4-4",
-    "reasons": [
-      "grip unreadable: Spruce=1/8; Wicks=16-jan"
-    ]
-  },
-  {
-    "part_number": "AN4-4A",
-    "reasons": [
-      "grip unreadable: Spruce=1/8; Wicks=16-jan"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-4",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4C-4A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=17/32; Wicks=1/2",
-      "grip conflict: Spruce=1/8; Wicks=1/16"
-    ]
-  },
-  {
-    "part_number": "AN4-5",
-    "reasons": [
-      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "17/32",
+        "wicks_aircraft": "1/2"
+      },
+      {
+        "field": "grip",
+        "aircraft_spruce": "1/8",
+        "wicks_aircraft": "1/16"
+      }
     ]
   },
   {
     "part_number": "AN4-5A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=3/16; Wicks=16-mar",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-5",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=21/32; Wicks=5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "21/32",
+        "wicks_aircraft": "5/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-5A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=21/32; Wicks=5/8",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-6",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=5/16; Wicks=16-may",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-6A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=5/16; Wicks=16-may",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-6",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=25/32; Wicks=3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "25/32",
+        "wicks_aircraft": "3/4"
+      }
     ]
   },
   {
     "part_number": "AN4C-6A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-7",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN4-7A",
-    "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-7",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=29/32; Wicks=7/8",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-7A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-10",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-10A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-10",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-1/32; Wicks=1",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-10A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-1/32; Wicks=1"
-    ]
-  },
-  {
-    "part_number": "AN4-11",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
-    ]
-  },
-  {
-    "part_number": "AN4-11A",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-1/32",
+        "wicks_aircraft": "1"
+      }
     ]
   },
   {
     "part_number": "AN4C-11",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-5/32",
+        "wicks_aircraft": "1 1/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-11A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-5/32",
+        "wicks_aircraft": "1 1/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-12",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-9/32; Wicks=1 1/4",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-12A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-9/32",
+        "wicks_aircraft": "1 1/4"
+      }
     ]
   },
   {
     "part_number": "AN4-13A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-13",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-13/32; Wicks=1 3/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-13/32",
+        "wicks_aircraft": "1 3/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-13A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-13/32; Wicks=1 3/8",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN4-14",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-14A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-14",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-17/32",
+        "wicks_aircraft": "1 1/2"
+      }
     ]
   },
   {
     "part_number": "AN4C-14A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-17/32",
+        "wicks_aircraft": "1 1/2"
+      }
     ]
   },
   {
     "part_number": "AN4C-15",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-21/32",
+        "wicks_aircraft": "1 5/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-15A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-21/32",
+        "wicks_aircraft": "1 5/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-16A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-25/32; Wicks=1 3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-25/32",
+        "wicks_aircraft": "1 3/4"
+      }
     ]
   },
   {
     "part_number": "AN4-17A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-17",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4C-17A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-29/32; Wicks=1 7/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-29/32",
+        "wicks_aircraft": "1 7/8"
+      }
     ]
   },
   {
     "part_number": "AN4-20A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-20",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4C-20A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-1/32; Wicks=2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-1/32",
+        "wicks_aircraft": "2"
+      }
     ]
   },
   {
     "part_number": "AN4-21",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-21A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-5/32; Wicks=2 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-5/32",
+        "wicks_aircraft": "2 1/8"
+      }
     ]
   },
   {
     "part_number": "AN4-22A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-22A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-9/32; Wicks=2 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-9/32",
+        "wicks_aircraft": "2 1/4"
+      }
     ]
   },
   {
     "part_number": "AN4C-23A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-13/32; Wicks=2 3/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-13/32",
+        "wicks_aircraft": "2 3/8"
+      }
     ]
   },
   {
     "part_number": "AN4C-24A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-17/32; Wicks=2 1/2",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-25A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-21/32; Wicks=2 5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-21/32",
+        "wicks_aircraft": "2 5/8"
+      }
     ]
   },
   {
     "part_number": "AN4-26A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4C-26A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=2-25/32; Wicks=2 3/4"
-    ]
-  },
-  {
-    "part_number": "AN4C-27A",
-    "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-25/32",
+        "wicks_aircraft": "2 3/4"
+      }
     ]
   },
   {
     "part_number": "AN4C-30A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=3-1/32; Wicks=3"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-1/32",
+        "wicks_aircraft": "3"
+      }
     ]
   },
   {
     "part_number": "AN4-31",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-32A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-35A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-36",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-46A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-47",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-50A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-55",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-57A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-60",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-60A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-61A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN4-62A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-64",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-64A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-66A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN4-72A",
+    "source_id": "spruce-an4",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-3",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-3A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN5-4",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
-    ]
-  },
-  {
-    "part_number": "AN5-4A",
-    "reasons": [
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-4",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-4A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN5-5",
-    "reasons": [
-      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-5A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "grip unreadable: Spruce=3/16; Wicks=16-mar",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-5",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-5A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=23/32; Wicks=5/8"
-    ]
-  },
-  {
-    "part_number": "AN5-6",
-    "reasons": [
-      "grip unreadable: Spruce=5/16; Wicks=16-may"
-    ]
-  },
-  {
-    "part_number": "AN5-6A",
-    "reasons": [
-      "grip unreadable: Spruce=5/16; Wicks=16-may"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "23/32",
+        "wicks_aircraft": "5/8"
+      }
     ]
   },
   {
     "part_number": "AN5C-6",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-6A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=27/32; Wicks=3/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "27/32",
+        "wicks_aircraft": "3/4"
+      }
     ]
   },
   {
     "part_number": "AN5-7",
+    "source_id": "spruce-an5",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-7A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-7",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-7A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=31/32; Wicks=7/8"
-    ]
-  },
-  {
-    "part_number": "AN5-10",
-    "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep"
-    ]
-  },
-  {
-    "part_number": "AN5-10A",
-    "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "31/32",
+        "wicks_aircraft": "7/8"
+      }
     ]
   },
   {
     "part_number": "AN5C-10A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-3/32; Wicks=1"
-    ]
-  },
-  {
-    "part_number": "AN5-11",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-3/32",
+        "wicks_aircraft": "1"
+      }
     ]
   },
   {
     "part_number": "AN5-11A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-11A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-7/32; Wicks=1 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-7/32",
+        "wicks_aircraft": "1 1/8"
+      }
     ]
   },
   {
     "part_number": "AN5C-12",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-12A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-11/32; Wicks=1 1/4"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-11/32",
+        "wicks_aircraft": "1 1/4"
+      }
     ]
   },
   {
     "part_number": "AN5C-13A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-15/32; Wicks=1 3/8"
-    ]
-  },
-  {
-    "part_number": "AN5-14",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
-    ]
-  },
-  {
-    "part_number": "AN5-14A",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-15/32",
+        "wicks_aircraft": "1 3/8"
+      }
     ]
   },
   {
     "part_number": "AN5C-14A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-19/32; Wicks=1 1/2"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-19/32",
+        "wicks_aircraft": "1 1/2"
+      }
     ]
   },
   {
     "part_number": "AN5-15A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-15A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-23/32; Wicks=1 5/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-23/32",
+        "wicks_aircraft": "1 5/8"
+      }
     ]
   },
   {
     "part_number": "AN5-16A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-17",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-17A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless",
-      "length conflict: Spruce=1-31/32; Wicks=1 7/8",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-20",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-20A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5C-21A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-23",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-23A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-25A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-26",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-26A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-27",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5C-27A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-31",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-31A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-34",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-34A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-37",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-37A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-41",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-47",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-51",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-52",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-52A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-53",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-53A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-54",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-54A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-55",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-55A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-56A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-57",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-57A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN5-60A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-61A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN5-65A",
+    "source_id": "spruce-an5",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-4",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-4A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-5",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=23/32; Wicks=45/64",
-      "grip unreadable: Spruce=1/16; Wicks=16-jan",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-5A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=23/32; Wicks=45/64",
-      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "23/32",
+        "wicks_aircraft": "45/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-5A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-7",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=31/32; Wicks=61/64",
-      "grip unreadable: Spruce=5/16; Wicks=16-may"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "31/32",
+        "wicks_aircraft": "61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-7A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=31/32; Wicks=61/64",
-      "grip unreadable: Spruce=5/16; Wicks=16-may"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "31/32",
+        "wicks_aircraft": "61/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-7",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6C-7A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN6-10",
-    "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-sep"
-    ]
-  },
-  {
-    "part_number": "AN6-10A",
-    "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul"
-    ]
-  },
-  {
-    "part_number": "AN6C-10A",
-    "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-11",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-7/32; Wicks=1 5/64",
-      "grip unreadable: Spruce=9/16; Wicks=16-jul"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-7/32",
+        "wicks_aircraft": "1 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-11A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-7/32; Wicks=1 5/64",
-      "grip unreadable: Spruce=9/16; Wicks=16-jul"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-7/32",
+        "wicks_aircraft": "1 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-11",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6C-11A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-12",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-11/32; Wicks=1 21/64",
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-11/32",
+        "wicks_aircraft": "1 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6-12A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-11/32; Wicks=1 21/64",
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-11/32",
+        "wicks_aircraft": "1 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-12",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6C-12A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-13",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-15/32; Wicks=1 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-15/32",
+        "wicks_aircraft": "1 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-13A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-15/32; Wicks=1 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-15/32",
+        "wicks_aircraft": "1 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-13A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-14",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-19/32; Wicks=1 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-19/32",
+        "wicks_aircraft": "1 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-14A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-19/32; Wicks=1 37/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6C-14",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6C-14A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-15",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-23/32; Wicks=1 45/64",
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-23/32",
+        "wicks_aircraft": "1 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-15A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-23/32; Wicks=1 45/64",
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-23/32",
+        "wicks_aircraft": "1 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6C-15A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-17",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-31/32; Wicks=1 61/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-17A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=1-31/32; Wicks=1 61/64"
-    ]
-  },
-  {
-    "part_number": "AN6C-17A",
-    "reasons": [
-      "Initial catalog selects cadmium-plated alloy steel only",
-      "Material not selected: 431 Stainless"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-31/32",
+        "wicks_aircraft": "1 61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-20",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-3/32; Wicks=2 5/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-20A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-3/32; Wicks=2 5/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-3/32",
+        "wicks_aircraft": "2 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-21",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-7/32; Wicks=2 13/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-21A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-7/32; Wicks=2 13/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-7/32",
+        "wicks_aircraft": "2 13/64"
+      }
     ]
   },
   {
     "part_number": "AN6-22",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-11/32; Wicks=2 21/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-11/32",
+        "wicks_aircraft": "2 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6-22A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-11/32; Wicks=2 21/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-23",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-15/32; Wicks=2 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-15/32",
+        "wicks_aircraft": "2 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-23A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-15/32; Wicks=2 29/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-24",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-19/32; Wicks=2 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-19/32",
+        "wicks_aircraft": "2 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-24A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-19/32; Wicks=2 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-19/32",
+        "wicks_aircraft": "2 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-25",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-23/32; Wicks=2 45/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-25A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-23/32; Wicks=2 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-23/32",
+        "wicks_aircraft": "2 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-26",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-27/32; Wicks=2 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-27/32",
+        "wicks_aircraft": "2 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-26A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-27/32; Wicks=2 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "2-27/32",
+        "wicks_aircraft": "2 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-27",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-31/32; Wicks=2 61/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-27A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=2-31/32; Wicks=2 61/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-30",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-3/32; Wicks=3 5/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-30A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-3/32; Wicks=3 5/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-31",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-7/32; Wicks=3 13/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-7/32",
+        "wicks_aircraft": "3 13/64"
+      }
     ]
   },
   {
     "part_number": "AN6-31A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-7/32; Wicks=3 13/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-7/32",
+        "wicks_aircraft": "3 13/64"
+      }
     ]
   },
   {
     "part_number": "AN6-32",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-11/32; Wicks=3 21/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-11/32",
+        "wicks_aircraft": "3 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6-32A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-11/32; Wicks=3 21/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-11/32",
+        "wicks_aircraft": "3 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6-33",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-15/32; Wicks=3 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-15/32",
+        "wicks_aircraft": "3 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-33A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-15/32; Wicks=3 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-15/32",
+        "wicks_aircraft": "3 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-34",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-19/32; Wicks=3 37/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-34A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-19/32; Wicks=3 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-19/32",
+        "wicks_aircraft": "3 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-35",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-23/32; Wicks=3 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-23/32",
+        "wicks_aircraft": "3 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-35A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-23/32; Wicks=3 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-23/32",
+        "wicks_aircraft": "3 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-36",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-27/32; Wicks=3 53/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-36A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-27/32; Wicks=3 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-27/32",
+        "wicks_aircraft": "3 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-37",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-31/32; Wicks=3 61/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-31/32",
+        "wicks_aircraft": "3 61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-37A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=3-31/32; Wicks=3 61/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "3-31/32",
+        "wicks_aircraft": "3 61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-40",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-3/32; Wicks=4 5/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-40A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-41",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-7/32; Wicks=4 13/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-7/32",
+        "wicks_aircraft": "4 13/64"
+      }
     ]
   },
   {
     "part_number": "AN6-41A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-7/32; Wicks=4 13/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-42",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-11/32; Wicks=4 21/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-42A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-11/32; Wicks=4 21/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-11/32",
+        "wicks_aircraft": "4 21/64"
+      }
     ]
   },
   {
     "part_number": "AN6-43",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-15/32; Wicks=4 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-15/32",
+        "wicks_aircraft": "4 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-43A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-15/32; Wicks=4 29/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-44",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-19/32; Wicks=4 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-19/32",
+        "wicks_aircraft": "4 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-44A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-19/32; Wicks=4 37/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-45",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-23/32; Wicks=4 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-23/32",
+        "wicks_aircraft": "4 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-45A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-23/32; Wicks=4 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-23/32",
+        "wicks_aircraft": "4 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-46",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-27/32; Wicks=4 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-27/32",
+        "wicks_aircraft": "4 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-46A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-27/32; Wicks=4 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-27/32",
+        "wicks_aircraft": "4 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-47",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-31/32; Wicks=4 61/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-47A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=4-31/32; Wicks=4 61/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "4-31/32",
+        "wicks_aircraft": "4 61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-50",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-3/32; Wicks=5 5/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-3/32",
+        "wicks_aircraft": "5 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-50A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-3/32; Wicks=5 5/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-3/32",
+        "wicks_aircraft": "5 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-51",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-7/32; Wicks=5 13/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-51A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-7/32; Wicks=5 13/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-52",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-11/32; Wicks=5 21/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-52A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-11/32; Wicks=5 21/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-53",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-15/32; Wicks=5 29/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-15/32",
+        "wicks_aircraft": "5 29/64"
+      }
     ]
   },
   {
     "part_number": "AN6-53A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-15/32; Wicks=5 29/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-54",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-19/32; Wicks=5 37/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-54A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-19/32; Wicks=5 37/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-19/32",
+        "wicks_aircraft": "5 37/64"
+      }
     ]
   },
   {
     "part_number": "AN6-55",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-23/32; Wicks=5 45/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-23/32",
+        "wicks_aircraft": "5 45/64"
+      }
     ]
   },
   {
     "part_number": "AN6-55A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-23/32; Wicks=5 45/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-56",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-27/32; Wicks=5 53/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-27/32",
+        "wicks_aircraft": "5 53/64"
+      }
     ]
   },
   {
     "part_number": "AN6-56A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-27/32; Wicks=5 53/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-57",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-31/32; Wicks=5 61/64",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN6-57A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=5-31/32; Wicks=5 61/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "5-31/32",
+        "wicks_aircraft": "5 61/64"
+      }
     ]
   },
   {
     "part_number": "AN6-60",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=6-3/32; Wicks=6 5/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "6-3/32",
+        "wicks_aircraft": "6 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-60A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "length conflict: Spruce=6-3/32; Wicks=6 5/64"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "6-3/32",
+        "wicks_aircraft": "6 5/64"
+      }
     ]
   },
   {
     "part_number": "AN6-61A",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN6-64",
+    "source_id": "spruce-an6",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN7-6A",
-    "reasons": [
-      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-7A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=5/16; Wicks=16-may",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-10",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-10A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-11A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN7-12",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-12A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-13",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-13A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-14",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-15",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN7-15A",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-16",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-16A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-17A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-20",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-22",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-24A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-25",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip conflict: Spruce=2-1/16; Wicks=2 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "grip",
+        "aircraft_spruce": "2-1/16",
+        "wicks_aircraft": "2 1/8"
+      }
     ]
   },
   {
     "part_number": "AN7-25A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "grip conflict: Spruce=2-1/16; Wicks=2 1/8"
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "grip",
+        "aircraft_spruce": "2-1/16",
+        "wicks_aircraft": "2 1/8"
+      }
     ]
   },
   {
     "part_number": "AN7-26A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-27A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-30A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-31",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-32A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-33A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-35",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-36",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-36A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-37",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-40",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-40A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-42",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-42A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-43",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-43A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-44",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-44A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-45",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-45A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-47",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-50",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-50A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-52",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-52A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "length conflict: Spruce=5-11/32; Wicks=5 1/4",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN7-56",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-56A",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN7-60",
+    "source_id": "spruce-an7",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-6A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-7",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-7A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-10A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN8-11",
-    "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-11A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "grip unreadable: Spruce=7/16; Wicks=16-jul",
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN8-12",
-    "reasons": [
-      "grip unreadable: Spruce=9/16; Wicks=16-sep"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-12A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
-    ]
-  },
-  {
-    "part_number": "AN8-13",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
-    ]
-  },
-  {
-    "part_number": "AN8-13A",
-    "reasons": [
-      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-14",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-14A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-15A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
-    ]
-  },
-  {
-    "part_number": "AN8-16",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
-    ]
-  },
-  {
-    "part_number": "AN8-16A",
-    "reasons": [
-      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-17A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-20",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-20A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-21",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-21A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-22A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-23A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-24",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-24A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-25",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-25A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-26",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-27A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-30",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-31A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-32A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-33",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-33A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-34",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-35A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-41",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-42",
+    "source_id": "spruce-an8",
     "reasons": [
-      "length conflict: Spruce=4-11/32; Wicks=4 9/32",
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-43A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-44",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-47",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-51A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-52",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-53",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-54A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-55",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-56",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-56A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
     ]
   },
   {
     "part_number": "AN8-57",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-57A",
+    "source_id": "spruce-an8",
     "reasons": [
-      "No exact Wicks part number in retrieved family table"
+      "No exact second-dealer SKU"
     ]
   },
   {
     "part_number": "AN8-60",
+    "source_id": "spruce-an8",
     "reasons": [
-      "Stock not reported by both dealers at retrieval"
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-8",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-10",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-10A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-11",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-12",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-13A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-14",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-15",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-16",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-17",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-18",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-19",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-20",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-22A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-23A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-24",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN23-25",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-27",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-28A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-30A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-31A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-34",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-38",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-38A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-40",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN23-40A",
+    "source_id": "spruce-an23",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-8A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-11",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-12",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-14",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-16",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-20",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-21",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-22A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-23",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-24A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-25",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-26A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-27A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-28A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-29",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-31",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-31A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-32",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-34",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-34A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-36",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-36A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN24-38",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN24-40A",
+    "source_id": "spruce-an24",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-10",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-12A",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-14",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-14A",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-15",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN25-17",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN25-18",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN25-19",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-21",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-22A",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN25-24",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-25",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-29",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-32",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN25-38",
+    "source_id": "spruce-an25",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-204",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-206",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-208",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS35206-228",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35206-241",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-252",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS35206-264",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS35206-279",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-280",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35206-281",
+    "source_id": "spruce-ms35206",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35207-263",
+    "source_id": "spruce-ms35207",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35190-221",
+    "source_id": "spruce-ms35190",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS35190-226",
+    "source_id": "spruce-ms35190",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35190-234",
+    "source_id": "spruce-ms35190",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35190-236",
+    "source_id": "spruce-ms35190",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS35214-12",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35214-13",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35214-14",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-15",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35214-18",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-23",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-24",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-26",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-32",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-33",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-40",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-41",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35214-43",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-47",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-48",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35214-59",
+    "source_id": "spruce-ms35214",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24693-S66",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24693-S280",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24693-S284",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24693-S286",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24693-S288",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24693-S296",
+    "source_id": "spruce-ms24693",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S13",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S19",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Unconfirmed one-piece second-dealer sale unit"
+    ]
+  },
+  {
+    "part_number": "MS24694-S29",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S31",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S54",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S76",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S77",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S82",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S84",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S90",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S103",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S119",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694-S121",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694-S123",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS24694C4",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C5",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C7",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C9",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C14",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C15",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C47",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C48",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C50",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C52",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C54",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C58",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C59",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS24694C92",
+    "source_id": "spruce-ms24694",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039-0806",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS27039-0813",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039-0817",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039-1-13",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039-1-16",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "Conflicting readable specifications"
+    ],
+    "conflicts": [
+      {
+        "field": "length",
+        "aircraft_spruce": "1-3/32",
+        "wicks_aircraft": "1 1/32"
+      }
+    ]
+  },
+  {
+    "part_number": "MS27039-1-20",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0806",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0807",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0808",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0809",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0810",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0812",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C0816",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C108",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C110",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C112",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C114",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS27039C116",
+    "source_id": "spruce-ms27039",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-30",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35265-32",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35265-48",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35265-66",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35265-67",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "MS35266-60",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35266-61",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35266-80",
+    "source_id": "spruce-ms35265",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-13",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-15",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-27",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-28",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-30",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-32",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-41",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-43",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-48",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-59",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-61",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-66",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "MS35265-67",
+    "source_id": "spruce-ms35266",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310-3",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN310-4",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN310-6",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN310C3",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310C4",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310C5",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310C6",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310C7",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN310C8",
+    "source_id": "spruce-an310",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN315-7L",
+    "source_id": "spruce-an315",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN315-8R",
+    "source_id": "spruce-an315",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN315-8L",
+    "source_id": "spruce-an315",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN315-9R",
+    "source_id": "spruce-an315",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN316-7R",
+    "source_id": "spruce-an316",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN316-8R",
+    "source_id": "spruce-an316",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN316-8L",
+    "source_id": "spruce-an316",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-4",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN900-5",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN900-8",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-10",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-13",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-15",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-16",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-17",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-20",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-21",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN900-23",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN900-24",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN900-25",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN900-30",
+    "source_id": "spruce-an900",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN970C-3",
+    "source_id": "spruce-an970",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN970-4",
+    "source_id": "spruce-an970",
+    "reasons": [
+      "Both dealers must report stock for this catalog"
+    ]
+  },
+  {
+    "part_number": "AN970C4",
+    "source_id": "spruce-an970",
+    "reasons": [
+      "No exact second-dealer SKU"
+    ]
+  },
+  {
+    "part_number": "AN970C5",
+    "source_id": "spruce-an970",
+    "reasons": [
+      "No exact second-dealer SKU"
     ]
   }
 ]

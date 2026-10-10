@@ -35,3 +35,4 @@ build/
 
 # Local supplier page snapshots, retained for audit but not republished
 data/aviation/raw/
+.local-tools/
