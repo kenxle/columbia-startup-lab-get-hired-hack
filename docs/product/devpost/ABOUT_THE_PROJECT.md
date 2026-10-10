@@ -23,12 +23,12 @@ RudCo Quote Desk is a web app for the quoting rep. RFQs are found processed, neg
 ### What it does today
 
 - **Reads each line into a standard spec.** Material, grade, form, thickness, size, quantity, and standard. 
-- **Shows where every field came from.** The rep clicks any field and sees the exact words in the RFQ behind it.
+- **Shows the evidence on each line.** Extracted fields link to the RFQ words and their source location. Derived values identify the rule or table used. The original RFQ stays beside the draft for review.
 - **Matches each line to RudCo's catalog.** A line gets one match, a few candidates with a question, or "No match". A line with no fit is never forced onto the closest item.
 - **Flags the paperwork the buyer needs.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH, and RoHS. Each flag highlights the trigger words, including requirements the buyer never wrote down but the spec implies. A flag records what the buyer needs. It does not certify RudCo's stock.
-- **Shows a lead time on each line.** A line shows a lead time only when a sourced stock fact exists. Otherwise it says "to confirm".
-- **Asks the buyer for missing info.** An unclear line becomes one specific question with choices, which is fed back into the system automatically. 
-- **Keeps the rep in charge.** The rep edits any field and approves the whole quote. Any edit after approval clears the approval. The agent then builds the buyer's reply: a short email, a PDF, and a spreadsheet. The email opens in a local preview.
+- **Shows lead time status on each line.** Unknown lead times say "to confirm". Any 24 to 48 hour stock setting added for the demo is a product assumption, not verified supplier inventory.
+- **Asks the buyer for missing info.** An unclear line becomes a specific question saved automatically in a local email preview. The rep enters the buyer's answer, and the affected line reruns. External email and buyer-click answers are not connected.
+- **Keeps the rep in charge.** The rep edits the draft and approves the current revision. Later edits clear that approval. An explicit local send saves an email with matching PDF and CSV attachments, then records "Sent (local preview)", its time and its placeholder recipient. Repeating the send for that revision reopens the saved preview. Real external sending is not connected.
 - **Remembers how a buyer writes.** The rep can teach the agent a term for one buyer. The reading is saved with the RFQ it was confirmed on and goes to processing on that buyer's next RFQ.
 - **Tracks the 24-hour reply.** RudCo's quote form promises a reply within 24 hours. The quotes list shows a countdown for each RFQ and sorts the soonest due first.
 
@@ -47,14 +47,17 @@ Every RFQ goes through the same layers, and each layer can say "I don't know".
 - **Failures fall back safely.** If the model call fails, the rules result stands and the quote still moves.
 
 
+The [app dry run](../../engineering/DRY_RUN-2026-10-10.md) also verified the complete local reply flow: a missing 2,000 lb quantity moves from three Ready lines to four after the answer, with COA flags and the other lines preserved. Approval unlocks the documents; explicit local sending records a receipt and produces downloadable PDF/CSV attachments. An edit after approval blocks the final quote until the rep approves again. No external email was sent.
+
 ## Tools and technologies used
 
-- **NicrronNinoo.** The hackathon's sponsor model gateway at `api.nicrron.ai`. The team uses Claude Opus 5 through it (model `anthropic/claude-opus-5`). It is wired into three places:
+- **NicrronNinoo.** The hackathon's sponsor model gateway at `api.nicrron.ai`. The integration requests Claude Opus 5 (model `anthropic/claude-opus-5`). Recent local inference checks returned HTTP 502, so successful live model use is not claimed. It is wired into three places:
   - RFQ processing has a Nicrron provider that asks Claude to fill only the fields the rules left empty.
   - Tisch's catalog matcher has a reader for messy wording such as "sixteen gauge, four by eight, twenty sheets".
   - The distributor pricing agent uses the gateway to split an RFQ into lines. The gateway is never a source for prices, stock, or cost.
   - In the demo as shown, the Rails app runs with the model switched off, so lines are read by the rules parser and matcher.
-- **Block Convey.** Sponsor resource named by the hackathon.
+- **Block Convey / PRISMtrace.** An optional background client records bounded model, outcome and timing metadata without RFQ text, buyer details or model responses. Telemetry failure does not block quoting. The local tests use fake HTTP; project credentials and a verified live trace are still pending.
+- **Jev.** A key is configured locally. Yuval's additive compliance integration is pending; no live Jev result is claimed.
 - **Ruby and Rails 8.** The quote app.
 - **SQLite.** App storage.
 - **Prawn.** Builds the quote PDF.
@@ -66,7 +69,7 @@ Every RFQ goes through the same layers, and each layer can say "I don't know".
 ## Team members and roles
 
 - **Ken St. Clair.** Product design, user research, and product management. Wrote the product brief, the demo workflow, the research, the brand position, and the style guide.
-- **Elad Hirsh.** Front end and UI/UX for the quote application. Built the Rails app: intake, side-by-side review, edits, approval, buyer-question drafts, and the PDF, CSV, and email export.
+- **Elad Hirsh.** Front end and UI/UX for the quote application. Built intake, side-by-side evidence review, edits, automatic local question previews, buyer-answer entry, approval invalidation, and explicit local sending with a saved receipt and PDF/CSV attachments.
 - **Yuval Gerber.** RFQ processing, plus catalog and benchmark data sourcing. Built text extraction from emails, PDFs, and spreadsheets, the line parser, readiness and compliance rules, buyer questions, and answer reruns.
 - **Elad Tisch.** Catalog building, the catalog matching agent, and the market-based pricing agent. Built the RudCo and sample-metals catalogs, the matcher, and the pricing agent.
 
@@ -90,7 +93,7 @@ RudCo's founder describes the rep's role this way: "Technology can handle more o
 
 The team built it in one day. Each part has one owner.
 
-- **Quote app (Hirsh).** A Rails 8 app with SQLite. It holds the review screen, line edits, approval, the buyer-question drafts, and the approved PDF, CSV, and email draft.
+- **Quote app (Hirsh).** A Rails 8 app with SQLite. It connects intake, evidence review, line edits, local question previews and buyer-answer reprocessing. Approval gates the final documents. The explicit local send saves the approved email, PDF and CSV together and records the receipt.
 - **RFQ processing (Yuval).** A plain Ruby library that extracts text from the email body, PDFs, and spreadsheets, keeping the page and row of every line. It reads each line into fields, applies fixed rules, and decides by rule whether a line is ready. When a buyer answers a question, the library reruns only the answered lines.
 - **Matching and catalog (Tisch).** A matcher that checks each catalog item field by field, plus the RudCo and sample-metals catalogs and a separate pricing agent.
 - **Product (Ken).** The brief, the demo workflow, the research, the brand position, and the style guide. The look uses RudCo's own palette and logo.
@@ -123,10 +126,9 @@ These are designed and partly built. We list them here so the submission does no
 
 - **A named, dated benchmark on every metals line.** The pricer for metals is not finished. It needs five delivered competitor offers per item, and none is connected yet. The quote would say the price tracks published metal cost plus RudCo's margin.
 - **Alternates on unclear lines.** When the matcher finds two or three candidates for a line, or a line has two readings, the quote would show each one as an option with its own price. Example: "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in". The buyer picks one when they accept, and the question still goes out. The app can show options when processing supplies them. Processing's option payload is not pushed yet.
-- **Questions that send themselves.** Each question would go out on its own, and the line would show when it was sent and "Waiting on buyer". A local preview of this is in progress. Sending to a real mailbox is not built.
-- **Learning a buyer's reading all the way through.** Teaching "0.060 in means 16 ga" saves and reaches processing. The match still comes back as "close, confirm", so the second RFQ line stays held. The matcher change is not finished.
+- **Questions to a real mailbox.** Automatic local previews and "Waiting on buyer" tracking are built. Connecting them to external email delivery is next.
 - **One-click answers from the buyer.** The buyer would click a choice in the email, and the answered line would rerun. The rerun logic is built. The click endpoints are not.
-- **Sending the reply on the buyer's original thread.** Today the approved email, PDF, and spreadsheet open in a local preview. A real mailbox is next.
+- **Sending the reply on the buyer's original thread.** Today an explicit send records a local receipt and saves the approved email with PDF and CSV attachments. Real mailbox delivery and thread replies are next.
 - **Showing where a learned reading came from.** The line would say, for example, "Read as 0.060 in, as you confirmed on RFQ-0001."
 - **Redlines.** Old and new values side by side when a rerun changes a line.
 - **RudCo's real catalog, inventory, and prices.** The product is written for them. The demo stands in data shaped like theirs.
