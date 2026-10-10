@@ -460,18 +460,30 @@ module CatalogMatch
     def apply_given_spec
       part_number = @given["part_number"].to_s.strip
       @part_numbers << part_number.upcase if part_number.present? && @part_numbers.empty?
-      @given.each do |name, value|
+      @given.each do |name, given|
+        # A plain value comes from RFQ processing; a hash carries its own
+        # quoted words and source (the LLM reader).
+        value, text, explanation, source = unpack_given(name, given)
         next if value.nil? || value.to_s.strip.empty?
 
         if GIVEN_TEXT_FIELDS.include?(name)
-          set(name, value.to_s, value.to_s, "#{name} from RFQ processing", source: "rfq_processing")
+          set(name, value.to_s, text, explanation, source: source)
         elsif GIVEN_NUMBER_FIELDS.include?(name)
           number = Float(value.to_s, exception: false)
           next if number.nil?
 
           number = number.to_i if %w[gauge quantity].include?(name)
-          set(name, number, value.to_s, "#{name} from RFQ processing", source: "rfq_processing")
+          set(name, number, text, explanation, source: source)
         end
+      end
+    end
+
+    def unpack_given(name, given)
+      if given.is_a?(Hash)
+        [ given["value"], given["text"].presence || given["value"].to_s,
+          given["explanation"].presence || "#{name} from #{given['source'] || 'processing'}", given["source"] || "rfq_processing" ]
+      else
+        [ given, given.to_s, "#{name} from RFQ processing", "rfq_processing" ]
       end
     end
 

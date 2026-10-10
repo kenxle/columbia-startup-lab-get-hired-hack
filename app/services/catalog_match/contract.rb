@@ -67,7 +67,9 @@ module CatalogMatch
         "score" => (candidate.confidence / 100.0).round(2),
         "matched_on" => candidate.exact.map { |check| "#{check[:field]}: \"#{check[:buyer_text]}\"" },
         "mismatches" => (candidate.near + candidate.conflicts).map { |check| "#{check[:field]}: #{check[:explanation]}" },
-        "reason" => reason(candidate)
+        "reason" => reason(candidate),
+        # The row's labeled, dated price reference, or nil (never invented).
+        "price" => Benchmark.for(item)&.then { |price| price.merge("unit_price" => price["unit_price"].to_s("F")) }
       }
     end
 
