@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_10_180000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_10_181500) do
+  create_table "client_terms", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.string "term", null: false
+    t.json "meaning", null: false
+    t.string "source", null: false
+    t.integer "times_confirmed", default: 1, null: false
+    t.integer "last_match_request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id", "term"], name: "index_client_terms_on_client_id_and_term", unique: true
+    t.index ["client_id"], name: "index_client_terms_on_client_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "workspace_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workspace_token", "name"], name: "index_clients_on_workspace_token_and_name", unique: true
+  end
+
+  create_table "match_requests", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.text "description", null: false
+    t.string "outcome", null: false
+    t.json "result", null: false
+    t.json "approved_part_numbers"
+    t.decimal "quantity", precision: 18, scale: 4
+    t.integer "quote_id"
+    t.datetime "approved_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_match_requests_on_client_id"
+  end
+
   create_table "quote_lines", force: :cascade do |t|
     t.integer "quote_id", null: false
     t.integer "position", null: false
@@ -54,5 +89,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_180000) do
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 
+  add_foreign_key "client_terms", "clients", on_delete: :cascade
+  add_foreign_key "match_requests", "clients", on_delete: :cascade
   add_foreign_key "quote_lines", "quotes", on_delete: :cascade
 end

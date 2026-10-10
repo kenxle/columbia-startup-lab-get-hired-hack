@@ -1,0 +1,72 @@
+require "test_helper"
+
+class CatalogMatch::ClientMemoryTest < ActiveSupport::TestCase
+  setup do
+    @acme = Client.create!(name: "Acme Fabrication", workspace_token: "t" * 43)
+    @boro = Client.create!(name: "Boro Marine", workspace_token: "t" * 43)
+    @quote = Quote.create!(title: "Acme RFQ", source_text: "see lines", workspace_token: "t" * 43)
+  end
+
+  def suggest(client, text) = CatalogMatch::Suggest.call(client: client, description: text)
+
+  def approve(request, pn)
+    CatalogMatch::Approve.call(match_request: request, part_numbers: [ pn ], quote: @quote)
+  end
+
+  test "an approved choice teaches the client's unknown word, for that client only" do
+    first = suggest(@acme, "KB 16ga 4x8 x5")
+    assert_equal "candidates", first.outcome
+    approve(first, "RC-SS304-SHT-16GA-48X96-4")
+
+    term = @acme.client_terms.find_by!(term: "kb")
+    assert_equal "learned", term.source
+    assert_equal "#4", term.field_values["finish"]
+    assert_equal "stainless steel", term.field_values["material"]
+
+    again = suggest(@acme, "KB 16ga 4x10 x3")
+    assert_equal "match", again.outcome
+    assert_equal "RC-SS304-SHT-16GA-48X120-4", again.suggested_part_numbers.first
+    finish_check = again.result["candidates"].first["checks"].find { |check| check["field"] == "finish" }
+    assert_equal "client_memory", finish_check["source"]
+
+    other = suggest(@boro, "KB 16ga 4x10 x3")
+    assert_equal "candidates", other.outcome, "Boro has not taught KB, so it must still ask"
+  end
+
+  test "the same word can mean different things for different clients" do
+    CatalogMatch::ClientMemory.new(@acme).teach!(term: "HB", field: "finish", value: "#4")
+    CatalogMatch::ClientMemory.new(@boro).teach!(term: "HB", field: "grade", value: "316/316L")
+
+    acme = suggest(@acme, "HB 304 ss sheet 16 ga 48x96")
+    boro = suggest(@boro, "HB ss sheet 16 ga 48x96")
+    assert_equal "RC-SS304-SHT-16GA-48X96-4", acme.suggested_part_numbers.first
+    assert_equal "RC-SS316-SHT-16GA-48X96-2B", boro.suggested_part_numbers.first
+  end
+
+  test "the buyer's explicit words beat a remembered meaning" do
+    CatalogMatch::ClientMemory.new(@acme).teach!(term: "std", field: "finish", value: "#4")
+    request = suggest(@acme, "std 304 ss sheet 16ga 4x8 2B")
+    assert_equal "match", request.outcome
+    assert_equal "RC-SS304-SHT-16GA-48X96-2B", request.suggested_part_numbers.first
+  end
+
+  test "an approved description is remembered as a phrase for that client" do
+    manual = suggest(@acme, "304 SS sheet 16ga 4x8")
+    assert_equal "candidates", manual.outcome
+    approve(manual, "RC-SS304-SHT-16GA-48X96-2B")
+
+    repeat = suggest(@acme, "304 SS sheet 16ga 4x8 x12")
+    assert_equal "match", repeat.outcome
+    assert_equal "RC-SS304-SHT-16GA-48X96-2B", repeat.suggested_part_numbers.first
+    assert_equal 12, repeat.quantity
+  end
+
+  test "learning never overwrites a term the rep taught" do
+    CatalogMatch::ClientMemory.new(@acme).teach!(term: "kb", field: "finish", value: "2B")
+    request = suggest(@acme, "KB ss 304 sheet 16ga 4x8")
+    approve(request, request.suggested_part_numbers.first)
+    term = @acme.client_terms.find_by!(term: "kb")
+    assert_equal "taught", term.source
+    assert_equal({ "finish" => "2B" }, term.field_values)
+  end
+end
