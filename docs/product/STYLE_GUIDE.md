@@ -54,5 +54,6 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 
 - Use RudCo's logo files exactly as the site serves them. The header uses [this round mark](https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png) beside the word "RudCo" set as live text. The footer uses [a second mark file](https://www.rud-co.com/lovable-uploads/6cf64f46-a753-4f3b-ae89-c4b015a6e51d.png).
 - Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a Quote Desk logo.
+- **Favicon:** RudCo's own favicon file, unchanged: [ead1229e….png](https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png). The tab title says "Quote Desk" (Ken, 2026-10-10).
 - The share image's all-caps "RUDCO" wordmark is part of a picture. Do not trace it into the app.
 
