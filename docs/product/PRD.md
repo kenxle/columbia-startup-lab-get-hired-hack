@@ -98,6 +98,8 @@ These come from RudCo's challenge, in order.
 4. **Flag compliance requirements.** Mill test reports, country of origin, and spec certifications, whether the buyer asked for them outright or the spec implies them.
 5. **Ask instead of guess.** Send any unclear line back to the buyer with one clarifying question.
 
+**Stretch, if we get there:** suggest the margin on each line, not only the benchmark price. The rep still owns the final number.
+
 ## What the user sees
 
 1. The rep drops in an RFQ: pasted email text, a PDF, or a spreadsheet.
@@ -128,7 +130,6 @@ flowchart TD
 ## What it is not
 
 - **An auto-sender.** The rep approves every quote. The agent drafts.
-- **A pricing engine that sets margin.** It shows the benchmark and a suggested price. The rep owns the final number.
 - **A general chatbot.** There is no chat box. The product is the quote.
 - **A supplier search across the market.** It matches against one supplier's catalog.
 
