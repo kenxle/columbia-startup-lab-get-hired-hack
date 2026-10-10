@@ -8,7 +8,11 @@
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **8. Who supplies the Anthropic API key and the real email account?** Hirsh asks you to name an owner for each, and a private way to share them (board, 13:28). Credentials never go on the public board. Processing runs on rules alone until a key is in `.env`. *Recommendation:* if you have a key, send it to Hirsh directly (he is wiring it into the app); for email, a new Gmail account made for the demo, shared the same way.
+Nothing open.
+
+## Build map
+
+[BUILD_MAP.md](BUILD_MAP.md): every path through the workflow, with the loops for buyer questions and the rep checkpoints, marked built, partly built, or not started.
 
 ## See the demo now
 
@@ -44,6 +48,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Credentials: use what the hackathon provided, for now. Posted to Hirsh.
 
 - Brand position and style guide approved, posted on the board and in WhatsApp. AGENTS.md now links every ongoing doc.
 
