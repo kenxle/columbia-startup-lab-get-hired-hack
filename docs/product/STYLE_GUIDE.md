@@ -44,16 +44,15 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 ## How the workspace should look like rud-co.com
 
 - **Header:** match the site header. Warm off-white bar (`#f7f5f3`), with a 1px bottom border once the page scrolls. On the left, RudCo's round logo image at 32px, then "RudCo" in 600 weight, with a small gray line under it. On the right, nav links in 14px, weight 500.
-- **Product name:** "Quote Desk" appears as the page title beside the lockup, or as the first nav item. Leave the logo lockup exactly as the site sets it.
+- **Logo lockup** (Ken, 2026-10-10): RudCo's round mark at 32 px, then a stack: "RudCo" in 600 weight, and under it "QUOTE DESK" in 11 px, weight 600, tracked 0.08em capitals. The label is `#0063e6` on the warm header (4.92:1) and `#8fb8ff` on the navy sidebar (8.15:1), measured by [surface_contrast.py](surface_contrast.py). Options are on the [logo workshop](logo_workshop.html).
 - **Sidebar:** navy (`#0f1f3d`) with white and light-slate text. This carries the brand color the way the share images do.
 - **Gold:** one thin gold rule under the sidebar's product name, echoing the share image. Nowhere else.
 - **Body:** `#f3f5f7` page, `#fafbfc` cards and table, `#f6f7f9` stripes, `#e5e7eb` dividers. No pure white. RFQ on the left, quote on the right, as Hirsh has it now.
-- **Footer line:** "Concept built for RudCo · Get Hired Hack, 2026-10-10". See the [honesty guardrails](BRAND_POSITION.md#honesty-guardrails).
 
 ## Logo use
 
 - Use RudCo's logo files exactly as the site serves them. The header uses [this round mark](https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png) beside the word "RudCo" set as live text. The footer uses [a second mark file](https://www.rud-co.com/lovable-uploads/6cf64f46-a753-4f3b-ae89-c4b015a6e51d.png).
 - Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a Quote Desk logo.
-- **Favicon:** RudCo's own favicon file, unchanged: [ead1229e….png](https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png). The tab title says "Quote Desk" (Ken, 2026-10-10).
+- **Favicon** (Ken, 2026-10-10): RudCo's own favicon file, unchanged: [ead1229e….png](https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png). The tab title leads with what needs the rep, then the RFQ: "3 lines need the buyer · RFQ-0001". Pages with no status use "Quote Desk".
 - The share image's all-caps "RUDCO" wordmark is part of a picture. Do not trace it into the app.
 

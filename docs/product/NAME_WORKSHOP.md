@@ -59,3 +59,13 @@ Conflict checks are quick web searches. Ken's call: this is an internal name for
 ## Decision
 
 **RudCo Quote Desk** (Ken, 2026-10-10). It names the rep's desk, where the agent prepares the quote and the rep has the conversation. It is an internal name for part of RudCo's service. Recorded in the [brand position](BRAND_POSITION.md).
+
+## Options weighed for the brand position
+
+| Option | Why | What the search found |
+|---|---|---|
+| **QuoteTrace** (recommended) | RudCo already sells traceability: documents tied back to the PO, lot and heat number ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The name says the quote is traceable too. A rep can say "run it through QuoteTrace." | No product by that exact name. The closest is QuoTrak, a quoting tool for trade contractors ([Capterra](https://www.capterra.ca/software/1097122/QuoTrak)). Different spelling and market. |
+| **Line Check** | Plain and literal. It names what the rep does: check each line. | No quoting product by that name ([search results](https://www.alcircle.com/blog/rfq-vs-rfp-in-metal-trading-whats-the-difference-and-why-it-matters) were general RFQ articles). Weakness: it sounds like a checker, not a quote tool. |
+| **Quote Desk** | Sounds like a place in the office where quotes get made. Easy to say. | Taken twice: a general quoting platform called QuoteDesk on [G2](https://www.g2.com/categories/cpq?page=16), and a B2B app called "Quote Desk: AI B2B Quotes" on [pickyourapp](https://pickyourapp.com/es/products/quote-desk). |
+| **Open Quote** | Echoes RudCo's line "Opacity is a tax on industrial procurement" ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_opacity-is-a-tax-on-industrial-procurement-activity-7451955371537059840-lsR0)). | Taken: OpenQuote is an open-source insurance quoting system ([UNIX forum release note](https://community.unix.com/t/openquote-1-0-released/204959)). Different market, but the same name. |
+| **ClearQuote** | Says "transparent" in one word. | Taken more than once: an automotive repair-estimate company ([CB Insights](https://www.cbinsights.com/company/clear-quote/customers)) and a 2017 trademark for order-entry software ([Justia, PGT Industries](https://trademark.justia.com/owners/pgt-industries-llc-5866381)). Drop it. |
