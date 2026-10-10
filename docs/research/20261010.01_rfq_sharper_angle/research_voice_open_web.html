@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Voice of User: Open Web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%8D</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    /* ===================================================================
+       Research report / brief, St. Clair document style system.
+
+       Spec:      personal/docs/document-style-guide.md   (the authority)
+       Reference: personal/lib/templates/document.css
+                  personal/lib/templates/system-tokens.css
+                  personal/lib/templates/document-skeleton.html
+
+       Those four files are read-only source of truth. This header maps the
+       system onto the markup pandoc emits for a report. It does not invent a
+       second look, and it does not redefine a token's meaning.
+
+       The tokens below are copied from system-tokens.css because this header is
+       injected into a standalone HTML file that has to travel on its own; it
+       cannot @import a file from the repo. If a token changes upstream, copy the
+       new value down. Never give a token a different value here.
+       =================================================================== */
+
+    :root {
+      /* ---------- colour (mirrors system-tokens.css) ---------- */
+      --white:#ffffff;
+      --paper:#f7f7f5;
+      --ink:#1f1e1a;
+      --ink-soft:#55534b;
+      --ink-faint:#6b6860;
+      --rule:#dcdad6;
+      --rule-ondark:#4a4842;
+
+      --purple:#46188c;
+      --purple-tint:#f1ebfa;
+      --link:#6d28d9;
+      --cobalt:#0760c7;
+      --cobalt-tint:#e6effc;
+      --sage-fill:#8fb5a0;
+      --sage:#637a63;
+      --sage-tint:#e7f1ed;
+
+      --ink-soft-ondark:#d9d7d1;
+      --ink-faint-ondark:#b3b0a8;
+
+      /* ---------- type ---------- */
+      --font-display:"Schibsted Grotesk","Hanken Grotesk",system-ui,sans-serif;
+      --font-body:"Hanken Grotesk",system-ui,sans-serif;
+      --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+      --w-body:400; --w-medium:500; --w-display:600; --w-bold:700;
+
+      /* ---------- spacing, 4px-rooted ---------- */
+      --s1:4px; --s2:8px; --s3:12px; --s4:18px;
+      --s5:28px; --s6:44px; --s7:72px; --s8:104px;
+
+      /* ---------- lines, radius, layout ---------- */
+      --r:4px; --r-lg:6px;
+      --line:1px solid var(--rule);
+      --divider:2px solid var(--ink);
+      --maxw:1080px;
+      --read:68ch;
+
+      /* ---------- chart series ----------
+         Charts and diagrams read their colours from these, never from a hex
+         written into a report's markdown. Repoint a series here and every
+         Plotly chart and Mermaid diagram in every report follows. The order is
+         a categorical palette: each step changes hue AND lightness, so the
+         series stay apart for a colour-blind reader and in greyscale. */
+      --chart-1:var(--cobalt);
+      --chart-2:var(--sage);
+      --chart-3:var(--purple);
+      --chart-4:var(--sage-fill);
+      --chart-5:var(--ink-faint);
+      --chart-6:var(--ink);
+    }
+
+    /* ---------- base ---------- */
+
+    *{box-sizing:border-box}
+
+    /* ---------- reset pandoc's own default stylesheet ----------
+       pandoc --standalone writes a default <style> ahead of this one. Most of it
+       loses to the rules below on source order, but these five do not, because
+       this file never declared the same property. Each one is a visible defect,
+       so they are cleared here rather than rediscovered on a built page.
+         header            centred, 4em bottom margin
+         table             display:block (the table stops filling its column)
+         tbody, th         stray 1px black rules above and below the table body
+         blockquote        a 2px left border, which the style guide forbids
+         a:visited         black links
+         h5, h6            italic */
+    header{text-align:left;margin-bottom:0}
+    table{display:table;font-variant-numeric:normal}
+    tbody{border-top:none;border-bottom:none}
+    th{border-top:none}
+    blockquote{border-left:none}
+    a:visited{color:var(--link)}
+    h5,h6{font-style:normal}
+
+    html{
+      scroll-behavior:smooth;
+      background:var(--white);
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+
+    /* The body IS the document wrapper: pandoc emits no container of its own.
+       Horizontal inset here, so nothing downstream has to re-apply it. */
+    body{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--s5) var(--s8);
+      background:var(--white);
+      color:var(--ink);
+      font-family:var(--font-body);
+      font-size:17px;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ---------- type scale ---------- */
+
+    h1,h2,h3,h4,h5,h6{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      line-height:1.12;
+      letter-spacing:-.012em;
+      color:var(--ink);
+      margin:0;
+      /* Sentence case only. Never set a heading in all caps. */
+    }
+    h1{font-size:clamp(34px,4.6vw,52px)}
+    h2{font-size:clamp(25px,3vw,34px)}
+    h3{font-size:clamp(19px,2vw,23px);margin:var(--s6) 0 var(--s3)}
+    h4{font-size:18px;margin:var(--s5) 0 var(--s3)}
+    h5,h6{font-size:16px;color:var(--ink-soft);margin:var(--s5) 0 var(--s2)}
+
+    /* One emphasised word in a heading reads as the accent. The system has two
+       faces, so the accent is colour, not a third typeface. */
+    h1 em,h2 em,h3 em{font-style:normal;color:var(--cobalt)}
+
+    p{margin:0 0 var(--s4)}
+    p:last-child{margin-bottom:0}
+    strong{font-weight:var(--w-bold);color:var(--ink)}
+
+    /* Reading measure on running prose. Components reset it below, because a
+       card or a table cell sets its own width. */
+    p,ul,ol,dl{max-width:var(--read)}
+    :is(.stat,.card,.pullquote,.keytakeaway,.rimage,.eyebrow,.callout,.callout-warn,
+        .xref,blockquote,nav,figure,td,th,details,.sheet-head,.insight) :is(p,ul,ol,dl){max-width:none}
+
+    a{
+      color:var(--link);
+      text-decoration:underline;
+      text-decoration-thickness:1px;
+      text-underline-offset:3px;
+      overflow-wrap:anywhere;
+    }
+    :focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:var(--r)}
+
+    ul,ol{margin:0 0 var(--s4);padding-left:1.4em}
+    li{margin:0 0 var(--s2)}
+    li::marker{color:var(--cobalt)}
+
+    hr{border:none;border-top:var(--line);margin:var(--s6) 0;max-width:var(--read)}
+    /* A markdown "---" before a section is redundant: the section already opens
+       with its own hanging rule. */
+    hr:has(+ .sheet-head){display:none}
+
+    /* ---------- hero (pandoc's title block) ---------- */
+
+    header#title-block-header{padding-block:var(--s7) var(--s6)}
+    h1.title{max-width:17ch;margin:0 0 var(--s4)}
+    header#title-block-header p{
+      font-size:18px;
+      line-height:1.55;
+      color:var(--ink-soft);
+      max-width:58ch;
+      margin:0;
+    }
+    header#title-block-header p + p{margin-top:var(--s2)}
+    /* The subtitle is the hero's lede: 20px, ink-soft, one line of its own. */
+    header#title-block-header p.subtitle{font-size:20px;line-height:1.55}
+
+    /* ---------- document metadata (date, prepared for, track, ...) ----------
+       build_report_html.py lifts these into the title block as a definition
+       list. One fact per row, label beside value, never joined into a run-on
+       sentence. The grid holds every value on one left edge so the block scans
+       as a list of labelled facts. */
+
+    dl.docmeta{
+      display:grid;
+      grid-template-columns:max-content minmax(0,1fr);
+      column-gap:var(--s4);
+      row-gap:var(--s2);
+      align-items:baseline;
+      max-width:var(--read);
+      margin:var(--s5) 0 0;
+      padding-top:var(--s4);
+      border-top:var(--line);
+    }
+    dl.docmeta dt{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+    }
+    dl.docmeta dd{
+      margin:0;
+      font-size:16px;
+      line-height:1.5;
+      color:var(--ink-soft);
+    }
+    /* A metadata line with no label spans both columns rather than sitting in
+       the value column under an empty label. */
+    dl.docmeta dd.solo{grid-column:1/-1}
+
+    /* ---------- the chrome: numbered sections under a hanging rule ----------
+       build_report_html.py wraps every h2 in this row. The rule always runs the
+       full column width (never a short stub over the heading), and the section
+       number aligns to the heading's baseline (never the bottom of the row). */
+
+    .sheet-head{
+      display:flex;
+      gap:var(--s4);
+      align-items:baseline;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      border-top:var(--divider);
+      padding-top:var(--s3);
+      margin:var(--s7) 0 var(--s6);
+    }
+    .sheet-head h2{flex:1 1 20ch;margin:0}
+    .sheet-head .n{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+      white-space:nowrap;
+    }
+    /* The first section sits right under the hero and needs no extra air. */
+    header#title-block-header + .sheet-head,
+    nav#TOC + .sheet-head{margin-top:0}
+
+    /* ---------- table of contents ---------- */
+
+    nav#TOC{
+      background:var(--paper);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:0 0 var(--s7);
+      font-size:16px;
+    }
+    nav#TOC::before{
+      content:"Contents";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+      margin-bottom:var(--s3);
+    }
+    nav#TOC ul{list-style:none;padding:0;margin:0}
+    nav#TOC > ul > li{margin-bottom:var(--s2)}
+    nav#TOC ul ul{padding-left:var(--s4);margin-top:var(--s2)}
+    nav#TOC li{margin-bottom:var(--s1)}
+    nav#TOC a{color:var(--ink);text-decoration:none}
+    nav#TOC a:hover{text-decoration:underline;text-decoration-color:var(--rule)}
+
+    /* ---------- tables: naked ruled, the system default ---------- */
+
+    .table-scroll{
+      margin:var(--s5) 0 var(--s6);
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .table-scroll table{margin:0}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:16px;
+      line-height:1.5;
+      margin:var(--s5) 0 var(--s6);
+    }
+    thead th{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--ink-faint);
+      text-align:left;
+      vertical-align:bottom;
+      padding:0 var(--s4) var(--s3) 0;
+      border-bottom:var(--divider);
+    }
+    tbody td{
+      padding:var(--s4) var(--s4) var(--s4) 0;
+      border-bottom:var(--line);
+      vertical-align:top;
+    }
+    tbody tr:last-child td{border-bottom:none}
+    td:last-child,th:last-child{padding-right:0}
+    /* The first column is usually a short row label. Auto layout squeezes it to
+       one word per line when later columns carry prose, so floor it. */
+    thead th:first-child,tbody td:first-child{min-width:8.5rem}
+
+    /* ---------- blockquote: a quiet structural panel, no single-side border ---------- */
+
+    blockquote{
+      margin:var(--s5) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:16px;
+      color:var(--ink-soft);
+    }
+    blockquote p{margin:0}
+    blockquote p + p{margin-top:var(--s3)}
+
+    /* ---------- code ---------- */
+
+    code{
+      font-family:var(--font-mono);
+      font-size:15px;
+      background:var(--cobalt-tint);
+      color:var(--ink);
+      padding:.1em .35em;
+      border-radius:3px;
+    }
+    pre{
+      font-family:var(--font-mono);
+      font-size:15px;
+      line-height:1.55;
+      background:var(--cobalt-tint);
+      color:var(--ink);
+      padding:var(--s4) var(--s5);
+      border-radius:var(--r);
+      overflow-x:auto;          /* a long line scrolls; it never widens the page */
+      margin:var(--s5) 0;
+    }
+    pre code{background:none;padding:0;font-size:inherit;color:inherit}
+    /* Pandoc embeds its own syntax theme. Its comment and string colours fall
+       under the 4.5:1 floor on this tint, so every token is re-pointed at the
+       document palette. !important beats pandoc's `code span.*` rules whatever
+       the source order turns out to be. */
+    pre code span{color:var(--ink) !important}
+    pre code span.co,pre code span.do{color:var(--ink-faint) !important;font-style:italic}
+    pre code span.st,pre code span.vs,pre code span.ss,pre code span.ch,
+    pre code span.fu,pre code span.at{color:var(--cobalt) !important}
+    pre code span.kw,pre code span.cf,pre code span.dt,pre code span.bu,
+    pre code span.im{color:var(--purple) !important}
+    pre code span.dv,pre code span.bn,pre code span.fl,pre code span.cn,
+    pre code span.va{color:var(--ink) !important;font-weight:var(--w-medium)}
+    pre code span.er,pre code span.al{color:var(--ink) !important;font-weight:var(--w-bold)}
+
+    /* Mermaid blocks (```mermaid -> <pre class="mermaid">). Reset the code-block
+       tint; the Mermaid script replaces the text with an SVG diagram. */
+    pre.mermaid{
+      background:var(--white);
+      color:var(--ink);
+      font-family:var(--font-body);
+      border:var(--line);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:var(--s6) 0;
+      text-align:center;
+      overflow-x:auto;
+    }
+
+    /* ---------- figures and charts ---------- */
+
+    figure.chart{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+    }
+    figure.chart svg{max-width:100%;height:auto}
+    figure.chart figcaption{
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+    }
+    .chart-title{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:18px;
+      color:var(--ink);
+      margin-bottom:var(--s2);
+    }
+    /* Plotly charts (```plotly fenced JSON, rendered client-side). The figure
+       also carries .chart, so the frame above applies. */
+    figure.plotly-chart > div{width:100%}
+    figure.plotly-chart figcaption{font-style:normal;text-align:left}
+    pre.plotly{display:none}   /* hide the raw JSON until it renders */
+
+    /* ---------- stat tile and stat row ---------- */
+    /* Built like the system's facts grid: the figure first, in display weight,
+       then the explanation. Separation is the paper-versus-white step, never a
+       shadow. */
+
+    .stat{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+    }
+    .stat > p{margin:0}
+    .stat > p:first-child{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(32px,4vw,44px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+      color:var(--ink);
+      /* Proportional figures, not tabular: a stat tile is one standalone number,
+         not a column to align, and Schibsted's tabular set gives the decimal
+         point and the comma a full digit advance, which reads as "2 . 4". */
+    }
+    .stat > p:first-child strong{font-weight:var(--w-display);color:var(--ink)}
+    .stat > p + p{
+      font-size:16px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+    }
+    .stat-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:var(--s4);
+      margin:var(--s6) 0;
+    }
+    .stat-row > .stat{margin:0}
+
+    /* ---------- pull-quote card ---------- */
+
+    .pullquote{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+    }
+    .pullquote > p{margin:0}
+    .pullquote > p:first-child{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(20px,2.2vw,25px);
+      line-height:1.32;
+      letter-spacing:-.012em;
+      color:var(--ink);
+    }
+    .pullquote > p + p{
+      font-family:var(--font-body);
+      font-weight:var(--w-body);
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s4);
+    }
+
+    /* ---------- report image with attribution ---------- */
+
+    .rimage{margin:var(--s6) 0}
+    .rimage img{
+      display:block;
+      max-width:100%;
+      height:auto;
+      border:var(--line);
+      border-radius:var(--r);
+    }
+    .rimage > p{margin:0}
+    .rimage > p:last-child{
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+      max-width:var(--read);
+    }
+
+    /* ---------- eyebrow ---------- */
+
+    .eyebrow{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--cobalt);
+      margin:var(--s6) 0 var(--s2);
+    }
+    .eyebrow > p{margin:0}
+
+    /* ---------- insight panel: a tinted panel with a generated label row ----------
+       Canonical definition: personal/docs/document-style-guide.md, "Insight panel",
+       implemented in personal/lib/templates/document.css. Keep this block in step
+       with that one so a report and a one-pager render the same markup the same way.
+
+       Two variants, and two is the limit:
+         .insight          cobalt tint, label "Key insight"
+         .insight--caveat  purple tint, label "Caveat"
+
+       Contrast, measured. The label is 14px at display weight, under the WCAG
+       large-text threshold, so it has to clear 4.5:1 on its own tint:
+         cobalt label on cobalt-tint    5.17:1
+         purple label on purple-tint   10.17:1
+         sage label on sage-tint        4.05:1   fails, so there is no sage variant
+       Body text inside is ink: 14.39:1 on cobalt tint, 14.30:1 on purple tint.
+
+       Never give this panel a single-side coloured border. The tint is the device.
+
+       .callout and .callout-warn are the old class names. They are kept as aliases
+       because reports already written use them in their `::: callout` fenced divs.
+       New reports write `::: insight` and `::: {.insight .insight--caveat}`. */
+
+    .insight,.callout,.callout-warn{
+      margin:var(--s5) 0;
+      padding:var(--s5);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:16px;
+      line-height:1.6;
+    }
+    .insight,.callout{background:var(--cobalt-tint)}
+    .insight--caveat,.callout-warn{background:var(--purple-tint)}
+    .insight::before,.callout::before,.callout-warn::before{
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      margin-bottom:var(--s2);
+      padding-left:22px;
+      min-height:18px;
+      background-repeat:no-repeat;
+      background-position:left center;
+      background-size:16px 16px;
+    }
+    .insight::before,.callout::before{
+      content:"Key insight"; color:var(--cobalt);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230760c7' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E");
+    }
+    .insight--caveat::before,.callout-warn::before{
+      content:"Caveat"; color:var(--purple);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346188c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+    }
+    /*
+      Override the label text with data-label when "Key insight" or "Caveat" is
+      wrong for the content. The icon and the colour stay with the variant.
+      In markdown: `::: {.insight data-label="What this means"}`.
+    */
+    .insight[data-label]::before,.callout[data-label]::before,.callout-warn[data-label]::before{content:attr(data-label)}
+
+    .insight li::marker,.callout li::marker{color:var(--cobalt)}
+    .insight--caveat li::marker,.callout-warn li::marker{color:var(--purple)}
+    .insight > :first-child,.callout > :first-child,.callout-warn > :first-child{margin-top:0}
+    .insight > :last-child,.callout > :last-child,.callout-warn > :last-child{margin-bottom:0}
+
+    /* ---------- card and card grid ---------- */
+
+    .card{
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:var(--s5) 0;
+    }
+    .card > :first-child{margin-top:0}
+    .card > :last-child{margin-bottom:0}
+    .card p,.card li{font-size:16px;line-height:1.55}
+    .card > p:first-child strong{
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:18px;
+      line-height:1.2;
+      letter-spacing:-.012em;
+      color:var(--ink);
+      margin-bottom:var(--s2);
+    }
+    /* 260px caps the row at three cards on a 1080px page, which is the width the
+       facts grid is built for. At 240px a four-card row fits, and four columns of
+       body text break every card title onto two lines. */
+    .cardgrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:var(--s4);
+      margin:var(--s6) 0;
+    }
+    .cardgrid > .card{margin:0}
+
+    /* ---------- key takeaway: the one filled block ---------- */
+    /* A section's headline finding, in ink with white text. Short: a filled
+       block carries a line or two, never a paragraph. */
+
+    .keytakeaway{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--ink);
+      color:var(--white);
+      border-radius:var(--r);
+    }
+    .keytakeaway > :first-child{margin-top:0}
+    .keytakeaway > :last-child{margin-bottom:0}
+    .keytakeaway p,.keytakeaway li{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(19px,2vw,23px);
+      line-height:1.35;
+      letter-spacing:-.012em;
+      color:var(--white);
+    }
+    .keytakeaway strong{color:var(--white)}
+    .keytakeaway em{font-style:normal;color:var(--sage-fill)}   /* 7.38:1 on ink */
+    .keytakeaway a{color:var(--white);text-decoration-color:rgba(255,255,255,.55)}
+
+    /* ---------- cross-reference drill-down ----------
+       Authored as a ::: xref fenced div of links to #appendix-<topic>; the
+       combiner rewrites those hrefs to the appendix section ids. */
+
+    .xref{
+      margin:0 0 var(--s5);
+      padding:var(--s3) var(--s4);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+    }
+    .xref::before{
+      content:"\21B3  Drill down";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--cobalt);
+      margin-bottom:var(--s2);
+    }
+    /* One link per line. Several links run together as one long link when they
+       share a line, which a reviewer read as a single destination. */
+    .xref > *{display:block;margin:0}
+    .xref > * + *{margin-top:var(--s2)}
+    .xref a{
+      /* One link per line. Pandoc puts several xref links in a single paragraph,
+         so the links themselves have to be the blocks; making the paragraph a
+         block leaves them running together as one long link. */
+      display:block;
+      width:fit-content;
+      color:var(--ink);
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      text-decoration-color:var(--rule);
+    }
+    .xref a + a{margin-top:var(--s2)}
+    .xref a:hover{color:var(--cobalt);text-decoration-color:currentColor}
+    /* Legacy inline tag span, still styled if an author uses it directly. */
+    .xref .xref-tag{
+      display:inline-block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--cobalt);
+      margin-right:var(--s2);
+    }
+    .xref .xref-tag::before{content:"\21B3  "}
+
+    /* ---------- citation accordions ---------- */
+
+    details.cite-group{
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+      margin:0 0 var(--s3);
+      overflow:hidden;
+    }
+    details.cite-group summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:var(--s3);
+      min-height:44px;                /* tap target floor */
+      padding:var(--s3) var(--s4);
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:16px;
+      color:var(--ink);
+      cursor:pointer;
+      list-style:none;
+    }
+    details.cite-group summary:hover{background:var(--paper)}
+    details.cite-group summary::-webkit-details-marker{display:none}
+    details.cite-group summary::after{
+      content:"+";
+      font-family:var(--font-display);
+      font-size:20px;
+      font-weight:var(--w-medium);
+      color:var(--cobalt);
+      line-height:1;
+    }
+    details.cite-group[open] summary{background:var(--paper);border-bottom:var(--line)}
+    details.cite-group[open] summary::after{content:"\2212"}
+    details.cite-group ul{
+      margin:var(--s4) 0;
+      padding-left:var(--s6);
+      font-size:15px;
+      line-height:1.55;
+    }
+    details.cite-group ul li{margin-bottom:var(--s2)}
+
+    /* ---------- icons ----------
+       Authored inline as <i data-lucide="name"></i> and rendered to SVG on load.
+       Stroke weight tracks the type beside it: 1.75 next to body, 2 next to
+       display weights. */
+
+    i[data-lucide],svg.lucide{
+      display:inline-block;
+      width:1.05em; height:1.05em;
+      vertical-align:-.15em;
+      stroke-width:1.75;
+      flex:none;
+    }
+    .sheet-head h2 i[data-lucide],.sheet-head h2 svg.lucide,
+    h3 i[data-lucide],h3 svg.lucide{
+      color:var(--cobalt);
+      stroke-width:2;
+      width:.78em; height:.78em;
+      margin-right:var(--s3);
+    }
+    .card > p:first-child i[data-lucide],.card > p:first-child svg.lucide{
+      color:var(--cobalt);
+      margin-right:var(--s2);
+    }
+    .stat i[data-lucide],.stat svg.lucide{
+      width:22px; height:22px;
+      color:var(--cobalt);
+      vertical-align:0;
+      margin-bottom:var(--s1);
+    }
+
+    /* ---------- combined dossier ----------
+       build_report_html.py stitches the main report and each research track into
+       one page. These rules are here rather than in the build script so the whole
+       look lives in one file. */
+
+    section.doc{
+      border-top:var(--divider);
+      margin-top:var(--s8);
+      padding-top:var(--s7);
+    }
+    #doc0{border-top:none;margin-top:var(--s6);padding-top:0}
+    section.doc > h1.title{margin-top:0}
+    section.doc > header#title-block-header{padding-block:0 var(--s6)}
+
+    #mastercover{padding-block:var(--s7) var(--s6)}
+    #mastercover::before{
+      content:"Research dossier";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--cobalt);
+      margin-bottom:var(--s3);
+    }
+    #mastercover h1{max-width:17ch;margin:0 0 var(--s4)}
+    #mastercover .sub{font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:58ch}
+
+    #master-toc{
+      background:var(--paper);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:0 0 var(--s7);
+    }
+    #master-toc h2{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      letter-spacing:0;
+      color:var(--ink-faint);
+      margin:0 0 var(--s3);
+    }
+    #master-toc ul{list-style:none;padding:0;margin:0}
+    #master-toc li{
+      display:flex;
+      gap:var(--s4);
+      align-items:baseline;
+      margin:0;
+      padding:var(--s3) 0;
+      border-bottom:var(--line);
+      font-size:16px;
+    }
+    #master-toc li:last-child{border-bottom:none}
+    #master-toc a{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      color:var(--ink);
+      text-decoration:none;
+    }
+    #master-toc a:hover{text-decoration:underline;text-decoration-color:var(--rule)}
+    .toc-kind{
+      flex:0 0 96px;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--ink-faint);
+    }
+
+    /* ---------- responsive ---------- */
+
+    @media (max-width:820px){
+      body{font-size:16px;padding-bottom:var(--s7)}
+      header#title-block-header{padding-block:var(--s6) var(--s5)}
+      .sheet-head{margin:var(--s6) 0 var(--s5)}
+      .stat-row,.cardgrid{grid-template-columns:1fr}
+      nav#TOC,#master-toc{margin-bottom:var(--s6)}
+      section.doc{margin-top:var(--s7);padding-top:var(--s6)}
+      table{font-size:15px}
+      thead th,tbody td{padding-right:var(--s3)}
+    }
+
+    /* On a phone the head row has no width to hold the heading and the number
+       side by side. Left to wrap, the number lands under the heading and reads
+       as an orphaned line; sent above, it opens the section the way the rule
+       does. Only below 560px, because a tablet still fits both on one baseline. */
+    @media (max-width:560px){
+      .sheet-head .n{order:-1;flex-basis:100%;margin-bottom:var(--s1)}
+      /* A phone has no room for a label column beside a value: a long "For:"
+         value would wrap to two words a line. The label sits above its value
+         instead, still one fact per block. */
+      dl.docmeta{grid-template-columns:minmax(0,1fr);row-gap:0}
+      dl.docmeta dt{margin-top:var(--s3)}
+      dl.docmeta dt:first-child{margin-top:0}
+      dl.docmeta dd.solo{margin-top:var(--s3)}
+      dl.docmeta dd.solo:first-child{margin-top:0}
+      /* The dossier's contents list: the 96px kind column leaves too little room
+         for a document title on a phone, so the kind sits above the title. */
+      #master-toc li{display:block}
+      #master-toc .toc-kind{display:block;margin-bottom:var(--s1)}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+    }
+
+    /* ---------- print ---------- */
+
+    @page{size:letter;margin:.7in .65in}
+
+    @media print{
+      *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+      body{max-width:100%;padding:0;font-size:10.5pt}
+      header#title-block-header{
+        min-height:78vh;
+        display:flex; flex-direction:column; justify-content:center;
+        break-after:page;
+      }
+      /* A letter page with 0.65in margins is about 690px of usable width, which
+         still fits three tiles or three cards. The 820px stacking rule above
+         would otherwise print one per row and waste most of the page. */
+      .stat-row{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+      .cardgrid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+      nav#TOC,#master-toc{break-inside:avoid}
+      .sheet-head{break-after:avoid;break-inside:avoid}
+      h3,h4{break-after:avoid}
+      table,blockquote,pre,pre.mermaid,figure.chart,figure.plotly-chart,
+      .stat,.stat-row,.pullquote,.rimage,.callout,.callout-warn,.insight,
+      .card,.cardgrid,.keytakeaway,.xref{break-inside:avoid}
+      /* No scrollbars on paper: show the whole table and let it shrink. */
+      .table-scroll{overflow:visible}
+      .table-scroll table{font-size:.72rem}
+      a{color:var(--ink);text-decoration:none}
+      .xref a::after{content:" (see appendix)";font-weight:var(--w-body);color:var(--ink-soft)}
+      /* Force every accordion open. `open` is an HTML attribute, not a CSS
+         property, so the UA's `details:not([open]) > :not(summary){display:none}`
+         has to be overridden directly. */
+      details > summary{display:list-item}
+      details:not([open]) > *:not(summary){display:block !important}
+      details.cite-group summary::after{display:none}
+      details.cite-group summary,details.cite-group[open] summary{background:none}
+      section.doc{break-before:page;border-top:none;margin-top:0;padding-top:0}
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      function draw() { if (window.lucide) window.lucide.createIcons(); }
+      if (document.readyState === "loading") window.addEventListener("DOMContentLoaded", draw);
+      else draw();
+    })();
+  </script>
+  <script>
+    /* Palette bridge. Charts and diagrams are drawn by JS, which cannot read a
+       CSS custom property on its own. Everything below pulls its colours from
+       the :root tokens above, so a palette change in one place moves every chart
+       and every diagram in every report. Never write a hex into a report's
+       markdown. */
+    window.__docTokens = (function () {
+      var cs = getComputedStyle(document.documentElement);
+      return function (name, fallback) {
+        var v = (cs.getPropertyValue(name) || "").trim();
+        /* A token defined as var(--other) resolves through getComputedStyle on
+           modern Chrome/Safari; if a browser hands back the literal var() text,
+           fall through to the fallback rather than feeding it to a chart. */
+        if (!v || v.indexOf("var(") === 0) return fallback;
+        return v;
+      };
+    })();
+  </script>
+  <!-- plotly-basic covers bar, scatter, line, area and pie, which is everything
+       these reports draw, at about a quarter of the full bundle's weight.
+       Plotly draws empty axes rather than failing on a type it does not carry,
+       so the render loop below checks PlotSchema and writes the error itself.
+       That is what makes the finalize gate able to see it. -->
+  <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+  <script>
+    /* Pandoc emits ```plotly blocks as <pre class="plotly"><code>…</code></pre>
+       with the JSON HTML-entity-encoded; reading textContent decodes it. The
+       report build also escapes $ -> \$ globally for math safety, which would
+       break JSON price labels, so undo that before parsing. Each block is a
+       JSON object: { data: [...], layout: {...}, config: {...}, caption: "..." }. */
+    (function () {
+      /* Charts that have been created but not yet drawn. Printing and the
+         finalize gate both look at a page nobody scrolled, so they need a way to
+         force the deferred ones. */
+      var pending = [];
+      function drawAll() { while (pending.length) pending.pop()(); }
+      window.renderAllCharts = drawAll;
+      window.addEventListener("beforeprint", drawAll);
+
+      function renderPlotly() {
+        if (!window.Plotly) return;
+        /* What this Plotly build actually registered. PlotSchema is the only
+           authority: an allow-list written by hand goes stale the moment the
+           bundle changes. */
+        var schema = null;
+        try { schema = Plotly.PlotSchema.get().traces; } catch (e) {}
+        function known(ty) { return !schema || Object.prototype.hasOwnProperty.call(schema, ty); }
+        var t = window.__docTokens;
+        var ink = t("--ink", "#1f1e1a");
+        var inkSoft = t("--ink-soft", "#55534b");
+        var rule = t("--rule", "#dcdad6");
+        var body = t("--font-body", '"Hanken Grotesk",system-ui,sans-serif');
+        var colorway = [
+          t("--chart-1", "#0760c7"), t("--chart-2", "#637a63"),
+          t("--chart-3", "#46188c"), t("--chart-4", "#8fb5a0"),
+          t("--chart-5", "#6b6860"), t("--chart-6", "#1f1e1a")
+        ];
+        document.querySelectorAll("pre.plotly").forEach(function (el) {
+          var spec;
+          try {
+            spec = JSON.parse(el.textContent.replace(/\\\$/g, "$"));
+          } catch (e) {
+            var err = document.createElement("p");
+            err.style.color = ink;
+            err.textContent = "Plotly chart error: " + e.message;
+            el.replaceWith(err);
+            return;
+          }
+          var fig = document.createElement("figure");
+          fig.className = "chart plotly-chart";
+          var div = document.createElement("div");
+          fig.appendChild(div);
+          if (spec.caption) {
+            var cap = document.createElement("figcaption");
+            cap.textContent = spec.caption;
+            fig.appendChild(cap);
+          }
+          el.replaceWith(fig);
+          var layout = Object.assign({
+            autosize: true, height: 380,
+            margin: { l: 64, r: 24, t: 44, b: 52 },
+            font: { family: body, size: 14, color: ink },
+            title: { font: { family: body, size: 17, color: ink }, x: 0, xanchor: "left" },
+            paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
+            colorway: colorway,
+            legend: { orientation: "h", y: -0.2, font: { color: inkSoft } }
+          }, spec.layout || {});
+          /* Axis labels must never be cut off. The fixed margins above are a
+             starting size, not a budget: automargin lets Plotly grow a margin to
+             fit whatever the tick labels and axis title actually need. Merge the
+             defaults UNDERNEATH the spec's own axis object, so a chart that sets
+             `xaxis: {tickangle: -35}` keeps automargin and the palette instead of
+             replacing the whole axis and silently dropping them. */
+          ["xaxis", "yaxis", "xaxis2", "yaxis2"].forEach(function (k) {
+            if (k === "xaxis" || k === "yaxis" || layout[k]) {
+              layout[k] = Object.assign({
+                automargin: true,
+                gridcolor: rule, zerolinecolor: rule, linecolor: rule,
+                tickfont: { color: inkSoft }
+              }, layout[k] || {});
+            }
+          });
+          /* Draw when the chart is near the viewport, not all of them at load.
+             Every newPlot with automargin does its own measure-and-relayout pass,
+             so drawing seven synchronously against a long document serialises
+             into tens of seconds before the page settles. Deferring means the
+             reader waits only for the chart they have reached. */
+          var cfg = Object.assign({ responsive: true, displayModeBar: false },
+                                  spec.config || {});
+          var drawn = false;
+          var draw = function () {
+            if (drawn) return;
+            drawn = true;
+            /* The basic bundle carries bar, scatter and pie only. Plotly does
+               not throw on a trace type it has not loaded: it draws the axes and
+               silently omits the data, so the chart looks styled and says
+               nothing. Nothing downstream can tell that from a real chart, so
+               check the registry first and fail in the words the finalize gate
+               greps for. */
+            var missing = (spec.data || [])
+              .map(function (d) { return d.type; })
+              .filter(function (ty) { return ty && !known(ty); });
+            if (missing.length) {
+              div.textContent = "Plotly chart error: trace type "
+                + missing.join(", ") + " is not in the basic bundle. "
+                + "Reshape as bar or scatter, or load the full bundle.";
+              return;
+            }
+            Plotly.newPlot(div, spec.data || [], layout, cfg);
+          };
+          if (typeof IntersectionObserver === "undefined") { draw(); return; }
+          pending.push(draw);
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              io.disconnect();
+              draw();
+            });
+          }, { rootMargin: "600px 0px" });
+          io.observe(fig);
+        });
+        /* #render-all is how a headless capture asks for the whole document at
+           once: the finalize gate's Chrome dump never scrolls, so without this
+           every deferred chart would read as a chart that failed to draw. */
+        if (location.hash === "#render-all") drawAll();
+      }
+      if (document.readyState === "loading")
+        window.addEventListener("DOMContentLoaded", renderPlotly);
+      else renderPlotly();
+    })();
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+    const t = window.__docTokens;
+    const ink = t("--ink", "#1f1e1a");
+    const inkSoft = t("--ink-soft", "#55534b");
+    const white = t("--white", "#ffffff");
+    const paper = t("--paper", "#f7f7f5");
+    const rule = t("--rule", "#dcdad6");
+    const cobalt = t("--cobalt", "#0760c7");
+    const cobaltTint = t("--cobalt-tint", "#e6effc");
+    const sage = t("--sage", "#637a63");
+    const sageTint = t("--sage-tint", "#e7f1ed");
+    const body = t("--font-body", '"Hanken Grotesk",system-ui,sans-serif');
+
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      fontFamily: body,
+      themeVariables: {
+        background: white,
+        fontFamily: body,
+        fontSize: "15px",
+        primaryColor: cobaltTint,
+        primaryTextColor: ink,
+        primaryBorderColor: cobalt,
+        secondaryColor: sageTint,
+        secondaryTextColor: ink,
+        secondaryBorderColor: sage,
+        tertiaryColor: paper,
+        tertiaryTextColor: ink,
+        tertiaryBorderColor: rule,
+        mainBkg: cobaltTint,
+        nodeBorder: cobalt,
+        nodeTextColor: ink,
+        lineColor: inkSoft,
+        textColor: ink,
+        titleColor: ink,
+        clusterBkg: paper,
+        clusterBorder: rule,
+        edgeLabelBackground: white,
+        labelBackground: white,
+        labelBoxBkgColor: cobaltTint,
+        labelBoxBorderColor: cobalt,
+        labelTextColor: ink,
+        actorBkg: cobaltTint,
+        actorBorder: cobalt,
+        actorTextColor: ink,
+        signalColor: inkSoft,
+        signalTextColor: ink,
+        noteBkgColor: sageTint,
+        noteBorderColor: sage,
+        noteTextColor: ink,
+        pie1: t("--chart-1", "#0760c7"),
+        pie2: t("--chart-2", "#637a63"),
+        pie3: t("--chart-3", "#46188c"),
+        pie4: t("--chart-4", "#8fb5a0"),
+        pie5: t("--chart-5", "#6b6860"),
+        pie6: t("--chart-6", "#1f1e1a")
+      }
+    });
+
+    /* Pandoc emits ```mermaid blocks as <pre class="mermaid"><code>…</code></pre>
+       with the diagram source HTML-entity-encoded. Mermaid 10.9.x reads innerHTML,
+       so it sees the literal <code> tags and &quot;/&gt; entities and throws a
+       syntax error. Flatten each block to a single decoded text node first
+       (reading textContent decodes the entities and drops the <code> wrapper),
+       then render. */
+    function renderMermaid() {
+      document.querySelectorAll("pre.mermaid").forEach(function (el) {
+        if (!el.dataset.mflattened) {
+          // textContent decodes entities; also undo the build's $ -> \$ math-escaping
+          // so dollar amounts in labels render as "$5" not "\$5".
+          el.textContent = el.textContent.replace(/\\\$/g, "$");
+          el.dataset.mflattened = "1";
+        }
+      });
+      mermaid.run({ querySelector: "pre.mermaid" });
+    }
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", renderMermaid);
+    } else {
+      renderMermaid();
+    }
+  </script>
+  <script>
+    /* Collapsed <details> don't expand in the browser print dialog, so citations
+       would be missing from a Cmd+P PDF. Open them for printing, restore after. */
+    (function () {
+      function setAll(open) {
+        document.querySelectorAll("details.cite-group").forEach(function (d) {
+          if (open) {
+            if (!d.open) { d.dataset.printToggled = "1"; d.open = true; }
+          } else if (d.dataset.printToggled === "1") {
+            d.open = false; delete d.dataset.printToggled;
+          }
+        });
+      }
+      window.addEventListener("beforeprint", function () { setAll(true); });
+      window.addEventListener("afterprint", function () { setAll(false); });
+      if (window.matchMedia) {
+        var mq = window.matchMedia("print");
+        var handler = function (m) { setAll(m.matches); };
+        if (mq.addEventListener) mq.addEventListener("change", handler);
+        else if (mq.addListener) mq.addListener(handler);
+      }
+    })();
+  </script>
+  <!-- The shared document fixes are injected here at build time from
+       ~/.claude/skills/shared-assets/ (doc_fixes.css) by
+       shared_assets.resolve_header(). Do not paste a copy back into this file. -->
+  <style>
+  /* Shared document fixes: one source for both document builds.
+
+     Injected at build time alongside comment_module.html, in place of the
+     <!-- SHARED_ASSETS --> placeholder in each pandoc header. Because it lands
+     last in <head>, these rules win over the same-specificity rules earlier in a
+     header without needing !important.
+
+     Keep this file to fixes that are true for every document we build. Anything
+     that depends on a skill's own look (colors, radius, shadow) belongs in that
+     skill's header. */
+
+  /* --- Tables: never spill past the reading column (plan Task 4.3, defect 1) ---
+     Two halves to the fix, and both are needed.
+     1. A wide table scrolls inside its wrapper. Both builds wrap every table in
+        <div class="table-scroll">.
+     2. Long unbroken strings (URLs, tokens, absolute paths) wrap instead of
+        setting a min-content width that forces the table wider than the page.
+        Without this the table is simply wider than the wrapper and the text is
+        cut off at the wrapper edge. */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .table-scroll > table { margin: 0; }
+  table { max-width: 100%; }
+  thead th, tbody td { overflow-wrap: anywhere; word-break: break-word; }
+  thead th code, tbody td code,
+  thead th a, tbody td a { overflow-wrap: anywhere; word-break: break-word; }
+
+  /* Print/PDF has no scrollbars, so show the whole table and let it shrink. */
+  @media print {
+    .table-scroll { overflow: visible; }
+  }
+
+  /* --- Charts: never let a chart set the page width (plan Task 4.3, defect 2) ---
+     The label-truncation fix itself is Plotly's automargin, applied in the
+     report header's render script. This is the CSS guard next to it: a chart
+     that computes a wider layout than its column stays inside the column
+     instead of pushing the whole page sideways. */
+  figure.plotly-chart,
+  figure.plotly-chart > div,
+  figure.chart svg,
+  figure.plotly-chart .main-svg { max-width: 100%; }
+
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Voice of User: Open Web</h1>
+<p class="subtitle">Read this first</p>
+<dl class="docmeta">
+<dd class="solo">Track: voice of user, open web (no Reddit). Run 2026-10-10. Covers
+the job steps (Question 0), pain in practitioners' own words (Question
+1), and the costliest reading errors (Question 3). Messy line examples
+(Question 2) are in their own section near the end.</dd>
+<dd class="solo"><strong>The answer in one paragraph.</strong> The open web gives a
+clear picture of what hurts, but very little of it is a metals
+service-center rep talking in their own words. Most of the "voice" is
+vendors (quoting software sellers) describing their customers' pain,
+plus government RFQs that show what buyers actually ask for. The
+strongest, most consistent signals are:</dd>
+<dd class="solo">Speed matters, but the numbers behind "first responder wins" all come
+from sellers of quoting software.</dd>
+<dd class="solo">Picking the wrong item from many look-alike candidates is the named
+cause of wrong shipments at a steel bar distributor.</dd>
+<dd class="solo">A change of gauge, grade, or alternate forces a full manual
+re-quote.</dd>
+<dd class="solo">Quoting depends on a few senior people.</dd>
+<dd class="solo">Buyers' own RFQs ask for unit price, delivery date, shipping
+included, and proof paperwork (mill test report, certificate of
+compliance, origin). A quote that skips any of these does not answer the
+RFQ.</dd>
+<dd class="solo"><strong>Gaps, stated up front.</strong></dd>
+<dd class="solo">I found no first-person posts from metals service center inside sales
+reps. Searches for them returned job postings and vendor pages.</dd>
+<dd class="solo">LinkedIn posts were not reachable through search. Zero LinkedIn posts
+are cited.</dd>
+<dd class="solo">Buyer-side annoyance with quotes is thin. One 2008 forum thread and
+one 2020 vendor survey are all I read.</dd>
+<dd class="solo">Practical Machinist and Eng-Tips users are machine shops and
+engineers, not service-center reps. They show the quoting mindset, not
+the service-center workflow.</dd>
+<dd class="solo">Metal Center News and Modern Distribution Management (MDM) pages
+mostly returned blocked or paywalled text. I read one MCN piece (ERP
+software) in full and one Industrial Distribution piece. I did not find
+an MCN article on quoting that I could read.</dd>
+<dd class="solo">No steel service center publishes a hit rate or quote turnaround
+benchmark that I could find.</dd>
+<dd class="solo"><strong>How to read the evidence labels in this file.</strong></dd>
+<dd class="solo"><strong>Read directly</strong> means I read the page text in a
+browser or a local file. Quotation marks around words from these pages
+are exact.</dd>
+<dd class="solo"><strong>Read through a summarizing fetch tool</strong> means a tool
+returned a summary of the page. I paraphrase these and do not put the
+words in quotation marks.</dd>
+<dd class="solo"><strong>Search summary only</strong> means I saw the result only in a
+search snippet. These are leads, and I say so each time.</dd>
+<dd class="solo">A claim from a company that sells quoting software is marked
+<strong>vendor claim</strong>.</dd>
+</dl>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#question-0-the-job-steps-who-does-them-where-time-goes-what-a-better-quote-wins"
+id="toc-question-0-the-job-steps-who-does-them-where-time-goes-what-a-better-quote-wins">Question
+0: The job steps, who does them, where time goes, what a better quote
+wins</a></li>
+<li><a
+href="#question-1-pain-in-practitioners-own-words-and-buyer-annoyances"
+id="toc-question-1-pain-in-practitioners-own-words-and-buyer-annoyances">Question
+1: Pain in practitioners' own words, and buyer annoyances</a></li>
+<li><a href="#question-3-costliest-reading-errors"
+id="toc-question-3-costliest-reading-errors">Question 3: Costliest
+reading errors</a></li>
+<li><a href="#messy-line-examples" id="toc-messy-line-examples">Messy
+line examples</a></li>
+<li><a href="#search-terms-and-sources-tried"
+id="toc-search-terms-and-sources-tried">Search terms and sources
+tried</a></li>
+<li><a href="#what-i-would-not-trust-yet"
+id="toc-what-i-would-not-trust-yet">What I would not trust yet</a></li>
+<li><a href="#cleanup-needed" id="toc-cleanup-needed">Cleanup
+needed</a></li>
+</ul>
+</nav>
+<div class="sheet-head"><h2
+id="question-0-the-job-steps-who-does-them-where-time-goes-what-a-better-quote-wins">Question
+0: The job steps, who does them, where time goes, what a better quote
+wins</h2><span class="n">Section 1</span></div>
+<h3 id="the-steps-as-the-sources-describe-them">The steps, as the
+sources describe them</h3>
+<p>No source lays out a full step list for a metals service center.
+Pieced together from the sources below, the work runs in this order:</p>
+<ol type="1">
+<li><strong>Intake.</strong> The RFQ arrives by email, PDF, spreadsheet,
+fax, or phone. A steel bar distributor's inside sales team handles about
+200 RFQs and purchase orders a week (<a
+href="https://ealliancecorp.com/agentic-automation-for-sales-and-customer-service-case-study/">eAlliance
+case study</a>, vendor case study, read through a summarizing fetch
+tool).</li>
+<li><strong>Decode the line.</strong> Work out which item the buyer
+means. At that same distributor, a part has many attributes, so a search
+returns 20 to 30 candidates and the rep has to judge which is right
+(same eAlliance source, vendor claim).</li>
+<li><strong>Check stock and availability.</strong> In stock, in
+production planning, or a substitute (same eAlliance source).</li>
+<li><strong>Price it.</strong> Estimators measure parts, track down
+material prices, and gather estimates for machine run time, cleaning,
+painting, labor, and shipping (<a
+href="https://get.secturafab.com/customers/brunswick-steel">SecturaFAB
+case study of Brunswick Steel</a>, vendor case study, summarizing fetch
+tool).</li>
+<li><strong>Get approval on exceptions.</strong> In distribution
+generally, the rep checks prices across separate systems, requests an
+exception, and waits for finance or pricing to approve, often by email
+(<a
+href="https://distributionstrategy.com/2026/06/the-hidden-cost-of-inefficient-quoting-in-distribution/">Conga
+author, Distribution Strategy Group, June 2026</a>, summarizing fetch
+tool; the author works for Conga, which sells quote software).</li>
+<li><strong>Send the quote and chase it.</strong> Errors found later
+send the quote back through approvals (same Conga source).</li>
+</ol>
+<h3 id="who-does-each-step">Who does each step</h3>
+<ul>
+<li><strong>Quoting sits with a few experienced people.</strong>
+Brunswick Steel (a Manitoba service center) says quoting was limited to
+a select few, and its old process leaned on Excel (SecturaFAB case study
+above, vendor; the speaker is Dallas McInnes, sales manager, via
+summarizing tool).</li>
+<li><strong>Product selection depends on staff knowledge.</strong> The
+Conga author says finding the right SKU in a large catalog often relies
+on experienced staff's knowledge instead of standard process.</li>
+<li><strong>Even in machine shops, one estimator is the
+bottleneck.</strong> A Practical Machinist poster who was buying a
+company wrote: "I need to improve the way we respond to quotes- only
+have 1 estimator and response time is too slow, I believe it is losing
+us business." Source: user Neeman, Dec 21, 2020, <a
+href="https://www.practicalmachinist.com/forum/threads/quoting-software-recommendations.385613/">Practical
+Machinist thread</a> (read directly).</li>
+</ul>
+<h3 id="where-the-time-goes">Where the time goes</h3>
+<ul>
+<li><strong>Large jobs at a steel supplier.</strong> Utah Steel (Cedar
+City, Utah) said a large job took about two days to quote with three
+people on quotes. Requests for alternative materials or gauges forced a
+full round of manual changes. After buying SecturaFAB, it reports about
+two hours. Vendor case study, so these are the vendor's published
+numbers (<a href="https://get.secturafab.com/customers/utah-steel">Utah
+Steel case study</a>, summarizing fetch tool).</li>
+<li><strong>Data work, not selling.</strong> Brian Hopkins, COO of the
+consulting firm Distribution Strategy Group, estimates from his own team
+experience that quoting staff spend 75% to 80% of their time gathering
+and checking data. He says complex quotes sometimes took his team up to
+eight hours. It is one practitioner's observation, not research (<a
+href="https://distributionstrategy.com/2025/07/beyond-the-spreadsheet-transforming-order-quote-processes/">Hopkins,
+July 2025</a>, summarizing fetch tool).</li>
+<li><strong>Retyping.</strong> A pipe, valve, and fitting vendor
+(SalesAPE, which sells RFQ software) says sales engineers waste hours
+retyping customer bill-of-material spreadsheets into the ERP and that
+spec parsing takes days instead of minutes. Its numbers are
+illustrative, not measured (<a
+href="https://www.salesape.ai/articles/how-independent-valve-piping-distributors-streamline-rfq-triage-without-burning-out-sales-desks">SalesAPE,
+July 2026</a>, vendor, summarizing fetch tool).</li>
+<li><strong>Machine shops.</strong> Paperless Parts (a quoting software
+seller) says it can take up to two hours to quote one part. This is from
+a sponsored article in Modern Machine Shop (<a
+href="https://www.mmsonline.com/articles/when-it-comes-to-rfq-response-time-is-money">MMS,
+Nov 2021, sponsored by Paperless Parts</a>, vendor, summarizing fetch
+tool).</li>
+</ul>
+<h3 id="what-a-faster-or-better-quote-wins-and-who-says-so">What a
+faster or better quote wins, and who says so</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Value prop</th>
+<th>Who says it</th>
+<th>Source and caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orders won by speed</strong></td>
+<td>Quoting software sellers and one consultant</td>
+<td>Paperless Parts survey: 67% of buyers expect a quote in under 24
+hours (up from 53% in 2019). <a
+href="https://www.paperlessparts.com/blog/the-7-fatal-mistakes-of-quoting-3-responding-too-slowly/">Paperless
+Parts blog</a>, vendor survey. Sample size not stated on the page I
+read. A different search snippet attributed a 2020 survey of 400+
+buyers, and a later piece says 68% from 370 buyers. The two numbers are
+not the same survey.</td>
+</tr>
+<tr>
+<td><strong>Orders won by speed</strong></td>
+<td>Hopkins</td>
+<td>More than 40% of potential wins lost when quotes take over 24 hours,
+and 50% of buyers pick the first responder. He cites unnamed "leading
+technology providers." Unverified (<a
+href="https://distributionstrategy.com/2025/07/beyond-the-spreadsheet-transforming-order-quote-processes/">Hopkins</a>).</td>
+</tr>
+<tr>
+<td><strong>Orders won by speed</strong></td>
+<td>Prokeep</td>
+<td>Distributors with faster, more accurate quotes are 35 to 50 percent
+more likely to win. This is Prokeep's own data. It sells order
+automation. Search summary only. <a
+href="https://www.prokeep.com/serve/order-automation">Prokeep</a></td>
+</tr>
+<tr>
+<td><strong>Speed matters to the seller</strong></td>
+<td>Jaden Seely, Utah Steel</td>
+<td>He said "Speed is everything in the sales world" (summarizing tool;
+vendor case study, <a
+href="https://get.secturafab.com/customers/utah-steel">Utah
+Steel</a>).</td>
+</tr>
+<tr>
+<td><strong>Fewer wrong shipments</strong></td>
+<td>eAlliance, steel bar distributor</td>
+<td>Wrong part selections led to wrong shipments, which the case study
+calls costly. No numbers given. Vendor case study.</td>
+</tr>
+<tr>
+<td><strong>Fewer returns</strong></td>
+<td>SalesAPE</td>
+<td>Misreading specs such as NACE MR0175 sour service or pressure
+classes leads to inaccurate pricing and costly job-site returns. Vendor
+marketing, no numbers.</td>
+</tr>
+<tr>
+<td><strong>Margin protection</strong></td>
+<td>Hopkins</td>
+<td>A misplaced decimal, a forgotten freight charge, or outdated pricing
+can turn a profitable quote into a loss. Opinion from the same
+consultant.</td>
+</tr>
+<tr>
+<td><strong>Less dependence on experts</strong></td>
+<td>Brunswick Steel; Conga author</td>
+<td>The software "reduces a highly skilled task to a task that others
+can confidently take on" (McInnes via summarizing tool; vendor case
+study).</td>
+</tr>
+<tr>
+<td><strong>More time to sell</strong></td>
+<td>eAlliance; Hopkins</td>
+<td>Staff freed from clerical work. Vendor and consultant claims.</td>
+</tr>
+<tr>
+<td><strong>More precise pricing</strong></td>
+<td>Seely, Utah Steel</td>
+<td>He said estimates went "from guesstimating to exacting" (summarizing
+tool; vendor case study).</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>A counterweight worth knowing.</strong> Not every RFQ is
+worth a fast quote. A search snippet from an MDM piece (<a
+href="https://www.mdm.com/article/featured/featured-main/what-to-fix-before-investing-in-crm/">What
+to Fix Before Investing in CRM, MDM</a>) says one rep responds to every
+RFQ and spends hours on projects with little chance of winning, and that
+qualifying earlier matters more (search summary only; the page would not
+load). A machine-shop owner says the same thing in his own words: "the
+overall objective is still to put in the minimum unpaid work until you
+actually get the gig." Source: user implmex, Apr 18, 2019, <a
+href="https://www.practicalmachinist.com/forum/threads/average-quote-turn-around-time-for-custom-tooling.363339/">Practical
+Machinist thread</a> (read directly).</p>
+<p><strong>Win-rate benchmarks.</strong> I found no metals-specific hit
+rate. A generic quoting glossary from a software vendor gives 25-40% for
+established customers and 10-20% for new prospects (<a
+href="https://zigaflow.com/resources/glossary/quote-conversion-rate">Zigaflow
+glossary</a>, search summary only, vendor, not metals).</p>
+<hr />
+<div class="sheet-head"><h2
+id="question-1-pain-in-practitioners-own-words-and-buyer-annoyances">Question
+1: Pain in practitioners' own words, and buyer annoyances</h2><span class="n">Section 2</span></div>
+<h3 id="what-practitioners-actually-say-read-directly">What
+practitioners actually say (read directly)</h3>
+<p>All quotes below are from pages I read in a browser.</p>
+<p><strong>Quoting fast without over-working it.</strong></p>
+<ul>
+<li>User DanASM, Apr 2, 2020, <a
+href="https://www.practicalmachinist.com/forum/threads/methods-to-expedite-quoting.375813/">Practical
+Machinist: methods to expedite quoting</a>: "It takes me less than 5 min
+to get a material quote from 4 major suppliers with competitive pricing
+and delivery." Also: "I have a few customers who want quotes within 72
+hours." And: "You cant waste time quoting every job down to the
+second."</li>
+<li>Same user on how he builds a number: after requesting quotes 4-5
+times "I have a reliable number to quote my customers from experience."
+This shows the buyer of metal (a shop) gets quick supplier quotes. The
+service center is the one answering those four-supplier requests.</li>
+</ul>
+<p><strong>Buyers shop around by sending the RFQ to
+everyone.</strong></p>
+<ul>
+<li>User MikeHalloran, Sep 12, 2011, <a
+href="https://www.eng-tips.com/threads/steel-plate.306405">Eng-Tips:
+steel plate</a>: "Either way, just fax a RFQ describing what you want to
+all the service centers you can find, and pick from the quotes." He adds
+that "Steel service centers are happy to supply cut rectangles to exact
+dimensions, but charge a little extra for the cross-cuts and for
+handling the 'small' pieces." The reader of an RFQ is one of several,
+and extras like cross-cuts change the price.</li>
+</ul>
+<p><strong>Small errors multiply on volume parts.</strong></p>
+<ul>
+<li>User implmex (a shop owner), Apr 18, 2019, <a
+href="https://www.practicalmachinist.com/forum/threads/average-quote-turn-around-time-for-custom-tooling.363339/">Practical
+Machinist</a>: "with volume parts a small error has big cumulative
+consequences." This is a machine shop, but the same math applies to a
+wrong unit or grade on a large order.</li>
+</ul>
+<p><strong>Customers ask for odd things, and the quote has to handle
+them.</strong></p>
+<ul>
+<li>User wheelieking71, Oct 10, 2014, <a
+href="https://www.practicalmachinist.com/forum/threads/quoting-a-job-anyone-get-a-request-like-this.292264/">Practical
+Machinist</a>: "I do also get asked A LOT, "how much if I supply
+material?"" Buyers also ask a supplier to quote against leftover pieces
+that may not exist.</li>
+</ul>
+<p><strong>Software and ERP for service centers (the supplier side, read
+directly).</strong></p>
+<ul>
+<li>Paul Parsons, VP of sales and marketing at 4GL (an ERP seller), in
+Metal Center News, Feb 27, 2026 (<a
+href="https://www.metalcenternews.com/editorial/search-back-issues/February2026/service-center-software/46080">Service
+Center Software</a>): "There are things that happen in metal
+distribution centers that don't happen in generic distribution
+companies. Metal service centers are cutting into plate. They have
+remnants that need to be taken into consideration. All of those things
+generic software struggles with."</li>
+<li>Shawne O'Connor, director of Paragon Consulting Services (maker of
+METALWARE): "Being able to work with multiple units of measures, mixing
+and matching your units. Those are key factors in managing your
+inventory." Both are ERP sellers, so they have a reason to say generic
+software falls short. For our decision, the useful point is that
+multiple units of measure and remnants are everyday realities for
+service centers.</li>
+</ul>
+<h3
+id="pain-stated-by-vendors-and-consultants-labeled-read-through-a-summarizing-tool">Pain
+stated by vendors and consultants (labeled, read through a summarizing
+tool)</h3>
+<ul>
+<li><strong>Handoffs.</strong> The Conga author says every handoff
+between teams adds a chance of miscommunication and each manual step
+adds risk, and that sales pushes for speed and lower prices while
+finance enforces margin limits, which creates exceptions and slow
+approvals.</li>
+<li><strong>Alternates.</strong> Utah Steel says requests for
+alternative materials or gauges force a full round of manual changes.
+This is the closest thing to a rep-side pain about changes after the
+first quote.</li>
+<li><strong>Wrong candidate chosen.</strong> eAlliance: 20 to 30
+look-alike candidates per part, rep judgment decides, wrong choice means
+a wrong shipment.</li>
+<li><strong>Vague requests.</strong> A fabricator, Staub Manufacturing,
+writes: "nothing slows down the quotation process more than having to
+stop and ask questions." Source: <a
+href="https://staubmfg.com/resources/six-things-you-need-to-get-fast-accurate-fabrication-quotes/">Staub,
+six things you need for fast accurate fabrication quotes</a>
+(summarizing tool; Staub is a fabricator and the page doubles as
+marketing). It lists what RFQs often lack: material type, nominal
+thickness, grade, special sourcing rules, finish, packaging, quality
+requirements, volume, and deadline.</li>
+<li><strong>Questions back to the buyer.</strong> This supports the
+"one-click buyer questions" idea in a general way: stopping to ask is
+the slow step, so questions that are cheap for the buyer to answer
+matter. It does not prove buyers dislike being asked.</li>
+</ul>
+<h3 id="buyer-annoyances-thin">Buyer annoyances (thin)</h3>
+<p>Evidence that buyers dislike receiving quotes is weak. What I
+found:</p>
+<ul>
+<li><strong>No response to a quote request.</strong> A buyer, user
+silentrunning, Mar 18, 2008, wrote that he requests quotes from new
+vendors and never hears back, and that lead times for basic raw
+materials and hardware seem unreasonable (<a
+href="https://elsmar.com/elsmarqualityforum/threads/experiencing-an-unreasonable-increase-in-lead-times-when-requesting-quotes.26481/page-2">Elsmar
+Cove thread</a>, summarizing tool). It is from 2008 and about general
+sourcing.</li>
+<li><strong>Suppliers' view of buyers.</strong> Same thread (summarizing
+tool): suppliers produce many full quotes and land few, dislike "price
+fishing" with three-quote requests when the mind is already made up, and
+note that buyers ask for a firm quote when unsure they can buy soon.
+This is the supplier side of the same relationship.</li>
+<li><strong>Speed expectation.</strong> The Paperless Parts survey above
+(vendor survey).</li>
+<li><strong>What the buyer's RFQ asks for, which is the best evidence of
+what a quote must contain.</strong> Real government RFQs (see the next
+section) ask for unit and total price, a delivery date estimate,
+shipping included in the price, and proof paperwork. A USACE RFQ says
+"DO NOT quote shipping separately" and says offers are judged on price,
+speed of delivery, and past performance. A buyer who gets a quote that
+leaves these out has to ask again.</li>
+<li><strong>Quote validity and price firmness.</strong> I could not find
+buyer complaints about this. Supplier terms pages show metals quotes
+valid for as little as one business day for volatile metals, and others
+price at the "prevailing price" at time of shipment (<a
+href="https://www.avalon.aero/quote-terms/">Avalon</a>, search summary
+only; not a metals service center). Treat as background for the
+price-benchmark track.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="question-3-costliest-reading-errors">Question 3: Costliest
+reading errors</h2><span class="n">Section 3</span></div>
+<p>The evidence is a mix of forum stories and vendor marketing. No
+source gave a cost per error for a service center.</p>
+<h3 id="1-wrong-grade-or-material-variant">1. Wrong grade or material
+variant</h3>
+<ul>
+<li><strong>A stainless tubing mix-up (Evident Scientific, which sells
+XRF analyzers, so it has a reason to tell this story).</strong> A
+manufacturer ordered SS304 tubing and received SS303, which cracks when
+welded. The paperwork said 304. The error showed up in non-destructive
+testing after 1,800 pieces were cut and machined, so those pieces were
+unusable. The article says incorrect certificates and markings raise the
+risk at the mill, service center, and fabricator. (<a
+href="https://ims.evidentscientific.com/en/insights/the-case-of-the-cracked-weld-a-metal-manufacturers-story">Evident:
+The Case of the Cracked Weld</a>, summarizing tool, vendor.)</li>
+<li><strong>A 410 versus 410-S shipment.</strong> A forum thread
+(Engineers Edge) describes a brake rotor maker who ordered 410
+stainless, got 410-S, found out at the first heat-treat step, and was
+told the vendor would replace the material but not pay the roughly
+$7,200 in process cost. A reply argues that once you accept the shipment
+it is your material. I could not open the page (bot check), so this is
+<strong>search summary only</strong>: <a
+href="https://ns1.engineersedge.com/engineering-forum/showthread.php/4882-Vendor-Supplied-Wrong-Material-Where-does-the-responsibility-end">Engineers
+Edge thread</a>.</li>
+<li><strong>Takeaway.</strong> When the wrong grade is discovered
+downstream, the buyer's processing cost can far exceed the material
+cost, and who pays is a fight. This is the strongest case for "ask,
+don't guess" on grade.</li>
+</ul>
+<h3 id="2-wrong-thickness-from-a-gauge-number">2. Wrong thickness from a
+gauge number</h3>
+<ul>
+<li>The same gauge number means different thicknesses by metal. For 16
+gauge: steel 0.0598 in, galvanized 0.0635 in, stainless 0.0625 in,
+aluminum 0.0508 in. Source: <a
+href="https://www.xometry.com/resources/materials/the-weird-thing-about-gauge/">Xometry,
+"The Weird Thing About Gauge"</a> (summarizing tool; Xometry sells
+manufacturing services). Xometry says the table is not
+comprehensive.</li>
+<li>A gauge-to-thickness mismatch can mean a part that is out of
+tolerance. I found no source that put a dollar cost on a gauge error, so
+the cost is inferred, not documented.</li>
+</ul>
+<h3 id="3-wrong-part-picked-from-look-alike-candidates">3. Wrong part
+picked from look-alike candidates</h3>
+<ul>
+<li>eAlliance (steel bar distributor): wrong selections led to wrong
+shipments. No numbers. Vendor case study.</li>
+</ul>
+<h3 id="4-missing-or-late-paperwork">4. Missing or late paperwork</h3>
+<ul>
+<li><strong>Navy HY-80 plate RFQ.</strong> The buyer requires full
+traceability, complete physical and chemical mill test reports showing
+MIL-S-16216 compliance on delivery, DFARS 252.225-7009 specialty-metals
+compliance, and a DX-A1 rated order. The quote itself must confirm MTR
+capability and include a certificate of compliance. A quote that misses
+these is non-responsive. Source: <a
+href="https://www.highergov.com/contract-opportunity/mil-s-16216-hy-80-steel-plate-n4215826qe068-o-78f78/">HigherGov
+listing of RFQ N4215826QE068</a> (summarizing tool). This is a
+hidden-requirements example in plain sight: the paperwork is in the RFQ,
+but a rep who reads only the item line misses it.</li>
+<li><strong>Certs arriving after the material.</strong> On an Elsmar
+Cove quality forum thread, users say it is common for material to arrive
+before certs, and certs can get lost when a distributor splits a lot.
+Summarizing tool: <a
+href="https://elsmar.com/elsmarqualityforum/threads/material-certification-for-steel-we-receive.39760/page-2">Elsmar
+thread, page 2</a>.</li>
+<li><strong>A buyer rejecting material for a missing cover
+letter.</strong> User LittleInch, Dec 11, 2019, on <a
+href="https://www.eng-tips.com/threads/asme-material-certificate.461326/">Eng-Tips:
+ASME material certificate?</a> (read directly), answered a poster whose
+client wanted a certificate tied to an ASME edition: "I find it
+difficult to believe someone would "reject" materials on these grounds."
+That shows buyers do set paperwork conditions that surprise
+suppliers.</li>
+<li><strong>What a certificate has to show.</strong> User
+marcolino21576, Jan 24, 2012, on <a
+href="https://www.eng-tips.com/threads/is-there-a-standard-for-material-test-reports.314690/">Eng-Tips:
+standard for material test reports</a> (read directly): a 3.1
+certificate "must reflect property of the material you are purchasing."
+So the type of certificate changes what the supplier must deliver.</li>
+<li><strong>Cost of a missing MTR.</strong> One traceability software
+vendor page claims a 14-day hold and a $240K recall cost per event, with
+no source (<a
+href="https://oxmaint.com/industries/steel-plant/steel-product-certification-material-traceability">OxMaint</a>,
+search summary only). I do not rely on it.</li>
+</ul>
+<h3 id="5-wrong-unit">5. Wrong unit</h3>
+<ul>
+<li>I found no documented unit-error story. The MCN piece above (read
+directly) shows service centers mix units of measure routinely, which is
+the setup for the error.</li>
+</ul>
+<h3 id="what-this-means-for-the-demo-inference-not-from-a-source">What
+this means for the demo (inference, not from a source)</h3>
+<ul>
+<li>The most damaging errors are the ones that travel: grade and
+certification gaps that surface only after material has been processed
+or inspected. Those are the places where "ask, don't guess" saves the
+most.</li>
+<li>The gauge and unit errors are common and easy to demonstrate, but no
+source says they cost the most.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="messy-line-examples">Messy line examples</h2><span class="n">Section 4</span></div>
+<p>Public solicitations only. I removed the names and contact details of
+government staff. "Verbatim" means I read the text directly.</p>
+<h3 id="a-usaf-consumable-metals-rfq-verbatim-read-directly">A. USAF
+consumable metals RFQ (verbatim, read directly)</h3>
+<p>Source: <a
+href="https://www.bidnetdirect.com/public/supplier/solicitations/statewide/2476672502/abstract">BidNet
+listing of FA302024Q0014 (Air Force, Gulfport MS, closed
+2024-02-01)</a>. The government's SAM.gov notice is <a
+href="https://sam.gov/opp/1be44b842c6e4f8bbbf05ddbc3c61b78/view">here</a>.</p>
+<pre><code>(80 Each) Steel Plate (Low Carbon), A36 3/8&quot; x 4&#39; x 8&#39; or similar
+(40 Each) Steel Plate (Low Carbon), A1011- 11 Gage x 4&#39; x 8&#39; or similar
+(100 Each) HR Galvanized Sheet 26 Gage x 4&#39; x 10&#39; or similar
+(20 Each) Aluminum Plate, 5052-32 - .063 x 4&#39; x 8&#39; or similar.
+(20 Each) STAINLESS Steel 2B T-304 - 16 Gage x 4 x 8 or similar</code></pre>
+<p>Also in the notice: "Please include Shipping/Delivery in quote.
+Quested delivery within 30 days ARO. Forklift on site, need to package
+all steel in stacks of 10 max, due to lift capability."</p>
+<p>Why it is messy:</p>
+<ul>
+<li>"or similar" on every line.</li>
+<li>The last line writes "4 x 8" with no units; the lines above use
+feet.</li>
+<li>"T-304" and "2B" run together.</li>
+<li>"Aluminum Plate, 5052-32 - .063" is 0.063 in, which is thin enough
+to be sheet, not plate (my reading, check with the domain track).</li>
+<li>"A1011" is the ASTM spec for hot-rolled sheet, but the line calls it
+"Steel Plate" with an 11 gage thickness.</li>
+<li>The 16 gage stainless should read as 0.0625 in per the Xometry table
+above, not 0.060 in.</li>
+</ul>
+<h3 id="b-usace-steel-rfq-verbatim-read-directly">B. USACE steel RFQ
+(verbatim, read directly)</h3>
+<p>Source: <a
+href="https://www.bidnetdirect.com/public/supplier/solicitations/statewide/2403776002/abstract">BidNet
+listing, USACE St. Paul District, Pleasant Valley, Iowa, April
+2023</a>.</p>
+<pre><code>ASTM A-572 G50 1.25&quot; x 96&quot; x 144&quot; 3 EA
+ASTM A-36 0.75&quot; x 8&quot; x 20&#39; 10 EA
+ASTM A-36 W12 x 79 Beam 20&#39; 3 EA
+ASTM A-36 Angle 0.75&quot; x 8&quot; x 6&quot; x 20&#39; 4 EA</code></pre>
+<p>Why it is messy: mixed inches and feet on one line, "G50" for Grade
+50, the quantity at the end of the line, and "Angle 0.75 x 8 x 6"
+without saying which leg is which. The notice also says to give "unit
+pricing for each item," include a delivery date estimate, and ship FOB
+destination with shipping not quoted separately.</p>
+<h3
+id="c-state-of-iowa-rfq-2021-verbatim-read-directly-from-the-pdf-the-fetch-tool-saved">C.
+State of Iowa RFQ, 2021 (verbatim, read directly from the PDF the fetch
+tool saved)</h3>
+<p>Source: <a
+href="https://bidopportunities.iowa.gov/Home/GetBidOpportunityDocument/e7ca77d0-dcf9-41e7-ad5c-dc15cca2a45e">State
+of Iowa RFQ 245, DB22245005, dated 2021-07-16</a>. Each line has a short
+name and a longer description. They do not always agree.</p>
+<pre><code>Line 6   Stainless Tubing 1 x 1 x .05
+         Stainless Steel Tubing Type 304, 1&quot; x 1&quot; x .065 wall thickness x 20&#39; Long
+Line 8   Tubing 1 x 1 x .065
+         SquareTubing A513/A500 Grade B, 1 x 1&quot; x .065 wall thickness x 24&#39; Long
+Line 12  Cold Rolled Sheets
+         Cold Rolled Sheets CQ/A366, 48&quot; x 96&quot; x 18 Gauge
+Line 13  Hot Rolled Sheets
+         Hot Rolled Sheets CQ/A569, 48&quot; x 96&quot; x 10 Gauge
+Line 14  Stainless Sheets  (filed under &quot;Steel, Mild: Bars, Plates, Rods, Sheets, Strips, Tubes, etc.&quot;)
+         Stainless Steel Sheets Type 304-2B, 60&quot; x 120&quot; x 14 Gauge
+Line 2   HR Angle 1 x 1 x 1/8
+         Stainless Steel Angle Type 304, 1&quot; x 1&quot; x 1/8&quot; x 20&#39; Long
+Line 11  Tubing 1 1/2 x 1 x .083
+         Rectangular Tubing A513/A500 Grade B, 1 1/2&quot; x 1&quot; x .083 wall thickness x 24&#39; Long</code></pre>
+<p>Why it is messy, from the text itself:</p>
+<ul>
+<li><strong>Line 6</strong>: the short name says ".05" and the
+description says ".065". The two disagree.</li>
+<li><strong>Line 2</strong>: the short name says "HR Angle" (hot rolled)
+and the description says "Stainless Steel Angle Type 304". The short
+name and description point to different materials.</li>
+<li><strong>Line 14</strong>: stainless sheet filed under the "Steel,
+Mild" commodity heading.</li>
+<li><strong>Lines 5, 8, 10, 11</strong>: "A513/A500 Grade B" lists two
+specs with a slash. In my background knowledge, A513 is mechanical
+tubing and A500 is structural tubing, so the slash hides a real choice.
+Verify with the domain track.</li>
+<li><strong>Lines 12, 13</strong>: "CQ/A366" and "CQ/A569" cite specs
+that, as I recall, were later replaced by A1008 and A1011. The Air Force
+RFQ above uses "A1011". Verify with the domain track.</li>
+<li><strong>Line 8</strong>: "1 x 1" x .065" has an inch mark on the
+second number only.</li>
+<li>The state RFQ also says a bid is valid for 90 days.</li>
+</ul>
+<h3 id="d-navy-hy-80-plate-read-through-a-summarizing-fetch-tool">D.
+Navy HY-80 plate (read through a summarizing fetch tool)</h3>
+<p>Source: <a
+href="https://www.highergov.com/contract-opportunity/mil-s-16216-hy-80-steel-plate-n4215826qe068-o-78f78/">HigherGov
+listing of N4215826QE068</a>. The summary reported: "PLATE, ALLOY STEEL,
+GRADE HY-80", spec MIL-S-16216, 5 ft x 20 ft x 0.625 in (5/8") thick,
+quantity 1, an NSN, and an equivalent reference "(or equal)".
+Requirements: full traceability, complete physical and chemical MTRs,
+DFARS 252.225-7009, priority rating DX-A1. The thickness is given as 5/8
+in and 0.625 in in two forms. The paperwork requirements are the point
+of this one.</p>
+<h3 id="e-other-leads-search-summary-only-check-before-use">E. Other
+leads (search summary only; check before use)</h3>
+<ul>
+<li>A Coast Guard RFQ 70Z04026Q60204Y00 is reported to include "3/8 A-36
+HR PLT 96 X 240" (5 each), a 1/2" A-36 plate in the same size (15 each),
+a 1" plate at 96 x 240, and a 3/4" plate at 48 x 96, plus a 14-inch A992
+wide-flange beam. I could not open the notice. One summary page says
+delivery by Oct 7, 2026 and another says a close date of Aug 19, 2026,
+which conflict.</li>
+<li>An Air Force Sheppard AFB RFQ reportedly lists "PL3848 ST Plate 3/8
+X 4' X8' A36" (fifty). I did not open it.</li>
+<li>A Zoro retail listing URL for a stainless sheet ends with
+"3044-16gx48x96" (product slug with grade, gauge, and size run
+together). I read the URL only: <a
+href="https://www.zoro.com/zoro-select-silver-ss-sheet-rectangle-48in-overall-w-leathergrain-3044-16gx48x96/i/G5591253/">Zoro</a>.
+Useful as a shorthand example, not an RFQ.</li>
+<li>Vendor page <a
+href="https://www.salesape.ai/articles/how-independent-valve-piping-distributors-streamline-rfq-triage-without-burning-out-sales-desks">SalesAPE</a>
+lists "316L stainless steel seamless pipe" and "Duplex 2205 vs. 304/304L
+stainless" as examples of ambiguous metallurgy (summarizing tool,
+vendor).</li>
+</ul>
+<h3 id="same-item-different-words-built-from-the-sources-above">Same
+item, different words (built from the sources above)</h3>
+<p>All four describe 16 gauge stainless 304 sheet, 4 x 8 ft. Each comes
+from a different real RFQ or listing style:</p>
+<ul>
+<li><code>STAINLESS Steel 2B T-304 - 16 Gage x 4 x 8 or similar</code>
+(Air Force RFQ, verbatim)</li>
+<li><code>Stainless Steel Sheets Type 304-2B, 60" x 120" x 14 Gauge</code>
+(Iowa RFQ, different size, same style)</li>
+<li><code>3044-16gx48x96</code> (retailer slug)</li>
+<li>Per the Xometry table, the thickness these should resolve to is
+0.0625 in for 16 gauge stainless.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="search-terms-and-sources-tried">Search terms and sources
+tried</h2><span class="n">Section 5</span></div>
+<p>Terms that returned useful material:</p>
+<ul>
+<li>"quoting RFQ turnaround time service center inside sales quote
+response time hit rate"</li>
+<li>"Practical Machinist estimating RFQ quoting pain points"</li>
+<li>"Modern Distribution Management quote speed win rate distributors
+quoting process inside sales"</li>
+<li>"Metal Center News quoting automation service center"</li>
+<li>"steel service center AI quoting RFQ email PDF extraction inside
+sales"</li>
+<li>"sheet metal gauge confusion wrong thickness ordered stainless
+galvanized"</li>
+<li>"RFQ 304 stainless sheet 16 ga 4x8" and "RFQ steel plate A36 mill
+test"</li>
+<li>Domain-limited searches on practicalmachinist.com, eng-tips.com, and
+metalcenternews.com</li>
+</ul>
+<p>Terms and sources that came up empty:</p>
+<ul>
+<li>First-person posts from service center inside sales reps (only job
+postings and vendor blogs).</li>
+<li>LinkedIn posts on quoting from metals reps. The search tool did not
+return any LinkedIn pages.</li>
+<li>Metals-specific hit rate or quote-to-order benchmarks.</li>
+<li>MSCI (Metals Service Center Institute) public material on quoting.
+Not found.</li>
+<li>Any dollar cost for a wrong-gauge or wrong-unit error.</li>
+<li>A DFARS rejection cost for a distributor.</li>
+</ul>
+<p>Access problems. Plain automated fetches returned 403 for Practical
+Machinist, Eng-Tips, MDM, MCN, BidNet, and Engineers Edge. I read
+several of those pages through a normal browser tab. The MDM articles
+returned only a headline or a different page when loaded, and the
+Engineers Edge page showed a bot check. I did not touch reddit.com.</p>
+<div class="sheet-head"><h2 id="what-i-would-not-trust-yet">What I would not trust yet</h2><span class="n">Section 6</span></div>
+<ul>
+<li>All "first responder wins" statistics. Their sources are software
+sellers or unnamed.</li>
+<li>Any "X% faster" figure. They are vendor self-reports with no
+baseline.</li>
+<li>The Engineers Edge $7,200 story and the Coast Guard line items until
+someone opens the originals.</li>
+<li>The statement that ASTM A366 and A569 were replaced. It is my
+recall, flagged for the domain track.</li>
+</ul>
+<div class="sheet-head"><h2 id="cleanup-needed">Cleanup needed</h2><span class="n">Section 7</span></div>
+<p>Nothing to delete. I opened one browser tab while reading pages and
+closed it. Scratch files from this run are in the session scratchpad
+only (<code>.../scratchpad/ow/</code>, including blocked-page HTML from
+failed curl attempts) and are not in the repo.</p>
+</body>
+</html>

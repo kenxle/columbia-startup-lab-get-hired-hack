@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Domain Rules: Specs, Gauges and Hidden Requirements</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%8D</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    /* ===================================================================
+       Research report / brief, St. Clair document style system.
+
+       Spec:      personal/docs/document-style-guide.md   (the authority)
+       Reference: personal/lib/templates/document.css
+                  personal/lib/templates/system-tokens.css
+                  personal/lib/templates/document-skeleton.html
+
+       Those four files are read-only source of truth. This header maps the
+       system onto the markup pandoc emits for a report. It does not invent a
+       second look, and it does not redefine a token's meaning.
+
+       The tokens below are copied from system-tokens.css because this header is
+       injected into a standalone HTML file that has to travel on its own; it
+       cannot @import a file from the repo. If a token changes upstream, copy the
+       new value down. Never give a token a different value here.
+       =================================================================== */
+
+    :root {
+      /* ---------- colour (mirrors system-tokens.css) ---------- */
+      --white:#ffffff;
+      --paper:#f7f7f5;
+      --ink:#1f1e1a;
+      --ink-soft:#55534b;
+      --ink-faint:#6b6860;
+      --rule:#dcdad6;
+      --rule-ondark:#4a4842;
+
+      --purple:#46188c;
+      --purple-tint:#f1ebfa;
+      --link:#6d28d9;
+      --cobalt:#0760c7;
+      --cobalt-tint:#e6effc;
+      --sage-fill:#8fb5a0;
+      --sage:#637a63;
+      --sage-tint:#e7f1ed;
+
+      --ink-soft-ondark:#d9d7d1;
+      --ink-faint-ondark:#b3b0a8;
+
+      /* ---------- type ---------- */
+      --font-display:"Schibsted Grotesk","Hanken Grotesk",system-ui,sans-serif;
+      --font-body:"Hanken Grotesk",system-ui,sans-serif;
+      --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+      --w-body:400; --w-medium:500; --w-display:600; --w-bold:700;
+
+      /* ---------- spacing, 4px-rooted ---------- */
+      --s1:4px; --s2:8px; --s3:12px; --s4:18px;
+      --s5:28px; --s6:44px; --s7:72px; --s8:104px;
+
+      /* ---------- lines, radius, layout ---------- */
+      --r:4px; --r-lg:6px;
+      --line:1px solid var(--rule);
+      --divider:2px solid var(--ink);
+      --maxw:1080px;
+      --read:68ch;
+
+      /* ---------- chart series ----------
+         Charts and diagrams read their colours from these, never from a hex
+         written into a report's markdown. Repoint a series here and every
+         Plotly chart and Mermaid diagram in every report follows. The order is
+         a categorical palette: each step changes hue AND lightness, so the
+         series stay apart for a colour-blind reader and in greyscale. */
+      --chart-1:var(--cobalt);
+      --chart-2:var(--sage);
+      --chart-3:var(--purple);
+      --chart-4:var(--sage-fill);
+      --chart-5:var(--ink-faint);
+      --chart-6:var(--ink);
+    }
+
+    /* ---------- base ---------- */
+
+    *{box-sizing:border-box}
+
+    /* ---------- reset pandoc's own default stylesheet ----------
+       pandoc --standalone writes a default <style> ahead of this one. Most of it
+       loses to the rules below on source order, but these five do not, because
+       this file never declared the same property. Each one is a visible defect,
+       so they are cleared here rather than rediscovered on a built page.
+         header            centred, 4em bottom margin
+         table             display:block (the table stops filling its column)
+         tbody, th         stray 1px black rules above and below the table body
+         blockquote        a 2px left border, which the style guide forbids
+         a:visited         black links
+         h5, h6            italic */
+    header{text-align:left;margin-bottom:0}
+    table{display:table;font-variant-numeric:normal}
+    tbody{border-top:none;border-bottom:none}
+    th{border-top:none}
+    blockquote{border-left:none}
+    a:visited{color:var(--link)}
+    h5,h6{font-style:normal}
+
+    html{
+      scroll-behavior:smooth;
+      background:var(--white);
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+
+    /* The body IS the document wrapper: pandoc emits no container of its own.
+       Horizontal inset here, so nothing downstream has to re-apply it. */
+    body{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--s5) var(--s8);
+      background:var(--white);
+      color:var(--ink);
+      font-family:var(--font-body);
+      font-size:17px;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ---------- type scale ---------- */
+
+    h1,h2,h3,h4,h5,h6{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      line-height:1.12;
+      letter-spacing:-.012em;
+      color:var(--ink);
+      margin:0;
+      /* Sentence case only. Never set a heading in all caps. */
+    }
+    h1{font-size:clamp(34px,4.6vw,52px)}
+    h2{font-size:clamp(25px,3vw,34px)}
+    h3{font-size:clamp(19px,2vw,23px);margin:var(--s6) 0 var(--s3)}
+    h4{font-size:18px;margin:var(--s5) 0 var(--s3)}
+    h5,h6{font-size:16px;color:var(--ink-soft);margin:var(--s5) 0 var(--s2)}
+
+    /* One emphasised word in a heading reads as the accent. The system has two
+       faces, so the accent is colour, not a third typeface. */
+    h1 em,h2 em,h3 em{font-style:normal;color:var(--cobalt)}
+
+    p{margin:0 0 var(--s4)}
+    p:last-child{margin-bottom:0}
+    strong{font-weight:var(--w-bold);color:var(--ink)}
+
+    /* Reading measure on running prose. Components reset it below, because a
+       card or a table cell sets its own width. */
+    p,ul,ol,dl{max-width:var(--read)}
+    :is(.stat,.card,.pullquote,.keytakeaway,.rimage,.eyebrow,.callout,.callout-warn,
+        .xref,blockquote,nav,figure,td,th,details,.sheet-head,.insight) :is(p,ul,ol,dl){max-width:none}
+
+    a{
+      color:var(--link);
+      text-decoration:underline;
+      text-decoration-thickness:1px;
+      text-underline-offset:3px;
+      overflow-wrap:anywhere;
+    }
+    :focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:var(--r)}
+
+    ul,ol{margin:0 0 var(--s4);padding-left:1.4em}
+    li{margin:0 0 var(--s2)}
+    li::marker{color:var(--cobalt)}
+
+    hr{border:none;border-top:var(--line);margin:var(--s6) 0;max-width:var(--read)}
+    /* A markdown "---" before a section is redundant: the section already opens
+       with its own hanging rule. */
+    hr:has(+ .sheet-head){display:none}
+
+    /* ---------- hero (pandoc's title block) ---------- */
+
+    header#title-block-header{padding-block:var(--s7) var(--s6)}
+    h1.title{max-width:17ch;margin:0 0 var(--s4)}
+    header#title-block-header p{
+      font-size:18px;
+      line-height:1.55;
+      color:var(--ink-soft);
+      max-width:58ch;
+      margin:0;
+    }
+    header#title-block-header p + p{margin-top:var(--s2)}
+    /* The subtitle is the hero's lede: 20px, ink-soft, one line of its own. */
+    header#title-block-header p.subtitle{font-size:20px;line-height:1.55}
+
+    /* ---------- document metadata (date, prepared for, track, ...) ----------
+       build_report_html.py lifts these into the title block as a definition
+       list. One fact per row, label beside value, never joined into a run-on
+       sentence. The grid holds every value on one left edge so the block scans
+       as a list of labelled facts. */
+
+    dl.docmeta{
+      display:grid;
+      grid-template-columns:max-content minmax(0,1fr);
+      column-gap:var(--s4);
+      row-gap:var(--s2);
+      align-items:baseline;
+      max-width:var(--read);
+      margin:var(--s5) 0 0;
+      padding-top:var(--s4);
+      border-top:var(--line);
+    }
+    dl.docmeta dt{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+    }
+    dl.docmeta dd{
+      margin:0;
+      font-size:16px;
+      line-height:1.5;
+      color:var(--ink-soft);
+    }
+    /* A metadata line with no label spans both columns rather than sitting in
+       the value column under an empty label. */
+    dl.docmeta dd.solo{grid-column:1/-1}
+
+    /* ---------- the chrome: numbered sections under a hanging rule ----------
+       build_report_html.py wraps every h2 in this row. The rule always runs the
+       full column width (never a short stub over the heading), and the section
+       number aligns to the heading's baseline (never the bottom of the row). */
+
+    .sheet-head{
+      display:flex;
+      gap:var(--s4);
+      align-items:baseline;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      border-top:var(--divider);
+      padding-top:var(--s3);
+      margin:var(--s7) 0 var(--s6);
+    }
+    .sheet-head h2{flex:1 1 20ch;margin:0}
+    .sheet-head .n{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+      white-space:nowrap;
+    }
+    /* The first section sits right under the hero and needs no extra air. */
+    header#title-block-header + .sheet-head,
+    nav#TOC + .sheet-head{margin-top:0}
+
+    /* ---------- table of contents ---------- */
+
+    nav#TOC{
+      background:var(--paper);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:0 0 var(--s7);
+      font-size:16px;
+    }
+    nav#TOC::before{
+      content:"Contents";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--ink-faint);
+      margin-bottom:var(--s3);
+    }
+    nav#TOC ul{list-style:none;padding:0;margin:0}
+    nav#TOC > ul > li{margin-bottom:var(--s2)}
+    nav#TOC ul ul{padding-left:var(--s4);margin-top:var(--s2)}
+    nav#TOC li{margin-bottom:var(--s1)}
+    nav#TOC a{color:var(--ink);text-decoration:none}
+    nav#TOC a:hover{text-decoration:underline;text-decoration-color:var(--rule)}
+
+    /* ---------- tables: naked ruled, the system default ---------- */
+
+    .table-scroll{
+      margin:var(--s5) 0 var(--s6);
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .table-scroll table{margin:0}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:16px;
+      line-height:1.5;
+      margin:var(--s5) 0 var(--s6);
+    }
+    thead th{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--ink-faint);
+      text-align:left;
+      vertical-align:bottom;
+      padding:0 var(--s4) var(--s3) 0;
+      border-bottom:var(--divider);
+    }
+    tbody td{
+      padding:var(--s4) var(--s4) var(--s4) 0;
+      border-bottom:var(--line);
+      vertical-align:top;
+    }
+    tbody tr:last-child td{border-bottom:none}
+    td:last-child,th:last-child{padding-right:0}
+    /* The first column is usually a short row label. Auto layout squeezes it to
+       one word per line when later columns carry prose, so floor it. */
+    thead th:first-child,tbody td:first-child{min-width:8.5rem}
+
+    /* ---------- blockquote: a quiet structural panel, no single-side border ---------- */
+
+    blockquote{
+      margin:var(--s5) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:16px;
+      color:var(--ink-soft);
+    }
+    blockquote p{margin:0}
+    blockquote p + p{margin-top:var(--s3)}
+
+    /* ---------- code ---------- */
+
+    code{
+      font-family:var(--font-mono);
+      font-size:15px;
+      background:var(--cobalt-tint);
+      color:var(--ink);
+      padding:.1em .35em;
+      border-radius:3px;
+    }
+    pre{
+      font-family:var(--font-mono);
+      font-size:15px;
+      line-height:1.55;
+      background:var(--cobalt-tint);
+      color:var(--ink);
+      padding:var(--s4) var(--s5);
+      border-radius:var(--r);
+      overflow-x:auto;          /* a long line scrolls; it never widens the page */
+      margin:var(--s5) 0;
+    }
+    pre code{background:none;padding:0;font-size:inherit;color:inherit}
+    /* Pandoc embeds its own syntax theme. Its comment and string colours fall
+       under the 4.5:1 floor on this tint, so every token is re-pointed at the
+       document palette. !important beats pandoc's `code span.*` rules whatever
+       the source order turns out to be. */
+    pre code span{color:var(--ink) !important}
+    pre code span.co,pre code span.do{color:var(--ink-faint) !important;font-style:italic}
+    pre code span.st,pre code span.vs,pre code span.ss,pre code span.ch,
+    pre code span.fu,pre code span.at{color:var(--cobalt) !important}
+    pre code span.kw,pre code span.cf,pre code span.dt,pre code span.bu,
+    pre code span.im{color:var(--purple) !important}
+    pre code span.dv,pre code span.bn,pre code span.fl,pre code span.cn,
+    pre code span.va{color:var(--ink) !important;font-weight:var(--w-medium)}
+    pre code span.er,pre code span.al{color:var(--ink) !important;font-weight:var(--w-bold)}
+
+    /* Mermaid blocks (```mermaid -> <pre class="mermaid">). Reset the code-block
+       tint; the Mermaid script replaces the text with an SVG diagram. */
+    pre.mermaid{
+      background:var(--white);
+      color:var(--ink);
+      font-family:var(--font-body);
+      border:var(--line);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:var(--s6) 0;
+      text-align:center;
+      overflow-x:auto;
+    }
+
+    /* ---------- figures and charts ---------- */
+
+    figure.chart{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+    }
+    figure.chart svg{max-width:100%;height:auto}
+    figure.chart figcaption{
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+    }
+    .chart-title{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:18px;
+      color:var(--ink);
+      margin-bottom:var(--s2);
+    }
+    /* Plotly charts (```plotly fenced JSON, rendered client-side). The figure
+       also carries .chart, so the frame above applies. */
+    figure.plotly-chart > div{width:100%}
+    figure.plotly-chart figcaption{font-style:normal;text-align:left}
+    pre.plotly{display:none}   /* hide the raw JSON until it renders */
+
+    /* ---------- stat tile and stat row ---------- */
+    /* Built like the system's facts grid: the figure first, in display weight,
+       then the explanation. Separation is the paper-versus-white step, never a
+       shadow. */
+
+    .stat{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+    }
+    .stat > p{margin:0}
+    .stat > p:first-child{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(32px,4vw,44px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+      color:var(--ink);
+      /* Proportional figures, not tabular: a stat tile is one standalone number,
+         not a column to align, and Schibsted's tabular set gives the decimal
+         point and the comma a full digit advance, which reads as "2 . 4". */
+    }
+    .stat > p:first-child strong{font-weight:var(--w-display);color:var(--ink)}
+    .stat > p + p{
+      font-size:16px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+    }
+    .stat-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:var(--s4);
+      margin:var(--s6) 0;
+    }
+    .stat-row > .stat{margin:0}
+
+    /* ---------- pull-quote card ---------- */
+
+    .pullquote{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+    }
+    .pullquote > p{margin:0}
+    .pullquote > p:first-child{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(20px,2.2vw,25px);
+      line-height:1.32;
+      letter-spacing:-.012em;
+      color:var(--ink);
+    }
+    .pullquote > p + p{
+      font-family:var(--font-body);
+      font-weight:var(--w-body);
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s4);
+    }
+
+    /* ---------- report image with attribution ---------- */
+
+    .rimage{margin:var(--s6) 0}
+    .rimage img{
+      display:block;
+      max-width:100%;
+      height:auto;
+      border:var(--line);
+      border-radius:var(--r);
+    }
+    .rimage > p{margin:0}
+    .rimage > p:last-child{
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+      margin-top:var(--s3);
+      max-width:var(--read);
+    }
+
+    /* ---------- eyebrow ---------- */
+
+    .eyebrow{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--cobalt);
+      margin:var(--s6) 0 var(--s2);
+    }
+    .eyebrow > p{margin:0}
+
+    /* ---------- insight panel: a tinted panel with a generated label row ----------
+       Canonical definition: personal/docs/document-style-guide.md, "Insight panel",
+       implemented in personal/lib/templates/document.css. Keep this block in step
+       with that one so a report and a one-pager render the same markup the same way.
+
+       Two variants, and two is the limit:
+         .insight          cobalt tint, label "Key insight"
+         .insight--caveat  purple tint, label "Caveat"
+
+       Contrast, measured. The label is 14px at display weight, under the WCAG
+       large-text threshold, so it has to clear 4.5:1 on its own tint:
+         cobalt label on cobalt-tint    5.17:1
+         purple label on purple-tint   10.17:1
+         sage label on sage-tint        4.05:1   fails, so there is no sage variant
+       Body text inside is ink: 14.39:1 on cobalt tint, 14.30:1 on purple tint.
+
+       Never give this panel a single-side coloured border. The tint is the device.
+
+       .callout and .callout-warn are the old class names. They are kept as aliases
+       because reports already written use them in their `::: callout` fenced divs.
+       New reports write `::: insight` and `::: {.insight .insight--caveat}`. */
+
+    .insight,.callout,.callout-warn{
+      margin:var(--s5) 0;
+      padding:var(--s5);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:16px;
+      line-height:1.6;
+    }
+    .insight,.callout{background:var(--cobalt-tint)}
+    .insight--caveat,.callout-warn{background:var(--purple-tint)}
+    .insight::before,.callout::before,.callout-warn::before{
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      margin-bottom:var(--s2);
+      padding-left:22px;
+      min-height:18px;
+      background-repeat:no-repeat;
+      background-position:left center;
+      background-size:16px 16px;
+    }
+    .insight::before,.callout::before{
+      content:"Key insight"; color:var(--cobalt);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230760c7' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E");
+    }
+    .insight--caveat::before,.callout-warn::before{
+      content:"Caveat"; color:var(--purple);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346188c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+    }
+    /*
+      Override the label text with data-label when "Key insight" or "Caveat" is
+      wrong for the content. The icon and the colour stay with the variant.
+      In markdown: `::: {.insight data-label="What this means"}`.
+    */
+    .insight[data-label]::before,.callout[data-label]::before,.callout-warn[data-label]::before{content:attr(data-label)}
+
+    .insight li::marker,.callout li::marker{color:var(--cobalt)}
+    .insight--caveat li::marker,.callout-warn li::marker{color:var(--purple)}
+    .insight > :first-child,.callout > :first-child,.callout-warn > :first-child{margin-top:0}
+    .insight > :last-child,.callout > :last-child,.callout-warn > :last-child{margin-bottom:0}
+
+    /* ---------- card and card grid ---------- */
+
+    .card{
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:var(--s5) 0;
+    }
+    .card > :first-child{margin-top:0}
+    .card > :last-child{margin-bottom:0}
+    .card p,.card li{font-size:16px;line-height:1.55}
+    .card > p:first-child strong{
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:18px;
+      line-height:1.2;
+      letter-spacing:-.012em;
+      color:var(--ink);
+      margin-bottom:var(--s2);
+    }
+    /* 260px caps the row at three cards on a 1080px page, which is the width the
+       facts grid is built for. At 240px a four-card row fits, and four columns of
+       body text break every card title onto two lines. */
+    .cardgrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:var(--s4);
+      margin:var(--s6) 0;
+    }
+    .cardgrid > .card{margin:0}
+
+    /* ---------- key takeaway: the one filled block ---------- */
+    /* A section's headline finding, in ink with white text. Short: a filled
+       block carries a line or two, never a paragraph. */
+
+    .keytakeaway{
+      margin:var(--s6) 0;
+      padding:var(--s5);
+      background:var(--ink);
+      color:var(--white);
+      border-radius:var(--r);
+    }
+    .keytakeaway > :first-child{margin-top:0}
+    .keytakeaway > :last-child{margin-bottom:0}
+    .keytakeaway p,.keytakeaway li{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:clamp(19px,2vw,23px);
+      line-height:1.35;
+      letter-spacing:-.012em;
+      color:var(--white);
+    }
+    .keytakeaway strong{color:var(--white)}
+    .keytakeaway em{font-style:normal;color:var(--sage-fill)}   /* 7.38:1 on ink */
+    .keytakeaway a{color:var(--white);text-decoration-color:rgba(255,255,255,.55)}
+
+    /* ---------- cross-reference drill-down ----------
+       Authored as a ::: xref fenced div of links to #appendix-<topic>; the
+       combiner rewrites those hrefs to the appendix section ids. */
+
+    .xref{
+      margin:0 0 var(--s5);
+      padding:var(--s3) var(--s4);
+      background:var(--paper);
+      border-radius:var(--r);
+      max-width:var(--read);
+      font-size:15px;
+      line-height:1.5;
+      color:var(--ink-soft);
+    }
+    .xref::before{
+      content:"\21B3  Drill down";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--cobalt);
+      margin-bottom:var(--s2);
+    }
+    /* One link per line. Several links run together as one long link when they
+       share a line, which a reviewer read as a single destination. */
+    .xref > *{display:block;margin:0}
+    .xref > * + *{margin-top:var(--s2)}
+    .xref a{
+      /* One link per line. Pandoc puts several xref links in a single paragraph,
+         so the links themselves have to be the blocks; making the paragraph a
+         block leaves them running together as one long link. */
+      display:block;
+      width:fit-content;
+      color:var(--ink);
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      text-decoration-color:var(--rule);
+    }
+    .xref a + a{margin-top:var(--s2)}
+    .xref a:hover{color:var(--cobalt);text-decoration-color:currentColor}
+    /* Legacy inline tag span, still styled if an author uses it directly. */
+    .xref .xref-tag{
+      display:inline-block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--cobalt);
+      margin-right:var(--s2);
+    }
+    .xref .xref-tag::before{content:"\21B3  "}
+
+    /* ---------- citation accordions ---------- */
+
+    details.cite-group{
+      background:var(--white);
+      border:var(--line);
+      border-radius:var(--r);
+      margin:0 0 var(--s3);
+      overflow:hidden;
+    }
+    details.cite-group summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:var(--s3);
+      min-height:44px;                /* tap target floor */
+      padding:var(--s3) var(--s4);
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:16px;
+      color:var(--ink);
+      cursor:pointer;
+      list-style:none;
+    }
+    details.cite-group summary:hover{background:var(--paper)}
+    details.cite-group summary::-webkit-details-marker{display:none}
+    details.cite-group summary::after{
+      content:"+";
+      font-family:var(--font-display);
+      font-size:20px;
+      font-weight:var(--w-medium);
+      color:var(--cobalt);
+      line-height:1;
+    }
+    details.cite-group[open] summary{background:var(--paper);border-bottom:var(--line)}
+    details.cite-group[open] summary::after{content:"\2212"}
+    details.cite-group ul{
+      margin:var(--s4) 0;
+      padding-left:var(--s6);
+      font-size:15px;
+      line-height:1.55;
+    }
+    details.cite-group ul li{margin-bottom:var(--s2)}
+
+    /* ---------- icons ----------
+       Authored inline as <i data-lucide="name"></i> and rendered to SVG on load.
+       Stroke weight tracks the type beside it: 1.75 next to body, 2 next to
+       display weights. */
+
+    i[data-lucide],svg.lucide{
+      display:inline-block;
+      width:1.05em; height:1.05em;
+      vertical-align:-.15em;
+      stroke-width:1.75;
+      flex:none;
+    }
+    .sheet-head h2 i[data-lucide],.sheet-head h2 svg.lucide,
+    h3 i[data-lucide],h3 svg.lucide{
+      color:var(--cobalt);
+      stroke-width:2;
+      width:.78em; height:.78em;
+      margin-right:var(--s3);
+    }
+    .card > p:first-child i[data-lucide],.card > p:first-child svg.lucide{
+      color:var(--cobalt);
+      margin-right:var(--s2);
+    }
+    .stat i[data-lucide],.stat svg.lucide{
+      width:22px; height:22px;
+      color:var(--cobalt);
+      vertical-align:0;
+      margin-bottom:var(--s1);
+    }
+
+    /* ---------- combined dossier ----------
+       build_report_html.py stitches the main report and each research track into
+       one page. These rules are here rather than in the build script so the whole
+       look lives in one file. */
+
+    section.doc{
+      border-top:var(--divider);
+      margin-top:var(--s8);
+      padding-top:var(--s7);
+    }
+    #doc0{border-top:none;margin-top:var(--s6);padding-top:0}
+    section.doc > h1.title{margin-top:0}
+    section.doc > header#title-block-header{padding-block:0 var(--s6)}
+
+    #mastercover{padding-block:var(--s7) var(--s6)}
+    #mastercover::before{
+      content:"Research dossier";
+      display:block;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      color:var(--cobalt);
+      margin-bottom:var(--s3);
+    }
+    #mastercover h1{max-width:17ch;margin:0 0 var(--s4)}
+    #mastercover .sub{font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:58ch}
+
+    #master-toc{
+      background:var(--paper);
+      border-radius:var(--r);
+      padding:var(--s5);
+      margin:0 0 var(--s7);
+    }
+    #master-toc h2{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:15px;
+      letter-spacing:0;
+      color:var(--ink-faint);
+      margin:0 0 var(--s3);
+    }
+    #master-toc ul{list-style:none;padding:0;margin:0}
+    #master-toc li{
+      display:flex;
+      gap:var(--s4);
+      align-items:baseline;
+      margin:0;
+      padding:var(--s3) 0;
+      border-bottom:var(--line);
+      font-size:16px;
+    }
+    #master-toc li:last-child{border-bottom:none}
+    #master-toc a{
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      color:var(--ink);
+      text-decoration:none;
+    }
+    #master-toc a:hover{text-decoration:underline;text-decoration-color:var(--rule)}
+    .toc-kind{
+      flex:0 0 96px;
+      font-family:var(--font-display);
+      font-weight:var(--w-display);
+      font-size:14px;
+      color:var(--ink-faint);
+    }
+
+    /* ---------- responsive ---------- */
+
+    @media (max-width:820px){
+      body{font-size:16px;padding-bottom:var(--s7)}
+      header#title-block-header{padding-block:var(--s6) var(--s5)}
+      .sheet-head{margin:var(--s6) 0 var(--s5)}
+      .stat-row,.cardgrid{grid-template-columns:1fr}
+      nav#TOC,#master-toc{margin-bottom:var(--s6)}
+      section.doc{margin-top:var(--s7);padding-top:var(--s6)}
+      table{font-size:15px}
+      thead th,tbody td{padding-right:var(--s3)}
+    }
+
+    /* On a phone the head row has no width to hold the heading and the number
+       side by side. Left to wrap, the number lands under the heading and reads
+       as an orphaned line; sent above, it opens the section the way the rule
+       does. Only below 560px, because a tablet still fits both on one baseline. */
+    @media (max-width:560px){
+      .sheet-head .n{order:-1;flex-basis:100%;margin-bottom:var(--s1)}
+      /* A phone has no room for a label column beside a value: a long "For:"
+         value would wrap to two words a line. The label sits above its value
+         instead, still one fact per block. */
+      dl.docmeta{grid-template-columns:minmax(0,1fr);row-gap:0}
+      dl.docmeta dt{margin-top:var(--s3)}
+      dl.docmeta dt:first-child{margin-top:0}
+      dl.docmeta dd.solo{margin-top:var(--s3)}
+      dl.docmeta dd.solo:first-child{margin-top:0}
+      /* The dossier's contents list: the 96px kind column leaves too little room
+         for a document title on a phone, so the kind sits above the title. */
+      #master-toc li{display:block}
+      #master-toc .toc-kind{display:block;margin-bottom:var(--s1)}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+    }
+
+    /* ---------- print ---------- */
+
+    @page{size:letter;margin:.7in .65in}
+
+    @media print{
+      *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+      body{max-width:100%;padding:0;font-size:10.5pt}
+      header#title-block-header{
+        min-height:78vh;
+        display:flex; flex-direction:column; justify-content:center;
+        break-after:page;
+      }
+      /* A letter page with 0.65in margins is about 690px of usable width, which
+         still fits three tiles or three cards. The 820px stacking rule above
+         would otherwise print one per row and waste most of the page. */
+      .stat-row{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+      .cardgrid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+      nav#TOC,#master-toc{break-inside:avoid}
+      .sheet-head{break-after:avoid;break-inside:avoid}
+      h3,h4{break-after:avoid}
+      table,blockquote,pre,pre.mermaid,figure.chart,figure.plotly-chart,
+      .stat,.stat-row,.pullquote,.rimage,.callout,.callout-warn,.insight,
+      .card,.cardgrid,.keytakeaway,.xref{break-inside:avoid}
+      /* No scrollbars on paper: show the whole table and let it shrink. */
+      .table-scroll{overflow:visible}
+      .table-scroll table{font-size:.72rem}
+      a{color:var(--ink);text-decoration:none}
+      .xref a::after{content:" (see appendix)";font-weight:var(--w-body);color:var(--ink-soft)}
+      /* Force every accordion open. `open` is an HTML attribute, not a CSS
+         property, so the UA's `details:not([open]) > :not(summary){display:none}`
+         has to be overridden directly. */
+      details > summary{display:list-item}
+      details:not([open]) > *:not(summary){display:block !important}
+      details.cite-group summary::after{display:none}
+      details.cite-group summary,details.cite-group[open] summary{background:none}
+      section.doc{break-before:page;border-top:none;margin-top:0;padding-top:0}
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      function draw() { if (window.lucide) window.lucide.createIcons(); }
+      if (document.readyState === "loading") window.addEventListener("DOMContentLoaded", draw);
+      else draw();
+    })();
+  </script>
+  <script>
+    /* Palette bridge. Charts and diagrams are drawn by JS, which cannot read a
+       CSS custom property on its own. Everything below pulls its colours from
+       the :root tokens above, so a palette change in one place moves every chart
+       and every diagram in every report. Never write a hex into a report's
+       markdown. */
+    window.__docTokens = (function () {
+      var cs = getComputedStyle(document.documentElement);
+      return function (name, fallback) {
+        var v = (cs.getPropertyValue(name) || "").trim();
+        /* A token defined as var(--other) resolves through getComputedStyle on
+           modern Chrome/Safari; if a browser hands back the literal var() text,
+           fall through to the fallback rather than feeding it to a chart. */
+        if (!v || v.indexOf("var(") === 0) return fallback;
+        return v;
+      };
+    })();
+  </script>
+  <!-- plotly-basic covers bar, scatter, line, area and pie, which is everything
+       these reports draw, at about a quarter of the full bundle's weight.
+       Plotly draws empty axes rather than failing on a type it does not carry,
+       so the render loop below checks PlotSchema and writes the error itself.
+       That is what makes the finalize gate able to see it. -->
+  <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+  <script>
+    /* Pandoc emits ```plotly blocks as <pre class="plotly"><code>…</code></pre>
+       with the JSON HTML-entity-encoded; reading textContent decodes it. The
+       report build also escapes $ -> \$ globally for math safety, which would
+       break JSON price labels, so undo that before parsing. Each block is a
+       JSON object: { data: [...], layout: {...}, config: {...}, caption: "..." }. */
+    (function () {
+      /* Charts that have been created but not yet drawn. Printing and the
+         finalize gate both look at a page nobody scrolled, so they need a way to
+         force the deferred ones. */
+      var pending = [];
+      function drawAll() { while (pending.length) pending.pop()(); }
+      window.renderAllCharts = drawAll;
+      window.addEventListener("beforeprint", drawAll);
+
+      function renderPlotly() {
+        if (!window.Plotly) return;
+        /* What this Plotly build actually registered. PlotSchema is the only
+           authority: an allow-list written by hand goes stale the moment the
+           bundle changes. */
+        var schema = null;
+        try { schema = Plotly.PlotSchema.get().traces; } catch (e) {}
+        function known(ty) { return !schema || Object.prototype.hasOwnProperty.call(schema, ty); }
+        var t = window.__docTokens;
+        var ink = t("--ink", "#1f1e1a");
+        var inkSoft = t("--ink-soft", "#55534b");
+        var rule = t("--rule", "#dcdad6");
+        var body = t("--font-body", '"Hanken Grotesk",system-ui,sans-serif');
+        var colorway = [
+          t("--chart-1", "#0760c7"), t("--chart-2", "#637a63"),
+          t("--chart-3", "#46188c"), t("--chart-4", "#8fb5a0"),
+          t("--chart-5", "#6b6860"), t("--chart-6", "#1f1e1a")
+        ];
+        document.querySelectorAll("pre.plotly").forEach(function (el) {
+          var spec;
+          try {
+            spec = JSON.parse(el.textContent.replace(/\\\$/g, "$"));
+          } catch (e) {
+            var err = document.createElement("p");
+            err.style.color = ink;
+            err.textContent = "Plotly chart error: " + e.message;
+            el.replaceWith(err);
+            return;
+          }
+          var fig = document.createElement("figure");
+          fig.className = "chart plotly-chart";
+          var div = document.createElement("div");
+          fig.appendChild(div);
+          if (spec.caption) {
+            var cap = document.createElement("figcaption");
+            cap.textContent = spec.caption;
+            fig.appendChild(cap);
+          }
+          el.replaceWith(fig);
+          var layout = Object.assign({
+            autosize: true, height: 380,
+            margin: { l: 64, r: 24, t: 44, b: 52 },
+            font: { family: body, size: 14, color: ink },
+            title: { font: { family: body, size: 17, color: ink }, x: 0, xanchor: "left" },
+            paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
+            colorway: colorway,
+            legend: { orientation: "h", y: -0.2, font: { color: inkSoft } }
+          }, spec.layout || {});
+          /* Axis labels must never be cut off. The fixed margins above are a
+             starting size, not a budget: automargin lets Plotly grow a margin to
+             fit whatever the tick labels and axis title actually need. Merge the
+             defaults UNDERNEATH the spec's own axis object, so a chart that sets
+             `xaxis: {tickangle: -35}` keeps automargin and the palette instead of
+             replacing the whole axis and silently dropping them. */
+          ["xaxis", "yaxis", "xaxis2", "yaxis2"].forEach(function (k) {
+            if (k === "xaxis" || k === "yaxis" || layout[k]) {
+              layout[k] = Object.assign({
+                automargin: true,
+                gridcolor: rule, zerolinecolor: rule, linecolor: rule,
+                tickfont: { color: inkSoft }
+              }, layout[k] || {});
+            }
+          });
+          /* Draw when the chart is near the viewport, not all of them at load.
+             Every newPlot with automargin does its own measure-and-relayout pass,
+             so drawing seven synchronously against a long document serialises
+             into tens of seconds before the page settles. Deferring means the
+             reader waits only for the chart they have reached. */
+          var cfg = Object.assign({ responsive: true, displayModeBar: false },
+                                  spec.config || {});
+          var drawn = false;
+          var draw = function () {
+            if (drawn) return;
+            drawn = true;
+            /* The basic bundle carries bar, scatter and pie only. Plotly does
+               not throw on a trace type it has not loaded: it draws the axes and
+               silently omits the data, so the chart looks styled and says
+               nothing. Nothing downstream can tell that from a real chart, so
+               check the registry first and fail in the words the finalize gate
+               greps for. */
+            var missing = (spec.data || [])
+              .map(function (d) { return d.type; })
+              .filter(function (ty) { return ty && !known(ty); });
+            if (missing.length) {
+              div.textContent = "Plotly chart error: trace type "
+                + missing.join(", ") + " is not in the basic bundle. "
+                + "Reshape as bar or scatter, or load the full bundle.";
+              return;
+            }
+            Plotly.newPlot(div, spec.data || [], layout, cfg);
+          };
+          if (typeof IntersectionObserver === "undefined") { draw(); return; }
+          pending.push(draw);
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              io.disconnect();
+              draw();
+            });
+          }, { rootMargin: "600px 0px" });
+          io.observe(fig);
+        });
+        /* #render-all is how a headless capture asks for the whole document at
+           once: the finalize gate's Chrome dump never scrolls, so without this
+           every deferred chart would read as a chart that failed to draw. */
+        if (location.hash === "#render-all") drawAll();
+      }
+      if (document.readyState === "loading")
+        window.addEventListener("DOMContentLoaded", renderPlotly);
+      else renderPlotly();
+    })();
+  </script>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+    const t = window.__docTokens;
+    const ink = t("--ink", "#1f1e1a");
+    const inkSoft = t("--ink-soft", "#55534b");
+    const white = t("--white", "#ffffff");
+    const paper = t("--paper", "#f7f7f5");
+    const rule = t("--rule", "#dcdad6");
+    const cobalt = t("--cobalt", "#0760c7");
+    const cobaltTint = t("--cobalt-tint", "#e6effc");
+    const sage = t("--sage", "#637a63");
+    const sageTint = t("--sage-tint", "#e7f1ed");
+    const body = t("--font-body", '"Hanken Grotesk",system-ui,sans-serif');
+
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      fontFamily: body,
+      themeVariables: {
+        background: white,
+        fontFamily: body,
+        fontSize: "15px",
+        primaryColor: cobaltTint,
+        primaryTextColor: ink,
+        primaryBorderColor: cobalt,
+        secondaryColor: sageTint,
+        secondaryTextColor: ink,
+        secondaryBorderColor: sage,
+        tertiaryColor: paper,
+        tertiaryTextColor: ink,
+        tertiaryBorderColor: rule,
+        mainBkg: cobaltTint,
+        nodeBorder: cobalt,
+        nodeTextColor: ink,
+        lineColor: inkSoft,
+        textColor: ink,
+        titleColor: ink,
+        clusterBkg: paper,
+        clusterBorder: rule,
+        edgeLabelBackground: white,
+        labelBackground: white,
+        labelBoxBkgColor: cobaltTint,
+        labelBoxBorderColor: cobalt,
+        labelTextColor: ink,
+        actorBkg: cobaltTint,
+        actorBorder: cobalt,
+        actorTextColor: ink,
+        signalColor: inkSoft,
+        signalTextColor: ink,
+        noteBkgColor: sageTint,
+        noteBorderColor: sage,
+        noteTextColor: ink,
+        pie1: t("--chart-1", "#0760c7"),
+        pie2: t("--chart-2", "#637a63"),
+        pie3: t("--chart-3", "#46188c"),
+        pie4: t("--chart-4", "#8fb5a0"),
+        pie5: t("--chart-5", "#6b6860"),
+        pie6: t("--chart-6", "#1f1e1a")
+      }
+    });
+
+    /* Pandoc emits ```mermaid blocks as <pre class="mermaid"><code>…</code></pre>
+       with the diagram source HTML-entity-encoded. Mermaid 10.9.x reads innerHTML,
+       so it sees the literal <code> tags and &quot;/&gt; entities and throws a
+       syntax error. Flatten each block to a single decoded text node first
+       (reading textContent decodes the entities and drops the <code> wrapper),
+       then render. */
+    function renderMermaid() {
+      document.querySelectorAll("pre.mermaid").forEach(function (el) {
+        if (!el.dataset.mflattened) {
+          // textContent decodes entities; also undo the build's $ -> \$ math-escaping
+          // so dollar amounts in labels render as "$5" not "\$5".
+          el.textContent = el.textContent.replace(/\\\$/g, "$");
+          el.dataset.mflattened = "1";
+        }
+      });
+      mermaid.run({ querySelector: "pre.mermaid" });
+    }
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", renderMermaid);
+    } else {
+      renderMermaid();
+    }
+  </script>
+  <script>
+    /* Collapsed <details> don't expand in the browser print dialog, so citations
+       would be missing from a Cmd+P PDF. Open them for printing, restore after. */
+    (function () {
+      function setAll(open) {
+        document.querySelectorAll("details.cite-group").forEach(function (d) {
+          if (open) {
+            if (!d.open) { d.dataset.printToggled = "1"; d.open = true; }
+          } else if (d.dataset.printToggled === "1") {
+            d.open = false; delete d.dataset.printToggled;
+          }
+        });
+      }
+      window.addEventListener("beforeprint", function () { setAll(true); });
+      window.addEventListener("afterprint", function () { setAll(false); });
+      if (window.matchMedia) {
+        var mq = window.matchMedia("print");
+        var handler = function (m) { setAll(m.matches); };
+        if (mq.addEventListener) mq.addEventListener("change", handler);
+        else if (mq.addListener) mq.addListener(handler);
+      }
+    })();
+  </script>
+  <!-- The shared document fixes are injected here at build time from
+       ~/.claude/skills/shared-assets/ (doc_fixes.css) by
+       shared_assets.resolve_header(). Do not paste a copy back into this file. -->
+  <style>
+  /* Shared document fixes: one source for both document builds.
+
+     Injected at build time alongside comment_module.html, in place of the
+     <!-- SHARED_ASSETS --> placeholder in each pandoc header. Because it lands
+     last in <head>, these rules win over the same-specificity rules earlier in a
+     header without needing !important.
+
+     Keep this file to fixes that are true for every document we build. Anything
+     that depends on a skill's own look (colors, radius, shadow) belongs in that
+     skill's header. */
+
+  /* --- Tables: never spill past the reading column (plan Task 4.3, defect 1) ---
+     Two halves to the fix, and both are needed.
+     1. A wide table scrolls inside its wrapper. Both builds wrap every table in
+        <div class="table-scroll">.
+     2. Long unbroken strings (URLs, tokens, absolute paths) wrap instead of
+        setting a min-content width that forces the table wider than the page.
+        Without this the table is simply wider than the wrapper and the text is
+        cut off at the wrapper edge. */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .table-scroll > table { margin: 0; }
+  table { max-width: 100%; }
+  thead th, tbody td { overflow-wrap: anywhere; word-break: break-word; }
+  thead th code, tbody td code,
+  thead th a, tbody td a { overflow-wrap: anywhere; word-break: break-word; }
+
+  /* Print/PDF has no scrollbars, so show the whole table and let it shrink. */
+  @media print {
+    .table-scroll { overflow: visible; }
+  }
+
+  /* --- Charts: never let a chart set the page width (plan Task 4.3, defect 2) ---
+     The label-truncation fix itself is Plotly's automargin, applied in the
+     report header's render script. This is the CSS guard next to it: a chart
+     that computes a wider layout than its column stays inside the column
+     instead of pushing the whole page sideways. */
+  figure.plotly-chart,
+  figure.plotly-chart > div,
+  figure.chart svg,
+  figure.plotly-chart .main-svg { max-width: 100%; }
+
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Domain Rules: Specs, Gauges and Hidden
+Requirements</h1>
+<p class="subtitle">Summary: what this track found</p>
+<dl class="docmeta">
+<dt>Track</dt><dd>Domain rules (research questions 2, 3 and 4
+in the <a href="brief_rfq_sharper_angle.md">research brief</a>). Written
+2026-10-10.</dd>
+<dd class="solo"><strong>The gauge trap is real, checkable, and already in our own
+product brief.</strong> The <a href="../../product/PRD.md">product
+brief</a> shows "304 SS sheet 16ga" and "Stainless 304, 0.060 in" as the
+same item. They are not. 16 gauge stainless is 0.0625 in. 0.060 in
+matches 16 gauge <em>mild steel</em> (0.0598 in). The gap is 4.2% of
+thickness. A demo that gets this right, and says why, is easy to verify
+live.</dd>
+<dd class="solo"><strong>Hidden requirements are real, but most of them are not in the
+line.</strong> Three of the five big ones (DFARS, Buy America, ITAR) are
+triggered by the <em>contract, the project, the ship-to, or an attached
+drawing</em>. The grade only decides whether the rule bites. The one
+real public metals RFQ I found (State of Iowa, line numbers 1 to 49)
+names no certification or metal origin requirement on any line. Its only
+origin wording is a general Iowa-products preference for tied bids. A
+tool that flags hidden requirements must read the whole RFQ package, and
+must stay quiet when nothing triggers.</dd>
+<dd class="solo"><strong>Some requirements can be read straight off the line.</strong>
+A spec prefix or word often implies paperwork: <code>SA-240</code> (ASME
+code material), <code>A500</code> (structural tube that ships with a
+mill test report), <code>304/304L</code> (dual chemistry),
+<code>NACE</code>, <code>DFARS</code>, <code>Buy America</code>,
+<code>domestic</code>, <code>3.1</code>, <code>PMI</code>. These are the
+safest flags to show first.</dd>
+<dd class="solo"><strong>The costliest mistakes cannot be fixed with paperwork
+afterward.</strong> Wrong origin (melted abroad), wrong grade, and wrong
+spec family (A513 vs A500, A53 vs A500) mean the physical metal is
+wrong. A wrong gauge table is cheaper but is silent: it is a 4.5% to 24%
+thickness error that still looks like a clean quote.</dd>
+<dd class="solo"><strong>Public evidence has a ceiling.</strong> ASTM and ANSI pages
+are paywalled or blocked (403). Most spec facts below come from
+distributors, trade associations, and forums. Each claim carries a
+confidence tag. I found no public dollar figure for what a misread RFQ
+line costs a supplier. The ranking in "Costliest reading errors" is my
+judgment from the consequences, and says so.</dd>
+</dl>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#1-how-the-same-item-gets-written-different-ways"
+id="toc-1-how-the-same-item-gets-written-different-ways">1. How the same
+item gets written different ways</a></li>
+<li><a href="#2-common-specs-by-product-form"
+id="toc-2-common-specs-by-product-form">2. Common specs by product
+form</a></li>
+<li><a href="#3-hidden-requirements-what-triggers-each-one"
+id="toc-3-hidden-requirements-what-triggers-each-one">3. Hidden
+requirements: what triggers each one</a></li>
+<li><a href="#4-costliest-reading-errors"
+id="toc-4-costliest-reading-errors">4. Costliest reading errors</a></li>
+<li><a href="#5-what-this-means-for-the-two-decisions"
+id="toc-5-what-this-means-for-the-two-decisions">5. What this means for
+the two decisions</a></li>
+<li><a href="#6-test-set" id="toc-6-test-set">6. Test set</a></li>
+<li><a href="#7-gaps-and-source-quality"
+id="toc-7-gaps-and-source-quality">7. Gaps and source quality</a></li>
+<li><a href="#cleanup-needed" id="toc-cleanup-needed">Cleanup
+needed</a></li>
+</ul>
+</nav>
+<div class="sheet-head"><h2 id="1-how-the-same-item-gets-written-different-ways">How the same
+item gets written different ways</h2><span class="n">Section 1</span></div>
+<h3
+id="11-gauge-the-number-means-a-different-thickness-for-each-metal">1.1
+Gauge: the number means a different thickness for each metal</h3>
+<p><strong>A gauge number is not a thickness. Each material family has
+its own table.</strong> Metal Supermarkets, a metals distributor,
+publishes one table per material and says: "when measuring sheet
+product, gauges are neither standard nor metric, and have independent
+values." Its example: an 8 gauge aluminum sheet is 0.1285 in, an 8 gauge
+stainless sheet is 0.17187 in (<a
+href="https://www.metalsupermarkets.com/the-difference-between-metal-sheet-and-plate/">Metal
+Supermarkets, sheet vs plate</a>).</p>
+<p><strong>Gauge values for the common gauges, inches</strong> (source:
+<a
+href="https://www.metalsupermarkets.com/sheet-metal-gauge-chart/">Metal
+Supermarkets sheet metal gauge chart</a>; tube wall column from <a
+href="https://en.wikipedia.org/wiki/Sheet_metal">Wikipedia, Sheet metal,
+gauge table</a>):</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Gauge</th>
+<th>Mild (carbon) steel</th>
+<th>Galvanized steel</th>
+<th>Stainless steel</th>
+<th>Aluminum</th>
+<th>Steel tube wall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>0.1345</td>
+<td>0.1382</td>
+<td>0.14062</td>
+<td>0.1019</td>
+<td>0.134</td>
+</tr>
+<tr>
+<td>11</td>
+<td>0.1196</td>
+<td>0.1233</td>
+<td>0.125</td>
+<td>0.09074</td>
+<td>0.120</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0.1046</td>
+<td>0.1084</td>
+<td>0.10937</td>
+<td>0.08081</td>
+<td>0.109</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0.0747</td>
+<td>0.0785</td>
+<td>0.07812</td>
+<td>0.06408</td>
+<td>0.083</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0.0598</td>
+<td>0.0635</td>
+<td>0.0625</td>
+<td>0.05082</td>
+<td>0.065</td>
+</tr>
+<tr>
+<td>18</td>
+<td>0.0478</td>
+<td>0.0516</td>
+<td>0.050</td>
+<td>0.04030</td>
+<td>0.049</td>
+</tr>
+<tr>
+<td>20</td>
+<td>0.0359</td>
+<td>0.0396</td>
+<td>0.0375</td>
+<td>0.03196</td>
+<td>0.035</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Two published sources agree to the digit</strong> on the
+mild steel, galvanized, and stainless columns. They differ on one
+aluminum cell: 14 gauge aluminum is 0.06408 in at Metal Supermarkets and
+0.063 in at Wikipedia (a 1.7% gap). Evidence: both links above.
+Confidence: high for steel and stainless, medium for aluminum.</li>
+<li><strong>Metal Supermarkets prints a caveat under its
+charts:</strong> "Actual thickness will vary due to tolerances."
+Wikipedia adds that the Manufacturers' Standard Gauge "has no inherent
+tolerances," and quotes ASTM calling the gauge number an "archaic term
+of limited usefulness not having general agreement on meaning" (<a
+href="https://en.wikipedia.org/wiki/Sheet_metal">Wikipedia</a>). So the
+table gives the nominal value. The buyer's tolerance is a separate
+question.</li>
+<li><strong>Tube is its own table.</strong> 14 gauge tube wall is 0.083
+in; 14 gauge mild steel sheet is 0.0747 in. That is 11.1% apart. 16
+gauge tube wall (0.065) is 8.7% thicker than 16 gauge sheet (0.0598).
+The rule must know the <em>form</em> (tube or sheet), not only the
+material.</li>
+<li><strong>Real suppliers do not always follow the table.</strong>
+Speedy Metals lists "10ga (0.135") 304 Stainless Steel Sheet" (<a
+href="https://www.speedymetals.com/information/Material58.html">Speedy
+Metals</a>), which is 4.0% under the stainless table value (0.14062) and
+close to the mild steel value (0.1345). The University of Alberta store
+lists "0.063 (16 Ga.)" 304 sheet, 1/16 in, 2B (<a
+href="https://marketplace.ualberta.ca/products/stainless-steel-sheet">UAlberta</a>):
+the same item written three ways in one listing, with 0.063 rounding the
+table's 0.0625 by 0.8%. Confidence: high that suppliers differ; I cannot
+say which supplier is "right."</li>
+<li><strong>Sizes of the errors</strong> (computed by <a
+href="domain_rules_gauge_calc.py">domain_rules_gauge_calc.py</a> from
+the table above):</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Wrong-table mistake</th>
+<th>Thickness error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stainless read with the mild steel table, gauges 10 to 20</td>
+<td>+4.5% to +4.6% (0.0027 in at 16 gauge)</td>
+</tr>
+<tr>
+<td>Galvanized read with the mild steel table</td>
+<td>+2.8% at 10 gauge, +6.2% at 16, +10.3% at 20</td>
+</tr>
+<tr>
+<td>Aluminum read with the mild steel table</td>
+<td>-11.0% to -24.2%</td>
+</tr>
+<tr>
+<td>16 gauge stainless vs the PRD's "0.060 in"</td>
+<td>+4.2%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What the product should do:</strong> look the gauge up in a
+table keyed by material <em>and</em> form, show the table name and value
+on screen, and ask when the material is missing ("16 ga sheet 4x8" with
+no metal has four candidate answers: 0.0598, 0.0625, 0.0635, 0.0508 in).
+When the buyer wrote both a gauge and a decimal that disagree under the
+right table (as in the PRD example), ask which one governs.</p>
+<h3 id="12-size-notation-feet-inches-and-positional-shorthand">1.2 Size
+notation: feet, inches, and positional shorthand</h3>
+<p><strong>The same sheet is "4x8", "4' x 8'", "48 x 96", or "48" x
+96"".</strong> 4 ft x 8 ft is 48 in x 96 in, which is 1219 mm x 2438 mm.
+4 x 10 ft is 48 x 120 in. (Computed in the calc script; the 48 x 96 and
+4x8 pairing appears in the <a
+href="https://bidopportunities.iowa.gov/Home/DownloadBidOpportunityDocument/1896a227-c6a4-4be5-8283-11490aefe20a">State
+of Iowa RFQ</a>, which writes "Cold Rolled Sheets 4 x 10" on one line
+and "48" x 120" x 14 Gauge" under it.)</p>
+<p><strong>Unit marks are dropped, so the meaning of a number depends on
+the product form.</strong> The Iowa RFQ shows it line by line. In
+"Strips 3 x 20 x 1/8"" the detail line says 3 in wide, 20 <em>feet</em>
+long, 1/8 in thick. In "Structural Angle 3 x 3 x 1/4" the same notation
+means inches for all three numbers, and the length (20 ft) sits only in
+the detail line. In "RectangleTubes 2 x 1.5 x 24 x .120", 24 is feet and
+.120 is a wall in decimal inches. Evidence: <a
+href="https://bidopportunities.iowa.gov/Home/DownloadBidOpportunityDocument/1896a227-c6a4-4be5-8283-11490aefe20a">Iowa
+RFQ 245, lines 1 to 10</a>. Confidence: high (one real RFQ, direct
+text). So the parser needs product-form rules: which number is length,
+which is thickness, which unit is usual.</p>
+<p><strong>Fractions and decimals both appear.</strong> The same RFQ
+writes 1/8" and .120 in adjacent lines. Plate is usually fractional,
+sheet is usually gauge (<a
+href="https://www.metalsupermarkets.com/the-difference-between-metal-sheet-and-plate/">Metal
+Supermarkets</a>).</p>
+<h3 id="13-grade-notation">1.3 Grade notation</h3>
+<ul>
+<li><strong>304, 304L, and "304/304L" are three different
+requests.</strong> 304 allows carbon up to 0.08%; 304L allows 0.03%; the
+A240 chemistry rows are 304: 0.08 C max, 18.0 to 20.0 Cr, 8.0 to 11.0 Ni
+and 304L: 0.03 C max, 8.0 to 12.0 Ni (<a
+href="https://www.sakysteel.com/news/astm-a240-stainless-steel-plate-grades-finish-and-testing">Saky
+Steel, A240 grades</a>, vendor table, medium confidence).</li>
+<li><strong>Dual certified 304/304L is one heat that meets
+both.</strong> Distributors sell it as "meets specifications for both
+304 and 304L" (<a
+href="https://www.speedymetals.com/information/Material58.html">Speedy
+Metals</a>). Engineers on Eng-Tips describe it as meeting the
+mechanicals of straight grade and the chemistry of L grade (<a
+href="https://www.eng-tips.com/viewthread.cfm?qid=450930">Eng-Tips
+thread</a>, forum, medium-low confidence). An ASME interpretation quoted
+there allows dual-stenciled plate to be used as either grade at or below
+1000 F.</li>
+<li><strong>Substitution only runs one way.</strong> A line that says
+304 <em>or</em> 304L can usually be filled with dual-cert stock. A line
+that says "304L" cannot be filled with plain 304 stock whose carbon is
+above 0.03. A line that says "304/304L" asks for the dual cert itself.
+This is my reading of the chemistry limits above; confirm the buyer's
+spec before substituting.</li>
+<li><strong>A36 and A572 Grade 50 can be the same plate.</strong> A36
+has no upper yield limit, so producers sell one plate certified to both.
+A36 minimum yield is 36 ksi; A572 Grade 50 is 50 ksi. If the buyer buys
+it as A36, they design to 36 ksi; to design at 50 ksi it must be
+certified to A572 Grade 50 (<a
+href="https://www.aisc.org/globalassets/modern-steel/steel-interchange/2014/072014_si.pdf">AISC
+Steel Interchange, July 2014</a> as summarized in search results; the
+PDF itself returned 403 to me; supported by <a
+href="https://tampasteel.com/a36-vs-a572-steel/">Tampa Steel</a>).
+Confidence: medium.</li>
+<li><strong>Aluminum temper is part of the grade.</strong> 6061-T6 and
+6061-T651 differ: T651 is the stress-relieved form for plate (<a
+href="https://www.makeitfrom.com/material-properties/6061-T651-Aluminum">MakeItFrom</a>,
+medium-low). A buyer who writes "6061-T6 plate" often means T651;
+ask.</li>
+</ul>
+<h3 id="14-finish">1.4 Finish</h3>
+<ul>
+<li><strong>2B is the standard cold-rolled mill finish; No. 4 is a
+brushed finish.</strong> "No. 2B is the mill finish, meaning it has not
+been processed further." No. 4 has "a pattern of fine parallel lines"
+and varies between suppliers, so Metal Supermarkets suggests asking for
+a sample (<a
+href="https://www.metalsupermarkets.com/stainless-steel-finishing-options/">Metal
+Supermarkets finishing options</a>). Speedy Metals defines 2B as "cold
+rolled on polished rolls, annealed, pickled, and skin passed" and #4 as
+"polished with fine abrasive finish" (<a
+href="https://www.speedymetals.com/information/Material58.html">Speedy
+Metals</a>), but its own product list says "#2 Finish" for the same
+sheets, so even one vendor mixes labels. ASTM A480 is named as the
+stainless sheet and strip finish standard by a Finishing.com answer, but
+I did not read its text (<a
+href="https://www.finishing.com/128/66.shtml">Finishing.com</a>, forum,
+low confidence).</li>
+<li><strong>Finish is often missing.</strong> The Iowa line "Type
+304-2B" gives it; many lines do not. Missing finish on stainless sheet
+is a question, not a default.</li>
+</ul>
+<h3 id="15-form-sheet-vs-plate-vs-flat-bar">1.5 Form: sheet vs plate vs
+flat bar</h3>
+<ul>
+<li><strong>The common cutoff is 1/4 in (0.250 in, 6.35 mm).</strong>
+Plate is 1/4 in or thicker; thinner is sheet. Metal Supermarkets applies
+this to all metals. Wikipedia says the same: "thicker than 6 mm (0.25
+in) are considered plate" (<a
+href="https://www.metalsupermarkets.com/the-difference-between-metal-sheet-and-plate/">Metal
+Supermarkets</a>, <a
+href="https://en.wikipedia.org/wiki/Sheet_metal">Wikipedia</a>).
+Confidence: high for the convention.</li>
+<li><strong>The standards use other lines.</strong> A forum post quotes
+ASTM A6 (carbon structural steel) as treating hot-rolled material as
+plate at 0.230 in or thicker for widths 8 to 48 in, and 0.180 in or
+thicker over 48 in wide; and notes the sheet spec A568 caps hot-rolled
+sheet at 0.230 in (<a
+href="https://www.eng-tips.com/viewthread.cfm?qid=249559">Eng-Tips</a>,
+forum quote of a standard I could not open; low-medium confidence).
+Other sources use 3 mm (0.118 in) as the line. So a 3/16 in (0.1875 in)
+item is sheet by the 1/4 in rule and plate by the 3 mm rule. A line in
+that range needs the buyer's word for what it is.</li>
+<li><strong>Narrow flat stock is a third category.</strong> A flat 0.230
+in or thicker and 6 to 8 in wide is classed as bar in A6 per the same
+forum and an AISC table cited in search results (secondary; I could not
+open either). Several Iowa lines are 1 in to 6 in flats; they are bar or
+flat bar, not sheet or plate.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="2-common-specs-by-product-form">Common specs by product
+form</h2><span class="n">Section 2</span></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Common specs</th>
+<th>What the spec tells you</th>
+<th>Source and confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stainless sheet, strip, plate</td>
+<td><strong>ASTM A240</strong> (ASME twin: SA-240)</td>
+<td>Covers chromium, chromium-nickel, and chromium-manganese-nickel
+plate, sheet and strip "for pressure vessels and for general
+applications"; does not by itself fix grade, finish or cert type</td>
+<td><a
+href="https://www.sakysteel.com/news/astm-a240-stainless-steel-plate-grades-finish-and-testing">Saky
+Steel</a> (vendor, medium)</td>
+</tr>
+<tr>
+<td>Carbon structural plate and shapes</td>
+<td><strong>A36</strong>, <strong>A572 Gr 50</strong> (A6 is the
+general-requirements spec)</td>
+<td>A36: 36 ksi min yield. A572-50: 50 ksi. Often dual certified</td>
+<td><a
+href="https://www.aisc.org/globalassets/modern-steel/steel-interchange/2014/072014_si.pdf">AISC
+via search</a> (medium)</td>
+</tr>
+<tr>
+<td>Structural tube (HSS)</td>
+<td><strong>A500</strong> Gr B/C</td>
+<td>Round, square, rectangular; physical properties verified; each
+bundle ships with a mill test report; Grade C yield 46 ksi</td>
+<td><a href="https://atlastube.com/?p=4627">Atlas Tube</a>, <a
+href="https://steeltubeinstitute.org/resource/a500-versus-a53-different-inside/">Steel
+Tube Institute</a> (manufacturer and trade group, medium-high)</td>
+</tr>
+<tr>
+<td>Mechanical tube</td>
+<td><strong>A513</strong></td>
+<td>Tighter dimensions; "no physical requirements or structural
+verification"; no MTR provided in Atlas's comparison</td>
+<td><a href="https://atlastube.com/?p=4627">Atlas Tube</a> (medium)</td>
+</tr>
+<tr>
+<td>Carbon pipe</td>
+<td><strong>A53</strong> Gr B</td>
+<td>Round only; sold by nominal size and schedule; 21 and 42 ft lengths;
+hydrotested; pressure and mechanical use</td>
+<td><a
+href="https://steeltubeinstitute.org/resource/a500-versus-a53-different-inside/">Steel
+Tube Institute</a> (medium-high)</td>
+</tr>
+<tr>
+<td>Austenitic stainless pipe</td>
+<td><strong>A312</strong></td>
+<td>Seamless and welded stainless pipe. I did not find a source for the
+scope in this session; general industry knowledge</td>
+<td>Unverified here</td>
+</tr>
+<tr>
+<td>Stainless bar</td>
+<td><strong>A276</strong> (general use, machining) and
+<strong>A479</strong> (boiler and pressure vessel use)</td>
+<td>Same chemistry for 304 and 316 in vendor tables; the choice signals
+the end use and documentation</td>
+<td><a
+href="https://www.sakysteel.com/news/astm-a276-vs-astm-a479-stainless-steel-bar-standards/">Saky
+Steel</a>, <a
+href="https://shop.machinemfg.com/astm-a276-vs-astm-a479-key-differences">MachineMfg</a>
+(vendors, medium-low)</td>
+</tr>
+<tr>
+<td>Aluminum sheet and plate</td>
+<td><strong>ASTM B209</strong></td>
+<td>"Aluminum and aluminum-alloy flat sheet, coiled sheet, and
+plate"</td>
+<td><a href="https://store.astm.org/b0209-14.html">ASTM store
+listing</a> (standards body, scope line, high)</td>
+</tr>
+<tr>
+<td>Aluminum extrusions (bar, shape, tube)</td>
+<td><strong>B221</strong></td>
+<td>Extruded bars, rods, profiles, tubes. Taken from search summaries;
+the ASTM page was not reachable</td>
+<td>Medium-low</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Spec mixing is common in real RFQs.</strong> Iowa lines write
+"Square Tube A513-A500 Grade B" (two different specs, one grade) and
+"Hot Rolled Strips CQ-A36" (a sheet quality term fused to a structural
+grade). A500 is structural with verified properties; A513 is mechanical
+with no property requirements (<a
+href="https://atlastube.com/?p=4627">Atlas Tube</a>). These are
+different products, so the line is a question, not a reading.</p>
+<p><strong>ASME SA vs ASTM A.</strong> The <code>S</code> prefix means
+ASME reviewed and adopted the ASTM spec for Boiler and Pressure Vessel
+Code use. "Material supplied to an SA specification meets the
+requirements of the ASME Boiler and Pressure Vessel Code, Section II."
+Some grades are identical; others carry extra ASME requirements. Many
+mills dual-mark so one piece serves both (<a
+href="https://wermac.org/societies/ASME_SA_vs_ASTM_A.html">Wermac</a>,
+engineering reference site, medium). Chemistry can differ by edition: a
+forum shows SA-240 Type 304 chromium at 18 to 20% while a later A240
+edition listed 17.5 to 19.5% (<a
+href="https://cr4.globalspec.com/thread/63646/ASME-MATERIAL-ASTM-EDITION-2004-VS-ASTM-2010-MATERIAL">CR4
+thread via search</a>, low).</p>
+<p><strong>AMS (aerospace) specs:</strong> not researched in this pass
+because AMS documents are paid SAE standards and no public source came
+up. Treat an <code>AMS</code> number on a line as a trigger for
+"aerospace, ask for certs and origin" until someone with access
+checks.</p>
+<hr />
+<div class="sheet-head"><h2 id="3-hidden-requirements-what-triggers-each-one">Hidden
+requirements: what triggers each one</h2><span class="n">Section 3</span></div>
+<h3 id="31-summary-table">3.1 Summary table</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Triggers inside the line</th>
+<th>Triggers outside the line</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mill test report (MTR)</strong></td>
+<td>Spec families that ship with one (A500); "MTR", "certs", "cert",
+"3.1"; pressure and code grades (A240 for vessels, A312, A479,
+SA-xxx)</td>
+<td>Buyer's PO terms, project specs, code work; service-center
+defaults</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>EN 10204 3.1 / 3.2</strong></td>
+<td>"3.1", "EN 10204", "3.2", "witnessed"</td>
+<td>Export orders, EPC and oil and gas buyers</td>
+<td>Medium-high</td>
+</tr>
+<tr>
+<td><strong>DFARS 252.225-7009 (specialty metals)</strong></td>
+<td>"DFARS", "specialty metals", "melted in USA", "qualifying country";
+chemistry that is a specialty metal (any stainless, nickel alloy,
+titanium)</td>
+<td>Defense contract flow-down; defense-contractor ship-to; DPAS rating
+(DO or DX) on the PO</td>
+<td>Medium-high</td>
+</tr>
+<tr>
+<td><strong>Buy America / BABA</strong></td>
+<td>"Buy America", "domestic", "American made", "23 CFR 635.410",
+"melted and manufactured in USA"</td>
+<td>Federal or state-DOT-funded project; water or transit infrastructure
+grants</td>
+<td>Medium-high</td>
+</tr>
+<tr>
+<td><strong>Country of origin / melt-and-pour</strong></td>
+<td>"Domestic only", "no China", "melted and rolled in USA", "mill
+origin"</td>
+<td>Government buyer, project spec</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>ITAR</strong></td>
+<td>"ITAR", "export controlled"; rare in raw metal text</td>
+<td>A drawing or spec attached with an ITAR marking; defense program
+name</td>
+<td>Low-medium</td>
+</tr>
+<tr>
+<td><strong>PMI (positive material identification)</strong></td>
+<td>"PMI", "100% PMI", "XRF verified"</td>
+<td>Refinery, chemical, high-temperature piping, sour service</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>NACE MR0175 / ISO 15156</strong></td>
+<td>"NACE", "MR0175", "sour service", "H2S", "HIC"</td>
+<td>Oil and gas, refinery project</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>ASME SA (code material)</strong></td>
+<td><code>SA-240</code>, <code>SA-312</code>, <code>SA-516</code>,
+"ASME", "code material", "U-stamp"</td>
+<td>Pressure vessel or boiler fabricator as the buyer</td>
+<td>Medium-high</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-detail-one-requirement-at-a-time">3.2 Detail, one requirement
+at a time</h3>
+<p><strong>Mill test reports (MTR).</strong> <strong>An MTR reports one
+heat's chemistry and mechanical tests; whether the buyer gets one is set
+by the order, not by the metal.</strong></p>
+<ul>
+<li>AISC states the content of an MTR for hot-rolled plates and shapes
+comes from ASTM A6 Section 14: heat number, grade, sizes, tension and
+chemistry results. Whether one must be furnished is set by the purchase
+order or project spec (<a
+href="https://aisc.org/steel-solutions-center/engineering-faqs/1.3.-ordering-steel">AISC
+Steel Solutions Center</a>, <a
+href="https://www.aisc.org/globalassets/modern-steel/steelwise/steelwise-august-2014.pdf">AISC
+Steelwise Aug 2014</a>, both as summarized by search; the AISC pages
+returned 403 to me).</li>
+<li>Service centers differ on the default. Ryerson's instructions to its
+own suppliers say: "Mill test reports are required on all products
+unless otherwise specified in the Purchase Order" (<a
+href="https://www.centralsteel.com/-/media/files/ryerson-general-instruction-specification-m200-rev-9-2023.ashx">Ryerson
+M200</a>, medium). So for RudCo the real question is whether it
+<em>keeps heat traceability on cut pieces</em>, not whether a
+certificate exists somewhere.</li>
+<li>A500 tube ships with an MTR per bundle; A513 does not (<a
+href="https://atlastube.com/?p=4627">Atlas Tube</a>). A buyer who writes
+<code>A513</code> may expect no cert; one who writes <code>A500</code>
+expects one.</li>
+</ul>
+<p><strong>EN 10204 certificate types.</strong> <strong>3.1 is the usual
+request for critical material; it means test results from the delivered
+lot, signed by the manufacturer's independent inspector.</strong></p>
+<ul>
+<li>2.1: compliance statement only, no test results. 2.2: manufacturer
+test results from non-specific inspection (not tied to your lot). 3.1:
+specific test results from the material supplied, signed by an
+authorized inspector independent of production. 3.2: 3.1 content plus
+validation by the buyer's representative or a designated third party (<a
+href="https://www.materialwelding.com/material-test-certificates-explained">Material
+Welding</a>, <a
+href="https://blog.projectmaterials.com/quick-answers/epc/en-10204-certificate-types/">Project
+Materials</a>; vendor and blog sources agree with each other; the
+standard itself is paid). One of them contradicts itself on who issues a
+3.1, so confirm with the buyer's spec. Confidence: medium-high on the
+four types.</li>
+<li>3.2 involves a third-party inspector and can add scheduling, so it
+is a flag that needs a human, not an auto-quote.</li>
+</ul>
+<p><strong>DFARS 252.225-7009 (Restriction on Acquisition of Certain
+Articles Containing Specialty Metals).</strong> <strong>The clause says
+specialty metals in delivered items must be melted or produced in the
+United States, its outlying areas, or a qualifying country. The grade
+decides whether the rule <em>can</em> apply; the contract decides
+whether it <em>does</em>.</strong></p>
+<ul>
+<li>Specialty metals are defined by chemistry: steel with more than
+0.25% of aluminum, chromium, cobalt, molybdenum, nickel, niobium,
+titanium, tungsten, or vanadium (or above set manganese, silicon, or
+copper limits); nickel and cobalt alloys above 10% other alloying
+metals; titanium and zirconium alloys (<a
+href="https://www.acquisition.gov/dfars/252.225-7009-restriction-acquisition-certain-articles-containing-specialty-metals.">DFARS
+252.225-7009 on acquisition.gov</a>). By that definition 304 and 316
+stainless (18% chromium, per the chemistry in section 1.3) are specialty
+metals; ordinary A36 plate is generally not (my reading; chemistry check
+needed).</li>
+<li>The clause must flow down to subcontracts, including commercial
+ones, for items containing specialty metals (paragraph (e)). So a
+distributor gets the rule from its customer, not from the
+government.</li>
+<li>Exceptions exist (commercial off-the-shelf items, a 2%
+minimal-content rule, a government availability determination), each
+with conditions. "Specialty metal mill products" are carved out of the
+COTS exception: bare sheet, plate and bar do not get that
+exemption.</li>
+<li>Triggers outside the line: a defense-contractor ship-to, a DPAS
+rating (a "DO" or "DX" symbol) on the PO, a government contract number.
+A DPAS-rated order carries its own duties: written acceptance or
+rejection within 15 working days for DO and 10 days for DX, and the
+rating must pass to the supplier's suppliers (<a
+href="https://www.law.cornell.edu/cfr/text/15/700.13">15 CFR 700.13</a>,
+<a
+href="https://www.dla.mil/Portals/104/Documents/Warstopper/DPAS%20Program%20Brochure%202026_V5_.pdf">DLA
+DPAS brochure</a>, summarized by search).</li>
+<li>Confidence: high on the clause text (primary source via fetch).
+Medium on the COTS detail.</li>
+</ul>
+<p><strong>Buy America / Build America, Buy America (BABA).</strong>
+<strong>For federally funded highway work, steel and iron must have all
+manufacturing processes, including coating, in the United States, and
+the mill test report must say where it was melted and
+manufactured.</strong></p>
+<ul>
+<li>The federal rule: no permanently incorporated iron or steel, or all
+manufacturing processes, "including application of a coating," must
+occur in the US. Coating covers galvanizing, epoxy and painting; the
+coating <em>material</em> is not covered (<a
+href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-635/subpart-D/section-635.410">23
+CFR 635.410 on eCFR</a>, <a
+href="https://www.fhwa.dot.gov/construction/contracts/buyam_qageneral.cfm">FHWA
+Buy America Q&amp;A</a>, both via search summaries). If any bending,
+drilling, or coating happens abroad, the product becomes foreign.</li>
+<li>State DOTs add paperwork rules. Caltrans says mill test reports must
+state where steel was melted and manufactured. Montana DOT rejects a
+bare "meets Buy America" and wants wording like "Melted and Manufactured
+in the United States" or "Complies with 23 CFR 635.410" (<a
+href="https://dot.ca.gov/-/media/dot-media/programs/construction/documents/contract-administration/buy-america/6104n081126a11y.pdf">Caltrans</a>,
+<a
+href="https://mdt.mt.gov/other/webdata/external/materials/forms/f406.pdf">Montana
+DOT form</a>).</li>
+<li>BABA (federal infrastructure grants beyond highways): EPA's FAQ says
+the key step is the initial melting and pouring, which must be in the
+US, and raw materials need not be domestic (<a
+href="https://www.maine.gov/dep/water/grants/SRF/BABAContractorFAQs.pdf">Maine
+SRF reproduction of EPA FAQ</a>). Thresholds in these state and agency
+documents (0.1% or $2,500 minimal use; 50% or 55% manufactured products)
+differ by document, so I do not list them as rules.</li>
+<li>Confidence: medium-high on the core rule; these are agency
+summaries, not me reading the regulation in full.</li>
+</ul>
+<p><strong>Country of origin and "melted and manufactured."</strong> Two
+different questions get blended in RFQs. <strong>Where was it melted and
+poured</strong> (the furnace), and <strong>where was it rolled or
+finished</strong>. DFARS asks about melting or producing; Buy America
+asks about all manufacturing steps including coating. A buyer who writes
+only "domestic" has not said which. This is a clarifying question, not a
+guess.</p>
+<p><strong>ITAR.</strong> <strong>Raw metal is rarely ITAR itself; the
+controlled item is usually the drawing or technical data attached to the
+RFQ.</strong> I found no public source that settles whether plain
+mill-form titanium or stainless is on the US Munitions List. The sources
+I found describe ITAR as covering articles specially designed for
+military or space use and their technical data (<a
+href="https://www.voestalpine.com/highperformancemetals/canada/en-ca/itar-controlled-goods-compliance/">voestalpine
+ITAR program</a>, <a
+href="https://performancetitanium.com/faq-exporting-titanium-products-from-the-united-states/">Performance
+Titanium export FAQ</a>, which points to the Export Administration
+Regulations and end-use checks instead). Confidence: low. The safe
+product behavior is a flag when an attachment or line says "ITAR" or
+"export controlled": do not forward the files outside the quoting team,
+and ask the buyer about handling.</p>
+<p><strong>PMI (positive material identification).</strong> <strong>PMI
+checks the metal's actual chemistry with a handheld analyzer, not the
+paperwork.</strong> It is governed by API RP 578 and ASTM E1476; full
+(100%) checks are typical for critical alloy systems, sour service, and
+high-temperature piping, with sampling elsewhere (<a
+href="https://www.mistrasgroup.com/field-services/core-ndt-services/positive-material-identification/">Mistras</a>,
+<a
+href="https://www.fabrico.io/blog/positive-material-identification/">Fabrico</a>,
+vendor pages, medium-low; I did not read API 578). If a line says "PMI,"
+the open question is whether RudCo performs it, supplies a report, or
+whether the buyer does it on receipt.</p>
+<p><strong>NACE MR0175 / ISO 15156 (sour service).</strong> <strong>For
+carbon and low-alloy steel the common limit is 22 HRC maximum hardness,
+which the buyer will usually want shown on the MTR.</strong></p>
+<ul>
+<li>Several sources give 22 HRC (about 248 HV10 or 237 HBW); one forum
+quoting the standard says it applies to carbon and low-alloy steels
+under 1% nickel in normalized, normalized and tempered, or quenched and
+tempered condition (<a
+href="https://blog.projectmaterials.com/quick-answers/materials/what-is-nace-mr0175/">Project
+Materials</a>, <a
+href="https://twi-global.com/technical-knowledge/job-knowledge/complying-with-nace-hardness-requirements-119">TWI</a>;
+medium).</li>
+<li>The standard itself does not require a conformance statement on the
+certificate, according to a NACE interpretation quoted in search results
+(I could not trace the page; low). So a purchase order should ask for
+hardness values and heat-treat condition, not just "NACE compliant."
+Austenitic stainless base metal has no HRC limit per the sources I
+found, but weld and cold work rules apply.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="4-costliest-reading-errors">Costliest reading errors</h2><span class="n">Section 4</span></div>
+<p><strong>My ranking, by whether the mistake can be fixed after the
+metal ships.</strong> This is judgment from the consequences above. I
+found no public study that prices misread RFQ lines, and I did not find
+one gauge-error incident with a published dollar cost.</p>
+<ol type="1">
+<li><strong>Wrong or missing origin (DFARS, Buy America).</strong> Metal
+melted abroad cannot be repaired. The buyer may have to reject it, and a
+supplier that certifies wrong has legal exposure. Related enforcement
+example, on the <em>testing</em> side: Bradken paid $10,896,924 to
+resolve False Claims Act allegations that an employee falsified test
+results on steel components for Navy vessels (<a
+href="https://www.justice.gov/opa/pr/bradken-inc-pays-108-million-resolve-false-claims-act-allegations-involving-substandard-naval">DOJ
+press release</a>, <a
+href="https://www.justice.gov/usao-wdwa/pr/bradken-inc-pays-108-million-settle-false-claims-act-allegations-and-enters-deferred">US
+Attorney, W.D. Wash.</a>; fetched via search summary). That case is
+about falsified data, not misreading an RFQ. It shows how seriously
+certs are treated.</li>
+<li><strong>Wrong grade or wrong spec family.</strong> 304 vs 316, A36
+vs A572-50, A500 vs A513, A53 vs A500. Paperwork cannot turn one into
+the other. The cleanest public stake example is a materials failure from
+chemistry alone: the 2012 Chevron Richmond refinery fire traced to
+sulfidation corrosion in a carbon steel pipe with low silicon (<a
+href="https://www.csb.gov/recommendations/csb-investigations-mechanical-integrity/">CSB</a>,
+<a
+href="https://processengineering.co.uk/article/2016120/pipeline-corrosion-c">Process
+Engineering</a>). That was an inspection and design failure, not an RFQ
+reading error. I include it only to show that chemistry is not
+cosmetic.</li>
+<li><strong>Missing certification the buyer needed.</strong> Often
+fixable if the heat was tracked and the mill cert exists; not fixable if
+cut stock lost its heat number. Depends on RudCo's traceability, which I
+could not see.</li>
+<li><strong>Wrong gauge table.</strong> Silent, because the quote looks
+normal. 4.5% thick on stainless, up to 24% thin on aluminum read with
+the steel table. Whether it fails depends on the buyer's tolerance.</li>
+<li><strong>Wrong unit or position (x4 as quantity vs dimension; feet vs
+inches; 4x8 ft vs 4x8 in).</strong> Easy for a rule to catch, and large
+when missed, so a parser should never guess.</li>
+<li><strong>Sheet vs plate at the boundary (3/16 in).</strong> Changes
+price, flatness, and the spec; usually caught on the first email
+back.</li>
+</ol>
+<hr />
+<div class="sheet-head"><h2 id="5-what-this-means-for-the-two-decisions">What this means for
+the two decisions</h2><span class="n">Section 5</span></div>
+<ul>
+<li><strong>Put first: reading accuracy with the table shown, then
+flags.</strong> The gauge table, the unit rules, and the one-way
+substitution rules are deterministic and checkable. Judges "test it
+against real cases"; these are the cases they can test.</li>
+<li><strong>"Catches hidden requirements" can be a strong angle only if
+it is precise.</strong> Evidence for: the requirements are real, costly,
+and absent from tools that only parse lines (the existing-tools track
+covers that). Evidence against: many triggers sit outside the line, the
+one real RFQ I found shows none, and a tool that flags everything breaks
+the PRD's own test ("No clear line gets a question it did not need").
+Frame each flag as "this implies X because of Y; confirm," never as a
+legal ruling.</li>
+<li><strong>A cheaper way to show the same strength:</strong> a flag
+with its trigger text highlighted (for example "domestic" or
+<code>SA-240</code> or the ship-to) combines the hidden-requirements
+angle with "the quote shows its work."</li>
+<li><strong>Fix in the PRD:</strong> the example pair for "the same item
+written five ways" lists two items that differ by 4.2% in thickness. Use
+the test set below instead.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="6-test-set">Test set</h2><span class="n">Section 6</span></div>
+<p><strong>How to read this.</strong> <code>V</code> = verbatim text
+from a cited public document (the line text is exact; I removed
+nothing). <code>C</code> = constructed by me from cited rules; the text
+is mine, the facts it tests are cited. Each line gives the standard
+reading and, when the reading is genuinely open, the question to ask.
+All thicknesses are inches. Gauge values come from the <a
+href="https://www.metalsupermarkets.com/sheet-metal-gauge-chart/">Metal
+Supermarkets chart</a> unless stated. Unit conversions and gaps come
+from <a
+href="domain_rules_gauge_calc.py">domain_rules_gauge_calc.py</a>.</p>
+<p><strong>Sources for verbatim lines:</strong> <code>Iowa</code> = <a
+href="https://bidopportunities.iowa.gov/Home/DownloadBidOpportunityDocument/1896a227-c6a4-4be5-8283-11490aefe20a">State
+of Iowa RFQ 245, issued 2018-08-28</a>. Its lines (numbered 1 to 49)
+name no mill test report, certification, or metal origin requirement.
+The only origin wording is a general preference for Iowa products when
+bids tie. <code>SacRT</code> = <a
+href="https://app.govly.com/public/opportunities/16741246">Sacramento
+Regional Transit District steel road plates solicitation</a>.
+<code>UAlberta</code> = <a
+href="https://marketplace.ualberta.ca/products/stainless-steel-sheet">catalog
+listing</a>.</p>
+<h3 id="verbatim-lines">Verbatim lines</h3>
+<p><strong>T1. V, Iowa line 20, quantity 19 EA</strong>
+<code>Stainless Steel Sheets Type 304-2B</code> /
+<code>Stainless Sheets 4 x 10</code> /
+<code>48" x 120" long x 16 Gauge</code></p>
+<ul>
+<li>Reading: stainless steel, grade 304, finish 2B, sheet, thickness
+<strong>0.0625</strong> (stainless table; some suppliers list 0.063 or a
+different decimal, see section 1.1), width 48, length 120 (10 ft),
+quantity 19, spec not written (A240 is the usual spec family).</li>
+<li>Ask: "Is 16 gauge 0.0625 in nominal, or do you need a specific
+decimal? Do you accept 304/304L dual cert? Do you need a mill
+cert?"</li>
+<li>Why it is here: a clean reading with a gauge-table lookup and a
+quiet, optional cert question.</li>
+</ul>
+<p><strong>T2. V, Iowa line 9, quantity 2 EA</strong>
+<code>Cold Rolled Sheets QC/ A366</code> /
+<code>48" x 120" x 14 Gauge</code></p>
+<ul>
+<li>Reading: carbon (mild) steel, cold-rolled sheet, thickness
+<strong>0.0747</strong> (mild steel table), width 48, length 120,
+quantity 2. "QC" probably means a quality designation; A366 is an older
+cold-rolled sheet spec whose current status I did not verify.</li>
+<li>Ask: "Is 'QC / A366' commercial quality? Current specs for
+cold-rolled sheet are A1008-family; do you accept a current equivalent?"
+(The A1008 and A366 facts are general knowledge, not checked here; a
+human should confirm before the demo asserts them.)</li>
+</ul>
+<p><strong>T3. V, Iowa line 1, quantity 24 EA</strong>
+<code>Square Tube A513-A500 Grade B</code> /
+<code>2" x 2" x 24' long x .188 thick</code></p>
+<ul>
+<li>Reading: carbon steel, square tube, 2 x 2 in, wall
+<strong>0.188</strong>, length 288 in (24 ft), quantity 24. Spec is
+<strong>ambiguous</strong>: A513 (mechanical, no property requirements)
+and A500 (structural, verified properties, ships with MTR) are written
+together.</li>
+<li>Ask: "Structural tube (A500 Grade B) or mechanical tube (A513)? Do
+you need the mill test report?"</li>
+</ul>
+<p><strong>T4. V, Iowa line 11, quantity 10 EA</strong>
+<code>Expanded Stainless 4 x 8</code> /
+<code>Expanded Stainless Flat</code> /
+<code>48" x 96" x 13 GA x 1 1/2" Diamond</code></p>
+<ul>
+<li>Reading: expanded stainless steel metal, flat, 48 x 96 in (4 x 8
+ft), "13 GA", 1 1/2 in diamond, quantity 10. Grade not stated.</li>
+<li>Cannot resolve: 13 gauge does not appear in the stainless sheet
+table I cited, and expanded metal sells by its own stock numbers.
+<strong>Thickness: unknown.</strong></li>
+<li>Ask: "What is the strand thickness in inches, or the expanded-metal
+stock number? What stainless grade?" This is a case where the right
+behavior is to say "I do not know," not to look something up.</li>
+</ul>
+<p><strong>T5. V, Iowa line 6, quantity 10 EA</strong>
+<code>Hot Rolled Strips CQ-A36</code> /
+<code>3" x 20' long x 1/8" thick</code></p>
+<ul>
+<li>Reading: carbon steel, hot-rolled flat, width 3, thickness
+<strong>0.125</strong>, length 240 in (20 ft), quantity 10.</li>
+<li>Ask: "Hot-rolled A36 flat bar, or commercial-quality strip? 'CQ' and
+'A36' are different specs." Form is flat bar or strip (0.125 is under
+the 0.230 in A6 bar line quoted in section 1.5).</li>
+</ul>
+<p><strong>T6. V, Iowa line 13, quantity 10 EA</strong>
+<code>Stainless Tubes Type 304</code> /
+<code>1 1/4" x 1 1/4" x 20' long x .120 thick</code></p>
+<ul>
+<li>Reading: stainless 304, square tube, 1.25 x 1.25 in, wall
+<strong>0.120</strong>, length 240 in, quantity 10. No spec
+written.</li>
+<li>Ask: "Welded or seamless? Mechanical tubing or pressure? Finish
+(mill or polished)?" Note .120 is a decimal wall, not a gauge.</li>
+</ul>
+<p><strong>T7. V, Iowa line 23, quantity 5 EA</strong>
+<code>Aluminum Flat 6061-T6</code> /
+<code>1" x 12' Long x 1/8" thick</code></p>
+<ul>
+<li>Reading: aluminum 6061, temper T6, flat bar, width 1, thickness
+<strong>0.125</strong>, length 144 in, quantity 5.</li>
+<li>Ask: "Extruded flat bar, or rolled/cut from sheet?" (B221 covers
+extrusions; B209 covers flat-rolled sheet and plate.) Low-cost
+question.</li>
+</ul>
+<p><strong>T8. V, SacRT road plates, quantity two</strong>
+<code>ASTM A36 or A572 Gr. 50 equivalent hot-rolled carbon steel</code>
+/ <code>8 feet x 20 feet x 1 inch thick</code> /
+<code>Corrosion-resistant coating (primer plus industrial enamel, galvanized, or equivalent)</code></p>
+<ul>
+<li>Reading: carbon steel plate, hot-rolled, thickness
+<strong>1.000</strong>, width 96 in, length 240 in, quantity 2. Grade:
+either A36 or A572-50 is acceptable ("or"), so a dual-cert plate
+fits.</li>
+<li>Ask: "Which coating: primer and enamel, or galvanized?" The
+"equivalent" wording invites a ruling on what counts as equivalent; the
+safe answer is dual-certified A36/A572-50.</li>
+<li>Hidden requirements in the listing: none stated. The full PlanetBids
+document may add some; I did not see it.</li>
+</ul>
+<p><strong>T9. V, UAlberta catalog listing (not an RFQ; one item written
+three ways)</strong> <code>Stainless Steel Sheet 304</code> / thickness
+<code>1/16 in</code> / <code>0.063 (16 Ga.)</code> /
+<code>2B Mill Finish</code> / <code>12 in x 12 in</code></p>
+<ul>
+<li>Reading: 304, sheet, 2B, thickness <strong>0.0625</strong> (1/16 in;
+also the stainless 16 gauge value), 12 x 12 in, quantity 1. The
+listing's 0.063 rounds 0.0625 by 0.8%.</li>
+<li>Ask: none. This is the positive control: three notations, one
+thickness.</li>
+</ul>
+<h3 id="constructed-lines">Constructed lines</h3>
+<p><strong>T10. C, from the PRD's example, quantity missing</strong>
+<code>304 SS sheet 16ga 4x8</code></p>
+<ul>
+<li>Reading: stainless 304, sheet, <strong>0.0625</strong>, 48 x 96 in,
+spec not written, finish not written, quantity missing.</li>
+<li>Ask: "How many sheets? Finish: 2B, No. 4, or other? Do you accept
+304/304L dual cert?"</li>
+</ul>
+<p><strong>T11. C, the PRD's second example</strong>
+<code>Stainless 304, 0.060 in, 48 x 96</code></p>
+<ul>
+<li>Reading: stainless 304, <strong>0.060</strong> exact as written, 48
+x 96 in. Under the stainless table, 16 gauge is 0.0625 (4.2% thicker).
+0.060 matches 16 gauge <em>mild steel</em> (0.0598).</li>
+<li>Ask: "Do you need 0.060 in exactly, or is 16 gauge (nominal 0.0625)
+acceptable?" This is the gauge trap in one line.</li>
+</ul>
+<p><strong>T12. C, material missing</strong>
+<code>16 ga sheet 4x8 qty 20</code></p>
+<ul>
+<li>Reading: <strong>cannot be read.</strong> Four tables apply: mild
+steel 0.0598, galvanized 0.0635, stainless 0.0625, aluminum 0.05082.
+Width 48, length 96, quantity 20.</li>
+<li>Ask: "What material: carbon steel, galvanized, stainless (which
+grade), or aluminum (which alloy)?"</li>
+</ul>
+<p><strong>T13. C, galvanized gauge</strong>
+<code>16 ga galv 4x10 x 25</code></p>
+<ul>
+<li>Reading: galvanized steel, sheet, <strong>0.0635</strong>
+(galvanized table; 6.2% thicker than mild 16 gauge), 48 x 120 in,
+quantity 25.</li>
+<li>Ask: "Which coating weight (for example G60 or G90)?" (Coating
+designations are general knowledge; not sourced here.)</li>
+</ul>
+<p><strong>T14. C, aluminum gauge and temper</strong>
+<code>14 ga 5052 alum 4x8 x10</code></p>
+<ul>
+<li>Reading: aluminum 5052, sheet, 48 x 96, quantity 10, thickness
+<strong>0.06408</strong> (Metal Supermarkets) or <strong>0.063</strong>
+(Wikipedia). Spec likely B209.</li>
+<li>Ask: "Which temper (H32, H34, other)? Do you need 0.063 in or 0.064
+in, or will either do?" The 1.7% gap between published tables is the
+reason to ask.</li>
+</ul>
+<p><strong>T15. C, quantity vs dimension</strong>
+<code>3/16 304 plt 4x8 x4</code></p>
+<ul>
+<li>Reading: stainless 304, buyer says plate, thickness
+<strong>0.1875</strong>, 48 x 96 in, and a trailing <code>x4</code> that
+could be quantity 4 or part of a size.</li>
+<li>Ask: "Is 4 the quantity? Hot-rolled plate or cold-rolled 2B sheet at
+3/16?" 3/16 sits between the 1/4 in and 3 mm sheet/plate lines. Here the
+buyer said "plt", so form is plate; confirm finish.</li>
+</ul>
+<p><strong>T16. C, contradiction between grade and strength</strong>
+<code>1/2 A36 PL 5x10 x3 min yield 50 ksi</code></p>
+<ul>
+<li>Reading: carbon steel plate, thickness <strong>0.500</strong>, 60 x
+120 in, quantity 3, grade A36. A36 guarantees 36 ksi minimum yield.</li>
+<li>Ask: "Do you need A572 Grade 50, or A36/A572-50 dual-certified
+plate?" Source: <a
+href="https://www.aisc.org/globalassets/modern-steel/steel-interchange/2014/072014_si.pdf">AISC</a>
+via search. A hidden requirement: the stated strength implies a spec
+change.</li>
+</ul>
+<p><strong>T17. C, ASME code material with a 3.1 cert</strong>
+<code>SA-240 316L 3/8 plt 60x120 x2 w/ 3.1 cert</code></p>
+<ul>
+<li>Reading: stainless 316L, plate, thickness <strong>0.375</strong>, 60
+x 120 in, quantity 2, ASME code material SA-240, EN 10204 3.1
+certificate.</li>
+<li>Ask: "Must the cert show the SA-240 designation (not only A240), and
+the 316/316L dual cert? Do you need a code stamp or PMI?" Hidden
+requirements flagged: ASME SA (<a
+href="https://wermac.org/societies/ASME_SA_vs_ASTM_A.html">Wermac</a>),
+3.1 (<a
+href="https://www.materialwelding.com/material-test-certificates-explained">Material
+Welding</a>).</li>
+</ul>
+<p><strong>T18. C, pipe with PMI</strong>
+<code>2in sch40 304/304L A312 smls 20ft x30 PMI</code></p>
+<ul>
+<li>Reading: stainless 304/304L dual, seamless pipe, nominal size 2 in,
+schedule 40, length 240 in, quantity 30 (lengths? feet?), spec A312.
+Wall thickness comes from the schedule table, which is not in my
+sources, so I do not state it.</li>
+<li>Ask: "Is 30 the number of 20 ft lengths, or total feet? Do you need
+the PMI report with the shipment, or only performed?" Hidden requirement
+stated: PMI.</li>
+</ul>
+<p><strong>T19. C, contradiction between shape and spec</strong>
+<code>2x2 sq tube A53 Gr B .120 24ft</code></p>
+<ul>
+<li>Reading: <strong>cannot be read as written.</strong> A53 is round
+pipe only (<a
+href="https://steeltubeinstitute.org/resource/a500-versus-a53-different-inside/">Steel
+Tube Institute</a>); square tube is A500 or A513.</li>
+<li>Ask: "Do you need square tube (A500 structural or A513 mechanical),
+or round A53 pipe?"</li>
+</ul>
+<p><strong>T20. C, DFARS stated</strong>
+<code>304 plate 1/4 48x96 A240 DFARS compliant melted USA 3.1 x3</code></p>
+<ul>
+<li>Reading: stainless 304, plate, thickness <strong>0.250</strong>, 48
+x 96 in, quantity 3, spec A240, EN 10204 3.1, domestic melt.</li>
+<li>Hidden requirements stated outright: DFARS 252.225-7009 (<a
+href="https://www.acquisition.gov/dfars/252.225-7009-restriction-acquisition-certain-articles-containing-specialty-metals.">acquisition.gov</a>),
+melt origin on the MTR.</li>
+<li>Ask: "Is a qualifying-country melt acceptable, or US only?" (The
+clause allows the US, outlying areas, or a qualifying country.) And an
+internal check: does the stock on hand have a heat whose cert shows melt
+country?</li>
+</ul>
+<p><strong>T21. C, DFARS implied by context</strong> Context: ship-to is
+a defense contractor; PO carries a "DO-A1" priority rating. Line:
+<code>304 rd bar 2in A276 12ft x10</code></p>
+<ul>
+<li>Reading: stainless 304, round bar, 2.000 in diameter, length 144 in,
+quantity 10, spec A276.</li>
+<li>Hidden requirements implied: 304 is a specialty metal by chemistry
+(chromium well above 0.25%), a defense ship-to and rating suggest the
+DFARS clause flows down, and a DPAS rating carries an acceptance
+deadline.</li>
+<li>Ask: "Does the PO include DFARS 252.225-7009 or a melt-origin
+requirement?" This tests the context-trigger path with no keyword in the
+line.</li>
+</ul>
+<p><strong>T22. C, Buy America with a coating step</strong>
+<code>L3x3x1/4 x 20' A36 galv x40 Buy America state DOT bridge</code></p>
+<ul>
+<li>Reading: carbon steel angle, 3 x 3 x 0.250 in, length 240 in,
+quantity 40, A36, galvanized.</li>
+<li>Hidden requirement stated: Buy America. The rule covers the
+galvanizing step, and the MTR must show melt and manufacture location
+(<a
+href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-635/subpart-D/section-635.410">23
+CFR 635.410</a>, <a
+href="https://dot.ca.gov/-/media/dot-media/programs/construction/documents/contract-administration/buy-america/6104n081126a11y.pdf">Caltrans</a>).</li>
+<li>Ask: "Where is the galvanizing done, and does your agency require
+specific certification wording?"</li>
+</ul>
+<p><strong>T23. C, sour service</strong>
+<code>1/2 A516-70 plate 72x120 NACE MR0175 HIC tested x2</code></p>
+<ul>
+<li>Reading: carbon steel plate, thickness <strong>0.500</strong>, 72 x
+120 in, quantity 2, spec A516 Grade 70 (pressure vessel plate; general
+knowledge, not sourced here), NACE MR0175, HIC tested.</li>
+<li>Hidden requirements: hardness limit (22 HRC max for carbon steel),
+heat-treat condition, HIC test results. The NACE standard does not
+itself require a certificate statement, so the buyer should say what the
+MTR must show.</li>
+<li>Ask: "Do you need hardness values and heat-treat condition on the
+MTR, and a separate HIC test report?"</li>
+</ul>
+<p><strong>T24. C, export-controlled attachment</strong> Line:
+<code>6061-T651 plate 2 x 12 x 24 x4</code>, with an attached drawing
+marked "ITAR controlled technical data."</p>
+<ul>
+<li>Reading: aluminum 6061, temper T651, plate, thickness
+<strong>2.000</strong>, 12 x 24 in, quantity 4.</li>
+<li>Hidden requirement: the attachment is export-controlled data.
+Confidence is low (see section 3). Flag, do not interpret.</li>
+<li>Ask: "Please confirm handling rules (US persons only, domestic
+suppliers only) before we circulate the drawing."</li>
+</ul>
+<p><strong>T25. C, a clear line with a gauge on tube (negative
+control)</strong> <code>1-1/2 sq tube A500 C 11ga 24ft x8</code></p>
+<ul>
+<li>Reading: carbon steel, square tube, 1.5 x 1.5 in, wall
+<strong>0.120</strong> (tube wall table, 11 gauge), length 288 in,
+quantity 8, spec A500 Grade C. A500 tube ships with an MTR (<a
+href="https://atlastube.com/?p=4627">Atlas Tube</a>), so the flag is
+informational.</li>
+<li>Ask: <strong>none.</strong> The right behavior is to read it, show
+the table used, and not ask.</li>
+</ul>
+<hr />
+<div class="sheet-head"><h2 id="7-gaps-and-source-quality">Gaps and source quality</h2><span class="n">Section 7</span></div>
+<ul>
+<li><strong>Paid or blocked sources:</strong> ASTM, ANSI, SAE, and API
+documents were not readable. ASTM store pages and AISC PDFs returned 403
+to my fetch tool. Spec claims rest on distributors, trade groups,
+forums, and search-result summaries of pages I could not open. Where a
+claim rests only on a search summary, the text says so.</li>
+<li><strong>Not verified in this session</strong> (general industry
+knowledge, flagged in the lines that use them): A312 scope, A366 status
+and its modern equivalent, A516-70 as pressure vessel plate, G60/G90
+coating designations, B221 scope, AMS specs, the exact A6 plate
+definition.</li>
+<li><strong>Not found:</strong> a public dollar figure for a misread
+RFQ; a public statement on whether mill-form titanium or stainless is
+USML-controlled; a standards-body gauge chart (distributor and Wikipedia
+charts agree with each other).</li>
+<li><strong>One RFQ source for messy lines.</strong> The Iowa document
+is a real, public RFQ from 2018 (line numbers 1 to 49), written by a
+state buyer and not by a plant engineer. It is cleaner than most email
+RFQs. Anything worse (PDF scans, abbreviations, mixed units) would come
+from the voice-of-user tracks.</li>
+<li><strong>Reddit:</strong> not fetched, per instructions.</li>
+</ul>
+<div class="sheet-head"><h2 id="cleanup-needed">Cleanup needed</h2><span class="n">Section 8</span></div>
+<p>None. Files I created in the research folder:
+<code>research_domain_rules.md</code> and
+<code>domain_rules_gauge_calc.py</code> (the script behind the
+percentages and conversions). A scratch copy of the script sits in the
+session scratchpad and needs no action.</p>
+</body>
+</html>
