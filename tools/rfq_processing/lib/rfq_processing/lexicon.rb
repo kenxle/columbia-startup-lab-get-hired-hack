@@ -7,6 +7,8 @@ module RfqProcessing
   module Lexicon
     MATERIALS = [
       # RudCo's own products first (abrasives), so "steel shot" is not read as carbon steel
+      [/\bstainless\s+steel\s*shot\b/i, "stainless steel shot", "stainless steel shot is a blasting abrasive, sold by weight"],
+      [/\bstainless\s+steel\s*grit\b/i, "stainless steel grit", "stainless steel grit is a blasting abrasive, sold by weight"],
       [/\bsteel\s*shot\b/i, "steel shot", "steel shot is a blasting abrasive, sold by weight"],
       [/\bsteel\s*grit\b/i, "steel grit", "steel grit is a blasting abrasive, sold by weight"],
       [/\balumin\w*\s*oxide\b/i, "aluminum oxide", "aluminum oxide is a blasting abrasive, sold by weight"],
@@ -50,6 +52,7 @@ module RfqProcessing
     ].freeze
 
     FORMS = [
+      [/\bscrews?\b/i, "screw"],
       [/\bexpanded\b/i, "expanded metal"],
       [/\bingots?\b/i, "ingot"],
       [/\bsows?\b/i, "sow"],
@@ -90,13 +93,16 @@ module RfqProcessing
       [/\benamel\b/i, "enamel"]
     ].freeze
 
-    GAUGE = /\b(\d{1,2})\s*(?:ga\.?|gauge|GA\.?)(?![a-z])/i
+    GAUGE = /\b(\d{1,2})\s*(?:ga\.?|gauge|gage)(?![a-z])/i
     SCHEDULE = /\bsch(?:ed|edule)?\.?\s*(\d+)\b/i
     YIELD = /\b(?:min(?:imum)?\.?\s*)?yield\s*(\d+)\s*ksi\b/i
 
     # Quantity as buyers write it. Trailing "x N" is handled by the parser.
     # A quantity number is never part of a fraction, a decimal, or a grade ("1/2 plate", "A516-70 plate").
+    WEIGHT_NUMBER = /\d{1,3}(?:[ ,]\d{3})+|\d+/
     QUANTITIES = [
+      [/\bkgs?\s+(#{WEIGHT_NUMBER})\b/i, "kg"],
+      [/(?<![\d\/.\-])\b(#{WEIGHT_NUMBER})\s*(?:kgs?|kilos?)\b/i, "kg"],
       [/\bqty\.?\s*:?\s*(\d+)\b/i, nil],
       [/(?<![\d\/.\-])\b(\d[\d,]*)\s*(?:lbs?\.?|pounds?)\b/i, "lb"],
       [/(?<![\d\/.\-])\b(\d[\d,]*)\s*(?:bags?|sacks?)\b/i, "bag"],

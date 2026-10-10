@@ -39,6 +39,7 @@ module RfqProcessing
       @position = position
       @location = location || "line #{position}"
       @buyer_terms = Array(buyer_terms)
+      @buyer_term_evidence = {}
       @overrides = (overrides || {}).to_h.transform_keys(&:to_s)
       @locked = []
       @fields = {}
@@ -142,9 +143,14 @@ module RfqProcessing
       BuyerProfile.apply(@buyer_terms, @text).each do |hit|
         hit[:fields].each do |field, value|
           set(field, value, hit[:match], hit[:explanation], confidence: 0.9, occupy: true)
+          @buyer_term_evidence[field] = @evidence[field] unless @locked.include?(field)
         end
         @rules << "Buyer profile: \"#{hit[:term]}\" means #{hit[:describe]} (#{hit[:how]})"
       end
+    end
+
+    def buyer_term_field?(field)
+      @buyer_term_evidence.key?(field) && @buyer_term_evidence[field].equal?(@evidence[field])
     end
 
     # ---- RudCo's own products: abrasives and aluminum ingot ---------------
@@ -152,10 +158,14 @@ module RfqProcessing
     def read_rudco_products
       material = @fields["material"]
       form = @fields["form"]
-      if %w[steel\ shot steel\ grit].include?(material) || (form == "abrasive" && material.to_s.start_with?("steel"))
-        if (m = /\b([SG])\s?-?\s?(\d{2,3})\b/.match(@text))
-          set("grade", "#{m[1]}-#{m[2]}", m, "#{m[1] == 'S' ? 'shot' : 'grit'} size designation (SAE J444)", occupy: true)
+      if form == "abrasive" && material.to_s.match?(/\A(?:stainless )?steel (?:shot|grit)\z/)
+        if (m = /\b([SG])\s?-?\s?(\d{2,3})\b(?:\s*\((304|410)\))?/i.match(@text))
+          grade = "#{m[1].upcase}-#{m[2]}"
+          grade += " (#{m[3]})" if m[3]
+          set("grade", grade, m, "#{m[1].upcase == 'S' ? 'shot' : 'grit'} size designation#{m[3] ? ' and alloy as written' : ''}", occupy: true)
         end
+      elsif material == "glass bead" && (m = /#\s*(\d+)\b(?!\s*finish\b)/i.match(@text))
+        set("grade", "##{m[1]}", m, "glass bead size designation as written", occupy: true)
       elsif %w[ingot sow].include?(form) || /\bP1020\b|\bA356\b/.match?(@text)
         if (m = /\b(P1020|A356|356|6061|5052|3003)\b/.match(@text))
           set("grade", m[1], m, "aluminum alloy or purity designation for ingot", occupy: true)
@@ -257,6 +267,8 @@ module RfqProcessing
         m = pattern.match(@text)
         next unless m
 
+        next if @fields["material"] == "glass bead" && m[0].match?(/\A#4\z/i)
+
         set("finish", finish, m, why)
         break
       end
@@ -300,13 +312,21 @@ module RfqProcessing
     # ---- quantity ---------------------------------------------------------
 
     def read_quantity
+      # Package weight describes a container, not the RFQ demand. Mask it before
+      # quantity and dimension scans, retaining the original source line intact.
+      @text.to_enum(:scan, /\b(?:#{Lexicon::WEIGHT_NUMBER})\s*(?:kgs?|kilos?|lbs?|pounds?)\s+per\s+(?:box|bag|sack|drum|pallet)\b/i).each do
+        occupy(Regexp.last_match)
+      end
+      @text.to_enum(:scan, /\b(?:in|packed\s+in|bagged\s+in)\s+(?:#{Lexicon::WEIGHT_NUMBER})\s*(?:kgs?|kilos?|lbs?|pounds?)\s+(?:boxes|bags|sacks|drums|pallets)\b/i).each do
+        occupy(Regexp.last_match)
+      end
       text = masked
       Lexicon::QUANTITIES.each do |pattern, unit|
         m = pattern.match(text)
         next unless m
         next if m.begin(1).positive? && @text[m.begin(1) - 1] == "-" # "A516-70 plate" is a grade, not 70 plates
 
-        set("quantity", m[1].delete(",").to_i, m, "quantity as written", occupy: true)
+        set("quantity", m[1].delete(", ").to_i, m, "quantity as written", occupy: true)
         unit = m[0][/[A-Za-z]+\.?\z/].to_s.downcase.sub(/s\z/, "") if unit == :unit_as_written
         set("quantity_unit", unit || "each", m, unit ? "unit as written" : "no unit written; read as each", confidence: unit ? 0.95 : 0.8)
         @assumptions << "No quantity unit written; read as each." unless unit
@@ -321,6 +341,7 @@ module RfqProcessing
 
       m = text.to_enum(:scan, TRAILING_QTY).map { Regexp.last_match }.reverse.find do |candidate|
         next false if occupied?(candidate.begin(0)...candidate.end(0))
+        next false if @text[candidate.end(0)..].match?(/\A\s*(?:x|×|by)\s*\d/i) # the start of a size, not its quantity
 
         previous_token = @text[0...candidate.begin(0)].split(/\s+/).last.to_s
         spaced = candidate[0].match?(/\Ax\s+\d/)
@@ -431,7 +452,7 @@ module RfqProcessing
           set_dim("length_in", el, "#{unit_note(el)}; a footage on its own is the length")
         elsif el[:value] < 1 && el[:unit] != :ft
           field = tube_form?(form) ? "wall_in" : "thickness_in"
-          set_dim(field, el, "#{el[:raw]} in, a fraction or decimal under one inch, read as the #{field == 'wall_in' ? 'wall' : 'thickness'}") unless @fields[field]
+          set_dim(field, el, "#{el[:raw]} in, a fraction or decimal under one inch, read as the #{field == 'wall_in' ? 'wall' : 'thickness'}") if !@fields[field] || buyer_term_field?(field)
         elsif ["round bar", "pipe"].include?(form) && el[:unit] == :in
           set_dim(form == "pipe" ? "nominal_size_in" : "diameter_in", el, "#{unit_note(el)}, the #{form == 'pipe' ? 'nominal pipe size' : 'diameter'}")
         elsif tube_form?(form) && !@fields["side_a_in"]
@@ -466,7 +487,7 @@ module RfqProcessing
     def assign_flat(chain)
       return if chain.empty?
 
-      if chain.size >= 3 && !@fields["thickness_in"]
+      if chain.size >= 3 && (!@fields["thickness_in"] || (buyer_term_field?("thickness_in") && chain.first[:value] < 1))
         t = chain.shift
         set_dim("thickness_in", t, "#{unit_note(t)}; the first of three numbers on plate is the thickness")
         @assumptions << "Three numbers with no words: read as thickness x width x length (plate convention)."
@@ -630,10 +651,14 @@ module RfqProcessing
           return
         end
         rounding = decimal ? " The written #{decimal} in rounds the table value." : ""
-        @fields[field] = table_value
-        @evidence[field] = { "text" => gauge_text, "location" => @evidence["gauge"]["location"],
-                             "explanation" => "#{gauge} gauge on the #{lookup.table} table is #{table_value} in (#{lookup.source}).#{rounding}" }
-        @confidence[field] = decimal ? 0.95 : 0.9
+        # A compatible table lookup corroborates the taught reading, but does
+        # not replace its provenance. Explicit dimensions have their own evidence.
+        unless buyer_term_field?(field)
+          @fields[field] = table_value
+          @evidence[field] = { "text" => gauge_text, "location" => @evidence["gauge"]["location"],
+                               "explanation" => "#{gauge} gauge on the #{lookup.table} table is #{table_value} in (#{lookup.source}).#{rounding}" }
+          @confidence[field] = decimal ? 0.95 : 0.9
+        end
         @rules << "Gauge table: #{lookup.table}, #{gauge} ga = #{table_value} in"
         if lookup.alternative
           @assumptions << "Published tables differ for #{gauge} gauge #{lookup.table}: #{table_value} in here, #{lookup.alternative[:value]} in in #{lookup.alternative[:source]}."

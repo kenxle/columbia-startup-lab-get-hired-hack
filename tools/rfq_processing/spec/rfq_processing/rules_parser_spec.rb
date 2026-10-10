@@ -147,4 +147,92 @@ RSpec.describe RfqProcessing::RulesParser do
       expect(r.unknowns.map { |u| u["field"] }).to include("part_number")
     end
   end
+
+  it "recognizes the final screw line but holds its unspecified material" do
+    r = parse("1/4-20 x 1 in hex cap screws, zinc plated, 500 pcs")
+    expect(r["form"]).to eq("screw")
+    expect(r["quantity"]).to eq(500)
+    expect(r["material"]).to be_nil
+    expect(r.unknowns.map { |u| u["field"] }).to include("material")
+    expect(RfqProcessing::Readiness.decide(r, match: { "status" => "exact" }).state).to eq("needs_buyer")
+  end
+
+  it "reads the documented Gage x size spelling without turning width into quantity" do
+    r = parse("STAINLESS Steel 2B T-304 - 16 Gage x 4 x 8 or similar")
+    expect(r["gauge"]).to eq(16)
+    expect(r["thickness_in"]).to eq(0.0625)
+    expect([r["width_in"], r["length_in"]]).to eq([48, 96])
+    expect(r["quantity"]).to be_nil
+    expect(r.unknowns.map { |u| u["field"] }).to include("quantity")
+    expect(r.evidence["width_in"]["explanation"]).to include("feet")
+  end
+
+  it "keeps explicit inches instead of applying the sheet feet shorthand" do
+    r = parse('304 stainless sheet 16 Gage x 4" x 8" qty 2')
+    expect([r["width_in"], r["length_in"]]).to eq([4, 8])
+    expect(r["quantity"]).to eq(2)
+  end
+
+  it "does not turn 18-8ss into an assumed stainless grade" do
+    r = parse("8-32 x3/8 flat head socket caps in 18-8ss")
+    expect(r["grade"]).to be_nil
+  end
+
+  describe "buyer terms (workflow step 9, demo beat 8)" do
+    let(:taught) do
+      { "term" => "16 ga", "meaning" => { "fields" => { "thickness" => 0.0625 } }, "source" => "taught",
+        "client_name" => "Northline", "confirmed_on" => "RFQ-0001" }
+    end
+    let(:line) { "304 SS sheet 16 ga 48 x 96, 10 sheets" }
+
+    it "resolves the taught 16 ga stainless line to 0.0625 in with nothing left to ask" do
+      r = described_class.parse(line, buyer_terms: [taught])
+      expect(r["thickness_in"]).to eq(0.0625)
+      expect(r["material"]).to eq("stainless steel")
+      expect(r["form"]).to eq("sheet")
+      expect(r["width_in"]).to eq(48)
+      expect(r["length_in"]).to eq(96)
+      expect(r["quantity"]).to eq(10)
+      expect(r.evidence["thickness_in"]["text"]).to eq("16 ga")
+      expect(r.conflicts).to be_empty
+      expect(r.unknowns).to be_empty
+      expect(r.rules_used).to include("Buyer profile: \"16 ga\" means thickness 0.0625 (taught by the rep)")
+    end
+
+    it "shows the taught source on the thickness field" do
+      r = described_class.parse(line, buyer_terms: [taught])
+      expect(r.evidence["thickness_in"]["explanation"]).to eq("Read as thickness 0.0625 in, as the rep taught on RFQ-0001")
+    end
+
+    ["0.060 in thick", "0.060 in", "0.060 x 48 x 96"].each do |dimension|
+      it "keeps a conflict when taught gauge accompanies explicit #{dimension}" do
+        r = described_class.parse("304 SS sheet 16 ga #{dimension}, 10 sheets", buyer_terms: [taught])
+        expect(r["thickness_in"]).to be_nil
+        expect(r.conflicts.map { |c| c["code"] }).to include("gauge_vs_decimal")
+        expect(r.unknowns.map { |u| u["field"] }).to include("thickness_in")
+        expect(r.evidence["thickness_in"]["text"]).to include("0.060")
+      end
+    end
+
+    it "retains learned provenance as well as taught provenance" do
+      learned = taught.merge("source" => "learned")
+      r = described_class.parse(line, buyer_terms: [learned])
+      expect(r.evidence["thickness_in"]["explanation"]).to eq("Read as thickness 0.0625 in, as you confirmed on RFQ-0001")
+      expect(r.rules_used).to include("Gauge table: stainless steel, 16 ga = 0.0625 in")
+    end
+
+    it "uses the same buyer's taught decimal on the final second RFQ and keeps other buyers held" do
+      text = "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets"
+      term = taught.merge("term" => "0.060 in", "meaning" => { "fields" => { "gauge" => 16, "thickness" => 0.0625 } })
+      learned = described_class.parse(text, buyer_terms: [term])
+      expect(learned["thickness_in"]).to eq(0.0625)
+      expect(learned.evidence["thickness_in"]["text"]).to eq("0.060 in")
+      expect(learned.evidence["thickness_in"]["explanation"]).to include("as the rep taught on RFQ-0001")
+      expect(RfqProcessing::Readiness.decide(learned, match: { "status" => "exact" }).state).to eq("ready")
+      other_buyer = described_class.parse(text)
+      expect(other_buyer["thickness_in"]).to eq(0.060)
+      expect(RfqProcessing::Readiness.decide(other_buyer, match: { "status" => "exact" }).state).to eq("needs_buyer")
+    end
+
+  end
 end
