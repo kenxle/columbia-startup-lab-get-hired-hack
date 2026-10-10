@@ -44,15 +44,15 @@ module CatalogMatch
     # Fields the rules must settle before a line can match without the LLM.
     LLM_TRIGGER_FIELDS = %w[material form].freeze
 
-    def self.call(description, client: nil, catalog: Catalog.default, given: {}, llm: LlmReader.default)
-      terms = client ? ClientMemory.new(client).terms : []
+    def self.call(description, client: nil, catalog: Catalog.default, given: {}, llm: LlmReader.default, confirmed_terms: [])
+      terms = client && Array(confirmed_terms).empty? ? ClientMemory.new(client).terms : []
       given = (given || {}).to_h.stringify_keys
-      reading = DescriptionReader.read(description, client_terms: terms, given: given)
+      reading = DescriptionReader.read(description, client_terms: terms, given: given, confirmed_terms: confirmed_terms)
       if llm && reading.part_numbers.empty? && needs_llm?(reading)
         llm_given = llm.read(description) || {}
         # The LLM fills only what the rules and processing left open.
         extra = llm_given.reject { |name, _| given.key?(name) || reading.set?(name) }
-        reading = DescriptionReader.read(description, client_terms: terms, given: given.merge(extra)) if extra.any?
+        reading = DescriptionReader.read(description, client_terms: terms, given: given.merge(extra), confirmed_terms: confirmed_terms) if extra.any?
       end
       new(reading, catalog).call
     end

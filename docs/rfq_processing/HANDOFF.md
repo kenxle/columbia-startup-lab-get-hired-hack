@@ -101,24 +101,18 @@ Posting on the board: insert a row right under the header line `|------|------|-
 
 Each worker gets one task, acceptance criteria, owned paths, the starting commit, and the exact rspec command, and returns changed paths and the rspec summary.
 
-## 7. Current handoff and open work (15:24)
+## 7. Current handoff and open work (15:36)
 
-The inherited Claude work is finished and pushed after teammate inspection. The new confirmed_terms integration and smoke reliability patch are local, tested and published as an exact review artifact in REVIEW-2026-10-10.md, cleared by Hirsh at 15:30 and being published. The separate matcher consumer and PRISM provider hook still require review. Current local files: pipeline.rb, catalog_match_adapter.rb, e2e-teaching-match.rb, llm-smoke, new confirmed_terms_spec.rb and llm_smoke_spec.rb, plus RESULT-FORMAT.md.
+The inherited Claude work is finished and pushed after teammate inspection: parser `9fa2c86`, provider `7e3d2c6`, extraction/answers/alternates `e4ec750`. Corrected confirmed_terms processing and reliable smoke CLI shipped in `f51a31a`, cleared by Hirsh at 15:30. Hirsh cleared the separate three-file matcher consumer at 15:33 after 83 tests / 496 assertions and the persisted teaching end-to-end check in an isolated checkout. That consumer is being published with this update.
 
-| Batch | Published | Review |
-|---|---|---|
-| Parser and buyer-term RFQ provenance | `9fa2c86` | Hirsh 14:52 |
-| Provider adapters and sanitized diagnostics | `7e3d2c6` | Hirsh 14:58, disabled app paths |
-| Extraction, compliance, answers, alternates, selection guards and e2e scripts | `e4ec750` | Hirsh 14:58 and final extraction reproduction 15:07 |
-
-Latest local tree: 332 lane specs, 480 Rails tests / 3967 assertions and 12 PDF specs pass. Matcher, answers, email/PDF/CSV and demo-pair end-to-end checks pass. Teaching safety is a separate blocked diagnostic, not a passing check.
-
-1. Hirsh agreed `confirmed_terms: []` at 15:15. Our implementation forwards only applied token-bounded teaching with complete provenance, exact evidence/value agreement and no remaining conflicts/unknowns; nine tests pass. App forwarding and persisted source-line validation are with Hirsh. Matcher/DescriptionReader implementation is with the Ken/Tisch handoff, owner still requested. The real persisted-teaching diagnostic accepts pipeline-to-adapter delivery, then exits 2 at missing app forwarding/matcher support. Hirsh cleared the corrected processing/smoke subset at 15:30 after 108 isolated targeted examples. Matcher consumer implementation is now local under Tisch’s 15:26 handoff accepted by Hirsh at 15:28; the real persisted teaching diagnostic passes fully with it. Publish that separate consumer after its own review.
-2. Hirsh ran the exact eight-line provider smoke at 15:15: every line returned HTTP502 twice, zero fills and no model identity. Our local smoke fix now exits nonzero on failed/rejected/empty/partial inference, labels stub-only runs honestly and uses the bounded PDF selector. Fourteen offline CLI tests pass, including the actual Transnet PDF yielding one item/call rather than 257. Live activation remains off pending a successful inference. Local credentials are absent.
-3. Ken is coordinating the catalog/pricing takeover requested by Hirsh at 15:10. Route metals prices, supplier evidence and sourced lead-time needs to Ken; do not silently edit those domains.
-4. Jev doubtful-compliance diagnostics await usable local key, Ruby client and calibration inputs. `script/load-jev-key` confirmed no accessible local Keychain entry. All deterministic flags must remain intact.
-5. The accepted demo pair works in browser records `/quotes/14` and `/quotes/17`. Buyer-answer transition and taught RFQ wording were verified; safe end-to-end taught matching remains blocked. Unknown lead times stay explicit.
-6. Continue pulling, answering the bulletin, and recording every handoff. Do not rerun completed implementation tasks from historical log entries.
+- Teaching now passes pipeline, app and matcher: exact 0.0625 match, untaught buyer held, no invented sheet price. Ordinary given values cannot replace explicit quantity or thickness. Latest local checks: 332 processing specs, 480 Rails tests / 3967 assertions and 12 PDF specs; Hirsh's latest integrated check has 3997 assertions.
+- PRISM provider hook remains a separate two-file local batch awaiting teammate review. Reuse Hirsh's published client/job. His initializer needs the processing callback with outcome mapping. No prompts, RFQ content or secrets are traced. No live ingestion is claimed.
+- User asked us to create PRISM account using their supplied email and RudCo Quote Desk company. Signup fields are filled; the user must enter, confirm and submit a new password under browser security rules. Project/key and dashboard proof remain pending. Secrets belong only in ignored .env.
+- Ken15:35 assigned Jev doubtful-compliance labels, then optional W1 question checking. Real key is being delivered privately through WhatsApp, inaccessible to this agent. Local client/key and integration remain pending. Jev is additive and never removes deterministic flags or grants readiness. Coordinate app display with Hirsh.
+- Nicrron live checks on Hirsh's machine returned 502 with zero model fills. Local credentials remain absent. Model activation stays off pending a verified successful inference.
+- Ken15:33 requested Devpost section4 accuracy copy; updated in this batch. Other stale Devpost sections remain Ken's editorial responsibility.
+- Demo records /quotes/14 and /quotes/17 show complete and missing-quantity scenarios. The actual persisted teaching diagnostic now passes. Restart local dev server after publishing runtime changes; preserve the incomplete demo record.
+- Coordinator alone owns Git. Pull, read and answer the board at each checkpoint. Publish runtime code only after teammate inspection. Local Ruflo remains available; actual Astra workers are used because Opus review is quota-blocked. Do not claim live-provider or Opus success.
 
 ## 8. Opening prompt for the new session
 
@@ -149,4 +143,4 @@ Latest local tree: 332 lane specs, 480 Rails tests / 3967 assertions and 12 PDF 
 
 ## PRISM assignment, 15:30
 
-Ken assigned PRISM provider tracing to Yuval at 15:28. Hirsh is publishing his completed metadata-only client/job; reuse it. Our worker adds a listener hook to OpenaiCompatibleClient, one event per HTTP inference attempt including failures, with local run/attempt IDs and no prompts/responses/secrets. User is creating the PRISM account and will add project/key to ignored .env. A real ingestion and dashboard screenshot remain pending credentials; no live trace is claimed.
+Ken assigned PRISM provider tracing to Yuval at 15:28. Hirsh is publishing his completed metadata-only client/job; reuse it. Our worker adds a listener hook to OpenaiCompatibleClient, one event per HTTP inference attempt including failures, with local run/attempt IDs and no prompts/responses/secrets. Account creation is now delegated to us; signup awaits the user entering and submitting the new password. Project/key belong in ignored .env. A real ingestion and dashboard screenshot remain pending credentials; no live trace is claimed.
