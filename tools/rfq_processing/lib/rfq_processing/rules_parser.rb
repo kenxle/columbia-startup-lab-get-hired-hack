@@ -29,15 +29,18 @@ module RfqProcessing
     SHEET_PLATE_LOW = 0.118 # 3 mm; between this and 0.25 in, sheet or plate is the buyer's word
     SHEET_PLATE_HIGH = 0.25
 
-    def self.parse(text, position: 1, location: nil, buyer_terms: [])
-      new(text, position: position, location: location, buyer_terms: buyer_terms).parse
+    # overrides: answers the buyer or rep already gave for this line, field => { "value" => v, "text" => words, "explanation" => why }
+    def self.parse(text, position: 1, location: nil, buyer_terms: [], overrides: {})
+      new(text, position: position, location: location, buyer_terms: buyer_terms, overrides: overrides).parse
     end
 
-    def initialize(text, position:, location:, buyer_terms: [])
+    def initialize(text, position:, location:, buyer_terms: [], overrides: {})
       @text = text.to_s
       @position = position
       @location = location || "line #{position}"
       @buyer_terms = Array(buyer_terms)
+      @overrides = (overrides || {}).to_h.transform_keys(&:to_s)
+      @locked = []
       @fields = {}
       @evidence = {}
       @confidence = {}
@@ -49,6 +52,7 @@ module RfqProcessing
     end
 
     def parse
+      apply_overrides
       read_buyer_terms
       read_part_number
       read_lexicon
@@ -60,6 +64,7 @@ module RfqProcessing
       resolve_thickness
       check_conflicts
       note_unknowns
+      drop_settled
       Reading.new(fields: @fields, evidence: @evidence, confidence: @confidence, assumptions: @assumptions,
                   rules_used: @rules, conflicts: @conflicts, unknowns: @unknowns, location: @location)
     end
@@ -70,6 +75,7 @@ module RfqProcessing
 
     def set(field, value, match_or_text, explanation, confidence: 0.95, occupy: false)
       return if value.nil?
+      return if @locked.include?(field) # an answer settles the field
 
       text, range = match_or_text.is_a?(MatchData) ? [match_or_text[0], match_or_text.begin(0)...match_or_text.end(0)] : [match_or_text, nil]
       @fields[field] = value
@@ -100,6 +106,34 @@ module RfqProcessing
 
     def unknown(field, reason)
       @unknowns << { "field" => field, "reason" => reason } unless @unknowns.any? { |u| u["field"] == field }
+    end
+
+    # ---- answers already given (workflow W3) -------------------------------
+
+    def apply_overrides
+      @overrides.each do |field, answer|
+        answer = answer.is_a?(Hash) ? answer.transform_keys(&:to_s) : { "value" => answer }
+        value = answer["value"]
+        next if value.nil?
+
+        value = value.to_f if %w[thickness_in wall_in width_in length_in diameter_in].include?(field) && value.is_a?(String) && value.match?(/\A\d*\.?\d+\z/)
+        value = value.to_i if field == "gauge" || field == "quantity"
+        @fields[field] = value
+        @evidence[field] = { "text" => answer["text"] || value.to_s, "location" => answer["location"] || "buyer answer",
+                             "explanation" => answer["explanation"] || "answered by the buyer" }
+        @confidence[field] = 1.0
+        @locked << field
+        @rules << "Answer applied: #{field} = #{value} (#{@evidence[field]['explanation']})"
+      end
+    end
+
+    # Conflicts and unknowns about an answered field are settled.
+    def drop_settled
+      return if @locked.empty?
+
+      @conflicts.reject! { |c| (c["fields"] & @locked).any? }
+      @unknowns.reject! { |u| @locked.include?(u["field"]) }
+      @unknowns.reject! { |u| u["field"] == "thickness_in" && @locked.include?("material") && @fields["thickness_in"] }
     end
 
     # ---- what this buyer's words mean (workflow step 9) --------------------
@@ -588,6 +622,7 @@ module RfqProcessing
         field = tube_form?(form) ? "wall_in" : "thickness_in"
         table_value = lookup.thickness_in
         gauge_text = @evidence["gauge"]["text"]
+        return if @locked.include?(field)
         if decimal && (decimal - table_value).abs / table_value > GAUGE_TOLERANCE
           conflict("gauge_vs_decimal", "#{gauge_text} is #{table_value} in on the #{lookup.table} table, but #{decimal} in is also written. They differ.", [field, "gauge"])
           @fields[field] = nil

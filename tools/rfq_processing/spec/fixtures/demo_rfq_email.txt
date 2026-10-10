@@ -1,0 +1,22 @@
+From: Dana Ortiz <purchasing@northline-fab.example>
+To: quotes@rud-co.example
+Subject: RFQ 2026-1010, Northline Fabrication, blast media and plate
+
+Hi RudCo team,
+
+Please quote the following for delivery to our Newark shop by the end of the month. MTRs required on all steel, and send a COA with each lot of abrasive.
+
+1. Steel shot S-330, 2,000 lb, in 50 lb bags
+2. P1020 aluminum ingot, 5,000 lbs
+3. Aluminum 356 ingot, 2,000 lb
+4. 1/2 A36 PL 5x10 x3 min yield 50 ksi
+5. 304 SS sheet 16ga 4x8, 20 sheets
+6. Stainless 304, 0.060 in, 48 x 96, 10 sheets
+7. 16 ga sheet 4x8 qty 20
+8. 1-1/2 sq tube A500 C 11ga 24ft x8
+
+This is for a state DOT bridge job, so Buy America applies to the steel.
+
+Thanks,
+Dana Ortiz
+Purchasing, Northline Fabrication

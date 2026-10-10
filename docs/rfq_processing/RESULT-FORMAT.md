@@ -126,6 +126,28 @@ Required fields by form: sheet and plate need material, grade, form, thickness, 
 - `rules_used` names every table and conversion applied.
 - `match` is the matcher's answer, copied through. `status` is `exact`, `scored`, `ambiguous`, or `no_match`.
 
+## Buyer answers and reruns (workflow W3)
+
+A buyer's answer reruns only the answered lines. The app calls:
+
+```ruby
+RfqProcessing::Answers.apply(previous_result: stored_hash, answers: answers, pipeline: pipeline, buyer_terms: terms)
+```
+
+`answers` is a list, each one of:
+
+```json
+{ "line_id": "line-3-42054807", "choice_id": "line-3-42054807-c2", "revision_id": "proc-20261010-131500-ab12cd34" }
+{ "line_id": "line-3-42054807", "free_text": "0.0625 in is fine", "revision_id": "proc-..." }
+{ "scope": "rfq", "free_text": "all of it needs DFARS and domestic melt" }
+```
+
+- A choice settles the field the choice names (`processing.question_choices[].field`), with evidence that quotes the choice and names the revision it answered. Choosing a catalog candidate makes that item the match.
+- Free text for one line is read by the parser as the buyer's words, so the evidence cites them. If the question is still open after the rerun, a warning says so and the rep reviews.
+- A whole-RFQ answer (`scope: rfq`, guard 1) reruns every line, and its words are read for compliance flags on each line.
+- The result is a new hash with a new `revision.id`, `previous_revision`, and `changed_line_ids`. Unanswered lines are copied unchanged. Every rerun line keeps its `line_id` and records `processing.answered`. Prices keep their `benchmark.as_of` (guard 4).
+- Guards 2 and 3 (never overwrite a rep edit, clear approval and highlight changes) are the app's; `edited_fields` on the stored line is the signal.
+
 ## Contract with the matching agent
 
 Tisch owns the matcher. RFQ processing calls it once per line and copies its answer into `processing.match`. It must be callable from Ruby in-process (a module under `tools/`) or as a command that reads one JSON object on stdin and writes one on stdout.

@@ -16,7 +16,7 @@ module RfqProcessing
         choices = choices_for(reading)
         if match && match["status"] == "ambiguous"
           Array(match["candidates"]).each do |c|
-            choices << { "label" => "#{c['part_number'] || c['item_id']}: #{c['description'] || c['reason']}"[0, 120], "value" => c["item_id"] }
+            choices << { "label" => "#{c['part_number'] || c['item_id']}: #{c['description'] || c['reason']}"[0, 120], "value" => c["item_id"], "field" => "catalog_item" }
           end
         end
         question = question_for(reading, position)
@@ -31,7 +31,7 @@ module RfqProcessing
         cands = Array(match["candidates"])
         Decision.new(state: "needs_buyer", question: ambiguous_question(reading, cands, position),
                      unresolved_fields: reading.fields["part_number"] ? [] : ["catalog item"],
-                     choices: cands.map { |c| { "label" => "#{c['part_number'] || c['item_id']}: #{c['reason']}", "value" => c["item_id"] } })
+                     choices: cands.map { |c| { "label" => "#{c['part_number'] || c['item_id']}: #{c['reason']}", "value" => c["item_id"], "field" => "catalog_item" } })
       else
         Decision.new(state: "ready", question: nil, unresolved_fields: [], choices: [])
       end
@@ -64,26 +64,26 @@ module RfqProcessing
         when "material_missing_with_gauge"
           gauge = reading.fields["gauge"]
           GaugeTable.candidates(gauge: gauge, form: reading.fields["form"]).each do |cand|
-            choices << { "label" => "#{cand[:table]}, #{gauge} ga = #{cand[:thickness_in]} in", "value" => cand[:table] }
+            choices << { "label" => "#{cand[:table]}, #{gauge} ga = #{cand[:thickness_in]} in", "value" => cand[:table], "field" => "material" }
           end
         when "decimal_near_gauge", "gauge_vs_decimal", "gauge_table_gap"
           c["message"].scan(/(\d*\.\d+) in/).flatten.uniq.each do |v|
-            choices << { "label" => "#{v} in", "value" => v }
+            choices << { "label" => "#{v} in", "value" => v, "field" => "thickness_in" }
           end
         when "spec_conflict"
-          Array(reading.fields["standards"]).each { |s| choices << { "label" => s, "value" => s } }
+          Array(reading.fields["standards"]).each { |s| choices << { "label" => s, "value" => s, "field" => "standard" } }
         when "shape_vs_spec"
           [["Square tube, A500 structural", "A500"], ["Square tube, A513 mechanical", "A513"], ["Round pipe, A53", "A53"]].each do |label, value|
-            choices << { "label" => label, "value" => value }
+            choices << { "label" => label, "value" => value, "field" => "standard" }
           end
         when "strength_mismatch"
-          [["A572 Grade 50", "A572 Gr 50"], ["A36/A572-50 dual certified", "A36/A572-50"]].each { |l, v| choices << { "label" => l, "value" => v } }
+          [["A572 Grade 50", "A572 Gr 50"], ["A36/A572-50 dual certified", "A36/A572-50"]].each { |l, v| choices << { "label" => l, "value" => v, "field" => "grade" } }
         when "sheet_plate_boundary"
-          [["Hot rolled plate", "plate"], ["Cold rolled sheet", "sheet"]].each { |l, v| choices << { "label" => l, "value" => v } }
+          [["Hot rolled plate", "plate"], ["Cold rolled sheet", "sheet"]].each { |l, v| choices << { "label" => l, "value" => v, "field" => "form" } }
         when "tube_spec_missing"
-          [["A500 structural", "A500"], ["A513 mechanical", "A513"]].each { |l, v| choices << { "label" => l, "value" => v } }
+          [["A500 structural", "A500"], ["A513 mechanical", "A513"]].each { |l, v| choices << { "label" => l, "value" => v, "field" => "standard" } }
         when "coating_weight_missing"
-          [["G60", "G60"], ["G90", "G90"]].each { |l, v| choices << { "label" => l, "value" => v } }
+          [["G60", "G60"], ["G90", "G90"]].each { |l, v| choices << { "label" => l, "value" => v, "field" => "coating" } }
         end
       end
       choices.uniq
