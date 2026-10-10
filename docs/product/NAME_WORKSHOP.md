@@ -17,7 +17,7 @@
 
 ## Options, grouped by idea
 
-Conflict checks are quick web searches today, not trademark searches.
+Conflict checks are quick web searches. Ken's call: this is an internal name for a feature of RudCo's service, not a standalone product, so a name other companies use is fine.
 
 ### The paper trail
 
@@ -40,7 +40,7 @@ Conflict checks are quick web searches today, not trademark searches.
 | Name | Why it fits | Check |
 |---|---|---|
 | **Open Quote** | Says "price in the open." Echoes "Opacity is a tax." | Taken by an open-source insurance quoting system |
-| **ClearQuote** | Same idea. | Taken several times. Drop |
+| **ClearQuote** | Says RudCo's transparency message in one word. Ken's favorite, with Quote Desk. | Used by other products; fine as an internal RudCo name |
 | **Line Check** | Plain and honest. | Free, but sounds like a checker rather than a quote tool |
 
 ### Avoid
