@@ -139,7 +139,7 @@ Read what your work touches. Each link says what the document is for.
 - [Repository review, 2026-10-10](docs/engineering/REVIEW-2026-10-10.md): findings from the first code and docs review.
 
 **Catalog and pricing (Tisch)**
-- [Public example RFQ](docs/data/example_rfqs/transnet-steel-shot-2024/SOURCE.md): authentic archival Transnet steel-shot request, original PDF, extraction and commercial limitations.
+- [Public example RFQ](docs/example_rfqs/transnet-steel-shot-2024/SOURCE.md): authentic archival Transnet steel-shot request, original PDF, extraction and commercial limitations.
 - [Catalog and pricing method](docs/data/CATALOG_PRICING.md): how items and benchmarks are admitted.
 - [Aviation hardware catalog, 500 items](docs/data/AVIATION_ITEMS_500.md): two real dealer prices per item, with specification holds shown.
 - [Catalog data and Rails reader](data/aviation/README.md): JSON schema, Ruby loading and validation, price basis, and source limitations.
@@ -203,3 +203,4 @@ Stack: Ruby on Rails. See `docs/engineering/BASELINE.md` for the pinned local to
 
 - No em dashes. Use a comma, colon, semicolon, or period.
 - Write plainly. One idea per sentence.
+
