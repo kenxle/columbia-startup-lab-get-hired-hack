@@ -81,7 +81,7 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Name | Core Domain | Owns (files, folders, systems) |
 |------|-------------|--------------------------------|
 | Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
-| Hirsh | Front end and UI/UX | Intake, side-by-side RFQ/quote review, editing, source evidence, questions, and export interactions. Own the Rails app shell and minimal supporting integration; coordinate backend contracts with Yuval. Follow Ken's approved product flow. |
+| Hirsh | Front end and UI/UX | Intake, side-by-side RFQ/quote review, editing, source evidence, one-click buyer questions and response flow, and export interactions. Own the Rails app shell and minimal supporting integration; coordinate backend contracts with Yuval. Follow Ken's approved product flow. |
 | Yuval | RFQ processing | Document extraction, LLM integration, normalized specs and source evidence, catalog matching, compliance flags, draft questions, and catalog/benchmark data sourcing. Agree on exact paths per task. |
 | Elad Tisch | Catalog and market pricing | Builds structured item lists, collects comparable supplier prices, and develops transparent pricing references. Owns `docs/data/`, `data/aviation/`, and `tools/catalog_research/`. See [catalog and pricing scope](docs/data/CATALOG_PRICING.md). Coordinate with Yuval on data sourcing and RFQ integration, Hirsh on catalog import and pricing math, and Ken on product scope. |
 
