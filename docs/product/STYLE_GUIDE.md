@@ -52,6 +52,8 @@ The site already has status tokens: `--available` (green), `--medium` (amber) an
 | Needs the buyer | `#7f4205` | `#fdf0d8` | 6.94:1 | 7.55:1 | `--medium: 38 92% 50%` |
 | No match | `#454e5e` | `#eaecf0` | 7.09:1 | 8.09:1 | `--unavailable: 220 15% 50%` |
 
+**Label by who acts next** (Ken, 2026-10-10). An unclear line reads **"Question to send"** while the rep still has to send or review the question. Once the question has gone out, it reads **"Waiting on buyer"**. Both use the amber pair above. "Needs the buyer" is not used, because it sounds like the rep has to act.
+
 Don't use the site's own solid pairs for status badges. White on `--available` is 2.30:1 and white on `--unavailable` is 4.38:1; both fail. Dark text on solid amber (`#1a212d` on `#f59f0a`) passes at 7.58:1 and is fine for a filled "Needs the buyer" badge. Status must also show as a word, never color alone.
 
 ## Type, radii, buttons

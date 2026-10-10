@@ -76,7 +76,7 @@ The SKU, benchmark and prices below are placeholders. The screen fills them from
 
 - **Ready line:** "Ready. Read as 304 stainless sheet, 0.0625 in (16 ga, stainless gauge table), 48 x 96 in. Matched to SKU [SKU]. Price tracks [benchmark name, date] plus RudCo's margin. Lead time: 24 to 48 hours (in stock)."
 - **Lead time not known:** "Lead time: to confirm. This item is not in stock."
-- **Needs-the-buyer line:** "Needs the buyer. Line 3 says 16 gauge and 0.060 in. Those are different thicknesses. Question drafted."
+- **Unclear line, question not sent yet:** "Question to send. Line 3 says 16 gauge and 0.060 in. Those are different thicknesses. Question drafted."
 - **Compliance flag:** "Mill test report needed. Triggered by "SA-240" in line 4, an ASME pressure-vessel spec."
 - **COA flag:** "Certificate of analysis needed. Triggered by "COA required" in the email body. Applies to lines 2 and 3."
 - **REACH / RoHS flag:** "REACH and RoHS declarations requested. Triggered by "REACH/RoHS compliant" in the attachment, page 1."
