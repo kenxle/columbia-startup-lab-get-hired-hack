@@ -138,7 +138,7 @@ These are designed and partly built. We list them here so the submission does no
 - **Alternates on unclear lines.** When the matcher finds two or three candidates for a line, or a line has two readings, the quote would show each one as an option with its own price. Example: "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in". The buyer picks one when they accept, and the question still goes out. The app can show options when processing supplies them. Processing's option payload is not pushed yet.
 - **Questions to a real mailbox.** Automatic local previews and "Waiting on buyer" tracking are built. We use LetterOpener as a fake email box
 - **One-click answers from the buyer.** The buyer would click a choice in the email, and the answered line would rerun. The rerun logic is built. The click endpoints are not.
-- **Sending the reply on the buyer's original thread.** Today an explicit send records a local receipt and saves the approved email with PDF and CSV attachments. Real mailbox delivery and thread replies are next.
+- **Email threading.** Today an explicit send records a local receipt and saves the approved email with PDF and CSV attachments. Real mailbox delivery and thread replies are next.
 - **Showing where a learned reading came from.** The line would say, for example, "Read as 0.060 in, as you confirmed on RFQ-0001."
 - **Redlines.** Old and new values side by side when a rerun changes a line.
 - **RudCo's real catalog, inventory, and prices.** The product is written for them. The demo stands in data shaped like theirs.
