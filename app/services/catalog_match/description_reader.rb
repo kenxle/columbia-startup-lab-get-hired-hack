@@ -488,25 +488,35 @@ module CatalogMatch
           next if number.nil?
 
           number = number.to_i if %w[gauge quantity].include?(name)
-          confirm_close_number(name, number, source) if source == "rfq_processing"
+          if confirmed_given?(name, number, given)
+            provenance = given["confirmed_on"].present? ? "confirmed on #{given['confirmed_on']}" : "buyer term \"#{given['term']}\""
+            explanation = "#{@fields[name]['text']} read as #{number} in: #{provenance}"
+            @fields.delete(name)
+            source = "buyer_term"
+          end
           set(name, number, text, explanation, source: source)
         end
       end
     end
 
-    # RFQ processing sends the resolved reading of the line (buyer terms already
-    # applied). When its number is the same measurement as the text's own
-    # number, within 5%, it is a confirmed reading of those words and replaces
-    # them ("0.060 in" confirmed as 0.0625 in). A different number never does.
-    def confirm_close_number(name, number, source)
+    # A given number replaces the text's own reading only with provenance: the
+    # spec entry is a hash carrying `confirmed_on` (the RFQ where the buyer
+    # confirmed it) or `term` (the buyer's phrase it was taught for), it is a
+    # thickness or gauge, and it is the same measurement within 5%
+    # ("0.060 in" confirmed as 0.0625 in). A plain number never overrides the
+    # text, and a quantity is never overridden (Yuval 15:08).
+    CONFIRMABLE_FIELDS = %w[thickness gauge].freeze
+
+    def confirmed_given?(name, number, given)
+      return false unless given.is_a?(Hash) && CONFIRMABLE_FIELDS.include?(name)
+      return false unless given["confirmed_on"].present? || given["term"].present?
+
       current = @fields[name]
-      return unless current && current["source"] == "text" && current["value"].to_f.positive?
+      return false unless current && current["source"] == "text" && current["value"].to_f.positive?
+      return false if given["term"].present? && !same_words?(current["text"], given["term"])
 
       gap = (number.to_f - current["value"].to_f).abs / current["value"].to_f
-      return if gap > 0.05 || gap.zero?
-
-      @fields.delete(name)
-      @confirmed_text = current["text"]
+      gap.positive? && gap <= 0.05
     end
 
     def unpack_given(name, given)

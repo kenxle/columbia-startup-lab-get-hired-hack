@@ -175,14 +175,22 @@ class CatalogMatch::MatcherShorthandTest < ActiveSupport::TestCase
     assert_nil result.reading["finish"]
   end
 
-  test "a confirmed reading from RFQ processing resolves the gauge trap (Hirsh 14:34)" do
-    result = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets",
-                                           "spec" => { "thickness" => 0.0625, "material" => "stainless steel" } })
-    assert_equal "scored", result["status"]
-    assert_equal "RC-SS304-SHT-16GA-48X96-2B", result["best"]["part_number"]
-    assert_equal 1.0, result["best"]["score"]
+test "a confirmed reading with provenance resolves the gauge trap; a plain number never overrides (Yuval 15:08)" do
+  line = "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets"
+  confirmed = CatalogMatch::Contract.call({ "line_text" => line,
+                                            "spec" => { "thickness" => { "value" => 0.0625, "confirmed_on" => "RFQ-0015", "term" => "0.060 in" } } })
+  assert_equal "scored", confirmed["status"]
+  assert_equal "RC-SS304-SHT-16GA-48X96-2B", confirmed["best"]["part_number"]
+  assert_equal 1.0, confirmed["best"]["score"]
 
-    different = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.125 in, 48 x 96, 2B", "spec" => { "thickness" => 0.0625 } })
-    assert_not_equal "RC-SS304-SHT-16GA-48X96-2B", different.dig("best", "part_number"), "a different number is never replaced"
-  end
+  untaught = CatalogMatch::Contract.call({ "line_text" => line, "spec" => { "thickness" => 0.0625 } })
+  assert_equal "ambiguous", untaught["status"], "an untaught 0.0625 must preserve the explicit 0.060"
+
+  quantity = CatalogMatch::Matcher.call("S-330 steel shot, 100 lb", given: { "quantity" => { "value" => 104, "confirmed_on" => "RFQ-0001" } })
+  assert_equal 100, quantity.reading["quantity"], "a quantity is never overridden"
+
+  other_words = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.125 in, 48 x 96, 2B",
+                                              "spec" => { "thickness" => { "value" => 0.0625, "term" => "0.060 in" } } })
+  assert_not_equal "RC-SS304-SHT-16GA-48X96-2B", other_words.dig("best", "part_number")
+end
 end
