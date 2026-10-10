@@ -1,0 +1,152 @@
+# RFQ to Quote: Architecture
+
+**Status:** Living document. Draft 1 by Ken's agent, 2026-10-10, from the code and docs on `main` at `ec0924b`. **Every owner keeps their section current** (see [Keeping this current](#keeping-this-current)).
+
+**Read with:** [the product brief](product/PRD.md) (what and why), [the demo workflow](product/WORKFLOW.md) (the steps), [the frontend contract](engineering/FRONTEND_CONTRACT.md) (app routes and models), [the result format](rfq_processing/RESULT-FORMAT.md) (the processing hash), [catalog and pricing](data/CATALOG_PRICING.md).
+
+## Summary
+
+The system has four parts:
+
+- **The quote app** (Hirsh): a Rails 8 app at the repo root. The rep sees the RFQ beside the quote, edits, approves, and exports.
+- **RFQ processing** (Yuval): a plain Ruby library in `tools/rfq_processing/`. It turns an RFQ into one result hash.
+- **Matching and pricing** (Tisch): finds the catalog item for each line and prices it from sourced observations.
+- **Email in and out:** receives the RFQ and sends questions and the quote. **Not built yet.**
+
+They meet at one point. RFQ processing assembles a single hash, and the app takes it through `QuoteWorkspace::ApplyResult.call(quote:, result:)`.
+
+## The system
+
+```mermaid
+flowchart TD
+    subgraph EMAIL["Email in and out (not built)"]
+        IN["Inbound RFQ email"]
+        OUT["Outbound: questions and quote"]
+        CLICK["Buyer clicks a choice"]
+    end
+    subgraph APP["Quote app, Rails (Hirsh)"]
+        INTAKE["Intake: paste or upload"]
+        APPLY["ApplyResult: validate and save atomically"]
+        REVIEW["Review screen: RFQ beside quote"]
+        APPROVE["Approve"]
+        EXPORT["CSV export"]
+    end
+    subgraph PROC["RFQ processing, tools/rfq_processing (Yuval)"]
+        EXTRACT["Extract text: pdf_text, spreadsheet rows"]
+        PARSE["Parse with Claude: fields, source words, confidence"]
+        NORM["Normalize with rules: gauge, units, aliases"]
+        READY["Readiness and compliance rules"]
+        CLARIFY["Clarify: question with choices"]
+        ASSEMBLE["Assemble the result hash"]
+    end
+    subgraph MATCH["Matching and pricing (Tisch)"]
+        MATCHER["Matcher: candidates with scores"]
+        PRICER["Pricer: price from observations"]
+        CATALOG[("data/aviation catalog and price observations")]
+    end
+    IN --> INTAKE
+    INTAKE --> EXTRACT
+    EXTRACT --> PARSE --> NORM --> MATCHER
+    MATCHER --> CATALOG
+    PRICER --> CATALOG
+    MATCHER --> PRICER --> READY
+    READY --> CLARIFY --> ASSEMBLE --> APPLY
+    APPLY --> REVIEW --> APPROVE --> EXPORT
+    CLARIFY -.-> OUT
+    CLICK -.-> PARSE
+    APPROVE -.-> OUT
+```
+
+Solid lines exist or are being built. Dotted lines are planned.
+
+## Components
+
+### Quote app (Hirsh)
+
+- **Where:** repo root. `app/controllers/quotes_controller.rb`, `quote_lines_controller.rb`; `app/models/quote.rb`, `quote_line.rb`; `app/services/quote_workspace/` (`apply_result.rb`, `demo.rb`, `csv_export.rb`, `session_scope.rb`).
+- **Stack:** Ruby 3.4.11, Rails 8.1.4, SQLite. Setup in [BASELINE.md](engineering/BASELINE.md).
+- **What works today:** intake by paste or upload, a labeled sample quote, the review screen, line edits, approval, and CSV export. Hirsh reports 81 tests passing (bulletin, 12:44).
+- **Key rules:**
+  - Workspaces are scoped to a browser session. This is not real authentication.
+  - Uploads stay "awaiting processing" until a valid result arrives. Nothing is invented.
+  - Any edit clears approval. A stale review cannot approve newer content (`Quote#review_revision`).
+  - Held lines never count toward the subtotal. Sample data is labeled SAMPLE.
+- **In progress (bulletin, 12:49):** held-line navigation, and a buyer-question preview and draft (`BuyerQuestionsController`, `QuoteWorkspace::BuyerQuestionDraft`).
+
+### RFQ processing (Yuval)
+
+- **Where:** `tools/rfq_processing/` (library and specs), `docs/rfq_processing/` (plan and format). Plain Ruby, no Rails. The app loads it as a path gem.
+- **The pipeline**, from [PLAN.md](rfq_processing/PLAN.md):
+  1. Extract: email text passes through, PDFs go through `tools/pdf_text`, spreadsheets become one line per row. Page and row positions are kept.
+  2. Parse: one Claude call per RFQ (Opus 5.5, structured output). Each field returns a value, the exact source words, and a confidence.
+  3. Normalize with rules: gauge to inches by material, feet to inches, "4x8" to 48 by 96, aliases, AN part numbers.
+  4. Match: calls Tisch's matcher.
+  5. Readiness with rules. A confidence score never makes a line Ready when evidence is missing.
+  6. Compliance flags from a rules table. Each flag carries its source words.
+  7. Clarify: rules decide a line is unclear. A second Claude call words the question with two or three catalog-grounded choices.
+  8. Assemble the result hash.
+- **Status:** the result format and three fixtures (Ready, Needs the buyer, No match) are done. All three pass `ApplyResult`. The parser, normalizer, and rules are in progress.
+
+### Matching and pricing (Tisch)
+
+- **Where:** `data/aviation/` (catalog and observations), `tools/catalog_research/` (Node scripts that fetch, parse, build, and validate), `docs/data/`.
+- **Data today:** 200 AN bolt part numbers (AN3 to AN8) and 400 public dealer price observations, two per item. Each has a source URL, retrieval time, and price basis. Labeled sample data. It does not claim RudCo stocks these items.
+- **Matcher contract** (from [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md)): callable from Ruby in-process, or as a JSON stdin/stdout command. Input is the normalized spec plus the line text. Output is candidates with scores and reasons. RFQ processing stays the single assembler of the hash the app receives.
+- **Pricing:** a two-dealer midpoint is the reference today. It is a product-only, single-piece price, not a delivered or bulk price. Suggested selling prices stay null until cost and margin are known.
+- **Status:** the catalog is built. The matcher and pricer are not yet in the repo.
+
+### Email in and out (not built)
+
+- **Inbound:** receive the RFQ email and its attachments, then create a quote. Today the rep pastes or uploads instead.
+- **Outbound questions:** send automatically when the agent is confident about the choices, otherwise after rep review ([WORKFLOW.md](product/WORKFLOW.md), W1).
+- **Buyer response:** each choice is a button in the email. A click updates the RFQ with no login (W2). Reply-by-number is the fallback.
+- **Final quote:** sent on the buyer's original thread after the rep approves.
+- **Owner:** Hirsh owns the question and response UI. The mail adapter itself has no owner yet.
+
+## Contracts
+
+| Contract | Between | Defined in | Status |
+|---|---|---|---|
+| Result hash (`schema_version: 1`) | RFQ processing → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md), [FRONTEND_CONTRACT.md](engineering/FRONTEND_CONTRACT.md) | Draft 1, three fixtures pass |
+| `ApplyResult.call(quote:, result:)` | RFQ processing → app | `app/services/quote_workspace/apply_result.rb` | Built |
+| Matcher input and output | RFQ processing ↔ Tisch | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Agreed in principle |
+| Stable `line_id` and `revision.id` | Processing → app → email | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | In the hash. The app does not store them yet |
+| Question choice IDs | Processing → email → app | Not written | Open |
+
+## Data model
+
+- **`Quote`:** title, buyer name, source text and file, session token, sample flag, approval time, review revision. Has many ordered `QuoteLine`s.
+- **`QuoteLine`:** original text, spec (JSON), quantity and unit, catalog SKU, unit price, price source, state (`ready`, `needs_buyer`, `no_match`), clarification question, notes, evidence (JSON, per field), compliance (JSON), benchmark (JSON), unresolved and edited fields.
+- Full field list in the [frontend contract](engineering/FRONTEND_CONTRACT.md).
+
+## Trust rules the architecture enforces
+
+These come from the [product brief](product/PRD.md) commitments.
+
+- **Show the source.** Every spec field has an evidence entry: the exact RFQ words, their location, and the rule used.
+- **Ask, don't guess.** Unknowns stay null. Readiness is a fixed rule, not a score.
+- **No hallucinated pricing.** A Ready line needs a price with a named source. The LLM never sets a price.
+- **Label sample data.** `sample_data` is true whenever the catalog or prices are ours.
+- **A person approves the final quote.** Approval is explicit, and any edit clears it.
+
+## Open questions and known gaps
+
+- **Which catalog the demo uses (W4).** The only catalog is aviation bolts. Metals lines will land as No match unless Tisch adds metal items. Owner: Tisch.
+- **The app drops data the processing hash carries.** Hardware spec keys, `processing`, `line_id`, and `revision` are discarded today (Yuval, PLAN.md). Owner: Hirsh.
+- **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
+- **The confidence gate for auto-sending questions.** Hirsh proposed: every choice tied to catalog or spec evidence, no unresolved conflict outside the question, and a free-text fallback. Otherwise the rep reviews. Owner: Ken to confirm.
+- **W3: does a buyer's answer rerun only the answered lines?** Owner: Ken.
+- **Mail adapter.** No owner yet.
+- **Anthropic API key.** Specs run on recorded responses until one is in `.env`. Owner: Yuval.
+- **Re-quote on change** (bulletin, 12:42). Detection would sit in RFQ processing after the core pipeline works. No owner yet.
+
+## Keeping this current
+
+This document is shared. When you change a component, a contract, or a status:
+
+1. Update your component's section and the Contracts table in the same commit.
+2. Move a closed item out of Open questions, and note what was decided.
+3. Update the diagram if a box or arrow changes.
+4. Post on the bulletin board when a contract changes, with @-mentions for the other side.
+
+Keep each section short. Detail lives in your own docs; link to them from here.

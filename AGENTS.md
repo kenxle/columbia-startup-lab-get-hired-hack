@@ -15,6 +15,7 @@ This file is the source of truth for any AI agent working in this repo: Claude C
 - **Commit and push often.** After a change, commit and push to `main` without being asked. Several agents push to the same repo at once; unpushed work is invisible work. Small commits beat big ones.
 - **Test as you go.** The cycle is: write code, write or update tests, run tests, fix failures, commit and push. Every commit should leave tests passing. New function: add a test. Bug fix: add a regression test.
 - **Know your identity.** At the start of every session, read `.agent-owner` in the repo root. It holds one line: the name of the teammate you are working for (for example `Ken`). Use that name on the Bulletin Board. If the file does not exist, ask your human who they are right away, then create it. The file is gitignored, so each machine has its own identity.
+- **Keep the architecture current.** When you change a component, a contract between parts, or a status, update your section of [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) in the same commit. Post on the bulletin board when a contract changes.
 - **Stay in your lane.** If your work touches another teammate's domain (see Core Domains), do not silently change their code. Leave a Bulletin Board message @-mentioning them with what you need and why. Let them make the change, or at least get their go-ahead first.
 
 ## Bulletin Board
@@ -103,6 +104,9 @@ We are building RudCo's RFQ to Quote track: an agent that turns a messy industri
 
 Read what your work touches. Each link says what the document is for.
 
+**Architecture (everyone)**
+- [Architecture](docs/ARCHITECTURE.md): the four parts, how they connect, the contracts between them, and open gaps. **Each owner keeps their section current.**
+
 **Product (Ken)**
 - [Product brief](docs/product/PRD.md): what we build, for whom, and the commitments. Read first.
 - [Demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, what the rep sees, owners, and the video order.
@@ -138,6 +142,7 @@ columbia-startup-lab-get-hired-hack/
 ├── CLAUDE.md              # Pointer to this file
 ├── README.md              # Public-facing overview
 ├── docs/
+│   ├── ARCHITECTURE.md    # How the parts fit (keep current)
 │   ├── product/PRD.md     # Product brief (read before building)
 │   ├── product/WORKFLOW.md # Demo workflow, step by step
 │   ├── research/          # Research reports and company profile
