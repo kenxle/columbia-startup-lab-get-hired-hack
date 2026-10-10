@@ -50,14 +50,21 @@ class LocalPreviewsTest < ActionDispatch::IntegrationTest
     assert_equal 404, session.response.status
   end
 
-  test "malformed ids and symbolic links never disclose files" do
-    id = artifact(quote_id: @quote.id)
+  test "malformed ids never disclose files" do
     get quote_local_preview_path(@quote, "not-a-uuid")
     assert_response :not_found
+  end
+
+  test "symbolic links never disclose files" do
+    id = artifact(quote_id: @quote.id)
     path = Rails.root.join("tmp/letter_opener", id, "message.eml")
     stored = path.dirname.join("hidden.eml")
     File.rename(path, stored)
-    File.symlink(stored, path)
+    begin
+      File.symlink(stored, path)
+    rescue NotImplementedError, Errno::EPERM, Errno::EACCES => error
+      skip "Symlink creation is unsupported or requires OS privileges: #{error.class}"
+    end
     get quote_local_preview_path(@quote, id)
     assert_response :not_found
   end

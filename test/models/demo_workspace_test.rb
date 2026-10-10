@@ -143,7 +143,9 @@ class DemoWorkspaceTest < ActiveSupport::TestCase
       quotes = QuoteWorkspace::DemoWorkspace.populate!(workspace_token: "refresh")
       before = quotes.to_h { |quote| [quote.id, quote.attributes.except("created_at", "approved_at", "sent_at")] }
       lines = quotes.to_h { |quote| [quote.id, quote.quote_lines.map(&:attributes)] }
-      now = Time.current + 3.days
+      # Persisted Rails timestamps have microsecond precision on every adapter.
+      # Keep a fractional value, without platform-specific sub-microseconds.
+      now = Time.current.change(usec: 123_456) + 3.days
       2.times do
         assert_equal({ refreshed: 12, skipped: 0 }, QuoteWorkspace::DemoWorkspace.refresh_timing!(workspace_token: "refresh", now: now))
       end

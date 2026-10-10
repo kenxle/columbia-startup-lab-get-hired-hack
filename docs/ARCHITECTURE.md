@@ -196,3 +196,7 @@ Hirsh’s live check found the configured Opus 5 in the gateway model list, but 
 ### Marketing pages, RudCo alignment
 
 Product and Compare share the supplied RudCo metals hero image with the approved navy overlays, Lucide 0.462.0 outline icons, orange platform divider and company footer. The icon partial includes the ISC license. Marketing styles remain scoped to the marketing layout; quote screens and approved comparison claims are unchanged.
+
+### Demo verification
+
+The [2026-10-10 dry run](engineering/DRY_RUN-2026-10-10.md) covers fresh RFQ intake, clarification, approval, saved local reply with PDF/CSV and approval invalidation after editing. Synthetic pricing checks verify missing/stale evidence holds; real procurement and live-provider dependencies remain explicit. Windows test fixtures now use database microsecond precision and skip only unsupported symlink creation, while other access-control tests always run.

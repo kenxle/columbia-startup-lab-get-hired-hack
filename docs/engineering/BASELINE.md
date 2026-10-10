@@ -79,7 +79,7 @@ Yuval owns provider implementation and activation. A missing provider/key must
 not be represented as an LLM run. Rules-based processing works without a key.
 
 Email preview uses a silent letter_opener renderer in development and fixed `.invalid` addresses. Restart Rails after pulling this transport change. Previews save to the quote’s Local email inbox without opening tabs; page loads and demo seeding never enqueue questions.
-Open an approved quote's **Prepare email and PDF** screen, then preview locally.
+Open an approved quote's **Prepare email and PDF** screen, then select Send approved quote (local preview). This explicit action saves the email and records Sent with time and placeholder recipient. Opening a preview alone does not mark it sent.
 PDF and CSV attachments are generated from the same approved revision. No real
 mailbox is configured, and production mail delivery is disabled.
 
@@ -106,3 +106,5 @@ For a single terminal session, use `export JEV_API_KEY="$(security find-generic-
 ## Optional model preparation
 
 `RFQ_LIVE_MODELS=0` is the default. After a successful live provider check and agreed activation, setting it to `1` enables the RFQ parser in development only, including buyer-answer reruns. Tests, production and demo seeding remain rules based. Catalog-model calls are still disabled until their field evidence is available in the processing contract. A configured provider can fail and fall back, so inspect the field evidence rather than treating configuration as proof of a model run.
+
+For checked demo paths and remaining dependencies, see [the dry-run report](DRY_RUN-2026-10-10.md).
