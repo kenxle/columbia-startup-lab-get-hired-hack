@@ -189,4 +189,15 @@ class QuoteTest < ActiveSupport::TestCase
     assert_raises(Quote::NotApprovable) { @quote.approve! }
   end
 
+  test "a new RFQ without a typed title takes the email subject or first line" do
+    from_subject = Quote.create!(workspace_token: WORKSPACE_TOKEN, source_text: "From: Buyer\nSubject: Blast media order\n\nSteel shot S-330, 2000 lb")
+    assert_equal "Blast media order", from_subject.title
+
+    from_first_line = Quote.create!(workspace_token: WORKSPACE_TOKEN, source_text: "\nSteel shot S-330, 2000 lb\nSteel grit G-40, 1000 lb")
+    assert_equal "Steel shot S-330, 2000 lb", from_first_line.title
+
+    typed = Quote.create!(workspace_token: WORKSPACE_TOKEN, title: "Typed title", source_text: "Subject: Ignored")
+    assert_equal "Typed title", typed.title
+  end
+
 end
