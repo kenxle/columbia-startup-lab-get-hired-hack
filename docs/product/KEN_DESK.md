@@ -14,7 +14,7 @@ Each item says who is waiting and what Claude recommends.
 ## Coming to you soon
 
 - **The working demo, as it is now.** Asked the team at 13:24 for a way to run it or a walkthrough.
-- **The app reskin to the style guide.** Asked Hirsh at 13:27.
+- **The app reskin to the style guide, and a shared component library.** Asked the team on the board; Hirsh leads both.
 
 ## Where things stand
 
