@@ -97,7 +97,7 @@ Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog 
 
 ## Project overview
 
-We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing).
+We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** Then read the [demo workflow](docs/product/WORKFLOW.md): the eight steps from RFQ email to sent quote, and who owns each. It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing).
 
 Research behind it lives in [docs/research/](docs/research/).
 
@@ -110,6 +110,7 @@ columbia-startup-lab-get-hired-hack/
 ├── README.md              # Public-facing overview
 ├── docs/
 │   ├── product/PRD.md     # Product brief (read before building)
+│   ├── product/WORKFLOW.md # Demo workflow, step by step
 │   ├── research/          # Research reports
 │   ├── BULLETIN.md        # Live bulletin board (read every pull)
 │   ├── BULLETIN-ARCHIVE.md

@@ -1,6 +1,6 @@
 # RFQ to Quote: Demo Workflow
 
-**Status:** Draft for Ken's review.
+**Status:** Approved by Ken, 2026-10-10. Every agent building a step reads its section here.
 
 **Read with:** [the product brief](PRD.md) (what and why), [the frontend contract](../engineering/FRONTEND_CONTRACT.md) (Hirsh's routes and data shape), [the research report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md) (why the quote shows its work).
 
