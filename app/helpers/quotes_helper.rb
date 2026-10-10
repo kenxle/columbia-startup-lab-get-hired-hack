@@ -186,7 +186,7 @@ module QuotesHelper
   def approval_blockers(quote, lines)
     blockers = []
     blockers << "No line is ready to quote yet." if quote.ready_count.to_i.zero?
-    missing = lines.select { |line| held_line?(line) && line.clarification_question.blank? }
+    missing = lines.select { |line| held_line?(line) && line.clarification_question.blank? && !quote.internal_hold?(line) }
     if missing.any?
       positions = missing.map(&:position).to_sentence
       blockers << "Held line #{positions} #{missing.one? ? 'needs' : 'need'} a buyer question before approval."

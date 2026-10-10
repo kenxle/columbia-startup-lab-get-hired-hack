@@ -70,6 +70,18 @@ class BuyerQuestionsTest < ActionDispatch::IntegrationTest
     assert_redirected_to quote_buyer_questions_path(@quote)
   end
 
+  test "only internal holds explains that rep review remains instead of claiming no held lines" do
+    @quote.quote_lines.second.update!(unresolved_fields: ["unit_price"], clarification_question: nil,
+      catalog_sku: "DEMO-SKU", unit_price: nil, processing: {"match" => {"status" => "exact"}})
+    @quote.quote_lines.third.update!(clarification_question: nil, processing: {
+      "match" => {"status" => "no_match", "reason" => "No catalog item matches."}})
+    get quote_buyer_questions_path(@quote)
+    assert_response :success
+    assert_includes response.body, "The held lines need internal review."
+    refute_includes response.body, "There are no held lines in this quote."
+    assert_select "a[href=?]", download_quote_buyer_questions_path(@quote), count: 0
+  end
+
   test "another browser cannot preview or download questions" do
     other_browser = open_session
     other_browser.get quote_buyer_questions_path(@quote)

@@ -37,6 +37,28 @@ class BuyerQuestionDraftTest < ActiveSupport::TestCase
     assert_raises(QuoteWorkspace::BuyerQuestionDraft::Incomplete) { @draft.body }
   end
 
+  test "an internal price-only hold does not block a genuine buyer question" do
+    price_hold = @quote.quote_lines.second
+    price_hold.update!(unresolved_fields: ["unit_price"], clarification_question: nil,
+      catalog_sku: "DEMO-SKU", unit_price: nil, processing: {"match" => {"status" => "exact"}})
+    assert @draft.ready?
+    assert_equal [3], @draft.held_lines.map(&:position)
+    assert_includes @draft.body, @quote.quote_lines.third.clarification_question
+    refute_includes @draft.body, "Line 2"
+    assert_empty @draft.missing_question_lines
+  end
+
+  test "an evidenced no match does not block a real buyer question" do
+    internal = @quote.quote_lines.third
+    internal.update!(clarification_question: nil, processing: {
+      "match" => {"status" => "no_match", "reason" => "No item matches the requested specification."}})
+    assert @draft.ready?
+    assert_equal [2], @draft.held_lines.map(&:position)
+    assert_includes @draft.body, @quote.quote_lines.second.clarification_question
+    refute_includes @draft.body, "Line 3"
+    assert_empty @draft.missing_question_lines
+  end
+
   test "no held lines and empty quotes cannot produce a draft" do
     @quote.quote_lines.where.not(state: "ready").delete_all
     refute @draft.ready?

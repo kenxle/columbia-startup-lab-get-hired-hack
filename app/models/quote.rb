@@ -187,14 +187,40 @@ class Quote < ApplicationRecord
     quote_lines.empty?
   end
 
-  # Approval needs at least one quotable line, and every held line must carry
-  # a question for the buyer, so nothing is held silently.
+  # Ready lines may proceed beside buyer questions or evidenced internal holds.
+  # Every held line stays unpriced and excluded from the exported subtotal.
   def approvable?
     lines = quote_lines.to_a
     return false unless lines.any?(&:quotable?)
 
-    lines.reject(&:quotable?).all? { |line| line.clarification_question.present? }
+    lines.reject(&:quotable?).all? { |line| line.clarification_question.present? || evidenced_internal_hold?(line) }
   end
+
+  def internal_hold?(line)
+    evidenced_internal_hold?(line)
+  end
+
+  def internal_hold_reason(line)
+    return unless internal_hold?(line)
+
+    line.state == "no_match" ? "No catalog item fits this request. This line is unpriced and excluded from the subtotal." :
+      "The rep must confirm pricing. This line is unpriced and excluded from the subtotal."
+  end
+
+  def evidenced_internal_hold?(line)
+    match = line.processing.is_a?(Hash) && line.processing["match"]
+    return false unless match.is_a?(Hash)
+
+    if line.state == "no_match"
+      return match["status"] == "no_match" && match["reason"].is_a?(String) &&
+        match["reason"].present? && line.catalog_sku.blank?
+    end
+
+    line.state == "needs_buyer" && line.unresolved_fields == ["unit_price"] &&
+      %w[exact scored].include?(match["status"]) && line.catalog_sku.present? &&
+      line.unit_price.nil? && Array(line.processing["conflicts"]).empty?
+  end
+  private :evidenced_internal_hold?
 
   def review_revision
     updated_at&.iso8601(6)

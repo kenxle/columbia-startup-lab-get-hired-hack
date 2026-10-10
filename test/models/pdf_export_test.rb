@@ -114,4 +114,16 @@ class PdfExportTest < ActiveSupport::TestCase
     assert_equal before_quote, @quote.reload.attributes
     assert_equal before_lines, @quote.quote_lines.map(&:attributes)
   end
+  test "internal holds render reasons without a blank question label" do
+    @quote.quote_lines.second.update!(clarification_question: nil, catalog_sku: "KNOWN", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "exact"}})
+    @quote.quote_lines.third.update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "Unsupported screw"}})
+    @quote.approve!
+    text = reader.pages.map(&:text).join("\n")
+    assert_includes text, "The rep must confirm pricing."
+    assert_includes text, "No catalog item fits this request."
+    refute_includes text, "Question for the buyer:"
+  end
+
 end

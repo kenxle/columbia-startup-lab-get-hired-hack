@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Buyer answer | RudCo Quote Desk</title>
+  <%= stylesheet_link_tag :app %>
+</head>
+<body>
+  <main class="workspace" id="main">
+    <section class="card">
+      <p class="eyebrow">RudCo Quote Desk · Local preview</p>
+      <% if @accepted %>
+        <h1>Thank you. Your answer is recorded.</h1>
+        <p>The quoting team can review the updated line. You can close this page.</p>
+      <% else %>
+        <h1>This answer link is no longer available.</h1>
+        <p>It may have expired, already been used, or the question may have changed. Ask the quoting team for the current question.</p>
+      <% end %>
+      <p>This is a local demo. No external email was sent.</p>
+    </section>
+  </main>
+</body>
+</html>

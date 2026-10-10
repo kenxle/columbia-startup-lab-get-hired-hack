@@ -7,7 +7,7 @@
 
   <% if held_lines.any? %>
     <div class="held-questions">
-      <h3 class="section-title">Questions for the buyer</h3>
+      <h3 class="section-title">Held lines</h3>
       <ol class="held-questions__list">
         <% held_lines.each do |line| %>
           <li>
@@ -16,6 +16,8 @@
             <p class="held-questions__text">
               <% if line.clarification_question.present? %>
                 <%= line.clarification_question %>
+              <% elsif quote.internal_hold?(line) %>
+                <%= quote.internal_hold_reason(line) %>
               <% else %>
                 <span class="text-warning">No question yet. Add one on this line before approval.</span>
               <% end %>
@@ -43,9 +45,9 @@
       <div class="checkbox">
         <%= check_box_tag "reviewed", "1", false, id: "reviewed", required: true, class: "checkbox__input" %>
         <%= label_tag "reviewed", class: "checkbox__label" do %>
-          I reviewed every ready line and its price, and every held line and its buyer question.
+          I reviewed every ready line and its price, and every held line and its reason or buyer question.
           <%= pluralize(quote.ready_count, "ready line") %> priced at <%= display_money(quote.subtotal) %>;
-          <%= pluralize(quote.held_count, "held line") %> included unpriced with questions.
+          <%= pluralize(quote.held_count, "held line") %> included unpriced.
         <% end %>
       </div>
       <div class="form-actions form-actions--split">

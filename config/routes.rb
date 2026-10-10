@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "quotes#index"
+  get "buyer-answer", to: "buyer_answer_links#show", as: :buyer_answer_link
 
   get "product", to: "marketing#product", as: :product
   get "compare", to: "marketing#comparison", as: :comparison

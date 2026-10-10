@@ -14,6 +14,8 @@ class LocalPreviewsController < ApplicationController
   def show
     @message = read_preview(params[:id]) || raise(ActiveRecord::RecordNotFound)
     @body = (@message.text_part || @message).decoded
+    @answer_links = QuoteWorkspace::BuyerAnswerLink.from_message(@message, quote: @quote)
+    @body = QuoteWorkspace::BuyerAnswerLink.display_body(@body, links: @answer_links)
   end
 
   def download

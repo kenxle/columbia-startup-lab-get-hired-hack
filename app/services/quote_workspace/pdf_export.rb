@@ -103,7 +103,8 @@ module QuoteWorkspace
         end
       else
         text(pdf, line[:options].any? { |option| option[:priced] } ? "Buyer choice. Options excluded from subtotal." : "Unpriced. Excluded from subtotal.", style: :bold, color: "7F4205")
-        text(pdf, "Question for the buyer: #{line[:question]}")
+        text(pdf, "Question for the buyer: #{line[:question]}") if line[:question].present?
+        text(pdf, line[:hold_reason]) if line[:hold_reason].present?
       end
       line[:options].each do |option|
         pdf.move_down 8

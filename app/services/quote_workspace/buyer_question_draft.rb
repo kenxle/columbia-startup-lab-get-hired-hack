@@ -11,7 +11,9 @@ module QuoteWorkspace
     end
 
     def held_lines
-      @held_lines ||= quote.quote_lines.to_a.reject(&:quotable?)
+      @held_lines ||= quote.quote_lines.to_a.reject do |line|
+        line.quotable? || (line.clarification_question.blank? && quote.internal_hold?(line))
+      end
     end
 
     def missing_question_lines
@@ -26,7 +28,7 @@ module QuoteWorkspace
       "Questions about #{quote.reference}"
     end
 
-    def body
+    def body(answer_links: [])
       raise Incomplete, "Every held line needs a question before downloading." unless ready?
 
       parts = [ "Draft, not sent" ]
@@ -36,6 +38,7 @@ module QuoteWorkspace
       held_lines.each do |line|
         parts << "Line #{line.position}\n#{line.clarification_question}"
       end
+      answer_links.each { |answer| parts << "#{answer.fetch(:label)}: #{answer.fetch(:url)}" }
       parts.join("\n\n") + "\n"
     end
 

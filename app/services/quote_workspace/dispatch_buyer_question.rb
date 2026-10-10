@@ -22,8 +22,11 @@ module QuoteWorkspace
           choice["label"] if choice.is_a?(Hash) && choice["label"].is_a?(String)
         end
         options = choices.each_with_index.map { |label, index| "#{index + 1}. #{label}" }.join("\n")
+        answer_links = BuyerAnswerLink.for_line(line)
+        options += "\n" + answer_links.map { |answer| "#{answer[:label]}: #{answer[:url]}" }.join("\n")
         snapshot = {
           quote_id: line.quote_id,
+          answer_links: answer_links,
           subject: "Local preview: #{line.quote.reference}, question for line #{line.position}".freeze,
           body: ("Local preview only. No email has been sent to the buyer.\n" \
             "Placeholder recipient: buyer@example.invalid\n\n" \

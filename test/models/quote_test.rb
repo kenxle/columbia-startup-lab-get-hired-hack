@@ -57,7 +57,7 @@ class QuoteTest < ActiveSupport::TestCase
     assert_equal 1, @quote.ready_count
   end
 
-  test "approval requires a ready line and a question on every held line" do
+  test "approval rejects an unexplained held line without a question" do
     assert @quote.approvable?
 
     @quote.quote_lines.second.update!(clarification_question: nil)
@@ -137,4 +137,56 @@ class QuoteTest < ActiveSupport::TestCase
     assert_equal "a_b_.pdf", Quote.sanitize_filename("a<b>.pdf")
     assert_equal "upload", Quote.sanitize_filename("...")
   end
+  test "ready lines can be approved beside an evidenced price-only internal hold" do
+    line = @quote.quote_lines.second
+    line.update!(clarification_question: nil, catalog_sku: "KNOWN-SKU", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "exact"}, "conflicts" => []})
+    assert @quote.reload.approvable?
+    @quote.approve!
+    snapshot = QuoteWorkspace::FinalQuote.new(@quote).with_snapshot { |value| value }
+    held = snapshot[:lines].find { |entry| entry[:position] == line.position }
+    refute held[:ready]
+    assert_nil held[:unit_price]
+    assert_nil held[:total]
+    assert_equal "4640.00", snapshot[:subtotal]
+  end
+
+  test "price-only exception does not hide missing specs conflicts or ambiguous matches" do
+    line = @quote.quote_lines.second
+    valid = {clarification_question: nil, catalog_sku: "KNOWN-SKU", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "scored"}, "conflicts" => []}}
+    [ {unresolved_fields: ["unit_price", "thickness"]}, {catalog_sku: nil},
+      {processing: {"match" => {"status" => "ambiguous"}}},
+      {processing: {"match" => {"status" => "exact"}, "conflicts" => [{"code" => "mismatch"}]}},
+      {processing: nil} ].each do |invalid|
+      line.update!(valid.merge(invalid))
+      refute @quote.reload.approvable?, invalid.inspect
+    end
+  end
+
+  test "explicit evidenced no match can ride along without a buyer question" do
+    line = @quote.quote_lines.third
+    line.update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "No catalog item fits the requested screw."}})
+    assert @quote.reload.approvable?
+    @quote.approve!
+    snapshot = QuoteWorkspace::FinalQuote.new(@quote).with_snapshot { |value| value }
+    held = snapshot[:lines].find { |entry| entry[:position] == line.position }
+    assert_equal "Held: No match", held[:status]
+    assert_nil held[:unit_price]
+    assert_nil held[:total]
+    line.update!(processing: {"match" => {"status" => "no_match"}})
+    refute @quote.reload.approvable?
+    line.update!(processing: {"match" => {"status" => "ambiguous", "reason" => "Choose one"}})
+    refute @quote.reload.approvable?
+  end
+
+  test "internal holds alone never permit approval" do
+    @quote.quote_lines.first.destroy!
+    @quote.quote_lines.second.update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "No catalog item fits."}})
+    refute @quote.reload.approvable?
+    assert_raises(Quote::NotApprovable) { @quote.approve! }
+  end
+
 end

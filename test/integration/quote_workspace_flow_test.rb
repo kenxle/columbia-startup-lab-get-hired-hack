@@ -241,4 +241,21 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     assert_match(/\Aattachment/, response.headers["Content-Disposition"])
     assert_includes response.body, "Northline Fabrication"
   end
+  test "approval form accepts ready lines beside internal holds without demanding questions" do
+    quote = create_demo_quote
+    quote.quote_lines.second.update!(clarification_question: nil, catalog_sku: "KNOWN", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "exact"}})
+    quote.quote_lines.third.update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "Unsupported screw"}})
+    get quote_path(quote)
+    assert_response :success
+    assert_select ".approval input[type=submit][value='Approve quote']", count: 1
+    assert_select ".approval", text: /The rep must confirm pricing/
+    assert_select ".approval", text: /No catalog item fits this request/
+    refute_includes response.body, "No question yet. Add one on this line before approval."
+    post approve_quote_path(quote), params: {reviewed: "1", reviewed_version: quote.reload.review_revision}
+    assert_redirected_to quote_path(quote)
+    assert quote.reload.approved?
+  end
+
 end

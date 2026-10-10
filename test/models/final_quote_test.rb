@@ -136,4 +136,17 @@ class FinalQuoteTest < ActiveSupport::TestCase
     @quote.quote_lines.first.update!(benchmark: nil)
     assert_includes @draft.body, "Benchmark: not provided"
   end
+  test "internal holds give reasons instead of empty buyer questions" do
+    @quote.quote_lines.second.update!(clarification_question: nil, catalog_sku: "KNOWN", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "exact"}})
+    @quote.quote_lines.third.update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "Unsupported screw"}})
+    @quote.approve!
+    body = @draft.body
+    assert_includes body, "The rep must confirm pricing."
+    assert_includes body, "No catalog item fits this request."
+    refute_match(/Question:\s*$/, body)
+    assert_includes body, "Ready-line subtotal: USD 4640.00"
+  end
+
 end

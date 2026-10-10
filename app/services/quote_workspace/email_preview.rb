@@ -61,13 +61,18 @@ module QuoteWorkspace
 
     def questions_snapshot
       draft = BuyerQuestionDraft.new(@quote)
-      freeze_snapshot(subject: "Local preview: #{draft.subject}", body: draft.body, attachments: [])
+      raise BuyerQuestionDraft::Incomplete, "Every held line needs a question before downloading." unless draft.ready?
+      links = draft.held_lines.flat_map do |line|
+        BuyerAnswerLink.for_line(line).map { |answer| answer.merge(label: "Line #{line.position}: #{answer[:label]}") }
+      end
+      freeze_snapshot(subject: "Local preview: #{draft.subject}", body: draft.body(answer_links: links), attachments: [], answer_links: links)
     end
 
-    def freeze_snapshot(subject:, body:, attachments:)
+    def freeze_snapshot(subject:, body:, attachments:, answer_links: [])
       {
         quote_id: @quote.id,
         subject: subject.gsub(/[\r\n]+/, " ").freeze,
+        answer_links: answer_links.map { |answer| answer.transform_values { |value| value.dup.freeze }.freeze }.freeze,
         body: ("Local preview: Placeholder recipient buyer@example.invalid. No email is sent to the buyer.\n\n" + body).freeze,
         attachments: attachments.map { |entry| entry.transform_values { |value| value.dup.freeze }.freeze }.freeze
       }.freeze

@@ -4,7 +4,7 @@
   <div>
     <p class="eyebrow"><%= @quote.reference %> / Buyer questions</p>
     <h1 class="page-title">Review buyer questions</h1>
-    <p class="page-lede">One draft with the questions for every held line.</p>
+    <p class="page-lede">One draft with the questions that need the buyer's answer.</p>
   </div>
   <div class="page-actions">
     <%= link_to "Local email previews", quote_local_previews_path(@quote), class: "button button--quiet" if local_email_preview_available? %>
@@ -28,13 +28,19 @@
   <% if @draft.held_lines.empty? %>
     <div class="buyer-draft__empty">
       <h2 id="buyer-draft-heading">No buyer questions to draft</h2>
-      <p><%= @quote.awaiting_processing? ? "This RFQ is awaiting processing. Questions will appear here when held lines are available." : "There are no held lines in this quote." %></p>
+      <% if @quote.awaiting_processing? %>
+        <p>This RFQ is awaiting processing. Questions will appear here when held lines are available.</p>
+      <% elsif @quote.quote_lines.any? { |line| !line.quotable? } %>
+        <p>The held lines need internal review. There are no questions for the buyer right now.</p>
+      <% else %>
+        <p>There are no held lines in this quote.</p>
+      <% end %>
     </div>
   <% else %>
     <% if @draft.missing_question_lines.any? %>
       <div class="buyer-draft__error" role="alert">
         <h2>Add the missing questions before downloading</h2>
-        <p>Every held line needs a question. Open each line below to add one.</p>
+        <p>Each line below needs a question for the buyer. Open the line to add one.</p>
         <ul>
           <% @draft.missing_question_lines.each do |line| %>
             <li><%= link_to "Add a question for line #{line.position}", quote_path(@quote, line: line.id, return_to: "buyer_questions", anchor: "line-detail") %></li>

@@ -74,7 +74,7 @@ class QuotesController < ApplicationController
 
   def approve
     unless params[:reviewed] == "1" && params[:reviewed_version].present?
-      redirect_to quote_path(@quote), alert: "Confirm that you reviewed the lines and buyer questions before approving."
+      redirect_to quote_path(@quote), alert: "Confirm that you reviewed the lines, held reasons and buyer questions before approving."
       return
     end
 
@@ -83,7 +83,7 @@ class QuotesController < ApplicationController
       redirect_to quote_path(@quote), notice: "Quote approved. Email, PDF and CSV preparation is available."
     else
       redirect_to quote_path(@quote),
-        alert: "Approval needs at least one Ready line, and every held line needs a question for the buyer."
+        alert: "Approval needs at least one Ready line. Every held line needs a buyer question or an evidenced internal hold."
     end
   rescue Quote::StaleReview, Quote::NotApprovable
     redirect_to quote_path(@quote), alert: "This quote changed. Review the latest lines before approving again."

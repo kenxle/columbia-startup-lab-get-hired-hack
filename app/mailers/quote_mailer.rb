@@ -13,6 +13,9 @@ class QuoteMailer < ActionMailer::Base
     mail(to: "buyer@example.invalid", subject: snapshot.fetch(:subject).gsub(/[\r\n]+/, " "),
       delivery_method: method) do |format|
       format.text { render plain: snapshot.fetch(:body) }
+      if snapshot[:answer_links].present?
+        format.html { render template: "quote_mailer/local_preview", locals: {body: snapshot.fetch(:body), answer_links: snapshot[:answer_links]} }
+      end
     end
   end
 end

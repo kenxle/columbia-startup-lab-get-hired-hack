@@ -1,0 +1,8 @@
+<pre style="white-space: pre-wrap; overflow-wrap: anywhere;"><%= QuoteWorkspace::BuyerAnswerLink.display_body(body, links: answer_links) %></pre>
+<h2>Choose an answer</h2>
+<p>Clicking a link records that answer in this local demo. Each link expires after 24 hours and can be used once.</p>
+<ul>
+  <% answer_links.each do |answer| %>
+    <li><%= link_to answer.fetch(:label), answer.fetch(:url) %></li>
+  <% end %>
+</ul>

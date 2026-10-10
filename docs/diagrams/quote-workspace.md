@@ -34,10 +34,16 @@ graph TD
     AI --> AJ[Waiting on buyer with local-demo label and activity history]
     AJ --> P
     AG -- No --> AK[Skip duplicate or stale work]
+    U --> AL[Buyer clicks a signed choice link]
+    AH --> AL
+    AL --> AM{Unused token and unchanged line snapshot?}
+    AM -- No --> AN[Show expired or unavailable answer]
+    AM -- Yes --> AB
     T --> AA[Rep enters a current buyer answer]
     AA --> AB[Recheck revision and preserve rep edits]
     AB --> AC[Answers.apply reruns only that line]
-    AC --> S
+    AC --> AO[Persist answer and consume token in one transaction]
+    AO --> S
     P --> AD[Rep explicitly teaches buyer term with source RFQ]
     AD --> F
     P --> AE[Show priced alternates separately from subtotal]
@@ -71,8 +77,7 @@ Constructed provenance stays internal; internal notes and extraction metadata st
 exports. Question drafts contain existing held-line questions only. Explicit intake, buyer-answer or edited-question drafting queues an automatic local preview after commit. Page loads, generic saves and demo seeds never queue previews. Successful current previews produce a locally labeled waiting state; changed questions clear that state without deleting history. Pending or failed previews never imply success. No quote totals, approval or source bytes change when a preview is recorded.
 
 Email previews use a silent `letter_opener` renderer and scoped local inbox in development and a test adapter in tests, with
-an invalid placeholder recipient. No buyer mail is sent. Real delivery, public choice
-responses, confidence-based sending and general re-quote redlines remain pending.
+an invalid placeholder recipient. No buyer mail is sent. Signed buyer-choice responses work locally for 24 hours and reject reused or stale links. Unchanged sibling answers remain valid. Real delivery, production choice responses, confidence-based sending and general re-quote redlines remain pending.
 
 Presentation follows Ken's [style guide](../product/STYLE_GUIDE.md) and the shared
 [UI components](../engineering/UI_COMPONENTS.md).

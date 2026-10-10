@@ -8,6 +8,15 @@
   <h2 class="section-title"><%= @message.subject %></h2>
   <p>To: <%= Array(@message.to).join(", ") %></p>
   <pre class="buyer-draft__body"><%= @body %></pre>
+  <% if @answer_links.any? %>
+    <h3>Choose an answer</h3>
+    <p>Clicking records the selected answer. Links expire after 24 hours and can be used once.</p>
+    <ul>
+      <% @answer_links.each do |answer| %>
+        <li><%= link_to answer[:label], answer[:url] %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="page-actions">
     <%= link_to "Download email", download_quote_local_preview_path(@quote, params[:id]), class: "button button--quiet" %>
     <% @message.attachments.each_with_index do |part, index| %>

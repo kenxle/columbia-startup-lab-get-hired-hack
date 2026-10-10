@@ -43,7 +43,8 @@ module QuoteWorkspace
           end
           details << "Lead time source: #{line[:lead_time_source]}" if line[:lead_time_source].present?
           details << "Requested paperwork: #{line[:compliance].join('; ')}" if line[:compliance].any?
-          details << "Question: #{line[:question]}" unless line[:ready]
+          details << "Question: #{line[:question]}" if line[:question].present?
+          details << "Held: #{line[:hold_reason]}" if line[:hold_reason].present?
           line[:options].each do |option|
             details << "#{option[:label]} / #{option[:priced] ? 'Buyer choice' : 'Held, unpriced'}"
             details << "Catalog SKU: #{option[:sku]}"
@@ -127,6 +128,7 @@ module QuoteWorkspace
         compliance: Array(line.compliance).filter_map { |entry| entry["label"].presence if entry.is_a?(Hash) },
         lead_time: line.display_lead_time,
         lead_time_source: line.sourced_lead_time? ? line.lead_time_source : nil,
+        hold_reason: !ready && line.clarification_question.blank? ? @quote.internal_hold_reason(line) : nil,
         question: ready ? nil : line.clarification_question
       }
     end
