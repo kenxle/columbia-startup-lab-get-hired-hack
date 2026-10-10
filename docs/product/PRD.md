@@ -147,7 +147,7 @@ Candidates for the uniqueness score. Ken picks one (Q2).
 We blend fixed rules and AI judgment, so the system is accurate where it can be and still handles messy text.
 
 - **Fixed rules** do unit conversion, gauge-to-thickness lookup, dimension parsing, price math, and the rule for when a line is ready.
-- **Matching and scoring** pick the catalog item and score how sure we are.
+- **Matching and scoring** pick the catalog item and score how sure we are, using decision engines like Jev.
 - **The LLM** reads the messy text into fields, drafts the buyer questions, and writes the price explanation.
 
 Not everything goes to an LLM. A number that can be looked up or computed is looked up or computed.
