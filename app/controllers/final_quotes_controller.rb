@@ -24,9 +24,10 @@ class FinalQuotesController < ApplicationController
   end
 
   def preview_email
-    QuoteWorkspace::EmailPreview.call(quote: @quote, kind: "quote", expected_revision: params[:reviewed_version])
-    redirect_to quote_final_quote_path(@quote),
-      notice: "Local email preview opened with PDF and CSV attachments. Nothing was sent to the buyer."
+    message = QuoteWorkspace::EmailPreview.call(quote: @quote, kind: "quote", expected_revision: params[:reviewed_version])
+    preview_id = message["X-Local-Preview-ID"]&.value
+    redirect_to(preview_id ? quote_local_preview_path(@quote, preview_id) : quote_final_quote_path(@quote),
+      notice: "Local email preview saved with PDF and CSV attachments. Nothing was sent to the buyer.")
   end
 
   private

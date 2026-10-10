@@ -7,6 +7,7 @@
     <p class="page-lede">The approved lines, with prices, lead times and requested paperwork.</p>
   </div>
   <div class="page-actions">
+    <%= link_to "Local email previews", quote_local_previews_path(@quote), class: "button button--quiet" if local_email_preview_available? %>
     <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
   </div>
 </header>

@@ -1,0 +1,17 @@
+<% content_for :title, "Local email preview" %>
+<header class="page-header">
+  <div><p class="eyebrow"><%= @quote.reference %></p><h1 class="page-title">Local email preview</h1>
+  <p class="page-lede">Saved locally. No email was sent to the buyer.</p></div>
+  <%= link_to "All local previews", quote_local_previews_path(@quote), class: "button button--quiet" %>
+</header>
+<section class="panel">
+  <h2 class="section-title"><%= @message.subject %></h2>
+  <p>To: <%= Array(@message.to).join(", ") %></p>
+  <pre class="buyer-draft__body"><%= @body %></pre>
+  <div class="page-actions">
+    <%= link_to "Download email", download_quote_local_preview_path(@quote, params[:id]), class: "button button--quiet" %>
+    <% @message.attachments.each_with_index do |part, index| %>
+      <%= link_to part.filename, attachment_quote_local_preview_path(@quote, params[:id], index: index), class: "button button--quiet" %>
+    <% end %>
+  </div>
+</section>

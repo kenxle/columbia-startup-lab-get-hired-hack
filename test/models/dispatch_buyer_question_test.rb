@@ -89,18 +89,40 @@ class DispatchBuyerQuestionTest < ActiveSupport::TestCase
     end
   end
 
-  test "semantic edits queue after commit but notes and GET style reads do not" do
+  test "explicit question edits queue after commit but generic saves reads and demo creation do not" do
     assert_enqueued_jobs 1, only: DispatchBuyerQuestionJob do
-      @line.update!(clarification_question: "Which grade is required?")
+      @line.apply_manual_edit("clarification_question" => "Which grade is required?")
     end
     assert_no_enqueued_jobs only: DispatchBuyerQuestionJob do
       @line.update!(notes: "Internal only")
+      @line.update!(clarification_question: "A maintenance-only question update")
       @line.status_label
       @line.current_question_delivery
-    end
-    assert_enqueued_jobs 2, only: DispatchBuyerQuestionJob do
       QuoteWorkspace::Demo.create!(workspace_token: "another-preview")
     end
+  end
+
+  test "unchanged processing drafts keep preview receipts across replacement without another job" do
+    @quote.quote_lines.reject(&:quotable?).each { |line| dispatch(line) }
+    receipts = @quote.buyer_question_deliveries.order(:id).pluck(:id, :question_text, :previewed_at)
+
+    assert_no_enqueued_jobs only: DispatchBuyerQuestionJob do
+      QuoteWorkspace::ApplyResult.call(quote: @quote, result: QuoteWorkspace::Demo.result, preview_questions: true)
+    end
+
+    assert_equal receipts, @quote.buyer_question_deliveries.order(:id).pluck(:id, :question_text, :previewed_at)
+    assert @quote.quote_lines.reject(&:quotable?).all?(&:current_question_delivery)
+  end
+
+  test "a rolled back explicit draft never queues a preview" do
+    original_question = @line.clarification_question
+    assert_no_enqueued_jobs only: DispatchBuyerQuestionJob do
+      QuoteLine.transaction(requires_new: true) do
+        @line.apply_manual_edit("clarification_question" => "A question that will be rolled back")
+        raise ActiveRecord::Rollback
+      end
+    end
+    assert_equal original_question, @line.reload.clarification_question
   end
 
   test "production and unsafe transport are disabled" do

@@ -19,7 +19,6 @@ class QuoteLine < ApplicationRecord
 
   belongs_to :quote, inverse_of: :quote_lines
   has_many :buyer_question_deliveries, dependent: :nullify
-  after_commit :enqueue_question_preview, on: [:create, :update]
 
   attribute :spec, default: -> { {} }
   attribute :evidence, default: -> { {} }
@@ -109,6 +108,28 @@ class QuoteLine < ApplicationRecord
     buyer_question_deliveries.previewed.where(fingerprint: question_delivery_fingerprint).order(previewed_at: :desc, id: :desc).first
   end
 
+  # Called only by explicit drafting actions. Seed data and ordinary saves never
+  # dispatch mail artifacts. Capture this draft and wait for its transaction.
+  def enqueue_question_preview_after_commit
+    return unless Rails.env.development? || Rails.env.test?
+    return unless persisted? && question_preview_eligible?
+
+    line_id = id
+    fingerprint = question_delivery_fingerprint
+    ActiveRecord.after_all_transactions_commit do
+      begin
+        current = QuoteLine.find_by(id: line_id)
+        next unless current&.question_preview_eligible? && current.question_delivery_fingerprint == fingerprint
+        next if current.buyer_question_deliveries.exists?(fingerprint: fingerprint, channel: "local_preview")
+
+        DispatchBuyerQuestionJob.perform_later(line_id, fingerprint)
+      rescue StandardError
+        # A local preview failure must not interrupt the saved RFQ work.
+        nil
+      end
+    end
+  end
+
   def display_description
     description.presence || original_text.to_s.squish.truncate(80).presence || "Line #{position}"
   end
@@ -160,6 +181,7 @@ class QuoteLine < ApplicationRecord
 
       if save
         quote.invalidate_approval!
+        enqueue_question_preview_after_commit if saved_change_to_clarification_question?
         true
       else
         false
@@ -168,18 +190,6 @@ class QuoteLine < ApplicationRecord
   end
 
   private
-
-  def enqueue_question_preview
-    return unless Rails.env.development? || Rails.env.test?
-    return unless question_preview_eligible?
-    return unless (previous_changes.keys & %w[id clarification_question state spec quantity quantity_unit description original_text unresolved_fields processing]).any?
-    return if current_question_delivery
-
-    DispatchBuyerQuestionJob.perform_later(id, question_delivery_fingerprint)
-  rescue StandardError
-    # Local preview infrastructure must never roll back or interrupt RFQ work.
-    nil
-  end
 
   def lead_time_shape
     %w[lead_time lead_time_source].each do |field|

@@ -105,7 +105,7 @@ module QuoteWorkspace
             workspace_token: workspace_token, sample_data: true, created_at: now - recipe[:age_hours].hours))
           result = RfqProcessing.process(content: quote.source_text, type: "email", matcher: matcher,
             sample_data: true, context: {}, buyer_terms: [], llm: false)
-          ApplyResult.call(quote: quote, result: result)
+          ApplyResult.call(quote: quote, result: result, preview_questions: false)
           if recipe[:approve] || recipe[:sent_hours]
             raise "Approved demo RFQ must have only ready lines" unless quote.held_count.zero? && quote.ready_count.positive?
 

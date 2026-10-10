@@ -24,13 +24,14 @@ module QuoteWorkspace
       end
     end
 
-    def self.call(quote:, result:)
-      new(quote: quote, result: result).call
+    def self.call(quote:, result:, preview_questions: false)
+      new(quote: quote, result: result, preview_questions: preview_questions).call
     end
 
-    def initialize(quote:, result:)
+    def initialize(quote:, result:, preview_questions: false)
       @quote = quote
       @result = result
+      @preview_questions = preview_questions
       @problems = []
     end
 
@@ -112,10 +113,26 @@ module QuoteWorkspace
 
     def replace_lines(line_attributes, sample_data:, processing_revision:, processing_evidence:)
       @quote.with_lock do
+        # A replacement preserves an unchanged draft's successful preview and
+        # failed/pending attempt. The original snapshot remains in quote history.
+        existing_attempts = @quote.quote_lines.includes(:buyer_question_deliveries).to_a.each_with_object({}) do |line, attempts|
+          identity = line.line_id.presence || line.position
+          line.buyer_question_deliveries.each do |delivery|
+            attempts[[identity, delivery.fingerprint]] = delivery.id
+          end
+        end
         @quote.quote_lines.delete_all
-        line_attributes.each { |attributes| @quote.quote_lines.create!(attributes) }
+        drafted_lines = line_attributes.map do |attributes|
+          line = @quote.quote_lines.create!(attributes)
+          identity = line.line_id.presence || line.position
+          if (delivery_id = existing_attempts[[identity, line.question_delivery_fingerprint]])
+            @quote.buyer_question_deliveries.where(id: delivery_id).update_all(quote_line_id: line.id)
+          end
+          line
+        end
         @quote.update_columns({ sample_data: sample_data, processing_revision: processing_revision }.merge(processing_evidence))
         @quote.invalidate_approval!
+        drafted_lines.each(&:enqueue_question_preview_after_commit) if @preview_questions
       end
     rescue ActiveRecord::RecordInvalid => error
       @quote.reload

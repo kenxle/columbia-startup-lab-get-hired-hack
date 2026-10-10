@@ -148,7 +148,7 @@ module QuoteWorkspace
         # ApplyResult's own lock joins this transaction. A savepoint ensures
         # its model-validation rescue cannot retain partially replaced rows.
         @quote.class.transaction(requires_new: true) do
-          ApplyResult.call(quote: @quote, result: result)
+          ApplyResult.call(quote: @quote, result: result, preview_questions: true)
         end
         run.update!(status: "succeeded", warnings: warnings, finished_at: Time.current)
       end

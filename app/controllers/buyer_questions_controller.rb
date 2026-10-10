@@ -22,9 +22,10 @@ class BuyerQuestionsController < ApplicationController
   end
 
   def preview_email
-    QuoteWorkspace::EmailPreview.call(quote: @quote, kind: "questions", expected_revision: params[:reviewed_version])
-    redirect_to quote_buyer_questions_path(@quote),
-      notice: "Local question email preview opened. Nothing was sent to the buyer."
+    message = QuoteWorkspace::EmailPreview.call(quote: @quote, kind: "questions", expected_revision: params[:reviewed_version])
+    preview_id = message["X-Local-Preview-ID"]&.value
+    redirect_to(preview_id ? quote_local_preview_path(@quote, preview_id) : quote_buyer_questions_path(@quote),
+      notice: "Local question email preview saved. Nothing was sent to the buyer.")
   end
 
   private
