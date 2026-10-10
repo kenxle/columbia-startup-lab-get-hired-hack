@@ -10,10 +10,6 @@ Each item says who is waiting and what Claude recommends.
 
 Nothing open.
 
-## See the demo now
-
-Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `script/setup`, then `script/dev`. Open http://127.0.0.1:3100 and click **Load sample RFQ**. You can review, edit, approve, and export CSV. The catalog matching page is there too. The PDF, email, and automatic intake are not pushed yet.
-
 ## Coming to you soon
 
 - **The demo RFQ email.** Handed to Tisch, who has been collecting the RFQ and catalog data. Yuval checks that every line parses.
