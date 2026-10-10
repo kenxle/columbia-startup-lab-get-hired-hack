@@ -6,7 +6,7 @@
 
 ## Open questions
 
-- **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table and label them as sample data on screen. Ken: ask the RudCo founder on the floor.
+- **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table and label them as sample data on screen. Yuval is finding this out.
 - **Q2. What is our sharper angle?** Uniqueness is a quarter of the score. Candidates are under [A sharper angle](#a-sharper-angle). Ken picks one.
 - **Q3. Is the user RudCo's own quoting rep?** This brief assumes the rep reviews every quote before it goes out, and the buyer only sees the finished quote and the questions. Confirm with RudCo.
 
