@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "sample_data": true,
+  "revision": {
+    "id": "stub-jev-diagnostic",
+    "created_at": "2026-10-10T15:37:00-04:00",
+    "processor": "stub fixture, no live Jev call",
+    "llm": null
+  },
+  "source": {
+    "type": "email",
+    "filename": null,
+    "pages": null,
+    "rows": null
+  },
+  "warnings": [],
+  "lines": [
+    {
+      "line_id": "line-1-7d34f3a4",
+      "position": 1,
+      "description": "Stainless steel 304 sheet, 0.0625 in (16 ga), 48 in x 96 in",
+      "original_text": "304 stainless sheet 16 ga 4x8 5 lb 3.1",
+      "spec": {
+        "material": "stainless steel",
+        "grade": "304",
+        "form": "sheet",
+        "thickness": 0.0625,
+        "width": 48,
+        "length": 96,
+        "gauge": 16
+      },
+      "quantity": 5,
+      "quantity_unit": "lb",
+      "catalog_sku": null,
+      "unit_price": null,
+      "price_source": null,
+      "state": "no_match",
+      "clarification_question": "No match in the current catalog for line 1 (stainless steel 304 sheet). Should we quote it from an outside source at a stated lead time, or remove this line?",
+      "notes": "Assumptions: Finish is not stated. 2B is the usual mill finish for stainless sheet. ASTM A240 is the usual specification family for stainless sheet and plate. It is not written. Rules used: Unit conversion: 4 ft x 8 ft = 48 in x 96 in; Gauge table: stainless steel, 16 ga = 0.0625 in. No match in the current catalog.",
+      "evidence": {
+        "material": {
+          "text": "stainless",
+          "location": "line 1, chars 5-13",
+          "explanation": "stainless means stainless steel"
+        },
+        "grade": {
+          "text": "304",
+          "location": "line 1, chars 1-3",
+          "explanation": "stainless steel grade"
+        },
+        "form": {
+          "text": "sheet",
+          "location": "line 1, chars 15-19",
+          "explanation": "sheet means sheet"
+        },
+        "thickness": {
+          "text": "16 ga",
+          "location": "line 1, chars 21-25",
+          "explanation": "16 gauge on the stainless steel table is 0.0625 in (Metal Supermarkets sheet metal gauge chart (tube wall: Wikipedia, Sheet metal))."
+        },
+        "width": {
+          "text": "4x8",
+          "location": "line 1, chars 27-29",
+          "explanation": "sheet sizes under 12 with no unit are feet: 4 ft x 8 ft is 48 in x 96 in; the first number is the width"
+        },
+        "length": {
+          "text": "4x8",
+          "location": "line 1, chars 27-29",
+          "explanation": "sheet sizes under 12 with no unit are feet: 4 ft x 8 ft is 48 in x 96 in; the first number is the width"
+        },
+        "gauge": {
+          "text": "16 ga",
+          "location": "line 1, chars 21-25",
+          "explanation": "a gauge number is not a thickness; it is looked up in a table by material and form"
+        },
+        "quantity": {
+          "text": "5 lb",
+          "location": "line 1, chars 31-34",
+          "explanation": "quantity as written"
+        }
+      },
+      "compliance": [
+        {
+          "label": "EN 10204 3.1 certificate required",
+          "evidence": "3.1",
+          "note": "A 3.1 certificate reports test results from the delivered lot, signed by an inspector independent of production; confirm against the buyer's spec, since one research source contradicts itself on who issues it. Research confidence: medium-high. A bare \"3.1\" could also be a number, so confirm it means the certificate type. Jev review: probability this requirement applies: 73.0%. Ambiguous trigger [3.1] requires rep review."
+        },
+        {
+          "label": "Mill test report required",
+          "evidence": "3.1",
+          "note": "A 3.1 certificate is itself a mill test certificate with results from the delivered lot, so one document can satisfy both flags; check that the stock's heat number is still traceable on cut pieces. Research confidence: high for the MTR trigger. Jev review: probability this requirement applies: 73.0%. Ambiguous trigger [3.1] requires rep review."
+        }
+      ],
+      "benchmark": null,
+      "unresolved_fields": [],
+      "edited_fields": [],
+      "processing": {
+        "confidence": {
+          "material": 0.95,
+          "grade": 0.95,
+          "form": 0.95,
+          "thickness": 0.9,
+          "width": 0.85,
+          "length": 0.85,
+          "gauge": 0.95,
+          "quantity": 0.95
+        },
+        "assumptions": [
+          "Finish is not stated. 2B is the usual mill finish for stainless sheet.",
+          "ASTM A240 is the usual specification family for stainless sheet and plate. It is not written."
+        ],
+        "rules_used": [
+          "Unit conversion: 4 ft x 8 ft = 48 in x 96 in",
+          "Gauge table: stainless steel, 16 ga = 0.0625 in"
+        ],
+        "conflicts": [],
+        "match": {
+          "status": "no_match",
+          "threshold": 0.8,
+          "candidates": [],
+          "score": 0.0,
+          "reason": "No candidate reached the threshold."
+        },
+        "question_choices": [],
+        "alternates": [],
+        "compliance_detail": [
+          {
+            "requirement": "en10204_3_1",
+            "label": "EN 10204 3.1 certificate required",
+            "evidence": "3.1",
+            "trigger": "stated",
+            "note": "A 3.1 certificate reports test results from the delivered lot, signed by an inspector independent of production; confirm against the buyer's spec, since one research source contradicts itself on who issues it. Research confidence: medium-high. A bare \"3.1\" could also be a number, so confirm it means the certificate type. Jev review: probability this requirement applies: 73.0%. Ambiguous trigger [3.1] requires rep review.",
+            "jev": {
+              "status": "evaluated",
+              "reason": "Ambiguous trigger [3.1] requires rep review.",
+              "model": "jev-1.13.0",
+              "probability": 0.73
+            }
+          },
+          {
+            "requirement": "mtr",
+            "label": "Mill test report required",
+            "evidence": "3.1",
+            "trigger": "stated",
+            "note": "A 3.1 certificate is itself a mill test certificate with results from the delivered lot, so one document can satisfy both flags; check that the stock's heat number is still traceable on cut pieces. Research confidence: high for the MTR trigger. Jev review: probability this requirement applies: 73.0%. Ambiguous trigger [3.1] requires rep review.",
+            "jev": {
+              "status": "evaluated",
+              "reason": "Ambiguous trigger [3.1] requires rep review.",
+              "model": "jev-1.13.0",
+              "probability": 0.73
+            }
+          }
+        ],
+        "lead_time": {
+          "text": "to confirm",
+          "stocked": false,
+          "source": "no catalog match"
+        }
+      }
+    }
+  ]
+}
