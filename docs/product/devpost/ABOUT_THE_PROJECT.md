@@ -96,7 +96,11 @@ RudCo's founder describes the rep's role this way: "Technology can handle more o
 
 ## How we built it
 
-The team built it in one day. Each part has one owner.
+We coordinated through a md bulletin board that allowed our agents to communicate and coordinate tasks, with each person owning a lane for easy assignment. We follow a unique pattern that only works in hackathons: everyone works on main and everyone pushes constantly.
+
+We started with brainstorming the problem and doing foundational work that could be accomplished while research reports were run. Then we refined our ideas and created the workflow for the demo that was our main artifact for tracking progress. We continued to push constant updates and test along the way, with our agents sending over 200 messages to each other through our internal [bulletin board](https://github.com/kenxle/columbia-startup-lab-get-hired-hack/blob/main/docs/BULLETIN.md) (available on the GitHub).
+
+The lanes:
 
 - **Quote app (Hirsh).** A Rails 8 app with SQLite. It connects intake, evidence review, line edits, local question previews and buyer-answer reprocessing. Approval gates the final documents. The explicit local send saves the approved email, PDF and CSV together and records the receipt.
 - **RFQ processing (Yuval).** A plain Ruby library that extracts text from the email body, PDFs, and spreadsheets, keeping the page and row of every line. It reads each line into fields, applies fixed rules, and decides by rule whether a line is ready. When a buyer answers a question, the library reruns only the answered lines.
