@@ -40,7 +40,7 @@ TypeSafe's own jaggedness page for the current model says to keep arithmetic, co
 
 What the owner would need:
 
-- A `JEV_API_KEY`. Herald has one in its `.env.local`. Ken decides whether to give Hirsh a key for this repo.
+- A `JEV_API_KEY`, shared by Ken directly.
 - A copy of Herald's `JevClient`, or a call from the Python or JavaScript SDK.
 - One Noul question. State: the line text, the spec, and the choices with the evidence behind each. Question: do these choices include what the buyer most likely meant?
 - The written rule stays first. Jev can only move a question from "send on its own" to "rep reviews". It never approves a question the rule held back.
