@@ -139,7 +139,7 @@ This table reflects the bulletin board as of 12:39. Owners, correct it if it is 
 
 ## Decisions
 
-- **W1. Clarifying questions send on their own when the agent is confident** (Ken, 2026-10-10). If the agent is confident it can name the choices the buyer meant, the email goes out with no review. If not, the rep reviews it first. The final quote still needs the rep's approval.
+- **W1. Clarifying questions send on their own when the agent is confident** (Ken, 2026-10-10). If the agent is confident it can name the choices the buyer meant, the email goes out with no review. If not, the rep reviews it first. The final quote still needs the rep's approval. Each sent question is recorded and shown on its line ("Question sent 2:41 PM"), and the line reads "Waiting on buyer". Sending a question never blocks the rest of the quote.
 - **W2. The buyer answers by clicking a choice in the email** (Ken, 2026-10-10). Each choice is a button. A click updates the RFQ on its own. Replying with the choice number also works. No login is needed for the demo: the buttons work without the buyer signing in.
 - **Build order for Hirsh: the final email and PDF first** (Ken, 2026-10-10). Step 8 is the core demo. Buyer-answer buttons (step 6) and re-quote redlines come after it.
 - **Email for the demo: letter_opener first, then a real email account** (Ken, 2026-10-10). letter_opener shows each sent email in the browser during development, so the question and quote emails can be shown on screen. The goal after that is a real email account, so a real buyer email comes in and a real reply goes out.
