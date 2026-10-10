@@ -54,8 +54,8 @@ Every RFQ goes through the same layers, and each layer can say "I don't know".
   - Tisch's catalog matcher has a reader for messy wording such as "sixteen gauge, four by eight, twenty sheets".
   - The distributor pricing agent uses the gateway to split an RFQ into lines. The gateway is never a source for prices, stock, or cost.
   - In the demo as shown, the Rails app runs with the model switched off, so lines are read by the rules parser and matcher.
-- **Block Convey.** Sponsor resource named by the hackathon.
-- **Ruby and Rails 8.** The quote app.
+- **Block Convey.** Each model call sends a trace to Block Convey's PRISM: which model answered, how long it took, and whether it worked. PRISM shows the failed calls, so we can see where the model breaks. No prompts, secrets, or buyer data are sent, and a tracing failure never stops a quote.
+- **Ruby and Rails 8.** The web app.
 - **SQLite.** App storage.
 - **Prawn.** Builds the quote PDF.
 - **letter_opener.** Previews the buyer emails in the browser.
