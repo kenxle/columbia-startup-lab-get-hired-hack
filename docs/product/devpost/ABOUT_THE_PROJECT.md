@@ -1,6 +1,6 @@
 # About the project (Devpost field)
 
-Copied from the live Devpost field at 15:37, with your edits made there. Edit here; Claude pastes this back into Devpost. Everything below the line is the field.
+Copied from the live Devpost field at 15:37, with your edits made there. The accuracy section is Yuval's blurb (62c5423). Edit here; Claude pastes this back into Devpost. Everything below the line is the field.
 
 ---
 
@@ -36,26 +36,15 @@ The product is built to run on RudCo's real catalog, inventory, and prices.
 
 ## How the solution handles accuracy and uncertainty
 
-The design rule is that a number that can be looked up or computed is looked up or computed. The model reads and writes language. It never sets a price.
+Rules read the RFQ first. Material-specific gauge tables, dimensions and unit conversions make the reading reproducible. Extracted fields retain the quoted RFQ words and source location; derived values identify the rule or table used. Stainless 16 gauge, for example, reads as 0.0625 inches. If the RFQ also says 0.060 inches, the difference becomes a buyer question.
 
-- **Fixed rules decide the facts.** Gauge tables (one per material), unit conversion, dimension parsing, and the rule for when a line is Ready are all fixed rules. A confidence score never makes a line Ready when evidence is missing.
-- **The model fills gaps only under limits.** When a model fills a field, it must quote words from the line, it must be highly confident, and it can never overwrite a value the rules already set.
-- **Every field shows its source.** Each field carries the exact RFQ words, their location, and the rule or table used. The rep can check a whole quote by clicking.
-- **Unknowns stay empty.** A field the agent cannot read is left empty and becomes a question. It is never filled with a guess.
-- **A contradiction becomes a question.** If a line says "16 gauge" and also "0.060 in", the agent asks which one the buyer means. The two numbers are different thicknesses.
-- **No match means no match.** The matcher checks each catalog item field by field. A field is an exact match, a near match that becomes a buyer question, or a conflict that rules the item out. A line with no fit says "No match" and is not priced.
-- **No source means no price.** A price needs a named, dated source. A line without one is held. Metals sheet and plate lines are held today because the pricer has not found a sourced price for them.
-- **Lead times are the same.** No stock evidence means "to confirm".
-- **The rep approves every quote.** Approval is explicit, and any edit clears it. A stale approval blocks export.
-- **A rerun never overwrites a rep edit.**
+When enabled, the model can fill only fields the rules left empty, with evidence quoted from the line. It cannot replace a rules value or invent a price. Invalid responses, a different returned model, or gateway failures leave the rules result intact. The current demo runs with model enrichment disabled; recent Nicrron inference checks returned HTTP502, so we do not present them as successful model readings.
 
-How we checked it:
+Unknown quantities, conflicting specifications and unsuitable catalog matches keep a line held. Clear lines continue. A buyer answer reruns the relevant line while preserving the rep's edits. Explicitly taught terms apply only to the same buyer and workspace, with a validated source RFQ and line. A confirmed meaning may replace the exact taught phrase, but ordinary remembered values cannot override explicit numbers. An untaught buyer does not inherit that interpretation.
 
-- **Research test set.** 24 of 25 messy lines from Ken's research read as the research expects (report generated 13:32, in `docs/rfq_processing/TEST-RESULTS.md`).
-- **App tests.** 418 Rails tests with 3,526 assertions, plus 12 PDF specs, pass (Hirsh, 14:55).
-- **Pricing agent.** 98 tests with 594 assertions pass (Tisch, 14:29).
-- **Processing library.** 286 examples ran at 14:48. Two fail because the demo PDF in the repo is corrupt, and a replacement is pending.
-- **Two demo RFQs.** The first has four abrasive lines, all Ready with RudCo prices and COA flags. In the second, one quantity is missing, so one line asks the buyer and the other three stay Ready. After the answer "2000 lb", all four are Ready again.
+Prices need traceable evidence. The abrasive demo uses named, dated RudCo website list prices, not verified acquisition costs or a promise of available stock. Distributor pricing requires its separate acquisition and comparison evidence before release. Lines without a supported price stay unpriced, and lead times without stock evidence stay “to confirm.” The rep must approve the quote; later edits invalidate that approval.
+
+We verified the complete four-line abrasive RFQ, the missing-quantity question and answer, and the persisted teaching path through processing and matching. The taught thickness matches exactly; the untaught buyer remains held and the unpriced sheet stays unpriced. The latest local processing suite passed 332 examples, and the integrated app check passed 480 Rails tests plus 12 PDF specs. The repaired email, PDF and spreadsheet fixtures all retain their eight RFQ lines.
 
 ## Tools and technologies used
 
