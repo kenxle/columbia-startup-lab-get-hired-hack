@@ -40,7 +40,9 @@ Each claim we make, and each tagline, maps to one of RudCo's own lines. The anch
 
 **Price claims.** We never say RudCo is cheapest. Every price explanation says the price tracks published metal cost plus RudCo's margin ([WORKFLOW step 5](WORKFLOW.md#5-price-flag-compliance-list-assumptions)).
 
-**What we do not claim.** "Learns the buyer's shorthand" is already claimed by Proton, so it is a stretch feature, and our edge there is only the visible source ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead)). We do not imply live inventory, delivery dates, credit terms, cutting, or ERP links. The demo covers quote preparation only ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#what-our-demo-should-show)).
+**Learning the buyer is a stretch goal we are aiming for.** It is how we beat competitors on their own claim. Proton and Canals say they learn customers' shorthand. Ours shows where each learned reading came from: "Read as 0.060 in, as you confirmed on RFQ-0001" ([workflow step 9](WORKFLOW.md#9-stretch-learn-the-buyer), [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead)). Until it is built, we show it as coming next, not as done.
+
+**What we do not claim.** We do not imply live inventory, credit terms, cutting, or ERP links. Lead times follow RudCo's stated promise or say "to confirm". The demo covers quote preparation only ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#what-our-demo-should-show)).
 
 ## Voice and messaging
 
