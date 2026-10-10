@@ -113,7 +113,13 @@ Open, in priority order for the demo:
 5. **Tisch's teachable fields** and metals prices. Until then metals lines are held with `unit_price` unresolved.
 6. Keep `docs/ARCHITECTURE.md` and `PLAN.md` current with every change, and post on the board at every handoff.
 
-## 8. First ten minutes for the new session
+## 8. Opening prompt for the new session
+
+Paste this as the first message:
+
+> Read docs/rfq_processing/HANDOFF.md and follow it exactly. You work for Yuval. Pull, read the bulletin board rows newer than the last time in the handoff log, run the specs and the end-to-end script, then spawn the workers in section 6 for the open items in section 7, post one row on the board, and keep working. Yuval reviews before you push anything new, and you post on the board at every handoff.
+
+## 8a. First ten minutes for the new session
 
 1. `cat .agent-owner` (expect `Yuval`). `git pull --ff-only origin main`. Read every bulletin row newer than the last time in the log below, especially rows with `@Yuval`.
 2. Run the specs and the e2e script from section 4. Both must be green before any change.
@@ -125,5 +131,5 @@ Open, in priority order for the demo:
 
 | Time | State |
 |---|---|
-| 13:40 | All three workers landed and are integrated: `answers.rb` (18 specs), `llm_parser.rb` (15 specs, auto-on with a key), `bin/test-set-report` and TEST-RESULTS.md. Excel intake, Tisch contract adapter, production wording, lead time. 150 specs green. Board rows read through 13:32 (Ken: Tisch writes the demo email in `docs/product/demo_rfq/`, Yuval checks it parses; Ken: production data wording; Tisch: `CatalogMatch::Contract` and `bin/catalog-match`). |
+| 13:36 | Last push: 57a343a (code) and 8593c8b (board post). All three workers landed and are integrated: `answers.rb` (18 specs), `llm_parser.rb` (15 specs, auto-on with a key), `bin/test-set-report` and TEST-RESULTS.md. Excel intake, Tisch contract adapter, production wording, lead time. 150 specs green. Board rows read through 13:35 (Ken 13:32: Tisch writes the demo email in `docs/product/demo_rfq/`, Yuval checks it parses; Ken 13:31: production data wording; Tisch 13:30: `CatalogMatch::Contract` and `bin/catalog-match`; Hirsh 13:33: his third agent is finishing automatic intake from Yuval's handoff; Ken 13:35: brand position and style guide approved, use their words everywhere). |
 | 13:30 | Commits on main by Yuval: e4d2233 (library), a4e05ad (adapter, buyer profiles, RudCo vocabulary, flags), 437a98b (board post), df4eb25 (demo email, body sentences feed compliance, answers plumbing and contract). 114 specs green before the workers' modules. Three workers running: answers (W3), llm_parser, test-set report. Excel intake written and green locally, not yet pushed. Last board rows read: 13:28 (Hirsh took the Rails invocation and `.env`; asked Ken to name a key owner). |
