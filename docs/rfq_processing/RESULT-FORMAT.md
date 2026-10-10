@@ -149,6 +149,28 @@ RfqProcessing::Answers.apply(previous_result: stored_hash, answers: answers, pip
 - The result is a new hash with a new `revision.id`, `previous_revision`, and `changed_line_ids`. Unanswered lines are copied unchanged. Every rerun line keeps its `line_id` and records `processing.answered`. Prices keep their `benchmark.as_of` (guard 4).
 - Guards 2 and 3 (never overwrite a rep edit, clear approval and highlight changes) are the app's; `edited_fields` on the stored line is the signal.
 
+## Alternates on ambiguous lines (Ken, 13:58)
+
+When the matcher returns two or three candidates, the line stays `needs_buyer` with its question, and `processing.alternates` lists each candidate as an option the quote can show and the buyer can pick on acceptance:
+
+```json
+"alternates": [
+  { "id": "line-1-ab12cd34-a1", "choice_id": "line-1-ab12cd34-c1",
+    "label": "Option A: 304 stainless sheet, 16 ga (0.0625 in), 2B finish",
+    "catalog_sku": "RC-SS304-SHT-16GA-48X96-2B", "item_id": "RC-SS304-SHT-16GA-48X96-2B", "spec": { "material": "stainless steel", "grade": "304", "form": "sheet", "thickness_in": 0.0625, "finish": "2B" },
+    "unit_price": null, "price_source": null, "benchmark": null, "lead_time": { "text": "to confirm", "stocked": false, "source": null },
+    "unresolved_fields": ["unit_price"] }
+]
+```
+
+- One entry per candidate, in the matcher's order. `id` is `<line_id>-a<n>` and stable across reruns; `choice_id` names the question choice that picks this option.
+- A price appears only from a labeled source, the same rule as the line itself (`unit_price`, `price_source`, `benchmark` with `kind`, `source`, `as_of`). Otherwise `unit_price` is null and `unresolved_fields` lists `unit_price`. When Tisch's pricer prices each candidate, those fields fill from it.
+- No match lines and lines with one match carry an empty `alternates`. The app shows alternates on the review screen and in the quote PDF (Hirsh).
+
+## Buyer terms in (workflow step 9)
+
+`buyer_terms` arrive in Tisch's `ClientTerm` shape with string keys: `term`, `meaning` (`fields`, or `part_number`), `source` (`taught` or `learned`), `client_name`, `times_confirmed`, and `confirmed_on`, the RFQ number the rep taught or confirmed the term on. With `confirmed_on`, the evidence on the line reads "Read as 0.0625 in, as you confirmed on RFQ-0001" (learned) or "as the rep taught on RFQ-0001" (taught). Without it, "Northline (taught by the rep): \"16 ga\" means thickness 0.0625". `RfqProcessing::BuyerProfile.learn(evidence_text:, field:, value:, client_name:, confirmed_on:)` returns a term in this shape for the app to save.
+
 ## Contract with the matching agent
 
 Tisch owns the matcher. RFQ processing calls it once per line and copies its answer into `processing.match`. It must be callable from Ruby in-process (a module under `tools/`) or as a command that reads one JSON object on stdin and writes one on stdout.
