@@ -1,0 +1,14 @@
+{
+  "version": "2026-10-10-tisch-v1",
+  "owner": "Tisch",
+  "target_gross_margin": "0.15",
+  "minimum_gross_margin": "0.08",
+  "destination_required": true,
+  "refresh_every_quote": true,
+  "minimum_independent_competitor_prices_per_item": 5,
+  "stale_snapshot_fallback": false,
+  "human_quote_approval_required": true,
+  "quote_currency_default": "USD",
+  "material_indices_are_context_only": true,
+  "missing_costs_are_unknown_not_zero": true
+}

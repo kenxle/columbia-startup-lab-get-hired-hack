@@ -139,6 +139,7 @@ Read what your work touches. Each link says what the document is for.
 - [Repository review, 2026-10-10](docs/engineering/REVIEW-2026-10-10.md): findings from the first code and docs review.
 
 **Catalog and pricing (Tisch)**
+- [Live distributor pricing agent](docs/data/DISTRIBUTOR_PRICING_AGENT.md): per-RFQ source refresh, five competitors per item, procurement evidence, 15% target and 8% minimum gross margin, Ruby/Rails contracts.
 - [Public example RFQ](docs/example_rfqs/transnet-steel-shot-2024/SOURCE.md): authentic archival Transnet steel-shot request, original PDF, extraction and commercial limitations.
 - [Catalog and pricing method](docs/data/CATALOG_PRICING.md): how items and benchmarks are admitted.
 - [Aviation hardware catalog, 500 items](docs/data/AVIATION_ITEMS_500.md): two real dealer prices per item, with specification holds shown.

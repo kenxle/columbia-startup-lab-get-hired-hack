@@ -1,0 +1,55 @@
+[
+  {
+    "supplier": "Online Metals",
+    "role": "dealer",
+    "materials": ["steel", "stainless", "aluminum", "aluminium", "brass", "copper"],
+    "forms": ["sheet", "plate", "tube", "pipe", "bar", "angle", "round_bar", "flat_bar", "square_bar"],
+    "source_url": "https://www.onlinemetals.com/en/contact-us",
+    "quote_url": "https://www.onlinemetals.com/en/contact-us",
+    "buy_url": "https://www.onlinemetals.com/",
+    "evidence": "Official contact page offers special orders and personalized quotes via Fast Quote. Exact grade, dimensions, standards, certificates, quantity, stock and delivered price require a quote. This is a sourcing route, not an observed SKU price.",
+    "price_status": "quote_required"
+  },
+  {
+    "supplier": "Speedy Metals",
+    "role": "dealer",
+    "materials": ["steel", "stainless", "aluminum", "aluminium", "brass", "copper"],
+    "forms": ["sheet", "plate", "tube", "pipe", "bar", "angle", "round_bar", "flat_bar", "square_bar"],
+    "source_url": "https://www.speedymetals.com/t-rockford.aspx",
+    "quote_url": "https://www.speedymetals.com/t-rockford.aspx",
+    "buy_url": "https://www.speedymetals.com/default.aspx",
+    "evidence": "Official branch page lists stocked metal forms and the sales contact. Exact specifications, quantity, stock, certificates, cutting, freight and delivered price require a quote. No purchase price is inferred.",
+    "price_status": "quote_required"
+  },
+  {
+    "supplier": "Ervin Industries",
+    "role": "manufacturer",
+    "materials": ["steel shot", "steel grit"],
+    "source_url": "https://ervinindustries.com/",
+    "quote_url": "https://ervinindustries.com/",
+    "buy_url": null,
+    "evidence": "Manufacturer website describes engineered steel shot and grit and publishes its sales contact. Exact grade, lot, certification, quantity, delivery and purchase price require a supplier quote.",
+    "price_status": "quote_required"
+  },
+  {
+    "supplier": "Tech Aluminum",
+    "role": "manufacturer",
+    "materials": ["aluminum", "aluminium"],
+    "grades": ["P1020", "P1020A", "A7"],
+    "source_url": "https://techaluminum.com/en/products/a7-primary-aluminium-ingot/",
+    "quote_url": "https://techaluminum.com/en/products/a7-primary-aluminium-ingot/",
+    "buy_url": null,
+    "evidence": "Manufacturer product page offers primary aluminum ingot and a quote route. Grade equivalence, origin, import charges and delivered terms must be confirmed; no numeric purchase cost was obtained.",
+    "price_status": "quote_required"
+  },
+  {
+    "supplier": "Cambridge Metal Inc",
+    "role": "supplier",
+    "materials": ["aluminum", "aluminium"],
+    "source_url": "https://www.cambridgemetalinc.com/products/aluminum-ingot",
+    "quote_url": "https://www.cambridgemetalinc.com/products/aluminum-ingot",
+    "buy_url": null,
+    "evidence": "Supplier page describes primary and remelt ingot with heat/grade traceability. Exact alloy, physical form, certificates, stock and current delivered price need a quote.",
+    "price_status": "quote_required"
+  }
+]

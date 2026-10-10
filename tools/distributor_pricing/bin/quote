@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "json"
+require "base64"
+require_relative "../lib/distributor_pricing/agent"
+
+begin
+  input = JSON.parse(STDIN.read(2_100_000))
+  rfq = input.fetch("rfq")
+  rfq = Base64.strict_decode64(rfq) if input["type"] == "pdf" && input["encoding"] == "base64"
+  result = DistributorPricing::Agent.configured.call(
+    rfq: rfq, type: input["type"] || "email", filename: input["filename"],
+    destination: input["destination"], currency: input["currency"] || "USD",
+    delivery_by: input["delivery_by"], requirements: input["requirements"] || {}
+  )
+  puts JSON.pretty_generate(result)
+rescue JSON::ParserError, KeyError, ArgumentError => error
+  puts JSON.generate("status" => "invalid_request", "error" => error.message, "quote" => { "total" => nil })
+  exit 1
+end
