@@ -9,7 +9,7 @@
 Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation. Decided items move to [Decisions](#decisions) at the bottom.
 
 - **W3. Does a buyer's answer rerun matching and pricing on its own?** Recommendation: yes, for the answered lines only. The rep still approves the final quote.
-- **W4. Which catalog does the demo use?** Tisch's catalog is 200 aviation bolts (AN3 to AN8). The brief, the research, and RudCo's own site are about metals and abrasives: sheet, plate, tube, shot, grit, aluminum ingot. Recommendation: build the demo RFQ from metals lines and keep the bolts as a second RFQ if time allows. Ken to confirm with Tisch.
+- **W4. Which catalog does the demo use?** Tisch's catalog is 200 aviation bolts (AN3 to AN8). The brief, the research, and RudCo's own site are about metals and abrasives: sheet, plate, tube, shot, grit, aluminum ingot. Suggestion: build the demo RFQ from metals lines and keep the bolts as a second RFQ if time allows. **Tisch answers this one** (asked on the bulletin board).
 
 ---
 
