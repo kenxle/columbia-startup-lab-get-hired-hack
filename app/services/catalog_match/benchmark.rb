@@ -15,7 +15,13 @@ module CatalogMatch
       case item["catalog"]
       when "rudco" then rudco(item)
       when "aviation" then aviation(item)
+      when "metals" then MetalsObservations.benchmark(item)
       end
+    end
+
+    # Listings the rep can see even when there are too few to price from.
+    def self.references(item)
+      item.is_a?(Hash) && item["catalog"] == "metals" ? MetalsObservations.for_item(item) : []
     end
 
     def self.rudco(item)
