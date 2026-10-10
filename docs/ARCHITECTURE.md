@@ -191,7 +191,7 @@ Hirsh’s live check found the configured Opus 5 in the gateway model list, but 
 
 ### Optional BlockConvey tracing
 
-`QuoteWorkspace::PrismTrace` queues bounded metadata through `PrismTraceJob` from the existing catalog-reader trace hook. It records model, latency, outcome and a UUID run identifier using the documented PRISM HTTPS API. Original RFQ content, buyer data, provider request IDs and secrets are omitted. Missing key/project configuration disables tracing; failures never interrupt quotes. Message fields are explicitly synthetic metadata envelopes. This does not enable models or demonstrate live inference. The separate processing-provider hook is owned by Yuval. See [setup and synthetic connectivity check](engineering/BLOCKCONVEY.md). Live ingestion and dashboard proof await credentials.
+`QuoteWorkspace::PrismTrace` queues bounded metadata through `PrismTraceJob` from the existing catalog-reader trace hook. It records model, latency, outcome and a UUID run identifier using the documented PRISM HTTPS API. Original RFQ content, buyer data, provider request IDs and secrets are omitted. Missing key/project configuration disables tracing; failures never interrupt quotes. Message fields are explicitly synthetic metadata envelopes. This does not enable models or demonstrate live inference. The app initializer also accepts Yuval's processing-provider callback when available. It maps provider outcomes to the same bounded trace format and forwards only model, elapsed time and a validated run UUID. The guard allows older providers to load safely; the provider patch is owned by Yuval. See [setup and synthetic connectivity check](engineering/BLOCKCONVEY.md). Live ingestion and dashboard proof await credentials.
 
 ### Marketing pages, RudCo alignment
 
