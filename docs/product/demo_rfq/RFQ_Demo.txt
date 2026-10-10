@@ -1,0 +1,17 @@
+From: Marco Reyes <purchasing@gulfcoast-castings.example>
+To: quotes@rud-co.example
+Subject: RFQ GC-2026-1011, Gulf Coast Castings, blast media restock
+
+Hi RudCo team,
+
+Please quote the blast media below for our Houston shop. COA with each lot.
+Ship to: US 77029 (Houston, TX).
+
+1. Steel shot S-330, 2,000 lb
+2. Steel shot S-170, 1,000 lb
+3. Steel grit G-40, 1,500 lb
+4. Steel grit G-25, 500 lb
+
+Thanks,
+Marco Reyes
+Purchasing, Gulf Coast Castings
