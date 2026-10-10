@@ -12,17 +12,9 @@ Nothing open. The name is decided: **RudCo Quote Desk** (see [Decisions](#decisi
 
 ---
 
-## Positioning statement
+## Where the product story lives
 
-**For** the quoting rep at RudCo, who gets RFQs by email all day and must send back an accurate, competitive quote before a competitor does ([PRD](PRD.md#who-it-is-for)).
-
-**The problem:** the same item arrives written five ways, and the rep decodes every line by hand. RudCo's own challenge example shows the risk. It calls "304 SS sheet 16ga 4x8" and "Stainless 304, 0.060 in, 48 x 96" the same item, but 16 gauge stainless is 0.0625 in ([sharper-angle report, 6.5](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#65-messy-lines-and-the-gauge-trap)). RudCo's company page names the setting: "Procurement is still on email." ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_ai-infrastructure-boom-reshapes-industrial-activity-7497807860853059584-F2_C)).
-
-**What it is:** RudCo Quote Desk reads a buyer's RFQ email, PDF or spreadsheet and drafts a priced quote, line by line. Each line carries its price, its benchmark, its lead time and its paperwork. The rep reviews and sends it ([PRD](PRD.md#what-it-does)). The agent prepares the conversation, and the rep has it ([PRD](PRD.md#who-it-is-for)).
-
-**How it is different:** every field links to the buyer's own words and the table or rule used to read them. Every price sits beside a named, dated benchmark. Paperwork the buyer needs gets flagged with the trigger words highlighted: mill test reports, certificates of analysis, country of origin, DFARS, REACH and RoHS ([WORKFLOW step 5](WORKFLOW.md#5-price-flag-compliance-list-assumptions)). An unclear line becomes one question to the buyer with choices to click ([sharper-angle report, section 5](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#5-researchers-position)). None of the AI quote tools we read shows field-level sources, buyer-facing questions, or spec-implied certification flags on its public pages ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#ai-quote-tools-for-distributors)).
-
-**Why believe it:** the judges can check any line themselves. Click a field and see its source. The rep approves every quote, which matches the founder's view: "Technology can handle more of the coordination and give those people better information for the conversation." ([Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/)).
+This document is about how we talk: voice, words, taglines, and the look. What we build, for whom, the value props, and how it differs from competitors live in the [product brief](PRD.md): see [Who it is for](PRD.md#who-it-is-for), [The job to be done](PRD.md#the-job-to-be-done), and [How it is different](PRD.md#how-it-is-different).
 
 ## How this aligns with RudCo's brand
 
@@ -42,37 +34,9 @@ Each claim we make, and each tagline, maps to one of RudCo's own lines. The anch
 | The name Quote Desk: the rep's desk, where the quote is prepared before the conversation. | "People still want to deal with people" and technology gives them "better information for the conversation" | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
 | Lead time on stocked lines; a quote draft well inside their reply window. | "Stocked lines ship in 24–48 hours" and a quote reply "within 24 hours" (site copy) | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
 
-**The one claim with no anchor.** The comparison with other quote tools has no line behind it: RudCo does not position itself against competitors in its own words. So the comparison stays as evidence for judges in [What makes it different](#what-makes-it-different). No headline, tagline or UI copy rests on it.
+**The one claim with no anchor.** The comparison with other quote tools has no line behind it: RudCo does not position itself against competitors in its own words. So the comparison stays as evidence for judges in [How it is different](PRD.md#how-it-is-different) in the brief. No headline, tagline or UI copy rests on it.
 
-## The audience
-
-1. **The quoting rep (primary).** Reads every RFQ, checks the draft, edits, approves, sends. Needs to trust each line without rereading the email. Employers already ask reps to "Document assumptions, lead times, and any changes clearly on the quote so the customer is never surprised" ([Precision Steel Services posting](https://jobs.workable.com/jobs/0862cc67-073f-4e64-8eb0-0057c054e3bf.md)). LinkedIn lists 3 employees at RudCo, so the rep is likely one of very few people handling every buyer ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#company)).
-2. **The buyer (secondary).** Sees only the finished quote and any questions ([PRD](PRD.md#who-it-is-for)). Wants to know the price is fair and the paperwork is covered. RudCo asks buyers: "The market moves every day. The quote in your inbox often doesn't." ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_have-you-ever-wondered-if-youre-getting-activity-7459610821522833408--F-1)).
-3. **The RudCo judges.** RudCo wrote the challenge and judges it ([Devpost](https://get-hired-hack-nyc.devpost.com/)). The founder is likely on the floor; that is an inference from the Devpost text ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#team)). They know their catalog and their buyers. They will test it against real cases, so accuracy on their own materials matters more than polish ([PRD scoring table](PRD.md#the-hackathon)).
-
-## Value props, in priority order
-
-The order comes from the research ranking: accuracy first, then speed ([sharper-angle report, 6.3](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#63-the-value-props-ranked)). Competitive price sits second because it is RudCo's own theme.
-
-| # | Value prop | What it means | Proof the demo shows | Workflow step |
-|---|---|---|---|---|
-| 1 | **Accurate** | Each line is read right, matched to an item RudCo stocks, and carries the paperwork the buyer needs: MTR, COA, country of origin, DFARS, REACH, RoHS. | Click the stainless line: "16 ga" reads as 0.0625 in, with the stainless gauge table named. A hidden-requirement flag shows its trigger word. A line with no fit says "No match" instead of grabbing the closest item. | [3 Parse](WORKFLOW.md#3-parse-each-line-into-a-standard-spec), [4 Match](WORKFLOW.md#4-match-each-line-to-the-catalog), [5 Flags](WORKFLOW.md#5-price-flag-compliance-list-assumptions) |
-| 2 | **Competitive** | The price holds up, and the quote says why. | Each price sits beside a named, dated benchmark. The line says the price tracks published metal cost plus RudCo's margin. No benchmark means no price: the line is held. | [5 Price](WORKFLOW.md#5-price-flag-compliance-list-assumptions) |
-| 3 | **Faster** | The rep checks a draft instead of decoding every line. Clear lines keep moving while one line waits on the buyer. Each line shows a lead time, so the buyer has a ship date with the price. | The question email goes out, the buyer clicks a choice, and the line turns Ready. Each line shows its lead time: stocked lines use RudCo's 24 to 48 hour promise, anything else says "to confirm". The rep approves and the reply lands on the buyer's thread. | [5 Lead time](WORKFLOW.md#5-price-flag-compliance-list-assumptions), [6 Questions](WORKFLOW.md#6-send-clarifying-questions-to-the-buyer), [7 Approve](WORKFLOW.md#7-present-the-final-quote-for-approval), [8 Send](WORKFLOW.md#8-send-the-quote-back-to-the-buyer) |
-
-On speed, we use RudCo's own terms, as the [brief](PRD.md#how-we-know-it-works) now does. Their quote form promises a reply "within 24 hours", and their FAQ says "Stocked lines ship in 24–48 hours" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The demo line is: RudCo promises a quote within 24 hours; watch the agent draft it in minutes ([WORKFLOW video, step 1](WORKFLOW.md#the-video-demo-in-order)). That line holds only if the video shows the draft in minutes. Every win-rate number about fast quotes comes from a vendor selling quoting software ([sharper-angle report, 6.3](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#63-the-value-props-ranked)), so we do not use one.
-
-## What makes it different
-
-From the [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead). Competitor claims are from their own pages and were not tested.
-
-| What competitors claim | What Quote Desk shows that they do not |
-|---|---|
-| AI quote tools (Avent, Hexa, Mercura, Proton) turn messy RFQs into draft quotes for a rep to approve ([sharper-angle report, 6.7](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#67-what-existing-tools-already-do)). The nearest thing to showing work is a confidence score ([Cassidy](https://www.cassidyai.com/solutions/ai-rfq-data-extraction-agent)) or a low-confidence flag ([Proton](https://www.proton.ai/order-and-quote-automation)). | Each field linked to the buyer's own words and the gauge table or rule used. |
-| Service centers offer mill test reports as downloads after purchase ([CSW page on Ryerson.com](https://centralsteel.com/home/customerservice/faq), [Yarde](https://www.yarde.com/)). | The paperwork a spec implies, flagged at quote time, with the trigger words highlighted. This extends what RudCo already sells: "PO→COA/MTR" traceability and "DFARS/REACH/RoHS flags" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). |
-| Online stores assume the buyer knows the exact item. AI tools send open questions to an internal reviewer ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead)). | One question to the buyer, with choices to click. |
-| Steel shot makers and abrasive distributors route quotes to a phone line or a contact form ([N.T. Ruddock](https://www.ntruddock.com/), [Winoa](https://www.winoa.com/)). | An emailed steel shot or aluminum ingot request turned into a draft quote, using RudCo's own product lines. |
-| Marketplaces publish indices from their own trades ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead)). We found no distributor quote that names a benchmark per line. | A named, dated benchmark and a one-sentence reason on every priced line. |
+## Claims we make, and claims we don't
 
 **Price claims.** We never say RudCo is cheapest. Every price explanation says the price tracks published metal cost plus RudCo's margin ([WORKFLOW step 5](WORKFLOW.md#5-price-flag-compliance-list-assumptions)).
 
