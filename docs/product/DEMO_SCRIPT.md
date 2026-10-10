@@ -2,7 +2,7 @@
 
 **Status:** Draft for Ken's review.
 
-**Summary.** This is the spoken script for the Devpost demo video, in the order of [the video demo in WORKFLOW](WORKFLOW.md#the-video-demo-in-order). It opens on RudCo's 24-hour quote promise and closes on the pitch line, and it shows only what the [build map](KEN_DESK.md#build-map) marks built. Where a step is partly built, the script works around it and says so.
+**Summary.** This is the spoken script for the Devpost demo video, in the order of [the video demo in WORKFLOW](WORKFLOW.md#the-video-demo-in-order). It opens on RudCo's 24-hour quote promise, which Quote Desk treats as a requirement for every RFQ. It closes on the pitch line and shows only what the [build map](KEN_DESK.md#build-map) marks built. Where a step is partly built, the script works around it and says so.
 
 **Read with:** [the product brief](PRD.md), [the brand position](BRAND_POSITION.md) (voice, words to use and avoid), [the build map](KEN_DESK.md#build-map). Marks below come from the build map as checked 2026-10-10 13:53. Re-check them against the bulletin board before recording.
 
@@ -33,6 +33,7 @@ Recording window is about 3:45 to 4:30 PM ET. Every row has an owner on the bull
 - The rep clicking send, and the reply landing on the buyer's original thread (8b).
 - A real mailbox receiving the RFQ (step 1).
 - A price against a named, dated benchmark on metals lines (no pricer yet).
+- Alternates on an unclear line: each reading shown as an option with its own price, such as "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in" (not built; needs the pricer for each candidate).
 - The learned reading showing its source ("as you confirmed on RFQ-0001").
 - Redlines of old and new values.
 
@@ -56,7 +57,7 @@ Spoken lines are short on purpose. Read the whole script aloud once with a timer
 
 - **Length.** The spoken lines total 285 words, or 263 without the optional beat 8 (counted with a script on the table above). Time one read-aloud to confirm it fits under 3 minutes with the screen actions.
 - **Order differs from WORKFLOW in one place.** WORKFLOW puts the second RFQ (learn the buyer) after the closing framing. Your brief says to close on the pitch line, so this script puts beat 8 before the close.
-- **The "in minutes" line needs a visible run.** The PRD says the line holds only if the video shows the draft in minutes. Beat 1 keeps the run on screen for that reason.
+- **The "in minutes" line needs a visible run.** The PRD says the line holds only if the video shows the draft in minutes. Beat 1 keeps the run on screen for that reason. The 24-hour promise itself is a product requirement: every RFQ gets a quote back within 24 hours, even when some lines are unclear. A draft in minutes fits well inside it.
 - **Price wording.** Beat 5 calls the steel shot price "RudCo's list price", which is what the catalog holds (RudCo's website list price per pound). The script never says "benchmark" for it. If Tisch's pricer lands before recording, replace the first two sentences of beat 5 with: "Every price sits beside a named, dated benchmark, and the line says why it is competitive. It tracks published metal cost plus RudCo's margin." Then re-read the mark as ✅.
 - **Words avoided** from the brand position: "AI-powered", "cheapest", "real-time", "certified", "instant", "guaranteed", "hands-free".
 - **The video does not mention Claude.** The Claude reading step had not run on the live API at the last build-map check (the demo runs on the rules parser, which the test set covers). Say it in the Devpost text only if it has run by then.
