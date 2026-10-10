@@ -13,7 +13,7 @@ RSpec.describe RfqProcessing::ResultBuilder do
     expect(line["state"]).to eq("ready")
     expect(line["unit_price"]).to eq(0.4)
     expect(line["price_source"]).to include("RudCo website list price")
-    expect(line["benchmark"]["kind"]).to eq("sample")
+    expect(line["benchmark"]["kind"]).to eq("list_price")
     expect(line["compliance"].map { |c| c["label"] }).to include("Certificate of analysis (COA) required")
   end
 

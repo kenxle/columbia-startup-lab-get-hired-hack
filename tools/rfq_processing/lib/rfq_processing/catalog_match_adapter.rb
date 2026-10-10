@@ -22,6 +22,9 @@ module RfqProcessing
     end
 
     def match(line_text:, spec: {}, quantity: nil, quantity_unit: nil)
+      direct = call_contract(line_text, spec, quantity, quantity_unit)
+      return direct if direct
+
       result = call_service(line_text)
       return { "status" => "no_match", "threshold" => THRESHOLD, "best" => nil, "candidates" => [], "total_candidates" => 0, "reason" => "matcher unavailable" } unless result
 
@@ -43,6 +46,61 @@ module RfqProcessing
     end
 
     private
+
+    # Tisch's CatalogMatch::Contract speaks this contract directly (13:30): a hash in, a hash out.
+    def call_contract(text, spec, quantity, quantity_unit)
+      contract = @service.nil? && defined?(::CatalogMatch::Contract) && ::CatalogMatch::Contract
+      return nil unless contract
+
+      input = { "line_text" => text, "spec" => spec.to_h.transform_keys(&:to_s), "quantity" => quantity, "quantity_unit" => quantity_unit }
+      input["client"] = @client.respond_to?(:name) ? @client.name : @client if @client
+      out = if @client.respond_to?(:workspace_token)
+              contract.call(input, workspace_token: @client.workspace_token)
+            else
+              contract.call(input)
+            end
+      normalize(out)
+    rescue StandardError => e
+      warn "CatalogMatchAdapter contract: #{e.class}: #{e.message}"
+      nil
+    end
+
+    PRICE_KEYS = %w[market_reference observation_ids list_price_usd_per_lb list_price_source unit purchase_unit catalog
+                    stock_reported stock_scope catalog_provenance in_stock lead_time_days description normalized_description].freeze
+
+    def normalize(out)
+      out = out.to_h.transform_keys(&:to_s)
+      out["candidates"] = Array(out["candidates"]).map { |c| enrich(c.to_h.transform_keys(&:to_s)) }
+      out["best"] = out["best"] && enrich(out["best"].to_h.transform_keys(&:to_s))
+      out["threshold"] ||= THRESHOLD
+      out["total_candidates"] ||= [out["candidates"].size, out["best"] ? 1 : 0].max
+      out
+    end
+
+    # The contract entry names the item; the price, unit, and stock facts live on the catalog row.
+    def enrich(entry)
+      return entry if entry["market_reference"] || entry["list_price_usd_per_lb"]
+
+      row = catalog_row(entry["item_id"] || entry["part_number"])
+      return entry unless row
+
+      extra = row.slice(*PRICE_KEYS)
+      entry["description"] ||= extra["description"] || extra["normalized_description"]
+      entry["purchase_unit"] ||= extra["purchase_unit"] || extra["unit"]
+      entry["stock"] = extra.slice("stock_reported", "stock_scope", "catalog_provenance", "in_stock")
+      entry.merge(extra.slice("market_reference", "observation_ids", "list_price_usd_per_lb", "list_price_source", "catalog"))
+    end
+
+    def catalog_row(id)
+      return nil if id.nil?
+
+      items = if @catalog.respond_to?(:items) then @catalog.items
+              elsif defined?(::CatalogMatch::Catalog) then ::CatalogMatch::Catalog.default.items
+              end
+      Array(items).map { |i| i.to_h.transform_keys(&:to_s) }.find { |i| [i["item_id"], i["pn"]].compact.include?(id.to_s) }
+    rescue StandardError
+      nil
+    end
 
     def call_service(text)
       service = @service || (defined?(::CatalogMatch::Matcher) && ::CatalogMatch::Matcher)

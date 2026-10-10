@@ -47,8 +47,8 @@ Returns the schema-1 hash in [RESULT-FORMAT.md](RESULT-FORMAT.md). In the app, `
 | `extractor.rb` | Email text, PDF (through `tools/pdf_text`), CSV, Excel (roo). Page, row, and sheet positions are kept. |
 | `result_builder.rb` | One line hash in the app's shape, with prices only from a labeled source (dealer midpoint, RudCo list price). Matched lines with no price are held with `unresolved_fields: ["unit_price"]`. |
 | `pipeline.rb` | Extract, pick item lines, read body sentences for compliance, parse, match, decide, flag, assemble. `process_line` takes `overrides` and `extra_text`. |
-| `answers.rb` | W3: a buyer answer reruns only the answered lines; `scope: rfq` reruns all. See RESULT-FORMAT.md. (Built by a worker; check it landed.) |
-| `llm_parser.rb` | The Claude step (Opus 5.5 through the `anthropic` gem, structured output). Off without a key. (Built by a worker; check it landed and smoke test with a real key.) |
+| `answers.rb` | W3: a buyer answer reruns only the answered lines; `scope: rfq` reruns all. See RESULT-FORMAT.md. 18 specs. |
+| `llm_parser.rb` | The Claude step (Opus 5.5 through the `anthropic` gem, structured output, `anyOf` null fields). Auto-on when `ANTHROPIC_API_KEY` is set; never overwrites a rules value; drops any Claude field whose quoted evidence is not in the line. Not yet run against the live API: smoke test first. |
 
 Specs: `spec/rfq_processing/*_spec.rb`. Fixtures: `spec/fixtures/test_set.yml` (Ken's 25 lines with expected readings), `spec/fixtures/results/*.json` (three result fixtures that pass `ApplyResult`), `spec/fixtures/demo_rfq_email.txt` (proposed demo email).
 
@@ -102,7 +102,7 @@ Each worker gets: one task, acceptance criteria, owned paths, the starting commi
 
 ## 7. What is done, what is open
 
-Done and on main (see the log): the whole library above, 117 or more specs including all 25 research lines, the Tisch adapter verified in the Rails test env, the three result fixtures and a six-line email accepted by `ApplyResult`, buyer profiles, RudCo vocabulary, COA, REACH, RoHS, Excel intake, the proposed demo email with a spec, board posts answering every teammate.
+Done and on main (see the log): the whole library above, 150 specs including all 25 research lines, the Tisch adapter verified in the Rails test env, the three result fixtures and a six-line email accepted by `ApplyResult`, buyer profiles, RudCo vocabulary, COA, REACH, RoHS, Excel intake, the proposed demo email with a spec, board posts answering every teammate.
 
 Open, in priority order for the demo:
 
@@ -125,4 +125,5 @@ Open, in priority order for the demo:
 
 | Time | State |
 |---|---|
+| 13:40 | All three workers landed and are integrated: `answers.rb` (18 specs), `llm_parser.rb` (15 specs, auto-on with a key), `bin/test-set-report` and TEST-RESULTS.md. Excel intake, Tisch contract adapter, production wording, lead time. 150 specs green. Board rows read through 13:32 (Ken: Tisch writes the demo email in `docs/product/demo_rfq/`, Yuval checks it parses; Ken: production data wording; Tisch: `CatalogMatch::Contract` and `bin/catalog-match`). |
 | 13:30 | Commits on main by Yuval: e4d2233 (library), a4e05ad (adapter, buyer profiles, RudCo vocabulary, flags), 437a98b (board post), df4eb25 (demo email, body sentences feed compliance, answers plumbing and contract). 114 specs green before the workers' modules. Three workers running: answers (W3), llm_parser, test-set report. Excel intake written and green locally, not yet pushed. Last board rows read: 13:28 (Hirsh took the Rails invocation and `.env`; asked Ken to name a key owner). |

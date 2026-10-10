@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "sample_data": true,
+  "sample_data": false,
   "revision": {
     "id": "proc-fixture-needs_buyer_an3_missing_length",
     "created_at": "2026-10-10T12:50:00-04:00",

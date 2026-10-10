@@ -19,17 +19,18 @@ module RfqProcessing
     SIZE_OR_QTY = /\d\s*(?:x|×|by|ga\b|gauge|"|'|in\b|ft\b|lbs?\b|pcs?\b|ea\b|each|sheets?|bags?|qty)|\bx\s*\d|\bqty\b|\d+\/\d+|\bAN\d|\b[SG]-\d{2,3}\b|\bP1020\b|\b356\b/i
 
     # buyer_terms: this buyer's learned or taught words, in the app's ClientTerm shape (see BuyerProfile).
-    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: true, context: {}, llm: nil, buyer_terms: [])
+    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: false, context: {}, llm: nil, buyer_terms: [])
       new(catalog: catalog, matcher: matcher, llm: llm).process(content: content, type: type, filename: filename,
                                                                  sample_data: sample_data, context: context, buyer_terms: buyer_terms)
     end
 
+    # llm: pass false to force rules only; nil picks the Claude step up from the environment when a key exists.
     def initialize(catalog: [], matcher: nil, llm: nil)
       @matcher = matcher || CatalogMatcher.new(catalog)
-      @llm = llm
+      @llm = llm.nil? ? (defined?(LlmParser) ? LlmParser.from_env : nil) : (llm || nil)
     end
 
-    def process(content:, type:, filename: nil, sample_data: true, context: {}, buyer_terms: [])
+    def process(content:, type:, filename: nil, sample_data: false, context: {}, buyer_terms: [])
       extraction = Extractor.extract(content, type: type, filename: filename)
       item_lines = []
       body_lines = []

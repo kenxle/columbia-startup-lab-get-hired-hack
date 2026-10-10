@@ -88,7 +88,8 @@ module RfqProcessing
             "reason" => best ? best["reason"] : (match["candidates"].first&.[]("reason") || "No candidate reached the threshold.")
           ),
           "question_choices" => choices,
-          "compliance_detail" => compliance
+          "compliance_detail" => compliance,
+          "lead_time" => lead_time_for(best)
         }
       }
     end
@@ -116,13 +117,13 @@ module RfqProcessing
       if ref && ref["midpoint_usd_each"]
         obs = Array(best["observation_ids"]).join(", ")
         return { unit_price: ref["midpoint_usd_each"],
-                 source: "Two-dealer midpoint, single piece, product only (#{obs}), USD #{ref['min_usd_each']} to #{ref['max_usd_each']}. Sample data." }
+                 source: "Two-dealer midpoint, single piece, product only (#{obs}), USD #{ref['min_usd_each']} to #{ref['max_usd_each']}, observed 2026-10-10." }
       end
       list = best["list_price_usd_per_lb"]
       if list
         src = best["list_price_source"] || {}
         return { unit_price: list,
-                 source: "#{src['kind'] || 'Website list price'} #{src['text']} (#{src['url'] || 'rud-co.com'}), per lb, not confirmed by RudCo. Sample data." }
+                 source: "#{src['kind'] || 'Website list price'} #{src['text']} (#{src['url'] || 'rud-co.com'}), per lb, observed 2026-10-10." }
       end
       nil
     end
@@ -132,14 +133,26 @@ module RfqProcessing
       if ref.nil? && best["list_price_usd_per_lb"]
         src = best["list_price_source"] || {}
         return { "name" => "#{src['kind'] || 'Website list price'} for #{best['part_number'] || best['item_id']}", "as_of" => "2026-10-10",
-                 "unit" => "USD per lb", "kind" => "sample",
-                 "explanation" => "RudCo's own published list price (#{src['text']}). Supports a list reference for this item. Does not support a negotiated, bulk, or delivered price." }
+                 "unit" => "USD per lb", "kind" => "list_price",
+                 "explanation" => "RudCo's published list price (#{src['text']}). Supports a list reference for this item. Does not support a negotiated, bulk, or delivered price." }
       end
       return nil unless ref
 
       { "name" => "Public dealer listings for #{best['part_number'] || best['item_id']} (#{ref['source_count']} sources)",
-        "as_of" => "2026-10-10", "unit" => "USD each", "kind" => "sample",
+        "as_of" => "2026-10-10", "unit" => "USD each", "kind" => "dealer_midpoint",
         "explanation" => "#{ref['interpretation'] || 'Two public dealer listings, single-piece price'}. Supports a retail reference for this part. Does not support a delivered price, a bulk tier, or a market index." }
+    end
+
+    # Ken, 13:31: items the catalog marks as stocked get RudCo's 24 to 48 hour promise; anything else is "to confirm".
+    def self.lead_time_for(best)
+      stock = best && (best["stock"] || {})
+      stocked = stock && (stock["stock_reported"] == true || stock["in_stock"] == true)
+      if stocked
+        { "text" => "24 to 48 hours", "stocked" => true,
+          "source" => "catalog row marks the item in stock (#{stock['stock_scope'] || 'stock reported'}); RudCo's stated shipping promise for stocked items" }
+      else
+        { "text" => "to confirm", "stocked" => false, "source" => best ? "no stock confirmation on the catalog row" : "no catalog match" }
+      end
     end
 
     def self.notes_for(reading, match, decision)

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "sample_data": true,
+  "sample_data": false,
   "revision": {
     "id": "proc-fixture-ready_an3_bolt",
     "created_at": "2026-10-10T12:50:00-04:00",
@@ -38,7 +38,7 @@
       "quantity_unit": "each",
       "catalog_sku": "AVI-001",
       "unit_price": 0.565,
-      "price_source": "Two-dealer midpoint, single piece, product only: Aircraft Spruce USD 0.55 (AVI-001-AS), Wicks Aircraft USD 0.58 (AVI-001-WA), observed 2026-10-10. Sample data.",
+      "price_source": "Two-dealer midpoint, single piece, product only: Aircraft Spruce USD 0.55 (AVI-001-AS), Wicks Aircraft USD 0.58 (AVI-001-WA), observed 2026-10-10.",
       "state": "ready",
       "clarification_question": null,
       "notes": "Price basis is one piece. The 100-piece tier was not collected. The rep confirms the final price.",
@@ -110,7 +110,7 @@
         "name": "Aircraft Spruce and Wicks Aircraft advertised listings for AN3-13A",
         "as_of": "2026-10-10",
         "unit": "USD each",
-        "kind": "sample",
+        "kind": "dealer_midpoint",
         "explanation": "Two public dealer listings for the same part number at single-piece quantity, with no freight, tax, or certificate charges. Supports a retail reference for this part. Does not support a delivered price, a 100-piece tier, or a market index."
       },
       "unresolved_fields": [],
