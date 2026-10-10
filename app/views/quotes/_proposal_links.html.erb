@@ -1,0 +1,9 @@
+<%# Shown once after approval: links to the proposal the buyer received. %>
+<% if flash[:proposal_path].present? %>
+  <div class="flash flash--notice proposal-links" role="status">
+    <strong>The proposal:</strong>
+    <%= link_to "Open the proposal", flash[:proposal_path] %>
+    <% if flash[:proposal_pdf_path].present? %> · <%= link_to "Download the PDF", flash[:proposal_pdf_path] %><% end %>
+    <% if flash[:proposal_email_path].present? %> · <%= link_to "See the email sent to the buyer", flash[:proposal_email_path] %><% end %>
+  </div>
+<% end %>

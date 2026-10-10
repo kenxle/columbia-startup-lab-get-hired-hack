@@ -1,0 +1,9 @@
+<%# Every line is Ready and the quote waits only for the rep's approval. %>
+<% lines = Array(lines) %>
+<% if lines.any? && lines.all?(&:quotable?) && !quote.approved? %>
+  <div class="callout ready-banner" role="status">
+    <strong>Ready. Attention needed: approve.</strong>
+    Every line is priced and ready. Approving sends the proposal to the buyer automatically, with the PDF and CSV attached.
+    <a href="#approval-heading">Go to approval</a>
+  </div>
+<% end %>

@@ -80,7 +80,11 @@ class QuotesController < ApplicationController
 
     if @quote.approvable?
       @quote.approve!(expected_revision: params[:reviewed_version])
-      redirect_to quote_path(@quote), notice: "Quote approved. Email, PDF and CSV preparation is available."
+      if all_lines_ready?(@quote)
+        send_proposal_automatically(@quote)
+      else
+        redirect_to quote_path(@quote), notice: "Quote approved. Email, PDF and CSV preparation is available."
+      end
     else
       redirect_to quote_path(@quote),
         alert: "Approval needs at least one Ready line. Every held line needs a buyer question or an evidenced internal hold."
@@ -120,6 +124,27 @@ class QuotesController < ApplicationController
   end
 
   private
+
+  def all_lines_ready?(quote)
+    lines = quote.quote_lines.reload.to_a
+    lines.any? && lines.all?(&:quotable?)
+  end
+
+  # A quote with every line Ready goes to the buyer as soon as the rep
+  # approves it (local preview inbox in this demo), then the page links to the
+  # proposal itself. Any send failure leaves the approval in place and says so.
+  def send_proposal_automatically(quote)
+    preview_id = QuoteWorkspace::SendApprovedQuote.call(quote: quote, expected_revision: quote.reload.review_revision)
+    flash[:proposal_path] = quote_final_quote_path(quote)
+    flash[:proposal_pdf_path] = pdf_quote_final_quote_path(quote)
+    flash[:proposal_email_path] = quote_local_preview_path(quote, preview_id) if preview_id.present?
+    redirect_to quote_path(quote),
+      notice: "Quote approved and emailed to the buyer automatically, with the PDF and CSV attached (local preview inbox; no real email was sent)."
+  rescue QuoteWorkspace::SendApprovedQuote::Failed, QuoteWorkspace::EmailPreview::Unavailable,
+         QuoteWorkspace::EmailPreview::Incomplete, Quote::StaleReview => error
+    flash[:proposal_path] = quote_final_quote_path(quote)
+    redirect_to quote_path(quote), notice: "Quote approved. The automatic email was not sent (#{error.message}). Send it from the proposal page."
+  end
 
   def set_quote
     @quote = workspace_quotes.find(params[:id])
