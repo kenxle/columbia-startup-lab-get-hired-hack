@@ -207,7 +207,7 @@ seed. The fixed `Demo` factory remains available for repeatable workflow tests.
 ## Desk deadlines and priced alternatives
 
 The quote list sorts unsent RFQs by receipt plus 24 hours, followed by sent RFQs.
-The badge updates each minute, turns amber at three hours, and turns red overdue.
+The badge updates each minute, turns amber below eight hours remaining, and turns red overdue.
 A current sent revision shows its receipt-to-send duration; approval and local
 mail preview never set delivery metadata. Constructed development sent history
 is explicitly created by the seed service and never calls a mail transport.

@@ -8,25 +8,30 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
 
   test "list and quote page show the same deadline and move through warning and overdue states" do
     travel_to Time.utc(2026, 10, 10, 14, 0, 0) do
-      @quote.update_columns(created_at: 20.hours.ago - 40.minutes)
+      @quote.update_columns(created_at: 16.hours.ago)
       get quotes_path
       assert_response :success
       assert_select ".page-lede", "Review incoming RFQs, resolve questions, and prepare quotes for approval."
       assert_select 'th[scope="col"]', "Due"
-      assert_select ".deadline--calm", "Due in 3h 20m"
+      assert_select ".deadline--calm", "Due in 8h 00m"
       assert_select 'script[src*="quote_deadlines"][defer]'
 
       get quote_path(@quote)
-      assert_select '.page-deadline .deadline--calm[data-quote-deadline="due"][data-deadline-at=?]', @quote.due_at.iso8601, text: "Due in 3h 20m"
+      assert_select '.page-deadline .deadline--calm[data-quote-deadline="due"][data-deadline-at=?]', @quote.due_at.iso8601, text: "Due in 8h 00m"
       assert_select ".brand-header", count: 0
     end
 
-    travel_to Time.utc(2026, 10, 10, 14, 20, 0) do
+    travel_to Time.utc(2026, 10, 10, 14, 0, 1) do
       get quote_path(@quote)
-      assert_select ".page-deadline .deadline--soon", "Due in 3h 00m"
+      assert_select ".page-deadline .deadline--soon", "Due in 8h 00m"
     end
 
-    travel_to Time.utc(2026, 10, 10, 18, 25, 0) do
+    travel_to Time.utc(2026, 10, 10, 22, 0, 0) do
+      get quote_path(@quote)
+      assert_select ".page-deadline .deadline--overdue", "Overdue by 0h 00m"
+    end
+
+    travel_to Time.utc(2026, 10, 10, 23, 5, 0) do
       get quote_path(@quote)
       assert_select ".page-deadline .deadline--overdue", "Overdue by 1h 05m"
     end

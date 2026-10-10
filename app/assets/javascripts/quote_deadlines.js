@@ -10,7 +10,7 @@
       const remaining = due - now;
       const overdue = remaining <= 0;
       const minutes = overdue ? Math.floor(-remaining / 60000) : Math.ceil(remaining / 60000);
-      const state = overdue ? "overdue" : remaining <= 3 * 60 * 60 * 1000 ? "soon" : "calm";
+      const state = overdue ? "overdue" : remaining < 8 * 60 * 60 * 1000 ? "soon" : "calm";
       badge.textContent = `${overdue ? "Overdue by" : "Due in"} ${duration(minutes)}`;
       ["calm", "soon", "overdue"].forEach((value) => badge.classList.toggle(`deadline--${value}`, value === state));
     });

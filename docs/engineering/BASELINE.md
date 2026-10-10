@@ -59,6 +59,12 @@ received times, approvals and two constructed sent-history records. This uses th
 Existing RFQs are preserved, and production does not seed automatically.
 For an older local workspace, `QuoteWorkspace::DemoWorkspace.populate!` can top
 it up to twelve records when passed its `workspace_token`.
+To refresh receipt times on an existing demo desk, run
+`script/with-ruby bin/rails demo:refresh_timing`. This development-only task
+updates recognized, untouched generated RFQs and constructed sent timestamps.
+It skips uploads, rep edits, changed approval history and unknown records, and
+prints refreshed/skipped counts. It never changes quote lines or review revisions.
+New desks include receipt ages from 30 minutes to 27 hours, plus two sent examples.
 
 Run `script/setup` after pulling migrations or dependencies, then `script/dev`.
 The development async job adapter runs in the Rails process. Refresh the quote

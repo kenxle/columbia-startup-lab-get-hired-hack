@@ -74,7 +74,7 @@ The official RudCo logo is served unchanged from `/brand/rudco-mark.png`, per Ke
 `test/integration/brand_header_test.rb` covers header identity and accessibility hooks, preserved navigation, status words, catalog outcome mapping and escaped component labels. Existing quote and catalog integration tests cover their workflows. Check desktop and narrow mobile widths after changes to these primitives.
 
 The Quotes list prioritizes soonest due. A `deadline` badge shows receipt plus
-24 hours, becomes amber within three hours, and red overdue. Sent revisions show
+24 hours, becomes amber below eight hours remaining, and red overdue. Sent revisions show
 elapsed turnaround. The quote opens on Attention needed unless all lines are
 clear. Subtotal scope is in a tooltip. The source panel preserves the whole
 request and highlights selected evidence without a duplicated line excerpt.

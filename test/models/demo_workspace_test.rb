@@ -137,4 +137,55 @@ class DemoWorkspaceTest < ActiveSupport::TestCase
     assert_empty ProcessingRun.where(quote_id: Quote.for_workspace("seed-a").select(:id))
     assert_empty Client.for_workspace("seed-a")
   end
+
+  test "explicit timing refresh preserves content revisions and constructed sent history on repeated runs" do
+    in_development do
+      quotes = QuoteWorkspace::DemoWorkspace.populate!(workspace_token: "refresh")
+      before = quotes.to_h { |quote| [quote.id, quote.attributes.except("created_at", "approved_at", "sent_at")] }
+      lines = quotes.to_h { |quote| [quote.id, quote.quote_lines.map(&:attributes)] }
+      now = Time.current + 3.days
+      2.times do
+        assert_equal({ refreshed: 12, skipped: 0 }, QuoteWorkspace::DemoWorkspace.refresh_timing!(workspace_token: "refresh", now: now))
+      end
+      quotes.each do |quote|
+        quote.reload
+        assert_equal before[quote.id], quote.attributes.except("created_at", "approved_at", "sent_at")
+        assert_equal lines[quote.id], quote.quote_lines.map(&:attributes)
+        assert quote.valid?
+      end
+      assert_equal 2, quotes.count(&:sent?)
+      assert quotes.select(&:sent?).all? { |quote| quote.sent_at >= quote.created_at && quote.approved_at <= quote.sent_at }
+      assert_equal now - 30.minutes, quotes.find { |quote| quote.title == "Afternoon media order" }.created_at
+    end
+  end
+
+  test "timing refresh skips human edits unknown fixtures and changed approval history" do
+    in_development do
+      quotes = QuoteWorkspace::DemoWorkspace.populate!(workspace_token: "refresh")
+      edited = quotes.find { |quote| quote.title == "Structural plate order" }
+      edited.quote_lines.first.apply_manual_edit("notes" => "Keep my reviewed RFQ")
+      human = quotes.find { |quote| quote.title == "Afternoon media order" }
+      human.update!(sample_data: false)
+      unknown = quotes.find { |quote| quote.title == "Aerospace sheet request" }
+      unknown.update!(title: "Rep renamed this RFQ")
+      approved = quotes.find { |quote| quote.title == "Blast room media restock" }
+      approved.approve!
+      stale_sent = quotes.find(&:sent?)
+      stale_sent.touch(time: 1.minute.from_now)
+      protected_quotes = [edited, human, unknown, approved, stale_sent]
+      before = protected_quotes.to_h { |quote| [quote.id, quote.reload.attributes] }
+      counts = QuoteWorkspace::DemoWorkspace.refresh_timing!(workspace_token: "refresh", now: 2.days.from_now)
+      assert_equal 7, counts[:refreshed]
+      assert_equal 4, counts[:skipped]
+      protected_quotes.each { |quote| assert_equal before[quote.id], quote.reload.attributes }
+    end
+  end
+
+  test "explicit timing refresh refuses nondevelopment environments" do
+    %w[test production].each do |environment|
+      Rails.stub(:env, ActiveSupport::StringInquirer.new(environment)) do
+        assert_raises(ArgumentError) { QuoteWorkspace::DemoWorkspace.refresh_timing! }
+      end
+    end
+  end
 end

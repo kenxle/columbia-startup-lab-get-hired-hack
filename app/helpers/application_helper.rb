@@ -37,7 +37,7 @@ module ApplicationHelper
         state = "overdue"
       else
         label = "Due in #{deadline_duration((remaining / 60).ceil)}"
-        state = remaining <= 3.hours ? "soon" : "calm"
+        state = remaining < 8.hours ? "soon" : "calm"
       end
     end
 

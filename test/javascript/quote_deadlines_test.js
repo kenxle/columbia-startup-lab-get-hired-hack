@@ -16,7 +16,7 @@ test("deadline updater crosses the warning and overdue boundaries without rewrit
       classList: { toggle: (value, enabled) => enabled ? classes.add(value) : classes.delete(value) }
     };
   };
-  const pending = makeBadge("due", "2026-10-10T17:20:00Z", "Server value");
+  const pending = makeBadge("due", "2026-10-10T22:00:00Z", "Server value");
   const sent = makeBadge("sent", "2026-10-10T10:00:00Z", "Sent in 1h 05m");
   const malformed = makeBadge("due", "not a date", "Keep server value");
   const context = {
@@ -31,15 +31,20 @@ test("deadline updater crosses the warning and overdue boundaries without rewrit
     window: { setInterval: (callback, interval) => { assert.equal(interval, 60000); tick = callback; } }
   };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../../app/assets/javascripts/quote_deadlines.js"), "utf8"), context);
-  assert.equal(pending.textContent, "Due in 3h 20m");
+  assert.equal(pending.textContent, "Due in 8h 00m");
   assert.deepEqual([...pending.classes], ["deadline--calm"]);
 
-  now = Date.parse("2026-10-10T14:20:00Z");
+  now = Date.parse("2026-10-10T14:00:01Z");
   tick();
-  assert.equal(pending.textContent, "Due in 3h 00m");
+  assert.equal(pending.textContent, "Due in 8h 00m");
   assert.deepEqual([...pending.classes], ["deadline--soon"]);
 
-  now = Date.parse("2026-10-10T18:25:00Z");
+  now = Date.parse("2026-10-10T22:00:00Z");
+  tick();
+  assert.equal(pending.textContent, "Overdue by 0h 00m");
+  assert.deepEqual([...pending.classes], ["deadline--overdue"]);
+
+  now = Date.parse("2026-10-10T23:05:00Z");
   tick();
   assert.equal(pending.textContent, "Overdue by 1h 05m");
   assert.deepEqual([...pending.classes], ["deadline--overdue"]);
