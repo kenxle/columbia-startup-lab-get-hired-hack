@@ -1,0 +1,22 @@
+<% entries = compliance_entries(line) %>
+<div class="detail-block" aria-labelledby="compliance-<%= line.id %>">
+  <h3 id="compliance-<%= line.id %>" class="section-title">Paperwork requested</h3>
+  <% if entries.empty? %>
+    <p class="section-hint">No paperwork requirements found for this line.</p>
+  <% else %>
+    <p class="section-hint">What the RFQ asks for or implies. This records the request; it does not certify stock.</p>
+    <ul class="compliance">
+      <% entries.each do |entry| %>
+        <li class="compliance__item">
+          <span class="compliance__label"><%= display_value(entry["label"]) %></span>
+          <% if entry["evidence"].present? %>
+            <blockquote class="quote-text quote-text--small"><%= entry["evidence"] %></blockquote>
+          <% end %>
+          <% if entry["note"].present? %>
+            <span class="compliance__note"><%= entry["note"] %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<aside class="sidebar" aria-label="Primary">
+  <div class="sidebar__brand">
+    <span class="sidebar__mark" aria-hidden="true">Q</span>
+    <span class="sidebar__name">Quote Desk</span>
+  </div>
+
+  <nav class="sidebar__nav" aria-label="Workspace">
+    <%= link_to "Quotes", quotes_path,
+          class: ["sidebar__link", ("is-active" if current_page?(quotes_path) || current_page?(root_path))],
+          aria: { current: (current_page?(quotes_path) || current_page?(root_path)) ? "page" : nil } %>
+    <%= link_to "New RFQ", new_quote_path,
+          class: ["sidebar__link", ("is-active" if current_page?(new_quote_path))],
+          aria: { current: current_page?(new_quote_path) ? "page" : nil } %>
+  </nav>
+
+  <div class="sidebar__footer">
+    <%= button_to "Load sample RFQ", demo_quotes_path, method: :post, class: "sidebar__sample", form_class: "sidebar__sample-form" %>
+    <p class="sidebar__note">Drafts only. A person reviews every quote. No email is sent to the buyer.</p>
+  </div>
+</aside>

@@ -1,0 +1,11 @@
+<% content_for :title, "New RFQ" %>
+
+<header class="page-header">
+  <div>
+    <p class="eyebrow"><%= link_to "Quotes", quotes_path, class: "crumb" %></p>
+    <h1 class="page-title">New RFQ</h1>
+    <p class="page-lede">Paste the buyer's request or upload the file they sent. The original is kept as written so every quote line can point back to it.</p>
+  </div>
+</header>
+
+<%= render "form", quote: @quote %>

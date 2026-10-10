@@ -1,0 +1,37 @@
+<section class="summary" aria-label="Quote summary">
+  <dl class="summary__list">
+    <div class="summary__item">
+      <dt>Reference</dt>
+      <dd class="mono"><%= quote.reference %></dd>
+    </div>
+    <div class="summary__item">
+      <dt>Lines</dt>
+      <dd><%= lines.size %></dd>
+    </div>
+    <div class="summary__item">
+      <dt>Ready</dt>
+      <dd><span class="count count--ready"><%= quote.ready_count %></span></dd>
+    </div>
+    <div class="summary__item">
+      <dt>Held</dt>
+      <dd><span class="count count--held"><%= quote.held_count %></span></dd>
+    </div>
+    <div class="summary__item summary__item--total">
+      <dt>Subtotal <span class="summary__qualifier">ready lines only</span></dt>
+      <dd class="mono">
+        <%= quote.awaiting_processing? ? unknown_marker : display_money(quote.subtotal) %>
+        <% if quote.sample_data? %> <%= sample_badge("Sample") %><% end %>
+      </dd>
+    </div>
+    <div class="summary__item">
+      <dt>Review</dt>
+      <dd>
+        <% if quote.approved? %>
+          Approved <%= display_time(quote.approved_at) %>
+        <% else %>
+          Not approved
+        <% end %>
+      </dd>
+    </div>
+  </dl>
+</section>

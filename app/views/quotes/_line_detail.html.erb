@@ -1,0 +1,175 @@
+<section class="panel line-detail" id="line-detail" aria-labelledby="line-detail-heading">
+  <div class="panel__head">
+    <div>
+      <p class="eyebrow">Selected line</p>
+      <h2 id="line-detail-heading" class="panel__title">
+        Line <%= line.position %>:
+        <%= line.display_description.presence || "No description" %>
+      </h2>
+    </div>
+    <%= status_badge(line) %>
+  </div>
+
+  <dl class="facts">
+    <div>
+      <dt><%= catalog_match_stale?(line) ? "Previous catalog item, needs recheck" : "Catalog item" %></dt>
+      <dd class="mono"><%= line.catalog_sku.present? ? line.catalog_sku : "No match" %></dd>
+    </div>
+    <div>
+      <dt>Quantity</dt>
+      <dd><%= display_quantity(line) %></dd>
+    </div>
+    <div>
+      <dt>Unit price</dt>
+      <dd class="mono"><%= held_line?(line) ? unknown_marker : display_money(line.unit_price) %></dd>
+    </div>
+    <div>
+      <dt>Line total</dt>
+      <dd class="mono"><%= line.line_total.nil? ? unknown_marker : display_money(line.line_total) %></dd>
+    </div>
+  </dl>
+
+  <% if held_line?(line) %>
+    <div class="callout callout--held" role="note">
+      <% if line.state.to_s == "no_match" %>
+        <strong>No match.</strong> Nothing in the catalog fits this line, so it is not priced and is excluded from the subtotal.
+      <% else %>
+        <strong>Needs the buyer.</strong> This line is held, not priced, and excluded from the subtotal until the buyer answers.
+      <% end %>
+      <% if Array(line.unresolved_fields).any? %>
+        Unresolved: <%= Array(line.unresolved_fields).map { |field| spec_label(field) }.to_sentence %>.
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if line.errors.any? %>
+    <div class="form-errors" role="alert" aria-labelledby="line-errors-title">
+      <h3 id="line-errors-title" class="form-errors__title">Line <%= line.position %> was not saved</h3>
+      <ul>
+        <% line.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: line, scope: :quote_line, url: quote_quote_line_path(quote, line), method: :patch, class: "line-form" do |form| %>
+    <h3 class="section-title">Spec and source</h3>
+    <p class="section-hint">Open a field to see the words it was read from and to edit it.</p>
+
+    <div class="field-list">
+      <details class="field-row" <%= "open" if line.errors[:description].any? %>>
+        <summary class="field-row__summary">
+          <span class="field-row__label">Description</span>
+          <span class="field-row__value"><%= display_value(line.description) %></span>
+          <span class="field-row__flags">
+            <% if edited_field?(line, "description") %><span class="flag flag--edited">Edited</span><% end %>
+          </span>
+        </summary>
+        <div class="field-row__body">
+          <div class="field">
+            <%= form.label :description, "Description", class: "field__label" %>
+            <%= form.text_field :description, class: "input" %>
+          </div>
+        </div>
+      </details>
+
+      <% QuotesHelper::SPEC_FIELDS.each do |key| %>
+        <% value = spec_value(line, key) %>
+        <% evidence = evidence_for(line, key) %>
+        <% unresolved = unresolved_field?(line, key) %>
+        <% input_id = "quote_line_spec_#{key}" %>
+        <details class="<%= class_names('field-row', 'is-unresolved': unresolved) %>" <%= "open" if unresolved %>>
+          <summary class="field-row__summary">
+            <span class="field-row__label"><%= spec_label(key) %></span>
+            <span class="field-row__value"><%= display_value(value) %></span>
+            <span class="field-row__flags">
+              <% if unresolved %><span class="flag flag--unresolved">Unresolved</span><% end %>
+              <% if edited_field?(line, key) %><span class="flag flag--edited">Edited</span><% end %>
+              <% if evidence.present? %><span class="flag flag--source">Source</span><% end %>
+            </span>
+          </summary>
+          <div class="field-row__body">
+            <% if edited_field?(line, key) %><p class="field__hint">Original evidence below predates your edit and needs reprocessing.</p><% end %>
+            <%= render "quotes/evidence", evidence: evidence %>
+            <div class="field">
+              <%= label_tag input_id, "Edit #{spec_label(key).downcase}", class: "field__label" %>
+              <%= text_field_tag "quote_line[spec][#{key}]", value, id: input_id, class: "input", autocomplete: "off" %>
+            </div>
+          </div>
+        </details>
+      <% end %>
+
+      <% quantity_unresolved = unresolved_field?(line, "quantity") %>
+      <details class="<%= class_names('field-row', 'is-unresolved': quantity_unresolved) %>" <%= "open" if quantity_unresolved || line.errors[:quantity].any? %>>
+        <summary class="field-row__summary">
+          <span class="field-row__label">Quantity</span>
+          <span class="field-row__value"><%= display_quantity(line) %></span>
+          <span class="field-row__flags">
+            <% if quantity_unresolved %><span class="flag flag--unresolved">Unresolved</span><% end %>
+            <% if edited_field?(line, "quantity") || edited_field?(line, "quantity_unit") %><span class="flag flag--edited">Edited</span><% end %>
+            <% if evidence_for(line, "quantity").present? %><span class="flag flag--source">Source</span><% end %>
+          </span>
+        </summary>
+        <div class="field-row__body">
+          <% if edited_field?(line, "quantity") || edited_field?(line, "quantity_unit") %><p class="field__hint">Original evidence below predates your edit and needs reprocessing.</p><% end %>
+          <%= render "quotes/evidence", evidence: evidence_for(line, "quantity") %>
+          <div class="field-pair">
+            <div class="field">
+              <%= form.label :quantity, "Quantity", class: "field__label" %>
+              <%= form.number_field :quantity, step: "any", min: 0, class: "input", inputmode: "decimal" %>
+            </div>
+            <div class="field">
+              <%= form.label :quantity_unit, "Unit", class: "field__label" %>
+              <%= form.text_field :quantity_unit, class: "input", placeholder: "sheet", autocomplete: "off" %>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <h3 class="section-title">Price</h3>
+    <% if price_editable?(line) %>
+      <details class="field-row" <%= "open" if line.errors[:unit_price].any? %>>
+        <summary class="field-row__summary">
+          <span class="field-row__label">Unit price</span>
+          <span class="field-row__value mono"><%= display_money(line.unit_price) %></span>
+          <span class="field-row__flags">
+            <% if rep_entered_price?(line) %><span class="flag flag--edited">Rep entered</span><% end %>
+          </span>
+        </summary>
+        <div class="field-row__body">
+          <div class="field">
+            <%= form.label :unit_price, "Unit price, USD", class: "field__label" %>
+            <%= form.number_field :unit_price, step: "0.0001", min: 0, class: "input input--money", inputmode: "decimal",
+                  aria: { describedby: "unit-price-hint" } %>
+            <p id="unit-price-hint" class="field__hint">A price you enter is labeled as rep entered. It does not change the catalog match.</p>
+          </div>
+        </div>
+      </details>
+    <% else %>
+      <p class="section-hint">Price entry opens only for lines that are ready and matched to a catalog item. Held lines stay unpriced.</p>
+    <% end %>
+
+    <h3 class="section-title">Buyer question</h3>
+    <div class="field">
+      <%= form.label :clarification_question, held_line?(line) ? "Question included in the export" : "Optional question for the buyer", class: "field__label" %>
+      <%= form.text_area :clarification_question, rows: 3, class: "input",
+            placeholder: "Ask one specific question the buyer can answer quickly." %>
+    </div>
+
+    <h3 class="section-title">Note</h3>
+    <div class="field">
+      <%= form.label :notes, "Internal note", class: "field__label" %>
+      <%= form.text_area :notes, rows: 2, class: "input", placeholder: "Context for whoever reviews this line next." %>
+    </div>
+
+    <div class="form-actions form-actions--split">
+      <p class="field__hint">Changing spec or quantity marks the line Needs the buyer for reprocessing. Saved changes clear quote approval.</p>
+      <%= form.submit "Save line", class: "button button--primary" %>
+    </div>
+  <% end %>
+
+  <%= render "quotes/pricing_basis", line: line %>
+  <%= render "quotes/compliance", line: line %>
+</section>

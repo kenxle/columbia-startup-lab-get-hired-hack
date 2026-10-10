@@ -101,3 +101,19 @@ focus, semantic tables, and helpful empty states. No dead navigation or actions.
   database migrations, app tests, and `config/routes.rb`.
 - Coordinator: dependencies, shared configuration, docs, Git, integration and browser QA.
 - Yuval's real parsing/matching/provider code remains outside this assignment.
+
+## Review revision and export details
+
+Approval posts `reviewed=1` plus `reviewed_version`, obtained from
+`Quote#review_revision`. Saved edits and processing results advance that revision;
+a stale browser review cannot approve newer content. Result application and edits
+share the quote lock. UI-only description edits do not re-run matching.
+
+Unit prices retain up to four decimal places, including in the CSV. Line totals
+round to cents before the subtotal is summed. Internal notes stay out of the
+buyer-facing CSV. A rep price override does not inherit the old benchmark claim.
+
+The current session workspace is a local prototype. Real inbox ingestion,
+provider parsing, buyer delivery/replies and production authentication are not
+connected. Ken's draft workflow is the next coordination input, not evidence
+that those integrations exist.

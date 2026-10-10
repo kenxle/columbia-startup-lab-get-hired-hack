@@ -1,0 +1,47 @@
+<%= form_with model: quote, url: quotes_path, method: :post, multipart: true, class: "intake" do |form| %>
+  <% if quote.errors.any? %>
+    <div class="form-errors" role="alert" aria-labelledby="intake-errors-title">
+      <h2 id="intake-errors-title" class="form-errors__title">The RFQ was not saved</h2>
+      <ul>
+        <% quote.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="intake__grid">
+    <div class="field">
+      <%= form.label :title, "RFQ title", class: "field__label" %>
+      <%= form.text_field :title, class: "input", placeholder: "Stainless sheet, Q4 order", autocomplete: "off",
+            aria: { invalid: quote.errors[:title].any? ? "true" : nil } %>
+    </div>
+
+    <div class="field">
+      <%= form.label :buyer_name, "Buyer", class: "field__label" %>
+      <%= form.text_field :buyer_name, class: "input", placeholder: "Company name", autocomplete: "organization",
+            aria: { invalid: quote.errors[:buyer_name].any? ? "true" : nil } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :source_text, "RFQ text", class: "field__label" %>
+    <%= form.text_area :source_text, rows: 14, maxlength: 50_000, class: "input input--mono",
+          placeholder: "Paste the buyer's email or line items here, exactly as received.",
+          aria: { describedby: "source-text-hint", invalid: quote.errors[:source_text].any? ? "true" : nil } %>
+    <p id="source-text-hint" class="field__hint">Up to 50,000 characters. Kept exactly as written.</p>
+  </div>
+
+  <div class="field">
+    <%= form.label :source_file, "Or upload the original file", class: "field__label" %>
+    <%= form.file_field :source_file, class: "input input--file",
+          accept: ".pdf,.txt,.csv,.xlsx,.xls,.eml,text/plain,text/csv,application/pdf",
+          aria: { describedby: "source-file-hint" } %>
+    <p id="source-file-hint" class="field__hint">PDF, spreadsheet, or text, up to 10 MB. The file is stored for download and shown as Awaiting processing until line results are applied. It is not parsed on upload.</p>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "Save RFQ", class: "button button--primary" %>
+    <%= link_to "Cancel", quotes_path, class: "button button--ghost" %>
+  </div>
+<% end %>

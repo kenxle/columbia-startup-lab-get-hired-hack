@@ -1,0 +1,42 @@
+<% benchmark = benchmark_for(line) %>
+<div class="detail-block" aria-labelledby="pricing-basis-<%= line.id %>">
+  <h3 id="pricing-basis-<%= line.id %>" class="section-title">Pricing basis</h3>
+  <% if held_line?(line) %>
+    <p class="section-hint">Not priced. Held lines carry no price until they are ready and matched.</p>
+  <% elsif rep_entered_price?(line) %>
+    <p class="basis__explanation">Rep-entered price. The benchmark comparison has not been recalculated for this price.</p>
+  <% else %>
+    <dl class="basis">
+      <div>
+        <dt>Price source</dt>
+        <dd>
+          <% if rep_entered_price?(line) %>
+            <span class="flag flag--edited">Rep entered</span>
+          <% end %>
+          <%= display_value(line.price_source) %>
+        </dd>
+      </div>
+      <div>
+        <dt>Benchmark</dt>
+        <dd>
+          <%= display_value(benchmark["name"]) %>
+          <% if sample_benchmark?(line) %> <%= sample_badge("Sample benchmark") %><% end %>
+        </dd>
+      </div>
+      <div>
+        <dt>As of</dt>
+        <dd><%= display_value(benchmark["as_of"]) %></dd>
+      </div>
+      <div>
+        <dt>Benchmark unit</dt>
+        <dd><%= display_value(benchmark["unit"]) %></dd>
+      </div>
+    </dl>
+    <% if benchmark["explanation"].present? %>
+      <p class="basis__explanation"><%= benchmark["explanation"] %></p>
+    <% end %>
+    <% if sample_benchmark?(line) %>
+      <p class="section-hint">This benchmark is sample data, not live market data.</p>
+    <% end %>
+  <% end %>
+</div>

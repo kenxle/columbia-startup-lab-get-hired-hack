@@ -1,0 +1,61 @@
+<% if lines.blank? %>
+  <div class="empty-state empty-state--inline">
+    <p class="empty-state__body">No lines found.</p>
+  </div>
+<% else %>
+  <div class="table-wrap">
+    <table class="data-table lines-table">
+      <caption class="visually-hidden">Quote lines. Held lines are not priced and are excluded from the subtotal.</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="num">#</th>
+          <th scope="col">Item</th>
+          <th scope="col" class="num">Quantity</th>
+          <th scope="col" class="num">Unit price</th>
+          <th scope="col" class="num">Total</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% lines.each do |line| %>
+          <% selected = selected_line?(line, selected_line) %>
+          <tr class="<%= class_names('is-selected': selected, 'is-held': held_line?(line)) %>">
+            <td class="num mono"><%= line.position %></td>
+            <th scope="row" class="lines-table__item">
+              <%= link_to quote_path(quote, line: line.id), class: "row-link",
+                    aria: { current: selected ? "true" : nil } do %>
+                <%= line.display_description.presence || "Line #{line.position}" %>
+              <% end %>
+              <span class="lines-table__sku mono">
+                <% if line.catalog_sku.present? %>
+                  <%= catalog_match_stale?(line) ? "Previous SKU, needs recheck" : "SKU" %> <%= line.catalog_sku %>
+                <% else %>
+                  No catalog item
+                <% end %>
+              </span>
+            </th>
+            <td class="num"><%= display_quantity(line) %></td>
+            <td class="num mono">
+              <%= held_line?(line) ? unknown_marker : display_money(line.unit_price) %>
+            </td>
+            <td class="num mono">
+              <%= line.line_total.nil? ? unknown_marker : display_money(line.line_total) %>
+            </td>
+            <td><%= status_badge(line) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="4" class="num">Subtotal, ready lines only</th>
+          <td class="num mono"><%= display_money(quote.subtotal) %></td>
+          <td>
+            <% if quote.held_count.to_i.positive? %>
+              <span class="muted small"><%= pluralize(quote.held_count, "held line") %> excluded</span>
+            <% end %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+<% end %>

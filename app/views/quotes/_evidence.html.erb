@@ -1,0 +1,15 @@
+<% if evidence.present? && evidence["text"].present? %>
+  <figure class="evidence">
+    <blockquote class="quote-text"><%= evidence["text"] %></blockquote>
+    <figcaption class="evidence__caption">
+      <% if evidence["location"].present? %>
+        <span class="evidence__location"><%= evidence["location"] %></span>
+      <% end %>
+      <% if evidence["explanation"].present? %>
+        <span class="evidence__why"><%= evidence["explanation"] %></span>
+      <% end %>
+    </figcaption>
+  </figure>
+<% else %>
+  <p class="evidence evidence--none">No source words for this field. It is left blank rather than inferred.</p>
+<% end %>

@@ -48,8 +48,8 @@ keys out of prompts and committed files.
 ## Application status
 
 The Rails shell, SQLite configuration, dependency lockfile and run scripts are
-ready. The quote workspace is being integrated against
-[the frontend contract](FRONTEND_CONTRACT.md). Real RFQ extraction, catalog
+ready. The quote workspace supports saved intake, sample review, edits, approval
+and CSV export against [the frontend contract](FRONTEND_CONTRACT.md). Real RFQ extraction, catalog
 matching and pricing providers are separate team integrations. Saved uploads
 must remain awaiting processing until those services return a valid result.
 

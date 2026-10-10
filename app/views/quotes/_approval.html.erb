@@ -1,0 +1,63 @@
+<% held_lines = lines.select { |line| held_line?(line) } %>
+<section class="panel approval" aria-labelledby="approval-heading">
+  <div class="panel__head">
+    <h2 id="approval-heading" class="panel__title">Review and export</h2>
+    <%= quote_status_badge(quote) %>
+  </div>
+
+  <% if held_lines.any? %>
+    <div class="held-questions">
+      <h3 class="section-title">Questions for the buyer</h3>
+      <ol class="held-questions__list">
+        <% held_lines.each do |line| %>
+          <li>
+            <%= link_to "Line #{line.position}", quote_path(quote, line: line.id), class: "held-questions__line" %>
+            <%= status_badge(line) %>
+            <p class="held-questions__text">
+              <% if line.clarification_question.present? %>
+                <%= line.clarification_question %>
+              <% else %>
+                <span class="text-warning">No question yet. Add one on this line before approval.</span>
+              <% end %>
+            </p>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
+
+  <% if quote.approved? %>
+    <div class="approval__done">
+      <p>Approved <%= display_time(quote.approved_at) %>. Any line edit clears this approval.</p>
+      <%= link_to export_quote_path(quote, format: :csv), class: "button button--primary", download: "" do %>
+        Export quote and questions, CSV<% if quote.sample_data? %> (SAMPLE)<% end %>
+      <% end %>
+    </div>
+  <% elsif quote.approvable? %>
+    <%= form_with url: approve_quote_path(quote), method: :post, class: "approval__form" do %>
+      <%= hidden_field_tag "reviewed_version", quote.review_revision %>
+      <div class="checkbox">
+        <%= check_box_tag "reviewed", "1", false, id: "reviewed", required: true, class: "checkbox__input" %>
+        <%= label_tag "reviewed", class: "checkbox__label" do %>
+          I reviewed every ready line and its price, and every held line and its buyer question.
+          <%= pluralize(quote.ready_count, "ready line") %> priced at <%= display_money(quote.subtotal) %>;
+          <%= pluralize(quote.held_count, "held line") %> included unpriced with questions.
+        <% end %>
+      </div>
+      <div class="form-actions form-actions--split">
+        <p class="field__hint">Export unlocks after approval. No email is sent to the buyer.</p>
+        <%= submit_tag "Approve quote", class: "button button--primary", name: nil %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="callout callout--held" role="note">
+      <strong>Not ready for approval.</strong>
+      <ul class="plain-list">
+        <% approval_blockers(quote, lines).each do |blocker| %>
+          <li><%= blocker %></li>
+        <% end %>
+      </ul>
+    </div>
+    <p class="field__hint">Export unlocks after approval.</p>
+  <% end %>
+</section>
