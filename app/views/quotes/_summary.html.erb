@@ -16,6 +16,19 @@
       <dt>Held</dt>
       <dd><span class="count count--held"><%= quote.held_count %></span></dd>
     </div>
+    <% question_counts = buyer_question_counts(quote) %>
+    <% if question_counts[:unsent].positive? %>
+      <div class="summary__item">
+        <dt>Question to send</dt>
+        <dd><span class="count count--held"><%= question_counts[:unsent] %></span></dd>
+      </div>
+    <% end %>
+    <% if question_counts[:waiting].positive? %>
+      <div class="summary__item">
+        <dt>Waiting on buyer <span class="small muted">(local preview)</span></dt>
+        <dd><span class="count count--held"><%= question_counts[:waiting] %></span></dd>
+      </div>
+    <% end %>
     <div class="summary__item summary__item--total">
       <dt title="Includes Ready lines only. Held lines and buyer-choice options are excluded." tabindex="0">Subtotal</dt>
       <dd class="mono">

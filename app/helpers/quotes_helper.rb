@@ -91,14 +91,22 @@ module QuotesHelper
   end
 
   def quote_status_badge(quote)
+    question_counts = buyer_question_counts(quote)
     if quote.sent?
       tag.span("Sent", class: "status status--ready")
     elsif quote.approved?
       tag.span("Ready to send", class: "status status--ready")
     elsif quote.awaiting_processing?
       tag.span("Awaiting processing", class: "status status--neutral")
-    elsif quote.quote_lines.any? { |line| line.state == "needs_buyer" }
+    elsif question_counts[:unsent].positive?
       tag.span("Question to send", class: "status status--needs-buyer")
+    elsif question_counts[:waiting].positive?
+      tag.div(class: "question-preview-status") do
+        safe_join([
+          tag.span("Waiting on buyer", class: "status status--needs-buyer"),
+          tag.span("Local demo preview", class: "lines-table__sku")
+        ])
+      end
     elsif quote.quote_lines.any? { |line| line.state == "no_match" }
       tag.span("No match", class: "status status--no-match")
     else

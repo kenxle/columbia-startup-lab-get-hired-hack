@@ -26,7 +26,14 @@ graph TD
     R --> S[Clear approval and preserve edit context]
     S --> P
     P --> T[Held-line question draft]
-    T --> U[Plain text or local question email preview]
+    T --> U[Plain text or manual question email preview]
+    K --> AF[After commit: queue each drafted held-line question]
+    AF --> AG{Current fingerprint and no previous attempt?}
+    AG -- Yes --> AH[Local mail preview with placeholder recipient]
+    AH --> AI[Record exact question, recipient and preview time]
+    AI --> AJ[Waiting on buyer with local-demo label and activity history]
+    AJ --> P
+    AG -- No --> AK[Skip duplicate or stale work]
     T --> AA[Rep enters a current buyer answer]
     AA --> AB[Recheck revision and preserve rep edits]
     AB --> AC[Answers.apply reruns only that line]
@@ -61,7 +68,7 @@ edits invalidate approval. Downloads and local previews preserve the quote.
 Final email text, PDF and CSV use the same approved revision in a local mail preview.
 PDF embeds Unicode fonts and rejects unsupported glyphs rather than altering specs.
 Constructed provenance stays internal; internal notes and extraction metadata stay out of buyer
-exports. Question drafts contain existing held-line questions only.
+exports. Question drafts contain existing held-line questions only. New or changed held questions also queue an automatic local preview after commit. Successful current previews produce a locally labeled waiting state; changed questions clear that state without deleting history. Pending or failed previews never imply success. No quote totals, approval or source bytes change when a preview is recorded.
 
 Email previews use `letter_opener` in development and a test adapter in tests, with
 an invalid placeholder recipient. No buyer mail is sent. Real delivery, public choice

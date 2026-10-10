@@ -51,13 +51,31 @@ module QuoteWorkspace
       return unless Array(option["unresolved_fields"]).empty? && text?(option["price_source"])
       benchmark = option["benchmark"]
       return unless benchmark.is_a?(Hash) && %w[name as_of kind unit].all? { |key| text?(benchmark[key]) }
-      return unless benchmark["unit"] == line.quantity_unit
-      return unless benchmark["as_of"].match?(/\A\d{4}-\d{2}-\d{2}\z/)
-      Date.iso8601(benchmark["as_of"])
+      return unless matching_price_unit?(benchmark["unit"], line.quantity_unit)
+      return unless valid_observation_date?(benchmark["as_of"])
       price = number(option["unit_price"])
       price if price && price <= 1_000_000_000 && price == price.round(4)
     rescue Date::Error, ArgumentError
       nil
+    end
+
+    def self.matching_price_unit?(basis, unit)
+      return false unless text?(unit)
+
+      accepted = [unit, "USD per #{unit}"]
+      accepted << "USD each" if %w[each ea].include?(unit)
+      accepted.include?(basis)
+    end
+
+    def self.valid_observation_date?(value)
+      return false unless value.match?(/\A\d{4}-\d{2}-\d{2}(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d))?\z/)
+
+      # Validate the calendar separately and preserve the source timestamp.
+      Date.iso8601(value[0, 10])
+      DateTime.iso8601(value) if value.include?("T")
+      true
+    rescue Date::Error, ArgumentError
+      false
     end
 
     def self.number(value)
@@ -73,6 +91,6 @@ module QuoteWorkspace
       value.is_a?(String) && value.strip.present? && value.length <= TEXT_LIMIT
     end
 
-    private_class_method :normalize, :priced_value, :number, :text?
+    private_class_method :normalize, :priced_value, :matching_price_unit?, :valid_observation_date?, :number, :text?
   end
 end

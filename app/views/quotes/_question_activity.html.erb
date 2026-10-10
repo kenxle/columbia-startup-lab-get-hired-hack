@@ -1,0 +1,20 @@
+<% deliveries = quote.buyer_question_deliveries.previewed.order(previewed_at: :desc, id: :desc) %>
+<% if deliveries.any? %>
+  <section class="panel question-activity" aria-labelledby="question-activity-heading">
+    <div class="panel__head">
+      <h2 id="question-activity-heading" class="panel__title">Question activity</h2>
+    </div>
+    <div class="panel__body">
+      <p class="field__hint">Local demo mail previews only. No email was sent to the buyer. Earlier questions remain here when a line changes.</p>
+      <ol class="buyer-draft__questions">
+        <% deliveries.each do |delivery| %>
+          <li class="question-activity__event">
+            <h3 class="section-title">Line <%= delivery.line_position %>: Question sent to local preview</h3>
+            <p><%= display_time(delivery.previewed_at) %> · Recipient: <%= delivery.recipient %></p>
+            <blockquote class="quote-text"><%= delivery.question_text %></blockquote>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </section>
+<% end %>

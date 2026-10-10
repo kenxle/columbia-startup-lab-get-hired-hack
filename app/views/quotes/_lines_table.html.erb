@@ -43,7 +43,12 @@
             <td class="num mono">
               <%= line.line_total.nil? ? unknown_marker : display_money(line.line_total) %>
             </td>
-            <td><%= render "shared/status_badge", label: line.status_label, state: line.state %></td>
+            <td>
+              <%= render "shared/status_badge", label: line.status_label, state: line.state %>
+              <% if line.state == "needs_buyer" && (delivery = line.current_question_delivery) %>
+                <span class="lines-table__sku">Local demo preview<br><%= display_time(delivery.previewed_at) %></span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -10,6 +10,18 @@
     <%= render "shared/status_badge", label: line.status_label, state: line.state %>
   </div>
 
+  <% if (delivery = line.current_question_delivery) %>
+    <div class="detail-block question-preview-detail">
+      <h3 class="section-title">Question sent to local preview</h3>
+      <p class="field__hint">Local demo mail preview only. No email was sent to the buyer.</p>
+      <dl class="facts">
+        <div><dt>Previewed</dt><dd><%= display_time(delivery.previewed_at) %></dd></div>
+        <div><dt>Recipient</dt><dd><%= delivery.recipient %></dd></div>
+      </dl>
+      <blockquote class="quote-text"><%= delivery.question_text %></blockquote>
+    </div>
+  <% end %>
+
   <dl class="facts">
     <div>
       <dt><%= catalog_match_stale?(line) ? "Previous catalog item, needs recheck" : "Catalog item" %></dt>
@@ -41,8 +53,10 @@
     <div class="callout callout--held" role="note">
       <% if line.state.to_s == "no_match" %>
         <strong>No match.</strong> Nothing in the catalog fits this line, so it is not priced and is excluded from the subtotal.
+      <% elsif delivery %>
+        <strong>Waiting on buyer.</strong> The question is in the local demo mail preview. No email was sent to the buyer. This line remains held and excluded from the subtotal; the rest of the quote can continue.
       <% else %>
-        <strong>Question to send.</strong> Review the question before sending it to the buyer. This line is held, not priced, and excluded from the subtotal.
+        <strong>Question to send.</strong> The question has not reached the local preview yet. This line is held, not priced, and excluded from the subtotal.
       <% end %>
       <% if Array(line.unresolved_fields).any? %>
         Unresolved: <%= Array(line.unresolved_fields).map { |field| spec_label(field) }.to_sentence %>.

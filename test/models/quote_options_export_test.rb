@@ -69,6 +69,21 @@ class QuoteOptionsExportTest < ActiveSupport::TestCase
     refute_includes csv, "PRIVATE-METADATA"
   end
 
+  test "processing price basis and observation timestamp survive all exports" do
+    stamp = "2026-10-10T17:04:39Z"
+    basis = "USD per #{@line.quantity_unit}"
+    @options.first["benchmark"].merge!("unit" => basis, "as_of" => stamp)
+    @line.update!(processing: {"alternates" => @options})
+    @quote.approve!
+    before = @quote.subtotal
+    outputs.each do |format, content|
+      assert_includes content, "52.50", format.to_s
+      assert_includes content, stamp, format.to_s
+    end
+    assert_equal before, @quote.reload.subtotal
+    refute @line.reload.quotable?
+  end
+
   test "stale approval prevents all option exports including a previously loaded CSV" do
     csv = QuoteWorkspace::CsvExport.new(@quote)
     Quote.find(@quote.id).invalidate_approval!

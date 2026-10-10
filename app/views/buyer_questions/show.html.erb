@@ -56,8 +56,12 @@
           <li>
             <div class="buyer-draft__line-heading">
               <h3>Line <%= line.position %></h3>
+              <%= render "shared/status_badge", label: line.status_label, state: line.state %>
               <%= link_to "Edit question", quote_path(@quote, line: line.id, return_to: "buyer_questions", anchor: "line-detail"), aria: { label: "Edit question for line #{line.position}" } %>
             </div>
+            <% if (delivery = line.current_question_delivery) %>
+              <p class="field__hint">Local demo preview at <%= display_time(delivery.previewed_at) %>. No email was sent to the buyer.</p>
+            <% end %>
             <% if line.clarification_question.present? %>
               <p class="buyer-draft__question"><%= line.clarification_question %></p>
             <% else %>
@@ -70,3 +74,5 @@
     </div>
   <% end %>
 </section>
+
+<%= render "quotes/question_activity", quote: @quote %>

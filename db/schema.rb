@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_10_193000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_10_205000) do
+  create_table "buyer_question_deliveries", force: :cascade do |t|
+    t.integer "quote_id", null: false
+    t.integer "quote_line_id"
+    t.string "fingerprint", null: false
+    t.string "channel", default: "local_preview", null: false
+    t.string "status", default: "pending", null: false
+    t.string "recipient", null: false
+    t.string "buyer_name"
+    t.integer "line_position", null: false
+    t.string "source_line_id"
+    t.text "question_text", null: false
+    t.datetime "previewed_at"
+    t.string "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_buyer_question_deliveries_on_quote_id"
+    t.index ["quote_line_id", "fingerprint", "channel"], name: "index_question_delivery_identity", unique: true
+    t.index ["quote_line_id"], name: "index_buyer_question_deliveries_on_quote_line_id"
+  end
+
   create_table "client_terms", force: :cascade do |t|
     t.integer "client_id", null: false
     t.string "term", null: false
@@ -114,6 +134,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_193000) do
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 
+  add_foreign_key "buyer_question_deliveries", "quote_lines", on_delete: :nullify
+  add_foreign_key "buyer_question_deliveries", "quotes", on_delete: :cascade
   add_foreign_key "client_terms", "clients", on_delete: :cascade
   add_foreign_key "match_requests", "clients", on_delete: :cascade
   add_foreign_key "processing_runs", "quotes", on_delete: :cascade

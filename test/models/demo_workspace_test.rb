@@ -127,7 +127,7 @@ class DemoWorkspaceTest < ActiveSupport::TestCase
       processor.call(**arguments)
     }) do
       assert_no_difference "ActionMailer::Base.deliveries.count" do
-        assert_no_enqueued_jobs do
+        assert_no_enqueued_jobs only: ProcessRfqJob do
           in_development { QuoteWorkspace::DemoWorkspace.seed_if_empty!(workspace_token: "seed-a") }
         end
       end

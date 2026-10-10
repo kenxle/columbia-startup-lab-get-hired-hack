@@ -19,6 +19,7 @@ class Quote < ApplicationRecord
 
   has_many :quote_lines, -> { order(:position) }, dependent: :delete_all, inverse_of: :quote
   has_many :processing_runs, dependent: :delete_all
+  has_many :buyer_question_deliveries, dependent: :delete_all
 
   scope :for_workspace, ->(workspace_token) { where(workspace_token: workspace_token.to_s) }
 

@@ -18,6 +18,8 @@ class QuoteLine < ApplicationRecord
   MAXIMUM_SPEC_VALUE_LENGTH = 200
 
   belongs_to :quote, inverse_of: :quote_lines
+  has_many :buyer_question_deliveries, dependent: :nullify
+  after_commit :enqueue_question_preview, on: [:create, :update]
 
   attribute :spec, default: -> { {} }
   attribute :evidence, default: -> { {} }
@@ -76,7 +78,35 @@ class QuoteLine < ApplicationRecord
   end
 
   def status_label
+    return "Waiting on buyer" if state == "needs_buyer" && current_question_delivery
+
     STATE_LABELS.fetch(state, "Unknown")
+  end
+
+  def question_preview_eligible?
+    HELD_STATES.include?(state) && clarification_question.present?
+  end
+
+  def question_delivery_fingerprint
+    content = {
+      question: clarification_question, state: state, spec: spec, quantity: quantity&.to_s("F"),
+      quantity_unit: quantity_unit, description: description, original_text: original_text,
+      unresolved_fields: unresolved_fields, choices: processing&.dig("question_choices")
+    }
+    canonical = lambda do |value|
+      case value
+      when Hash then value.stringify_keys.sort.to_h.transform_values { |entry| canonical.call(entry) }
+      when Array then value.map { |entry| canonical.call(entry) }
+      else value
+      end
+    end
+    Digest::SHA256.hexdigest(JSON.generate(canonical.call(content)))
+  end
+
+  def current_question_delivery
+    return unless persisted? && question_preview_eligible?
+
+    buyer_question_deliveries.previewed.where(fingerprint: question_delivery_fingerprint).order(previewed_at: :desc, id: :desc).first
   end
 
   def display_description
@@ -138,6 +168,18 @@ class QuoteLine < ApplicationRecord
   end
 
   private
+
+  def enqueue_question_preview
+    return unless Rails.env.development? || Rails.env.test?
+    return unless question_preview_eligible?
+    return unless (previous_changes.keys & %w[id clarification_question state spec quantity quantity_unit description original_text unresolved_fields processing]).any?
+    return if current_question_delivery
+
+    DispatchBuyerQuestionJob.perform_later(id, question_delivery_fingerprint)
+  rescue StandardError
+    # Local preview infrastructure must never roll back or interrupt RFQ work.
+    nil
+  end
 
   def lead_time_shape
     %w[lead_time lead_time_source].each do |field|

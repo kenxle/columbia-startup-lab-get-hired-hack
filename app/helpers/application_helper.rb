@@ -5,12 +5,14 @@ module ApplicationHelper
     end
 
     lines = quote.quote_lines.to_a
-    buyer_count = lines.count { |line| line.state == "needs_buyer" }
+    question_counts = buyer_question_counts(quote)
     no_match_count = lines.count { |line| line.state == "no_match" }
     attention = if quote.sent?
       "Sent"
-    elsif buyer_count.positive?
-      "#{pluralize(buyer_count, 'question')} to send"
+    elsif question_counts[:unsent].positive?
+      "#{pluralize(question_counts[:unsent], 'question')} to send"
+    elsif question_counts[:waiting].positive?
+      "#{pluralize(question_counts[:waiting], 'line')} waiting on buyer (local preview)"
     elsif no_match_count.positive?
       "#{pluralize(no_match_count, 'line')} #{no_match_count == 1 ? 'has' : 'have'} no match"
     elsif lines.empty?
@@ -22,6 +24,12 @@ module ApplicationHelper
     end
 
     [attention, quote.reference, "Quote Desk"].join(" · ")
+  end
+
+  def buyer_question_counts(quote)
+    buyer_lines = quote.quote_lines.to_a.select { |line| line.state == "needs_buyer" }
+    waiting = buyer_lines.count { |line| line.current_question_delivery.present? }
+    { unsent: buyer_lines.length - waiting, waiting: waiting }
   end
 
   def quote_deadline_badge(quote, now: Time.current)
