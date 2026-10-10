@@ -25,7 +25,7 @@ From the bulletin board through 13:40.
 
 | Area | Owner | State |
 |---|---|---|
-| Quote app | Hirsh | Three agents running: one reskins every page to the style guide and builds the shared components, one finishes automatic RFQ intake, one reviews Tisch's matcher against the app. 284 app tests pass. Next up from your notes: seed RFQs, the L3 logo and favicon, no disclaimers. |
+| Quote app | Hirsh | Landed at 13:47: automatic paste, PDF and CSV intake; the reskin and shared components; the approved PDF, CSV and email draft with local mail preview. Browser-tested end to end on an S-330 line. 287 tests pass. Now doing your 13:48 notes: seed three RFQs, the L3 logo and status tab titles, no disclaimers. |
 | RFQ processing | Yuval | Buyer-answer reruns are on main: one-line answers rerun that line, whole-RFQ answers rerun all. Excel intake and the Claude reading step are in; the Claude step has not run against the live API yet. 150 specs pass; 24 of 25 test lines read as the research expects. |
 | Matching and pricing | Tisch | Fixed Hirsh's matcher points: real part forms, part numbers, a contract for Yuval, safer approvals. Writing the demo RFQ email (from Yuval's draft). **Still no pricer** for metals lines. |
 | API key | Hirsh | Using the hackathon's sponsor gateway (Nicrron). The key is shared privately and kept out of the repo. |
@@ -41,7 +41,7 @@ From the bulletin board through 13:40.
 
 Every path through the [demo workflow](WORKFLOW.md), with the loops for buyer questions and the rep checkpoints. [Image to share](build_map.png).
 
-**Checked:** 2026-10-10 13:37, against `main` at commit `5cc142b` and the bulletin board. Claude updates the marks from the board; owners post progress there.
+**Checked:** 2026-10-10 13:53, from Hirsh's 13:47 and Yuval's 13:36 posts. Claude updates the marks from the board; owners post progress there.
 
 **Key:**
 - ✅ Built and on `main`.
@@ -53,11 +53,11 @@ Every path through the [demo workflow](WORKFLOW.md), with the loops for buyer qu
 
 ```mermaid
 flowchart TD
-    A["🟡 1. RFQ arrives<br/>paste or upload works; email intake not built"] --> B["🟡 2. Pull the data<br/>email, PDF, CSV, Excel readers built; not wired into the app"]
+    A["🟡 1. RFQ arrives<br/>paste, PDF and CSV intake work; no real mailbox yet"] --> B["✅ 2. Pull the data<br/>paste, PDF and CSV run through processing in the app; Excel not yet in the app"]
     B --> C["✅ 3. Parse each line<br/>rules parser, gauge tables; 24 of 25 test lines read as expected"]
     C --> D["✅ 4. Match to the catalog<br/>matcher and RudCo catalog"]
     D --> M{"Match result"}
-    M -- "one item" --> E["🟡 5. Price, flags, lead time<br/>flags built; no pricer yet; lead time in progress"]
+    M -- "one item" --> E["🟡 5. Price, flags, lead time<br/>flags and sourced lead times built; no pricer yet"]
     M -- "several candidates" --> Q
     M -- "no match" --> NM["✅ Line marked No match<br/>never forced onto the closest item"]
     NM --> R
@@ -67,36 +67,36 @@ flowchart TD
     G -- "yes" --> S["⬜ 6c. Question emails itself to the buyer"]
     G -- "no" --> RQ["👤 ✅ Rep reviews and edits the question<br/>draft download works; send does not"]
     RQ --> S
-    S --> BA["⬜ 6d. Buyer clicks a choice in the email<br/>or replies with the choice number"]
-    BA --> W{"🟡 Answer covers the whole RFQ?<br/>answer plumbing in processing"}
-    W -- "one line" --> RR["🟡 Rerun only the answered lines"]
-    W -- "whole RFQ" --> RA["⬜ Rerun every line<br/>Yuval's next task"]
+    S --> BA["⬜ 6d. Buyer clicks a choice in the email<br/>answer endpoints not built"]
+    BA --> W{"✅ Answer covers the whole RFQ?"}
+    W -- "one line" --> RR["✅ Rerun only the answered lines<br/>in processing"]
+    W -- "whole RFQ" --> RA["✅ Rerun every line"]
     RR --> C
     RA --> C
     F -- "yes" --> R["👤 ✅ 7. Rep reviews the quote<br/>source on every field, edit, approve"]
     R -- "rep edits a line" --> R
     R --> AP["👤 ✅ Rep approves the whole quote"]
-    AP --> X["🟡 8a. Build the reply<br/>CSV export works; PDF and email in progress"]
+    AP --> X["✅ 8a. Build the reply<br/>approved PDF, CSV and email draft; local mail preview"]
     X --> SN["👤 ⬜ 8b. Rep clicks send<br/>reply lands on the buyer's thread"]
-    SN --> L["🟡 9. Learn the buyer<br/>teach and forget built; not connected to parsing in the app"]
+    SN --> L["🟡 9. Learn the buyer<br/>taught terms reach parsing; confirmed-learning source not shown yet"]
     L -. "next RFQ from this buyer" .-> C
 ```
 
-A rerun clears approval and highlights what changed, so a line that turns Ready after a buyer answer goes back through the rep (W3 guard 3, ⬜). A rerun never overwrites a field the rep edited (W3 guard 2, ⬜). Each line keeps its run ID and benchmark date (W3 guard 4, ✅).
+A rerun clears approval, so a line that turns Ready after a buyer answer goes back through the rep (W3 guard 3, ✅). A rerun never overwrites a field the rep edited (W3 guard 2, ✅). Each line keeps its run ID and benchmark date (W3 guard 4, ✅). Showing old and new values side by side (redlines) is not built yet.
 
 ### Step by step
 
 | Step | Status | What is there | What is missing | Owner |
 |---|---|---|---|---|
-| 1. RFQ arrives | 🟡 | Paste or upload an RFQ in the app. **Load sample RFQ** button. Yuval proposed a demo RFQ email (`tools/rfq_processing/spec/fixtures/demo_rfq_email.txt`). | An email inbox that receives RFQs. The final demo email (handed to Tisch, who can start from Yuval's draft). | Hirsh, Tisch |
-| 2. Pull the data | 🟡 | Readers for email, PDF (`tools/pdf_text`), CSV, and Excel, in the processing library. | The app calling them when an RFQ comes in. Hirsh is wiring it now. | Yuval, Hirsh |
-| 3. Parse | ✅ | Rules parser with per-material gauge tables. 104 specs pass; 24 of 25 test lines read as expected ([test results](../rfq_processing/TEST-RESULTS.md)). | The Claude reading step needs an API key (from the hackathon). | Yuval |
+| 1. RFQ arrives | 🟡 | Paste, PDF or CSV intake runs automatically. Yuval drafted a demo RFQ email. | A real mailbox that receives RFQs. The final demo email (Tisch, from Yuval's draft). | Hirsh, Tisch |
+| 2. Pull the data | ✅ | The app sends paste, PDF and CSV through processing, and shows sources and warnings. | Excel in the app (the library reads it). | Yuval, Hirsh |
+| 3. Parse | ✅ | Rules parser with per-material gauge tables, plus a Claude step that never overwrites a rules value. 150 specs pass; 24 of 25 test lines read as expected ([test results](../rfq_processing/TEST-RESULTS.md)). | The Claude step has not run on the live API yet (sponsor gateway, Opus 5). | Yuval |
 | 4. Match | ✅ | Matcher returns one match, candidates with a question, or no match. 96 RudCo items and 143 metals items. | None for the demo. | Tisch |
-| 5. Price, flags, lead time | 🟡 | Compliance flags (MTR, COA, DFARS, REACH, RoHS, and more) with trigger words. RudCo website list prices on RudCo items. | A pricer that prices metals lines against a named, dated benchmark. Lead time per line (Hirsh building). | Tisch, Yuval, Hirsh |
-| 6. Buyer questions | 🟡 | Question drafting and download. Answer plumbing in processing. | The confidence gate, sending the email, click-to-answer buttons, and the whole-RFQ rerun. | Hirsh, Yuval |
-| 7. Rep review and approve | ✅ | Side-by-side review, source on every field, edits marked as rep edits, approval of the whole quote. | Approval cleared by a rerun (W3 guard 3). | Hirsh |
-| 8. Send the reply | 🟡 | CSV export. | The quote PDF and the reply email on the buyer's thread (Hirsh building). | Hirsh |
-| 9. Learn the buyer | 🟡 | Per-buyer memory with teach and forget on the catalog matching page. Processing reads learned terms. | The app passing learned terms into processing, and the second-RFQ demo. | Yuval, Tisch, Hirsh |
+| 5. Price, flags, lead time | 🟡 | Compliance flags with trigger words. Lead time per line, with its source. RudCo website list prices on RudCo items. | A pricer that prices metals lines against a named, dated benchmark. | Tisch |
+| 6. Buyer questions | 🟡 | Question drafting and download. Reruns for one-line and whole-RFQ answers, in processing. | The confidence gate, sending the email, and click-to-answer buttons. | Hirsh, Yuval |
+| 7. Rep review and approve | ✅ | Side-by-side review, source on every field, rep edits protected, approval of the whole quote, cleared by any rerun or later edit. Reskinned to the style guide. | Redlines of old and new values. | Hirsh |
+| 8. Send the reply | 🟡 | Approved PDF, CSV and email draft, with a local mail preview (letter_opener). | Real delivery on the buyer's thread. | Hirsh |
+| 9. Learn the buyer | 🟡 | Per-buyer memory with teach and forget. Taught terms reach parsing in the app. | Showing where a learned reading came from, and the second-RFQ demo. | Yuval, Tisch, Hirsh |
 
 ### The rep checkpoints
 
