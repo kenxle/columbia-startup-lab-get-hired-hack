@@ -148,6 +148,7 @@ These come from the [product brief](product/PRD.md) commitments.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
 - **Mail adapter.** letter_opener first, then a real email account. Proposed owner: Hirsh.
 - **Anthropic API key.** Specs run on recorded responses until one is in `.env`. Owner: Yuval.
+- **Learn the buyer (workflow step 9, Ken, 13:23).** Now in scope. When the rep confirms or corrects a reading, it is saved for that buyer and applied to their next RFQ, with the source shown on the line. Needs a place to store confirmed readings per buyer, and a hook in parsing to apply them. No owner yet.
 - **Re-quote on change** (bulletin, 12:42). Detection would sit in RFQ processing after the core pipeline works. No owner yet.
 
 ## Keeping this current

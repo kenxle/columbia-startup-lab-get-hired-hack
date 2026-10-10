@@ -109,6 +109,7 @@ These come from RudCo's challenge, in order.
 3. **Price each line against market benchmarks.** Then explain, in a sentence, why the price is competitive. Each line also carries a lead time, because buyers' RFQs ask for a delivery date and RudCo promises 24 to 48 hour shipping on stocked lines (per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
 4. **Flag compliance requirements.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH and RoHS, and spec certifications, whether the buyer asked for them outright or the spec implies them. RudCo already promises customers this paperwork ("PO→COA/MTR" and "DFARS/REACH/RoHS flags", per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
 5. **Ask instead of guess.** Send any unclear line back to the buyer with one clarifying question.
+6. **Learn the buyer.** When the rep confirms how a buyer writes an item, the next RFQ from that buyer reads it that way, and the line says where the reading came from. This is our own addition to the challenge. It is how we beat Proton and Canals, which claim to learn shorthand but do not show the source ([workflow step 9](WORKFLOW.md#9-learn-the-buyer)).
 
 **Stretch, if we get there:** suggest the margin on each line, not only the benchmark price. The rep still owns the final number.
 

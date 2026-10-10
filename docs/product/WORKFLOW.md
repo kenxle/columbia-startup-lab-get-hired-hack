@@ -26,7 +26,7 @@ flowchart TD
     H --> C
     F -- yes --> I["7. Rep reviews the final quote and approves"]
     I --> J["8. Agent replies on the buyer's thread with the quote"]
-    J --> K["9. Stretch: save what was learned about this buyer"]
+    J --> K["9. Save what was learned about this buyer"]
 ```
 
 The loop from the buyer's reply back to step 3 reruns only the lines the buyer answered.
@@ -94,7 +94,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 - **The rep:** clicks send. The agent drafts; the rep sends.
 - **Format:** a short email body, plus the quote as a PDF and a spreadsheet. Each line shows its price, benchmark, lead time, and the paperwork that ships with it.
 
-### 9. Stretch: learn the buyer
+### 9. Learn the buyer
 
 - **What happens:** when the rep confirms or corrects a reading, the agent saves it for that buyer. Examples: this buyer's "16 ga" means 0.060 in; this buyer always needs a 3.1 cert.
 - **On the next RFQ from that buyer:** the agent applies what it learned and says so on the line. Example: "Read as 0.060 in, as you confirmed on RFQ-0001." The rep can undo it.
@@ -112,7 +112,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 5. Show a price beside its named, dated benchmark.
 6. Show the question email going out, the buyer clicking a choice, and the line turning ready.
 7. Approve the final quote. Show the reply on the buyer's thread. Close on the framing: the agent prepares the conversation, and the rep owns it.
-8. Stretch: send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
+8. Send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
 
 ## Who owns each step
 
@@ -126,7 +126,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 | 6. Questions and replies | Hirsh |
 | 7. Review and approve | Hirsh |
 | 8. Send the reply | Hirsh |
-| 9. Learn the buyer (stretch) | To be decided |
+| 9. Learn the buyer | To be decided (asked on the bulletin board) |
 
 This table reflects the bulletin board as of 12:39. Owners, correct it if it is wrong.
 
@@ -142,3 +142,4 @@ This table reflects the bulletin board as of 12:39. Owners, correct it if it is 
   - **The rep already edited the line.** A rerun never overwrites a field the rep edited. It flags the conflict for the rep instead.
   - **A line turns Ready without the rep noticing.** A rerun clears approval and highlights what changed. The rep approves again.
   - **Lines from two processing runs on one quote.** Untouched lines keep their older benchmark dates. Every price already shows its benchmark date, and each line records which run it came from (the per-run revision ID).
+- **Learn the buyer is in scope, not a stretch goal** (Ken, 2026-10-10). Step 9 gets built. A reading the rep confirms is saved for that buyer and applied to their next RFQ, and the line says where the reading came from. The demo shows a second RFQ from the same buyer with the gauge line already resolved.
