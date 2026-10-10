@@ -1,0 +1,5 @@
+# Never convert line endings in binary documents (Windows autocrlf corrupted a PDF).
+*.pdf binary
+*.png binary
+*.jpg binary
+*.xlsx binary
