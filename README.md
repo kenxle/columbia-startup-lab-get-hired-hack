@@ -34,7 +34,6 @@ Every document we made for this project, with a PDF where one exists. The [docum
 | Document | What it is | PDF |
 |---|---|---|
 | [Research report: what matters in RFQ to quote](docs/research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md) | The problems, value props, and the angle we build. Five research tracks are its appendices. | [PDF](docs/research/20261010.01_rfq_sharper_angle/rfq_research_report.pdf) |
-| [Research brief](docs/research/20261010.01_rfq_sharper_angle/brief_rfq_sharper_angle.md) | The questions the research set out to answer. | [PDF](docs/research/20261010.01_rfq_sharper_angle/brief_rfq_research.pdf) |
 | [Test set of 25 messy RFQ lines](docs/research/20261010.01_rfq_sharper_angle/research_domain_rules.md#6-test-set) | Each line with its correct reading and the buyer question. | |
 | [RudCo company profile](docs/research/20261010.02_rudco_profile/rudco_profile.md) | Who RudCo is and what matters to them. | [PDF](docs/research/20261010.02_rudco_profile/rudco_profile.pdf) |
 | [RudCo competitive analysis](docs/research/20261010.03_rudco_competitive_analysis/competitive_analysis.md) | What competitors offer, and where the demo puts RudCo ahead. | [PDF](docs/research/20261010.03_rudco_competitive_analysis/rudco_competitive_analysis.pdf) |
