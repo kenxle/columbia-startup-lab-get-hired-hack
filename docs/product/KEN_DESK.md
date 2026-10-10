@@ -9,7 +9,6 @@
 Each item says who is waiting and what Claude recommends.
 
 - [ ] **12. Hirsh asks you to step in on Tisch's work** (board, 14:52). Tisch is the bottleneck. Hirsh wants you to take or assign: (a) rebuilding the demo PDF, which is corrupt in the repo, so the PDF path fails; (b) cleaning up source data; (c) stock and lead-time evidence for the four clean-demo SKUs: S-330, G-40, S-170, G-25. *Recommendation:* Claude takes (a) and (b) now, after agreeing exact files with Tisch on the board. For (c), apply your production-data rule: the demo catalog marks those four SKUs as stocked, so they show RudCo's 24 to 48 hour lead time. Hirsh's board note says missing evidence must stay unknown, so this needs your word. Say "go" and which parts.
-- [ ] **13. Jev key and Ruby client.** Hirsh (W1 question check) and Yuval (doubtful compliance hits) are waiting on a `JEV_API_KEY` and Herald's client, shared privately. Herald's client is `herald/app/services/classify/jev_client.rb`. Waiting: you.
 - [ ] **14. Review the product page and comparison page.** First drafts are up on the running app: [Product](http://127.0.0.1:3100/product) and [Compare](http://127.0.0.1:3100/compare) (Hirsh, 14:38). Leave comments right on the pages.
 
 ## Coming to you soon
@@ -111,6 +110,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Jev key and Ruby client sent to the team in WhatsApp (Ken).
 
 - Item 11 decided: the promo shows a full price; it can assume ideal conditions.
 
