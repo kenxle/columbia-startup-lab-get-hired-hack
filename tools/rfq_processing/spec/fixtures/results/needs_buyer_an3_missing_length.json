@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "sample_data": true,
+  "revision": {
+    "id": "proc-fixture-needs_buyer_an3_missing_length",
+    "created_at": "2026-10-10T12:50:00-04:00",
+    "processor": "rfq_processing fixture, hand-written"
+  },
+  "source": {
+    "type": "email",
+    "filename": null,
+    "pages": null,
+    "rows": null
+  },
+  "warnings": [],
+  "lines": [
+    {
+      "line_id": "line-1-dcf04674",
+      "position": 1,
+      "description": "AN3 alloy-steel hex-head airframe bolt, cadmium plated, 10-32 thread, drilled shank, length not stated",
+      "original_text": "AN3 bolts, drilled, 50 pcs",
+      "spec": {
+        "material": "alloy steel",
+        "grade": null,
+        "form": "hex-head bolt",
+        "thickness": null,
+        "width": null,
+        "length": null,
+        "standard": "AN3",
+        "finish": "cadmium plated",
+        "part_number": null,
+        "diameter": 0.1875,
+        "thread": "10-32",
+        "grip": null,
+        "drilling": "drilled shank"
+      },
+      "quantity": 50,
+      "quantity_unit": "each",
+      "catalog_sku": null,
+      "unit_price": null,
+      "price_source": null,
+      "state": "needs_buyer",
+      "clarification_question": "Line 1 asks for AN3 bolts, drilled, but gives no length. AN3 bolts come in 54 lengths in our catalog, each a different part number. Which dash number do you need? For example: (a) AN3-15, 1-21/32 in nominal, 1-1/4 in grip; (b) AN3-20, 2-1/32 in nominal, 1-5/8 in grip; (c) AN3-30, 3-1/32 in nominal, 2-5/8 in grip; or reply with the exact part number.",
+      "notes": "Family, diameter, thread, and drilling are known. The dash number decides the part number, so no match or price until the buyer answers.",
+      "evidence": {
+        "standard": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 is the standard designation for the 3/16 in hex-head airframe bolt family."
+        },
+        "form": {
+          "text": "AN3 bolts",
+          "location": "line 1",
+          "explanation": "AN3 is a hex-head airframe bolt family; the buyer also wrote bolts."
+        },
+        "material": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "From the catalog: AN3 bolts are alloy steel. Not stated in the RFQ."
+        },
+        "finish": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "From the catalog: cadmium plated. Not stated in the RFQ."
+        },
+        "diameter": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 is the 3/16 in (0.1875 in) diameter family."
+        },
+        "thread": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 family thread is 10-32, from the catalog."
+        },
+        "drilling": {
+          "text": "drilled",
+          "location": "line 1",
+          "explanation": "A plain AN3 dash number is a drilled shank. The A suffix would mean undrilled."
+        },
+        "quantity": {
+          "text": "50 pcs",
+          "location": "line 1",
+          "explanation": "Quantity and unit stated by the buyer. pcs means pieces, each."
+        }
+      },
+      "compliance": [],
+      "benchmark": null,
+      "unresolved_fields": [
+        "length",
+        "grip",
+        "part_number"
+      ],
+      "edited_fields": [],
+      "processing": {
+        "confidence": {
+          "standard": 0.97,
+          "form": 0.95,
+          "drilling": 0.85,
+          "quantity": 0.96
+        },
+        "assumptions": [
+          "Drilled is read as drilled shank, the plain AN3 designation. The buyer did not say head or shank.",
+          "Material, finish, thread, and diameter come from the AN3 family in the catalog, not from the RFQ words."
+        ],
+        "rules_used": [
+          "AN part number parser: family AN3 found, no dash number, so no part number.",
+          "Readiness rule: hardware needs a full part number or every field that determines one. Length is missing."
+        ],
+        "match": {
+          "status": "ambiguous",
+          "score": 0.0,
+          "reason": "54 AN3 catalog items fit the stated fields. The dash number is needed to choose one.",
+          "candidates": [
+            {
+              "item_id": "AVI-002",
+              "part_number": "AN3-15",
+              "score": 0.6,
+              "matched_on": [
+                "family",
+                "drilled shank"
+              ],
+              "mismatches": [
+                "length not stated"
+              ],
+              "reason": "Example of a drilled AN3 length."
+            },
+            {
+              "item_id": "AVI-006",
+              "part_number": "AN3-20",
+              "score": 0.6,
+              "matched_on": [
+                "family",
+                "drilled shank"
+              ],
+              "mismatches": [
+                "length not stated"
+              ],
+              "reason": "Example of a drilled AN3 length."
+            },
+            {
+              "item_id": "AVI-021",
+              "part_number": "AN3-30",
+              "score": 0.6,
+              "matched_on": [
+                "family",
+                "drilled shank"
+              ],
+              "mismatches": [
+                "length not stated"
+              ],
+              "reason": "Example of a drilled AN3 length."
+            }
+          ]
+        },
+        "question_choices": [
+          {
+            "id": "line-1-dcf04674-c1",
+            "label": "AN3-15, 1-21/32 in nominal, 1-1/4 in grip",
+            "value": "AN3-15"
+          },
+          {
+            "id": "line-1-dcf04674-c2",
+            "label": "AN3-20, 2-1/32 in nominal, 1-5/8 in grip",
+            "value": "AN3-20"
+          },
+          {
+            "id": "line-1-dcf04674-c3",
+            "label": "AN3-30, 3-1/32 in nominal, 2-5/8 in grip",
+            "value": "AN3-30"
+          }
+        ]
+      }
+    }
+  ]
+}

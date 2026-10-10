@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "sample_data": true,
+  "revision": {
+    "id": "proc-fixture-no_match_304_sheet",
+    "created_at": "2026-10-10T12:50:00-04:00",
+    "processor": "rfq_processing fixture, hand-written"
+  },
+  "source": {
+    "type": "email",
+    "filename": null,
+    "pages": null,
+    "rows": null
+  },
+  "warnings": [],
+  "lines": [
+    {
+      "line_id": "line-1-42054807",
+      "position": 1,
+      "description": "Stainless steel 304 sheet, 0.0625 in (16 ga), 48 in x 96 in",
+      "original_text": "304 SS sheet 16ga 4x8, 20 sheets, MTRs required",
+      "spec": {
+        "material": "stainless steel",
+        "grade": "304",
+        "form": "sheet",
+        "thickness": 0.0625,
+        "width": 48,
+        "length": 96,
+        "standard": null,
+        "finish": null
+      },
+      "quantity": 20,
+      "quantity_unit": "sheet",
+      "catalog_sku": null,
+      "unit_price": null,
+      "price_source": null,
+      "state": "no_match",
+      "clarification_question": "We do not stock 304 stainless steel sheet in the current catalog. Should we source it for you at a quoted lead time, or remove this line from the quote?",
+      "notes": "The sample catalog holds aviation bolts only. No stainless sheet item exists to match. The reading itself is clear.",
+      "evidence": {
+        "material": {
+          "text": "SS",
+          "location": "line 1",
+          "explanation": "SS is the common abbreviation for stainless steel."
+        },
+        "grade": {
+          "text": "304",
+          "location": "line 1",
+          "explanation": "304 is a stainless steel grade."
+        },
+        "form": {
+          "text": "sheet",
+          "location": "line 1",
+          "explanation": "Stated by the buyer."
+        },
+        "thickness": {
+          "text": "16ga",
+          "location": "line 1",
+          "explanation": "16 gauge on the stainless steel gauge table is 0.0625 in. On the mild steel table it would be 0.0598 in. It is not 0.060 in."
+        },
+        "width": {
+          "text": "4x8",
+          "location": "line 1",
+          "explanation": "4 ft by 8 ft, converted to 48 in by 96 in. The first number is read as width."
+        },
+        "length": {
+          "text": "4x8",
+          "location": "line 1",
+          "explanation": "4 ft by 8 ft, converted to 48 in by 96 in. The second number is read as length."
+        },
+        "quantity": {
+          "text": "20 sheets",
+          "location": "line 1",
+          "explanation": "Quantity and unit stated by the buyer."
+        }
+      },
+      "compliance": [
+        {
+          "label": "Mill test report required",
+          "evidence": "MTRs required",
+          "note": "Buyer asked outright. No stainless sheet exists in the sample catalog, so availability is unknown."
+        }
+      ],
+      "benchmark": null,
+      "unresolved_fields": [],
+      "edited_fields": [],
+      "processing": {
+        "confidence": {
+          "material": 0.96,
+          "grade": 0.98,
+          "form": 0.99,
+          "thickness": 0.93,
+          "width": 0.9,
+          "length": 0.9,
+          "quantity": 0.97
+        },
+        "assumptions": [
+          "ASTM A240 is the usual specification family for 304 sheet. It is not stated in the RFQ.",
+          "Finish is not stated. 2B is the usual mill finish for 304 sheet.",
+          "4x8 is read as feet, the usual sheet size notation. 48 in x 96 in."
+        ],
+        "rules_used": [
+          "Gauge table: stainless steel, 16 ga = 0.0625 in.",
+          "Unit conversion: 4 ft x 8 ft = 48 in x 96 in.",
+          "Alias table: SS = stainless steel."
+        ],
+        "match": {
+          "status": "no_match",
+          "score": 0.0,
+          "reason": "The sample catalog contains aviation bolts only. No sheet items.",
+          "candidates": []
+        },
+        "question_choices": []
+      }
+    }
+  ]
+}

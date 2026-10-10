@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "sample_data": true,
+  "revision": {
+    "id": "proc-fixture-ready_an3_bolt",
+    "created_at": "2026-10-10T12:50:00-04:00",
+    "processor": "rfq_processing fixture, hand-written"
+  },
+  "source": {
+    "type": "email",
+    "filename": null,
+    "pages": null,
+    "rows": null
+  },
+  "warnings": [],
+  "lines": [
+    {
+      "line_id": "line-1-6c960b44",
+      "position": 1,
+      "description": "AN3-13A alloy-steel hex-head airframe bolt, cadmium plated, 10-32 thread, 1-13/32 in nominal length, 1 in grip, undrilled shank",
+      "original_text": "AN3-13A bolts, 100 ea, need C of C",
+      "spec": {
+        "material": "alloy steel",
+        "grade": null,
+        "form": "hex-head bolt",
+        "thickness": null,
+        "width": null,
+        "length": 1.40625,
+        "standard": "AN3",
+        "finish": "cadmium plated",
+        "part_number": "AN3-13A",
+        "diameter": 0.1875,
+        "thread": "10-32",
+        "grip": 1.0,
+        "drilling": "undrilled shank"
+      },
+      "quantity": 100,
+      "quantity_unit": "each",
+      "catalog_sku": "AVI-001",
+      "unit_price": 0.565,
+      "price_source": "Two-dealer midpoint, single piece, product only: Aircraft Spruce USD 0.55 (AVI-001-AS), Wicks Aircraft USD 0.58 (AVI-001-WA), observed 2026-10-10. Sample data.",
+      "state": "ready",
+      "clarification_question": null,
+      "notes": "Price basis is one piece. The 100-piece tier was not collected. The rep confirms the final price.",
+      "evidence": {
+        "part_number": {
+          "text": "AN3-13A",
+          "location": "line 1",
+          "explanation": "Exact AN part number. The A suffix means undrilled shank."
+        },
+        "quantity": {
+          "text": "100 ea",
+          "location": "line 1",
+          "explanation": "Quantity and unit stated by the buyer."
+        },
+        "material": {
+          "text": "AN3-13A",
+          "location": "line 1",
+          "explanation": "From the catalog entry for AN3-13A, not from the RFQ words. AN3 bolts are alloy steel."
+        },
+        "form": {
+          "text": "AN3-13A bolts",
+          "location": "line 1",
+          "explanation": "AN3 is a hex-head airframe bolt family; the buyer also wrote bolts."
+        },
+        "finish": {
+          "text": "AN3-13A",
+          "location": "line 1",
+          "explanation": "From the catalog entry: cadmium plated. Not stated in the RFQ."
+        },
+        "diameter": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 is the 3/16 in (0.1875 in) diameter family."
+        },
+        "thread": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 family thread is 10-32, from the catalog entry."
+        },
+        "length": {
+          "text": "13",
+          "location": "line 1",
+          "explanation": "Dash number 13 is 1-13/32 in nominal length in the catalog entry."
+        },
+        "grip": {
+          "text": "13",
+          "location": "line 1",
+          "explanation": "Grip length 1 in, from the catalog entry for dash 13."
+        },
+        "drilling": {
+          "text": "A",
+          "location": "line 1",
+          "explanation": "Suffix A means undrilled shank."
+        },
+        "standard": {
+          "text": "AN3",
+          "location": "line 1",
+          "explanation": "AN3 is the standard designation."
+        }
+      },
+      "compliance": [
+        {
+          "label": "Certificate of conformance requested",
+          "evidence": "need C of C",
+          "note": "Buyer asked outright. Both dealers claim C of C availability; the catalog says request and verify traceability. Not verified."
+        }
+      ],
+      "benchmark": {
+        "name": "Aircraft Spruce and Wicks Aircraft advertised listings for AN3-13A",
+        "as_of": "2026-10-10",
+        "unit": "USD each",
+        "kind": "sample",
+        "explanation": "Two public dealer listings for the same part number at single-piece quantity, with no freight, tax, or certificate charges. Supports a retail reference for this part. Does not support a delivered price, a 100-piece tier, or a market index."
+      },
+      "unresolved_fields": [],
+      "edited_fields": [],
+      "processing": {
+        "confidence": {
+          "part_number": 0.98,
+          "quantity": 0.97,
+          "form": 0.95
+        },
+        "assumptions": [
+          "Material, thread, nominal length, grip, and finish come from the catalog entry for AN3-13A, not from the RFQ words.",
+          "Single-piece price basis. The 100-piece tier was not collected.",
+          "Origin, lot traceability, and aircraft eligibility were not requested and are not verified."
+        ],
+        "rules_used": [
+          "AN part number parser: family AN3, dash 13, suffix A means undrilled shank.",
+          "Quantity parser: 100 ea means 100 each."
+        ],
+        "match": {
+          "status": "exact",
+          "score": 1.0,
+          "reason": "Exact part number match.",
+          "candidates": [
+            {
+              "item_id": "AVI-001",
+              "part_number": "AN3-13A",
+              "score": 1.0,
+              "matched_on": [
+                "exact part number"
+              ],
+              "mismatches": [],
+              "reason": "Exact part number match."
+            }
+          ]
+        },
+        "question_choices": []
+      }
+    }
+  ]
+}
