@@ -149,23 +149,28 @@ RfqProcessing::Answers.apply(previous_result: stored_hash, answers: answers, pip
 - The result is a new hash with a new `revision.id`, `previous_revision`, and `changed_line_ids`. Unanswered lines are copied unchanged. Every rerun line keeps its `line_id` and records `processing.answered`. Prices keep their `benchmark.as_of` (guard 4).
 - Guards 2 and 3 (never overwrite a rep edit, clear approval and highlight changes) are the app's; `edited_fields` on the stored line is the signal.
 
-## Alternates on ambiguous lines (Ken, 13:58)
+## Quote options on ambiguous lines (Ken 13:58, shape agreed with Hirsh 14:00)
 
-When the matcher returns two or three candidates, the line stays `needs_buyer` with its question, and `processing.alternates` lists each candidate as an option the quote can show and the buyer can pick on acceptance:
+When the matcher returns two or three candidates, the line stays `needs_buyer` with its question, and `processing.quote_options` lists each candidate as an option the review screen and the quote PDF show; the buyer picks one on acceptance. The committed subtotal never includes an option (Hirsh).
 
 ```json
-"alternates": [
-  { "id": "line-1-ab12cd34-a1", "choice_id": "line-1-ab12cd34-c1",
+"quote_options": [
+  { "id": "line-1-ab12cd34-o1", "choice_id": "line-1-ab12cd34-c1",
     "label": "Option A: 304 stainless sheet, 16 ga (0.0625 in), 2B finish",
-    "catalog_sku": "RC-SS304-SHT-16GA-48X96-2B", "item_id": "RC-SS304-SHT-16GA-48X96-2B", "spec": { "material": "stainless steel", "grade": "304", "form": "sheet", "thickness_in": 0.0625, "finish": "2B" },
-    "unit_price": null, "price_source": null, "benchmark": null, "lead_time": { "text": "to confirm", "stocked": false, "source": null },
+    "catalog_sku": "RC-SS304-SHT-16GA-48X96-2B", "item_id": "RC-SS304-SHT-16GA-48X96-2B",
+    "spec": { "material": "stainless steel", "grade": "304", "form": "sheet", "thickness_in": 0.0625, "finish": "2B" },
+    "quantity": 20, "quantity_unit": "sheet",
+    "unit_price": null, "currency": null, "price_source": null, "benchmark": null,
+    "lead_time": "to confirm", "lead_time_source": "no stock confirmation on the catalog row",
     "unresolved_fields": ["unit_price"] }
 ]
 ```
 
-- One entry per candidate, in the matcher's order. `id` is `<line_id>-a<n>` and stable across reruns; `choice_id` names the question choice that picks this option.
-- A price appears only from a labeled source, the same rule as the line itself (`unit_price`, `price_source`, `benchmark` with `kind`, `source`, `as_of`). Otherwise `unit_price` is null and `unresolved_fields` lists `unit_price`. When Tisch's pricer prices each candidate, those fields fill from it.
-- No match lines and lines with one match carry an empty `alternates`. The app shows alternates on the review screen and in the quote PDF (Hirsh).
+- One entry per candidate that reached the threshold, in the matcher's order. `id` is `<line_id>-o<n>` and stable across reruns; `choice_id` names the question choice that picks this option, so a buyer answer and an acceptance point at the same thing.
+- `quantity` and `quantity_unit` are the line's. A price appears only from a labeled source, the same rule as the line itself: `unit_price` with `currency` `USD`, `price_source`, and `benchmark` in the line's benchmark shape (`name`, `as_of`, `kind`, `unit`, `explanation`). Otherwise `unit_price`, `currency`, `price_source` and `benchmark` are null and `unresolved_fields` lists `unit_price`, so a missing price never looks quotable. When Tisch's pricer prices each candidate, those fields fill from it.
+- `lead_time` is the text (`24 to 48 hours` or `to confirm`) and `lead_time_source` says why: the same two keys the app keeps on a line.
+- No match lines and lines with one match carry an empty `quote_options`. A no match line's closest items are never options, and a buyer answer can never promote one: only a candidate at or above the threshold can be chosen.
+- Fixture: `tools/rfq_processing/spec/fixtures/results/ambiguous_with_options.json` passes `ApplyResult`.
 
 ## Buyer terms in (workflow step 9)
 
