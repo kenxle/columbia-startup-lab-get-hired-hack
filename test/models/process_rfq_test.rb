@@ -406,6 +406,31 @@ class ProcessRfqTest < ActiveSupport::TestCase
     assert_equal "RC-STEELSHOT-S330", result.fetch("best").fetch("item_id")
   end
 
+  test "rules boundary accepts normalized spec and quantity from the new adapter" do
+    adapter = Class.new(QuoteWorkspace::ProcessRfq::IntakeMatcher) do
+      private
+
+      def given_spec(spec, quantity: nil)
+        { "thickness" => spec.fetch("thickness_in"), "quantity" => quantity }
+      end
+    end
+    catalog = CatalogMatch::Catalog.new(%w[rudco metals])
+    matcher = adapter.new(client: Object.new, catalog: catalog, service: CatalogMatch::Matcher)
+    called = false
+    CatalogMatch::Matcher.stub(:call, lambda { |text, client:, catalog:, given:, llm:|
+      called = true
+      assert_equal "304 stainless sheet", text
+      assert_nil client
+      assert_equal %w[metals rudco], catalog.items.map { |item| item["catalog"] }.uniq.sort
+      assert_equal({ "thickness" => 0.0625, "quantity" => 6 }, given)
+      assert_equal false, llm
+      :matched
+    }) do
+      assert_equal :matched, matcher.send(:call_service, "304 stainless sheet", { "thickness_in" => 0.0625 }, 6)
+    end
+    assert called
+  end
+
   test "intake pins the restricted matcher and never calls the automatic contract" do
     CatalogMatch::Contract.stub(:call, ->(*) { flunk "Unrestricted contract must not run" }) do
       @quote.update!(source_text: "S-330 steel shot, 100 lb")

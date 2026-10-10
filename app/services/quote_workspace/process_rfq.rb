@@ -31,11 +31,15 @@ module QuoteWorkspace
 
       # The catalog matcher has its own optional provider, independent of the
       # processing pipeline's llm flag. Keep both intake and answer reruns local.
-      def call_service(text)
-        return super unless @service.equal?(CatalogMatch::Matcher)
+      def call_service(text, spec = {}, quantity = nil)
+        unless @service.equal?(CatalogMatch::Matcher)
+          return super(text) if method(:call_service).super_method.arity == 1
+          return super(text, spec, quantity)
+        end
 
-        arguments = { client: @client, llm: false }
+        arguments = { client: nil, llm: false }
         arguments[:catalog] = @catalog if @catalog
+        arguments[:given] = given_spec(spec, quantity: quantity) if respond_to?(:given_spec, true)
         @service.call(text, **arguments)
       rescue StandardError
         nil # match turns unavailable matching into the existing safe failure.
