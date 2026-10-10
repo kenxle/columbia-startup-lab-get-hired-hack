@@ -67,3 +67,20 @@ class CatalogMatch::ApproveTest < ActiveSupport::TestCase
     assert_equal 0, @quote.quote_lines.count
   end
 end
+
+class CatalogMatch::ApproveUnitsTest < ActiveSupport::TestCase
+  test "the buyer's unit is kept, and a different catalog unit is held for confirmation" do
+    client = Client.create!(name: "Foundry Co", workspace_token: "t" * 43)
+    quote = Quote.create!(title: "Shot", source_text: "x", workspace_token: "t" * 43)
+    request = CatalogMatch::Suggest.call(client: client, description: "S-330 steel shot 20 bags")
+    line = CatalogMatch::Approve.call(match_request: request, part_numbers: [ "RC-STEELSHOT-S330" ], quote: quote)[:lines].first
+    assert_equal "bags", line.quantity_unit
+    assert_includes line.unresolved_fields, "quantity_unit"
+    assert_match(/asked in bags; the catalog sells by lb/, line.notes)
+
+    request = CatalogMatch::Suggest.call(client: client, description: "S-330 steel shot 40,000 lbs")
+    line = CatalogMatch::Approve.call(match_request: request, part_numbers: [ "RC-STEELSHOT-S330" ], quote: quote)[:lines].first
+    assert_equal "lbs", line.quantity_unit
+    assert_equal [ "unit_price" ], line.unresolved_fields
+  end
+end

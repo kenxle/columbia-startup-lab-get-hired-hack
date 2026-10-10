@@ -149,3 +149,13 @@ class CatalogMatch::MatcherTest < ActiveSupport::TestCase
     end
   end
 end
+
+class CatalogMatch::MatcherPartNumberGuardTest < ActiveSupport::TestCase
+  test "a part number does not override what else the buyer wrote" do
+    result = CatalogMatch::Matcher.call("RC-SS304-SHT-16GA-48X96-2B #4 finish")
+    assert_equal "candidates", result.outcome
+    assert_match(/#4|finish/, result.question)
+
+    assert_equal "match", CatalogMatch::Matcher.call("RC-SS304-SHT-16GA-48X96-2B 304 sheet 2B").outcome
+  end
+end

@@ -70,3 +70,44 @@ class CatalogMatch::ClientMemoryTest < ActiveSupport::TestCase
     assert_equal({ "finish" => "2B" }, term.field_values)
   end
 end
+
+class CatalogMatch::ClientMemoryDemoTermsTest < ActiveSupport::TestCase
+  setup do
+    @acme = Client.create!(name: "Acme Fabrication", workspace_token: "t" * 43)
+    @quote = Quote.create!(title: "Acme RFQ", source_text: "see lines", workspace_token: "t" * 43)
+  end
+
+  test "gauge, thickness and unit can be taught, with the RFQ that confirmed them" do
+    term = CatalogMatch::ClientMemory.new(@acme).teach!(
+      term: "16 ga", fields: { "gauge" => "16", "thickness" => "0.0625", "quantity_unit" => "sheet" }, confirmed_on: "RFQ-0001"
+    )
+    assert_equal({ "gauge" => 16, "thickness" => 0.0625, "quantity_unit" => "sheet" }, term.field_values)
+    assert_equal "RFQ-0001", term.confirmed_on
+    assert_match(/confirmed on RFQ-0001/, term.explanation_prefix)
+  end
+
+  test "a taught thickness resolves the gauge line next time, citing the RFQ" do
+    CatalogMatch::ClientMemory.new(@acme).teach!(term: "16 ga", fields: { "thickness" => "0.0625" }, confirmed_on: "RFQ-0001")
+    result = CatalogMatch::Matcher.call("stainless 304 sheet 16 ga 48 x 96 2B", client: @acme)
+    assert_equal "match", result.outcome
+    thickness = result.reading.fields["thickness"]
+    assert_equal "client_memory", thickness["source"]
+    assert_match(/RFQ-0001/, thickness["explanation"])
+  end
+
+  test "a bad number is refused" do
+    assert_raises(ActiveRecord::RecordInvalid) do
+      CatalogMatch::ClientMemory.new(@acme).teach!(term: "thin", field: "thickness", value: "about a sixteenth")
+    end
+  end
+
+  test "ordinary words are never learned, and many unknown words teach none" do
+    request = CatalogMatch::Suggest.call(client: @acme, description: "urgent ss 304 sheet 16ga 4x8")
+    CatalogMatch::Approve.call(match_request: request, part_numbers: [ "RC-SS304-SHT-16GA-48X96-4" ], quote: @quote)
+    assert_nil @acme.client_terms.find_by(term: "urgent")
+
+    request = CatalogMatch::Suggest.call(client: @acme, description: "zz qq yy ss 304 sheet 16ga 4x10")
+    CatalogMatch::Approve.call(match_request: request, part_numbers: [ "RC-SS304-SHT-16GA-48X120-4" ], quote: @quote)
+    assert_empty @acme.client_terms.where(term: %w[zz qq yy])
+  end
+end

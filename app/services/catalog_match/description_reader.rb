@@ -424,15 +424,17 @@ module CatalogMatch
       @client_terms.each do |term|
         next if term.field_values.empty?
 
-        pattern = /(?<![\w])#{Regexp.escape(term.term)}(?![\w])/i
-        next unless @work.match?(pattern)
+        pattern = /(?<![\w])#{Regexp.escape(term.term).gsub('\ ', '\s*')}(?![\w])/i
+        # A taught term can be words the rules also read ("16 ga"), so look in
+        # the original text; memory still fills only fields the text left open.
+        found = @original.match(pattern)
+        next unless found
 
-        consume(pattern) do |match|
-          term.field_values.each do |field, value|
-            next if set?(field)
+        consume(pattern) { nil } if @work.match?(pattern)
+        term.field_values.each do |field, value|
+          next if set?(field)
 
-            set(field, value, match[0], "#{term.explanation_prefix} \"#{match[0]}\" means #{field} #{value}", source: "client_memory")
-          end
+          set(field, value, found[0], "#{term.explanation_prefix} \"#{found[0]}\" means #{field} #{value}", source: "client_memory")
         end
       end
     end

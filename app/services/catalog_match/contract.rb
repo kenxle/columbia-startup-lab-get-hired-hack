@@ -37,7 +37,9 @@ module CatalogMatch
       status = case @result.outcome
                when "no_match" then "no_match"
                when "match" then @result.best.checks.any? { |check| check[:field] == "pn" && check[:status] == :exact } ? "exact" : "scored"
-               else entries.size > 1 ? "ambiguous" : "scored"
+               # Anything the matcher wants confirmed, even a single near item,
+               # goes back as ambiguous with its question; it is never "best".
+               else "ambiguous"
                end
       best = status == "no_match" || entries.empty? ? nil : entries.first
       best = nil if best && status == "scored" && best["score"] < THRESHOLD

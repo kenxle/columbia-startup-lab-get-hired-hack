@@ -58,3 +58,12 @@ class CatalogMatch::ContractTest < ActiveSupport::TestCase
     assert_equal "RC-AL-P1020-SOW", JSON.parse(output).dig("best", "part_number")
   end
 end
+
+class CatalogMatch::ContractNearTest < ActiveSupport::TestCase
+  test "a single near item is ambiguous with its question, never best" do
+    result = CatalogMatch::Contract.call({ "line_text" => "6061-T6 plate 1/2 48x96" })
+    assert_equal "ambiguous", result["status"]
+    assert_nil result["best"]
+    assert_match(/T651/, result["question"])
+  end
+end

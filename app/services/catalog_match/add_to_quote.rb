@@ -42,10 +42,10 @@ module CatalogMatch
           spec: SPEC_FROM_ITEM.transform_values { |value| value.call(@item)&.to_s&.truncate(200) }.compact,
           evidence: evidence,
           quantity: @quantity,
-          quantity_unit: @item["unit"],
+          quantity_unit: buyer_unit || @item["unit"],
           catalog_sku: @item["pn"],
           state: "needs_buyer",
-          unresolved_fields: [ "unit_price" ],
+          unresolved_fields: [ "unit_price", ("quantity_unit" if unit_mismatch?) ].compact,
           line_id: "match-#{@match_request.id}-#{@item['pn']}".first(200),
           processing: {
             "source" => "catalog_match",
@@ -57,7 +57,7 @@ module CatalogMatch
           },
           notes: "Matched by the catalog agent to #{@item['pn']} for #{@match_request.client.name}; " \
                  "approved by the rep. No price yet: waiting for a benchmark price. " \
-                 "#{@item['catalog_provenance'].to_s.upcase_first}."
+                 "#{@item['catalog_provenance'].to_s.upcase_first}.#{unit_note}"
         )
         line.save!
         @quote.invalidate_approval!
@@ -67,9 +67,38 @@ module CatalogMatch
 
     private
 
+    UNIT_ALIASES = {
+      "lbs" => "lb", "pound" => "lb", "pounds" => "lb", "ea" => "each", "pc" => "each", "pcs" => "each",
+      "piece" => "each", "pieces" => "each", "sheets" => "sheet", "plates" => "plate", "lengths" => "length",
+      "bags" => "bag", "ton" => "ton", "tons" => "ton", "pallets" => "pallet", "drums" => "drum"
+    }.freeze
+
+    def reading
+      @reading ||= DescriptionReader.read(@match_request.description,
+                                          client_terms: ClientMemory.new(@match_request.client).terms)
+    end
+
+    # The unit the buyer wrote ("bags", "tons"), kept as written.
+    def buyer_unit
+      reading.fields.dig("quantity_unit", "value").presence
+    end
+
+    def unit_mismatch?
+      buyer_unit.present? && @item["unit"].present? && normalize_unit(buyer_unit) != normalize_unit(@item["unit"])
+    end
+
+    def unit_note
+      return "" unless unit_mismatch?
+
+      " The buyer asked in #{buyer_unit}; the catalog sells by #{@item['unit']}. Confirm the conversion before pricing."
+    end
+
+    def normalize_unit(unit)
+      text = unit.to_s.downcase.squish
+      UNIT_ALIASES.fetch(text, text)
+    end
+
     def evidence
-      reading = DescriptionReader.read(@match_request.description,
-                                       client_terms: ClientMemory.new(@match_request.client).terms)
       reading.fields.each_with_object({}) do |(name, field), result|
         key = EVIDENCE_FROM_READING[name]
         next if key.nil? || result.key?(key) || field["text"].blank?

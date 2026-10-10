@@ -83,9 +83,18 @@ module CatalogMatch
       @part_number_result ||= begin
         exact = @reading.part_numbers.filter_map { |pn| @catalog.find(pn) }
         if exact.any?
-          candidates = exact.map { |item| Candidate.new(item: item, checks: [ pn_check(item, :exact) ]) }
-          outcome = candidates.size == 1 ? "match" : "candidates"
-          question = candidates.size > 1 ? "The line names #{candidates.size} part numbers. Do you need all of them?" : nil
+          # The part number names the item, but every other attribute the
+          # buyer wrote is still checked against it; a disagreement is asked.
+          candidates = exact.map { |item| Candidate.new(item: item, checks: [ pn_check(item, :exact) ] + checks_for(item)) }
+          disagreement = candidates.flat_map { |candidate| candidate.conflicts + candidate.near }.first
+          question = if candidates.size > 1
+                       "The line names #{candidates.size} part numbers. Do you need all of them?"
+                     elsif disagreement
+                       disagreement[:question] ||
+                         "The line names #{candidates.first.item['pn']}, but also says \"#{disagreement[:buyer_text]}\" " \
+                         "(#{disagreement[:field]}); the catalog item is #{disagreement[:catalog_value].presence || 'different'}. Which is right?"
+                     end
+          outcome = question ? "candidates" : "match"
           Result.new(outcome: outcome, reading: @reading, candidates: candidates, closest: [], question: question)
         else
           related_part_numbers
