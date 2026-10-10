@@ -1,24 +1,14 @@
-# Brand Position: RudCo QuoteTrace
+# Brand Position: RudCo Quote Desk
 
-**Status:** Draft for Ken's review, 2026-10-10.
+**Status:** Draft for Ken's review, 2026-10-10. Name decided.
 
 **Read with:** [the product brief](PRD.md), [the demo workflow](WORKFLOW.md), [the RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), [the competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md), [the sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md).
 
-**Summary.** We present the product as a RudCo tool for its quoting reps. The working name is RudCo QuoteTrace. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep has it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon, with sample data.
+**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep has it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon, with sample data.
 
 ## Needs your call
 
-**N1. The product name.** All options sit under the RudCo name, so the full name reads "RudCo [name]". I searched each for an existing software product with the same name.
-
-| Option | Why | What the search found |
-|---|---|---|
-| **QuoteTrace** (recommended) | RudCo already sells traceability: documents tied back to the PO, lot and heat number ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The name says the quote is traceable too. A rep can say "run it through QuoteTrace." | No product by that exact name. The closest is QuoTrak, a quoting tool for trade contractors ([Capterra](https://www.capterra.ca/software/1097122/QuoTrak)). Different spelling and market. |
-| **Line Check** | Plain and literal. It names what the rep does: check each line. | No quoting product by that name ([search results](https://www.alcircle.com/blog/rfq-vs-rfp-in-metal-trading-whats-the-difference-and-why-it-matters) were general RFQ articles). Weakness: it sounds like a checker, not a quote tool. |
-| **Quote Desk** | Sounds like a place in the office where quotes get made. Easy to say. | Taken twice: a general quoting platform called QuoteDesk on [G2](https://www.g2.com/categories/cpq?page=16), and a B2B app called "Quote Desk: AI B2B Quotes" on [pickyourapp](https://pickyourapp.com/es/products/quote-desk). |
-| **Open Quote** | Echoes RudCo's line "Opacity is a tax on industrial procurement" ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_opacity-is-a-tax-on-industrial-procurement-activity-7451955371537059840-lsR0)). | Taken: OpenQuote is an open-source insurance quoting system ([UNIX forum release note](https://community.unix.com/t/openquote-1-0-released/204959)). Different market, but the same name. |
-| **ClearQuote** | Says "transparent" in one word. | Taken more than once: an automotive repair-estimate company ([CB Insights](https://www.cbinsights.com/company/clear-quote/customers)) and a 2017 trademark for order-entry software ([Justia, PGT Industries](https://trademark.justia.com/owners/pgt-industries-llc-5866381)). Drop it. |
-
-**Recommendation: RudCo QuoteTrace.** It is the only option that ties to something RudCo already promises, and the search found no direct conflict. These were quick web searches, not a trademark search.
+Nothing open. The name is decided: **RudCo Quote Desk** (see [Decisions](#decisions)).
 
 ---
 
@@ -28,7 +18,7 @@
 
 **The problem:** the same item arrives written five ways, and the rep decodes every line by hand. RudCo's own challenge example shows the risk. It calls "304 SS sheet 16ga 4x8" and "Stainless 304, 0.060 in, 48 x 96" the same item, but 16 gauge stainless is 0.0625 in ([sharper-angle report, 6.5](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#65-messy-lines-and-the-gauge-trap)). RudCo's company page names the setting: "Procurement is still on email." ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_ai-infrastructure-boom-reshapes-industrial-activity-7497807860853059584-F2_C)).
 
-**What it is:** RudCo QuoteTrace reads a buyer's RFQ email, PDF or spreadsheet and drafts a priced quote, line by line. Each line carries its price, its benchmark, its lead time and its paperwork. The rep reviews and sends it ([PRD](PRD.md#what-it-does)). The agent prepares the conversation, and the rep has it ([PRD](PRD.md#who-it-is-for)).
+**What it is:** RudCo Quote Desk reads a buyer's RFQ email, PDF or spreadsheet and drafts a priced quote, line by line. Each line carries its price, its benchmark, its lead time and its paperwork. The rep reviews and sends it ([PRD](PRD.md#what-it-does)). The agent prepares the conversation, and the rep has it ([PRD](PRD.md#who-it-is-for)).
 
 **How it is different:** every field links to the buyer's own words and the table or rule used to read them. Every price sits beside a named, dated benchmark. Paperwork the buyer needs gets flagged with the trigger words highlighted: mill test reports, certificates of analysis, country of origin, DFARS, REACH and RoHS ([WORKFLOW step 5](WORKFLOW.md#5-price-flag-compliance-list-assumptions)). An unclear line becomes one question to the buyer with choices to click ([sharper-angle report, section 5](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#5-researchers-position)). None of the AI quote tools we read shows field-level sources, buyer-facing questions, or spec-implied certification flags on its public pages ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#ai-quote-tools-for-distributors)).
 
@@ -48,7 +38,8 @@ Each claim we make, and each tagline, maps to one of RudCo's own lines. The anch
 | Every benchmark carries its date. A line with no benchmark is held, not priced. Tagline 3: "A price with its date and its source." | "The market moves every day. The quote in your inbox often doesn't." | [LinkedIn, 2026-05-11](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_have-you-ever-wondered-if-youre-getting-activity-7459610821522833408--F-1) |
 | A messy email in, a quote on RudCo's own lines (steel shot, aluminum ingot, plate) out. | "Industrial materials simplified." | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
 | Accurate reading, an open price, and a person who signs off. Tagline 2: "Read right. Priced in the open. Sent by your rep." | "Precision. Transparency. Trust." | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
-| Compliance flags for MTR, COA, origin, DFARS, REACH and RoHS. The name QuoteTrace. | "PO→COA/MTR" and "DFARS/REACH/RoHS flags" (site FAQ copy, outside the profile's quote list) | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
+| Compliance flags for MTR, COA, origin, DFARS, REACH and RoHS. | "PO→COA/MTR" and "DFARS/REACH/RoHS flags" (site FAQ copy, outside the profile's quote list) | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
+| The name Quote Desk: the rep's desk, where the quote is prepared before the conversation. | "People still want to deal with people" and technology gives them "better information for the conversation" | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
 | Lead time on stocked lines; a quote draft well inside their reply window. | "Stocked lines ship in 24–48 hours" and a quote reply "within 24 hours" (site copy) | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
 
 **The one claim with no anchor.** The comparison with other quote tools has no line behind it: RudCo does not position itself against competitors in its own words. So the comparison stays as evidence for judges in [What makes it different](#what-makes-it-different). No headline, tagline or UI copy rests on it.
@@ -75,7 +66,7 @@ On speed, we use RudCo's own terms, as the [brief](PRD.md#how-we-know-it-works) 
 
 From the [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead). Competitor claims are from their own pages and were not tested.
 
-| What competitors claim | What QuoteTrace shows that they do not |
+| What competitors claim | What Quote Desk shows that they do not |
 |---|---|
 | AI quote tools (Avent, Hexa, Mercura, Proton) turn messy RFQs into draft quotes for a rep to approve ([sharper-angle report, 6.7](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#67-what-existing-tools-already-do)). The nearest thing to showing work is a confidence score ([Cassidy](https://www.cassidyai.com/solutions/ai-rfq-data-extraction-agent)) or a low-confidence flag ([Proton](https://www.proton.ai/order-and-quote-automation)). | Each field linked to the buyer's own words and the gauge table or rule used. |
 | Service centers offer mill test reports as downloads after purchase ([CSW page on Ryerson.com](https://centralsteel.com/home/customerservice/faq), [Yarde](https://www.yarde.com/)). | The paperwork a spec implies, flagged at quote time, with the trigger words highlighted. This extends what RudCo already sells: "PO→COA/MTR" traceability and "DFARS/REACH/RoHS flags" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). |
@@ -140,7 +131,7 @@ The SKU, benchmark and prices below are placeholders. The real screen fills them
 
 All values come from RudCo's live site, read on 2026-10-10. The CSS stores colors as HSL custom properties on `:root` in [index-A39G_5VS.css](https://www.rud-co.com/assets/index-A39G_5VS.css). The hex values and every contrast ratio below come from [brand_colors.py](brand_colors.py), not by eye.
 
-| Role in QuoteTrace | Hex | Source |
+| Role in Quote Desk | Hex | Source |
 |---|---|---|
 | Navy: sidebar, dark bands, focus moments | `#0f1f3d` | `--brand-navy: 220 60% 15%` in the CSS. The page's `theme-color` meta is `#0a1e3f` ([rud-co.com HTML](https://www.rud-co.com/)). |
 | Navy, share-image background | `#00091e` to `#092347` | Sampled from [og/home.png](https://www.rud-co.com/og/home.png). It is a gradient. |
@@ -170,12 +161,12 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 - **Type:** the system sans stack. The site loads no web fonts (no `@font-face` in the CSS) and uses Tailwind's default `ui-sans-serif, system-ui, sans-serif`. Numbers and SKUs can use the site's `font-mono` stack: `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas`.
 - **Weights:** 500 for nav, 600 for the wordmark and labels, 700 for headings (`font-medium`, `font-semibold`, `font-bold` in the [site code](https://www.rud-co.com/assets/index-B04wKX3n.js)).
 - **Radius:** `--radius: .375rem` (6px). Buttons and inputs use `rounded-md`, which is 4px.
-- **Buttons:** the site uses the shadcn button set. Default is blue fill with white text, `h-10 px-4`. Outline is a 1px border on white. A navy variant appears on "Contact Sales": `bg-brand-navy` with white text ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). QuoteTrace uses blue fill for Approve and Send, outline for Edit and Export, and navy for nothing else.
+- **Buttons:** the site uses the shadcn button set. Default is blue fill with white text, `h-10 px-4`. Outline is a 1px border on white. A navy variant appears on "Contact Sales": `bg-brand-navy` with white text ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). Quote Desk uses blue fill for Approve and Send, outline for Edit and Export, and navy for nothing else.
 
 ### How the workspace should look like rud-co.com
 
 - **Header:** match the site header. Warm off-white bar (`#f7f5f3`), with a 1px bottom border once the page scrolls. On the left, RudCo's round logo image at 32px, then "RudCo" in 600 weight, with a small gray line under it. On the right, nav links in 14px, weight 500.
-- **Product name:** "QuoteTrace" appears as the page title beside the lockup, or as the first nav item. Leave the logo lockup exactly as the site sets it.
+- **Product name:** "Quote Desk" appears as the page title beside the lockup, or as the first nav item. Leave the logo lockup exactly as the site sets it.
 - **Sidebar:** navy (`#0f1f3d`) with white and light-slate text. This carries the brand color the way the share images do.
 - **Gold:** one thin gold rule under the sidebar's product name, echoing the share image. Nowhere else.
 - **Body:** white page, `#f3f5f7` panels, `#e5e7eb` dividers. RFQ on the left, quote on the right, as Hirsh has it now.
@@ -204,14 +195,14 @@ Any rust-orange left over from the first direction goes away. Hirsh owns `app/vi
 ### Logo use
 
 - Use RudCo's logo files exactly as the site serves them. The header uses [this round mark](https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png) beside the word "RudCo" set as live text. The footer uses [a second mark file](https://www.rud-co.com/lovable-uploads/6cf64f46-a753-4f3b-ae89-c4b015a6e51d.png).
-- Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a QuoteTrace logo.
+- Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a Quote Desk logo.
 - The share image's all-caps "RUDCO" wordmark is part of a picture. Do not trace it into the app.
 
 ## Honesty guardrails
 
 - **Label it a concept.** Every screen and the video say it is a concept built for RudCo at Get Hired Hack. It is not a shipped RudCo product.
 - **Label sample data.** The catalog, SKUs, prices and benchmarks are sample data unless RudCo gave them to us. The screen says so on every price, as the [PRD commits](PRD.md#commitments).
-- **No endorsement.** Never say or imply that RudCo endorses, uses or sells QuoteTrace.
+- **No endorsement.** Never say or imply that RudCo endorses, uses or sells Quote Desk.
 - **No customers.** RudCo names no customer in public ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#business-model-and-customers)). The sample buyer stays fictional (Northline Fabrication, per the [frontend contract](../engineering/FRONTEND_CONTRACT.md#processing-handoff)).
 - **No stock claims.** Do not say an item is in stock in RudCo's real warehouse. A lead time of 24 to 48 hours appears only on lines the sample catalog marks as stocked, and it is labeled sample data. The site's product data shows a price of "0" and in-stock for every item, which reads as placeholder data ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#business-model-and-customers)).
 - **Flags, not certificates.** A compliance flag records what the buyer needs. It does not certify RudCo's material ([frontend contract](../engineering/FRONTEND_CONTRACT.md#model-and-view-interface)).
@@ -237,7 +228,6 @@ Any rust-orange left over from the first direction goes away. Hirsh owns `app/vi
 
 **Name searches, 2026-10-10**
 
-- QuoteTrace: [Capterra, QuoTrak](https://www.capterra.ca/software/1097122/QuoTrak)
 - Quote Desk: [G2 CPQ listing](https://www.g2.com/categories/cpq?page=16), [pickyourapp, Quote Desk](https://pickyourapp.com/es/products/quote-desk)
 - Open Quote: [OpenQuote 1.0 release note](https://community.unix.com/t/openquote-1-0-released/204959)
 - ClearQuote: [CB Insights](https://www.cbinsights.com/company/clear-quote/customers), [Justia, PGT Industries trademarks](https://trademark.justia.com/owners/pgt-industries-llc-5866381)
@@ -248,3 +238,19 @@ Any rust-orange left over from the first direction goes away. Hirsh owns `app/vi
 - [Get Hired Hack on Devpost](https://get-hired-hack-nyc.devpost.com/)
 - [Precision Steel Services estimator posting](https://jobs.workable.com/jobs/0862cc67-073f-4e64-8eb0-0057c054e3bf.md)
 - [Cassidy](https://www.cassidyai.com/solutions/ai-rfq-data-extraction-agent), [Proton](https://www.proton.ai/order-and-quote-automation), [Central Steel & Wire FAQ](https://centralsteel.com/home/customerservice/faq), [Yarde](https://www.yarde.com/), [N.T. Ruddock](https://www.ntruddock.com/), [Winoa](https://www.winoa.com/)
+
+## Decisions
+
+- **The name is RudCo Quote Desk** (Ken, 2026-10-10). It names the rep's desk, where the agent prepares the quote and the rep has the conversation. It fits the founder's "People still want to deal with people." Ken's rule: this is an internal name for part of RudCo's service, not a standalone product, so other companies using the name does not matter.
+
+Options weighed:
+
+| Option | Why | What the search found |
+|---|---|---|
+| **QuoteTrace** (recommended) | RudCo already sells traceability: documents tied back to the PO, lot and heat number ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The name says the quote is traceable too. A rep can say "run it through QuoteTrace." | No product by that exact name. The closest is QuoTrak, a quoting tool for trade contractors ([Capterra](https://www.capterra.ca/software/1097122/QuoTrak)). Different spelling and market. |
+| **Line Check** | Plain and literal. It names what the rep does: check each line. | No quoting product by that name ([search results](https://www.alcircle.com/blog/rfq-vs-rfp-in-metal-trading-whats-the-difference-and-why-it-matters) were general RFQ articles). Weakness: it sounds like a checker, not a quote tool. |
+| **Quote Desk** | Sounds like a place in the office where quotes get made. Easy to say. | Taken twice: a general quoting platform called QuoteDesk on [G2](https://www.g2.com/categories/cpq?page=16), and a B2B app called "Quote Desk: AI B2B Quotes" on [pickyourapp](https://pickyourapp.com/es/products/quote-desk). |
+| **Open Quote** | Echoes RudCo's line "Opacity is a tax on industrial procurement" ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_opacity-is-a-tax-on-industrial-procurement-activity-7451955371537059840-lsR0)). | Taken: OpenQuote is an open-source insurance quoting system ([UNIX forum release note](https://community.unix.com/t/openquote-1-0-released/204959)). Different market, but the same name. |
+| **ClearQuote** | Says "transparent" in one word. | Taken more than once: an automotive repair-estimate company ([CB Insights](https://www.cbinsights.com/company/clear-quote/customers)) and a 2017 trademark for order-entry software ([Justia, PGT Industries](https://trademark.justia.com/owners/pgt-industries-llc-5866381)). Drop it. |
+
+

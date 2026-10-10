@@ -4,6 +4,8 @@
 
 ## Questions for you
 
+Answered: the name is decided (see [Decision](#decision)).
+
 - **Q1. "RudCo [Name]" or a name that stands alone?** Under "RudCo," the name can be plain and descriptive. On its own, it needs to carry more.
 - **Q2. Describe the job, or carry an image?** "QuoteTrace" says what it does. "Assay" is a metaphor the industry already knows.
 - **Q3. Which idea should it lead with?** The research points at three: the paper trail (traceability), accuracy (reading right), or openness (price and source in the open).
@@ -56,4 +58,4 @@ Conflict checks are quick web searches. Ken's call: this is an internal name for
 
 ## Decision
 
-Not decided yet.
+**RudCo Quote Desk** (Ken, 2026-10-10). It names the rep's desk, where the agent prepares the quote and the rep has the conversation. It is an internal name for part of RudCo's service. Recorded in the [brand position](BRAND_POSITION.md).

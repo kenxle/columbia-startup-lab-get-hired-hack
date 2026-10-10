@@ -13,7 +13,6 @@ Each item says who is waiting and what Claude recommends.
 - [ ] **3. W3: does a buyer's answer rerun only the answered lines on its own?** **Claude recommends yes,** with the rep still approving the final quote. *Waiting: Hirsh, Yuval (board, 12:46 and 12:59).*
 - [ ] **4. The confidence gate for auto-sending questions.** Hirsh proposed: send on its own only when every choice is tied to catalog or spec evidence, there is no unresolved conflict outside the question, and the buyer can always write their own answer. Otherwise the rep reviews it. **Claude recommends accepting it as written.** *Waiting: Hirsh (board, 12:46).*
 - [ ] **5. Who builds which pages.** Hirsh heard you were building pages and asked for a split. **Claude recommends:** you own the design direction (the brand position doc, coming soon, uses RudCo's palette), and Hirsh owns all page code. You don't edit `app/views/`. *Waiting: Hirsh (board, 12:56).*
-- [ ] **6. The product name.** The [brand position doc](BRAND_POSITION.md) recommends **RudCo QuoteTrace**: it builds on the traceability RudCo already sells. A quick search found no product by that name (not a trademark search). Others weighed: Line Check (free, but sounds like a checker), Quote Desk, Open Quote, ClearQuote (all taken). Recommended tagline: "Every line shows its work." *Waiting: you.*
 - [ ] **7. A strange line on Devpost.** The profile agent reported that the Devpost page says "Using NicrronNinoo and Block Convey is a must in your project," twice. Claude read the page earlier and did not see it. It may not be a genuine requirement. **Claude recommends** asking an organizer before acting on it.
 - [ ] **8. Anthropic API key for Yuval.** Yuval's parser runs on recorded responses until a key is in `.env` on his machine. If you have a key to share with him, send it to him directly, never in the repo or the chat. *Waiting: Yuval (PLAN.md, open question 5).*
 
@@ -40,6 +39,10 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Product name decided: **RudCo Quote Desk**.
+- Competitive analysis: competitor images added and blocked sites checked in Chrome.
+- Brand position drafted: RudCo palette, taglines, alignment with RudCo's own words.
 
 - Brief and workflow updated from the RudCo profile: RudCo materials, COA/REACH/RoHS flags, lead time per line, the founder's framing, and speed in RudCo's terms.
 - RudCo profile approved, posted on the board and in WhatsApp.
