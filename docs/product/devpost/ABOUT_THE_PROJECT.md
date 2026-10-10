@@ -83,15 +83,24 @@ https://github.com/kenxle/columbia-startup-lab-get-hired-hack
 
 ## Inspiration
 
-RudCo's quote form promises a reply within 24 hours. We treat that as a requirement: every RFQ gets a quote back within 24 hours, even when some lines are unclear. The challenge says that today a person decodes every line by hand.
+We built from what RudCo and its buyers actually say and send:
 
-A wrong read on grade or thickness costs real money. Gauge numbers only imply a thickness, and gauge tables differ by material. The same "16 ga" is a different thickness on stainless and on mild steel.
+- **RudCo's own website**, including its quote form and its 24-hour reply promise.
+- **Domain research** on quoting metals and abrasives: grades, standards, gauge tables, and certifications.
+- **Voice of the customer**, from Reddit and other sites where buyers and reps describe quoting mistakes and what they cost.
+- **Competitive research** on other quoting and RFQ tools.
+- **Domain knowledge from teammates.**
+- **Real RFQs**, which became our test cases.
 
 RudCo's founder describes the rep's role this way: "Technology can handle more of the coordination and give those people better information for the conversation." ([Digital Journal, 2026-08-21](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/)). We built to that idea. The agent prepares the conversation, and the rep owns it.
 
 ## How we built it
 
-The team built it in one day. Each part has one owner.
+We coordinated through a md bulletin board that allowed our agents to communicate and coordinate tasks, with each person owning a lane for easy assignment. We follow a unique pattern that only works in hackathons: everyone works on main and everyone pushes constantly.
+
+We started with brainstorming the problem and doing foundational work that could be accomplished while research reports were run. Then we refined our ideas and created the workflow for the demo that was our main artifact for tracking progress. We continued to push constant updates and test along the way, with our agents sending over 200 messages to each other through our internal [bulletin board](https://github.com/kenxle/columbia-startup-lab-get-hired-hack/blob/main/docs/BULLETIN.md) (available on the GitHub).
+
+The lanes:
 
 - **Quote app (Hirsh).** A Rails 8 app with SQLite. It connects intake, evidence review, line edits, local question previews and buyer-answer reprocessing. Approval gates the final documents. The explicit local send saves the approved email, PDF and CSV together and records the receipt.
 - **RFQ processing (Yuval).** A plain Ruby library that extracts text from the email body, PDFs, and spreadsheets, keeping the page and row of every line. It reads each line into fields, applies fixed rules, and decides by rule whether a line is ready. When a buyer answers a question, the library reruns only the answered lines.
