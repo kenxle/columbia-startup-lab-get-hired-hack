@@ -141,4 +141,4 @@ These are designed and partly built. We list them here so the submission does no
 - **Email threading.** Today an explicit send records a local receipt and saves the approved email with PDF and CSV attachments. Real mailbox delivery and thread replies are next.
 - **Showing where a learned reading came from.** The line would say, for example, "Read as 0.060 in, as you confirmed on RFQ-0001."
 - **Redlines.** Old and new values side by side when a rerun changes a line.
-- **RudCo's real catalog, inventory, and prices.** The product is written for them. The demo stands in data shaped like theirs.
+- **RudCo's real catalog, inventory, and prices.** The product is written for them but we don't have full access. The demo stands in data shaped like theirs.
