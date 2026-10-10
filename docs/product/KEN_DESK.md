@@ -12,6 +12,7 @@ Each item says who is waiting and what Claude recommends.
 
 ## Coming to you soon
 
+- **The working demo, as it is now.** Asked the team at 13:24 for a way to run it or a walkthrough.
 - **W4, which catalog the demo uses.** Tisch is answering. The brief now says the demo RFQ uses RudCo's materials, so Tisch needs metals catalog rows.
 
 ## Where things stand
