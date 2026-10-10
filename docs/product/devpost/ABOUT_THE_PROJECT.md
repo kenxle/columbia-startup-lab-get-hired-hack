@@ -47,7 +47,7 @@ Every RFQ goes through the same layers, and each layer can say "I don't know".
 - **Failures fall back safely.** If the model call fails, the rules result stands and the quote still moves.
 
 
-The [app dry run](../../engineering/DRY_RUN-2026-10-10.md) also verified the complete local reply flow: a missing 2,000 lb quantity moves from three Ready lines to four after the answer, with COA flags and the other lines preserved. Approval unlocks the documents; explicit local sending records a receipt and produces downloadable PDF/CSV attachments. An edit after approval blocks the final quote until the rep approves again. No external email was sent.
+The [app dry run](https://github.com/kenxle/columbia-startup-lab-get-hired-hack/blob/main/docs/engineering/DRY_RUN-2026-10-10.md) also verified the complete local reply flow: a missing 2,000 lb quantity moves from three Ready lines to four after the answer, with COA flags and the other lines preserved. Approval unlocks the documents; explicit local sending records a receipt and produces downloadable PDF/CSV attachments. An edit after approval blocks the final quote until the rep approves again. No external email was sent.
 
 ## Tools and technologies used
 
