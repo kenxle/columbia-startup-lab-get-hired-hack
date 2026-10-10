@@ -2,47 +2,38 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 15:25, from the bulletin board through 15:22.
+**Last updated:** 2026-10-10 15:42, from the bulletin board through 15:37.
 
 ## Needs your call
 
-Each item says who is waiting and what Claude recommends.
-
-- [ ] **15. Answer Hirsh's takeover request. He has asked three times (15:10, 15:15, 15:16).** Tisch says nothing is unpushed and no Tisch agent is running, so the handoff is clean. What is left, with Claude's recommended owner:
-  - **Matcher change for taught terms** (so "0.060 in" taught as 0.0625 matches). Hirsh and Yuval agreed the interface (309ab65). Tisch stopped editing those files at 15:14. *Owner: Yuval.* He offered to take the matcher files so nobody overlaps.
-  - **Metals prices.** Tisch's pricer is pushed (12d0376, a "Refresh live prices" button on the quote). It prices a line only with real supplier cost and a 15% target margin, so the demo metals lines stay held. Tisch declines the FRED-plus-margin estimate: FRED is a price index, not a dollar cost per sheet. **Tisch is waiting on you for this one (15:19).** Pick: (a) metals lines show "to confirm", with the verified MetalsDepot A36 listing as a reference price; or (b) Tisch adds a labeled FRED estimate now, which Tisch says takes about 20 minutes. *Recommendation:* (a). The demo leads with the abrasive RFQs (RFQ-0014: four Ready lines, USD 1,810), and recording is close. The promo video keeps its full price, as you decided.
-  - **Lead times on S-330, G-40, S-170, G-25.** Tisch has no stock evidence. *Your call:* apply your production-data rule and mark them stocked (24 to 48 hours), or leave "to confirm".
-  - **Supplier checks.** *Drop for today.*
-
-  Say "post it" and Claude posts that split to the board as your answer, with your lead-time choice.
-- [ ] **17. Devpost: paste the video link, then Save & continue.** The new "why" (RFQs are RudCo's lifeblood, the 24-hour promise, the cost of an error) is typed in, and the page will not save without the video link. The logo thumbnail is saved.
+- [ ] **18. Send the real Jev key in WhatsApp.** The first file held a Keychain command that only works on your Mac. The new file has the key itself: `~/Desktop/jev_for_team/JEV_API_KEY_value.txt`. Yuval is waiting on it.
+- [ ] **17. Devpost "About the project."** Edit it on [its review page](devpost/ABOUT_THE_PROJECT.md); Claude pastes it back. It now has Yuval's accuracy section. Then paste the video link and Save & continue. The thumbnail is saved.
 
 ## Coming to you soon
 
-- **Block Convey PRISM tracing**, asked of Yuval (15:28), Hirsh as backup. Yuval posts a screenshot of the trace list.
-- **Dry run of the demo script**, run by Hirsh.
-- **Approved quote sent through letter_opener**, marked Sent with time and recipient (asked of Hirsh, 15:22).
-- **Product and Compare restyle** toward rud-co.com: Lucide icons, the steel mill hero image, the orange bar, their background and footer. Hirsh gave it to a separate UI agent.
+- **Lead times on the four abrasive SKUs**, set to in stock, 24 to 48 hours, as you decided (asked of Tisch, 15:40).
+- **Block Convey PRISM tracing.** Hirsh built the client; Yuval is making the account and adding his hook.
+- **Jev on doubtful compliance hits**, by Yuval, once the key arrives.
+- **Flow walk and Playwright tests.** An agent is walking the demo script in its own copy of the app.
 - **Submission deck.** A subagent is building it.
 
 ## Where things stand
 
-From the bulletin board through 15:22. Recording is about 3:45.
+From the bulletin board through 15:37. Hirsh's [dry-run report](../engineering/DRY_RUN-2026-10-10.md) is up.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. Demo PDF reads cleanly. |
-| 2. Pull the data | ✅ | Yuval | 314 processing tests and 463 app tests pass. The Transnet tender now gives one item, not 257. |
-| 3. Parse | ✅ | Yuval | Reads correctly on the demo email, PDF and CSV. |
-| 4. Match | 🟡 | open (item 15) | Unsafe "close number counts as confirmed" rule removed (129c5d0). Taught terms wait on the matcher change. |
-| 5. Price, flags, lead time | 🟡 | open (item 15) | Abrasives priced (USD 0.38 to 0.42 per lb). Tisch's pricer is in the app; metals stay held without supplier cost. Lead times read "to confirm". |
-| 6. Buyer questions | ✅ | Hirsh | Saved silently to a local inbox, tracked as Waiting on buyer. |
-| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready, USD 1,810. RFQ-0017: three Ready, one Waiting on buyer, USD 1,010. |
-| 8. Send the reply | 🟡 | Hirsh | Sending through letter_opener asked at 15:22. |
-| 9. Learn the buyer | 🟡 | Yuval | Waits on the matcher change (row 4). |
-| Real models | 🟡 | Hirsh, Yuval, Tisch | **Works on Tisch's machine:** two live calls returned Claude Opus 5 in about 3 seconds (70f694f). Hirsh's and Yuval's calls still get server errors (502). The app keeps models off until a live pass on the demo machine. |
-| Jev | 🟡 | Yuval | Yuval says he still has no key. It is in the WhatsApp group. |
-| Marketing pages | 🟡 | Hirsh's UI agent | Restyle toward rud-co.com. |
+| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. |
+| 2. Pull the data | ✅ | Yuval | Email, PDF and CSV each give the same eight lines. |
+| 3. Parse | ✅ | Yuval | 332 processing tests pass. |
+| 4. Match | ✅ | Yuval | Taught terms now match exactly (62c5423); an untaught buyer stays held. |
+| 5. Price, flags, lead time | 🟡 | Tisch | Abrasives priced. Metals held, Tisch's call. Lead times being set (see above). |
+| 6. Buyer questions | ✅ | Hirsh | Local inbox, tracked as Waiting on buyer. |
+| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready, USD 1,810. Dry run passes. |
+| 8. Send the reply | ✅ | Hirsh | Approved quote goes to the local inbox with PDF and CSV, marked Sent (03615d3). |
+| 9. Learn the buyer | ✅ | Yuval, Hirsh | Teaching works end to end through the app. |
+| Real models | 🟡 | Hirsh, Yuval | Gateway calls still return 502 on Hirsh's and Yuval's machines. Rules fallback holds. |
+| Marketing pages | ✅ | Hirsh | Restyled toward rud-co.com (a306057). |
 
 ## Build map
 
@@ -119,6 +110,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Item 15 closed: Yuval owns the matcher (pushed); Tisch's pricing call stands; lead times made up for the demo, as you said.
 
 - Item 16 decided: Block Convey goes in; Yuval sets it up.
 
