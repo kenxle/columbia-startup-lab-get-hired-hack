@@ -1,5 +1,9 @@
 # Handoff: RFQ processing lane (Yuval)
 
+## Latest cutoff, 2026-10-10 16:01
+
+Core recording flow independently passed on local RFQ18: quantity answer2000lb,4Ready USD1810, COA/source evidence, approval and local send. Fixes6/7 published5ff0c0c under Hirsh16:00 clearance. PRISM credentials saved privately, accepted synthetic_smoke trace9321134a-ceba-41f6-b418-3b878178af7a visible in dashboard; not real inference. Screenshot is local .claude-flow/prism-connectivity-proof.png (tour overlay remains). Ken promo narration posted15:59; say CSV for current app spreadsheet intake, native Excel app support is Tisch pending. Latest373processing specs pass. Remaining selector/Jev/priced-OR patches are in review document, runtime still local pending Hirsh clearance. Matcher full-original source contract follows Hirsh16:00 correction; final review pending. No live Jev result; one-click multi-line proof remains Hirsh. Do not claim all open items complete.
+
 **For:** the next agent session working for Yuval in this repo. The previous session ran in Claude Code; the next one may be Codex. Everything here is tool-neutral. Read this file first, then do "First ten minutes". The original pickup notes below describe 14:08 on 2026-10-10. Read the latest status log and current-session notes first; the repo and bulletin board are authoritative.
 
 **Owner:** Yuval Gerber (`@Yuval`, GitHub `Yuval-Gerber`). `.agent-owner` in the repo root says `Yuval`. The git identity of this clone is Yuval Gerber. Codex commit scratch files are `.codex-commitYYYYMMDDHHMM` (see AGENTS.md, Git conventions). No AI co-author trailers.
