@@ -1,6 +1,6 @@
 # Promo Shot List: RudCo Quote Desk, 30 seconds
 
-**Status:** Draft for Ken's review.
+**Status:** Draft for Ken's review. Two versions: the [shot list](#shot-list) below (version A, the feature walk) and [version B](#version-b-the-three-selling-points) (the three selling points). Pick one.
 
 **Summary.** The cut opens on Ken's lines about RFQs, the 24-hour promise and the cost of an error. It then shows the gauge trap, a compliance flag and a quote the rep approves, and closes on "Every line shows its work." Everything after the opening uses real screens from the running app, except the two drawn scenes (the gauge trap and the close).
 
@@ -35,8 +35,23 @@ Status marks come from the [build map](../KEN_DESK.md#build-map) and [Where thin
 - **Capture before editing.** From `http://127.0.0.1:3100`, at 1920 by 1080, on the demo RFQ: the Quotes list Due column (shot 2), the stainless line with the thickness field clicked (shot 5), the SA-240 flag (shot 6), a Ready line and a held line (shot 7), and the drafted question then the Approve quote click (shot 8).
 - **Other files.** [Brand position](../BRAND_POSITION.md), [style guide](../STYLE_GUIDE.md), [demo script](../DEMO_SCRIPT.md), [promo.html](promo.html), [capture.js](capture.js).
 
+## Version B: the three selling points
+
+Same opening as version A: shots 1 to 3, word for word, 0:00 to 0:12.5. After that, one shot per selling point from the [product brief](../PRD.md#how-it-is-different): Accurate, Competitive, Faster. Each opens on its word, said and shown. 65 spoken words in all, the same as version A; the new part is 35 (12 + 8 + 10 + 5), counted with a script.
+
+| # | Time | Shot (what is on screen) | On-screen text | Voiceover | Source | Mark |
+|---|---|---|---|---|---|---|
+| 1 to 3 | 0:00 to 0:12.5 | As version A: the paperwork pile, the Due column, the messy RFQ typing out. | As version A | As version A (30 words) | As version A | Built, except shot 1's drawn pile |
+| 4 | 0:12.5 to 0:17 | **Accurate.** Split screen. Left: the drawn gauge sheets with the 4.2% delta, held for a beat. Right: the real stainless line, `16 ga` lit in the RFQ and "0.0625 in, stainless gauge table" on the line. The SA-240 flag slides in under it. | Big word: "Accurate". Caption: "Read right. The rule and the paperwork, shown." | "Accurate. Quote Desk reads every line and shows the rule behind it." (12) | Scene 2 of [promo.html](promo.html) plus app captures of the stainless line and the SA-240 flag | Built |
+| 5 | 0:17 to 0:20.5 | **Competitive.** The real Ready line's price, with the benchmark name and date beside it, and "plus RudCo's margin". | Big word: "Competitive". Caption: "Every price beside a dated benchmark." | "Competitive. Every price sits beside a dated benchmark." (8) | App capture of a priced line | Depends, as version A shot 7: a dated benchmark needs the metals pricer; the fallback is RudCo's list price with its source |
+| 6 | 0:20.5 to 0:25.5 | **Faster.** Quick cuts: the held line's drafted question, "Ships in 24 to 48 hours" on a stocked line, the rep clicking "Approve quote", the "REP APPROVED" stamp. The Due countdown from shot 2 shows time to spare. | Big word: "Faster". Caption: "One question, not a phone tag. Inside the 24 hours." | "Faster. Unclear lines become one question, and your rep approves." (10) | App captures from version A shots 2 and 8; stamp from scene 4 of [promo.html](promo.html) | Built for the draft, lead time and approval. The question does not send itself yet, so show the draft only |
+| 7 | 0:25.5 to 0:30 | The lockup close, as version A shot 9. The three words line up under the tagline: Accurate. Competitive. Faster. | "Every line shows its work." "The agent prepares the conversation, and the rep owns it." "Accurate. Competitive. Faster." | "Every line shows its work." (5) | Scene 5 of [promo.html](promo.html) | Built (drawn scene) |
+
+**What version B gives up.** The step-by-step proof: the separate thickness click, the flag on its own and the mail preview each get under two seconds. In exchange, a viewer leaves with the three words. The pitch line is shown, not spoken, to keep to 30 seconds.
+
 ## Needs your call
 
+- [ ] **Version A or version B.** A walks through the features one by one. B keeps your opening and then hits the three selling points: Accurate, Competitive, Faster. *Recommendation:* B for the Devpost video, since judges score the pitch; A's captures can still go in the live demo.
 - [ ] **Metals prices in the promo.** Shot 7 shows a dated benchmark price only if Tisch's pricer lands and you approve the "indicative price" idea (open item 11 on [Ken's Desk](../KEN_DESK.md#needs-your-call)). Without it, shot 7 falls back to RudCo's list price with its source. Both versions are in the table.
 - [ ] **Blueprint look vs the style guide.** The current cut uses a navy blueprint frame, gold labels and gold rules. The [style guide](../STYLE_GUIDE.md#how-the-workspace-should-look-like-rud-cocom) allows gold in one place only (the rule under the sidebar product name). Keep the blueprint look for the promo, or move gold off the labels and rules? This list keeps the blueprint look.
 - [ ] **Three shots now have no voiceover.** Your opening is 30 spoken words, so shots 5, 7 and 8 carry their message in a caption and hold for 2.0 seconds each. Say if you would rather drop a shot than its voiceover.

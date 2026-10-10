@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RudCo Quote Desk</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --ink: #1a212d;
+    --page: #f3f5f7;
+    --card: #fafbfc;
+    --stripe: #f6f7f9;
+    --rule: #e5e7eb;
+    --blue: #0063e6;
+    --muted: #454e5e;
+    --on-navy: #f0f4fc;
+    --on-navy-label: #8fb8ff;
+    --on-navy-muted: #c3cde0;
+    --ready: #126932; --ready-tint: #e7f9ed;
+    --amber: #7f4205; --amber-tint: #fdf0d8;
+    --gray: #454e5e; --gray-tint: #eaecf0;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  html, body { background: var(--page); }
+  .reveal { font-family: var(--sans); color: var(--ink); font-size: 24px; }
+  .reveal .slides { text-align: left; }
+  .reveal .slides > section { padding: 0; }
+  .frame { position: relative; box-sizing: border-box; width: 1280px; height: 720px; padding: 56px 72px; background: var(--page); overflow: hidden; }
+  .frame.dark { background: var(--navy); color: var(--on-navy); }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: var(--sans); color: var(--ink); text-transform: none; letter-spacing: 0; margin: 0; }
+  .reveal h1 { font-size: 64px; font-weight: 700; line-height: 1.1; }
+  .reveal h2 { font-size: 40px; font-weight: 700; line-height: 1.15; margin-bottom: 28px; }
+  .reveal h3 { font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 8px; }
+  .reveal .dark h1, .reveal .dark h2 { color: var(--on-navy); }
+  .reveal p { margin: 0 0 16px; line-height: 1.45; }
+  .eyebrow { font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+  .dark .eyebrow { color: var(--on-navy-label); }
+  .lede { font-size: 26px; color: var(--muted); max-width: 980px; }
+  .dark .lede { color: var(--on-navy-muted); }
+
+  /* L3 lockup */
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { width: 56px; height: 56px; border-radius: 50%; margin: 0; }
+  .brand__text { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand__name { font-weight: 600; font-size: 30px; color: var(--ink); }
+  .brand__product { margin-top: 4px; font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+  .dark .brand__name { color: var(--on-navy); }
+  .dark .brand__product { color: var(--on-navy-label); }
+
+  /* tables: naked, ruled */
+  .reveal table { border-collapse: collapse; width: 100%; margin: 0; font-size: 20px; }
+  .reveal table th { text-align: left; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 0 16px 10px 0; border-bottom: 2px solid var(--ink); }
+  .reveal table td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.35; }
+  .reveal table td:first-child { font-weight: 600; }
+  .reveal table.tight td { padding-top: 9px; padding-bottom: 9px; }
+
+  .mono { font-family: var(--mono); font-size: .92em; }
+  .badge { display: inline-block; font-size: 15px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .badge--ready { color: var(--ready); background: var(--ready-tint); }
+  .badge--amber { color: var(--amber); background: var(--amber-tint); }
+  .badge--gray { color: var(--gray); background: var(--gray-tint); }
+
+  .shot { margin: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--card); }
+  .shot img { display: block; width: 100%; height: auto; margin: 0; max-width: none; max-height: none; }
+  .caption { font-size: 15px; color: var(--muted); margin-top: 8px; }
+
+  .cols { display: grid; gap: 40px; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-5-7 { grid-template-columns: 5fr 7fr; }
+  .cols-3 { grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+
+  .panel { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 22px 24px; }
+  .panel p { font-size: 20px; color: var(--muted); margin: 0; }
+  .num { font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+
+  .rfq { font-family: var(--mono); font-size: 20px; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 22px; line-height: 1.7; }
+  .rfq .q { color: var(--muted); }
+  .footnote { position: absolute; left: 72px; bottom: 36px; font-size: 14px; color: var(--muted); }
+  .link { color: var(--blue); font-weight: 600; }
+  .dark .link { color: var(--on-navy-label); }
+  .bigline { font-size: 48px; font-weight: 700; line-height: 1.2; max-width: 1040px; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. Name and one-line description -->
+<section data-background-color="#0f1f3d"><div class="frame dark">
+  <div class="brand" style="margin-top: 40px;">
+    <img src="img/rudco-mark.png" alt="RudCo">
+    <span class="brand__text"><span class="brand__name">RudCo</span><span class="brand__product">Quote Desk</span></span>
+  </div>
+  <h1 style="margin-top: 120px;">Every line shows its work.</h1>
+  <p class="lede" style="margin-top: 28px;">RudCo Quote Desk reads a buyer's messy RFQ and drafts a quote for the rep to check and send. Every field shows the words it came from.</p>
+  <p class="footnote" style="color: var(--on-navy-muted);">Get Hired Hack, Columbia Startup Lab, October 10, 2026</p>
+</div></section>
+
+<!-- 2. Track -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Our track</div>
+  <h2>Track 2 | RudCo | RFQ to Quote</h2>
+  <p class="lede" style="margin-bottom: 30px;">The challenge: take a messy RFQ and turn it into a ready-to-send quote. Here is where each ask shows up in Quote Desk.</p>
+  <table>
+    <thead><tr><th style="width: 46%;">What the challenge asks</th><th>What Quote Desk does</th></tr></thead>
+    <tbody>
+      <tr><td>Parse each line into a standard spec</td><td>Material, grade, form, thickness, size, quantity and standard, each with its source words</td></tr>
+      <tr><td>Match each line to the catalog</td><td>One match, a few candidates with a question, or "No match"</td></tr>
+      <tr><td>Price against market benchmarks</td><td>A price only beside a named, dated benchmark</td></tr>
+      <tr><td>Flag compliance requirements</td><td>MTR, COA, country of origin, DFARS, REACH, RoHS, with trigger words</td></tr>
+      <tr><td>Ask instead of guess</td><td>One clear question to the buyer, with choices</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- 3. The problem -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Why we built it</div>
+  <h2>The same item arrives written many ways</h2>
+  <div class="cols cols-5-7">
+    <div>
+      <div class="rfq">
+        <span class="q">Buyer A</span><br>304 SS sheet 16ga 4x8<br>
+        <span class="q">Buyer B</span><br>Stainless 304, 0.060 in, 48 x 96
+      </div>
+      <p style="margin-top: 22px; font-size: 21px; color: var(--muted);">Both mean a sheet. But 16 gauge is not 0.060 in on a stainless table, and a wrong read becomes a wrong quote, a lost order, or a return.</p>
+    </div>
+    <div>
+      <p style="font-size: 22px;">Today a person decodes every line by hand:</p>
+      <table class="tight">
+        <tbody>
+          <tr><td>Material and grade</td><td>304, 304L, 316L</td></tr>
+          <tr><td>Thickness</td><td>A gauge only implies it, and gauge tables differ by material</td></tr>
+          <tr><td>Size</td><td>Inches, feet, either order</td></tr>
+          <tr><td>Standard</td><td>ASTM A240, ASME SA-240</td></tr>
+          <tr><td>Paperwork</td><td>MTR, COA, 3.1 cert, DFARS</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 22px; font-size: 21px;">RudCo's quote form promises a reply <strong>within 24 hours</strong>. That promise is a requirement in our build.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4. What we built -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">What we built</div>
+  <h2>A desk for the quoting rep: the RFQ beside the quote</h2>
+  <figure class="shot"><img src="img/review_screen.png" alt="Review screen with the original RFQ on the left and quote lines on the right"></figure>
+  <div class="cols cols-3" style="margin-top: 24px;">
+    <div><div class="num" style="color: var(--ready);">Accurate</div><p style="font-size: 19px; color: var(--muted);">Each line read right, matched to what RudCo stocks, with the paperwork the buyer needs.</p></div>
+    <div><div class="num">Competitive</div><p style="font-size: 19px; color: var(--muted);">Each price sits beside a named, dated benchmark, with the reason in one sentence.</p></div>
+    <div><div class="num" style="color: var(--amber);">Faster</div><p style="font-size: 19px; color: var(--muted);">The rep checks a draft instead of decoding lines. The quote goes out inside 24 hours.</p></div>
+  </div>
+</div></section>
+
+<!-- 5. Accuracy: field sources -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Accuracy and uncertainty</div>
+  <h2>Every field shows its source and its rule</h2>
+  <div class="cols cols-2" style="align-items: start; gap: 36px;">
+    <div>
+      <h3>The gauge trap</h3>
+      <p style="font-size: 18px; color: var(--muted); margin-bottom: 12px;">"16 ga" on stainless reads as 0.0625 in, with the table named. The challenge's own example treats it as 0.060 in.</p>
+      <figure class="shot"><img src="img/gauge_source.png" alt="Thickness 0.0625 from the words 16 ga, using the stainless steel gauge table"></figure>
+      <h3 style="margin-top: 20px;">No price without a named, dated benchmark</h3>
+      <p style="font-size: 18px; color: var(--muted); margin-bottom: 12px;">A line with no benchmark is held and left out of the total.</p>
+      <figure class="shot"><img src="img/pricing_basis.png" alt="Pricing basis: RudCo website list price, dated 2026-10-10"></figure>
+    </div>
+    <div>
+      <h3>Compliance flags with trigger words</h3>
+      <p style="font-size: 18px; color: var(--muted); margin-bottom: 12px;">"SA-240 316L 3/8 plate, with 3.1 cert" raises four flags: ASME code material, 3.1 certificate, MTR and COA. Two are shown.</p>
+      <figure class="shot"><img src="img/paperwork_flags.png" alt="Flags for ASME SA code material and EN 10204 3.1 certificate, each with its trigger words"></figure>
+      <p class="caption">A flag records what the buyer needs. It does not certify RudCo's stock.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 6. Ask instead of guess -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Accuracy and uncertainty</div>
+  <h2>Ask instead of guess. The rep approves.</h2>
+  <div class="cols cols-2" style="gap: 48px;">
+    <div>
+      <h3>The buyer wrote a thickness that is not a gauge</h3>
+      <div class="rfq" style="margin-bottom: 22px;">Stainless 304, 0.060 in, 48 x 96, 10 sheets</div>
+      <h3>The question that goes out</h3>
+      <div class="panel">
+        <p style="color: var(--ink); font-size: 21px;">Line 3 says 0.060 in. 16 gauge stainless is 0.0625 in. Do you need exactly 0.060 in, or is 16 gauge fine?</p>
+      </div>
+      <p style="margin-top: 18px; font-size: 19px; color: var(--muted);">Questions go out on their own and are tracked on the line. Clear lines keep moving.</p>
+    </div>
+    <div>
+      <h3>The quote shows both readings</h3>
+      <table class="tight" style="margin-top: 6px;">
+        <thead><tr><th>Option</th><th>Reading</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>16 ga, 0.0625 in</td><td>Its own benchmark</td></tr>
+          <tr><td>B</td><td>Exactly 0.060 in</td><td>Its own benchmark</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 14px; font-size: 19px; color: var(--muted);">The buyer picks one on accepting. Nothing is picked quietly.</p>
+      <table class="tight" style="margin-top: 14px;">
+        <thead><tr><th>Status</th><th>Who acts next</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge--ready">Ready</span></td><td>The rep approves</td></tr>
+          <tr><td><span class="badge badge--amber">Question to send</span></td><td>The rep reviews the question</td></tr>
+          <tr><td><span class="badge badge--amber">Waiting on buyer</span></td><td>The buyer answers</td></tr>
+          <tr><td><span class="badge badge--gray">No match</span></td><td>Nothing in the catalog fits</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 14px; font-size: 19px; color: var(--muted);">The rep approves every quote. Any edit after approval clears it.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 7. How it differs -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">How it differs</div>
+  <h2>What others say on their own pages</h2>
+  <table>
+    <thead><tr><th style="width: 50%;">What competitors claim</th><th>What Quote Desk shows</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight: 400;">AI quote tools offer a confidence score (Cassidy) or a low-confidence flag (Proton)</td><td style="font-weight: 400;">Each field linked to the buyer's words and the table used</td></tr>
+      <tr><td style="font-weight: 400;">Service centers offer mill test reports as downloads after purchase (Central Steel &amp; Wire, Yarde)</td><td style="font-weight: 400;">Paperwork the spec implies, flagged at quote time</td></tr>
+      <tr><td style="font-weight: 400;">Steel shot makers route quotes to a phone line or contact form (N.T. Ruddock, Winoa)</td><td style="font-weight: 400;">An emailed steel shot request turned into a draft quote</td></tr>
+      <tr><td style="font-weight: 400;">Proton says it learns a customer's shorthand</td><td style="font-weight: 400;">A learned reading that says which RFQ confirmed it</td></tr>
+    </tbody>
+  </table>
+  <p class="footnote">Claims are from each company's public pages and were not tested. Sources: docs/research/20261010.03_rudco_competitive_analysis.</p>
+</div></section>
+
+<!-- 8. Tools -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Tools and technologies</div>
+  <h2>Rules decide the facts. The model reads the language.</h2>
+  <table>
+    <thead><tr><th style="width: 30%;">Tool</th><th>What it does here</th></tr></thead>
+    <tbody>
+      <tr><td>NicrronNinoo</td><td>The sponsor model gateway. We call Claude Opus 5 through it to read messy wording into fields</td></tr>
+      <tr><td>Block Convey</td><td>Sponsor resource named by the hackathon</td></tr>
+      <tr><td>Claude Opus 5</td><td>Fills only the fields the rules left empty, quoting the line. It never sets a price</td></tr>
+      <tr><td>Ruby, Rails 8</td><td>The quote app: intake, review, edits, approval, export</td></tr>
+      <tr><td>SQLite</td><td>App storage</td></tr>
+      <tr><td>Prawn, letter_opener</td><td>The quote PDF and the buyer email preview</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- 9. Team -->
+<section data-background-color="#f3f5f7"><div class="frame">
+  <div class="eyebrow">Team</div>
+  <h2>Four people, one owner per part</h2>
+  <table style="font-size: 24px; margin-top: 20px;">
+    <thead><tr><th style="width: 30%;">Name</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td>Ken St. Clair</td><td>Product: brief, demo workflow, research, brand and style</td></tr>
+      <tr><td>Elad Hirsh</td><td>App and UI: the Rails app, review screen, approval and export</td></tr>
+      <tr><td>Yuval Gerber</td><td>RFQ processing: text extraction, line reading, flags and buyer questions</td></tr>
+      <tr><td>Elad Tisch</td><td>Catalog, matching and pricing</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- 10. Demo, repo, close -->
+<section data-background-color="#0f1f3d"><div class="frame dark">
+  <div class="brand">
+    <img src="img/rudco-mark.png" alt="RudCo">
+    <span class="brand__text"><span class="brand__name">RudCo</span><span class="brand__product">Quote Desk</span></span>
+  </div>
+  <p class="bigline" style="margin-top: 110px;">The agent prepares the conversation, and the rep owns it.</p>
+  <table style="margin-top: 70px; max-width: 980px; font-size: 22px;">
+    <tbody>
+      <tr><td style="color: var(--on-navy-muted); border-color: #2a3a5a; width: 22%;">Video demo</td><td style="border-color: #2a3a5a;"><span class="link">VIDEO LINK</span></td></tr>
+      <tr><td style="color: var(--on-navy-muted); border-color: #2a3a5a;">GitHub</td><td style="border-color: #2a3a5a;"><a class="link" href="https://github.com/kenxle/columbia-startup-lab-get-hired-hack">github.com/kenxle/columbia-startup-lab-get-hired-hack</a></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2,
+    center: false, hash: true, controls: true, progress: true, transition: 'none',
+    pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false
+  });
+</script>
+</body>
+</html>
