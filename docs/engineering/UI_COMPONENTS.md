@@ -76,3 +76,11 @@ The Quotes list prioritizes soonest due. A `deadline` badge shows receipt plus
 elapsed turnaround. The quote opens on Attention needed unless all lines are
 clear. Subtotal scope is in a tooltip. The source panel preserves the whole
 request and highlights selected evidence without a duplicated line excerpt.
+
+The quote header uses `quotes/processing_evidence` as a native Source pill disclosure.
+`source_evidence.css` contains its bounded responsive drawer. It starts closed and
+keeps source files, warnings, revision and processing run details out of exports.
+`quote_review.js` enhances existing line/filter links with same-origin HTML fetches.
+It replaces review and source together, inserts detail directly under the row,
+focuses and scrolls the heading, and preserves ordinary navigation on failure.
+Unsaved form changes require confirmation before another line replaces them.

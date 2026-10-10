@@ -16,6 +16,7 @@
       Received <%= display_time(@quote.created_at) %>
     </p>
     <p class="page-deadline"><%= quote_deadline_badge(@quote) %></p>
+    <%= render "quotes/processing_evidence", quote: @quote %>
   </div>
   <div class="page-actions">
     <% if @quote.held_count.positive? %>
@@ -29,9 +30,9 @@
 
 <%= render "quotes/summary", quote: @quote, lines: @lines %>
 <%= render "quotes/processing_run", quote: @quote %>
-<%= render "quotes/processing_evidence", quote: @quote %>
 
-<div class="review">
+<p class="visually-hidden" role="status" aria-live="polite" data-review-status></p>
+<div class="review" data-review-root>
   <%= render "quotes/source_panel", quote: @quote, selected_line: @selected_line %>
 
   <section class="review__quote" aria-labelledby="quote-heading">

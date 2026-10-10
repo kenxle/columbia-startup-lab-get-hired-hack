@@ -57,7 +57,7 @@ class TeachBuyerTermTest < ActiveSupport::TestCase
   end
 
   test "anonymous buyer unsupported fields and malformed inputs are rejected" do
-    %w[price quantity gauge thickness part_number].each do |field|
+    %w[price quantity part_number].each do |field|
       assert_raises(QuoteWorkspace::TeachBuyerTerm::Invalid) { teach(field: field) }
     end
     [ { term: " " }, { term: "x" * 121 }, { term: [ "kb" ] }, { field: [ "finish" ] },
@@ -67,6 +67,27 @@ class TeachBuyerTermTest < ActiveSupport::TestCase
     @quote.update!(buyer_name: "")
     assert_raises(QuoteWorkspace::TeachBuyerTerm::Invalid) { teach }
     assert_equal 0, ClientTerm.count
+  end
+
+  test "numeric taught fields retain their types and source for a later RFQ" do
+    teach(term: "16 ga", field: "thickness", value: "1/16")
+    teach(term: "shop gauge", field: "gauge", value: "16")
+    second = Quote.create!(title: "Repeat sheet order", buyer_name: @quote.buyer_name, source_text: "16 ga sheet",
+      workspace_token: @quote.workspace_token)
+    terms = QuoteWorkspace::BuyerContext.for(second)[:buyer_terms].index_by { |term| term["term"] }
+    assert_equal 0.0625, terms.fetch("16 ga").dig("meaning", "fields", "thickness")
+    assert_equal 16, terms.fetch("shop gauge").dig("meaning", "fields", "gauge")
+    assert_equal @quote.reference, terms.fetch("16 ga")["confirmed_on"]
+  end
+
+  test "invalid or infinite numeric meanings do not reach buyer memory" do
+    %w[gauge thickness].each do |field|
+      %w[0 -1 NaN Infinity 1e999 1/0 nonsense].each do |value|
+        assert_no_difference "ClientTerm.count" do
+          assert_raises(QuoteWorkspace::TeachBuyerTerm::Invalid) { teach(field: field, value: value) }
+        end
+      end
+    end
   end
 
   test "line must belong to the source quote" do

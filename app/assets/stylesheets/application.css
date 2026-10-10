@@ -1607,3 +1607,11 @@ textarea.input {
     background: var(--surface);
   }
 }
+
+/* Enhanced quote selection keeps the detail attached to its originating row. */
+[data-review-row] { cursor: pointer; }
+.lines-table .review-detail-row > td { padding: 0; white-space: normal; }
+.review-detail-row .line-detail { margin: 0; border-radius: 0; border-left: 3px solid var(--blue, #2459a6); }
+.review-detail-row #line-detail-heading { scroll-margin-top: 24px; }
+.review-detail-row #line-detail-heading:focus { outline: 2px solid var(--blue, #2459a6); outline-offset: 4px; }
+[data-review-root][aria-busy="true"] .review-navigation { opacity: .65; }

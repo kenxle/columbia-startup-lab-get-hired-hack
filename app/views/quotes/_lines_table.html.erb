@@ -20,11 +20,11 @@
       <tbody>
         <% lines.each do |line| %>
           <% selected = selected_line?(line, selected_line) %>
-          <tr class="<%= class_names('is-selected': selected, 'is-held': held_line?(line)) %>">
+          <tr data-review-row="<%= line.id %>" class="<%= class_names('is-selected': selected, 'is-held': held_line?(line)) %>">
             <td class="num mono"><%= line.position %></td>
             <th scope="row" class="lines-table__item">
               <%= link_to quote_path(quote, line: line.id, status: local_assigns.fetch(:status, "all")), class: "row-link",
-                    aria: { current: selected ? "true" : nil } do %>
+                    data: { review_link: true }, aria: { current: selected ? "true" : nil, expanded: selected, controls: "line-detail" } do %>
                 <%= line.display_description.presence || "Line #{line.position}" %>
               <% end %>
               <span class="lines-table__sku mono">

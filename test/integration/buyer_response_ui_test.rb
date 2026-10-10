@@ -80,7 +80,8 @@ class BuyerResponseUiTest < ActionDispatch::IntegrationTest
       assert_select 'input[name="quote_line_id"][value=?]', line.id.to_s
       assert_select 'input[name="reviewed_version"][value=?]', @quote.review_revision
       assert_select 'select[name="field"] option' do |options|
-        assert_equal ClientTerm::TEACHABLE_FIELDS.sort, options.map { |option| option["value"] }.sort
+        assert_equal %w[material grade temper form finish standard quantity_unit gauge thickness].sort,
+          options.map { |option| option["value"] }.sort
       end
       assert_select 'input[name="term"][maxlength="120"][required]'
       assert_select 'input[name="value"][maxlength="200"][required]'

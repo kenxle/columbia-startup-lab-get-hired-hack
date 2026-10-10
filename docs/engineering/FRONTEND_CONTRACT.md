@@ -217,3 +217,9 @@ options with their own specs, prices, benchmarks and lead-time sources. A missin
 or invalid price remains held. Quantity/unit mismatches, invalid dates and
 unresolved fields cannot produce a quotable price. Mutually exclusive options
 are not part of the Ready subtotal. Rep edits suppress stale options.
+
+Line selection uses progressive JavaScript enhancement of the existing quote GET
+route. Review/source replacement is atomic, and ordinary links remain usable
+without JavaScript. No processing or write action runs when selecting a line.
+The quote-scoped teaching endpoint accepts the shared model's gauge, thickness
+and quantity-unit fields. Numeric meanings must be positive and finite.

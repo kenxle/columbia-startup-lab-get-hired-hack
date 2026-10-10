@@ -5,7 +5,7 @@
   <div class="review-navigation__filters">
     <% [["all", "All", lines.length], ["attention", "Attention needed", held_lines.length], ["ready", "Ready", lines.length - held_lines.length]].each do |value, label, count| %>
       <%= link_to quote_path(quote, status: value, line: selected_line&.id),
-            class: "review-navigation__filter", aria: { current: status == value ? "page" : nil } do %>
+            class: "review-navigation__filter", data: { review_link: true }, aria: { current: status == value ? "page" : nil } do %>
         <span><%= label %></span>
         <span class="review-navigation__count"><%= count %></span>
       <% end %>
@@ -13,6 +13,6 @@
   </div>
   <% if next_held %>
     <%= link_to "Next held line", quote_path(quote, status: "attention", line: next_held.id),
-          class: "review-navigation__next", aria: { label: "Next held line, line #{next_held.position}" } %>
+          class: "review-navigation__next", data: { review_link: true }, aria: { label: "Next held line, line #{next_held.position}" } %>
   <% end %>
 </nav>

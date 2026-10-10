@@ -1,34 +1,55 @@
 <% source = quote.processing_source || {} %>
 <% warnings = Array(quote.processing_warnings) %>
-<% if source.present? || warnings.any? %>
-  <section class="panel processing-evidence" aria-labelledby="processing-evidence-heading">
-    <div class="panel__head">
-      <h2 id="processing-evidence-heading" class="panel__title">Extraction evidence</h2>
-      <p class="panel__meta">Internal review details. These are excluded from buyer exports.</p>
-    </div>
-    <div class="panel__body">
-      <% if source.present? %>
-        <dl>
-          <dt>Source type</dt><dd><%= source["type"] %></dd>
-          <% if source["filename"].present? %>
-            <dt>File</dt><dd><%= source["filename"] %></dd>
+<% run = quote.processing_runs.order(id: :desc).first %>
+<% if source.present? || warnings.any? || run %>
+  <% source_type = source["type"].presence || run&.source_type.presence %>
+  <% source_label = { "pdf" => "PDF", "csv" => "CSV" }.fetch(source_type, source_type.presence || "details") %>
+  <details class="processing-evidence">
+    <summary class="processing-evidence__trigger" aria-controls="processing-evidence-drawer-<%= quote.id %>">
+      Source: <%= source_label %>
+      <% if warnings.any? %><span class="processing-evidence__warning-count"><%= pluralize(warnings.size, "warning") %></span><% end %>
+    </summary>
+    <div class="processing-evidence__drawer card" id="processing-evidence-drawer-<%= quote.id %>" role="region" aria-labelledby="processing-evidence-heading-<%= quote.id %>">
+      <h2 class="panel__title" id="processing-evidence-heading-<%= quote.id %>">Extraction evidence</h2>
+      <p class="field__hint">Internal review details. These are excluded from buyer exports.</p>
+      <% if source.present? || quote.original_filename.present? %>
+        <dl class="processing-evidence__facts">
+          <% if source["type"].present? %><dt>Source type</dt><dd><%= source["type"] %></dd><% end %>
+          <% if source["filename"].present? %><dt>File</dt><dd><%= source["filename"] %></dd><% end %>
+          <% if quote.original_filename.present? && quote.original_filename != source["filename"] %>
+            <dt>Saved attachment</dt><dd><%= quote.original_filename %></dd>
           <% end %>
-          <% unless source["pages"].nil? %>
-            <dt>Pages</dt><dd><%= source["pages"] %></dd>
-          <% end %>
-          <% unless source["rows"].nil? %>
-            <dt>Rows</dt><dd><%= source["rows"] %></dd>
-          <% end %>
+          <% unless source["pages"].nil? %><dt>Pages</dt><dd><%= source["pages"] %></dd><% end %>
+          <% unless source["rows"].nil? %><dt>Rows</dt><dd><%= source["rows"] %></dd><% end %>
         </dl>
       <% end %>
       <% if warnings.any? %>
-        <h3>Extraction warnings</h3>
-        <ul>
-          <% warnings.each do |warning| %>
-            <li><%= warning %></li>
-          <% end %>
+        <h3 class="section-title">Extraction warnings</h3>
+        <ul class="plain-list">
+          <% warnings.each do |warning| %><li><%= warning %></li><% end %>
         </ul>
       <% end %>
+      <% if quote.processing_revision.present? %>
+        <h3 class="section-title">Result revision</h3>
+        <p class="mono"><%= quote.processing_revision["id"] %></p>
+      <% end %>
+      <% if run %>
+        <h3 class="section-title">Latest processing run</h3>
+        <dl class="processing-evidence__facts">
+          <dt>Run</dt><dd class="mono"><%= run.id %></dd>
+          <dt>Status</dt><dd><%= run.status.humanize %></dd>
+          <% if run.source_type.present? %><dt>Run source type</dt><dd><%= run.source_type %></dd><% end %>
+          <% if run.source_filename.present? %><dt>Run file</dt><dd><%= run.source_filename %></dd><% end %>
+          <dt>Queued</dt><dd><%= display_time(run.queued_at) %></dd>
+          <% if run.started_at %><dt>Started</dt><dd><%= display_time(run.started_at) %></dd><% end %>
+          <% if run.finished_at %><dt>Finished</dt><dd><%= display_time(run.finished_at) %></dd><% end %>
+        </dl>
+        <% if run.error_message.present? %><p class="processing-evidence__error"><%= run.error_message %></p><% end %>
+        <% if Array(run.warnings).any? && Array(run.warnings) != warnings %>
+          <h3 class="section-title">Run warnings</h3>
+          <ul class="plain-list"><% Array(run.warnings).each do |warning| %><li><%= warning %></li><% end %></ul>
+        <% end %>
+      <% end %>
     </div>
-  </section>
+  </details>
 <% end %>

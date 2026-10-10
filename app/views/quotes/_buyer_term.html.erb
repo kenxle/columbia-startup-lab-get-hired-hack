@@ -16,7 +16,7 @@
       <div class="field-pair">
         <div class="field">
           <%= label_tag "buyer-term-field-#{line.id}", "Field", class: "field__label" %>
-          <%= select_tag :field, options_for_select(ClientTerm::TEACHABLE_FIELDS.map { |field| [field.humanize, field] }), id: "buyer-term-field-#{line.id}", class: "input" %>
+          <%= select_tag :field, options_for_select(QuoteWorkspace::TeachBuyerTerm::TEACHABLE_FIELDS.map { |field| [field.humanize, field] }), id: "buyer-term-field-#{line.id}", class: "input" %>
         </div>
         <div class="field">
           <%= label_tag "buyer-term-value-#{line.id}", "Confirmed meaning", class: "field__label" %>
