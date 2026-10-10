@@ -15,7 +15,7 @@ A Rails workspace that turns industrial RFQs into reviewed quotes. The rep can i
 
 ## Documents
 
-Every document we made for this project, with a PDF where one exists. The [documentation map in AGENTS.md](AGENTS.md#documentation-map) says who owns each and when to read it.
+Key documentation, with a PDF where one exists. The [documentation map in AGENTS.md](AGENTS.md#documentation-map) says who owns each and when to read it.
 
 ### Product
 
