@@ -9,7 +9,6 @@
 - [ ] **19. The demo is ready to record.** Hirsh clicked through the whole demo script at 15:46 and every step worked.
   - **One thing to do first:** paste the demo RFQ email in as a new RFQ, and record from that one. The RFQs already in the list were loaded before Tisch set the lead times, so they still say "to confirm". A new one shows "24 to 48 hours".
   - **What you will see:** three lines Ready and one waiting on the buyer (USD 1,010). The question to the buyer appears in the local inbox. Enter the answer "2000 lb", and all four lines turn Ready (USD 1,810). Then approve, send, and download the PDF and spreadsheet.
-- [ ] **18. Send the real Jev key in WhatsApp** (`~/Desktop/jev_for_team/JEV_API_KEY_value.txt`). Yuval's agent cannot read WhatsApp, so Yuval saves it into his own git-ignored env file.
 - [ ] **17. Devpost.** The About field is pasted from [its page](devpost/ABOUT_THE_PROJECT.md) but not saved: add the video link, then Save & continue. The page now also has everyone's "What we learned" lines; I paste again when you say. Hirsh's caveats are in it (demo lead times are an assumption, live model use not claimed, Jev and PRISM pending). Say if any should go.
 
 ## Coming to you soon
@@ -114,6 +113,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Item 18: real Jev key sent to the team in WhatsApp (Ken, 15:59).
 
 - Lead times set for the four abrasive SKUs (Tisch, 4067a06).
 - Flow walk done: report and 19 Playwright tests on branch test/e2e-demo-flow.
