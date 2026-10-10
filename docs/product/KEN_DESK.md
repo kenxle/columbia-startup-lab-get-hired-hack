@@ -2,38 +2,45 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 14:56, from the bulletin board through 14:52.
+**Last updated:** 2026-10-10 15:13, from the bulletin board through 15:10.
 
 ## Needs your call
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **12. Hirsh asks you to step in on Tisch's work** (board, 14:52). Tisch is the bottleneck. Hirsh wants you to take or assign: (a) rebuilding the demo PDF, which is corrupt in the repo, so the PDF path fails; (b) cleaning up source data; (c) stock and lead-time evidence for the four clean-demo SKUs: S-330, G-40, S-170, G-25. *Recommendation:* Claude takes (a) and (b) now, after agreeing exact files with Tisch on the board. For (c), apply your production-data rule: the demo catalog marks those four SKUs as stocked, so they show RudCo's 24 to 48 hour lead time. Hirsh's board note says missing evidence must stay unknown, so this needs your word. Say "go" and which parts.
-- [ ] **14. Review the product page and comparison page.** First drafts are up on the running app: [Product](http://127.0.0.1:3100/product) and [Compare](http://127.0.0.1:3100/compare) (Hirsh, 14:38). Leave comments right on the pages.
+- [ ] **15. Hirsh asks you to take over Tisch's remaining work now** (board, 15:10, marked urgent). Hirsh is at capacity. The open pieces are:
+  - prices on the demo's metals lines, from the FRED benchmark plus target margin, as you asked at 15:07;
+  - sourced lead times for the four abrasive SKUs (S-330, G-40, S-170, G-25);
+  - checking the supplier listings;
+  - the rest of the matcher work. Hirsh keeps the one matcher fix already started (a close number is not proof the buyer confirmed it).
+
+  *Recommendation:* Claude takes the metals prices with a subagent in its own worktree, in Tisch's pricing files, after telling Tisch on the board to stop overlapping edits. For lead times, apply your production-data rule: mark the four SKUs as stocked, so they show RudCo's 24 to 48 hour lead time. Hirsh's earlier note says missing evidence must stay unknown, so that part needs your word. Say "go", and whether the lead-time part is in.
+- [ ] **16. Block Convey: wire it in, or list it as not used?** The hackathon says it is a must. Nobody used it. Hirsh proposes a small add: record each Nicrron model call (model, time taken, outcome) to Block Convey's PRISM trace service. It needs a project ID and API key, shared privately. *Recommendation:* yes, if you can make the PRISM account (prism.blockconvey.com, code PROOFOFWORK) and send the keys yourself in WhatsApp. Otherwise the Devpost page says it was not used.
+- [ ] **14. Product and Compare pages.** Your note "make them look more like rud-co.com/platform and rud-co.com" is on the board for Hirsh. The review rail now works on both pages: [Product](http://127.0.0.1:3100/product), [Compare](http://127.0.0.1:3100/compare).
 
 ## Coming to you soon
 
-- **Promo video v2**, built from the shot list, with a full price on the metals line as you asked. A subagent is rendering it.
-- **Two clean demo RFQs** (Yuval, 14:50): four abrasive lines (S-330, G-40, S-170, G-25), all Ready with RudCo prices and COA flags; and the same RFQ with one quantity missing, so one line asks the buyer. Hirsh is loading them as demo records.
-- **Auto-sent question tracking:** each question shows time, recipient and text, through the local mail preview. Two Hirsh workers on it.
 - **Dry run of the demo script at 3:15**, run by Hirsh.
+- **Submission deck.** A subagent is building it; Claude opens it for you when done.
+- **Real models.** Nicrron lists Claude Opus 5, but a real RFQ call returned a server error (502) twice on Hirsh's machine. The app fell back to rules, as designed. Yuval posted the command to retry it.
 
 ## Where things stand
 
-From the bulletin board through 14:52. Recording is about 3:45.
+From the bulletin board through 15:10. Recording is about 3:45.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Busy Quotes list done: varied receipt ages, amber under 8 hours, red overdue, soonest due first, sent last. The Northline demo email loads, but the demo PDF is corrupt in the repo. |
-| 2. Pull the data | 🟡 | Yuval | Fixes for false items (headers, titles, "Same sheet as last week"), packaging read as quantity, and compliance scope are local, waiting on review before push. The Transnet tender now extracts its one real S390 row. |
-| 3. Parse | ✅ | Yuval | Shorthand misreads being fixed: glass bead size vs finish, stainless shot, "16 Gage x 4 x 8". |
-| 4. Match | 🟡 | Tisch, Yuval | A taught thickness (0.060 in read as 0.0625) still matches with "close, confirm", so the second RFQ stays held. Needs Tisch's matcher change. |
-| 5. Price, flags, lead time | 🟡 | Tisch | RudCo list prices work on abrasives (USD 0.38 to 0.42 per lb). Tisch's distributor pricer is built (98 tests) but now requires five competitor offers per item, so metals stay unpriced. Lead time reads "to confirm" for all 96 RudCo rows (item 12). |
-| 6. Buyer questions | ✅ for the demo | Hirsh | Answer "100 lb" on a held S-330 line, and the line turns Ready at USD 0.40 per lb. "Question to send" label is live. Auto-send tracking in progress. |
-| 7. Review and approve | ✅ | Hirsh | Evidence pill and in-place line opening done. 400 tests pass. |
+| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. The demo PDF is repaired and reads cleanly. |
+| 2. Pull the data | ✅ | Yuval | Full processing batch pushed (e4ec750). 297 processing tests and 451 app tests pass. Email, PDF and CSV give the same eight lines. |
+| 3. Parse | ✅ | Yuval | Packaging no longer read as quantity; 16 ga dimensions and 316L read correctly. |
+| 4. Match | 🟡 | Hirsh | A close number (0.060 vs 0.0625) was being counted as buyer-confirmed. Hirsh is fixing it. |
+| 5. Price, flags, lead time | 🟡 | open (item 15) | Abrasives priced (USD 0.38 to 0.42 per lb). Metals: Tisch verified two public listings (A36 plate USD 2,113; 304 sheet USD 1,025.99) but no FRED-plus-margin price yet. Lead times read "to confirm". |
+| 6. Buyer questions | ✅ | Hirsh | Questions save as local email previews, tracked as Waiting on buyer. The browser-tab flood is fixed (3896650). |
+| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready lines, USD 1,810. RFQ-0017: three Ready, one Waiting on buyer, USD 1,010. |
 | 8. Send the reply | 🟡 | Hirsh | PDF, CSV and email draft with local preview. Real delivery not built. |
-| 9. Learn the buyer | 🟡 | Hirsh, Yuval, Tisch | Teaching "0.060 in" as 0.0625 works from the quote form, with the source RFQ saved. Blocked at matching (row 4). |
-| Marketing pages | 🟡 | Hirsh | Product and Compare drafts ready for you (item 14). |
+| 9. Learn the buyer | 🟡 | Hirsh, Yuval | Waits on the matcher fix (row 4). |
+| Real models | 🟡 | Hirsh, Yuval | Nicrron call returns 502; rules fallback holds. |
+| Marketing pages | 🟡 | Hirsh | Restyle toward rud-co.com (item 14). |
 
 ## Build map
 
@@ -110,6 +117,17 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Item 12 closed: demo PDF repaired (15:05); the lead-time part moved to item 15.
+- Review rail added to the Product and Compare pages.
+
+- Two clean demo RFQs are in the app (Yuval, 15:10). RFQ-0014: four Ready lines, USD 1,810. RFQ-0017: three Ready, one waiting on the buyer, USD 1,010.
+
+- Question tracking is in: each question records time, recipient and text in a local preview inbox, saved silently (Hirsh, 15:07).
+
+- Promo video v2 rendered from the shot list: [quote_desk_promo_v2.mp4](promo/quote_desk_promo_v2.mp4).
+
+- Demo PDF repaired; it passes text extraction (15:05).
 
 - Jev key and Ruby client sent to the team in WhatsApp (Ken).
 
