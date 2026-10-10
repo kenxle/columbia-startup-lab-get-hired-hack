@@ -357,7 +357,7 @@ class ProcessRfqTest < ActiveSupport::TestCase
       item = item.merge("list_price_usd_per_lb" => price)
       catalog = CatalogMatch::Catalog.new(items: [item])
       matcher = QuoteWorkspace::ProcessRfq::IntakeMatcher.new(client: nil, catalog: catalog, service: CatalogMatch::Matcher)
-      result = RfqProcessing.process(content: "S-330 steel shot, 100 lb", matcher: matcher)
+      result = RfqProcessing.process(content: "S-330 steel shot, 100 lb", matcher: matcher, llm: false)
       line = result["lines"].first
       assert_equal "needs_buyer", line["state"]
       assert_nil line["unit_price"]
@@ -406,6 +406,27 @@ class ProcessRfqTest < ActiveSupport::TestCase
     assert_equal "RC-STEELSHOT-S330", result.fetch("best").fetch("item_id")
   end
 
+  test "intake forwards confirmed terms only when the matcher accepts the keyword" do
+    matcher = QuoteWorkspace::ProcessRfq::IntakeMatcher.new(
+      catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
+    terms = [{ "term" => "0.060 in", "source" => "taught", "confirmed_on" => "RFQ-0001" }]
+    seen = nil
+    supported = lambda do |text, client:, catalog:, llm:, confirmed_terms:, **|
+      assert_nil client
+      assert_equal false, llm
+      seen = confirmed_terms
+      :forwarded
+    end
+    CatalogMatch::Matcher.stub(:call, supported) do
+      assert_equal :forwarded, matcher.send(:call_service, "0.060 in", {}, nil, confirmed_terms: terms)
+    end
+    assert_equal terms, seen
+    # The real current implementation need not yet support confirmed_terms.
+    unless CatalogMatch::Matcher.method(:call).parameters.any? { |kind, name| kind == :keyrest || name == :confirmed_terms }
+      assert matcher.send(:call_service, "S-330 steel shot", {}, nil, confirmed_terms: terms)
+    end
+  end
+
   test "rules boundary accepts normalized spec and quantity from the new adapter" do
     adapter = Class.new(QuoteWorkspace::ProcessRfq::IntakeMatcher) do
       private
@@ -417,13 +438,14 @@ class ProcessRfqTest < ActiveSupport::TestCase
     catalog = CatalogMatch::Catalog.new(%w[rudco metals])
     matcher = adapter.new(client: Object.new, catalog: catalog, service: CatalogMatch::Matcher)
     called = false
-    CatalogMatch::Matcher.stub(:call, lambda { |text, client:, catalog:, given:, llm:|
+    CatalogMatch::Matcher.stub(:call, lambda { |text, client:, catalog:, given:, llm:, confirmed_terms: []|
       called = true
       assert_equal "304 stainless sheet", text
       assert_nil client
       assert_equal %w[metals rudco], catalog.items.map { |item| item["catalog"] }.uniq.sort
       assert_equal({ "thickness" => 0.0625, "quantity" => 6 }, given)
       assert_equal false, llm
+      assert_empty confirmed_terms
       :matched
     }) do
       assert_equal :matched, matcher.send(:call_service, "304 stainless sheet", { "thickness_in" => 0.0625 }, 6)

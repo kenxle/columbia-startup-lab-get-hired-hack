@@ -30,6 +30,7 @@ module QuoteWorkspace
         }
         provenance = provenance_for(record, client)
         if provenance
+          meaning["provenance"] = provenance.deep_dup
           entry["provenance"] = provenance
           entry["source_quote_reference"] = provenance["quote_reference"]
           entry["confirmed_on"] = provenance["quote_reference"]
@@ -50,6 +51,9 @@ module QuoteWorkspace
       source_quote = Quote.for_workspace(@quote.workspace_token).find_by(id: provenance["quote_id"])
       return unless source_quote && source_quote.reference == provenance["quote_reference"]
       return unless Client.normalize_value_for(:name, source_quote.buyer_name).to_s.casecmp?(client.name)
+      return unless source_quote.quote_lines.exists?(id: provenance["quote_line_id"])
+      return unless record.meaning["confirmed_on"] == source_quote.reference && record.valid?
+      return unless record.field_values.values.all? { |value| !value.is_a?(Numeric) || value.finite? }
 
       Time.iso8601(provenance["taught_at"])
       provenance.slice("method", "quote_id", "quote_reference", "quote_line_id", "taught_at").deep_dup

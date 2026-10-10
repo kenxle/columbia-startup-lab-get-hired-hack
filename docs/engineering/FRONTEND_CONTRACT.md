@@ -76,7 +76,7 @@ A named buyer resolves to a normalized, case-insensitive client within the same
 workspace. Blank buyers have no shared anonymous client. `BuyerContext.for(quote)`
 returns `{client:, buyer_terms:}` with only persisted rep-taught terms and client
 provenance. Automatically learned terms are excluded, and intake passes no client
-memory to the matcher. Automatic learning is not complete.
+memory to the matcher. A confirmed term requires a persisted source line on the source RFQ, matching workspace/buyer and reference, explicit teaching provenance, and finite field values. Valid provenance is nested under `meaning.provenance`. IntakeMatcher forwards optional `confirmed_terms: []` only when the downstream matcher accepts it. Missing or invalid provenance does not authorize replacement of an explicit numeric field. Automatic learning is not complete.
 
 ## Model and view interface
 
