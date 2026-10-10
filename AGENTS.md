@@ -72,7 +72,7 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 | Ken | `@Ken` | Product design, user research, product management |
 | Hirsh | `@Hirsh` | Front end and UI/UX for the quote application |
 | Yuval | `@Yuval` | RFQ processing, catalog and benchmark data sourcing |
-| Elad Tisch | `@Elad` | RFQ catalog development, market data collection, and evidence-backed pricing |
+| Tisch | `@Tisch` | Catalog building, catalog matching agent, and market-based pricing agent |
 
 ## Core Domains
 
@@ -83,11 +83,11 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
 | Hirsh | Front end and UI/UX | Intake, side-by-side RFQ/quote review, editing, source evidence, one-click buyer questions and response flow, and export interactions. Own the Rails app shell and minimal supporting integration; coordinate backend contracts with Yuval. Follow Ken's approved product flow. |
 | Yuval | RFQ processing | Document extraction, LLM integration, normalized specs and source evidence, catalog matching, compliance flags, draft questions, and catalog/benchmark data sourcing. Agree on exact paths per task. |
-| Elad Tisch | Catalog and market pricing | Builds structured item lists, collects comparable supplier prices, and develops transparent pricing references. Owns `docs/data/`, `data/aviation/`, and `tools/catalog_research/`. See [catalog and pricing scope](docs/data/CATALOG_PRICING.md). Coordinate with Yuval on data sourcing and RFQ integration, Hirsh on catalog import and pricing math, and Ken on product scope. |
+| Tisch | Catalog, matching, and market pricing | Builds the catalog from real, sourced items. Owns the matching agent: given an item description, it suggests which catalog item the buyer is looking for. Owns the pricing agent: it prices catalog items from real materials market data and compares the result to real published prices, to show our quotes are competitive. Owns `docs/data/`, `data/aviation/`, and `tools/catalog_research/`. See [catalog and pricing scope](docs/data/CATALOG_PRICING.md). Coordinate with Yuval on data sourcing and RFQ integration, Hirsh on catalog import and pricing math, and Ken on product scope. |
 
 ## Catalog and pricing guidance
 
-Elad Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog of clearly specified industrial items, traceable market-price observations, and reproducible price comparisons that a quoting rep can review. Use RFQ (request for quotation) for this work, consistent with the challenge brief.
+Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog of clearly specified industrial items, traceable market-price observations, and reproducible price comparisons that a quoting rep can review. Use RFQ (request for quotation) for this work, consistent with the challenge brief.
 
 - Select benchmark items with public prices from at least two independent suppliers for matching material, grade, temper, shape, dimensions, quantity, and sale unit. Verify tolerances, finish, standards, and certification requirements before calling a comparison equivalent.
 - Record supplier, SKU, source URL, observation date, currency, quantity tier, and all known charges. Keep product price and delivered price separate. Mark missing freight, tax, or certification charges as unknown.
