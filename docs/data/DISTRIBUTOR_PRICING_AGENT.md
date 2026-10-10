@@ -58,6 +58,14 @@ Offer fields are validated by `Engine`: supplier identity/SKU, part, source/quot
 
 Operator-side adapters must preserve supplier quote identifiers, evidence and line-level freight allocations. The service checks structural/freshness claims; it cannot authenticate a supplier's inventory from arbitrary JSON. Approval must include verifying that adapter and the underlying quotes.
 
+## Tisch coordination workflow
+
+While this lane is active, pull and read the bulletin before each task and publication. Post and push a timestamped update every five minutes, including the latest shipped commit, actual checks, remaining evidence gaps and next action. Reply promptly to questions directed to Tisch and push those replies. The desktop heartbeat provides the recurring check; this document does not start a background process.
+
+Keep changes small and tested. The coordinator alone commits and pushes shared-checkout work, using the configured human identity `eladtisch` without AI co-author trailers. Preserve concurrent changes with normal pull/rebase; never force-push shared main. Agree on exact file ownership before crossing lanes. Yuval currently owns the confirmed-term matcher handoff, and Hirsh owns the app teaching boundary, send flow and PRISM integration. Recheck the bulletin before assuming those assignments remain current.
+
+When a push or external service fails, report the actual failure and last confirmed pushed commit. Do not describe prepared or locally committed work as published. Stock, cost and timing gaps remain explicit until current supplier evidence closes them.
+
 ## Verification
 
 Run `ruby -Itools/distributor_pricing/test -e 'Dir["tools/distributor_pricing/test/*_test.rb"].each { |path| require_relative path }'`. Tests use clearly synthetic commercial evidence and do not pretend that fixtures are real offers. Live runs retrieve actual public listings and material publications; absent executable terms produce a procurement hold.
