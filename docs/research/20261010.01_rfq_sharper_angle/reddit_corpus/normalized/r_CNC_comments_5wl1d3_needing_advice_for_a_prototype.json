@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/5wl1d3/needing_advice_for_a_prototype/",
+  "url": "https://www.reddit.com/r/CNC/comments/5wl1d3/needing_advice_for_a_prototype/",
+  "subreddit": "CNC",
+  "title": "Needing advice for a prototype",
+  "author": "Kirkauburn",
+  "created_iso": "2017-02-28T01:39:18Z",
+  "score": 7,
+  "num_comments": 8,
+  "selftext": "Hello everyone!\n\nNewbie question here, so please direct me elsewhere if need be. I am currently working with a designer to create a prototype for an indoor gardening enclosure out of plastic (preferably ABS). The first part we are looking to actually manufacture is 25 of the inserts which the plants will grow in (seen in the first image). Unfortunately, most of the quotes we are getting for 3D printing are in the $75+ range each. While I might be able to manage this for the prototype, it is obviously not viable for production. Would it be reasonable to develop a CNC injection mold for something like this? The insert measures roughly 3.3\" wide x 8.3\" long x 4.5\" deep.\n\nAlso, we are still trying to figure out how we are going to manufacture the prototype for the enclosure. Is a CNC injection mold the right way to go with a design like this or is there another manufacturing method that would be more economical? Apologies for all the questions, I am just starting out learning about most of this and wanted to make sure I am not missing anything. Thanks so much for any and all advice you can provide, it is really appreciated!\n\nLink to design: http://imgur.com/a/uwzbw",
+  "comments": [],
+  "drilldown_candidates": []
+}

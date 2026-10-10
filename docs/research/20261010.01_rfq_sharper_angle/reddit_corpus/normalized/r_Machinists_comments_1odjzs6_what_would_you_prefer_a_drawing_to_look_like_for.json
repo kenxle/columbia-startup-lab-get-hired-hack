@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/Machinists/comments/1odjzs6/what_would_you_prefer_a_drawing_to_look_like_for/",
+  "url": "https://www.reddit.com/r/Machinists/comments/1odjzs6/what_would_you_prefer_a_drawing_to_look_like_for/",
+  "subreddit": "Machinists",
+  "title": "What would you prefer a drawing to look like for a RFQ for a part with undecided variables?",
+  "author": "psychotic11ama",
+  "created_iso": "2025-10-22T20:44:52Z",
+  "score": 1,
+  "num_comments": 4,
+  "selftext": "Wasn't really sure how to title this. Essentially, I'm trying to make a drawing for a piece of expanded metal mesh with some countersunk holes. The countersinks are the same size and in the same location for all variations, but we intend to try a bunch of different mesh sizes. Right now I have a drawing that shows the size of the diamonds in the mesh we're currently using, but I don't want to lock a shop in to trying to find that exact type of mesh since I'm planning to try different ones anyway. I want them to say \"here's some of the different what we have available, and here's\n\nWhat is the most helpful/comprehensible way to communicate this? A table? A comment? Or is it just to have some outside correspondence with the shop that says quote it with whatever expanded metal mesh you have on hand/is procurable for you? And if I were to do the latter, should I just omit the mesh diamonds from the drawing entirely?",
+  "comments": [],
+  "drilldown_candidates": []
+}

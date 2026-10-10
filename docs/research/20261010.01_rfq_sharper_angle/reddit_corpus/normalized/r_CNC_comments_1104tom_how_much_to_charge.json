@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1104tom/how_much_to_charge/",
+  "url": "https://www.reddit.com/r/CNC/comments/1104tom/how_much_to_charge/",
+  "subreddit": "CNC",
+  "title": "How much to charge",
+  "author": "SivalV",
+  "created_iso": "2023-02-12T02:29:15Z",
+  "score": 14,
+  "num_comments": 6,
+  "selftext": "I have a weird deal with my employers and I am about to give a quote for my bonus for supplying a zero air longhand program for a roughly 60-90ish second cycle time, with optimized fixturing and lead ins and outs as well as linking moves, that will cut their current solution cycle time down to 1/4 (it's for millions of parts) \n\nShould I charge line by line of g-code so tediously optimized for huge volume production that the machine tool builder's programming techs can't even read it, or should I just ask for an extra monthly wage per week spent writing code (for the day to day I get about double of minimum but at a reduced and loose schedule, but now it's 4:30am of Sunday and I'm only 15% done)?",
+  "comments": [],
+  "drilldown_candidates": []
+}

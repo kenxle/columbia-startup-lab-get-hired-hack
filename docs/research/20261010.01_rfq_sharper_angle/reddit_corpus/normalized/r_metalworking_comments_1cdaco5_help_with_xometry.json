@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/metalworking/comments/1cdaco5/help_with_xometry/",
+  "url": "https://www.reddit.com/gallery/1cdaco5",
+  "subreddit": "metalworking",
+  "title": "Help with Xometry",
+  "author": "3838683",
+  "created_iso": "2024-04-26T02:41:16Z",
+  "score": 8,
+  "num_comments": 28,
+  "selftext": "Hello all,\n\nI am attempting to use Xometry to get a modified hair trimmer head produced.\n\nI made an account, uploaded my .stp file, and started a quote. I am now stuck on the finishing properties.\n\nThis is will be a working prototype.\n \nThis appearance of the final product is not as important as its ability to be sharpened for cutting hair. It will glide across the skin so it needs to not have any burrs or rough edges.\n \nOn the configuration/ properties section Ive selected Bead Blast and Harden. Are these necessary?\n \nXometry list deburring options but I dont see where you can select which one.\n \nCan someone walk me through this?",
+  "comments": [],
+  "drilldown_candidates": []
+}

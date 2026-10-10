@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/procurement/comments/1t08285/looking_for_real_feedback_on_procurement_systems/",
+  "url": "https://www.reddit.com/r/procurement/comments/1t08285/looking_for_real_feedback_on_procurement_systems/",
+  "subreddit": "procurement",
+  "title": "Looking for real feedback on procurement systems used in oil &amp; gas / industrial purchasin",
+  "author": "Agile-Situation-7631",
+  "created_iso": "2026-04-30T20:29:54Z",
+  "score": 1,
+  "num_comments": 8,
+  "selftext": "I work in procurement/supply chain in the oil and gas field, mainly dealing with requisitions, RFQs, supplier records, purchase orders, approvals, and documentation for industrial materials, spare parts, equipment, and service-related purchases.\n\nWe currently use Cendec for our procurement workflow. It handles the basics, but I’m looking into possible alternatives and trying to get a better idea of what else is out there before making any internal recommendations.\n\nWhat I’m mainly looking for is a system that’s strong with:\n\n* Requisition tracking\n* RFQ creation and quote comparison\n* Supplier/vendor registration and database management\n* PO tracking\n* Approval workflows\n* Document uploads and audit trail\n* Reporting and dashboards\n* A clean way to track everything by requisition, RFQ, PO, supplier, and project\n\nI’ve been looking at names like SAP Ariba, Coupa, Ivalua, JAGGAER, Oracle, and Microsoft Dynamics, but I’m also interested in smaller or mid-market systems if they actually work well.\n\nI’m also trying to understand the difference in real use between cloud-based systems and on-premise/hybrid options. Cloud seems convenient, but on-premise or hybrid may make more sense for companies that want more control over their data and system access.\n\nFor anyone who has used Cendec or moved away from it, what did you replace it with?\n\nAnd for anyone using other procurement/sourcing systems:\n\nWhat system are you using?\n\nWhat does it do well?\n\nWhat problems do you run into with it?\n\nWas it difficult to set up and get people using it?\n\nWould you recommend it for an oil and gas / industrial procurement environment?\n\nJust trying to hear from people who use these systems in real life, not just what looks good in a demo.",
+  "comments": [],
+  "drilldown_candidates": []
+}

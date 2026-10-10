@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/863qft/sales_job_quoting_software_suggestions/",
+  "url": "https://www.reddit.com/r/CNC/comments/863qft/sales_job_quoting_software_suggestions/",
+  "subreddit": "CNC",
+  "title": "Sales / Job Quoting Software Suggestions",
+  "author": "pdxcnc",
+  "created_iso": "2018-03-21T17:01:15Z",
+  "score": 6,
+  "num_comments": 15,
+  "selftext": "Hi all. I'm starting to grow my little CNC shop (have a ShopSabre 4x8 with HSD ES915) and am looking for suggestions on improving my quoting/sales process:\n\n* Take RFQ's from website contact form (Airtable)\n* CAM up the part(s) (Fusion)\n* Enter time/materials into Google Sheets template\n* Enter quotes/invoices in Xero\n* Email the customer\n* Take deposit\n* Start project\n\nIt's all a little too messy. Especially considering bringing someone else into the process to help.\n\nAny suggested CRM's, sales apps, quoting software? I've used Hubspot before but it doesn't seem well suited here.\n\nDream software scenario:  Takes RFQ's, interact with customers like a CRM and create/send quotes.",
+  "comments": [],
+  "drilldown_candidates": []
+}

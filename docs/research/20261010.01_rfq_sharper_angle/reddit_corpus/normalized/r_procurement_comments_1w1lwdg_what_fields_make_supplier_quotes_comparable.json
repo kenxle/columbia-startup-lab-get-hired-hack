@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/",
+  "url": "https://www.reddit.com/r/procurement/comments/1w1lwdg/what_fields_make_supplier_quotes_comparable/",
+  "subreddit": "procurement",
+  "title": "What fields make supplier quotes comparable enough for a shortlist?",
+  "author": "MaxAtGoodsCommand",
+  "created_iso": "2026-08-29T12:58:02Z",
+  "score": 3,
+  "num_comments": 8,
+  "selftext": "When you get 3+ RFQ responses, what fields do you refuse to leave vague before you compare them?\n\nThe checklist I see break decisions most often: sellable unit/basis, spec revision, MOQ/tier, Incoterm + named place, freight scope, tooling/sample charges, payment terms, lead time, validity date, origin/HS basis, quality/compliance docs, and explicit exceptions.\n\nCurious where procurement teams draw the line between \"good enough to shortlist\" and \"not decision-ready.\" Disclosure: I work on supplier/quote process tooling; no product link here.",
+  "comments": [],
+  "drilldown_candidates": []
+}

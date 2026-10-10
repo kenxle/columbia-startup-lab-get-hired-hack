@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/120h0y5/haas_vs_dmg_vs_other_i_need_advice/",
+  "url": "https://www.reddit.com/r/CNC/comments/120h0y5/haas_vs_dmg_vs_other_i_need_advice/",
+  "subreddit": "CNC",
+  "title": "Haas vs DMG vs other: i need advice",
+  "author": "doctorcapslock",
+  "created_iso": "2023-03-24T11:08:48Z",
+  "score": 12,
+  "num_comments": 71,
+  "selftext": "Hello gentlemen,\n\nMy company has decided that it's time to buy our first machine; a turning centre. I only have experience with my own converted milling machines; the boards I chose for them always had a post processor for HSM (Fusion 360 CAM) which never gave me issues.\n\nWe are weighing our options; given our limited experience with professional grade machines, we think ease of use and features are of relatively high importance. As such, I would like to be able to use HSM CAM. We also want to automate our part production because we're a small company.\n\nWe've talked to dealers for Haas and DMG Mori and got quotes for a DS30Y a CLX350 respectively; not sure if I should talk to some more companies to figure out what fits our needs (like Mazak). The DMG is only slightly more expensive (20-30k)\n\nLooking at the available list of posts (here), I only see generic turning posts for Siemens and Fanuc (which are the options on this machine).\n\nQuestion 0: How important/relevant is CAM programming in turning centres anyway? Am I wasting time by not going the conversational route? The parts aren't very complicated, but there's also some milled features, radially drilled holes, and both sides need to be machined, so idk if that'd be easier in CAM rather than conversational\n\nQuestion 1: Is the generic turning post good for Siemens enough to make parts, or will I need to dive into customising the post? (and figuring out how to do so without destroying the machine lol).\n\nI know a lot of people say Haas is mediocre and DMG is good and such, and I've read some stories about some guy's C-axis not clamping properly which meant he couldn't do lights out machining, so in that respect we're leaning towards DMG; but Haas does have a post specific to the machine we are interested in buying, so in that respect i'm leaning towards the Haas.\n\nI'm an electrical engineer btw lol not a machinist\n\nAny advice is appreciated",
+  "comments": [],
+  "drilldown_candidates": []
+}

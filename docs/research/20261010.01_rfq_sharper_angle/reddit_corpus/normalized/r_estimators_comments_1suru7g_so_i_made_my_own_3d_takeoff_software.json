@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/estimators/comments/1suru7g/so_i_made_my_own_3d_takeoff_software/",
+  "url": "https://v.redd.it/sjdfjec7b7xg1",
+  "subreddit": "estimators",
+  "title": "So I made my own 3D takeoff software",
+  "author": "Transhacks",
+  "created_iso": "2026-04-24T20:50:59Z",
+  "score": 41,
+  "num_comments": 52,
+  "selftext": "A while ago I posted a video where I had OST open side by side with a small tool I made that mirrored the takeoff in a live 3D view.\n\nIt kind of escalated… now it’s a full takeoff workflow.\n\nIt includes a 2D takeoff view, a live 3D view that updates as you measure, conditions with quantities, .OST / .OSP import and export, and PDF export with Bluebeam-style markups.\n\nBuilt mostly with AI assistance, just to see how far the idea could go.\n\nThe original idea was just a 3D viewer connected to OST, but it turned into a full app for a couple reasons.\n\nWaiting on OST sometimes felt slow, so I started experimenting.  \n\nWe looked into alternatives, but none of them support .OST / .OSP files.  \n\nThat basically meant redoing takeoffs from scratch every time.\n\nSo I ended up building something that works directly with the OST database, changes sync both ways, whether they’re made in my app or in OST.\n\nCurious what estimators think:\n\nActually useful, or just a gimmick?",
+  "comments": [],
+  "drilldown_candidates": []
+}

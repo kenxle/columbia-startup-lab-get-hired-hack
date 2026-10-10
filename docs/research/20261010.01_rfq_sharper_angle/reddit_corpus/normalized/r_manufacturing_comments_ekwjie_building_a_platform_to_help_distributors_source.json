@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/manufacturing/comments/ekwjie/building_a_platform_to_help_distributors_source/",
+  "url": "https://www.reddit.com/r/manufacturing/comments/ekwjie/building_a_platform_to_help_distributors_source/",
+  "subreddit": "manufacturing",
+  "title": "Building a platform to help distributors source custom products. Would this suit your industry?",
+  "author": "Tuccinator",
+  "created_iso": "2020-01-06T16:41:18Z",
+  "score": 1,
+  "num_comments": 5,
+  "selftext": "I've looked into creating a custom clothing brand in the past, but it seemed very tiresome. I've come up with an idea that I think would fix my problems, regarding clothing. I was wondering if you think this would work for your industries?\n\nI'll provide a clothing example to hopefully help explain the platform:\n\nI want to build a new type of sweater. I take a look at all the  sellers on Alibaba selling their sweaters. I have to message them  all and ask if they do custom orders. Wait for responses over the next few days, and then send a reply asking if they can create a  specific sweater I want, and if they do samples. Again, I have to wait  for responses and then send a wire transfer.\n\nWhat if this process could be simplified?\n\nWhat if I could create one single prototype with all the information about my product? Materials, size, colors, etc. Submit it for an RFQ to  all available suppliers on the platform, and receive responses of  quotes, sample prices, etc. You can click one button to order a sample, or another button to complete the order.\n\nThe platform would allow you to manage your prototypes through an API, like automatic re-ordering when stock is low. You could select the origin of your suppliers, and a whole slew of other things.\n\nDo you think there would be a market for a platform like this? All feedback is appreciated.",
+  "comments": [],
+  "drilldown_candidates": []
+}

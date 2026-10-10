@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/estimators/comments/1us1mp1/does_anyone_else_generate_a_3d_model_directly/",
+  "url": "https://i.redd.it/zzrlcvaqh9ch1.jpeg",
+  "subreddit": "estimators",
+  "title": "Does anyone else generate a 3D model directly from their takeoffs?",
+  "author": "Transhacks",
+  "created_iso": "2026-07-09T20:13:01Z",
+  "score": 55,
+  "num_comments": 50,
+  "selftext": "This screenshot shows a workflow I’ve been experimenting with. The bottom window is the actual 2D foundation takeoff, while the top window is a 3D model generated directly from those measurements.\n\nA few years ago, my company experimented with a similar workflow using Revit. It was useful, but the cost and the amount of manual modeling made it difficult to justify for estimating.\n\nToday, hardware is much more capable, and software has come a long way. Even small independent developers can build tools that make this kind of workflow much more practical than it used to be.\n\nI’m curious how common this is in the industry.  \nDoes your company use any kind of 3D-assisted estimating workflow?\n\nIf so, what software are you using?\n\nIf not, do you think something like this would actually save time, or would it just add another step? For example, in my case I still have to manually assign the elevation of each footing, grade beam, slab, etc., to generate an accurate 3D model. Would that extra effort be worth the additional visualization?\n\nI’d love to hear what others are doing.",
+  "comments": [],
+  "drilldown_candidates": []
+}

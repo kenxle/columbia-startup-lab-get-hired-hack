@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/metalworking/comments/1udcgjg/title_best_lowcost_way_to_permanently_mark_part/",
+  "url": "https://i.redd.it/f1bsj6dt109h1.png",
+  "subreddit": "metalworking",
+  "title": "Title: Best low-cost way to permanently mark part IDs on curved, galvanized Mild Steel (MS) for field use?",
+  "author": "kalai0452",
+  "created_iso": "2026-06-23T09:34:20Z",
+  "score": 10,
+  "num_comments": 65,
+  "selftext": "Hi everyone,\n\nI’m facing a bit of a tracking and traceability dilemma on our shop floor and could really use some practical, budget-friendly advice from the community.\n\n# The Component &amp; Material\n\n* **Material:** Mild Steel (MS) with a Zinc (Zn) coating / Galvanized.\n* **Surface Profile:** Curved surface (cylindrical shaft/flange area).\n* **Operating Environment:** These parts are heavy-duty industrial components deployed directly on-site in harsh, high-friction, and abrasive field conditions.\n\n# The Problem Statement\n\nWe need to establish a robust asset-tracking system to follow these parts from our vendors, out to clients, or to our internal production units. Crucially, we also need to track the component’s exact lifecycle maintenance—specifically, tracking how many times a part has been rewelded or hardfaced (e.g., updating a physical mark from \"New\" to \"Reweld 1\", \"Reweld 2\", etc.).\n\nBecause we don't have an in-house laser engraving setup, we’ve been outsourcing laser marking. However, sending heavy, used, field-worn components back to a third-party vendor just to update a maintenance code is a massive logistical bottleneck. We need to bring this process in-house.",
+  "comments": [],
+  "drilldown_candidates": []
+}

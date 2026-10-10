@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/procurement/comments/1b9jfi4/help_understand_more_the_procurement_process/",
+  "url": "https://www.reddit.com/r/procurement/comments/1b9jfi4/help_understand_more_the_procurement_process/",
+  "subreddit": "procurement",
+  "title": "Help understand more the procurement process",
+  "author": "SailEnvironmental729",
+  "created_iso": "2024-03-08T08:39:20Z",
+  "score": 2,
+  "num_comments": 6,
+  "selftext": "I'm looking to understand in depth the procurement process in manufacturing companies. I had some interviews already, so I'll say what I know and please correct me if I'm wrong. I'm looking for a detailed step to step process of how the communication with supplier work.\n\nSo, here's what I know:\n\n* The need for a material may come in different ways:\n   * Strategic planning\n   * Request through P2P systems\n* After the need comes and the requester specifies the details, the procurement team scouts the market to try and find at least 3 good fits for the material or, if it's a material they buy frequently, they already have a go-to supplier.\n* Then, they contact the supplier through email, phone number, etc, sending a RFI (if a new supplier) or a RFP (frequent buy)\n* To new suppliers:\n   * After the RFI comes, they analyze if it matches their needs\n   * If so, they do a RFQ to get a detailed quote on the product\n   * After the RFQ comes, they do some back-and-forth with the supplier to try to get a better price on the product(s)\n   * When both parties are good with the quote, they go to an RFP (described below)\n* RFPs are the most detailed part of the RFXs, with terms outlined and everything. That's when the company will effectively decide which of the suppliers they will move forward with\n* Finally, after they decide on a supplier, the legal teams of both companies (supplier + manufacture) come together to draft the contract\n* After the contract is agreed on both sides, they continue to the PO\n\n&amp;#x200B;\n\nPlease let me know if that's the process or what I got wrong. I'm very interested in the field and I'm genuinely trying to understand the process as detailed as possible. Thank you so much!",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/MetalFabrication/comments/1uw8hjk/im_looking_for_my_early_adaptors_3/",
+  "url": "https://www.reddit.com/r/MetalFabrication/comments/1uw8hjk/im_looking_for_my_early_adaptors_3/",
+  "subreddit": "MetalFabrication",
+  "title": "I'm looking for my Early Adaptors &lt;3",
+  "author": "Dry-Draft-3868",
+  "created_iso": "2026-07-14T13:19:00Z",
+  "score": 1,
+  "num_comments": 3,
+  "selftext": "# Built a tool that turns CAD files into costed production plans. need a few fab shops to break it before launch\n\nHey, we are building a tool for make to order metal fab shops. You drop in a STEP, DXF, or DWG file and it gives you a BOM, a material cost estimate, and a lead time in a few minutes, instead of the usual manual quoting back and forth. It runs locally on your machine, so drawings never leave the building.\n\nWe're pre-launch and I'd rather find the rough edges now than after pricing and messaging are locked in. So I'm looking for a handful of shops willing to run it against real jobs and tell me honestly where it gets things wrong bad parsing, dumb cost assumptions, whatever.\n\nEarly users will haver discount for a while once we move to general pricing after launch. Not trying to make money off this group just trying to learn from people who'd actually use it before we scale.\n\nHappy to answer questions in the comments if you're curious.",
+  "comments": [],
+  "drilldown_candidates": []
+}

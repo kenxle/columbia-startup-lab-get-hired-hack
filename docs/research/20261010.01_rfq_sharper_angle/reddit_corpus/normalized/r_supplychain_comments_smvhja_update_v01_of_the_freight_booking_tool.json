@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/supplychain/comments/smvhja/update_v01_of_the_freight_booking_tool/",
+  "url": "https://www.reddit.com/r/supplychain/comments/smvhja/update_v01_of_the_freight_booking_tool/",
+  "subreddit": "supplychain",
+  "title": "Update: v0.1 of the freight booking tool",
+  "author": "datadevil",
+  "created_iso": "2022-02-07T17:20:29Z",
+  "score": 2,
+  "num_comments": 7,
+  "selftext": "tl;dr: I built this - [Portyl](https://www.shipportyl.com)\n\n\nHi!\n\nLast month, I posted about an idea for a freight booking tool that I had: [Original Post](https://www.reddit.com/r/supplychain/comments/rragj1/would_you_use_a_booking_tool_for_freight/)\n\nSince then, I've managed to line up a few suppliers and put together a minimal version of the tool thanks to the feedback from people on this sub  ([/r/supplychain](https://reddit.com/r/supplychain) + [/r/freightbrokers](https://www.reddit.com/r/freightbrokers)). You can find it here: [Portyl](https://www.shipportyl.com)\n\nHere's how it works today:\n\n- You raise an RFQ on the platform using the \"Quotes\" tab\n\n- We broadcast your RFQ to our network of verified vendors\n\n- We give you back a quote that you can book directly on the platform\n\nI've come to realize that there's a few caveats today:\n- KYC is required before you can book the shipment as suppliers are unwilling to provide quotes without it. This is currently processed manually, I'm working on automating this.\n\n- Onboarding/sign-up is required today to get started. I know people are generally hesitant to sign up and give out their email IDs. I'm still trying to figure out a way to add value without having to sign-up. One of the ideas I had was to pre-seed my database with rates for the most popular lanes from my suppliers that you can browse/search without having to sign in. Please let me know what lanes you would like to see.\n\n- I don't plan on monetizing it yet (I'm still trying to figure out if this is even valuable)\n\n- I'm still not sure if the quotes I'm able to provide have all of the information required for users to make a decision.\n\nMy last post generated some great feedback for me and helped me make some meaningful connections on this sub - if you're interested in collaborating, have feedback, think this is trash or just want to say hi, reach out over comments! :)",
+  "comments": [],
+  "drilldown_candidates": []
+}

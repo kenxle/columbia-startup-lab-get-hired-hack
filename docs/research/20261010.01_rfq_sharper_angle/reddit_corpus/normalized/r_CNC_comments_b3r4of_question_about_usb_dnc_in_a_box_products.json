@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/b3r4of/question_about_usb_dnc_in_a_box_products/",
+  "url": "https://www.reddit.com/r/CNC/comments/b3r4of/question_about_usb_dnc_in_a_box_products/",
+  "subreddit": "CNC",
+  "title": "Question about USB \"DNC in a box\" products",
+  "author": "Herley1",
+  "created_iso": "2019-03-21T14:24:12Z",
+  "score": 9,
+  "num_comments": 4,
+  "selftext": "I have a Doosan horizontal from the '90s with a Fanuc 15M control that I need to expand the memory on. I got a quote from a company for $3,000 to upgrade it to 2mb but then I found this thing on ebay \n\nhttps://www.ebay.com/itm/Fanuc-USB-FLASH-memory-upgrade-for-all-Fanuc-CNC-Machines-connects-to-RS232/201605212914?ssPageName=STRK:MESELX:IT&amp;_trksid=p3984.m1555.l2649&amp;pageci=bec0a8cd-17b4-45e1-b46a-c2b5d8960a75&amp;epid=1774016741\n\nMy plan is to run this machine basically on a 24/7 cycle, so I was wondering if anyone has any experience with this or similar items and can tell me how reliable they are. Currently I have to delete and and reload programs every time I switch ops which is huge waste of time, so any help/suggestions would be appreciated ",
+  "comments": [],
+  "drilldown_candidates": []
+}

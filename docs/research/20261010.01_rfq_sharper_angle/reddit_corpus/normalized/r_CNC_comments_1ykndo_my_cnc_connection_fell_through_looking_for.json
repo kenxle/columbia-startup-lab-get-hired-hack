@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1ykndo/my_cnc_connection_fell_through_looking_for/",
+  "url": "https://www.reddit.com/r/CNC/comments/1ykndo/my_cnc_connection_fell_through_looking_for/",
+  "subreddit": "CNC",
+  "title": "My CNC connection fell through - looking for someone to do some cuts and pricing advice",
+  "author": "repens",
+  "created_iso": "2014-02-21T22:14:03Z",
+  "score": 5,
+  "num_comments": 8,
+  "selftext": "I am working on a DIY CNC project based on extrusions and I had a source for getting my gantry and Z-Axis plates cut but it fell through.\n\nSo now I've got this aluminum plate and g-code files I made but nobody to cut them. Local guy quoted me $400 to do it and I had to laugh. \n\nAnyone have any ideas what I should be paying for this kind of a job using my own materials? It's four smallish plates cut out of 1/4\" thick 6061 aluminum. It's all just profile cuts with some drilled holes. No pockets or tapped holes so it could all be done in one pass with a 3/16th end mill. \n\nHere are the links to the g-code files:\n\n[Part 1](https://drive.google.com/a/rjthornton.com/file/d/0B89B6-SvY8sXMGdZWloxeHFKMUE/edit?usp=sharing)\n[Part 2](https://drive.google.com/a/rjthornton.com/file/d/0B89B6-SvY8sXT1RrSG5TOUpwUVU/edit?usp=sharing)\n[Part 3](https://drive.google.com/a/rjthornton.com/file/d/0B89B6-SvY8sXU2ZydXNUdmdnOHc/edit?usp=sharing)\n[Part 4](https://drive.google.com/a/rjthornton.com/file/d/0B89B6-SvY8sXaF9ld2pHazN0cGM/edit?usp=sharing)\n\n[Here](https://drive.google.com/file/d/0B89B6-SvY8sXQ2dBRG1hVlNRSjg/edit?usp=sharing) is the DXF.",
+  "comments": [],
+  "drilldown_candidates": []
+}

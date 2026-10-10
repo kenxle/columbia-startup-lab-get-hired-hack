@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/Machinists/comments/1sr80m1/estimating_costs_swiss_lathe/",
+  "url": "https://i.redd.it/zrzlif0esfwg1.jpeg",
+  "subreddit": "Machinists",
+  "title": "Estimating Costs - Swiss Lathe",
+  "author": "Homeboi-Jesus",
+  "created_iso": "2026-04-21T00:24:54Z",
+  "score": 12,
+  "num_comments": 53,
+  "selftext": "As a design engineer, I often undergo a lot of part iterations/rev changes for early stage R&amp;D. Part of the process is based off feedback from how much it'll cost. The problem with that is that I need an idea of what it'll cost in the first place!\n\n  \nTypically when I reach a point where the design is solid enough, I'll send it out for RFQ. But I know that wastes everybody's time because it isn't the final version of it. I want to be able to get an estimate myself. I can get raw material costs pretty easily (for the part above it's \\~$0.13 for the latest rev), but it's the machining costs that are a wild card.\n\n  \nI've attached an older rev of the part in question (metric units), it is a polymer material. What I want to know is, how would you guys go about quoting this part? What is the process like? I've seen some say it's machine rate / parts per hour; but that won't tell me anything without even knowing how many of these can be made in an hour. I know quantity plays a big role in it too, but for this type of part we are talking in the 10k+ territory.\n\n  \nAny advice on this topic, so I don't have to keep relying on RFQ-ing from outside until we are ready to actually buy it?",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1g5ywf2/would_getting_a_cnc_lathe_and_probably_a_small/",
+  "url": "https://www.reddit.com/r/CNC/comments/1g5ywf2/would_getting_a_cnc_lathe_and_probably_a_small/",
+  "subreddit": "CNC",
+  "title": "Would getting a CNC Lathe (and probably a small manual mill) make sense for our scale?",
+  "author": "Hazel-Rah",
+  "created_iso": "2024-10-17T19:15:57Z",
+  "score": 19,
+  "num_comments": 30,
+  "selftext": "So it turns out we spend about 20-35k CAD a year to one machine shop. We tried getting quotes from the other local shops, but they were all going to charge substantially more. I assume the problem is that we only need 5-10-20 pieces at a time, maybe 50 max, of any one part at a time, and we can't really do larger orders at a time. So my guessis it doesn't make a lot of sense to dedicate time to our jobs, so they slot us in between orders of hundreds or thousands of parts (which would also explain why we often have to wait 2+ months for delivery).\n\nBasically everything can be done on a lathe, the biggest things are a 2.5\" diameter x 6\" long aluminum tube that needs 2.25-12UN-2B threads on one side, and a 3.25\" diameter delrin ring with 2.875-8UN-2B threads on the inside, and then a bunch of other smaller pieces. Tolerances don't even have to be that great, just need threaded parts to fit together.\n\nWe don't have the extra time to do the turning ourselves, and there isn't enough work to justify hiring a new person to run a manual lathe to save 15-25k a year.\n\nBut if we could get a CNC lathe for under 20-25k, and have it run with moderate intervention, while being idle most of the time, it would pay for itself in a year or three.\n\nThe obvious concern is that we've never run a CNC lathe or machine shop before. A few of us are familiar with 3d printers and laser cutters (and one who has operated, but not programmed a CNC mill before), and we recently bought a desktop pick and place machine for assembling our PCBs under the same concept, which has already paid for itself.\n\nCould a couple reasonably techy people get a CNC lathe, and keep it running enough to make a couple hundred parts a year without having to dedicate all their time to it?\n\nEdit: Other concerns, We work in a warehouse that has a lot of other people doing shipping and receiving, if it's quite loud, we'd need to build a room around our work area to deaden the sound, I also would need to add in the cost of running beefier electrical power, since I assume there aren't many options that run on 120V",
+  "comments": [],
+  "drilldown_candidates": []
+}

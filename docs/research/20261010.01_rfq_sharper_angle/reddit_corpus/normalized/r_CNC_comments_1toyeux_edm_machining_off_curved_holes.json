@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1toyeux/edm_machining_off_curved_holes/",
+  "url": "https://www.reddit.com/r/CNC/comments/1toyeux/edm_machining_off_curved_holes/",
+  "subreddit": "CNC",
+  "title": "EDM machining off curved holes",
+  "author": "notrandommikr86",
+  "created_iso": "2026-05-27T07:34:00Z",
+  "score": 11,
+  "num_comments": 18,
+  "selftext": "Hi guys,\n\nIn my line of work I have a need for curved holes in carbon steel pipe sections. The local machine shop is quoting me about 96h of work for a 40 mm curved flat bottom hole on a 106 radius pipe section. \n\nI have no experience in CNC my background is welding engineering, however 96h sounds a bit much for me. Can anyone help me understand if this is a reasonable quote or am I getting ripped off.\n\nAlso if you guys can tell me how to determine the actual work hours needed? I know it's something about material removal rate and electrode offset, but some formulas would be much appreciated.\n\nThanks!\n\nEdit: Sorry for not adding a sketch. Let me know if this link works.\n\nhttps://imgur.com/a/yR534Lp",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/metalworking/comments/1t8vlab/newbie_question_drilling_through_laminated/",
+  "url": "https://www.reddit.com/r/metalworking/comments/1t8vlab/newbie_question_drilling_through_laminated/",
+  "subreddit": "metalworking",
+  "title": "Newbie question: drilling through laminated japanese steel chisel blank",
+  "author": "janky_lyne_arm",
+  "created_iso": "2026-05-10T03:29:08Z",
+  "score": 3,
+  "num_comments": 6,
+  "selftext": "I'm trying to drill a 1/4\" hole through a 1/8\" thick steel chisel. The steel stock is laminated with different types of steel (this is normal for this type of chisel and the makers, and I have specifically been able to observe the layers on the bevel edge of this particular chisel). Basically, it's about 1/16\" of extremely hard steel with a layer of 1/16\" thick steel that is not as hard. The HRC rating on this steel was quoted at 62 by the manufacturer. The \"back\" (the hard side) won't be marked by my cheap punch from amazon (it just deflects), and I can't get any of the carbide tipped bits that I try to even cut it. They cut through the top 1/16\" of the steel like butter, but the last 1/16\" (the hardened layer) just dulls the bits with almost no progress. \n\nMy setup:\n\nA press, with a 1/4\" carbide tipped bit, the chisel blank is clamped onto a large metal heat sink with lubricant to dissipate heat rapidly (it seems to work well). I'm running at 300-ish rpm, and I get less than 1/1000\" progress on a new bit. \n\nAny advice would be appreciated. I am about to try spot annealing, but any setup that I use for that will be extremely janky... ",
+  "comments": [],
+  "drilldown_candidates": []
+}

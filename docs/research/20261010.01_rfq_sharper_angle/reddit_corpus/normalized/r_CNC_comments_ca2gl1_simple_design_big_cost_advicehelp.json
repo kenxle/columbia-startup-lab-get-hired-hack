@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/ca2gl1/simple_design_big_cost_advicehelp/",
+  "url": "https://www.reddit.com/r/CNC/comments/ca2gl1/simple_design_big_cost_advicehelp/",
+  "subreddit": "CNC",
+  "title": "simple design, big cost. advice/help",
+  "author": "zLucentOne",
+  "created_iso": "2019-07-07T03:31:44Z",
+  "score": 14,
+  "num_comments": 8,
+  "selftext": "&amp;#x200B;\n\nHi all,\n\n&amp;#x200B;\n\nI have a been working on a micro controller controlled high power LED project for a while now. I have the electronic design/prototype done. I have the code for the controller done.. well mostly done as you can always tweek code..  I have been using heat sinks from a company called LED supply  \n\n [https://www.ledsupply.com/led-heatsinks/dynamic-led-heatsink-housing](https://www.ledsupply.com/led-heatsinks/dynamic-led-heatsink-housing) \n\nwhich work great for prototyping but as i get closer to something finished and maybe a product, I need something easy to water proof. \n\nso I designed a new heat sink in fusion 360 and sent it off for some online quotes and they have come back quite expensive.  the thing is I purposefully made these super simple, nothing like the sink above that i can order for 10 dollars each. My sink, is made from 1 inch and 1/4 round 6061 aluminum X 30 mm. with one 14 mm deep round pocket that is 20 mm dia. a small 2 mm cut in the bottom. maybe  the  dimensions  are not that important? the point is the design is really simple.  I am sure that learning CNC is challenging, I know i could do it but.. there is a large and long learning curve that i simply don't have time for. unless i have to. \n\n&amp;#x200B;\n\nwhat I would like from you guys is advice\n\n1 the quote I got was for 70 dollars a piece. so 10 of them = 700$. is this high? \n\n2. maybe I could send my design files to someone here that could advice me on how to get this done cheaper?\n\n2 is there someone here that would want to quote this? I only need a few of them now but i am actively working on making this into a product that will end up on motorcycles, boats, 4 wheeler's etc etc..\n\n&amp;#x200B;\n\nok.. thanks for any help",
+  "comments": [],
+  "drilldown_candidates": []
+}

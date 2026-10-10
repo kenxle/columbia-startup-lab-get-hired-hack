@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/manufacturing/comments/1qugsiz/built_an_rfq_quote_po_workflow_tool_to_reduce/",
+  "url": "https://www.reddit.com/r/manufacturing/comments/1qugsiz/built_an_rfq_quote_po_workflow_tool_to_reduce/",
+  "subreddit": "manufacturing",
+  "title": "Built an RFQ → Quote → PO workflow tool to reduce email + Excel chaos — curious which manufacturing sectors need this most",
+  "author": "PossibleChemical8875",
+  "created_iso": "2026-02-03T03:17:59Z",
+  "score": 1,
+  "num_comments": 4,
+  "selftext": "Hey all — I’ve been working closely with a manufacturing shop and ended up building an internal tool to streamline RFQs end-to-end. The goal wasn’t to replace estimators or ERPs, but to reduce the friction that comes from email + Excel + tribal knowledge as RFQ volume grows.\n\nAt a high level, it:\n\n\t•\tCentralizes RFQs (drawings/PDFs included)\n\n\t•\tLets estimators quote using their own logic (materials, labor, setup/run time, margins)\n\n\t•\tPulls in prior jobs / similar parts so teams aren’t starting from scratch\n\n\t•\tHandles quote delivery and follow-ups automatically, cutting down email noise\n\n\t•\tSits upstream of ERP/accounting rather than replacing them\n\nIt was built around CNC/fabrication workflows, but it feels broadly applicable to other ops-heavy, custom-quote environments.\n\nCurious to hear:\n\n\t•\tWhich manufacturing sectors struggle most with RFQ/quoting throughput?\n\n\t•\tWhere do current tools break down — flexibility, speed, knowledge retention?\n\n\t•\tAny areas where this wouldn’t make sense?\n\nAppreciate any perspectives.",
+  "comments": [],
+  "drilldown_candidates": []
+}

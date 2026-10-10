@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/1he8y6v/where_to_put_back_gauge_corrections_for_part_with/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/1he8y6v/where_to_put_back_gauge_corrections_for_part_with/",
+  "subreddit": "sheetmetal",
+  "title": "Where to put back gauge corrections for part with multiple flanges and hold dimensions",
+  "author": "Realistic-Chance-172",
+  "created_iso": "2024-12-14T18:22:35Z",
+  "score": 1,
+  "num_comments": 0,
+  "selftext": "Hello,\n\nI've recently been operating a press brake because our shop is a man down. We are hiring someone but in the meantime we need to keep producing parts for our customers. I have a part with three separate hold dimensions. I've got all of them dialed into about 1/16\" of an inch or less, but I'm having a hard time dialing in from there. There is one dimension that is flexible on the part (see 1.25\" dim on pics). I've done sample coupons of the part and I'm very close on all of the dimensions, but I'm having a hard time understanding which flange length changes will affect which of the part dimensions. Each side of the part has this profile as seen in the first pic, and the overall width of the part is 36\" (second image). Bend sequence is from left to right as you are looking at the first picture. What I'm trying to get a handle on is this: If I adjust the 1.25\" Ref dimension I believe it will affect the overall width (36\") of the part. but when I put back gauge corrections into the second bend to correct the 2\" dimension I'm not sure if they are being added or subtracted from that dimension or which of the bends the extra material is going. How do I figure out which dimension to correct for each of these hold dims? Thanks for any help.\n\nhttps://preview.redd.it/lfdomioiwu6e1.png?width=251&amp;format=png&amp;auto=webp&amp;s=9e6cb6a77f3f475249432c54d6c50df68aa042d8\n\nhttps://preview.redd.it/uqp2za7jwu6e1.png?width=115&amp;format=png&amp;auto=webp&amp;s=1e6256ea441f69b318490a87f41d3fb910f870a5\n\n",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1t241vn/post_eli5/",
+  "url": "https://www.reddit.com/r/CNC/comments/1t241vn/post_eli5/",
+  "subreddit": "CNC",
+  "title": "Post - ELI5",
+  "author": "Underbeicht",
+  "created_iso": "2026-05-02T22:39:05Z",
+  "score": 10,
+  "num_comments": 15,
+  "selftext": "So I'm not a machinist, I'm an Ops guy that's focused on the machine shop because it's 100% our weakest link in production. Over the past few months, I've spent about 50 hours/wk physically in the machine shop supporting any way I can, from putting tools in collets and checking runout before turning them over to the machinists to ordering new, good tools, to updating the shop as much as I helpfully can. I can tell the shop is running smoother but I don't know if it's because I'm actually helping or because the machinists are feeling pressure by bumping into me all day all week.\n\nSomeone brought post up in conversation. Our machine shop manager insists that we don't actually need it and that we're fine running standard posts for two of our mills (generic Fanuc post) but we do have 4th axis post for our newer Haas. \n\nWhile we do have objectively difficult parts, none of them are (idk how to say this machinist-wise) organically shaped? Like we're not making impellers, but the parts we are making are largely true position and very difficult to make with things like deep pockets with square corners, 30XD small bores, etc. If it serves as reference, most machine shops won't quote our more difficult parts.\n\nMy question is, does post help with prismatic parts? Or is it only for things like impellers or where the tool dances with the part? If I need post for, say, my Daewoo, do I really have to pay a post house to make a bespoke one or can I tweak a generic one for this machine?\n\nPardon my ignorance, I'm trying to help as much as I can and that means tapping other peoples' shoulders instead of my machine shop manager as much as possible so he can get work done. He's slammed, I'm slammed. Morale is high but we can't fall behind on production (we are).\n\n",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1t6m7fj/lost_money_on_three_jobs_in_a_row_last_year/",
+  "url": "https://www.reddit.com/r/CNC/comments/1t6m7fj/lost_money_on_three_jobs_in_a_row_last_year/",
+  "subreddit": "CNC",
+  "title": "Lost money on three jobs in a row last year because I quoted by gut. What I changed since.",
+  "author": "Status_Swordfish2854",
+  "created_iso": "2026-05-07T20:18:30Z",
+  "score": 32,
+  "num_comments": 11,
+  "selftext": "Last summer I quoted three jobs back-to-back where I lost money. Not a   \nlot — €100-300 each — but enough to bother me.\n\nSame pattern every time:  \n\\- I forgot setup time on the second op  \n\\- I underestimated wire EDM cycle on a hardened part    \n\\- I forgot the heat treat subcontractor leadtime entirely\n\nThe thing that hit me: I was using the same Excel sheet I inherited   \nfrom the previous estimator in 2019. Single \"machining time\" field.   \nNo place for routing operations. No leadtime calculation. No way to   \nlook back and see WHY I quoted wrong.\n\nSo I rebuilt it from scratch over a weekend. Three things made the   \nbiggest difference:\n\n\\*\\*1. Multi-step routing.\\*\\*  \nReal jobs aren't one-machine. A bracket gets sawed, rough-milled,   \nheat-treated, ground, finish-milled, anodized. Each step has its own   \nrate. The new sheet handles up to 10 ops per job, with subcontractor   \nwork priced per kg or per piece (not per hour).\n\n\\*\\*2. Three estimation methods, side by side.\\*\\*  \n\\- Eyeball (gut feel) — auto-adds 20% buffer  \n\\- Parametric (MRR × volume) — auto-adds 10% buffer  \n\\- CAM import (Fusion/Mastercam time) — adds 5% buffer\n\nYou pick the method per job. The sheet flags which one you used so   \nyou can compare accuracy later.\n\n\\*\\*3. Quoted vs Actual tracker.\\*\\*  \nAfter every job, I record what really happened. The dashboard now   \ntells me \"you under-quote grinding by 18% on average\" — useful info   \nI never had before.\n\nSharing because if this rings any bells, you might want to do something   \nsimilar before losing more money than I did.\n\nAnyone else have similar pain points? What did you change?",
+  "comments": [],
+  "drilldown_candidates": []
+}

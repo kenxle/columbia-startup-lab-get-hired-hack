@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/uj3q56/machining_in_graphite/",
+  "url": "https://www.reddit.com/r/CNC/comments/uj3q56/machining_in_graphite/",
+  "subreddit": "CNC",
+  "title": "Machining in graphite",
+  "author": "JC3FL",
+  "created_iso": "2022-05-05T18:21:14Z",
+  "score": 15,
+  "num_comments": 19,
+  "selftext": "I want a graphite mold in order to pour silver. The design is basically a cylinder with a smaller cylinder on the end (see graphic). I designed it in a 3D app which outputs STL files. I assumed it was a simple design and that doing it four times in a single block of graphite would be easy since once the code is done it would be a matter of just running it four times.\n\n&amp;#x200B;\n\nI sent the design to a company that does custom work and they quoted me $425 for all four holes in one block or $300 for two holes. I am not familiar with CNC setup but given the simplicity of the design I was surprised at the price. Is this amount right for the work I want done? Would having the STL file cut costs?\n\n&amp;#x200B;\n\n[The graphic](https://i.imgur.com/XhmcB8g.jpg)",
+  "comments": [],
+  "drilldown_candidates": []
+}

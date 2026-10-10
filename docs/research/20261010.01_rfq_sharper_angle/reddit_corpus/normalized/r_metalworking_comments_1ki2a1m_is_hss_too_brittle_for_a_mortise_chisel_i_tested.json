@@ -1,0 +1,15 @@
+{
+  "permalink": "/r/metalworking/comments/1ki2a1m/is_hss_too_brittle_for_a_mortise_chisel_i_tested/",
+  "url": "https://www.reddit.com/gallery/1ki2a1m",
+  "subreddit": "metalworking",
+  "title": "Is HSS too brittle for a mortise chisel? I tested it",
+  "author": "kuzu_",
+  "created_iso": "2025-05-08T21:49:47Z",
+  "score": 41,
+  "num_comments": 18,
+  "selftext": "Follow up on: [Is it possible to make a mortise chisel out of a HSS blank with limited tools? : r/metalworking](https://www.reddit.com/r/metalworking/comments/1kg65f1/is_it_possible_to_make_a_mortise_chisel_out_of_a/)\n\nHello all,\n\nYesterday, I geared up for a potentially dangerous experiment after hearing that HSS (High-Speed Steel) might be too brittle to make a chisel out of. I had a small HSS blank on hand—4x4x200 mm (or 5/32\" x 5/32\" x 8\", in hamburgers and football fields). One end was already sharpened to a 27° angle and was razor sharp to start with.\n\nI began by chopping a mortise in a small piece of spruce using the chisel. I hit the handle with a spruce mallet, a rubber mallet, and even a steel hammer. I also pried and lifted chunks of wood aggressively. The chisel made easy work of it, though the edge lost its razor sharpness fairly quickly. Still, it was functional.\n\nWithout resharpening, I moved on to a small piece of oak and repeated the process. Despite the edge not being super sharp anymore, it still cut through the oak and completed the job. By the end, the edge was still serviceably sharp.\n\nConclusions/thoughts:\n\n* The HSS didn’t splinter, crack, or send shards flying, even when struck hard. So I feel confident it’s safe to use with wooden or rubber mallets.\n* The 27° edge didn’t hold a razor edge for long, though it worked fine for mortising. Most mortise chisels are sharpened at 30–35°, which makes sense—I’ll experiment with steeper angles next time for better edge retention.\n* The spruce handle (with an oversized hole) survived the test. That’s reassuring—I won’t worry too much about tang geometry. A slightly tighter round hole with epoxy should be enough for a reliable handle attachment.\n* The 200 mm (8\") long shaft felt too thin and springy to hammer comfortably. It gave a sloppy, whippy feeling. I think a thicker shaft—maybe 8x8 mm or 10x10 mm—would improve stiffness and control.\n* Since I didn’t buy the blank from a certified supplier (just an Amazon order), I can’t be 100% sure it’s actually HSS. It worked well, though, so I’ll live with the mystery.\n\nLet me know what you think—happy to hear thoughts from others who’ve tried something similar!",
+  "comments": [],
+  "drilldown_candidates": [
+    "https://www.reddit.com/comments/1kg65f1.json"
+  ]
+}

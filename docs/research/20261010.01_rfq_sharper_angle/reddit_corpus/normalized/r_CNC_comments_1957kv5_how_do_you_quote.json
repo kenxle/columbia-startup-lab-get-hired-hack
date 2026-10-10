@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/1957kv5/how_do_you_quote/",
+  "url": "https://www.reddit.com/r/CNC/comments/1957kv5/how_do_you_quote/",
+  "subreddit": "CNC",
+  "title": "How do you quote?",
+  "author": "l-DRock-l",
+  "created_iso": "2024-01-12T22:20:53Z",
+  "score": 21,
+  "num_comments": 23,
+  "selftext": "I run a job shop with just myself for now with a single mill and single lathe. Most of the time I just ballpark quotes from the gut but I am curious if you guys have a more scientific method. Back in the day the shops used to charge us a set rate but that was for manual milling, $125/hr or something like that. In this day and age I use CAM + HSM which can have parts finished in 15 minutes that would take a few hours with the hand cranks. \n\nShould I go based off of machine time and just charge like $200/hr? How do you account for the time it takes to generate the CAM for the parts? I typically bill that around $100/hr and just roll that into the cost of the part but since CAM isn't something you do every time that can result in slightly higher priced parts over time.\n\nI guess I could always do one of those automated quoting systems and just undercut it a bit haha.\n\nThanks in advance for any help!",
+  "comments": [],
+  "drilldown_candidates": []
+}

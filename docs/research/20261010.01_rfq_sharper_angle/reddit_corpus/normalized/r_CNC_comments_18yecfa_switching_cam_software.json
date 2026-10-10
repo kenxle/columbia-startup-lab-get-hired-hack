@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/18yecfa/switching_cam_software/",
+  "url": "https://www.reddit.com/r/CNC/comments/18yecfa/switching_cam_software/",
+  "subreddit": "CNC",
+  "title": "Switching CAM software",
+  "author": "mykiebair",
+  "created_iso": "2024-01-04T14:23:37Z",
+  "score": 21,
+  "num_comments": 33,
+  "selftext": "This is an obligatory Autodesk hate thread. After being forced to give up our powermill license because of our perpetual license was switched to a subscription and maintenance fee tripled over a few years. We switched for featurecam and fusion and it's been alright. We received notice that we would see an increase in these maintenance plans as well when we renew. Another major reason for the want to switch is a few months ago we had a major crash on a program posted from fusion. After going over the program, tooling and equipment; it was discovered that an update in fusion caused a tool path to generate incorrectly. This was a program I posted and ran a day or two prior. Reposted with no modifications outside of a stock resizing and destroyed a trunnion. \n\nI model in solidworks and currently have a horrendous work flow for anything I can't do in HSMworks. I spoke to both mastercam and hypermill and got some budgetary quotes and they are both in line with Autodesk not including the cost of post and machine sim, a relative small expense in the grand scheme. \nI have experience with mastercam and it's an okay product, but the rep told me a while ago and again a few days ago that mastercam in solidworks is basically sunsetting. I understand both software has its limitations while in solidworks but I'd like to keep as much of it in the solidworks environment due to the nature of the parts.\n\nWe have an older 5axis machine and most of our parts are organic in shape and pretty small. Everything is a onesie twosie. \n\nQuick edit: while it might be an issue to many because I never really rerun projects I don't need to worry about legacy work or any old programs. Eyes forwards only\n\nTL:DR tired of Autodesk and looking for a recommendation between mastercam or hypermill for 5 axis prototyping. \n\nThank in advance",
+  "comments": [],
+  "drilldown_candidates": []
+}

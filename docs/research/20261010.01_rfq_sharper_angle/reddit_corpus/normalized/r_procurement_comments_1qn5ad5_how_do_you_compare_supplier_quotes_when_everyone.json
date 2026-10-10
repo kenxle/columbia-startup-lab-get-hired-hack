@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/",
+  "url": "https://www.reddit.com/r/procurement/comments/1qn5ad5/how_do_you_compare_supplier_quotes_when_everyone/",
+  "subreddit": "procurement",
+  "title": "How do you compare supplier quotes when everyone sends info in different formats?",
+  "author": "CellInitial2394",
+  "created_iso": "2026-01-26T03:51:59Z",
+  "score": 0,
+  "num_comments": 24,
+  "selftext": "O.M.G...comparing quotes is turning into a bigger pain than finding suppliers.\n\nEven when suppliers reply, the info comes back in completely different formats. One gives unit price only. Another gives MOQ but no lead time. Another mentions “shipping extra” but doesn’t say how much. And then you’re stuck doing follow-ups just to make quotes comparable. Do you have a standard RFQ template you force suppliers to fill? Or do you normalize everything manually?\n\nWhat are the “must-have fields” you need before you even consider price? How do you deal with hidden costs that show up late (packaging, tooling, shipping, payment terms)?\n\nhas anyone tried using AI to structure quote info and flag missing/non-comparable items? Did it actually help or just add noise?",
+  "comments": [],
+  "drilldown_candidates": []
+}

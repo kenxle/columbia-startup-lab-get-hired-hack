@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/13y0ucz/manufacturing_manager_wanting_to_better_organize/",
+  "url": "https://www.reddit.com/r/CNC/comments/13y0ucz/manufacturing_manager_wanting_to_better_organize/",
+  "subreddit": "CNC",
+  "title": "Manufacturing Manager wanting to better organize small mamufacturer",
+  "author": "Nbm1124",
+  "created_iso": "2023-06-02T02:37:09Z",
+  "score": 8,
+  "num_comments": 39,
+  "selftext": "I am the Manufacturing Manager at a small business (5 people).\n\nI want to improve our scheduling and clarify our capacity/ workload by using MS Access and/or Excel to make Forms to auto populate our inspection and operation sheets and to create a visual representation of the workload amongst our 7 machines to properly set lead times for customers.\n\nExamples:\nA form where you enter the invoice number, part number, machine type (mill, lathe, heat treat), quoted time per operation etc that then auto populates the page we typically give our operators so they know what their timeline is.\n\nA form or table that uses the machine and op info to make a chart that shows the machines, and organizes the jobs between the machines to help scheduling and lead time calculations.\n\nI understand this is a lot but I'm just looking for places to start and ideas from those who know more than me.\n\nI built a database of tooling in excel before that sorted tools by type and provided multiple search options to find tools or even allow you to input the feature type and size and return the right tool for the job. But life has left me with severe memory recall issues and my head hurts trying to remember the knowledge about this stuff I once had. Thats the reason for the lengthy and in depth request.",
+  "comments": [],
+  "drilldown_candidates": []
+}

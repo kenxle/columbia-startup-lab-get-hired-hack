@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/6sdj7q/135_bends_question_from_a_home_gamer/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/6sdj7q/135_bends_question_from_a_home_gamer/",
+  "subreddit": "sheetmetal",
+  "title": "135* Bends, Question from a home gamer",
+  "author": "roju1985",
+  "created_iso": "2017-08-08T13:39:19Z",
+  "score": 3,
+  "num_comments": 5,
+  "selftext": "Hello all,\n\nI'm a home gamer with minimal experience working with sheet metal however I have a decent grasp of the fundamentals of bending.  \n\nI'm working on some 16 gauge drawers for my work bench. I am using the harbor freight 36\" brake ( with surprisingly good results in 16 gauge cold rolled) \n\nI made a few test pieces bent to 90* and calculated my K-factor, and so far I've been using the measurements I took from the test pieces for my 90* bends and getting spot on results. When I plug in all my measurements into the online calculators for 90* my bend deduction calculation is very close to what I'm seeing in the \"real world\" \n\nMy problems begin when I start doing some 135* bends, plugging my info into the calculators it seems the bend deduction increases a lot compared to 90*. Which unless I'm misunderstanding means I should be making my flat template shorter than when I bend 90*? \n\nI bent a part using my 90* deduction and bent to 135* and the part was too short. \n\nSo I guess my question is am I misinterpreting the numbers? It would be nice to use the calculations for ball parking bends in the future and not rely on averaging a bunch of test bends. \n",
+  "comments": [],
+  "drilldown_candidates": []
+}

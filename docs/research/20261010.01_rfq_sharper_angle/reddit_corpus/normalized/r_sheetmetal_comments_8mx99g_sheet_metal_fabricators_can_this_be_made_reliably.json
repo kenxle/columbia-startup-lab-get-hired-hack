@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/8mx99g/sheet_metal_fabricators_can_this_be_made_reliably/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/8mx99g/sheet_metal_fabricators_can_this_be_made_reliably/",
+  "subreddit": "sheetmetal",
+  "title": "Sheet metal fabricators: Can this be made reliably?",
+  "author": "Maxbots-MTW",
+  "created_iso": "2018-05-29T07:36:20Z",
+  "score": 3,
+  "num_comments": 19,
+  "selftext": "I'm working on a new product, and I have one part where I need a very consistent set of bends, and I want to confirm it can be made safely and inexpensively. \n\n[Here is a simplified model of the part.](https://imgur.com/a/aF4iNZf) It is 14 gauge steel, the finished width will be about 6\" and the height of the center portion will be ~3/4\".\n\nObviously making the part itself is easy, but I need both bottom flanges to be colinear, and I need the top surface to be parallel to the bottom.  If anything were out of whack by more than a small amount, it would throw the mechanism that mounts to the top out of alignment. \n\nI would be especially concerned with bends that are not square to the material itself (iow the front vertical edge is 20mm long, the back is 21mm). I can account for a  slight off angle, but that error that  would cause a twist which is much harder to address.\n\nSo the question is, if I order 500 pieces like this, can I expect them to be pretty consistent? It will be laser cut and bent, I assume, on a CNC press brake. \n\nThe alternative is to break it into three pieces that screw together, but doing it as one would make it more stiff, so it would be preferable.\n\nUnfortunately this is intended to retrofit a series of existing machines, so I am fairly limited in how I can approach the problem, but I welcome other suggestions if anyone has them. \n\nThanks!\n\nEdit: Also, if anyone is not too far from the Southern CA area and thinks they can make this would like to quote me for fabbing the job (this and a few other parts), please PM me. ",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/Machinists/comments/1ks1tt8/theading_od_and_id_and_drilling_inconel_718/",
+  "url": "https://www.reddit.com/r/Machinists/comments/1ks1tt8/theading_od_and_id_and_drilling_inconel_718/",
+  "subreddit": "Machinists",
+  "title": "Theading (OD and ID) and Drilling Inconel 718",
+  "author": "LimePsychological495",
+  "created_iso": "2025-05-21T16:13:21Z",
+  "score": 0,
+  "num_comments": 11,
+  "selftext": "Guys, im looking for some help regarding turning inconel 718 (more specifically threading). \n\nWe received an RFQ for some Inconel parts that are basically double threaded nuts (M114x4 od and the ID is M80x4. The part if 120mm long).\n\nWe have never worked with any exotic materials (in terms of hardness we machine up to 45hrc but very rarely. Typically its mild steel and 304SS), but me and my superior want to try machining inconel (more to test our capabilities and challenge us rather than making a quick $).\n\nI found ceramic inserts for od and id turning the part to size from iscar (our main tooling source), but im not too sure about threading inserts, as iscar only has them for general purposes (for superalloys it says that it can cut them but with a cutting speed of 20/30m/min but that would literally give me an rpm of 53, which looks to be very little imo). \n\nDoes anyone have any experience threading inconel? What tooling did you use? DOC’s, cutting speeds etc? Any advice in general?\n\nAlso if we do this we need to drill it first with some big drill to hog out the material (we have spade drills from YG-1), I found in their catalogue some spade drills that are designed for superalloys. Any recommendations for drilling large holes on inconel as well?\n\nIf we do get this job we plan to do the drilling on our horizontal boring machine that has a 25kW spindle and the turning on our big manual lathe as it has the most power (20kW). Our cncs are 6-8kW\n\nThanks in advance",
+  "comments": [],
+  "drilldown_candidates": []
+}

@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/Machinists/comments/7l1qvw/what_are_standard_tolerances_these_days/",
+  "url": "https://www.reddit.com/r/Machinists/comments/7l1qvw/what_are_standard_tolerances_these_days/",
+  "subreddit": "Machinists",
+  "title": "What are \"Standard\" tolerances these days",
+  "author": "ob2",
+  "created_iso": "2017-12-20T14:36:13Z",
+  "score": 14,
+  "num_comments": 39,
+  "selftext": "I'm going to be submitting an RFQ on a couple parts soon, and (as usual) keeping costs LOW are important.  As a part of tweaking final designs, I'm trying to decide how much play should exist between interfacing moving parts.\n\nOnce upon a time 0.005\" was considered \"standard\" tolerance.  It would seem with better machines and technology this has improved? \n\nAt what point tolerance-wise does cost really start to go up?\n\nThe part in question is to be made out of 6061, and is about 60mm x 20mm x 5mm and is being designed to be cut primarily with an 1/8\" endmill (inside corner radius of some pockets.)\n\nThanks!",
+  "comments": [],
+  "drilldown_candidates": []
+}

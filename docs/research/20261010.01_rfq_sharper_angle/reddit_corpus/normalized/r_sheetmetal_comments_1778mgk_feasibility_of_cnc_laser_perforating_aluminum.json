@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/1778mgk/feasibility_of_cnc_laser_perforating_aluminum/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/1778mgk/feasibility_of_cnc_laser_perforating_aluminum/",
+  "subreddit": "sheetmetal",
+  "title": "Feasibility of CNC Laser Perforating Aluminum",
+  "author": "meshtron",
+  "created_iso": "2023-10-13T21:01:55Z",
+  "score": 1,
+  "num_comments": 12,
+  "selftext": "We build a product line that uses pre-perforated aluminum sheet (16 gauge, 3/32\" holes diamond pattern on 1/4\" centers).  Right now we consume something like 1500-2000 sheets per year of this material and are expecting that to grow 25% year-over-year for the next several years.\n\nOur vendors laser cut the perf then have to mechanically surround it by affixing other parts to hide/protect the cut edges.  Our ability to redesign/improve this product is limited by the fact that the perforated sheet is always fully perforated.  Suffice to say, having perforation only and exactly where we want would open up a lot of new design possibilities AND offer pretty substantial cost/time reduction because we could consolidate down to one sheet with semi-complex breaks vs combining parts (hemming, welding, etc.).\n\nCustom punching isn't really practical because we often are making similar things, but in a size that's (for example) 20-3/8\" instead of 21\" or even 20-1/2\".  Sizes always change to exactly meet customer needs.  The other downside of this is our material utilization is often pretty poor with as much as 40% of some sheets turning into expensive, perforated waste.\n\nI have seen some folks doing this kind of stuff - using a fast laser to perforate sheet in custom patterns - but I haven't seen anybody doing it for holes this small and numerous.\n\nSo - just curious is anyone doing something like this?  We'd need a machine to be able to chew through 15-25 sheets a day for it to be practical.  That sounds like a lot to me, but I've not spent that much quality time operating these machines so not sure.  I appreciate any input!",
+  "comments": [],
+  "drilldown_candidates": []
+}

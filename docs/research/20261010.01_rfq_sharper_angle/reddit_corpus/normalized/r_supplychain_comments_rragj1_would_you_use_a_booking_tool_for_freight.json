@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/supplychain/comments/rragj1/would_you_use_a_booking_tool_for_freight/",
+  "url": "https://www.reddit.com/r/supplychain/comments/rragj1/would_you_use_a_booking_tool_for_freight/",
+  "subreddit": "supplychain",
+  "title": "Would you use a booking tool for freight forwarders?",
+  "author": "datadevil",
+  "created_iso": "2021-12-29T15:17:33Z",
+  "score": 12,
+  "num_comments": 22,
+  "selftext": "Hi! I'm a software engineer with second-hand exposure to freight forwarding through my family. I know this sub has a good mix of both the demand and supply-side of freight and I was curious to see if you would be interested in a marketplace for freight forwarding companies - something like an Amazon for Freight Forwarders.\n\nIt would work like this:\n\n- Customers can raise an RFQ\n\n- The RFQ is broadcasted to all forwarders in the marketplace\n\n- Forwarders can respond with their quotes\n\n- Customers can compare quotes and book the best ones\n\n- Once the shipment is delivered, the forwarder raises an invoice and gets paid through the platform\n\n- The customer rates and reviews the forwarder\n\nMy hypothesis is that this is useful for:\n\n**Shippers:**\n\n- Gives them a consistent booking, payment and shipping experience while giving them the flexibility to not be locked-in to a single vendor\n\n- Allows them to compare rates/schedules across forwarders\n\n- Allows them to reliably find new forwarders with visible social proof\n\n**Forwarders:**\n\n- Allows forwarders to access new geographies and receive payments in different currencies\n\n- Unlocks a new revenue stream\n\n- Understand customer behavior\n\n- Benchmark rates for specific trade lanes and adjust pricing\n\nI'm not sure how I would monetize this - the fairly obvious one would be to take a percentage cut of the forwarders booking, but I don't know if that's something forwarders would be willing to do.\n\nA few other ways of monetizing this would be:\n\n- Charge a monthly subscription with an tiered RFQ limit for shippers\n\n- Keep the platform completely free, but directly sell related services on the platform (cargo insurance, trade financing, price protection etc.)\n\n- Charge a percentage cut only for bookings that come in through the markeplace and keep any direct bookings free\n\nIf there's reasonable interest, I'm thinking of hacking together a prototype for this over the following weeks - so feel free to reach out over PM or comments if you would be interested in providing feedback, testing it out, or just plain tell me I have no idea what I'm talking about!",
+  "comments": [],
+  "drilldown_candidates": []
+}

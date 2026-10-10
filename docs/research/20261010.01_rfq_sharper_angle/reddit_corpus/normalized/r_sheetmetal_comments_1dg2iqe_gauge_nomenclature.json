@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/1dg2iqe/gauge_nomenclature/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/1dg2iqe/gauge_nomenclature/",
+  "subreddit": "sheetmetal",
+  "title": "Gauge nomenclature",
+  "author": "nilved33",
+  "created_iso": "2024-06-14T22:01:20Z",
+  "score": 1,
+  "num_comments": 7,
+  "selftext": "Is the gauge of a sheet metal useful mathematically, or is it just a name?  Is there a way to derive the thickness of the gauge from the value of the gauge itself?  For example, is there a series of operations I can perform on \"22\" (gauge) to arrive at \"0.0336\" (inches)?\n\nEdit: I solved this for the case I needed (for gauges 26-20) so I'm putting it here for posterity.  \n\n(26-[Gauge])*0.003+0.0216=[Thickness in inches].  \n\nThis requires using a nominal thickness of 0.0216\" for 26 gauge instead of 0.0217\", but it's close enough for my purposes.",
+  "comments": [],
+  "drilldown_candidates": []
+}

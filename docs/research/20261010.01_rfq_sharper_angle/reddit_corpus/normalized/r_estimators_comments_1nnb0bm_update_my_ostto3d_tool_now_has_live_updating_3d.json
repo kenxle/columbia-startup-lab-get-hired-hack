@@ -1,0 +1,15 @@
+{
+  "permalink": "/r/estimators/comments/1nnb0bm/update_my_ostto3d_tool_now_has_live_updating_3d/",
+  "url": "https://v.redd.it/6sj5o3frpmqf1",
+  "subreddit": "estimators",
+  "title": "Update: My OST-to-3D tool now has live updating 3D visualization (video demo)",
+  "author": "Transhacks",
+  "created_iso": "2025-09-22T02:41:27Z",
+  "score": 22,
+  "num_comments": 19,
+  "selftext": "A few months ago I shared the first version of my tool that converts OST projects into 3D visualizations (https://www.reddit.com/r/estimators/comments/1kdkgzl/i_built_a_tool_that_converts_ost_projects_to_3d/).\n\nNow it’s gotten a major upgrade:\n\t•\t🔄 Real-time updates → any change you make in the project instantly refreshes in the 3D view.\n\t•\t🖥️ You can, pan, and zoom smoothly while the model responds right away.\n\t•\t📂 Still supports exporting to DXF/OBJ/FBX if you want to take it into CAD or another program.\n\nCurious what features you think would make this even more useful for estimators/takeoff workflows!",
+  "comments": [],
+  "drilldown_candidates": [
+    "https://www.reddit.com/comments/1kdkgzl.json"
+  ]
+}

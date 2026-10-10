@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/CNC/comments/actjto/beginners_z_axis_question/",
+  "url": "https://www.reddit.com/r/CNC/comments/actjto/beginners_z_axis_question/",
+  "subreddit": "CNC",
+  "title": "Beginners Z axis Question",
+  "author": "marcopolo9991",
+  "created_iso": "2019-01-05T11:53:50Z",
+  "score": 9,
+  "num_comments": 4,
+  "selftext": "I am a beginner looking to select a CNC router that will fit my needs (for wood carving, 18\" x 24\", desktop format)\n\nMy question is, how is the z axis defined on this type of machine?\n\nMy assumption is that it is from the bottom of the collet when the router is at it's highest point, to the surface of the table. i.e. if I want to drill a single 1\" deep hole, in a 4\" thick piece of wood, and my tool length is 2\", I will need a z axis travel of at least 6\" in order to get the bit up and over the work piece before making the cut, even though my work piece is only 4\" thick. Have I got this right?\n\nOr, is a common tool length factored in when quoting z axis travel, meaning I would only need to look for machines with 4\" z axis travel?\n\nFor context I am thinking about machining an acoustic guitar neck, and I'm worried about the router crashing into the heel.",
+  "comments": [],
+  "drilldown_candidates": []
+}

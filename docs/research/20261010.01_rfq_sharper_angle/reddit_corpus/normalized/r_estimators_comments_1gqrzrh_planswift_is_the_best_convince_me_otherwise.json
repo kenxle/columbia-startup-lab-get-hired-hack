@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/estimators/comments/1gqrzrh/planswift_is_the_best_convince_me_otherwise/",
+  "url": "https://www.reddit.com/r/estimators/comments/1gqrzrh/planswift_is_the_best_convince_me_otherwise/",
+  "subreddit": "estimators",
+  "title": "Planswift is the best, Convince me otherwise",
+  "author": "Impossible-Pace8241",
+  "created_iso": "2024-11-14T00:21:49Z",
+  "score": 17,
+  "num_comments": 87,
+  "selftext": "I have been using plan swift for over 15 years and love it.  I started out using Oncenter then switched.  I have tried builder trend, construct connect online, stack, procore estimating and they all suck compared to the power of plan swift.  \n\nThe reason it's so awesome is you can customize it 1,000's of ways.  I think of it like excel, I can create formulas and fields for any scenario.  For example I have a concrete database.  each item has a field for cost codes that match our financial system and excel material and labor database,  formulas and questions that allow me to do complex takeoffs and be within 2-3% of rebar and concrete needed.  on the estimating tab I only have 3 fields shown. Name, QTY, and cost code.  I export that to excel, clean it up if needed, create a pivot report tho summarize quantities per each cost code.  I then Copy the cost code and total qty then paste into my excel estimating template were I have Index(match) that pulls cost from a table that store material and labor cost in a table.  The cost code is my database key that I use everywhere.  it's so fast and minimum errors.  \n\nAnother big advantage is you can drag items onto takeoffs.  I have an electrical database, again every item has a cost code.  I create a linear takeoff called 3/4\" EMT with 5#12.  After I finish measurements I then drag a pre-made assembly that has 3/4\" EMT and straps (length divided by 7' to get strap qty) onto the linear measurement then I drag the #12 THHN wire were I get prompted to input the # of wires, I put in 5 and it multiplies the linear measurement by 5.  Again each item has cost code that matches to items in excel.    \n  \nthese are just some of the examples... I wish I could convince the developers to scrap OST and focus on plan swift.   If I can do this in newer better software I would love it, especially from the web as I use the iPad Pro a ton.  I actually only use the PC for pan swift.  ",
+  "comments": [],
+  "drilldown_candidates": []
+}

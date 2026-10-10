@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/metalworking/comments/1v5y3em/simple_shop_organization/",
+  "url": "https://www.reddit.com/gallery/1v5y3em",
+  "subreddit": "metalworking",
+  "title": "Simple Shop Organization",
+  "author": "Aggressive_Soup1446",
+  "created_iso": "2026-07-25T04:27:20Z",
+  "score": 54,
+  "num_comments": 8,
+  "selftext": "My grandfather was a carpenter and a bit of a handyman. I inherited all of his tools. After sorting out the stuff that was too beat from a lifetime of earning a living, and adding in my existing toolset, I'm left with a large number of duplicates, especially of hand tools. \n\nAll of his tools were tossed into rusty old metal boxes but I don't like that approach. I also don't want to pay for organizers or the filament to 3d print grid-finity shadow trays. I have very little experience with metal working. I've just started learning a bit about sheet metal while fixing some duct work and I figured I would try out designing and fabricating some simple organizers.\n\nFor this socket organizer I made a parametric model in onShape that lets me define the gauge, length, two widths of the trapezoid, and the height of the box. Hopefully I did a good job using those parameters to be able to adjust the same model for several dozen sets of sockets. The tabs not being parallel with the ends made this trickier for me to figure out how to bend since I could not figure a way to do it on my little brake.\n\nI don't particularly like the pop rivets, but I have some cheap 32ga galvanized steel on hand which does not hold the corners on its own. I am a novice welder, and could not approach this material. I have considered trying to solder it, but I've read I would need a very strong acid flux to deal with the zinc and I would likely make myself ill from zinc fumes. In the future I would like to try 18 ga material.",
+  "comments": [],
+  "drilldown_candidates": []
+}

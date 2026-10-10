@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/1em8mdw/interpreting_this_bend_allowance_table/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/1em8mdw/interpreting_this_bend_allowance_table/",
+  "subreddit": "sheetmetal",
+  "title": "Interpreting this bend allowance table",
+  "author": "Letsgo1",
+  "created_iso": "2024-08-07T10:46:36Z",
+  "score": 3,
+  "num_comments": 1,
+  "selftext": "I've got a bend allowance table I want to add to SolidWorks for sheet metal design but I am struggling to read it properly. Could anyone help me interpret it please?  My understanding is as follows (but could be incorrect?..)\n\n* Two break presses (preferred values in red)\n* Material thickness down left side\n* Top row is Gauge but not sure if that's the V gauges available (is this external radius?)?\n\nSo if the above is correct, do I need to convert the gauges to mm and minus the material thickness to get my internal bend radii? e.g. 2 mm steel advises the 12 gauge vee (2.657 mm) so internal bend radius for this would be 0.657 mm and bend allowance would be 3.5?\n\n  \nThanks\n\n[Manufacturer supplied table](https://preview.redd.it/czjl0hm108hd1.png?width=2185&amp;format=png&amp;auto=webp&amp;s=3fa2c58183b6a034a53803b1b156dacc7b2184f2)\n\nThis is a SolidWorks template table: \n\n[SolidWorks Template Table](https://preview.redd.it/k62dq35918hd1.png?width=1346&amp;format=png&amp;auto=webp&amp;s=f1ab1205e0509271021e6f72b91079eb1d32071d)\n\n",
+  "comments": [],
+  "drilldown_candidates": []
+}

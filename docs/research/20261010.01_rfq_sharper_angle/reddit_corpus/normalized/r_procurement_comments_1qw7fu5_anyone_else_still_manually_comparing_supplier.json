@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/procurement/comments/1qw7fu5/anyone_else_still_manually_comparing_supplier/",
+  "url": "https://www.reddit.com/r/procurement/comments/1qw7fu5/anyone_else_still_manually_comparing_supplier/",
+  "subreddit": "procurement",
+  "title": "Anyone else still manually comparing supplier quotes after RFQs?",
+  "author": "Used_Plan_1299",
+  "created_iso": "2026-02-05T01:25:01Z",
+  "score": 0,
+  "num_comments": 14,
+  "selftext": "I’m trying to understand how people here actually handle RFQ responses in practice.\n\nIn many teams I’ve talked to, the RFQ itself isn’t the hard part — it’s what comes after:\n\n* quotes arrive via email, PDFs, Excel files\n* prices, lead times, MOQs, terms are all formatted differently\n* someone ends up normalizing everything manually to make a decision\n\nI’m exploring a buyer-side approach where AI helps structure and compare quotes without changing how suppliers respond or requiring ERP integrations — basically removing the manual copy-paste and making the comparison and communication more transparent.\n\nBefore going further, I’d really value feedback from practitioners:\n\n* Is this a real pain point in your day-to-day work?\n* How do you handle quote comparison today?\n* Where would a tool like this help — or completely fail?\n\nIf anyone wants to experiment, there’s a free quote comparison sandbox here: [https://app.buyer24.ai/try](https://app.buyer24.ai/try)  \n(no signup required)\n\nNot selling anything — genuinely trying to learn how procurement teams actually work today and where tools tend to break.",
+  "comments": [],
+  "drilldown_candidates": []
+}

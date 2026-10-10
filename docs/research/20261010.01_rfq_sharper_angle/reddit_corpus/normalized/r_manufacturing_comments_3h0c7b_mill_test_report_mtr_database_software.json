@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/manufacturing/comments/3h0c7b/mill_test_report_mtr_database_software/",
+  "url": "https://www.reddit.com/r/manufacturing/comments/3h0c7b/mill_test_report_mtr_database_software/",
+  "subreddit": "manufacturing",
+  "title": "Mill Test Report (MTR) Database Software?",
+  "author": "zeroion",
+  "created_iso": "2015-08-14T18:52:27Z",
+  "score": 2,
+  "num_comments": 1,
+  "selftext": "Do anybody have a recommendation for mill test report (MTR) database software? We are thinking about developing our own software based on Microsoft Access, but no point re-inventing the wheel if there are good off-the-shelf alternatives.\n\nIdeally, the software would allow us to import and store scanned MTRs, index them by item/shape/fitting/country, and tag them with where we have used them (drawing number, project number, etc).",
+  "comments": [],
+  "drilldown_candidates": []
+}

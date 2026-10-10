@@ -1,0 +1,13 @@
+{
+  "permalink": "/r/sheetmetal/comments/101gsbb/sheet_metal_residual_stress_after_laser_cutting/",
+  "url": "https://www.reddit.com/r/sheetmetal/comments/101gsbb/sheet_metal_residual_stress_after_laser_cutting/",
+  "subreddit": "sheetmetal",
+  "title": "Sheet metal residual stress after laser cutting",
+  "author": "smmatter",
+  "created_iso": "2023-01-02T16:31:45Z",
+  "score": 5,
+  "num_comments": 12,
+  "selftext": "We are working with thin stainless steel, which is typically 0.8mm (20 gauge). Sheets are laser cut with fiber laser (using nitrogen) and then bent using a press brake (air bending). When short flange bends (between 10-20mm) are made, especially on long parts (over 1.5m or so), we have this phenomenon, where the sheet metal gets warped and the bend looks like a \"banana\". I am adding a photo and a visual. We managed to find out that the reason behind this is residual stresses in the sheet steel parts, left after laser cutting. For parts with longer flange bends, this phenomenon isn't really noticeable. We have also tried to punch the parts - then the bends are perfectly straight, however, we would like to laser cut the parts. Has anyone encountered this and managed to solve it? Perhaps there are some laser settings, which we should be looking for, or some other specific solutions, that could be applied to get straight bends?\n\nhttps://preview.redd.it/cn3vf0oupn9a1.png?width=305&amp;format=png&amp;auto=webp&amp;s=9f234105e2b2ddb2217d0589235dfd25ab038bca\n\n&amp;#x200B;\n\nhttps://preview.redd.it/knq2zn1qpn9a1.png?width=160&amp;format=png&amp;auto=webp&amp;s=66b8521b26572a738c6ac7aec54ed2bf3be3a85a",
+  "comments": [],
+  "drilldown_candidates": []
+}
