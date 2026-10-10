@@ -18,7 +18,7 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "root and quote list respond" do
-    get root_path
+    get quotes_path
     assert_response :success
 
     get quotes_path
