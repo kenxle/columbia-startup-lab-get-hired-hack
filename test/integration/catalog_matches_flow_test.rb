@@ -12,7 +12,9 @@ class CatalogMatchesFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".match-card", 2
     assert_select ".callout--held", /2B or #4/
-    assert_select "svg.item-drawing", 2
+    assert_select ".match-card__specs", 2
+    assert_select ".match-card__specs dd", text: "16 ga (0.0625 in)"
+    assert_select "svg", 0
 
     assert_difference -> { QuoteLine.count }, 1 do
       post approve_catalog_match_path(request_record),
