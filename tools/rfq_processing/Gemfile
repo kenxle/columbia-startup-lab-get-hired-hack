@@ -6,6 +6,7 @@ gem "anthropic"
 gem "bigdecimal"
 gem "csv"
 gem "pdf-reader", "~> 2.16"
+gem "roo", "~> 2.10" # .xlsx intake; required lazily
 
 group :test do
   gem "rspec", "~> 3.13"
