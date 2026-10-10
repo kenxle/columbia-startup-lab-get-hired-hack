@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   root "quotes#index"
 
+  get "product", to: "marketing#product", as: :product
+  get "compare", to: "marketing#comparison", as: :comparison
+
   resources :quotes, only: %i[index new create show] do
     collection do
       post :demo

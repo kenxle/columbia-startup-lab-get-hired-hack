@@ -1,0 +1,110 @@
+<% content_for :title, "Compare" %>
+
+<section class="marketing-hero marketing-hero--compact marketing-container" aria-labelledby="comparison-title">
+  <p class="marketing-eyebrow">The comparison, with sources</p>
+  <h1 id="comparison-title">A quote the rep can inspect.</h1>
+  <p class="marketing-lede">Quote Desk puts the RFQ, the reading, and the reason beside each other. Here is how that focus sits alongside three other ways to prepare quotes or order materials.</p>
+  <div class="marketing-actions">
+    <%= link_to "Open Quote Desk", quotes_path, class: "button button--primary" %>
+    <%= link_to "See the product", product_path, class: "button button--quiet" %>
+  </div>
+  <p class="marketing-note">First draft for review · As of <time datetime="2026-10-10">October 10, 2026</time>. Vendor descriptions come from their own linked pages. We have not tested their products.</p>
+</section>
+
+<section class="marketing-section marketing-container" aria-labelledby="vendor-title">
+  <div class="marketing-section-heading">
+    <p class="marketing-eyebrow">Different jobs, different tools</p>
+    <h2 id="vendor-title">What the vendors say they do.</h2>
+    <p>Proton and Canals sell software for distribution workflows. Nox is a metals supplier with an online quote builder. Quote Desk is our working quote-preparation demo.</p>
+  </div>
+  <div class="marketing-cards">
+    <article class="marketing-card">
+      <p class="marketing-eyebrow">Distributor software</p>
+      <h3>Proton</h3>
+      <p>Describes reading emailed requests and attachments, matching catalog items, applying pricing and availability, and sending approved quotes or orders to an ERP. It also says it learns customer nicknames and rep edits.</p>
+      <a href="https://www.proton.ai/order-and-quote-entry">Source: Proton order and quote entry</a>
+    </article>
+    <article class="marketing-card">
+      <p class="marketing-eyebrow">Distributor software</p>
+      <h3>Canals</h3>
+      <p>Describes turning customer requests in formats including PDF, email, and spreadsheets into quotes or orders for rep approval and ERP entry. It says usage improves its knowledge of customers and products.</p>
+      <a href="https://www.canals.ai/">Source: Canals, quotes and orders</a>
+    </article>
+    <article class="marketing-card">
+      <p class="marketing-eyebrow">Metals supplier</p>
+      <h3>Nox Metals</h3>
+      <p>Provides an aluminum quote builder with alloy, temper, compliance, dimensions, and quantity fields. Its page promises pricing and a ship date before ordering, plus mill certificates and traceability with each order.</p>
+      <a href="https://noxmetals.co/quote">Source: Nox quote builder</a>
+    </article>
+  </div>
+</section>
+
+<section class="marketing-section marketing-container" aria-labelledby="evidence-title">
+  <div class="marketing-section-heading">
+    <p class="marketing-eyebrow">The rep's review</p>
+    <h2 id="evidence-title">Look past the finished number.</h2>
+    <p>These are the questions our demo is built around. “Not stated on the reviewed page” means the public page did not describe that detail. It does not mean the vendor cannot do it.</p>
+  </div>
+  <div class="marketing-table-wrap" role="region" aria-label="Quote preparation comparison" tabindex="0">
+    <table class="marketing-table">
+      <caption>Quote Desk today and the details described on the linked vendor pages.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Review question</th>
+          <th scope="col">Quote Desk today</th>
+          <th scope="col">Reviewed vendor pages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Where did that reading come from?</th>
+          <td>The rep can inspect field-level source evidence and the original RFQ alongside the normalized spec.</td>
+          <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes confidence flags. Field-level links to RFQ wording are not stated on the reviewed <a href="https://www.proton.ai/order-and-quote-entry">Proton page</a> or <a href="https://www.canals.ai/">Canals page</a>.</td>
+        </tr>
+        <tr>
+          <th scope="row">What happens when a line is unclear?</th>
+          <td>A question is drafted. The rep can record the buyer's answer and rerun the affected line. Email delivery is not connected.</td>
+          <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes flagging uncertainty for rep confirmation. <a href="https://noxmetals.co/quote">Nox</a> offers a sales request for specifications its builder cannot handle.</td>
+        </tr>
+        <tr>
+          <th scope="row">Who controls a learned meaning?</th>
+          <td>The rep explicitly teaches a buyer term. The approved meaning and source RFQ are saved. Showing that RFQ reference on the next reading remains unfinished.</td>
+          <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> describes learning nicknames and edits. <a href="https://www.canals.ai/">Canals</a> describes learning through use. A prior-RFQ citation beside a learned reading is not stated on either reviewed page.</td>
+        </tr>
+        <tr>
+          <th scope="row">What happens after review?</th>
+          <td>The rep approves the quote and can export PDF or CSV. The demo does not submit an order to an ERP or confirm available inventory.</td>
+          <td><a href="https://www.proton.ai/order-and-quote-entry">Proton</a> and <a href="https://www.canals.ai/">Canals</a> describe ERP handoffs. <a href="https://noxmetals.co/quote">Nox</a> presents checkout, delivery, and payment steps.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="marketing-section marketing-container" aria-labelledby="scope-title">
+  <div class="marketing-split">
+    <div>
+      <p class="marketing-eyebrow">Built today</p>
+      <h2 id="scope-title">The agent prepares the conversation, and the rep owns it.</h2>
+      <p>Open an RFQ, inspect its source, review its questions, and approve the quote. That is the working flow this comparison represents.</p>
+    </div>
+    <aside class="marketing-card" aria-label="Current demo limits">
+      <h3>What to know before you try it</h3>
+      <p>Quote Desk covers quote preparation. Actual email delivery, ERP integration, and confirmed inventory are not connected.</p>
+      <p>The demo combines constructed sample catalog entries and sourced public observations. Public supplier prices do not establish RudCo stock, acquisition cost, or a delivered offer. A compliance flag records a requirement; it does not certify material.</p>
+      <p>This comparison makes no claim that Quote Desk is faster, more accurate, or cheaper than the products listed.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="marketing-cta marketing-container" aria-labelledby="comparison-cta-title">
+  <div>
+    <p class="marketing-eyebrow">Every line shows its work.</p>
+    <h2 id="comparison-cta-title">See what is behind the quote.</h2>
+    <p>Review the source and the draft in the working app.</p>
+  </div>
+  <div class="marketing-actions">
+    <%= link_to "Open Quote Desk", quotes_path, class: "button button--primary" %>
+    <%= link_to "See the product", product_path, class: "button button--quiet" %>
+  </div>
+</section>

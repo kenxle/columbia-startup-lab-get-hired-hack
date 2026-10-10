@@ -23,6 +23,8 @@ Cards use `--radius` (6px). Buttons and controls use `--radius-small` (4px). Sys
 
 ## Reusable ERB components
 
+The read-only product and comparison pages at `/product` and `/compare` use `layouts/marketing`, with one header navigation and no workspace sidebar. `marketing.css` provides scoped hero, card, workflow, comparison table and footer layouts using the same application tokens. The product image is an actual app capture stored at `app/assets/images/marketing-quote-review.png`, captioned as fictional demo data. Quote workspace navigation is unchanged.
+
 All components escape text normally. Do not pass untrusted HTML through `html_safe`.
 
 | Component | Locals | Consumers |

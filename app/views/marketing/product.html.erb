@@ -1,0 +1,92 @@
+<% content_for :title, "Every line shows its work." %>
+
+<section class="marketing-hero" aria-labelledby="product-heading">
+  <div class="marketing-container">
+    <div class="marketing-hero-grid">
+      <div>
+        <p class="marketing-eyebrow">RudCo Quote Desk · For quoting reps</p>
+        <h1 id="product-heading">Every line<br>shows its work.</h1>
+        <p class="marketing-lede">Turn a messy RFQ into a quote you can check. See the buyer's words, review the specification, and keep the final call.</p>
+        <div class="marketing-actions">
+          <%= link_to "Open Quote Desk", quotes_path, class: "button button--primary" %>
+          <a class="marketing-text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="marketing-hero-aside" aria-label="The rep's role">
+        <p class="marketing-hero-pitch">The agent prepares the conversation,<br><strong>and the rep owns it.</strong></p>
+        <div class="marketing-target">
+          <span class="marketing-target-number">24<span>h</span></span>
+          <div><strong>A visible response target</strong><p>The desk tracks time from receipt so the next RFQ needing your attention stays in view. A target, not a delivery guarantee.</p></div>
+        </div>
+      </aside>
+    </div>
+    <figure class="marketing-figure">
+      <%= image_tag "marketing-quote-review.png", alt: "Quote Desk review screen with the original RFQ, line statuses, and evidence for the selected quote line", class: "marketing-image", width: 1280, height: 720, fetchpriority: "high" %>
+      <figcaption><span>Inside the working prototype</span> Actual app screen with a fictional demo RFQ; displayed prices and availability are demonstration data.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="marketing-section marketing-container" aria-labelledby="review-heading">
+  <div class="marketing-section-heading">
+    <p class="marketing-eyebrow">Accurate. Competitive. Faster.</p>
+    <h2 id="review-heading">A draft you can question.<br>A quote you can stand behind.</h2>
+    <p>Keep the evidence close to the decision, from the first reading to the approved export.</p>
+  </div>
+  <div class="marketing-cards">
+    <article class="marketing-card">
+      <span class="marketing-card-index" aria-hidden="true">01 / Read</span>
+      <h3>Check the source.</h3>
+      <p>Review the original request beside the quote. Inspect the source words and rules behind the extracted specification, including material-specific gauge readings.</p>
+    </article>
+    <article class="marketing-card">
+      <span class="marketing-card-index" aria-hidden="true">02 / Price</span>
+      <h3>Know the price basis.</h3>
+      <p>See the recorded price source and benchmark date. Review the unit, assumptions and missing information before you approve a line.</p>
+    </article>
+    <article class="marketing-card">
+      <span class="marketing-card-index" aria-hidden="true">03 / Decide</span>
+      <h3>Start with what needs you.</h3>
+      <p>Attention-needed lines open first. Unclear specifications become questions, and missing matches or prices stay visible for the rep to resolve.</p>
+    </article>
+  </div>
+</section>
+
+<section class="marketing-section marketing-workflow" id="how-it-works" aria-labelledby="workflow-heading">
+  <div class="marketing-container marketing-split">
+    <div class="marketing-section-heading">
+      <p class="marketing-eyebrow">From RFQ to review</p>
+      <h2 id="workflow-heading">Your desk.<br>Your decision.</h2>
+      <p>The request, the reading and the next action stay together. You review what changed before the quote is ready to export.</p>
+      <%= link_to "Start with an RFQ", new_quote_path, class: "button button--primary" %>
+    </div>
+    <ol class="marketing-steps">
+      <li><span class="marketing-step-number" aria-hidden="true">01</span><div><h3>Bring in the request.</h3><p>Paste the email or upload a PDF, CSV, or text file. Keep the original source available as you review.</p></div></li>
+      <li><span class="marketing-step-number" aria-hidden="true">02</span><div><h3>Read each line in context.</h3><p>Check the normalized specification, catalog match, price evidence and requested paperwork. Compliance flags describe requirements; they do not certify material.</p></div></li>
+      <li><span class="marketing-step-number" aria-hidden="true">03</span><div><h3>Ask where it is unclear.</h3><p>Review drafted buyer questions and record an answer to rerun a held line. Where evidenced alternatives are available, review each option separately. Missing prices remain unpriced.</p></div></li>
+      <li><span class="marketing-step-number" aria-hidden="true">04</span><div><h3>Approve, then export.</h3><p>Check the final draft and approve the revision. Preview the email and download the PDF or CSV. A later edit clears approval so you can review again.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="marketing-section marketing-container" aria-labelledby="scope-heading">
+  <div class="marketing-split marketing-scope">
+    <div class="marketing-section-heading">
+      <p class="marketing-eyebrow">Built today</p>
+      <h2 id="scope-heading">A working prototype.<br>With its limits in view.</h2>
+    </div>
+    <div class="marketing-scope-copy">
+      <p>Try intake, line-by-line source review, rep edits, drafted questions, approval and exports. Explicitly taught buyer terms can carry into the buyer's next RFQ with their source recorded.</p>
+      <p>The prototype uses sourced public catalog records alongside constructed sample data. Public listings do not establish RudCo stock or acquisition costs. Unknown lead times stay “to confirm.”</p>
+      <p class="marketing-note">Email is a local preview today. A connected mailbox, buyer-click answer flow, live inventory and ERP integration are not connected. The 24-hour clock helps the rep track the target; it does not send a quote automatically.</p>
+    </div>
+  </div>
+</section>
+
+<section class="marketing-container marketing-cta" aria-labelledby="start-heading">
+  <div><p class="marketing-eyebrow">See the work behind the quote</p><h2 id="start-heading">Bring the next RFQ to the desk.</h2><p>Start with the request. Leave with a draft you can inspect.</p></div>
+  <div class="marketing-actions">
+    <%= link_to "Open Quote Desk", quotes_path, class: "button button--primary" %>
+    <%= link_to "Explore the comparison", comparison_path, class: "marketing-text-link" %>
+  </div>
+</section>

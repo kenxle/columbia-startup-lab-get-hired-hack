@@ -79,6 +79,7 @@ Solid lines exist or are being built. Dotted lines are planned.
 - **Options:** review and approved email/PDF/CSV consume `processing.alternates`. Option prices require positive decimals, USD, a named dated benchmark with matching units, and no unresolved fields. Options are never summed together or included in the Ready subtotal.
 - **Desk deadlines:** receipt plus 24 hours determines the due countdown and soonest-due order. Three hours or less is amber; overdue is red. `sent_at` and `sent_review_revision` distinguish delivery of the current approved revision from a preview or a later edit. Live delivery is still pending.
 - **Design:** Ken's [style guide](product/STYLE_GUIDE.md) governs all page tokens and the unchanged RudCo logo. [UI components](engineering/UI_COMPONENTS.md) documents the shared Rails/CSS pieces, including catalog pages.
+- **Marketing:** read-only `/product` and `/compare` routes use `MarketingController`, a separate marketing layout and scoped styles. The product page embeds an actual local demo screenshot. The comparison links directly to reviewed vendor pages and distinguishes shipped quote preparation from unconnected delivery, ERP and inventory. These pages do not create quotes or buyer records.
 - **Remaining:** production authentication/storage, real mailbox/thread IDs, public buyer-choice endpoints and evidence gate, general re-quote conflict/redline review, and live gateway activation. The current session workspace is a local prototype.
 
 ### RFQ processing (Yuval)
