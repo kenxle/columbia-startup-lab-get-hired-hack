@@ -1,6 +1,6 @@
 # Research Brief: What Matters in RFQ to Quote
 
-**Status:** Draft for Ken's review. Research does not start until Ken approves this brief.
+**Status:** Approved by Ken, 2026-10-10. Research is running.
 
 **Feeds:** the [product brief](../../product/PRD.md): what it puts first, and Q2 (our sharper angle).
 
