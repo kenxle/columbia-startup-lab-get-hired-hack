@@ -1,4 +1,5 @@
 require "test_helper"
+require Rails.root.join("tools/rfq_processing/lib/rfq_processing").to_s
 require "minitest/mock"
 
 class LiveModelsTest < ActiveSupport::TestCase
