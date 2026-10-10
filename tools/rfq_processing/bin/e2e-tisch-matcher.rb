@@ -5,20 +5,12 @@ $LOAD_PATH.unshift File.expand_path("tools/rfq_processing/lib", Dir.pwd)
 require "rfq_processing"
 require "json"
 
-rfq = <<~TEXT
-  Please quote:
-  304 SS sheet 16ga 4x8, 20 sheets, MTRs required
-  Stainless 304, 0.060 in, 48 x 96, 10 sheets
-  Steel shot S-330, 2,000 lb, COA with each lot
-  P1020 aluminum ingot 5,000 lbs
-  1/2 A36 PL 5x10 x3
-  AN3-13A bolts, 100 ea
-TEXT
+rfq = File.read("docs/product/demo_rfq/email.txt")
 
 ActiveRecord::Base.transaction do
   client = Client.create!(name: "Northline Fabrication", workspace_token: "e2e") rescue nil
-  matcher = RfqProcessing::CatalogMatchAdapter.new(client: client)
-  result = RfqProcessing.process(content: rfq, type: "email", matcher: matcher)
+  matcher = QuoteWorkspace::ProcessRfq::IntakeMatcher.new(client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
+  result = RfqProcessing.process(content: rfq, type: "email", matcher: matcher, llm: false)
   puts "revision #{result['revision']['id']}  lines #{result['lines'].size}"
   result["lines"].each do |l|
     m = l["processing"]["match"] || {}
@@ -31,7 +23,7 @@ ActiveRecord::Base.transaction do
     QuoteWorkspace::ApplyResult.call(quote: quote, result: result)
     puts "ApplyResult: ACCEPTED #{quote.quote_lines.reload.size} lines; ready=#{quote.ready_count} held=#{quote.held_count}"
   rescue QuoteWorkspace::ApplyResult::InvalidResult => e
-    puts "ApplyResult: REJECTED #{e.problems.join(' | ')}"
+    raise "ApplyResult: REJECTED #{e.problems.join(' | ')}"
   end
   raise ActiveRecord::Rollback
 end

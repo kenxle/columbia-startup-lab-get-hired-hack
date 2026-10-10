@@ -22,6 +22,12 @@ module RfqProcessing
   # Several answers for one line in one batch are applied together in a single
   # rerun. The line's processing.answered then lists every choice id, comma
   # separated, and the free texts joined with a semicolon.
+  #
+  # What a line was told earlier stays applied under a later batch: a second
+  # answer, or a whole-RFQ note that reruns every line, never undoes a settled
+  # field. The earlier answers are read back from the line itself (the choice
+  # evidence at "buyer answer", the chosen item in the match reason, the texts
+  # in processing.answered), so the hash shape does not change.
   module Answers
     CHARS = /, chars \d+-\d+\z/
     BUYER_LOCATION = "buyer answer"
@@ -48,6 +54,7 @@ module RfqProcessing
         id = line["line_id"].to_s
         next unless plans.key?(id) && !plan_empty?(plans[id])
 
+        carry_forward(line, plans[id])
         rebuilt[id] = rerun(line, plans[id], position: line["position"] || i + 1, pipeline: pipeline, buyer_terms: buyer_terms,
                                                context: context, previous_revision: previous_revision, warnings: warnings)
       end
@@ -57,7 +64,8 @@ module RfqProcessing
         "schema_version" => previous["schema_version"] || RfqProcessing::SCHEMA_VERSION,
         "sample_data" => previous.fetch("sample_data", true),
         "revision" => { "id" => "proc-#{now.getutc.strftime('%Y%m%d-%H%M%S')}-#{SecureRandom.hex(4)}",
-                        "created_at" => now.iso8601, "processor" => "rfq_processing #{RfqProcessing::VERSION} (answers)" },
+                        "created_at" => now.iso8601, "processor" => "rfq_processing #{RfqProcessing::VERSION} (answers)",
+                        "llm" => pipeline.respond_to?(:llm_description) ? pipeline.llm_description : nil },
         "source" => deep_copy(previous["source"]),
         "warnings" => Array(previous["warnings"]) + warnings,
         "lines" => lines.map { |line| rebuilt[line["line_id"].to_s] || deep_copy(line) },
@@ -132,29 +140,74 @@ module RfqProcessing
       plan["overrides"].empty? && plan["choice_ids"].empty? && plan["free_texts"].empty? && plan["rfq_texts"].empty?
     end
 
+    # ---- earlier answers stay applied ---------------------------------------
+
+    CHOICE_PREFIX = "answered by the buyer: "
+    CHOSEN_ITEM = "Chosen by the buyer's answer."
+
+    # Reads the answers already on the line into the plan, under this batch's own
+    # (a new answer for the same field wins). A choice left evidence at "buyer
+    # answer" with the choice explanation and its value in spec; a chosen catalog
+    # item is named in the match reason; typed and whole-RFQ words are in
+    # processing.answered.
+    def self.carry_forward(line, plan)
+      answered = line.dig("processing", "answered")
+      answered = {} unless answered.is_a?(Hash)
+      plan["prior_choice_ids"] = answered["choice_id"].to_s.split(",").map(&:strip).reject(&:empty?)
+      plan["prior_free_texts"] = [answered["free_text"].to_s.strip].reject(&:empty?)
+      plan["prior_rfq_texts"] = [answered["rfq_text"].to_s.strip].reject(&:empty?)
+      evidence = line["evidence"].is_a?(Hash) ? line["evidence"] : {}
+      evidence.each do |key, ev|
+        next unless ev.is_a?(Hash) && ev["location"] == BUYER_LOCATION && ev["explanation"].to_s.start_with?(CHOICE_PREFIX)
+
+        field = ResultBuilder.internal_field(key)
+        value = line["spec"].is_a?(Hash) ? line["spec"][key] : nil
+        next if plan["overrides"].key?(field) || value.nil?
+
+        plan["overrides"][field] = { "value" => value, "text" => ev["text"], "explanation" => ev["explanation"] }
+      end
+      return if plan["overrides"].key?("catalog_item") || line["catalog_sku"].to_s.empty?
+
+      plan["overrides"]["catalog_item"] = line["catalog_sku"] if line.dig("processing", "match", "reason").to_s.include?(CHOSEN_ITEM)
+    end
+
     # ---- one line, rerun --------------------------------------------------
 
     def self.rerun(line, plan, position:, pipeline:, buyer_terms:, context:, previous_revision:, warnings:)
       original = line["original_text"].to_s
-      free_text = plan["free_texts"].uniq.join("; ")
-      rfq_text = plan["rfq_texts"].uniq.join(" ")
+      new_free_text = plan["free_texts"].uniq.join("; ")
+      free_text = (Array(plan["prior_free_texts"]) + plan["free_texts"]).uniq.join("; ")
+      rfq_text = (Array(plan["prior_rfq_texts"]) + plan["rfq_texts"]).uniq.join(" ")
+      # Choice ids repeat across rounds (c2 of one question, c2 of the next), so every answer is listed in order.
+      choice_ids = Array(plan["prior_choice_ids"]) + plan["choice_ids"]
       text = free_text.empty? ? original : "#{original} (buyer: #{free_text})"
       source = Extractor::Line.new(text: text, location: location_of(line, position))
 
+      source_body = line.dig("processing", "rfq_body").to_s
+      body_text = [source_body, rfq_text].reject(&:empty?).uniq.join("\n")
       rebuilt = pipeline.process_line(source, position: position, context: context, buyer_terms: buyer_terms,
-                                              overrides: plan["overrides"], extra_text: rfq_text.empty? ? nil : rfq_text)
+                                              overrides: plan["overrides"], extra_text: body_text.empty? ? nil : body_text)
       rebuilt["processing"] ||= {}
+      # Preserve the original source body separately from accumulated buyer notes.
+      if source_body.empty?
+        rebuilt["processing"].delete("rfq_body")
+      else
+        rebuilt["processing"]["rfq_body"] = source_body
+      end
+      Array(rebuilt.dig("processing", "conflicts")).each do |c|
+        warnings << "line #{line['line_id']}: #{c['message']}" if c.is_a?(Hash) && c["code"] == Pipeline::REJECTED_PICK
+      end
 
+      restore_identity(rebuilt, line, original)
       unless free_text.empty?
-        restore_identity(rebuilt, line, original)
         rebuilt["processing"]["answered_with"] = free_text
-        if rebuilt["clarification_question"] && rebuilt["clarification_question"] == line["clarification_question"]
+        if !new_free_text.empty? && rebuilt["clarification_question"] && rebuilt["clarification_question"] == line["clarification_question"]
           warnings << "line #{line['line_id']}: the buyer's answer did not settle the question; rep review needed"
         end
       end
 
       rebuilt["processing"]["answered"] = {
-        "choice_id" => plan["choice_ids"].empty? ? nil : plan["choice_ids"].join(", "),
+        "choice_id" => choice_ids.empty? ? nil : choice_ids.join(", "),
         "free_text" => free_text.empty? ? nil : free_text,
         "rfq_text" => rfq_text.empty? ? nil : rfq_text,
         "previous_revision" => previous_revision
@@ -180,6 +233,10 @@ module RfqProcessing
       rebuilt["line_id"] = previous_id
       rebuilt["original_text"] = line["original_text"]
       Array(rebuilt.dig("processing", "question_choices")).each { |c| c["id"] = c["id"].to_s.sub(new_id, previous_id) }
+      Array(rebuilt.dig("processing", "alternates")).each do |option|
+        option["id"] = option["id"].to_s.sub(new_id, previous_id)
+        option["choice_id"] = option["choice_id"].to_s.sub(new_id, previous_id) if option["choice_id"]
+      end
       Array(rebuilt["evidence"]&.values).each do |ev|
         next unless ev.is_a?(Hash)
 

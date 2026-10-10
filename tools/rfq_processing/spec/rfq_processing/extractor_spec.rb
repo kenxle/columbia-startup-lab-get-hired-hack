@@ -53,4 +53,39 @@ RSpec.describe RfqProcessing::Extractor do
     empty = described_class.extract(build_xlsx([]), type: "xlsx", filename: "empty.xlsx")
     expect(empty.warnings.first).to include("no rows with text")
   end
+  it "retains page locations and warns about a blank page in a mixed PDF" do
+    require described_class::PDF_TEXT_PATH
+    pages = [Struct.new(:text).new("  Steel shot 500 kg\n"), Struct.new(:text).new("")]
+    allow(PdfText).to receive(:extract).with("pdf bytes").and_return(PdfText::Result.new(text: "Steel shot 500 kg", pages: 2))
+    allow(PDF::Reader).to receive(:new).and_return(Struct.new(:pages).new(pages))
+    result = described_class.extract("pdf bytes", type: "pdf")
+    expect(result.pages).to eq(2)
+    expect(result.lines.first.location).to eq("page 1, line 1")
+    expect(result.lines.first.layout_text).to eq("  Steel shot 500 kg")
+    expect(result.warnings).to include("page 2 has no extractable text; it may need OCR")
+  end
+
+  it "keeps the PDF utility validation guard" do
+    result = described_class.extract("not a PDF", type: "pdf")
+    expect(result.lines).to be_empty
+    expect(result.warnings.join).to include("isn't a PDF")
+  end
+
+  it "drops only an explicitly labelled line number column before parsing mixed fractions" do
+    csv = "Line,Description,Quantity,Unit\n7,1/2 A36 plate 5x10,3,plates\n"
+    extraction = described_class.extract(csv, type: "csv")
+    expect(extraction.lines.first.text).to eq("1/2 A36 plate 5x10 3 plates")
+    result = RfqProcessing.process(content: csv, type: "csv", llm: false)
+    expect(result["lines"].first.dig("spec", "thickness")).to eq(0.5)
+    expect(result["lines"].first["quantity"]).to eq(3)
+    expect(extraction.lines.first.location).to eq("row 2")
+  end
+
+  it "also drops an explicit line-number column from Excel without dropping a quantity column" do
+    bytes = build_xlsx([["Line", "Description", "Quantity", "Unit"], [7, "1/2 A36 plate 5x10", 3, "plates"]])
+    result = described_class.extract(bytes, type: "xlsx")
+    expect(result.lines.first.text).to eq("1/2 A36 plate 5x10 3 plates")
+    expect(result.lines.first.location).to eq("sheet RFQ, row 2")
+  end
+
 end

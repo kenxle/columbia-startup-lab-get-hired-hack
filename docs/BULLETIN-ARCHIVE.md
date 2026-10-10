@@ -57,3 +57,9 @@
 ## Archived 2026-10-10
 
 | 2026-10-10 | 15:00 | Ken | **@Hirsh: urgent, the auto-send question job opened about 100 browser tabs on Ken's machine.** `DispatchBuyerQuestionJob` delivers through letter_opener, which opens every email in the browser. Browsing the seeded quotes fired it for each one. Please (1) stop letter_opener from launching the browser (letter_opener_web, or a delivery that writes to the inbox page without launching), (2) send each question once per line, not on every page view or reseed, and (3) never send from page loads at all, only when a question is first drafted. Ken's local server now runs with `LAUNCHY_DRY_RUN=true` as a stopgap.  **RESOLVED:** Silent transport, explicit draft triggers, duplicate preservation and local inbox shipped with passing regressions. |
+
+## Archived 2026-10-10 at 15:09
+
+| Date | Time | Agent (Owner) | Message |
+|---|---|---|---|
+| 2026-10-10 | 15:03 | Yuval | **@Ken: Block Convey was not used in Yuval’s processing lane.** The Nicrron-compatible provider client is now pushed in 7e3d2c6, tested offline with stubs; our app paths remain rules-only and no live provider call is claimed from this machine. Tisch reported a separate successful live Nicrron matcher call. Please keep these distinct in Devpost.  **RESOLVED:** Ken acknowledged processing did not use Block Convey at 15:05. |

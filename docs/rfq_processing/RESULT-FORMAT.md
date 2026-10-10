@@ -4,7 +4,7 @@
 
 This is the hash that RFQ processing hands to the quote app. It adopts the `QuoteLine` shape from Hirsh's [frontend contract](../engineering/FRONTEND_CONTRACT.md) as is, and adds one namespaced key, `processing`, for what the app may ignore. It also fixes the contract between RFQ processing and Tisch's matching agent.
 
-Three fixtures in this shape live in [`tools/rfq_processing/spec/fixtures/results/`](../../tools/rfq_processing/spec/fixtures/results/): one Ready line, one Needs the buyer line, one No match line. Hirsh can build against them now.
+Fixtures in this shape live in [`tools/rfq_processing/spec/fixtures/results/`](../../tools/rfq_processing/spec/fixtures/results/): one Ready line, one Needs the buyer line, one No match line. Hirsh can build against them now.
 
 ## Who does what
 
@@ -39,7 +39,7 @@ One integration point: Yuval's library calls Tisch's matcher and produces the wh
 - `warnings` carries extraction problems the rep must see. A page with no text is a warning, never a silent skip.
 - `sample_data` is true whenever the catalog or prices are ours, not RudCo's.
 
-**What the app keeps today.** `QuoteWorkspace::ApplyResult` stores the `QuoteLine` keys only. It discards `revision`, `line_id`, `processing`, and any spec key outside the eight metals keys. So, until Hirsh extends the app, everything the rep must see goes into the stored keys: the rule used goes in `evidence.explanation`, assumptions go in `notes`, the part number goes in `description` and `catalog_sku`. The extra keys are in the hash now so the app can start keeping them without a format change.
+**What the app keeps today.** `QuoteWorkspace::ApplyResult` stores `revision`, `line_id`, `processing`, source metadata and warnings, and metals/hardware spec keys. Hirsh owns persistence, revision guards, the quote-scoped answer and teaching forms, and option display. Intake remains restricted to RudCo/metals with the provider disabled until the live gateway is verified.
 
 ## One line
 
@@ -99,7 +99,9 @@ Required fields by form: sheet and plate need material, grade, form, thickness, 
 
 ### Benchmark
 
-`{name, as_of, unit, kind, explanation}`. `kind` is `sample` for anything we assembled. `explanation` says what the benchmark supports and what it does not. For Tisch's aviation data: two public dealer listings for the same part number support a single-piece retail reference. They do not support a delivered price, a bulk tier, or a market index. The app shows this text next to the price.
+`{name, as_of, unit, kind, explanation}`. Source kinds include `list_price` and `dealer_midpoint`. Stored `sample_data` distinguishes constructed data. `explanation` says what the benchmark supports and what it does not. For Tisch's aviation data: two public dealer listings for the same part number support a single-piece retail reference. They do not support a delivered price, a bulk tier, or a market index. The app shows this text next to the price.
+
+Prices require a positive finite value in USD and the same sale unit as the requested quantity. A per-pound list price cannot become a per-sheet, per-bag or per-kilogram price. New matcher candidate `price` payloads require `unit_price`, `currency: "USD"`, `price_source`, and a complete benchmark with ISO observation date and matching unit. Invalid candidate prices stay held rather than falling back to legacy fields. Observation dates come from the source or the verified RudCo source manifest, never the processing clock. An unknown date stays unknown. Unknown stock does not establish a delivery promise.
 
 ### Question with choices
 
@@ -126,6 +128,7 @@ Required fields by form: sheet and plate need material, grade, form, thickness, 
 - `assumptions` is the list Ken's research asks for: what was assumed, what was not stated.
 - `rules_used` names every table and conversion applied.
 - `match` is the matcher's answer, copied through. `status` is `exact`, `scored`, `ambiguous`, or `no_match`.
+- `rfq_body` is optional internal context containing the original requirement clauses, copied from the RFQ body. Answer reruns retain these clauses and recompute their scope against the updated spec. Later whole-RFQ answers remain in `processing.answered.rfq_text`; they are not recursively appended to `rfq_body`.
 
 ## Buyer answers and reruns (workflow W3)
 
@@ -215,3 +218,4 @@ Tisch owns the matcher. RFQ processing calls it once per line and copies its ans
 | `ready_an3_bolt.json` | ready | Exact part number match to `AVI-001`, two-dealer midpoint price with its basis stated, C of C flag |
 | `needs_buyer_an3_missing_length.json` | needs_buyer | Family known, dash number missing, one question with catalog choices |
 | `no_match_304_sheet.json` | no_match | Clean metals reading with the gauge rule shown, MTR flag, no sheet items in the sample catalog |
+| `ambiguous_with_options.json` | needs_buyer | Two eligible unpriced candidates, stable option/choice IDs, missing price holds |

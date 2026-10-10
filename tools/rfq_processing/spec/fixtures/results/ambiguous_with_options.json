@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "sample_data": true,
+  "revision": {
+    "id": "proc-20261010-182848-44a9ddfc",
+    "created_at": "2026-10-10T14:28:48-04:00",
+    "processor": "rfq_processing 0.1.0",
+    "llm": null
+  },
+  "source": {
+    "type": "email",
+    "filename": null,
+    "pages": null,
+    "rows": null
+  },
+  "warnings": [],
+  "lines": [
+    {
+      "line_id": "line-1-51a95923",
+      "position": 1,
+      "description": "Stainless steel 304 sheet, 0.0625 in (16 ga), 48 in x 96 in",
+      "original_text": "Stainless 304 sheet, 16 ga, 48 x 96, 20 sheets",
+      "spec": {
+        "material": "stainless steel",
+        "grade": "304",
+        "form": "sheet",
+        "thickness": 0.0625,
+        "width": 48,
+        "length": 96,
+        "gauge": 16
+      },
+      "quantity": 20,
+      "quantity_unit": "sheet",
+      "catalog_sku": null,
+      "unit_price": null,
+      "price_source": null,
+      "state": "needs_buyer",
+      "clarification_question": "Line 1 (stainless steel 304 sheet) fits 2 catalog items: RC-SS304-SHT-16GA-48X96-2B, RC-SS304-SHT-16GA-48X96-4. Which one do you mean?",
+      "notes": "Assumptions: Finish is not stated. 2B is the usual mill finish for stainless sheet. ASTM A240 is the usual specification family for stainless sheet and plate. It is not written. Rules used: Gauge table: stainless steel, 16 ga = 0.0625 in.",
+      "evidence": {
+        "material": {
+          "text": "Stainless",
+          "location": "line 1, chars 1-9",
+          "explanation": "stainless means stainless steel"
+        },
+        "grade": {
+          "text": "304",
+          "location": "line 1, chars 11-13",
+          "explanation": "stainless steel grade"
+        },
+        "form": {
+          "text": "sheet",
+          "location": "line 1, chars 15-19",
+          "explanation": "sheet means sheet"
+        },
+        "thickness": {
+          "text": "16 ga",
+          "location": "line 1, chars 22-26",
+          "explanation": "16 gauge on the stainless steel table is 0.0625 in (Metal Supermarkets sheet metal gauge chart (tube wall: Wikipedia, Sheet metal))."
+        },
+        "width": {
+          "text": "48",
+          "location": "line 1, chars 29-30",
+          "explanation": "48 in as written; the first number is the width"
+        },
+        "length": {
+          "text": "96",
+          "location": "line 1, chars 34-35",
+          "explanation": "96 in as written; the second number is the length"
+        },
+        "gauge": {
+          "text": "16 ga",
+          "location": "line 1, chars 22-26",
+          "explanation": "a gauge number is not a thickness; it is looked up in a table by material and form"
+        },
+        "quantity": {
+          "text": "20 sheets",
+          "location": "line 1, chars 38-46",
+          "explanation": "quantity as written"
+        }
+      },
+      "compliance": [],
+      "benchmark": null,
+      "unresolved_fields": [
+        "catalog item"
+      ],
+      "edited_fields": [],
+      "processing": {
+        "confidence": {
+          "material": 0.95,
+          "grade": 0.95,
+          "form": 0.95,
+          "thickness": 0.9,
+          "width": 0.9,
+          "length": 0.9,
+          "gauge": 0.95,
+          "quantity": 0.95
+        },
+        "assumptions": [
+          "Finish is not stated. 2B is the usual mill finish for stainless sheet.",
+          "ASTM A240 is the usual specification family for stainless sheet and plate. It is not written."
+        ],
+        "rules_used": [
+          "Gauge table: stainless steel, 16 ga = 0.0625 in"
+        ],
+        "conflicts": [],
+        "match": {
+          "status": "ambiguous",
+          "threshold": 0.8,
+          "candidates": [
+            {
+              "item_id": "RC-SS304-SHT-16GA-48X96-2B",
+              "description": "304 stainless sheet, 16 ga (0.0625 in), 2B finish",
+              "material": "stainless steel",
+              "grade": "304",
+              "form": "sheet",
+              "thickness_in": 0.0625,
+              "width_in": 48,
+              "length_in": 96,
+              "finish": "2B",
+              "score": 1.0,
+              "mismatches": [],
+              "reason": "Material, grade and size agree; finish not specified."
+            },
+            {
+              "item_id": "RC-SS304-SHT-16GA-48X96-4",
+              "description": "304 stainless sheet, 16 ga (0.0625 in), 4 finish",
+              "material": "stainless steel",
+              "grade": "304",
+              "form": "sheet",
+              "thickness_in": 0.0625,
+              "width_in": 48,
+              "length_in": 96,
+              "finish": "4",
+              "score": 1.0,
+              "mismatches": [],
+              "reason": "Material, grade and size agree; finish not specified."
+            }
+          ],
+          "score": 1.0,
+          "reason": "Material, grade and size agree; finish not specified."
+        },
+        "question_choices": [
+          {
+            "id": "line-1-51a95923-c1",
+            "label": "RC-SS304-SHT-16GA-48X96-2B: Material, grade and size agree; finish not specified.",
+            "value": "RC-SS304-SHT-16GA-48X96-2B",
+            "field": "catalog_item"
+          },
+          {
+            "id": "line-1-51a95923-c2",
+            "label": "RC-SS304-SHT-16GA-48X96-4: Material, grade and size agree; finish not specified.",
+            "value": "RC-SS304-SHT-16GA-48X96-4",
+            "field": "catalog_item"
+          }
+        ],
+        "alternates": [
+          {
+            "id": "line-1-51a95923-o1",
+            "choice_id": "line-1-51a95923-c1",
+            "label": "Option A: 304 stainless sheet, 16 ga (0.0625 in), 2B finish",
+            "catalog_sku": "RC-SS304-SHT-16GA-48X96-2B",
+            "item_id": "RC-SS304-SHT-16GA-48X96-2B",
+            "spec": {
+              "material": "stainless steel",
+              "grade": "304",
+              "form": "sheet",
+              "thickness_in": 0.0625,
+              "width_in": 48,
+              "length_in": 96,
+              "finish": "2B"
+            },
+            "quantity": 20,
+            "quantity_unit": "sheet",
+            "unit_price": null,
+            "currency": null,
+            "price_source": null,
+            "benchmark": null,
+            "lead_time": "to confirm",
+            "lead_time_source": "no stock confirmation on the catalog row",
+            "unresolved_fields": [
+              "unit_price"
+            ]
+          },
+          {
+            "id": "line-1-51a95923-o2",
+            "choice_id": "line-1-51a95923-c2",
+            "label": "Option B: 304 stainless sheet, 16 ga (0.0625 in), 4 finish",
+            "catalog_sku": "RC-SS304-SHT-16GA-48X96-4",
+            "item_id": "RC-SS304-SHT-16GA-48X96-4",
+            "spec": {
+              "material": "stainless steel",
+              "grade": "304",
+              "form": "sheet",
+              "thickness_in": 0.0625,
+              "width_in": 48,
+              "length_in": 96,
+              "finish": "4"
+            },
+            "quantity": 20,
+            "quantity_unit": "sheet",
+            "unit_price": null,
+            "currency": null,
+            "price_source": null,
+            "benchmark": null,
+            "lead_time": "to confirm",
+            "lead_time_source": "no stock confirmation on the catalog row",
+            "unresolved_fields": [
+              "unit_price"
+            ]
+          }
+        ],
+        "compliance_detail": [],
+        "lead_time": {
+          "text": "to confirm",
+          "stocked": false,
+          "source": "no catalog match"
+        }
+      }
+    }
+  ]
+}

@@ -83,15 +83,14 @@ Rules compute normalization, readiness, matching checks and questions. Optional 
 - **Claude Opus 5 through Nicrron** (Hirsh, 13:39 and 13:40; Ken, 13:36). The hackathon's sponsor gateway is OpenAI-compatible chat at `https://api.nicrron.ai/v1`, model `anthropic/claude-opus-5`; the direct Anthropic model is `claude-opus-5`. Processing owns the provider adapter (Yuval's lane is LLM integration). `LlmParser` gets an OpenAI-compatible client with no new gem, prefers Nicrron when its key exists, and drops any answer from a model other than the one requested. The hash records the provider and model in `revision.llm`.
 - **Production data wording** (Ken, 13:31): `sample_data` defaults to false, price sources name the observation and date, benchmark `kind` is `list_price` or `dealer_midpoint`, stocked rows carry the 24 to 48 hour lead time.
 
-## Current open items (2026-10-10, 14:45)
+## Current open items (2026-10-10, 15:09)
 
-1. Hirsh/Tisch inspect the published review diff before runtime changes are pushed. Yuval approved the first parser batch and authorized teammate review for subsequent pushes.
-2. Tisch repairs the committed demo PDF. The current bytes fail PDF::Reader validation. Email and CSV produce eight items; two lane specs remain red because the PDF is malformed.
-3. Tisch supplies a matcher contract for vetted buyer terms. Normalized taught thickness is correct, but the matcher reparses the original decimal and ignores the plain given value. Keep Hirsh's `client: nil` intake restriction.
-4. Ken/Tisch settle the final screw example: it omits material, so processing correctly holds it instead of showing the desired No match badge. Metals without sourced prices remain held.
-5. Nicrron/Anthropic keys are absent. Stub smoke passes with pinned Ruby. A live call still requires Yuval's go. Required Opus 5 independent review is blocked by Claude quota until 16:50 ET; Astra reviews are supplemental.
-6. Ken's shorthand worklist is now the parser priority. Glass bead size, stainless shot and Gage dimensions have local regression fixes. Ambiguous short descriptions must use their full source, not invented units.
-7. Ken's Jev request is acknowledged. Yuval owns doubtful-compliance diagnostics after the demo correction batch, with all flags retained. Client/key and calibration fixtures are pending. Hirsh owns question routing and explicit answer-scope review; typed choice evidence needs a shared contract.
+1. Hirsh cleared the remaining extraction/compliance dependency batch at 15:07. Publish with passing processing and app checks. Parser and disabled-provider batches are already pushed.
+2. Hirsh owns the provenance-safe matcher correction and offered to run the live provider smoke on his configured machine. Local Nicrron/Jev keys are absent. App activation requires actual live evidence; gateway errors retain rules-only behavior.
+3. Safe teaching diagnostic must pass untaught numeric negative controls before claiming end-to-end teaching. Parser provenance itself works.
+4. Jev doubtful-compliance diagnostics await client/key and calibration fixtures. Keep all deterministic flags and readiness gates.
+5. Ken's accepted four-line abrasive demo pair passes with sourced prices. Stock and lead times remain unknown pending evidence. Tisch owns metals estimates under Ken's revised scope; keep constructed estimates distinct from observed finished-item prices.
+6. Ken repaired the PDF. Eight-row email/PDF/CSV checks pass. Iowa 2021 is still a fragmented layout, not a supported complete extraction.
 
 ## Status log
 

@@ -5,7 +5,7 @@ module RfqProcessing
   # A page with no text is a warning the rep must see, never a silent skip.
   module Extractor
     Extraction = Struct.new(:lines, :warnings, :pages, :rows, :source_type, keyword_init: true)
-    Line = Struct.new(:text, :location, keyword_init: true)
+    Line = Struct.new(:text, :location, :layout_text, keyword_init: true)
 
     PDF_TEXT_PATH = File.expand_path("../../../pdf_text/lib/pdf_text", __dir__)
 
@@ -33,14 +33,20 @@ module RfqProcessing
     def self.from_pdf(bytes)
       require PDF_TEXT_PATH unless defined?(PdfText)
       result = PdfText.extract(bytes)
-      text = result.respond_to?(:text) ? result.text : result.to_s
-      pages = result.respond_to?(:page_count) ? result.page_count : nil
+      pages = result.pages
       warnings = []
-      warnings << "the PDF has no extractable text; it may be scanned and needs OCR" if text.strip.empty?
-      lines = text.each_line.map(&:rstrip).each_with_index.filter_map do |raw, i|
-        next if raw.strip.empty?
+      # Keep the utility's validation/size guards, then retain the page boundaries
+      # and horizontal whitespace needed to distinguish table cells from prose.
+      lines = PDF::Reader.new(StringIO.new(bytes)).pages.each_with_index.flat_map do |page, page_index|
+        page_text = page.text
+        if page_text.strip.empty?
+          warnings << "page #{page_index + 1} has no extractable text; it may need OCR"
+        end
+        page_text.each_line.each_with_index.filter_map do |raw, i|
+          next if raw.strip.empty?
 
-        Line.new(text: raw.strip, location: "pdf line #{i + 1}")
+          Line.new(text: raw.strip, layout_text: raw.rstrip, location: "page #{page_index + 1}, line #{i + 1}")
+        end
       end
       Extraction.new(lines: lines, warnings: warnings, pages: pages, rows: nil, source_type: "pdf")
     rescue StandardError => e
@@ -63,12 +69,16 @@ module RfqProcessing
         sheet = book.sheet(sheet_name)
         next if sheet.first_row.nil?
 
+        ignored_columns = []
         (sheet.first_row..sheet.last_row).each do |r|
           total_rows += 1
           cells = (sheet.first_column..sheet.last_column).map { |c| sheet.cell(r, c) }
-          joined = rows_to_text(cells)
+          if r == sheet.first_row && header_row?(rows_to_text(cells))
+            ignored_columns = line_number_columns(cells)
+            next
+          end
+          joined = rows_to_text(cells.each_with_index.reject { |_, index| ignored_columns.include?(index) }.map(&:first))
           next if joined.empty?
-          next if r == sheet.first_row && header_row?(joined)
 
           lines << Line.new(text: joined, location: "sheet #{sheet_name}, row #{r}")
         end
@@ -87,6 +97,12 @@ module RfqProcessing
       cells.compact.map { |c| c.is_a?(Float) && c == c.to_i ? c.to_i.to_s : c.to_s }.map(&:strip).reject(&:empty?).join(" ")
     end
 
+    # A numbered Line column is a row identifier, not part of a mixed fraction
+    # or the order quantity. Only drop a column explicitly labelled as such.
+    def self.line_number_columns(cells)
+      cells.each_index.select { |index| cells[index].to_s.strip.match?(/\A(?:line(?:\s*(?:no\.?|number|#))?|item\s*(?:no\.?|number|#))\z/i) }
+    end
+
     def self.header_row?(joined)
       joined.match?(/\b(description|item|material|qty|quantity|part)\b/i) && !joined.match?(/\d/)
     end
@@ -95,10 +111,14 @@ module RfqProcessing
       require "csv" # bundled gem in Ruby 3.4; the app adds it to its Gemfile when it loads this library
 
       rows = CSV.parse(text)
+      ignored_columns = []
       lines = rows.each_with_index.filter_map do |cells, i|
-        joined = cells.compact.map(&:to_s).map(&:strip).reject(&:empty?).join(" ")
+        if i.zero? && header_row?(rows_to_text(cells))
+          ignored_columns = line_number_columns(cells)
+          next
+        end
+        joined = rows_to_text(cells.each_with_index.reject { |_, index| ignored_columns.include?(index) }.map(&:first))
         next if joined.empty?
-        next if i.zero? && header_row?(joined)
 
         Line.new(text: joined, location: "row #{i + 1}")
       end

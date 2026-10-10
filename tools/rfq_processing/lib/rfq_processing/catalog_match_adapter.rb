@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "json"
+
 module RfqProcessing
   # Wraps Tisch's Rails matcher (CatalogMatch::Matcher.call(text, client:)) in the
   # matcher contract from docs/rfq_processing/RESULT-FORMAT.md, so RFQ processing
@@ -15,6 +17,14 @@ module RfqProcessing
   class CatalogMatchAdapter
     THRESHOLD = 0.8
 
+    # Our field names => the names Tisch's reader takes as a given spec (DescriptionReader::GIVEN_*_FIELDS).
+    # A given value only fills what the line's words did not state; the buyer's own words still win there.
+    # Fields the reader has no name for pass through unchanged and are ignored on that side.
+    GIVEN_NAMES = {
+      "thickness_in" => "thickness", "wall_in" => "thickness", "width_in" => "width", "length_in" => "length",
+      "diameter_in" => "diameter", "nominal_size_in" => "nps", "side_a_in" => "size_a", "side_b_in" => "size_b"
+    }.freeze
+
     def initialize(client: nil, catalog: nil, service: nil)
       @client = client
       @catalog = catalog
@@ -25,7 +35,7 @@ module RfqProcessing
       direct = call_contract(line_text, spec, quantity, quantity_unit)
       return direct if direct
 
-      result = call_service(line_text)
+      result = call_service(line_text, spec, quantity)
       return { "status" => "no_match", "threshold" => THRESHOLD, "best" => nil, "candidates" => [], "total_candidates" => 0, "reason" => "matcher unavailable" } unless result
 
       candidates = Array(result.candidates).map { |c| convert(c) }
@@ -52,7 +62,7 @@ module RfqProcessing
       contract = @service.nil? && defined?(::CatalogMatch::Contract) && ::CatalogMatch::Contract
       return nil unless contract
 
-      input = { "line_text" => text, "spec" => spec.to_h.transform_keys(&:to_s), "quantity" => quantity, "quantity_unit" => quantity_unit }
+      input = { "line_text" => text, "spec" => given_spec(spec), "quantity" => quantity, "quantity_unit" => quantity_unit }
       input["client"] = @client.respond_to?(:name) ? @client.name : @client if @client
       out = if @client.respond_to?(:workspace_token)
               contract.call(input, workspace_token: @client.workspace_token)
@@ -65,8 +75,21 @@ module RfqProcessing
       nil
     end
 
+    SPEC_KEYS = %w[material grade temper form thickness_in wall_in width_in length_in diameter_in finish standard coating gauge].freeze
     PRICE_KEYS = %w[market_reference observation_ids list_price_usd_per_lb list_price_source unit purchase_unit catalog
                     stock_reported stock_scope catalog_provenance in_stock lead_time_days description normalized_description].freeze
+
+    # The normalized spec (and a buyer's answers, which land in it) in the reader's names, first mapping wins.
+    def given_spec(spec, quantity: nil)
+      given = spec.to_h.each_with_object({}) do |(field, value), h|
+        next if value.nil?
+
+        name = GIVEN_NAMES.fetch(field.to_s, field.to_s)
+        h[name] = value unless h.key?(name)
+      end
+      given["quantity"] = quantity unless quantity.nil? || given.key?("quantity")
+      given
+    end
 
     def normalize(out)
       out = out.to_h.transform_keys(&:to_s)
@@ -79,7 +102,7 @@ module RfqProcessing
 
     # The contract entry names the item; the price, unit, and stock facts live on the catalog row.
     def enrich(entry)
-      return entry if entry["market_reference"] || entry["list_price_usd_per_lb"]
+      return with_observation_date(entry) if entry["market_reference"] || entry["list_price_usd_per_lb"]
 
       row = catalog_row(entry["item_id"] || entry["part_number"])
       return entry unless row
@@ -88,7 +111,24 @@ module RfqProcessing
       entry["description"] ||= extra["description"] || extra["normalized_description"]
       entry["purchase_unit"] ||= extra["purchase_unit"] || extra["unit"]
       entry["stock"] = extra.slice("stock_reported", "stock_scope", "catalog_provenance", "in_stock")
-      entry.merge(extra.slice("market_reference", "observation_ids", "list_price_usd_per_lb", "list_price_source", "catalog"))
+      SPEC_KEYS.each { |k| entry[k] = row[k] if entry[k].nil? && !row[k].nil? }
+      with_observation_date(entry.merge(extra.slice("market_reference", "observation_ids", "list_price_usd_per_lb", "list_price_source", "catalog")))
+    end
+
+    # The checked-in RudCo manifest dates this website snapshot. Per-row dates,
+    # when present, remain authoritative. No current-time fallback is used.
+    def with_observation_date(entry)
+      return entry unless entry["catalog"] == "rudco" && entry["list_price_usd_per_lb"]
+
+      source = entry["list_price_source"] || {}
+      return entry if source["url"].to_s.empty?
+      return entry if %w[as_of observed_at observation_date].any? { |key| source[key] }
+
+      path = File.expand_path("../../../../data/rudco/source_manifest.json", __dir__)
+      stamp = JSON.parse(File.read(path))["fetched_at"]
+      entry.merge("list_price_source" => source.merge("observed_at" => stamp))
+    rescue Errno::ENOENT, JSON::ParserError
+      entry
     end
 
     def catalog_row(id)
@@ -102,16 +142,26 @@ module RfqProcessing
       nil
     end
 
-    def call_service(text)
+    def call_service(text, spec = {}, quantity = nil)
       service = @service || (defined?(::CatalogMatch::Matcher) && ::CatalogMatch::Matcher)
       return nil unless service
 
       args = { client: @client }
       args[:catalog] = @catalog if @catalog
+      args[:given] = given_spec(spec, quantity: quantity) if accepts_given?(service)
       service.call(text, **args)
     rescue StandardError => e
       warn "CatalogMatchAdapter: #{e.class}: #{e.message}"
       nil
+    end
+
+    # Tisch's Matcher.call takes given:; a stand-in service that does not is called the old way.
+    def accepts_given?(service)
+      return false unless service.respond_to?(:call)
+
+      service.method(:call).parameters.any? { |type, name| name == :given || type == :keyrest }
+    rescue NameError
+      false
     end
 
     def convert(candidate)
@@ -136,7 +186,20 @@ module RfqProcessing
         "list_price_source" => item["list_price_source"],
         "catalog" => item["catalog"],
         "stock" => item.slice("stock_reported", "stock_scope", "catalog_provenance")
-      }
+      }.merge(item.slice(*SPEC_KEYS).reject { |_, v| v.nil? }).then do |entry|
+        price = candidate_price(item)
+        entry["price"] = price unless price.nil?
+        with_observation_date(entry)
+      end
+    end
+
+    # The service returns row/check objects, whereas Contract already supplies
+    # this price hash. Use the same catalog-owned evidence builder on both paths.
+    def candidate_price(item)
+      return nil unless defined?(::CatalogMatch::Benchmark)
+
+      price = ::CatalogMatch::Benchmark.for(item)
+      price && price.merge("unit_price" => price["unit_price"].to_s)
     end
 
     def reason_for(exact, near, conflicts)

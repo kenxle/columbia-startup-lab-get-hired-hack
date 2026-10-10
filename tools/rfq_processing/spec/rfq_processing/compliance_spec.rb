@@ -258,4 +258,66 @@ RSpec.describe RfqProcessing::Compliance do
       expect(flags.find { |f| f["requirement"] == "reach" }["evidence"]).to eq("REACH")
     end
   end
+  it "retains only exact requirement sentences for a later buyer-answer rerun" do
+    body = "Hello purchasing. MTRs required on all steel. Deliver tomorrow. Send a COA with each lot of abrasive."
+    expect(described_class.requirement_text(body)).to eq("MTRs required on all steel.\nSend a COA with each lot of abrasive.")
+    expect(described_class.requirement_text(nil)).to eq("")
+  end
+
+  describe "product scope in RFQ body requirements" do
+    let(:body) { "MTRs required on all steel. Send a COA with each lot of abrasive. DFARS required on all items." }
+
+    it "applies the steel request to steel without copying abrasive paperwork" do
+      flags = described_class.flags(text: "304 sheet", spec: { "material" => "stainless steel" }, body_text: body)
+      expect(flags.map { |entry| entry["requirement"] }).to contain_exactly("mtr", "dfars")
+      expect(flag(flags, "mtr")["evidence"]).to eq("MTRs")
+      expect(flag(flags, "mtr")["note"]).to include("MTRs required on all steel.")
+    end
+
+    it "scopes separate requests joined by comma and send" do
+      body = "MTRs required on all steel, and send a COA with each lot of abrasive."
+      steel = described_class.flags(text: "304 sheet", spec: { "material" => "stainless steel" }, body_text: body)
+      glass = described_class.flags(text: "Glass bead", spec: { "material" => "glass", "form" => "bead" }, body_text: body)
+      expect(steel.map { |entry| entry["requirement"] }).to eq(["mtr"])
+      expect(glass.map { |entry| entry["requirement"] }).to eq(["coa"])
+    end
+
+    it "re-evaluates body scope from a buyer's current material instead of the original wording" do
+      flags = described_class.flags(text: "steel sheet", spec: { "material" => "aluminum", "form" => "sheet" }, body_text: "MTRs required on all steel.")
+      expect(flags).to be_empty
+      explicit = described_class.flags(text: "steel sheet MTR required", spec: { "material" => "aluminum", "form" => "sheet" }, body_text: "MTRs required on all steel.")
+      expect(explicit.map { |entry| entry["requirement"] }).to eq(["mtr"])
+    end
+
+    it "re-evaluates abrasive scope from the current form and keeps fallback for missing fields" do
+      changed = described_class.flags(text: "Steel shot", spec: { "material" => "carbon steel", "form" => "sheet" }, body_text: "COA with each lot of abrasive.")
+      expect(changed).to be_empty
+      fallback = described_class.flags(text: "Steel shot", body_text: "MTRs required on all steel. COA with each lot of abrasive.")
+      expect(fallback.map { |entry| entry["requirement"] }).to contain_exactly("mtr", "coa")
+    end
+
+    it "does not apply steel or abrasive requests to aluminum" do
+      flags = described_class.flags(text: "P1020 aluminum ingot", spec: { "material" => "aluminum" }, body_text: body)
+      expect(flags.map { |entry| entry["requirement"] }).to eq(["dfars"])
+    end
+
+    it "applies abrasive COA and literal all-steel MTR to steel shot" do
+      flags = described_class.flags(text: "Steel shot S-330", spec: { "material" => "carbon steel", "form" => "shot" }, body_text: body)
+      expect(flags.map { |entry| entry["requirement"] }).to contain_exactly("coa", "mtr", "dfars")
+      expect(flag(flags, "coa")["evidence"]).to eq("COA")
+      expect(flag(flags, "coa")["note"]).to include("Send a COA with each lot of abrasive.")
+    end
+
+    it "keeps explicitly requested line paperwork even outside a body's family scope" do
+      flags = described_class.flags(text: "Aluminum ingot COA MTR required", spec: { "material" => "aluminum" }, body_text: body)
+      expect(flags.map { |entry| entry["requirement"] }).to contain_exactly("coa", "mtr", "dfars")
+      expect(flag(flags, "coa")["evidence"]).to eq("COA")
+    end
+
+    it "does not call a glass abrasive steel" do
+      flags = described_class.flags(text: "Glass bead 10 bags", spec: { "material" => "glass", "form" => "bead" }, body_text: body)
+      expect(flags.map { |entry| entry["requirement"] }).to contain_exactly("coa", "dfars")
+    end
+  end
+
 end

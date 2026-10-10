@@ -129,15 +129,61 @@ module RfqProcessing
     # "trigger", "note"), stated flags first (in line order), then implied, then context.
     # One flag per requirement: a stated trigger wins over implied, implied over context,
     # and the weaker triggers are mentioned in the note.
-    def self.flags(text:, spec: {}, context: {})
+    def self.flags(text:, spec: {}, context: {}, body_text: nil)
       text = text.to_s
       spec = spec.is_a?(Hash) ? spec : {}
       context = context.is_a?(Hash) ? context : {}
 
-      candidates = stated_candidates(text, spec) + implied_candidates(spec) + context_candidates(text, spec, context)
+      candidates = stated_candidates(text, spec) + body_candidates(body_text, text, spec) + implied_candidates(spec) + context_candidates(text, spec, context)
       merged = merge(candidates)
       add_cross_notes(merged)
       sort(merged).map { |candidate| to_flag(candidate) }
+    end
+
+    # Body requirements retain the buyer's named scope. An explicit line request
+    # still applies to that line, even when a separate body sentence is narrower.
+    FAMILY_SCOPE = /\b(?:on|for|of)\s+(?:(?:all|each|the)\s+)?(stainless\s+steel|steel|abrasives?|alumin(?:um|ium))\b/i
+
+    # Persist only trigger-bearing source sentences for buyer-answer reruns.
+    # Scope is evaluated again against the newly read material, never frozen.
+    def self.requirement_text(body_text)
+      body_text.to_s.split(/(?<=[.!?])\s+|[;\n]+|,\s+and\s+(?=(?:send|provide|include|require)\b)/i).select do |sentence|
+        STATED.any? { |_, patterns| patterns.any? { |pattern| pattern.match?(sentence) } } || EN_10204.match?(sentence)
+      end.map(&:strip).reject(&:empty?).join("\n")
+    end
+
+    def self.body_candidates(body_text, line_text, spec)
+      requirement_text(body_text).split("\n").flat_map do |sentence|
+        scope = FAMILY_SCOPE.match(sentence)
+        next [] if scope && !in_family?(scope[1], line_text, spec)
+
+        stated_candidates(sentence, spec).map do |entry|
+          if scope
+            entry = entry.merge(note: "#{entry[:note]} The RFQ body limits this request to #{scope[1]}: #{sentence.strip}")
+          end
+          entry
+        end
+      end
+    end
+
+    def self.in_family?(family, line_text, spec)
+      material = fetch(spec, "material").to_s.strip
+      form = fetch(spec, "form").to_s.strip
+      # Buyer answers can change the normalized spec while the quoted source
+      # remains untouched. Use those current fields before consulting old words.
+      case family.downcase
+      when "stainless steel"
+        material.empty? ? line_text.match?(/\bstainless\b|\bSS\b/i) : material.match?(/stainless/i)
+      when "steel"
+        material.empty? ? line_text.match?(/\bsteel\b|\bstainless\b|\bSS\b/i) : material.match?(/steel/i)
+      when "abrasive", "abrasives"
+        form.empty? ? line_text.match?(/\b(?:abrasives?|steel shot|steel grit|garnet|glass beads?)\b/i) :
+          form.match?(/\b(?:shot|grit|bead|abrasive)\b/i)
+      when "aluminum", "aluminium"
+        material.empty? ? line_text.match?(/\balumin(?:um|ium)\b/i) : material.match?(/alumin(?:um|ium)/i)
+      else
+        false
+      end
     end
 
     def self.stated_candidates(text, spec)
