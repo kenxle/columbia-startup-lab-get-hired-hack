@@ -9,6 +9,17 @@
 - Add a `NOTES.md` with: where it came from (link), the date, the buyer type (government, distributor, fabricator), and anything that makes it interesting, such as the gauge trap, a hidden certification, or a contradiction.
 - Public documents only. Nothing private, and no customer data.
 
+## Saved so far (Tisch, 2026-10-10)
+
+| Folder | What | Lines public? |
+|---|---|---|
+| `20210615_iowa_steel_tubing/` | State of Iowa RFQ 245, 2021, 49 lines (sheet, tube, angle, flats, expanded metal) | Yes, full PDF |
+| `bidnet_2476672502/` | USAF Gulfport consumable metals RFQ, 2024: A36 plate, A1011 11 ga, 26 ga sheet, 5052 plate, "2B T-304 16 Gage x 4 x 8 or similar" | Abstract text with the lines |
+| `bidnet_2403776002/` | USACE Pleasant Valley plates, bars, angles, 2023: "ASTM A-572 G50" | Abstract only |
+| `highergov_navy_hy80/` | Navy MIL-S-16216 HY-80 plate | Title and ID only (JavaScript page) |
+
+The current Iowa link serves the same PDF as the 2021 copy (identical SHA-256), so it is saved once. SAM.gov refuses automated fetches; the Army Corps notice there still needs a browser download.
+
 ## Already found in the research
 
 These public solicitations are cited in the [open-web research](../research/20261010.01_rfq_sharper_angle/research_voice_open_web.md). They are the first ones to save here.
