@@ -134,6 +134,7 @@ Read what your work touches. Each link says what the document is for.
 - [Development baseline](docs/engineering/BASELINE.md): setup, run, and check commands.
 - [Frontend contract](docs/engineering/FRONTEND_CONTRACT.md): routes, models, and the processing-result shape.
 - [UI/UX approach](docs/engineering/UI_UX_APPROACH.md) and [design skills](docs/engineering/DESIGN_SKILLS.md).
+- [BlockConvey tracing](docs/engineering/BLOCKCONVEY.md): optional metadata tracing, configuration and synthetic connectivity check.
 - [UI components](docs/engineering/UI_COMPONENTS.md): shared Rails partials and CSS primitives following Ken's style guide.
 - [Quote workspace diagram](docs/diagrams/quote-workspace.md).
 - [Repository review, 2026-10-10](docs/engineering/REVIEW-2026-10-10.md): findings from the first code and docs review.

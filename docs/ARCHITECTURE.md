@@ -187,6 +187,10 @@ The unsafe matcher shortcut that treated a numeric difference within five percen
 
 Hirsh’s live check found the configured Opus 5 in the gateway model list, but inference returned HTTP 502 twice. The app switch remains off. Configuration and a model-list response are not evidence of a successful model reading.
 
+### Optional BlockConvey tracing
+
+`QuoteWorkspace::PrismTrace` queues bounded metadata through `PrismTraceJob` from the existing catalog-reader trace hook. It records model, latency, outcome and a UUID run identifier using the documented PRISM HTTPS API. Original RFQ content, buyer data, provider request IDs and secrets are omitted. Missing key/project configuration disables tracing; failures never interrupt quotes. Message fields are explicitly synthetic metadata envelopes. This does not enable models or demonstrate live inference. The separate processing-provider hook is owned by Yuval. See [setup and synthetic connectivity check](engineering/BLOCKCONVEY.md). Live ingestion and dashboard proof await credentials.
+
 ### Marketing pages, RudCo alignment
 
 Product and Compare share the supplied RudCo metals hero image with the approved navy overlays, Lucide 0.462.0 outline icons, orange platform divider and company footer. The icon partial includes the ISC license. Marketing styles remain scoped to the marketing layout; quote screens and approved comparison claims are unchanged.
