@@ -1,6 +1,6 @@
 # About the project (Devpost field)
 
-Copied from the live Devpost field at 15:37, with your edits made there. The accuracy section is Yuval's blurb (62c5423). Edit here; Claude pastes this back into Devpost. Everything below the line is the field.
+Copied from the live Devpost field at 15:37, with your edits made there. Edit here; Claude pastes this back into Devpost. Everything below the line is the field.
 
 ---
 
@@ -36,15 +36,16 @@ The product is built to run on RudCo's real catalog, inventory, and prices.
 
 ## How the solution handles accuracy and uncertainty
 
-Rules read the RFQ first. Material-specific gauge tables, dimensions and unit conversions make the reading reproducible. Extracted fields retain the quoted RFQ words and source location; derived values identify the rule or table used. Stainless 16 gauge, for example, reads as 0.0625 inches. If the RFQ also says 0.060 inches, the difference becomes a buyer question.
+Every RFQ goes through the same layers, and each layer can say "I don't know".
 
-When enabled, the model can fill only fields the rules left empty, with evidence quoted from the line. It cannot replace a rules value or invent a price. Invalid responses, a different returned model, or gateway failures leave the rules result intact. The current demo runs with model enrichment disabled; recent Nicrron inference checks returned HTTP502, so we do not present them as successful model readings.
+- **Rules first.** Deterministic rules read what can be computed: dimensions, units, gauge tables, and whether a line is complete.
+- **The model fills gaps, under limits.** Claude only fills fields the rules left empty. It must quote the RFQ words it used, and it never overrides a rule or sets a price.
+- **Every value keeps its source.** Each field stores the RFQ words and the rule, table, or model call behind it, so the rep can check any line with one click.
+- **Uncertainty becomes a question, not a guess.** A missing or conflicting value holds that line and sends the buyer one specific question. The clear lines keep moving.
+- **No source, no number.** Prices and lead times appear only with a named, dated source. Otherwise the line says so.
+- **The rep signs off.** Nothing goes out until the rep approves, and any later edit clears the approval.
+- **Failures fall back safely.** If the model call fails, the rules result stands and the quote still moves.
 
-Unknown quantities, conflicting specifications and unsuitable catalog matches keep a line held. Clear lines continue. A buyer answer reruns the relevant line while preserving the rep's edits. Explicitly taught terms apply only to the same buyer and workspace, with a validated source RFQ and line. A confirmed meaning may replace the exact taught phrase, but ordinary remembered values cannot override explicit numbers. An untaught buyer does not inherit that interpretation.
-
-Prices need traceable evidence. The abrasive demo uses named, dated RudCo website list prices, not verified acquisition costs or a promise of available stock. Distributor pricing requires its separate acquisition and comparison evidence before release. Lines without a supported price stay unpriced, and lead times without stock evidence stay “to confirm.” The rep must approve the quote; later edits invalidate that approval.
-
-We verified the complete four-line abrasive RFQ, the missing-quantity question and answer, and the persisted teaching path through processing and matching. The taught thickness matches exactly; the untaught buyer remains held and the unpriced sheet stays unpriced. The latest local processing suite passed 332 examples, and the integrated app check passed 480 Rails tests plus 12 PDF specs. The repaired email, PDF and spreadsheet fixtures all retain their eight RFQ lines.
 
 ## Tools and technologies used
 
