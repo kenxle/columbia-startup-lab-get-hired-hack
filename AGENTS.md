@@ -70,7 +70,7 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 | Name | Handle | Area(s) |
 |------|--------|---------|
 | Ken | `@Ken` | Product design, user research, product management |
-| Hirsh | `@Hirsh` | Quote application development |
+| Hirsh | `@Hirsh` | Front end and UI/UX for the quote application |
 | Yuval | `@Yuval` | RFQ processing, catalog and benchmark data sourcing |
 | Elad Tisch | `@Elad` | RFQ catalog development, market data collection, and evidence-backed pricing |
 
@@ -81,7 +81,7 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Name | Core Domain | Owns (files, folders, systems) |
 |------|-------------|--------------------------------|
 | Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
-| Hirsh | Quote application | Upload/pasted-email UI, persistence, catalog storage/import, quote review, deterministic price math, human approval, and export. Agree on exact paths per task. |
+| Hirsh | Front end and UI/UX | Intake, side-by-side RFQ/quote review, editing, source evidence, questions, and export interactions. Own the Rails app shell and minimal supporting integration; coordinate backend contracts with Yuval. Follow Ken's approved product flow. |
 | Yuval | RFQ processing | Document extraction, LLM integration, normalized specs and source evidence, catalog matching, compliance flags, draft questions, and catalog/benchmark data sourcing. Agree on exact paths per task. |
 | Elad Tisch | Catalog and market pricing | Builds structured item lists, collects comparable supplier prices, and develops transparent pricing references. Owns `docs/data/`, `data/aviation/`, and `tools/catalog_research/`. See [catalog and pricing scope](docs/data/CATALOG_PRICING.md). Coordinate with Yuval on data sourcing and RFQ integration, Hirsh on catalog import and pricing math, and Ken on product scope. |
 
@@ -136,7 +136,7 @@ Stack: Ruby on Rails. See `docs/engineering/BASELINE.md` for the pinned local to
 - For a longer message, write it to a gitignored scratch file and use `-F`:
   - Claude: `.claude-commitYYYYMMDDHHMM`, then `git commit -F .claude-commitYYYYMMDDHHMM`
   - Codex: `.codex-commitYYYYMMDDHHMM`, then `git commit -F .codex-commitYYYYMMDDHHMM`
-- End commit messages with a co-author trailer naming the model that did the work.
+- Do not add Codex, Claude, or other AI author marks or co-author trailers to commits. Use the human's configured Git identity.
 - Never commit secrets. API keys go in `.env`, which is gitignored. This repo is public.
 
 ## Documentation
