@@ -2,7 +2,7 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 13:52, from the bulletin board through Hirsh's 13:40 post.
+**Last updated:** 2026-10-10 14:06, from the bulletin board through 14:03.
 
 ## Needs your call
 
@@ -22,21 +22,24 @@ Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `scr
 
 ## Where things stand
 
-From the bulletin board through 13:40.
+From the bulletin board through 14:03. The dry run of the demo script is set for 3:15; recording is about 3:45.
 
-| Area | Owner | State |
-|---|---|---|
-| Quote app | Hirsh | Landed at 13:47: automatic paste, PDF and CSV intake; the reskin and shared components; the approved PDF, CSV and email draft with local mail preview. Browser-tested end to end on an S-330 line. 287 tests pass. Now doing your 13:48 notes: seed three RFQs, the L3 logo and status tab titles, no disclaimers. |
-| RFQ processing | Yuval | Buyer-answer reruns are on main: one-line answers rerun that line, whole-RFQ answers rerun all. Excel intake and the Claude reading step are in; the Claude step has not run against the live API yet. 150 specs pass; 24 of 25 test lines read as the research expects. |
-| Matching and pricing | Tisch | Fixed Hirsh's matcher points: real part forms, part numbers, a contract for Yuval, safer approvals. Writing the demo RFQ email (from Yuval's draft). **Still no pricer** for metals lines. |
-| API key | Hirsh | Using the hackathon's sponsor gateway (Nicrron). The key is shared privately and kept out of the repo. |
-| Product docs | Ken | All shipped and approved. PDFs of each are linked from the [README](../../README.md#documents). |
-| Demo video | Ken | Not started. Yuval's plan has it recorded between 3:45 and 4:30. |
+**Biggest risk: Tisch has not posted since 13:30**, and three video beats wait on Tisch: the demo RFQ email, the pricer for metals lines and alternate options, and the teachable gauge fields that learn the buyer needs.
 
-**Two things from the board for you:**
+| Workflow step | State | Who | What is left |
+|---|---|---|---|
+| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Paste, PDF and CSV intake works. Busy Quotes list and due countdown asked of Hirsh. Demo RFQ email still with Tisch. |
+| 2. Pull the data | ✅ | Yuval, Hirsh | Excel needs one gem added to the app. |
+| 3. Parse | ✅ | Yuval | 24 of 25 test lines read as expected. The Claude step is being moved to the sponsor gateway on Opus 5; Hirsh's first test call got a server error (502), so it runs on rules today. |
+| 4. Match | ✅ | Tisch | Done for the demo. |
+| 5. Price, flags, lead time | 🟡 | Tisch | Flags and lead times work. **No pricer yet:** metals lines and alternate options have no named, dated price. |
+| Alternates | 🟡 | Yuval, Tisch, Hirsh | The data shape is agreed (`processing.alternates`). Yuval is building it; Hirsh shows options apart from the subtotal until the buyer picks. Needs Tisch's prices. |
+| 6. Buyer questions | 🟡 | Hirsh, Yuval | The rep entering the buyer's answer on a held line: Hirsh's backend is built locally (29 tests pass), forms built, testing next. Yuval's rerun is stable. Sending email and the buyer's click are not started. |
+| 7. Review and approve | ✅ | Hirsh | Reskinned, L3 logo, three test RFQs. Top bar removal asked. |
+| 8. Send the reply | 🟡 | Hirsh | Approved PDF, CSV and email draft with local mail preview. Real delivery not started. |
+| 9. Learn the buyer | 🟡 | Hirsh, Yuval, Tisch | Hirsh is building teach-on-this-quote; Yuval words the reading "as you confirmed on RFQ-0001". Blocked on Tisch's teachable fields. |
 
-- **Hirsh requires Opus 5, not Opus 5.5, for every Claude process** (13:40), because the sponsor gateway lists Opus 5 only. This session runs Opus 5.5. Say if you want it switched.
-- **Hirsh says the demo prices are synthetic** and need a sourced replacement before they can show as real (13:33). That pulls against your call to build for production data. The fix that keeps both: Tisch's pricer, which prices from a named, dated benchmark.
+**Roles Hirsh posted at 14:03:** Ken owns product decisions, the demo script, Devpost and the recording story, and keeps the build map current. Hirsh owns every app screen and the dry run. Yuval owns processing and the Opus 5 gateway. Tisch owns the demo email, the catalog, and pricing.
 
 ## Build map
 

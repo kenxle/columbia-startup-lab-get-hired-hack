@@ -64,6 +64,7 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 ## How the workspace should look like rud-co.com
 
 - **No top bar** (Ken, 2026-10-10). The navy sidebar is the only navigation. It carries the L3 lockup at the top, then the nav. A top bar beside the sidebar reads as two navs.
+- **Default to the action the rep needs to take** (Ken, 2026-10-10). Every list and filter opens on what needs the rep: the quote lines on Attention needed, with the first such line selected; the Quotes list on what is due soonest. When nothing needs the rep, show All.
 - **Logo lockup** (Ken, 2026-10-10): RudCo's round mark at 32 px, then a stack: "RudCo" in 600 weight, and under it "QUOTE DESK" in 11 px, weight 600, tracked 0.08em capitals. The label is `#0063e6` on the warm header (4.92:1) and `#8fb8ff` on the navy sidebar (8.15:1), measured by [surface_contrast.py](surface_contrast.py). Options are on the [logo workshop](logo_workshop.html).
 - **Sidebar:** navy (`#0f1f3d`) with white and light-slate text. This carries the brand color the way the share images do.
 - **Gold:** one thin gold rule under the sidebar's product name, echoing the share image. Nowhere else.
