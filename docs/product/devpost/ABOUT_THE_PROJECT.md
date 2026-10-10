@@ -27,7 +27,7 @@ RudCo Quote Desk is a web app for the quoting rep. RFQs are found processed, neg
 - **Matches each line to RudCo's catalog.** A line gets one match, a few candidates with a question, or "No match". A line with no fit is never forced onto the closest item.
 - **Flags the paperwork the buyer needs.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH, and RoHS. Each flag highlights the trigger words, including requirements the buyer never wrote down but the spec implies. A flag records what the buyer needs. It does not certify RudCo's stock.
 - **Shows a lead time on each line.** A line shows a lead time only when a sourced stock fact exists. Otherwise it says "to confirm".
-- **Asks the buyer instead of guessing.** An unclear line becomes one specific question with choices. Clear lines keep moving. When the rep enters the buyer's answer, only that line reruns, and the rep's earlier edits are kept.
+- **Asks the buyer for missing info.** An unclear line becomes one specific question with choices, which is fed back into the system automatically. 
 - **Keeps the rep in charge.** The rep edits any field and approves the whole quote. Any edit after approval clears the approval. The agent then builds the buyer's reply: a short email, a PDF, and a spreadsheet. The email opens in a local preview.
 - **Remembers how a buyer writes.** The rep can teach the agent a term for one buyer. The reading is saved with the RFQ it was confirmed on and goes to processing on that buyer's next RFQ.
 - **Tracks the 24-hour reply.** RudCo's quote form promises a reply within 24 hours. The quotes list shows a countdown for each RFQ and sorts the soonest due first.
