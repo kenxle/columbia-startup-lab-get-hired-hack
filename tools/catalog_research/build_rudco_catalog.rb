@@ -100,6 +100,17 @@ alloy_list.scan(/\{slug:"([a-z0-9-]+)",name:"([^"]+)",displayName:"([^"]+)",cate
   end
 end
 
+# Ken's demo decision (bulletin 2026-10-10 15:40): these four ship from RudCo
+# stock with the standard 24 to 48 hour promise.
+STOCKED = %w[RC-STEELSHOT-S330 RC-STEELSHOT-S170 RC-STEELGRIT-G40 RC-STEELGRIT-G25].freeze
+items.each do |entry|
+  next unless STOCKED.include?(entry[:pn])
+
+  entry.merge!(in_stock: true, stock_reported: true, lead_time_days: 2,
+               stock_scope: "RudCo stock, standard 24 to 48 hour shipping (Ken, 2026-10-10 15:40)",
+               catalog_provenance: "RudCo website product listing; stocked per Ken's demo decision 2026-10-10 15:40")
+end
+
 abort "No products found; the site bundle layout may have changed." if items.empty?
 duplicate = items.group_by { |entry| entry[:pn] }.find { |_, group| group.size > 1 }
 abort "Duplicate PN: #{duplicate.first}" if duplicate

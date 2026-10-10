@@ -520,7 +520,7 @@
   {
     "pn": "RC-STEELSHOT-S170",
     "catalog": "rudco",
-    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "catalog_provenance": "RudCo website product listing; stocked per Ken's demo decision 2026-10-10 15:40",
     "form": "abrasive",
     "material": "steel shot",
     "grade": "S-170",
@@ -547,7 +547,11 @@
       "S-170",
       "S170",
       "steel shot S-170"
-    ]
+    ],
+    "in_stock": true,
+    "stock_reported": true,
+    "stock_scope": "RudCo stock, standard 24 to 48 hour shipping (Ken, 2026-10-10 15:40)",
+    "lead_time_days": 2
   },
   {
     "pn": "RC-STEELSHOT-S230",
@@ -616,7 +620,7 @@
   {
     "pn": "RC-STEELSHOT-S330",
     "catalog": "rudco",
-    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "catalog_provenance": "RudCo website product listing; stocked per Ken's demo decision 2026-10-10 15:40",
     "form": "abrasive",
     "material": "steel shot",
     "grade": "S-330",
@@ -643,7 +647,11 @@
       "S-330",
       "S330",
       "steel shot S-330"
-    ]
+    ],
+    "in_stock": true,
+    "stock_reported": true,
+    "stock_scope": "RudCo stock, standard 24 to 48 hour shipping (Ken, 2026-10-10 15:40)",
+    "lead_time_days": 2
   },
   {
     "pn": "RC-STEELSHOT-S390",
@@ -2088,7 +2096,7 @@
   {
     "pn": "RC-STEELGRIT-G25",
     "catalog": "rudco",
-    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "catalog_provenance": "RudCo website product listing; stocked per Ken's demo decision 2026-10-10 15:40",
     "form": "abrasive",
     "material": "steel grit",
     "grade": "G-25",
@@ -2115,12 +2123,16 @@
       "G-25",
       "G25",
       "steel grit G-25"
-    ]
+    ],
+    "in_stock": true,
+    "stock_reported": true,
+    "stock_scope": "RudCo stock, standard 24 to 48 hour shipping (Ken, 2026-10-10 15:40)",
+    "lead_time_days": 2
   },
   {
     "pn": "RC-STEELGRIT-G40",
     "catalog": "rudco",
-    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "catalog_provenance": "RudCo website product listing; stocked per Ken's demo decision 2026-10-10 15:40",
     "form": "abrasive",
     "material": "steel grit",
     "grade": "G-40",
@@ -2147,7 +2159,11 @@
       "G-40",
       "G40",
       "steel grit G-40"
-    ]
+    ],
+    "in_stock": true,
+    "stock_reported": true,
+    "stock_scope": "RudCo stock, standard 24 to 48 hour shipping (Ken, 2026-10-10 15:40)",
+    "lead_time_days": 2
   },
   {
     "pn": "RC-STEELGRIT-G50",
