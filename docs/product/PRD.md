@@ -159,7 +159,7 @@ These hold for every part of the build.
 - **Show the source.** Every field traces to the words in the RFQ, and every price traces to a named benchmark.
 - **Ask, don't guess.** A line the agent is not sure about becomes a question, never a quiet assumption.
 - **Say when data is sample data.** If we built the catalog or the prices ourselves, the screen says so.
-- **Accuracy first.** We cut a feature before we ship one that gets answers wrong.
+- **Accuracy first.** We cannot have hallucinated pricing. 0% mistakes on this front.
 - **Keep it demoable.** `main` runs end to end at every push, so the video can be recorded at any point.
 
 ## How we know it works
