@@ -17,7 +17,7 @@ Remove this section before pasting into Devpost.
 
 ## Inspiration
 
-RudCo supplies metals, abrasives, and aggregates to industrial buyers. Its quote form promises a reply within 24 hours. The challenge says that today a person decodes every line by hand.
+RudCo supplies metals, abrasives, and aggregates to industrial buyers. Its quote form promises a reply within 24 hours, and we treat that as a requirement: every RFQ gets a quote back within 24 hours, even when some lines are unclear. The challenge says that today a person decodes every line by hand.
 
 That work is slow, and a wrong guess costs real money. One buyer writes "304 SS sheet 16ga 4x8". Another writes "Stainless 304, 0.060 in, 48 x 96". Both mean a sheet, but the rep has to work out the grade, the thickness (a gauge number only implies it, and gauge tables differ by material), the size, the standard, and the paperwork. A wrong read on grade or thickness becomes a wrong quote, a lost order, or a return.
 
@@ -33,7 +33,7 @@ RudCo Quote Desk reads a buyer's RFQ and drafts a quote for the rep to check and
 - **Flags the paperwork the buyer needs.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH, and RoHS. Each flag highlights the trigger words, including requirements the buyer never wrote down but the spec implies. A flag records what the buyer needs. It does not certify RudCo's stock.
 - **Shows a lead time on each line.** Stocked lines use RudCo's 24 to 48 hour promise. Anything else says "to confirm".
 - **Holds a line it cannot price.** A line with no source for its price is held and left out of the total. The agent does not invent a number.
-- **Asks the buyer instead of guessing.** An unclear line becomes one specific question with choices. Clear lines keep moving while one line waits.
+- **Asks the buyer instead of guessing.** An unclear line becomes one specific question with choices. Clear lines keep moving, so one unclear line does not hold up the rest of the quote.
 - **Keeps the rep in charge.** The rep edits any field and approves the whole quote. Any edit after approval clears the approval. The agent then builds the buyer's reply: a short email, a PDF, and a spreadsheet, with price, lead time, and paperwork on each line.
 - **Remembers how a buyer writes.** The rep can teach the agent a term for one buyer, and later RFQs from that buyer use it.
 
@@ -75,6 +75,7 @@ The split between rules and the model is the main design choice. A number that c
 These are designed and partly built. We list them here so the submission does not claim them.
 
 - **A named, dated benchmark on every metals line.** The pricer is not built yet. Free producer price series for steel and aluminum are the sources we researched. The quote would say the price tracks published metal cost plus RudCo's margin.
+- **Alternates on unclear lines.** When the matcher finds two or three candidates for a line, or a line has two readings, the quote would show each one as an option with its own price. Example: "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in". The buyer picks one when they accept, and the question still goes out. The processing library already returns the candidates. The pricing for each candidate and the review screen and PDF are not built.
 - **Questions that send themselves.** The rule for when the agent is confident enough to email a question on its own is agreed. The sending is not built.
 - **One-click answers from the buyer.** The buyer would click a choice in the email, and the answered line would rerun. The rerun logic is built in the processing library. The click endpoints are not.
 - **Sending the reply on the buyer's original thread.** Today the approved email, PDF, and spreadsheet open in a local preview. A real mailbox is next.
