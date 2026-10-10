@@ -83,9 +83,14 @@ https://github.com/kenxle/columbia-startup-lab-get-hired-hack
 
 ## Inspiration
 
-RudCo's quote form promises a reply within 24 hours. We treat that as a requirement: every RFQ gets a quote back within 24 hours, even when some lines are unclear. The challenge says that today a person decodes every line by hand.
+We built from what RudCo and its buyers actually say and send:
 
-A wrong read on grade or thickness costs real money. Gauge numbers only imply a thickness, and gauge tables differ by material. The same "16 ga" is a different thickness on stainless and on mild steel.
+- **RudCo's own website**, including its quote form and its 24-hour reply promise.
+- **Domain research** on quoting metals and abrasives: grades, standards, gauge tables, and certifications.
+- **Voice of the customer**, from Reddit and other sites where buyers and reps describe quoting mistakes and what they cost.
+- **Competitive research** on other quoting and RFQ tools.
+- **Domain knowledge from teammates.**
+- **Real RFQs**, which became our test cases.
 
 RudCo's founder describes the rep's role this way: "Technology can handle more of the coordination and give those people better information for the conversation." ([Digital Journal, 2026-08-21](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/)). We built to that idea. The agent prepares the conversation, and the rep owns it.
 
