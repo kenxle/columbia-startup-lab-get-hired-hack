@@ -12,12 +12,13 @@ module RfqProcessing
   # parser when a key is present), match, decide readiness, flag compliance,
   # assemble. Nothing is sent anywhere.
   class Pipeline
-    ITEM_HINT = /\d|\b(?:sheet|plate|bar|tube|pipe|angle|channel|stainless|steel|alum|galv|bolt|AN\d)\b/i
+    ITEM_HINT = /\d|\b(?:sheet|plate|bar|tube|pipe|angle|channel|stainless|steel|alum|galv|bolt|shot|grit|ingot|garnet|bead|AN\d)\b/i
     PROSE_HINT = /\A(?:hi|hello|dear|thanks|thank you|regards|best|please|we need|can you|could you|sincerely)\b/i
 
-    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: true, context: {}, llm: nil)
+    # buyer_terms: this buyer's learned or taught words, in the app's ClientTerm shape (see BuyerProfile).
+    def self.process(content:, type: "email", catalog: [], matcher: nil, filename: nil, sample_data: true, context: {}, llm: nil, buyer_terms: [])
       new(catalog: catalog, matcher: matcher, llm: llm).process(content: content, type: type, filename: filename,
-                                                                 sample_data: sample_data, context: context)
+                                                                 sample_data: sample_data, context: context, buyer_terms: buyer_terms)
     end
 
     def initialize(catalog: [], matcher: nil, llm: nil)
@@ -25,10 +26,10 @@ module RfqProcessing
       @llm = llm
     end
 
-    def process(content:, type:, filename: nil, sample_data: true, context: {})
+    def process(content:, type:, filename: nil, sample_data: true, context: {}, buyer_terms: [])
       extraction = Extractor.extract(content, type: type, filename: filename)
       item_lines = extraction.lines.select { |l| item_line?(l.text) }
-      lines = item_lines.each_with_index.map { |line, i| process_line(line, position: i + 1, context: context) }
+      lines = item_lines.each_with_index.map { |line, i| process_line(line, position: i + 1, context: context, buyer_terms: buyer_terms) }
       {
         "schema_version" => RfqProcessing::SCHEMA_VERSION,
         "sample_data" => sample_data,
@@ -40,8 +41,8 @@ module RfqProcessing
       }
     end
 
-    def process_line(line, position:, context: {})
-      reading = RulesParser.parse(line.text, position: position, location: line.location)
+    def process_line(line, position:, context: {}, buyer_terms: [])
+      reading = RulesParser.parse(line.text, position: position, location: line.location, buyer_terms: buyer_terms)
       reading = @llm.refine(reading, line.text) if @llm
       spec = reading.fields.reject { |_, v| v.nil? }
       match = @matcher.match(line_text: line.text, spec: spec, quantity: reading.fields["quantity"], quantity_unit: reading.fields["quantity_unit"])

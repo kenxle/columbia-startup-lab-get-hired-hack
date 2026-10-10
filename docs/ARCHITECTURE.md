@@ -87,12 +87,12 @@ Solid lines exist or are being built. Dotted lines are planned.
   1. Extract: email text passes through, PDFs go through `tools/pdf_text`, spreadsheets become one line per row. Page and row positions are kept.
   2. Parse: one Claude call per RFQ (Opus 5.5, structured output). Each field returns a value, the exact source words, and a confidence.
   3. Normalize with rules: gauge to inches by material, feet to inches, "4x8" to 48 by 96, aliases, AN part numbers.
-  4. Match: calls Tisch's matcher.
+  4. Match: calls Tisch's matcher through `CatalogMatchAdapter`; falls back to the library's `CatalogMatcher` for JSON catalogs.
   5. Readiness with rules. A confidence score never makes a line Ready when evidence is missing.
   6. Compliance flags from a rules table. Each flag carries its source words.
   7. Clarify: rules decide a line is unclear. A second Claude call words the question with two or three catalog-grounded choices.
   8. Assemble the result hash.
-- **Status (12:58):** the result format and three fixtures (Ready, Needs the buyer, No match) are done and pass `ApplyResult`. The library skeleton, gauge table, rules parser, readiness rule, and compliance table are being built now under `tools/rfq_processing/`, with specs from Ken's 25-line test set. The Claude parser layers on top of a rules parser, so the pipeline runs without an API key; the key improves messy-text reading. No API key is in hand yet.
+- **Status (13:30):** built and on `main`. `RfqProcessing.process(content:, type:, catalog:, matcher:, buyer_terms:)` returns the schema-1 hash; 102 specs pass, including all 25 lines of the research test set; a six-line sample email was accepted by `ApplyResult`. The Claude step (`llm_parser`) layers on the rules parser and is pending an API key, so the pipeline runs without one. Tisch's `CatalogMatch::Matcher` is called through `RfqProcessing::CatalogMatchAdapter` (text in, contract hash out); the library's own matcher is the fallback for JSON catalogs. Buyer profiles (workflow step 9, parsing side) take `buyer_terms` in the `ClientTerm` shape and mark every learned reading in its evidence. Compliance flags now include COA, REACH, and RoHS.
 
 ### Matching and pricing (Tisch)
 

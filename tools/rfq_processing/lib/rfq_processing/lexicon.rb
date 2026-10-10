@@ -6,6 +6,12 @@ module RfqProcessing
   # Sources: Ken's domain research sections 1.3 to 2 (grades, finishes, forms, specs).
   module Lexicon
     MATERIALS = [
+      # RudCo's own products first (abrasives), so "steel shot" is not read as carbon steel
+      [/\bsteel\s*shot\b/i, "steel shot", "steel shot is a blasting abrasive, sold by weight"],
+      [/\bsteel\s*grit\b/i, "steel grit", "steel grit is a blasting abrasive, sold by weight"],
+      [/\balumin\w*\s*oxide\b/i, "aluminum oxide", "aluminum oxide is a blasting abrasive, sold by weight"],
+      [/\bgarnet\b/i, "garnet", "garnet is a blasting abrasive, sold by weight"],
+      [/\bglass\s*beads?\b/i, "glass bead", "glass bead is a blasting media, sold by weight"],
       [/\bstainless\b/i, "stainless steel", "stainless means stainless steel"],
       [/\bS\.?S\.?(?=[\s,.;]|$)/, "stainless steel", "SS is the common abbreviation for stainless steel"],
       [/\bgalv(?:anized|anised|\.)?\b/i, "galvanized steel", "galv means galvanized steel, which has its own gauge table"],
@@ -45,6 +51,9 @@ module RfqProcessing
 
     FORMS = [
       [/\bexpanded\b/i, "expanded metal"],
+      [/\bingots?\b/i, "ingot"],
+      [/\bsows?\b/i, "sow"],
+      [/\b(?:shot|grit|beads?|abrasives?|garnet|oxide)\b/i, "abrasive"],
       [/\b(?:sq\.?|square)\s*tub(?:e|es|ing)\b/i, "square tube"],
       [/\brect(?:angle|angular)?\.?\s*tub(?:e|es|ing)\b/i, "rectangular tube"],
       [/\b(?:rd\.?|round)\s*tub(?:e|es|ing)\b/i, "round tube"],
@@ -89,6 +98,9 @@ module RfqProcessing
     # A quantity number is never part of a fraction, a decimal, or a grade ("1/2 plate", "A516-70 plate").
     QUANTITIES = [
       [/\bqty\.?\s*:?\s*(\d+)\b/i, nil],
+      [/(?<![\d\/.\-])\b(\d[\d,]*)\s*(?:lbs?\.?|pounds?)\b/i, "lb"],
+      [/(?<![\d\/.\-])\b(\d[\d,]*)\s*(?:bags?|sacks?)\b/i, "bag"],
+      [/(?<![\d\/.\-])\b(\d[\d,]*)\s*(?:drums?|pails?|skids?|pallets?|tons?|kgs?|kilos?)\b/i, :unit_as_written],
       [/(?<![\d\/.\-])\b(\d+)\s*(ea|each|pcs?|pieces?)\b/i, "each"],
       [/(?<![\d\/.\-])\b(\d+)\s*(sheets?|shts?)\b/i, "sheet"],
       [/(?<![\d\/.\-])\b(\d+)\s*(plates?|bars?|lengths?|sticks?|tubes?)\b/i, "each"],

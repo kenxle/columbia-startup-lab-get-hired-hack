@@ -47,6 +47,17 @@ module RfqProcessing
       price = ready ? price_for(best) : nil
       line_id = line_id(position, original_text)
       choices = decision.choices.each_with_index.map { |c, i| { "id" => "#{line_id}-c#{i + 1}" }.merge(c) }
+      state = decision.state
+      question = decision.question
+      unresolved = decision.unresolved_fields
+      if ready && price.nil?
+        # Matched, but the catalog has no price yet (Tisch's pricer is pending). The app has no
+        # "waiting for price" state, so the line is held with unit_price unresolved, as Tisch's AddToQuote does.
+        state = "needs_buyer"
+        unresolved = ["unit_price"]
+        question = "Line #{position} is matched to #{best['part_number'] || best['item_id']}. The price is to be confirmed by the rep before this line can be quoted."
+        ready = false
+      end
 
       {
         "line_id" => line_id,
@@ -56,16 +67,16 @@ module RfqProcessing
         "spec" => spec,
         "quantity" => f["quantity"],
         "quantity_unit" => f["quantity_unit"],
-        "catalog_sku" => ready ? clip(best["item_id"].to_s, "catalog_sku") : nil,
+        "catalog_sku" => best && state != "no_match" ? clip(best["item_id"].to_s, "catalog_sku") : nil,
         "unit_price" => price && price[:unit_price],
         "price_source" => price && clip(price[:source], "price_source"),
-        "state" => decision.state,
-        "clarification_question" => decision.question && clip(decision.question, "clarification_question"),
+        "state" => state,
+        "clarification_question" => question && clip(question, "clarification_question"),
         "notes" => clip(notes_for(reading, match, decision), "notes"),
         "evidence" => evidence,
         "compliance" => compliance.map { |c| c.slice("label", "evidence", "note") },
         "benchmark" => ready ? benchmark_for(best) : nil,
-        "unresolved_fields" => decision.unresolved_fields.map { |u| SPEC_MAP[u] || u }.uniq,
+        "unresolved_fields" => unresolved.map { |u| SPEC_MAP[u] || u }.uniq,
         "edited_fields" => [],
         "processing" => {
           "confidence" => confidence,
@@ -102,15 +113,28 @@ module RfqProcessing
 
     def self.price_for(best)
       ref = best["market_reference"]
-      return nil unless ref && ref["midpoint_usd_each"]
-
-      obs = Array(best["observation_ids"]).join(", ")
-      { unit_price: ref["midpoint_usd_each"],
-        source: "Two-dealer midpoint, single piece, product only (#{obs}), USD #{ref['min_usd_each']} to #{ref['max_usd_each']}. Sample data." }
+      if ref && ref["midpoint_usd_each"]
+        obs = Array(best["observation_ids"]).join(", ")
+        return { unit_price: ref["midpoint_usd_each"],
+                 source: "Two-dealer midpoint, single piece, product only (#{obs}), USD #{ref['min_usd_each']} to #{ref['max_usd_each']}. Sample data." }
+      end
+      list = best["list_price_usd_per_lb"]
+      if list
+        src = best["list_price_source"] || {}
+        return { unit_price: list,
+                 source: "#{src['kind'] || 'Website list price'} #{src['text']} (#{src['url'] || 'rud-co.com'}), per lb, not confirmed by RudCo. Sample data." }
+      end
+      nil
     end
 
     def self.benchmark_for(best)
       ref = best["market_reference"]
+      if ref.nil? && best["list_price_usd_per_lb"]
+        src = best["list_price_source"] || {}
+        return { "name" => "#{src['kind'] || 'Website list price'} for #{best['part_number'] || best['item_id']}", "as_of" => "2026-10-10",
+                 "unit" => "USD per lb", "kind" => "sample",
+                 "explanation" => "RudCo's own published list price (#{src['text']}). Supports a list reference for this item. Does not support a negotiated, bulk, or delivered price." }
+      end
       return nil unless ref
 
       { "name" => "Public dealer listings for #{best['part_number'] || best['item_id']} (#{ref['source_count']} sources)",

@@ -22,7 +22,10 @@ module RfqProcessing
       "itar" => "ITAR / export-controlled data",
       "pmi" => "Positive material identification (PMI)",
       "nace" => "NACE MR0175 sour service",
-      "asme_sa" => "ASME SA code material"
+      "asme_sa" => "ASME SA code material",
+      "coa" => "Certificate of analysis (COA) required",
+      "reach" => "REACH compliance statement required",
+      "rohs" => "RoHS compliance statement required"
     }.freeze
 
     ORDER = LABELS.keys.freeze
@@ -41,7 +44,7 @@ module RfqProcessing
         /\bMTRs?\b/i,
         /\bmill\s+test\s+(?:report|cert)s?\b/i,
         /\bmill\s+cert(?:s|ificates?|ifications?)?\b/i,
-        /\bcert(?:s|ificates?|ifications?)?\b/i,
+        /\bcert(?:s|ificates?|ifications?)?\b(?!\s+of\s+(?:analysis|conformance|compliance))/i,
         THREE_ONE
       ]],
       ["en10204_3_2", [
@@ -97,6 +100,18 @@ module RfqProcessing
         /\bASME\b/i,
         /\bcode\s+material\b/i,
         /\bU[\s-]?stamp\b/i
+      ]],
+      # Paperwork RudCo already sells with abrasives and chemicals (Ken, brief update 13:00).
+      ["coa", [
+        /\bcertificates?\s+of\s+analysis\b/i,
+        /\bC\.?O\.?A\.?s?\b/
+      ]],
+      ["reach", [
+        /\bREACH\s+(?:compliant|compliance|statement|declaration|SVHC)\b/i,
+        /\bREACH\b/
+      ]],
+      ["rohs", [
+        /\bRoHS(?:\s*[23])?\b/i
       ]]
     ].freeze
 
@@ -242,6 +257,12 @@ module RfqProcessing
         "PMI checks the metal's actual chemistry with a handheld analyzer rather than the paperwork (API RP 578, ASTM E1476); ask whether RudCo performs it, supplies a report, or the buyer checks on receipt. Research confidence: medium (vendor pages; API 578 not read)."
       when "nace"
         "NACE MR0175 / ISO 15156 sour service: for carbon and low-alloy steel the usual limit is 22 HRC maximum hardness, and the standard does not itself require a certificate statement, so ask what the MTR must show (hardness values, heat-treat condition, HIC results). Research confidence: medium."
+      when "coa"
+        "A certificate of analysis reports the measured properties of the delivered lot (for abrasives: size distribution, hardness, chemistry); RudCo lists COAs among the paperwork it supplies, so confirm which lot-level values the buyer needs on it. Source: RudCo profile, not the domain research."
+      when "reach"
+        "REACH is the EU chemicals regulation; the buyer wants a statement on substances of very high concern in the product; RudCo lists REACH paperwork, so confirm the statement format the buyer accepts. Source: RudCo profile; a lowercase \"reach\" is the verb and is not matched."
+      when "rohs"
+        "RoHS restricts hazardous substances (lead, cadmium, mercury, hexavalent chromium and others) in products; cadmium-plated hardware is a known RoHS exception question, so confirm whether a declaration or an exemption applies. Source: RudCo profile."
       when "asme_sa"
         "The SA prefix means ASME adopted the ASTM spec for Boiler and Pressure Vessel Code use, some grades carry extra ASME requirements, and many mills dual-mark; ask whether the cert must show the SA designation and whether a code stamp or PMI is needed. Research confidence: medium-high as a trigger (Wermac, medium, on the SA vs A detail)."
       end

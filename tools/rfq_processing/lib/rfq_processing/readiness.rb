@@ -13,8 +13,18 @@ module RfqProcessing
       unresolved -= ["form"] if reading.fields["part_number"] # hardware needs no metals form
 
       if reading.conflicts.any? || unresolved.any?
-        Decision.new(state: "needs_buyer", question: question_for(reading, position), unresolved_fields: unresolved,
-                     choices: choices_for(reading))
+        choices = choices_for(reading)
+        if match && match["status"] == "ambiguous"
+          Array(match["candidates"]).each do |c|
+            choices << { "label" => "#{c['part_number'] || c['item_id']}: #{c['description'] || c['reason']}"[0, 120], "value" => c["item_id"] }
+          end
+        end
+        question = question_for(reading, position)
+        if match && match["status"] == "ambiguous" && match["total_candidates"].to_i > 0
+          names = Array(match["candidates"]).map { |c| c["part_number"] || c["item_id"] }
+          question = "#{question} #{match['total_candidates']} catalog items fit so far, for example #{names.join(', ')}."[0, 990]
+        end
+        Decision.new(state: "needs_buyer", question: question, unresolved_fields: unresolved, choices: choices)
       elsif match.nil? || match["status"] == "no_match"
         Decision.new(state: "no_match", question: no_match_question(reading, position), unresolved_fields: [], choices: [])
       elsif match["status"] == "ambiguous"

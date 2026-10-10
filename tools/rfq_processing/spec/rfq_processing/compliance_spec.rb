@@ -239,4 +239,23 @@ RSpec.describe RfqProcessing::Compliance do
       expect(flags.map { |f| f["trigger"] }).to eq(%w[stated implied context])
     end
   end
+
+  describe "RudCo paperwork: COA, REACH, RoHS (Ken, 13:00)" do
+    it "flags a certificate of analysis without also flagging an MTR" do
+      flags = described_class.flags(text: "Steel shot S-330, 2,000 lb, COA with each lot")
+      expect(flags.map { |f| f["requirement"] }).to eq(["coa"])
+      expect(flags.first["evidence"]).to eq("COA")
+    end
+
+    it "flags the long form too" do
+      flags = described_class.flags(text: "P1020 ingot 5000 lb, certificate of analysis required")
+      expect(flags.map { |f| f["requirement"] }).to eq(["coa"])
+    end
+
+    it "flags REACH and RoHS, and ignores the verb reach" do
+      flags = described_class.flags(text: "Glass bead 10 bags, REACH and RoHS statements please; we need it to reach us by Friday")
+      expect(flags.map { |f| f["requirement"] }).to contain_exactly("reach", "rohs")
+      expect(flags.find { |f| f["requirement"] == "reach" }["evidence"]).to eq("REACH")
+    end
+  end
 end

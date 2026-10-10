@@ -52,11 +52,12 @@ module RfqProcessing
     end
 
     def candidate(row, score, matched_on, mismatches, reason)
-      { "item_id" => row["item_id"] || row["sku"] || row["id"], "part_number" => row["part_number"],
+      { "item_id" => row["item_id"] || row["pn"] || row["sku"] || row["id"], "part_number" => row["part_number"] || row["pn"],
         "description" => row["normalized_description"] || row["description"], "score" => score,
         "matched_on" => matched_on, "mismatches" => mismatches, "reason" => reason,
         "market_reference" => row["market_reference"], "observation_ids" => row["observation_ids"],
-        "compliance" => row["compliance"], "purchase_unit" => row["purchase_unit"] }
+        "compliance" => row["compliance"], "purchase_unit" => row["purchase_unit"] || row["unit"],
+        "list_price_usd_per_lb" => row["list_price_usd_per_lb"], "list_price_source" => row["list_price_source"], "catalog" => row["catalog"] }
     end
 
     def same_part?(row, part_number)
@@ -84,8 +85,10 @@ module RfqProcessing
       matched << "form" if row["form"]
       matched << "grade" if row["grade"]
       mismatches = []
-      score = 0.6
-      { "thickness_in" => 0.2, "width_in" => 0.1, "length_in" => 0.1 }.each do |key, weight|
+      score = 0.5
+      score += 0.15 if row["form"] && spec["form"]
+      score += 0.2 if row["grade"] && spec["grade"]
+      { "thickness_in" => 0.15, "width_in" => 0.1, "length_in" => 0.1 }.each do |key, weight|
         want = spec[key] || spec[key.sub("_in", "")]
         have = row[key] || row[key.sub("_in", "")]
         next unless want && have
@@ -95,9 +98,10 @@ module RfqProcessing
           matched << key.sub("_in", "")
         else
           mismatches << "#{key.sub('_in', '')} #{have} vs #{want}"
-          score -= weight
+          score -= 0.3
         end
       end
+      score = score.clamp(0.0, 1.0)
       candidate(row, score.round(2), matched, mismatches, mismatches.empty? ? "Material, form, grade, and size agree." : "Size differs: #{mismatches.join('; ')}.")
     end
 

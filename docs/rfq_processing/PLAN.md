@@ -75,6 +75,10 @@ Rules do everything that can be computed. The LLM only reads messy text into fie
 - **Tisch owns the matcher** (2026-10-10, 12:45). Tisch asked for it on the bulletin and Ken's [workflow](../product/WORKFLOW.md) lists step 4 under Tisch. Two conditions, recorded in [RESULT-FORMAT.md](RESULT-FORMAT.md): the matcher is callable from Ruby in-process or as a JSON command, and this lane stays the single assembler of the result hash for the app. Step 3 of this plan shrinks to wiring the matcher in and testing the handoff.
 - **Pricing is Tisch's** (Ken's workflow, step 5). This lane supplies benchmark inputs and the honest explanation text, not the price math.
 
+- **Buyer profiles, workflow step 9** (2026-10-10, 13:25, Yuval's call). Each buyer writes the same thing their own way ("20 gate steel", "20G steel"). The parsing side is this lane: `RfqProcessing.process(..., buyer_terms:)` applies the buyer's taught or learned terms before the rules and the evidence says so ("Northline (taught by the rep): 20G means gauge 20"). The store is Tisch's `Client` and `ClientTerm` tables. `BuyerProfile.learn` turns a rep edit into a term the app saves as learned.
+- **Tisch's matcher, through an adapter** (13:25). Tisch's `CatalogMatch::Matcher` is a Rails service that takes text. `RfqProcessing::CatalogMatchAdapter` wraps it in the contract (0 to 1 scores, exact, scored, ambiguous, no_match), so this lane stays the single assembler. The library's own `CatalogMatcher` remains the fallback for plain JSON catalogs and specs.
+- **Ken's brief update (13:00) is in:** COA, REACH, RoHS compliance flags; lb and bag units; steel shot, grit, bead, garnet, aluminum oxide, and aluminum ingot (P1020, 356, A356) vocabulary.
+
 ## Open questions
 
 1. **@Ken @Tisch:** the demo catalog. Ken's workflow W4 recommends a metals demo RFQ with bolts as a second RFQ. Today's only catalog is 200 aviation bolts. A metals demo needs metal catalog items, or every metal line lands as No match. This lane parses both kinds either way, and the gauge example is a parser showcase even without a catalog.
@@ -87,6 +91,7 @@ Rules do everything that can be computed. The LLM only reads messy text into fie
 
 | Date | Time | Entry |
 |---|---|---|
+| 2026-10-10 | 13:30 | Step 2 and most of step 3 done. Library on main: rules parser with per-material gauge tables, readiness rule, compliance flags (now with COA, REACH, RoHS), extractor, fallback catalog matcher, Tisch matcher adapter, buyer profiles, pipeline. 102 specs green, including all 25 lines of Ken's test set. A six-line sample email ran end to end into `ApplyResult` and was accepted. |
 | 2026-10-10 | 12:55 | Step 1 done. RESULT-FORMAT.md written against Hirsh's `ApplyResult` code, not only his doc. Three fixtures pass his validator in the test environment (rollback, nothing stored); the Ready fixture is quotable. Found and recorded: the app drops hardware spec keys and the `processing` key today, and requires a question on No match lines. Bulletin posted to Tisch, Hirsh, Ken. |
 | 2026-10-10 | 12:40 | Step 0 done. `script/setup` and `script/check` pass (Rails app boots, 12 PDF specs green). Hirsh's Rails app lives at the repo root; this lane stays under `tools/rfq_processing/`. Mac note: native gems only build with `SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk`, because the default 27.0 SDK is unreadable by the installed linker. Ruflo initialized for Yuval's machine only; its files are in the local git exclude and no shared file changed. |
 | 2026-10-10 | 12:30 | Step 0 started: cloned, owner file set, Ruby 3.4.11, Bundler 2.4.19, Rails 8.1.4 installed. Read the product brief, frontend contract, engineering review, Tisch's catalog, and Ken's domain research. Plan written. |

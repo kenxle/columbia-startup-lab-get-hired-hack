@@ -29,14 +29,15 @@ module RfqProcessing
     SHEET_PLATE_LOW = 0.118 # 3 mm; between this and 0.25 in, sheet or plate is the buyer's word
     SHEET_PLATE_HIGH = 0.25
 
-    def self.parse(text, position: 1, location: nil)
-      new(text, position: position, location: location).parse
+    def self.parse(text, position: 1, location: nil, buyer_terms: [])
+      new(text, position: position, location: location, buyer_terms: buyer_terms).parse
     end
 
-    def initialize(text, position:, location:)
+    def initialize(text, position:, location:, buyer_terms: [])
       @text = text.to_s
       @position = position
       @location = location || "line #{position}"
+      @buyer_terms = Array(buyer_terms)
       @fields = {}
       @evidence = {}
       @confidence = {}
@@ -48,8 +49,10 @@ module RfqProcessing
     end
 
     def parse
+      read_buyer_terms
       read_part_number
       read_lexicon
+      read_rudco_products
       read_gauge_and_schedule
       read_quantity
       read_dimensions
@@ -97,6 +100,37 @@ module RfqProcessing
 
     def unknown(field, reason)
       @unknowns << { "field" => field, "reason" => reason } unless @unknowns.any? { |u| u["field"] == field }
+    end
+
+    # ---- what this buyer's words mean (workflow step 9) --------------------
+
+    def read_buyer_terms
+      BuyerProfile.apply(@buyer_terms, @text).each do |hit|
+        hit[:fields].each do |field, value|
+          set(field, value, hit[:match], hit[:explanation], confidence: 0.9, occupy: true)
+        end
+        @rules << "Buyer profile: \"#{hit[:term]}\" means #{hit[:describe]} (#{hit[:how]})"
+      end
+    end
+
+    # ---- RudCo's own products: abrasives and aluminum ingot ---------------
+
+    def read_rudco_products
+      material = @fields["material"]
+      form = @fields["form"]
+      if %w[steel\ shot steel\ grit].include?(material) || (form == "abrasive" && material.to_s.start_with?("steel"))
+        if (m = /\b([SG])\s?-?\s?(\d{2,3})\b/.match(@text))
+          set("grade", "#{m[1]}-#{m[2]}", m, "#{m[1] == 'S' ? 'shot' : 'grit'} size designation (SAE J444)", occupy: true)
+        end
+      elsif %w[ingot sow].include?(form) || /\bP1020\b|\bA356\b/.match?(@text)
+        if (m = /\b(P1020|A356|356|6061|5052|3003)\b/.match(@text))
+          set("grade", m[1], m, "aluminum alloy or purity designation for ingot", occupy: true)
+          set("material", "aluminum", m, "#{m[1]} is an aluminum ingot designation", confidence: 0.9) unless @fields["material"]
+        end
+        @fields["form"] ||= "ingot"
+      elsif form == "abrasive" && material.nil? && (m = /\b(aluminum oxide|garnet|glass bead)\b/i.match(@text))
+        set("material", m[1].downcase, m, "abrasive media as written")
+      end
     end
 
     # ---- hardware part numbers --------------------------------------------
@@ -238,7 +272,8 @@ module RfqProcessing
         next unless m
         next if m.begin(1).positive? && @text[m.begin(1) - 1] == "-" # "A516-70 plate" is a grade, not 70 plates
 
-        set("quantity", m[1].to_i, m, "quantity as written", occupy: true)
+        set("quantity", m[1].delete(",").to_i, m, "quantity as written", occupy: true)
+        unit = m[0][/[A-Za-z]+\.?\z/].to_s.downcase.sub(/s\z/, "") if unit == :unit_as_written
         set("quantity_unit", unit || "each", m, unit ? "unit as written" : "no unit written; read as each", confidence: unit ? 0.95 : 0.8)
         @assumptions << "No quantity unit written; read as each." unless unit
         return
@@ -612,7 +647,8 @@ module RfqProcessing
       if @fields["material"] == "galvanized steel" && @fields["coating"].to_s != "galvanized coating weight" && form == "sheet"
         conflict("coating_weight_missing", "Galvanized sheet needs a coating weight, for example G60 or G90.", ["coating"])
       end
-      if @fields["material"] == "aluminum" && @fields["temper"].nil? && @fields["grade"]
+      wrought = %w[sheet plate flat\ bar bar round\ bar angle channel].include?(form) || tube_form?(form)
+      if @fields["material"] == "aluminum" && @fields["temper"].nil? && @fields["grade"] && wrought && !@fields["grade"].start_with?("P")
         conflict("temper_missing", "Aluminum temper is part of the grade and is not written.", ["temper"])
       end
       if @fields["material"] == "stainless steel" && form == "sheet" && @fields["finish"].nil?
@@ -636,13 +672,16 @@ module RfqProcessing
       "round bar" => %w[material diameter_in length_in quantity],
       "pipe" => %w[material nominal_size_in schedule length_in quantity],
       "angle" => %w[material side_a_in side_b_in thickness_in length_in quantity],
-      "hex-head bolt" => %w[part_number quantity]
+      "hex-head bolt" => %w[part_number quantity],
+      "abrasive" => %w[material grade quantity quantity_unit],
+      "ingot" => %w[material grade quantity quantity_unit],
+      "sow" => %w[material grade quantity quantity_unit]
     }.freeze
 
     def note_unknowns
       form = @fields["form"]
       unknown("form", "no product form is written (sheet, plate, bar, tube, pipe)") if form.nil?
-      unknown("material", "no material is written") if @fields["material"].nil? && !@fields["part_number"]
+      unknown("material", "no material is written") if @fields["material"].nil? && !@fields["part_number"] && !@fields["part_family"]
       (REQUIRED[form] || %w[material quantity]).each do |field|
         next if @fields[field]
 
