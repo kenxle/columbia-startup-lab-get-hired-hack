@@ -1,10 +1,8 @@
 # Style Guide: RudCo Quote Desk
 
-**Status:** Draft for Ken's review, 2026-10-10. This is the design direction, built from RudCo's site and our research. Ken owns it; Hirsh owns the page code and reskins the app to match.
+**Status:** Draft for Ken's review, 2026-10-10. This is the design direction, built from RudCo's site and our research. Ken owns it.
 
 **What this is:** how Quote Desk looks: colors, status colors, type, buttons, layout and logo use. How we talk (voice, words, taglines, microcopy) lives in the [brand position](BRAND_POSITION.md).
-
-**Synced with the app** on 2026-10-10 against `app/assets/stylesheets/application.css`. The app still uses its first values; the [mapping table](#reskin-the-app-to-this-direction) lists each change.
 
 ## Palette
 
@@ -51,28 +49,6 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 - **Gold:** one thin gold rule under the sidebar's product name, echoing the share image. Nowhere else.
 - **Body:** `#f3f5f7` page, `#fafbfc` cards and table, `#f6f7f9` stripes, `#e5e7eb` dividers. No pure white. RFQ on the left, quote on the right, as Hirsh has it now.
 - **Footer line:** "Concept built for RudCo · Get Hired Hack, 2026-10-10 · Sample data". See the [honesty guardrails](BRAND_POSITION.md#honesty-guardrails).
-
-## Reskin the app to this direction
-
-This guide is the design direction. It comes from RudCo's own site and our research: the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), the [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md) and the [sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md). The earlier direction in the [frontend contract](../engineering/FRONTEND_CONTRACT.md#ui-direction) was set before that research existed, so this guide replaces it. Hirsh reskins the app to match: the layout stays, and the token values change. Mapping from `app/assets/stylesheets/application.css`:
-
-| Hirsh's token | Now | Change to |
-|---|---|---|
-| `--accent` / `--focus` | `#255bd9` | `#0063e6` |
-| `--accent-strong` | `#1744af` | `#0058cc` (`--primary-dark`) |
-| `--sidebar` | `#142036` | `#0f1f3d` |
-| `--ink` | `#172335` | `#1a212d` |
-| `--paper` | `#f2f5f9` | `#f3f5f7` |
-| `--surface` | `#ffffff` | `#fafbfc` |
-| `--surface-sunk` | `#edf1f7` | `#f6f7f9` |
-| `--rule` | `#dce3ed` | `#e5e7eb` |
-| `--ready-ink` / `--ready-wash` | `#24613e` / `#e5f3e9` | `#126932` / `#e7f9ed` |
-| `--held-ink` / `--held-wash` | `#785008` / `#fff1cf` | `#7f4205` / `#fdf0d8` |
-| `--nomatch-ink` / `--nomatch-wash` | `#a12f39` / `#fce8eb` (red) | `#454e5e` / `#eaecf0` (gray) |
-| `--radius-small` | 5px | 4px |
-| Header | none matching the site | add the RudCo lockup header described above |
-
-Hirsh owns the page code and does the reskin ([bulletin, 13:15](../BULLETIN.md)).
 
 ## Logo use
 
