@@ -64,9 +64,9 @@ RAILS_ENV=test BUNDLE_GEMFILE=Gemfile script/with-ruby bin/rails runner tools/rf
 Live smoke test, only once the key is in `.env` and Yuval says go:
 
 ```sh
-cd tools/rfq_processing
-env $(grep -v '^#' ../../.env | xargs) bin/llm-smoke --models     # is anthropic/claude-opus-5 listed?
-env $(grep -v '^#' ../../.env | xargs) bin/llm-smoke               # rules versus Claude on the demo email
+# Run from the repo root. dotenv loads .env without shell expansion or logging keys.
+BUNDLE_GEMFILE=Gemfile script/with-ruby bundle exec ruby -rdotenv/load tools/rfq_processing/bin/llm-smoke --models
+BUNDLE_GEMFILE=Gemfile script/with-ruby bundle exec ruby -rdotenv/load tools/rfq_processing/bin/llm-smoke
 ```
 
 Commit and push. Commit with explicit paths only. If the working tree has uncommitted lane files that belong to another worker, merge instead of rebase so nothing is stashed:
