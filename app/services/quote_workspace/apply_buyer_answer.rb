@@ -53,7 +53,7 @@ module QuoteWorkspace
 
       matcher = AnswerMatcher.new(client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
       matcher.chosen_item = @chosen_item
-      pipeline = RfqProcessing::Pipeline.new(matcher: matcher, llm: false)
+      pipeline = RfqProcessing::Pipeline.new(matcher: matcher, llm: LiveModels.parser_argument)
       result = RfqProcessing::Answers.apply(previous_result: previous, answers: [answer], pipeline: pipeline,
         buyer_terms: context.fetch(:buyer_terms))
       unless result.is_a?(Hash) && result["changed_line_ids"] == [@stable_id]

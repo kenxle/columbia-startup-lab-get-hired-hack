@@ -33,6 +33,20 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
     assert_equal 0, defaults
   end
 
+  test "opted in answer uses the optional parser and retains rules when no key is configured" do
+    calls = 0
+    QuoteWorkspace::LiveModels.stub(:enabled?, true) do
+      RfqProcessing::LlmParser.stub(:from_env, -> { calls += 1; nil }) do
+        CatalogMatch::LlmReader.stub(:default, -> { flunk "Catalog provider remains disabled" }) do
+          result = QuoteWorkspace::ApplyBuyerAnswer.call(**arguments)
+          assert result.quotable?
+          assert_equal BigDecimal("100"), result.quantity
+        end
+      end
+    end
+    assert_equal 1, calls
+  end
+
   test "free text reruns only the held line preserving other edits and clearing approval" do
     untouched = @quote.quote_lines.last
     untouched.apply_manual_edit("notes" => "Rep note to preserve")

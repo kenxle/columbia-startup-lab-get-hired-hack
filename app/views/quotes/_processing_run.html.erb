@@ -4,7 +4,11 @@
   <section class="panel processing-run" aria-labelledby="processing-run-heading">
     <div class="panel__head">
       <h2 id="processing-run-heading" class="panel__title">RFQ processing</h2>
-      <p class="panel__meta">Rules-based parsing with RudCo and metals catalog matching. Prices appear only when the source and sale unit support them. No AI provider is called.</p>
+      <% if QuoteWorkspace::LiveModels.enabled? %>
+        <p class="panel__meta">New processing runs may use the configured model to fill empty specification fields supported by source words. If the model is unavailable, the rules reading remains. Review each field's source explanation for accepted model readings. Catalog matching uses rules. Prices come from supported catalog sources, never the model.</p>
+      <% else %>
+        <p class="panel__meta">Rules-based parsing with RudCo and metals catalog matching. Prices appear only when the source and sale unit support them. No AI provider is called.</p>
+      <% end %>
     </div>
     <div class="panel__body">
       <% if run %>
@@ -21,7 +25,7 @@
           <p>Existing quote lines are preserved. Reprocessing reviewed lines is not available here.</p>
         <% end %>
       <% else %>
-        <p>The source is saved and ready for rules-based extraction.</p>
+        <p>The source is saved and ready for extraction.</p>
       <% end %>
       <% if empty_quote && (run.nil? || %w[failed stale].include?(run.status)) %>
         <%= form_with url: quote_processing_path(quote), method: :post, class: "processing-run__form" do %>

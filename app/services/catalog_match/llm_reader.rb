@@ -119,13 +119,20 @@ module CatalogMatch
     def parse_json(body)
       envelope = JSON.parse(body)
       content = envelope.dig("choices", 0, "message", "content").to_s
-      return nil if envelope["model"].present? && !envelope["model"].to_s.start_with?(@model.split("/").last.to_s) &&
-                    envelope["model"].to_s != @model
+      return nil unless requested_model?(envelope["model"])
 
       json = content[/\{.*\}/m]
       json && JSON.parse(json)
     rescue JSON::ParserError
       nil
+    end
+
+    def requested_model?(actual)
+      return false unless actual.is_a?(String) && actual.present?
+
+      expected = @model.to_s.strip.downcase.split("/").last.to_s
+      received = actual.strip.downcase.split("/").last.to_s
+      expected.present? && (received == expected || received.match?(/\A#{Regexp.escape(expected)}[-@]\d{8}\z/))
     end
 
     # Keep a field only when its evidence is really in the line.

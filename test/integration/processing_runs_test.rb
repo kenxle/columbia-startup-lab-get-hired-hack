@@ -47,6 +47,15 @@ class ProcessingRunsTest < ActionDispatch::IntegrationTest
     assert_select ".processing-run__form", count: 0
   end
 
+  test "opt in copy describes conditional use without claiming a successful model call" do
+    QuoteWorkspace::LiveModels.stub(:enabled?, true) { get quote_path(@quote) }
+    assert_response :success
+    assert_includes response.body, "New processing runs may use the configured model"
+    assert_includes response.body, "If the model is unavailable, the rules reading remains."
+    assert_includes response.body, "Catalog matching uses rules."
+    refute_includes response.body, "No AI provider is called."
+  end
+
   test "missing and stale revisions cannot enqueue" do
     [ nil, "stale", { invalid: "revision" } ].each do |revision|
       assert_no_enqueued_jobs do

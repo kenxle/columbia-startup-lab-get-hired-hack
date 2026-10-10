@@ -175,22 +175,42 @@ class CatalogMatch::MatcherShorthandTest < ActiveSupport::TestCase
     assert_nil result.reading["finish"]
   end
 
-test "a confirmed reading with provenance resolves the gauge trap; a plain number never overrides (Yuval 15:08)" do
-  line = "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets"
-  confirmed = CatalogMatch::Contract.call({ "line_text" => line,
-                                            "spec" => { "thickness" => { "value" => 0.0625, "confirmed_on" => "RFQ-0015", "term" => "0.060 in" } } })
-  assert_equal "scored", confirmed["status"]
-  assert_equal "RC-SS304-SHT-16GA-48X96-2B", confirmed["best"]["part_number"]
-  assert_equal 1.0, confirmed["best"]["score"]
+  test "processing numbers cannot silently resolve explicit gauge trap dimensions" do
+    result = CatalogMatch::Matcher.call("Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets",
+      given: { "thickness" => 0.0625, "material" => "stainless steel" }, llm: false)
+    assert_equal 0.060, result.reading["thickness"]
+    assert_equal "text", result.reading.fields["thickness"]["source"]
+    refute result.match?
+    assert_match(/0\.060|0\.0625|thickness/, result.question)
+  end
 
-  untaught = CatalogMatch::Contract.call({ "line_text" => line, "spec" => { "thickness" => 0.0625 } })
-  assert_equal "ambiguous", untaught["status"], "an untaught 0.0625 must preserve the explicit 0.060"
+  test "claimed RFQ labels and phrases in generic given do not authorize an override" do
+    [
+      { "value" => 0.0625, "confirmed_on" => "RFQ-0015" },
+      { "value" => 0.0625, "term" => "0.060 in" },
+      { "value" => 0.0625, "confirmed_on" => "RFQ-0015", "term" => "0.060 in" }
+    ].each do |claimed|
+      reading = CatalogMatch::DescriptionReader.read("Stainless 304, 0.060 in, 48 x 96, 8 sheets",
+        given: { "thickness" => claimed })
+      assert_equal 0.060, reading["thickness"]
+      assert_equal "text", reading.fields["thickness"]["source"]
+    end
+  end
 
-  quantity = CatalogMatch::Matcher.call("S-330 steel shot, 100 lb", given: { "quantity" => { "value" => 104, "confirmed_on" => "RFQ-0001" } })
-  assert_equal 100, quantity.reading["quantity"], "a quantity is never overridden"
+  test "processing quantities within five percent never replace the written demand" do
+    [104, 105, 99].each do |quantity|
+      reading = CatalogMatch::DescriptionReader.read("S-330 steel shot, 100 lb", given: { "quantity" => quantity })
+      assert_equal 100, reading["quantity"]
+      assert_equal "text", reading.fields["quantity"]["source"]
+    end
+    reading = CatalogMatch::DescriptionReader.read("S-330 steel shot, 100 lb",
+      given: { "quantity" => { "value" => 104, "source" => "rfq_processing", "text" => "100 lb" } })
+    assert_equal 100, reading["quantity"]
+  end
 
-  other_words = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.125 in, 48 x 96, 2B",
-                                              "spec" => { "thickness" => { "value" => 0.0625, "term" => "0.060 in" } } })
-  assert_not_equal "RC-SS304-SHT-16GA-48X96-2B", other_words.dig("best", "part_number")
-end
+  test "processing can still fill numeric values absent from the original words" do
+    reading = CatalogMatch::DescriptionReader.read("S-330 steel shot", given: { "quantity" => 104 })
+    assert_equal 104, reading["quantity"]
+    assert_equal "rfq_processing", reading.fields["quantity"]["source"]
+  end
 end

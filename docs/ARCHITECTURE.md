@@ -177,3 +177,11 @@ This document is shared. When you change a component, a contract, or a status:
 
 Keep each section short. Detail lives in your own docs; link to them from here.
 
+
+### Live model activation checkpoint, 15:11
+
+`QuoteWorkspace::LiveModels` permits optional RFQ parser enrichment only in development with `RFQ_LIVE_MODELS=1`. The default is off. Intake and buyer-answer processing share the switch; catalog-model calls remain off because their field provenance is not yet projected into processing results. Accepted parser fills retain source explanations. Rules values and prices are never replaced by the model. Missing keys or provider failures retain rules.
+
+The unsafe matcher shortcut that treated a numeric difference within five percent as buyer confirmation is removed. Plain normalized `given` values can fill missing fields but cannot override explicit source numbers. A new vetted confirmation interface still needs agreement with Yuval and Ken. Catalog model responses must identify the requested model exactly, allowing only explicit dated variants, never a missing identity or an Opus 5.5 prefix match.
+
+Hirsh’s live check found the configured Opus 5 in the gateway model list, but inference returned HTTP 502 twice. The app switch remains off. Configuration and a model-list response are not evidence of a successful model reading.

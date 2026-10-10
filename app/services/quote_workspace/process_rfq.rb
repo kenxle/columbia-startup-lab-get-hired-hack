@@ -30,7 +30,8 @@ module QuoteWorkspace
       private
 
       # The catalog matcher has its own optional provider, independent of the
-      # processing pipeline's llm flag. Keep both intake and answer reruns local.
+      # processing pipeline's llm flag. Keep catalog reads local until their
+      # model-filled fields and evidence can be shown in the review contract.
       def call_service(text, spec = {}, quantity = nil)
         unless @service.equal?(CatalogMatch::Matcher)
           return super(text) if method(:call_service).super_method.arity == 1
@@ -132,7 +133,7 @@ module QuoteWorkspace
       # that provenance is repaired, only vetted parser terms may be used.
       matcher = IntakeMatcher.new(client: nil, catalog: catalog, service: CatalogMatch::Matcher)
       result = RfqProcessing.process(**input, matcher: matcher,
-        buyer_terms: buyer_context.fetch(:buyer_terms), sample_data: true, context: {}, llm: false)
+        buyer_terms: buyer_context.fetch(:buyer_terms), sample_data: true, context: {}, llm: LiveModels.parser_argument)
       @quote.with_lock do
         run.reload
         next unless run.status == "running" && eligible?(run)

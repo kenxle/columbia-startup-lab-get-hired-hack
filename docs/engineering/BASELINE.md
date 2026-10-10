@@ -102,3 +102,7 @@ adapter is connected. A local Opus 5 smoke request returned HTTP 502 on
 Jev is not active in the app yet. Keep its actual key in ignored `.env` as `JEV_API_KEY`. If this Mac already has a Keychain generic-password entry under your account named `jev-api-key`, run `script/load-jev-key` to import it without printing the value. The helper preserves other environment entries. Restart Rails afterward.
 
 For a single terminal session, use `export JEV_API_KEY="$(security find-generic-password -a "$USER" -s jev-api-key -w)"`. This lookup does not transfer a key from another person’s Mac, and shell commands placed literally in `.env` will not retrieve it. A missing Keychain entry leaves `.env` unchanged.
+
+## Optional model preparation
+
+`RFQ_LIVE_MODELS=0` is the default. After a successful live provider check and agreed activation, setting it to `1` enables the RFQ parser in development only, including buyer-answer reruns. Tests, production and demo seeding remain rules based. Catalog-model calls are still disabled until their field evidence is available in the processing contract. A configured provider can fail and fall back, so inspect the field evidence rather than treating configuration as proof of a model run.

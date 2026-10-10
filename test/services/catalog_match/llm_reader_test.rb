@@ -57,6 +57,28 @@ class CatalogMatch::LlmReaderTest < ActiveSupport::TestCase
   test "the LLM is off in tests unless asked for" do
     assert_nil CatalogMatch::LlmReader.default
   end
+
+  test "missing and substituted model identities cannot contribute fields" do
+    [nil, "", "anthropic/claude-opus-5.5", "claude-opus-5.5", "claude-opus-5-unverified", "claude-sonnet-5"].each do |model|
+      transport = ->(_) {
+        { "model" => model, "choices" => [{ "message" => { "content" => {
+          "fields" => { "finish" => "#4" }, "evidence" => { "finish" => "brushed" }
+        }.to_json } }] }.to_json
+      }
+      assert_nil CatalogMatch::LlmReader.new(model: "anthropic/claude-opus-5", transport: transport).read("brushed"), model.inspect
+    end
+  end
+
+  test "exact model identities and dated versions are accepted" do
+    ["anthropic/claude-opus-5", "claude-opus-5", "Anthropic/Claude-Opus-5", "claude-opus-5-20261010"].each do |model|
+      transport = ->(_) {
+        { "model" => model, "choices" => [{ "message" => { "content" => {
+          "fields" => { "finish" => "#4" }, "evidence" => { "finish" => "brushed" }
+        }.to_json } }] }.to_json
+      }
+      assert_equal "#4", CatalogMatch::LlmReader.new(model: "anthropic/claude-opus-5", transport: transport).read("brushed").dig("finish", "value")
+    end
+  end
 end
 
 class CatalogMatch::LlmReaderTraceTest < ActiveSupport::TestCase
