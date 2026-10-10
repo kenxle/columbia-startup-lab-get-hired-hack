@@ -25,6 +25,27 @@ Read from [promo.html](promo.html) (on-screen text and timing) and [vo.py](vo.py
 
 The current voiceover is 61 words (counted with a script). The cut does not mention the 24-hour promise, and the quote card is a mock, not the app.
 
+## Revised opening (Ken, 14:39)
+
+Ken's direction: start with something higher stakes. His lines, as he wrote them:
+
+> RFQs are the lifeblood of our company
+> and show a bunch of paperwork flying onto a desk.
+> we promise 24 hour turnaround
+> but we also require accuracy and...
+
+This replaces shots 1 and 2 of the proposed list below. Shot 3 (the gauge trap) then picks up the word "accuracy".
+
+| # | Time | Shot | On-screen text | Voiceover | Source |
+|---|---|---|---|---|---|
+| 1a | 0:00 to 0:03 | Paperwork flies onto a desk: emails, PDFs, spreadsheets, a printed drawing, landing in a growing pile. Blueprint style, navy and line art, to match the current cut. | "RFQs are the lifeblood of our company." | "RFQs are the lifeblood of our company." (7) | New scene in promo.html |
+| 1b | 0:03 to 0:05.5 | The pile sits under the Quotes list's Due column, countdowns ticking. | "We promise 24-hour turnaround." | "We promise 24 hour turnaround" (5) | Real app: Quotes list, cropped to Due |
+| 1c | 0:05.5 to 0:07 | One sheet lifts off the pile and zooms to the 16 ga stainless line. | "But we also require accuracy and..." | "but we also require accuracy and..." (6) | Reuse scene 1 typing, shortened |
+
+Spoken words for the new opening: 18, against 11 for the two shots it replaces. To keep 30 seconds, shorten shot 5 or shot 6 voiceover by about seven words.
+
+**Your call:** how the "and..." finishes. It can hand straight to the value props, for example "...and a price that holds up" (competitive) before the gauge trap, or stay open and let shots 3 to 7 answer it. Say which, or write the ending.
+
 ## Proposed shot list
 
 Eight shots, 30.0 seconds. The voiceover is 66 words (see [Voiceover word count](#voiceover-word-count)). The old cut ran 61 words at about 2.6 words per second, so this one is a little brisker. If a read-through runs long, cut the voiceover on shot 2 (4 words) and keep its picture.
