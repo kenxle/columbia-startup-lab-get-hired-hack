@@ -12,7 +12,6 @@ Each item says who is waiting and what Claude recommends.
 
 ## Coming to you soon
 
-- **Competitive analysis images and checks.** An agent is adding competitor screenshots and checking blocked sites in Chrome. Running.
 - **W4, which catalog the demo uses.** Tisch is answering. The brief now says the demo RFQ uses RudCo's materials, so Tisch needs metals catalog rows.
 
 ## Where things stand
