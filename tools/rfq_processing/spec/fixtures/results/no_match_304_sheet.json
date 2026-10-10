@@ -35,8 +35,8 @@
       "unit_price": null,
       "price_source": null,
       "state": "no_match",
-      "clarification_question": "We do not stock 304 stainless steel sheet in the current catalog. Should we source it for you at a quoted lead time, or remove this line from the quote?",
-      "notes": "The sample catalog holds aviation bolts only. No stainless sheet item exists to match. The reading itself is clear.",
+      "clarification_question": "No match in the current catalog for 304 stainless steel sheet, 0.0625 in (16 ga), 48 in x 96 in. Should we quote it from an outside source at a stated lead time, or remove this line?",
+      "notes": "No match in the current catalog, which holds aviation bolts only. The reading itself is clear.",
       "evidence": {
         "material": {
           "text": "SS",
@@ -78,7 +78,7 @@
         {
           "label": "Mill test report required",
           "evidence": "MTRs required",
-          "note": "Buyer asked outright. No stainless sheet exists in the sample catalog, so availability is unknown."
+          "note": "Buyer asked outright. No match in the current catalog, so MTR availability is unknown."
         }
       ],
       "benchmark": null,

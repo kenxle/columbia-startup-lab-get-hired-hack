@@ -86,7 +86,7 @@ The rule is deterministic. A confidence score never turns a missing field into R
 
 - `ready`: every required field for the form is present with evidence, no conflict between fields, exactly one catalog match at or above the threshold, and a price with a named source.
 - `needs_buyer`: a required field is missing, two readings conflict (a gauge that disagrees with a stated decimal), or two catalog items fit equally. `clarification_question` and `unresolved_fields` are filled.
-- `no_match`: the line reads cleanly but no catalog item fits above the threshold. The app still requires a `clarification_question` on every held line, because the export sends held lines with their questions. For No match the question is commercial, not a reading question: "We do not stock X. Source it, or remove the line?"
+- `no_match`: the line reads cleanly but no catalog item fits above the threshold. The app still requires a `clarification_question` on every held line, because the export sends held lines with their questions. For No match the question is commercial, not a reading question, and it says "no match in the current catalog", never that RudCo lacks stock (Hirsh, 12:52): "No match in the current catalog for X. Quote it from an outside source at a stated lead time, or remove the line?"
 
 App limits that the hash must respect: `description` 500 characters, `original_text` 5,000, `price_source` 200, `clarification_question` 1,000, `notes` 2,000, `catalog_sku` 100, spec values 200. Quantity must be greater than zero when present. A `no_match` line must not carry a `catalog_sku`.
 

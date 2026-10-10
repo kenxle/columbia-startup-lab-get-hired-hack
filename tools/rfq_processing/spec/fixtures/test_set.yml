@@ -1,0 +1,716 @@
+# Test set T1 to T25, transcribed from
+# docs/research/20261010.01_rfq_sharper_angle/research_domain_rules.md, section 6.
+#
+# kind: verbatim (exact text from a cited public document) or constructed (text written by the
+# researcher from cited rules). All thicknesses, widths, lengths and walls are decimal inches.
+# A null value means the research says unknown, not written, or cannot be read. Nothing here is
+# added beyond what the research states; caveats live in notes.
+#
+# state_hint:
+#   ready        the research says Ask: none, or only optional or low-cost questions
+#   needs_buyer  the research gives a question that blocks pricing
+#   cannot_read  the research says the line cannot be read or the thickness is unknown
+
+lines:
+  - id: T1
+    kind: verbatim
+    source: "Iowa line 20"
+    text: "Stainless Steel Sheets Type 304-2B / Stainless Sheets 4 x 10 / 48\" x 120\" long x 16 Gauge"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "sheet"
+      thickness_in: 0.0625
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 19
+      quantity_unit: "each"
+      standard: null
+      finish: "2B"
+      coating: null
+    reading: "Stainless steel, grade 304, finish 2B, sheet, thickness 0.0625 from the stainless table, width 48, length 120 (10 ft), quantity 19. Spec not written; A240 is the usual spec family."
+    state_hint: ready
+    ask: "Is 16 gauge 0.0625 in nominal, or do you need a specific decimal? Do you accept 304/304L dual cert? Do you need a mill cert?"
+    flags: []
+    notes: "A clean reading with a gauge-table lookup and a quiet, optional cert question. Some suppliers list 0.063 or a different decimal for 16 gauge stainless (research section 1.1)."
+
+  - id: T2
+    kind: verbatim
+    source: "Iowa line 9"
+    text: "Cold Rolled Sheets QC/ A366 / 48\" x 120\" x 14 Gauge"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: null
+      temper: null
+      form: "sheet"
+      thickness_in: 0.0747
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 2
+      quantity_unit: "each"
+      standard: "A366"
+      finish: null
+      coating: null
+    reading: "Carbon (mild) steel, cold-rolled sheet, thickness 0.0747 from the mild steel table, width 48, length 120, quantity 2. QC probably means a quality designation; A366 is an older cold-rolled sheet spec whose current status the research did not verify."
+    state_hint: needs_buyer
+    ask: "Is 'QC / A366' commercial quality? Current specs for cold-rolled sheet are A1008-family; do you accept a current equivalent?"
+    flags: []
+    notes: "Cold rolled. The A1008 and A366 facts are general knowledge, not checked in the research; a human should confirm before the demo asserts them. Standard is set to A366 because it is written on the line, but its current status is unverified."
+
+  - id: T3
+    kind: verbatim
+    source: "Iowa line 1"
+    text: "Square Tube A513-A500 Grade B / 2\" x 2\" x 24' long x .188 thick"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: null
+      temper: null
+      form: "square tube"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: 0.188
+      width_in: 2
+      length_in: 288
+      diameter_in: null
+      schedule: null
+      quantity: 24
+      quantity_unit: "each"
+      standard: null
+      finish: null
+      coating: null
+    reading: "Carbon steel, square tube, 2 x 2 in, wall 0.188, length 288 in (24 ft), quantity 24. Spec is ambiguous: A513 (mechanical, no property requirements) and A500 (structural, verified properties, ships with MTR) are written together."
+    state_hint: needs_buyer
+    ask: "Structural tube (A500 Grade B) or mechanical tube (A513)? Do you need the mill test report?"
+    flags: [spec_conflict]
+    notes: "The line writes A513-A500 Grade B. Standard and grade are left null because the two specs conflict; Grade B belongs to A500."
+
+  - id: T4
+    kind: verbatim
+    source: "Iowa line 11"
+    text: "Expanded Stainless 4 x 8 / Expanded Stainless Flat / 48\" x 96\" x 13 GA x 1 1/2\" Diamond"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: null
+      temper: null
+      form: "expanded metal"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: 10
+      quantity_unit: "each"
+      standard: null
+      finish: null
+      coating: null
+    reading: "Expanded stainless steel metal, flat, 48 x 96 in (4 x 8 ft), 13 GA, 1 1/2 in diamond, quantity 10. Grade not stated. Thickness unknown."
+    state_hint: cannot_read
+    ask: "What is the strand thickness in inches, or the expanded-metal stock number? What stainless grade?"
+    flags: []
+    notes: "Cannot resolve: 13 gauge does not appear in the stainless sheet table the research cited, and expanded metal sells by its own stock numbers. Flat (not raised), 1 1/2 in diamond. The right behavior is to say I do not know, not to look something up."
+
+  - id: T5
+    kind: verbatim
+    source: "Iowa line 6"
+    text: "Hot Rolled Strips CQ-A36 / 3\" x 20' long x 1/8\" thick"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: null
+      temper: null
+      form: "flat bar"
+      thickness_in: 0.125
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 3
+      length_in: 240
+      diameter_in: null
+      schedule: null
+      quantity: 10
+      quantity_unit: "each"
+      standard: null
+      finish: null
+      coating: null
+    reading: "Carbon steel, hot-rolled flat, width 3, thickness 0.125, length 240 in (20 ft), quantity 10. Form is flat bar or strip (0.125 is under the 0.230 in A6 bar line quoted in research section 1.5)."
+    state_hint: needs_buyer
+    ask: "Hot-rolled A36 flat bar, or commercial-quality strip? 'CQ' and 'A36' are different specs."
+    flags: [spec_conflict]
+    notes: "Hot rolled. The line writes CQ-A36; CQ and A36 are different specs, so standard and grade are left null. Form is encoded as flat bar; the research says flat bar or strip."
+
+  - id: T6
+    kind: verbatim
+    source: "Iowa line 13"
+    text: "Stainless Tubes Type 304 / 1 1/4\" x 1 1/4\" x 20' long x .120 thick"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "square tube"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: 0.120
+      width_in: 1.25
+      length_in: 240
+      diameter_in: null
+      schedule: null
+      quantity: 10
+      quantity_unit: "each"
+      standard: null
+      finish: null
+      coating: null
+    reading: "Stainless 304, square tube, 1.25 x 1.25 in, wall 0.120, length 240 in, quantity 10. No spec written."
+    state_hint: needs_buyer
+    ask: "Welded or seamless? Mechanical tubing or pressure? Finish (mill or polished)?"
+    flags: []
+    notes: ".120 is a decimal wall, not a gauge."
+
+  - id: T7
+    kind: verbatim
+    source: "Iowa line 23"
+    text: "Aluminum Flat 6061-T6 / 1\" x 12' Long x 1/8\" thick"
+    context: {}
+    expected:
+      material: "aluminum"
+      grade: "6061"
+      temper: "T6"
+      form: "flat bar"
+      thickness_in: 0.125
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 1
+      length_in: 144
+      diameter_in: null
+      schedule: null
+      quantity: 5
+      quantity_unit: "each"
+      standard: null
+      finish: null
+      coating: null
+    reading: "Aluminum 6061, temper T6, flat bar, width 1, thickness 0.125, length 144 in, quantity 5."
+    state_hint: ready
+    ask: "Extruded flat bar, or rolled/cut from sheet?"
+    flags: []
+    notes: "The ask is a low-cost question. B221 covers extrusions; B209 covers flat-rolled sheet and plate (B221 scope not verified in the research)."
+
+  - id: T8
+    kind: verbatim
+    source: "SacRT road plates"
+    text: "ASTM A36 or A572 Gr. 50 equivalent hot-rolled carbon steel / 8 feet x 20 feet x 1 inch thick / Corrosion-resistant coating (primer plus industrial enamel, galvanized, or equivalent)"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: "A36 or A572 Gr 50"
+      temper: null
+      form: "plate"
+      thickness_in: 1.0
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 96
+      length_in: 240
+      diameter_in: null
+      schedule: null
+      quantity: 2
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: "corrosion-resistant coating (primer plus industrial enamel, galvanized, or equivalent)"
+    reading: "Carbon steel plate, hot-rolled, thickness 1.000, width 96 in, length 240 in, quantity 2. Grade: either A36 or A572-50 is acceptable (or), so a dual-cert plate fits."
+    state_hint: ready
+    ask: "Which coating: primer and enamel, or galvanized?"
+    flags: []
+    notes: "Hot rolled. The coating question is open. The 'equivalent' wording invites a ruling on what counts as equivalent; the safe answer is dual-certified A36/A572-50. Hidden requirements in the listing: none stated. The full PlanetBids document may add some; the researcher did not see it. The research gives the quantity as two with no unit."
+
+  - id: T9
+    kind: verbatim
+    source: "UAlberta catalog listing"
+    text: "Stainless Steel Sheet 304 / 1/16 in / 0.063 (16 Ga.) / 2B Mill Finish / 12 in x 12 in"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "sheet"
+      thickness_in: 0.0625
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 12
+      length_in: 12
+      diameter_in: null
+      schedule: null
+      quantity: 1
+      quantity_unit: null
+      standard: null
+      finish: "2B"
+      coating: null
+    reading: "304, sheet, 2B, thickness 0.0625 (1/16 in; also the stainless 16 gauge value), 12 x 12 in, quantity 1. The listing's 0.063 rounds 0.0625 by 0.8%."
+    state_hint: ready
+    ask: null
+    flags: []
+    notes: "Not an RFQ; one catalog item written three ways. Positive control: three notations, one thickness. In the research the '1/16 in' part is labelled as the thickness; that label is the researcher's and is not part of the listing text."
+
+  - id: T10
+    kind: constructed
+    source: "PRD example"
+    text: "304 SS sheet 16ga 4x8"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "sheet"
+      thickness_in: 0.0625
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: null
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Stainless 304, sheet, 0.0625, 48 x 96 in, spec not written, finish not written, quantity missing."
+    state_hint: needs_buyer
+    ask: "How many sheets? Finish: 2B, No. 4, or other? Do you accept 304/304L dual cert?"
+    flags: []
+    notes: "Constructed from the PRD's example; quantity missing."
+
+  - id: T11
+    kind: constructed
+    source: "PRD second example"
+    text: "Stainless 304, 0.060 in, 48 x 96"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "sheet"
+      thickness_in: 0.060
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: null
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Stainless 304, 0.060 exact as written, 48 x 96 in. Under the stainless table, 16 gauge is 0.0625 (4.2% thicker). 0.060 matches 16 gauge mild steel (0.0598)."
+    state_hint: needs_buyer
+    ask: "Do you need 0.060 in exactly, or is 16 gauge (nominal 0.0625) acceptable?"
+    flags: []
+    notes: "This is the gauge trap in one line. The line does not name the form; sheet follows the 1/4 in sheet/plate convention in research section 1.5. Quantity not written."
+
+  - id: T12
+    kind: constructed
+    source: "constructed: material missing"
+    text: "16 ga sheet 4x8 qty 20"
+    context: {}
+    expected:
+      material: null
+      grade: null
+      temper: null
+      form: "sheet"
+      thickness_in: null
+      thickness_alternatives_in: [0.0598, 0.0635, 0.0625, 0.05082]
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: 20
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Cannot be read. Four tables apply: mild steel 0.0598, galvanized 0.0635, stainless 0.0625, aluminum 0.05082. Width 48, length 96, quantity 20."
+    state_hint: cannot_read
+    ask: "What material: carbon steel, galvanized, stainless (which grade), or aluminum (which alloy)?"
+    flags: []
+    notes: "Thickness is null because the material is missing; the four candidate values are listed in thickness_alternatives_in."
+
+  - id: T13
+    kind: constructed
+    source: "constructed: galvanized gauge"
+    text: "16 ga galv 4x10 x 25"
+    context: {}
+    expected:
+      material: "galvanized steel"
+      grade: null
+      temper: null
+      form: "sheet"
+      thickness_in: 0.0635
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 25
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: "galvanized"
+    reading: "Galvanized steel, sheet, 0.0635 (galvanized table; 6.2% thicker than mild 16 gauge), 48 x 120 in, quantity 25."
+    state_hint: needs_buyer
+    ask: "Which coating weight (for example G60 or G90)?"
+    flags: []
+    notes: "Coating designations (G60, G90) are general knowledge; not sourced in the research."
+
+  - id: T14
+    kind: constructed
+    source: "constructed: aluminum gauge and temper"
+    text: "14 ga 5052 alum 4x8 x10"
+    context: {}
+    expected:
+      material: "aluminum"
+      grade: "5052"
+      temper: null
+      form: "sheet"
+      thickness_in: 0.06408
+      thickness_alternatives_in: [0.06408, 0.063]
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: 10
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Aluminum 5052, sheet, 48 x 96, quantity 10, thickness 0.06408 (Metal Supermarkets) or 0.063 (Wikipedia). Spec likely B209."
+    state_hint: needs_buyer
+    ask: "Which temper (H32, H34, other)? Do you need 0.063 in or 0.064 in, or will either do?"
+    flags: []
+    notes: "The 1.7% gap between published tables is the reason to ask. Temper not written. Standard is null because B209 is the research's guess (likely), not written on the line."
+
+  - id: T15
+    kind: constructed
+    source: "constructed: quantity vs dimension"
+    text: "3/16 304 plt 4x8 x4"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "plate"
+      thickness_in: 0.1875
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: null
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Stainless 304, buyer says plate, thickness 0.1875, 48 x 96 in, and a trailing x4 that could be quantity 4 or part of a size."
+    state_hint: needs_buyer
+    ask: "Is 4 the quantity? Hot-rolled plate or cold-rolled 2B sheet at 3/16?"
+    flags: []
+    notes: "Quantity is null because the research treats the trailing x4 as ambiguous (quantity 4 or part of a size). 3/16 sits between the 1/4 in and 3 mm sheet/plate lines. The buyer said plt, so form is plate; confirm finish."
+
+  - id: T16
+    kind: constructed
+    source: "constructed: contradiction between grade and strength"
+    text: "1/2 A36 PL 5x10 x3 min yield 50 ksi"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: "A36"
+      temper: null
+      form: "plate"
+      thickness_in: 0.5
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 60
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 3
+      quantity_unit: null
+      standard: "A36"
+      finish: null
+      coating: null
+    reading: "Carbon steel plate, thickness 0.500, 60 x 120 in, quantity 3, grade A36. A36 guarantees 36 ksi minimum yield."
+    state_hint: needs_buyer
+    ask: "Do you need A572 Grade 50, or A36/A572-50 dual-certified plate?"
+    flags: [strength_mismatch]
+    notes: "A hidden requirement: the stated strength (min yield 50 ksi) implies a spec change. Source: AISC Steel Interchange via search (the PDF itself was not readable by the researcher)."
+
+  - id: T17
+    kind: constructed
+    source: "constructed: ASME code material with a 3.1 cert"
+    text: "SA-240 316L 3/8 plt 60x120 x2 w/ 3.1 cert"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "316L"
+      temper: null
+      form: "plate"
+      thickness_in: 0.375
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 60
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 2
+      quantity_unit: null
+      standard: "SA-240"
+      finish: null
+      coating: null
+    reading: "Stainless 316L, plate, thickness 0.375, 60 x 120 in, quantity 2, ASME code material SA-240, EN 10204 3.1 certificate."
+    state_hint: needs_buyer
+    ask: "Must the cert show the SA-240 designation (not only A240), and the 316/316L dual cert? Do you need a code stamp or PMI?"
+    flags: [asme_sa, en10204_3_1, mtr]
+    notes: "Hidden requirements flagged: ASME SA (Wermac), 3.1 (Material Welding)."
+
+  - id: T18
+    kind: constructed
+    source: "constructed: pipe with PMI"
+    text: "2in sch40 304/304L A312 smls 20ft x30 PMI"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304/304L"
+      temper: null
+      form: "pipe"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: null
+      length_in: 240
+      diameter_in: 2
+      schedule: "40"
+      quantity: 30
+      quantity_unit: null
+      standard: "A312"
+      finish: null
+      coating: null
+    reading: "Stainless 304/304L dual, seamless pipe, nominal size 2 in, schedule 40, length 240 in, quantity 30 (lengths? feet?), spec A312. Wall thickness comes from the schedule table, which is not in the research sources, so it is not stated."
+    state_hint: needs_buyer
+    ask: "Is 30 the number of 20 ft lengths, or total feet? Do you need the PMI report with the shipment, or only performed?"
+    flags: [pmi]
+    notes: "Seamless (smls). Hidden requirement stated: PMI. The quantity unit is open (lengths or feet). Wall is null because the schedule table is not in the research sources. A312 scope not verified in the research session."
+
+  - id: T19
+    kind: constructed
+    source: "constructed: contradiction between shape and spec"
+    text: "2x2 sq tube A53 Gr B .120 24ft"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: null
+      temper: null
+      form: null
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: 0.120
+      width_in: 2
+      length_in: 288
+      diameter_in: null
+      schedule: null
+      quantity: null
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Cannot be read as written. A53 is round pipe only (Steel Tube Institute); square tube is A500 or A513."
+    state_hint: cannot_read
+    ask: "Do you need square tube (A500 structural or A513 mechanical), or round A53 pipe?"
+    flags: [spec_conflict]
+    notes: "The line writes sq tube with A53 Gr B. Form, grade and standard are left null because the shape and the spec contradict each other. Material is carbon steel under any of the three candidate specs (A53, A500, A513); the research reading does not name the material outright. No quantity written."
+
+  - id: T20
+    kind: constructed
+    source: "constructed: DFARS stated"
+    text: "304 plate 1/4 48x96 A240 DFARS compliant melted USA 3.1 x3"
+    context: {}
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "plate"
+      thickness_in: 0.25
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 48
+      length_in: 96
+      diameter_in: null
+      schedule: null
+      quantity: 3
+      quantity_unit: null
+      standard: "A240"
+      finish: null
+      coating: null
+    reading: "Stainless 304, plate, thickness 0.250, 48 x 96 in, quantity 3, spec A240, EN 10204 3.1, domestic melt."
+    state_hint: needs_buyer
+    ask: "Is a qualifying-country melt acceptable, or US only?"
+    flags: [dfars, origin, en10204_3_1]
+    notes: "Hidden requirements stated outright: DFARS 252.225-7009 (acquisition.gov), melt origin on the MTR. The clause allows the US, outlying areas, or a qualifying country. Internal check: does the stock on hand have a heat whose cert shows melt country?"
+
+  - id: T21
+    kind: constructed
+    source: "constructed: DFARS implied by context"
+    text: "304 rd bar 2in A276 12ft x10"
+    context:
+      ship_to_defense: true
+      dpas_rating: "DO-A1"
+    expected:
+      material: "stainless steel"
+      grade: "304"
+      temper: null
+      form: "round bar"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: null
+      length_in: 144
+      diameter_in: 2.0
+      schedule: null
+      quantity: 10
+      quantity_unit: null
+      standard: "A276"
+      finish: null
+      coating: null
+    reading: "Stainless 304, round bar, 2.000 in diameter, length 144 in, quantity 10, spec A276."
+    state_hint: needs_buyer
+    ask: "Does the PO include DFARS 252.225-7009 or a melt-origin requirement?"
+    flags: [dfars]
+    notes: "Context: ship-to is a defense contractor; the PO carries a DO-A1 priority rating. Hidden requirements implied: 304 is a specialty metal by chemistry (chromium well above 0.25%), a defense ship-to and rating suggest the DFARS clause flows down, and a DPAS rating carries an acceptance deadline. Tests the context-trigger path with no keyword in the line."
+
+  - id: T22
+    kind: constructed
+    source: "constructed: Buy America with a coating step"
+    text: "L3x3x1/4 x 20' A36 galv x40 Buy America state DOT bridge"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: "A36"
+      temper: null
+      form: "angle"
+      thickness_in: 0.25
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 3
+      length_in: 240
+      diameter_in: null
+      schedule: null
+      quantity: 40
+      quantity_unit: null
+      standard: "A36"
+      finish: null
+      coating: "galvanized"
+    reading: "Carbon steel angle, 3 x 3 x 0.250 in, length 240 in, quantity 40, A36, galvanized."
+    state_hint: needs_buyer
+    ask: "Where is the galvanizing done, and does your agency require specific certification wording?"
+    flags: [buy_america]
+    notes: "Equal-leg angle, both legs 3 in. Hidden requirement stated: Buy America. The rule covers the galvanizing step, and the MTR must show melt and manufacture location (23 CFR 635.410, Caltrans)."
+
+  - id: T23
+    kind: constructed
+    source: "constructed: sour service"
+    text: "1/2 A516-70 plate 72x120 NACE MR0175 HIC tested x2"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: "A516-70"
+      temper: null
+      form: "plate"
+      thickness_in: 0.5
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 72
+      length_in: 120
+      diameter_in: null
+      schedule: null
+      quantity: 2
+      quantity_unit: null
+      standard: "A516-70"
+      finish: null
+      coating: null
+    reading: "Carbon steel plate, thickness 0.500, 72 x 120 in, quantity 2, spec A516 Grade 70 (pressure vessel plate; general knowledge, not sourced in the research), NACE MR0175, HIC tested."
+    state_hint: needs_buyer
+    ask: "Do you need hardness values and heat-treat condition on the MTR, and a separate HIC test report?"
+    flags: [nace]
+    notes: "Hidden requirements: hardness limit (22 HRC max for carbon steel), heat-treat condition, HIC test results. The NACE standard does not itself require a certificate statement, so the buyer should say what the MTR must show."
+
+  - id: T24
+    kind: constructed
+    source: "constructed: export-controlled attachment"
+    text: "6061-T651 plate 2 x 12 x 24 x4"
+    context:
+      attachment_markings: ["ITAR controlled technical data"]
+    expected:
+      material: "aluminum"
+      grade: "6061"
+      temper: "T651"
+      form: "plate"
+      thickness_in: 2.0
+      thickness_alternatives_in: []
+      wall_in: null
+      width_in: 12
+      length_in: 24
+      diameter_in: null
+      schedule: null
+      quantity: 4
+      quantity_unit: null
+      standard: null
+      finish: null
+      coating: null
+    reading: "Aluminum 6061, temper T651, plate, thickness 2.000, 12 x 24 in, quantity 4."
+    state_hint: needs_buyer
+    ask: "Please confirm handling rules (US persons only, domestic suppliers only) before we circulate the drawing."
+    flags: [itar]
+    notes: "Hidden requirement: the attached drawing is marked ITAR controlled technical data, so the attachment is export-controlled data. Confidence is low (research section 3). Flag, do not interpret."
+
+  - id: T25
+    kind: constructed
+    source: "constructed: a clear line with a gauge on tube (negative control)"
+    text: "1-1/2 sq tube A500 C 11ga 24ft x8"
+    context: {}
+    expected:
+      material: "carbon steel"
+      grade: "C"
+      temper: null
+      form: "square tube"
+      thickness_in: null
+      thickness_alternatives_in: []
+      wall_in: 0.120
+      width_in: 1.5
+      length_in: 288
+      diameter_in: null
+      schedule: null
+      quantity: 8
+      quantity_unit: null
+      standard: "A500 C"
+      finish: null
+      coating: null
+    reading: "Carbon steel, square tube, 1.5 x 1.5 in, wall 0.120 (tube wall table, 11 gauge), length 288 in, quantity 8, spec A500 Grade C."
+    state_hint: ready
+    ask: null
+    flags: [mtr]
+    notes: "A500 tube ships with an MTR (Atlas Tube), so the mtr flag is informational. The right behavior is to read it, show the table used, and not ask. Grade C is the A500 grade."

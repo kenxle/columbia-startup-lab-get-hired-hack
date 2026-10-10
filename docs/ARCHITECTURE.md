@@ -92,7 +92,7 @@ Solid lines exist or are being built. Dotted lines are planned.
   6. Compliance flags from a rules table. Each flag carries its source words.
   7. Clarify: rules decide a line is unclear. A second Claude call words the question with two or three catalog-grounded choices.
   8. Assemble the result hash.
-- **Status:** the result format and three fixtures (Ready, Needs the buyer, No match) are done. All three pass `ApplyResult`. The parser, normalizer, and rules are in progress.
+- **Status (12:58):** the result format and three fixtures (Ready, Needs the buyer, No match) are done and pass `ApplyResult`. The library skeleton, gauge table, rules parser, readiness rule, and compliance table are being built now under `tools/rfq_processing/`, with specs from Ken's 25-line test set. The Claude parser layers on top of a rules parser, so the pipeline runs without an API key; the key improves messy-text reading. No API key is in hand yet.
 
 ### Matching and pricing (Tisch)
 
