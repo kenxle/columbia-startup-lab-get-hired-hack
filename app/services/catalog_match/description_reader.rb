@@ -32,6 +32,36 @@ module CatalogMatch
       [ /\ba\s*-?\s*36\b/i, "A36", "carbon steel" ]
     ].freeze
 
+    # RudCo's abrasives and aluminum alloys. Shot and grit sizes follow SAE J827
+    # (S-330 is 0.033 in); "G90" is a galvanized coating, not a grit size.
+    ABRASIVE_GRADES = [
+      [ /\b(S)\s*-?\s*(70|110|170|230|280|330|390|460|550|660|780|930)\b|\b(G)\s*-?\s*(10|12|14|16|18|25|40|50|80|120)\b/i, nil ],
+      [ /\b(\d{2,3})\s*grit\b/i, "grit" ],
+      [ /(\+?\d{1,3}(?:\/\d{1,3})?)\s*mesh\b/i, "mesh" ]
+    ].freeze
+
+    ALLOY_GRADES = [
+      [ /\bP\s*-?\s*1020\s*A?\b/i, "P1020" ],
+      [ /\bA\s*-?\s*356(?:\.[0-2])?\b/i, "A356" ],
+      [ /\b356(?:\.[01])?\b/, "356" ],
+      [ /\b319\.1\b|\b319\b(?=.*\b(?:alum|ingot|alloy)\w*)/i, "319.1" ],
+      [ /\b332\.1\b|\b332\b(?=.*\b(?:alum|ingot|alloy)\w*)/i, "332.1" ]
+    ].freeze
+
+    ABRASIVE_MATERIALS = [
+      [ /\bstainless(?:\s+steel)?\s+shot\b/i, "stainless steel shot" ],
+      [ /\bstainless(?:\s+steel)?\s+grit\b/i, "stainless steel grit" ],
+      [ /\b(?:cast\s+)?steel\s+shot\b|\bshot\s+blast(?:ing)?\s+media\b/i, "steel shot" ],
+      [ /\bsteel\s+grit\b/i, "steel grit" ],
+      [ /\bwhite\s+alum(?:inum)?\s+oxide\b/i, "white aluminum oxide" ],
+      [ /\b(?:brown\s+)?alum(?:inum|inium)?\s+oxide\b|\balox\b|\bfused\s+alumina\b/i, "aluminum oxide" ],
+      [ /\bgarnet\b/i, "garnet" ],
+      [ /\bglass\s+beads?\b/i, "glass bead" ],
+      [ /\bcrushed\s+glass\b/i, "crushed glass" ],
+      [ /\bcorn\s*cob\b/i, "corn cob" ],
+      [ /\bcopper\s+slag\b/i, "copper slag" ]
+    ].freeze
+
     TEMPERS = { /\bt\s*651\b/i => "T651", /\bt6\b/i => "T6", /\bh\s*32\b/i => "H32", /\bh\s*34\b/i => "H34" }.freeze
 
     STANDARDS = /\b(?:asme\s+)?(s?a)\s*-?\s*(240|500|513|53|276|312|1008|653|554|366)\b(?:\s*(?:gr\.?|grade)\s*([bc](?:\s*\/\s*c)?))?|\bb\s*-?\s*(209|221)\b/i
@@ -51,7 +81,10 @@ module CatalogMatch
       [ /\bflat\s*bars?\b|\bflats?\b|\bstrips?\b/i, "flat bar" ],
       [ /\br(?:oun)?d\.?\s*bars?\b|\brods?\b|\bround\b/i, "round bar" ],
       [ /\bpipes?\b/i, "pipe" ],
-      [ /\bbolts?\b/i, "bolt" ]
+      [ /\bbolts?\b/i, "bolt" ],
+      [ /\bingots?\b|\bt[\s-]?bars?\b|\bpigs?\b/i, "ingot" ],
+      [ /\bsows?\b/i, "sow" ],
+      [ /\b(?:blast(?:ing)?\s+)?(?:media|abrasives?)\b/i, "abrasive" ]
     ].freeze
 
     FINISHES = [
@@ -63,7 +96,8 @@ module CatalogMatch
     ].freeze
 
     QUANTITY_PATTERNS = [
-      /\b(?:qty|quantity)\s*[:=]?\s*(\d+)\b/i,
+      /\b(?:qty|quantity)\s*[:=]?\s*(\d[\d,]*)\b/i,
+      /\b(\d{1,3}(?:,\d{3})+|\d+)\s*(lbs?|pounds|tons?|bulk\s+bags|super\s*sacks?|bags|sacks|drums|pallets|skids|truckloads?)\b/i,
       /\b(\d+)\s*(pcs?|pieces?|ea|each|sheets|shts|plates|lengths|lgths|sticks|bars|units)\b/i,
       # "4x8 x4", "x40 Buy America": a space before the x and none after it.
       /\sx(\d+)\b(?!\s*["'\/.x×])/i,
@@ -167,6 +201,7 @@ module CatalogMatch
     end
 
     def read_grade_and_material
+      read_abrasives_and_alloys
       GRADES.each do |pattern, grade, material|
         next if set?("grade")
 
@@ -179,6 +214,44 @@ module CatalogMatch
         next if set?("material")
 
         consume(pattern) { |match| set("material", material, match[0], "#{match[0].strip} means #{material}") }
+      end
+    end
+
+    def read_abrasives_and_alloys
+      ABRASIVE_MATERIALS.each do |pattern, material|
+        next if set?("material")
+
+        consume(pattern) do |match|
+          set("material", material, match[0], "#{match[0].strip} is #{material} blast media")
+          set("form", "abrasive", match[0], "#{material} is sold as blast media", source: "rule")
+        end
+      end
+      ABRASIVE_GRADES.each do |pattern, kind|
+        next if set?("grade")
+
+        consume(pattern) do |match|
+          letter, number = kind ? [] : [ match[1] || match[3], match[2] || match[4] ]
+          grade = case kind
+                  when "grit" then "#{match[1]} grit"
+                  when "mesh" then "#{match[1]} mesh"
+                  else "#{letter.upcase}-#{number}"
+                  end
+          explanation = kind ? "size #{grade}" : "SAE J827 size #{grade}"
+          set("grade", grade, match[0], explanation)
+          if kind.nil?
+            shot_or_grit = letter.casecmp?("S") ? "shot" : "grit"
+            @grade_material = [ "steel #{shot_or_grit}", match[0] ]
+            set("form", "abrasive", match[0], "#{grade} is a #{shot_or_grit} size", source: "rule")
+          end
+        end
+      end
+      ALLOY_GRADES.each do |pattern, grade|
+        next if set?("grade")
+
+        consume(pattern) do |match|
+          set("grade", grade, match[0], "aluminum alloy #{grade}")
+          @grade_material = [ "aluminum", match[0] ]
+        end
       end
     end
 
@@ -253,9 +326,11 @@ module CatalogMatch
         break if set?("quantity")
 
         consume(pattern) do |match|
-          set("quantity", match[1].to_i, match[0].strip, "quantity #{match[1]}")
-          unit = match.names.empty? && match.size > 2 ? match[2] : nil
-          @fields["quantity_unit"] = { "value" => unit.downcase, "text" => unit } if unit
+          next if set?("quantity")
+
+          set("quantity", match[1].delete(",").to_i, match[0].strip, "quantity #{match[1]}")
+          unit = match.size > 2 ? match[2] : nil
+          @fields["quantity_unit"] = { "value" => unit.downcase.squish, "text" => unit } if unit
         end
       end
       return if set?("quantity")
@@ -376,9 +451,17 @@ module CatalogMatch
     end
 
     def infer_material_from_grade
-      return unless @grade_material && !set?("material")
+      return unless @grade_material
 
       material, text = @grade_material
+      # "stainless S-330" names stainless shot, not plain steel shot.
+      if material.start_with?("steel ") && value_of("material") == "stainless steel"
+        @fields["material"].merge!("value" => "stainless #{material}",
+                                   "explanation" => "stainless with a shot or grit size means stainless #{material}")
+        return
+      end
+      return if set?("material")
+
       set("material", material, text, "grade #{value_of('grade')} is a #{material} grade", source: "rule")
     end
 

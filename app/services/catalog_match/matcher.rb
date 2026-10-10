@@ -36,7 +36,7 @@ module CatalogMatch
     THICKNESS_NEAR = 0.05
     MAX_CANDIDATES = 6
     QUESTION_FIELDS = {
-      "material" => "material", "grade" => "grade", "temper" => "temper", "finish" => "finish",
+      "material" => "material", "grade" => "grade", "form" => "form", "temper" => "temper", "finish" => "finish",
       "thickness_in" => "thickness", "size" => "size", "length_in" => "length", "process" => "process",
       "standard" => "spec", "pn" => "part number"
     }.freeze
@@ -301,7 +301,7 @@ module CatalogMatch
     end
 
     def normalize_grade(grade)
-      grade.to_s.upcase.gsub(/\s+/, "").sub(/GR\.?/, "")
+      grade.to_s.upcase.gsub(/[\s-]+/, "").sub(/GR\.?/, "")
     end
 
     def equal_check(field, label, catalog_value, equal, explanation = nil)

@@ -1,0 +1,3057 @@
+[
+  {
+    "pn": "RC-GLASSBEADS-APOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "A (Potters)",
+    "grades_satisfied": [
+      "A (Potters)",
+      "A"
+    ],
+    "size": "US Mesh 6–10 (1,700–3,350 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead A (Potters) (US Mesh 6–10 (1,700–3,350 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "A (Potters)",
+      "A (Potters)",
+      "glass bead A (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-BPOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "B (Potters)",
+    "grades_satisfied": [
+      "B (Potters)",
+      "B"
+    ],
+    "size": "US Mesh 10–14 (1,180–1,700 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead B (Potters) (US Mesh 10–14 (1,180–1,700 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.92,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.92/lb"
+    },
+    "rfq_aliases": [
+      "B (Potters)",
+      "B (Potters)",
+      "glass bead B (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-CPOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "C (Potters)",
+    "grades_satisfied": [
+      "C (Potters)",
+      "C"
+    ],
+    "size": "US Mesh 14–20 (850–1,180 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead C (Potters) (US Mesh 14–20 (850–1,180 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.9,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.90/lb"
+    },
+    "rfq_aliases": [
+      "C (Potters)",
+      "C (Potters)",
+      "glass bead C (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-DPOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "D (Potters)",
+    "grades_satisfied": [
+      "D (Potters)",
+      "D"
+    ],
+    "size": "US Mesh 20–30 (600–850 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead D (Potters) (US Mesh 20–30 (600–850 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.88,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.88/lb"
+    },
+    "rfq_aliases": [
+      "D (Potters)",
+      "D (Potters)",
+      "glass bead D (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-EPOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "E (Potters)",
+    "grades_satisfied": [
+      "E (Potters)",
+      "E"
+    ],
+    "size": "US Mesh 30–40 (425–600 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead E (Potters) (US Mesh 30–40 (425–600 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.87,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.87/lb"
+    },
+    "rfq_aliases": [
+      "E (Potters)",
+      "E (Potters)",
+      "glass bead E (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-FPOTTERS",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "F (Potters)",
+    "grades_satisfied": [
+      "F (Potters)",
+      "F"
+    ],
+    "size": "US Mesh 40–50 (300–425 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead F (Potters) (US Mesh 40–50 (300–425 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.86,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.86/lb"
+    },
+    "rfq_aliases": [
+      "F (Potters)",
+      "F (Potters)",
+      "glass bead F (Potters)"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-4",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#4",
+    "grades_satisfied": [
+      "#4"
+    ],
+    "size": "US Mesh 6–10 (1,700–3,350 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #4 (US Mesh 6–10 (1,700–3,350 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "#4",
+      "#4",
+      "glass bead #4"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-5",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#5",
+    "grades_satisfied": [
+      "#5"
+    ],
+    "size": "US Mesh 10–14 (1,180–1,700 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #5 (US Mesh 10–14 (1,180–1,700 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.92,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.92/lb"
+    },
+    "rfq_aliases": [
+      "#5",
+      "#5",
+      "glass bead #5"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-6",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#6",
+    "grades_satisfied": [
+      "#6"
+    ],
+    "size": "US Mesh 14–20 (850–1,180 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #6 (US Mesh 14–20 (850–1,180 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.9,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.90/lb"
+    },
+    "rfq_aliases": [
+      "#6",
+      "#6",
+      "glass bead #6"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-7",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#7",
+    "grades_satisfied": [
+      "#7"
+    ],
+    "size": "US Mesh 20–30 (600–850 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #7 (US Mesh 20–30 (600–850 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.88,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.88/lb"
+    },
+    "rfq_aliases": [
+      "#7",
+      "#7",
+      "glass bead #7"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-8",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#8",
+    "grades_satisfied": [
+      "#8"
+    ],
+    "size": "US Mesh 30–40 (425–600 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #8 (US Mesh 30–40 (425–600 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.87,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.87/lb"
+    },
+    "rfq_aliases": [
+      "#8",
+      "#8",
+      "glass bead #8"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-9",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#9",
+    "grades_satisfied": [
+      "#9"
+    ],
+    "size": "US Mesh 40–50 (300–425 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #9 (US Mesh 40–50 (300–425 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.86,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.86/lb"
+    },
+    "rfq_aliases": [
+      "#9",
+      "#9",
+      "glass bead #9"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-10",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#10",
+    "grades_satisfied": [
+      "#10"
+    ],
+    "size": "US Mesh 50–70 (212–300 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #10 (US Mesh 50–70 (212–300 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.85,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.85/lb"
+    },
+    "rfq_aliases": [
+      "#10",
+      "#10",
+      "glass bead #10"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-11",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#11",
+    "grades_satisfied": [
+      "#11"
+    ],
+    "size": "US Mesh 70–100 (150–212 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #11 (US Mesh 70–100 (150–212 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.85,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.85/lb"
+    },
+    "rfq_aliases": [
+      "#11",
+      "#11",
+      "glass bead #11"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-12",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#12",
+    "grades_satisfied": [
+      "#12"
+    ],
+    "size": "US Mesh 100–170 (90–150 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #12 (US Mesh 100–170 (90–150 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.62,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.62/lb"
+    },
+    "rfq_aliases": [
+      "#12",
+      "#12",
+      "glass bead #12"
+    ]
+  },
+  {
+    "pn": "RC-GLASSBEADS-13",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "glass bead",
+    "grade": "#13",
+    "grades_satisfied": [
+      "#13"
+    ],
+    "size": "US Mesh 170–325 (45–90 µm)",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Glass Bead #13 (US Mesh 170–325 (45–90 µm)). Precision soda-lime glass spheres for satin finishing and light peening",
+    "list_price_usd_per_lb": 0.62,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/glass-beads",
+      "kind": "RudCo website list price",
+      "text": "$0.62/lb"
+    },
+    "rfq_aliases": [
+      "#13",
+      "#13",
+      "glass bead #13"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S170",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-170",
+    "grades_satisfied": [
+      "S-170"
+    ],
+    "size": "0.017\" (0.43 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-170 (0.017\" (0.43 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.38,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.38/lb"
+    },
+    "rfq_aliases": [
+      "S-170",
+      "S170",
+      "steel shot S-170"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S230",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-230",
+    "grades_satisfied": [
+      "S-230"
+    ],
+    "size": "0.023\" (0.58 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-230 (0.023\" (0.58 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.38,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.38/lb"
+    },
+    "rfq_aliases": [
+      "S-230",
+      "S230",
+      "steel shot S-230"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S280",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-280",
+    "grades_satisfied": [
+      "S-280"
+    ],
+    "size": "0.028\" (0.71 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-280 (0.028\" (0.71 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.38,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.38/lb"
+    },
+    "rfq_aliases": [
+      "S-280",
+      "S280",
+      "steel shot S-280"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S330",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-330",
+    "grades_satisfied": [
+      "S-330"
+    ],
+    "size": "0.033\" (0.84 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-330 (0.033\" (0.84 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.40/lb"
+    },
+    "rfq_aliases": [
+      "S-330",
+      "S330",
+      "steel shot S-330"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S390",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-390",
+    "grades_satisfied": [
+      "S-390"
+    ],
+    "size": "0.039\" (0.99 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-390 (0.039\" (0.99 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.40/lb"
+    },
+    "rfq_aliases": [
+      "S-390",
+      "S390",
+      "steel shot S-390"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S460",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-460",
+    "grades_satisfied": [
+      "S-460"
+    ],
+    "size": "0.046\" (1.17 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-460 (0.046\" (1.17 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.42,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.42/lb"
+    },
+    "rfq_aliases": [
+      "S-460",
+      "S460",
+      "steel shot S-460"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S550",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-550",
+    "grades_satisfied": [
+      "S-550"
+    ],
+    "size": "0.055\" (1.40 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-550 (0.055\" (1.40 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.42,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.42/lb"
+    },
+    "rfq_aliases": [
+      "S-550",
+      "S550",
+      "steel shot S-550"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S660",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-660",
+    "grades_satisfied": [
+      "S-660"
+    ],
+    "size": "0.066\" (1.68 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-660 (0.066\" (1.68 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.44,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.44/lb"
+    },
+    "rfq_aliases": [
+      "S-660",
+      "S660",
+      "steel shot S-660"
+    ]
+  },
+  {
+    "pn": "RC-STEELSHOT-S780",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel shot",
+    "grade": "S-780",
+    "grades_satisfied": [
+      "S-780"
+    ],
+    "size": "0.078\" (1.98 mm)",
+    "standard": "SAE J827 / AMS-S-13165",
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Shot S-780 (0.078\" (1.98 mm)), SAE J827 / AMS-S-13165. High-carbon cast steel shot for cleaning, peening, and surface preparation",
+    "list_price_usd_per_lb": 0.44,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$0.44/lb"
+    },
+    "rfq_aliases": [
+      "S-780",
+      "S780",
+      "steel shot S-780"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-12GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "12 grit",
+    "grades_satisfied": [
+      "12 grit"
+    ],
+    "size": "US Mesh 12",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 12 grit (US Mesh 12). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "12 grit",
+      "12 grit",
+      "aluminum oxide 12 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-16GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "16 grit",
+    "grades_satisfied": [
+      "16 grit"
+    ],
+    "size": "US Mesh 16",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 16 grit (US Mesh 16). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "16 grit",
+      "16 grit",
+      "aluminum oxide 16 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-24GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "24 grit",
+    "grades_satisfied": [
+      "24 grit"
+    ],
+    "size": "US Mesh 24",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 24 grit (US Mesh 24). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "24 grit",
+      "24 grit",
+      "aluminum oxide 24 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-36GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "36 grit",
+    "grades_satisfied": [
+      "36 grit"
+    ],
+    "size": "US Mesh 36",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 36 grit (US Mesh 36). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "36 grit",
+      "36 grit",
+      "aluminum oxide 36 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-46GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "46 grit",
+    "grades_satisfied": [
+      "46 grit"
+    ],
+    "size": "US Mesh 46",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 46 grit (US Mesh 46). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "46 grit",
+      "46 grit",
+      "aluminum oxide 46 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-54GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "54 grit",
+    "grades_satisfied": [
+      "54 grit"
+    ],
+    "size": "US Mesh 54",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 54 grit (US Mesh 54). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "54 grit",
+      "54 grit",
+      "aluminum oxide 54 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-60GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "60 grit",
+    "grades_satisfied": [
+      "60 grit"
+    ],
+    "size": "US Mesh 60",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 60 grit (US Mesh 60). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "60 grit",
+      "60 grit",
+      "aluminum oxide 60 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-80GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "80 grit",
+    "grades_satisfied": [
+      "80 grit"
+    ],
+    "size": "US Mesh 80",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 80 grit (US Mesh 80). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "80 grit",
+      "80 grit",
+      "aluminum oxide 80 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-100GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "100 grit",
+    "grades_satisfied": [
+      "100 grit"
+    ],
+    "size": "US Mesh 100",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 100 grit (US Mesh 100). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "100 grit",
+      "100 grit",
+      "aluminum oxide 100 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-120GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "120 grit",
+    "grades_satisfied": [
+      "120 grit"
+    ],
+    "size": "US Mesh 120",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 120 grit (US Mesh 120). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.93,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.93/lb"
+    },
+    "rfq_aliases": [
+      "120 grit",
+      "120 grit",
+      "aluminum oxide 120 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-220GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "220 grit",
+    "grades_satisfied": [
+      "220 grit"
+    ],
+    "size": "US Mesh 220",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 220 grit (US Mesh 220). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.98,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.98/lb"
+    },
+    "rfq_aliases": [
+      "220 grit",
+      "220 grit",
+      "aluminum oxide 220 grit"
+    ]
+  },
+  {
+    "pn": "RC-ALUMINUMOXIDE-240GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "aluminum oxide",
+    "grade": "240 grit",
+    "grades_satisfied": [
+      "240 grit"
+    ],
+    "size": "US Mesh 240",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Aluminum Oxide 240 grit (US Mesh 240). Brown fused alumina for aggressive blasting, finishing, and lapping",
+    "list_price_usd_per_lb": 0.98,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$0.98/lb"
+    },
+    "rfq_aliases": [
+      "240 grit",
+      "240 grit",
+      "aluminum oxide 240 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-24GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "24 grit",
+    "grades_satisfied": [
+      "24 grit"
+    ],
+    "size": "US Mesh 24",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 24 grit (US Mesh 24). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.39,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.39/lb"
+    },
+    "rfq_aliases": [
+      "24 grit",
+      "24 grit",
+      "white aluminum oxide 24 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-36GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "36 grit",
+    "grades_satisfied": [
+      "36 grit"
+    ],
+    "size": "US Mesh 36",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 36 grit (US Mesh 36). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.39,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.39/lb"
+    },
+    "rfq_aliases": [
+      "36 grit",
+      "36 grit",
+      "white aluminum oxide 36 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-46GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "46 grit",
+    "grades_satisfied": [
+      "46 grit"
+    ],
+    "size": "US Mesh 46",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 46 grit (US Mesh 46). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.79,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.79/lb"
+    },
+    "rfq_aliases": [
+      "46 grit",
+      "46 grit",
+      "white aluminum oxide 46 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-60GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "60 grit",
+    "grades_satisfied": [
+      "60 grit"
+    ],
+    "size": "US Mesh 60",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 60 grit (US Mesh 60). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.79,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.79/lb"
+    },
+    "rfq_aliases": [
+      "60 grit",
+      "60 grit",
+      "white aluminum oxide 60 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-80GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "80 grit",
+    "grades_satisfied": [
+      "80 grit"
+    ],
+    "size": "US Mesh 80",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 80 grit (US Mesh 80). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.79,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.79/lb"
+    },
+    "rfq_aliases": [
+      "80 grit",
+      "80 grit",
+      "white aluminum oxide 80 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-100GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "100 grit",
+    "grades_satisfied": [
+      "100 grit"
+    ],
+    "size": "US Mesh 100",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 100 grit (US Mesh 100). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 1.79,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$1.79/lb"
+    },
+    "rfq_aliases": [
+      "100 grit",
+      "100 grit",
+      "white aluminum oxide 100 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-120GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "120 grit",
+    "grades_satisfied": [
+      "120 grit"
+    ],
+    "size": "US Mesh 120",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 120 grit (US Mesh 120). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 2.19,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$2.19/lb"
+    },
+    "rfq_aliases": [
+      "120 grit",
+      "120 grit",
+      "white aluminum oxide 120 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-320GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "320 grit",
+    "grades_satisfied": [
+      "320 grit"
+    ],
+    "size": "US Mesh 320",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 320 grit (US Mesh 320). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 2.29,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$2.29/lb"
+    },
+    "rfq_aliases": [
+      "320 grit",
+      "320 grit",
+      "white aluminum oxide 320 grit"
+    ]
+  },
+  {
+    "pn": "RC-WHITEALUMINUMOXIDE-500GRIT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "white aluminum oxide",
+    "grade": "500 grit",
+    "grades_satisfied": [
+      "500 grit"
+    ],
+    "size": "US Mesh 500",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "White Aluminum Oxide 500 grit (US Mesh 500). Ultra-high purity fused alumina for contamination-free finishing",
+    "list_price_usd_per_lb": 2.39,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/white-aluminum-oxide",
+      "kind": "RudCo website list price",
+      "text": "$2.39/lb"
+    },
+    "rfq_aliases": [
+      "500 grit",
+      "500 grit",
+      "white aluminum oxide 500 grit"
+    ]
+  },
+  {
+    "pn": "RC-GARNET-2040MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "garnet",
+    "grade": "20/40 mesh",
+    "grades_satisfied": [
+      "20/40 mesh"
+    ],
+    "size": "US Mesh 20–40",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Garnet 20/40 mesh (US Mesh 20–40). Natural almandine garnet for waterjet cutting and open blasting",
+    "list_price_usd_per_lb": 0.32,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/garnet",
+      "kind": "RudCo website list price",
+      "text": "$0.32/lb"
+    },
+    "rfq_aliases": [
+      "20/40 mesh",
+      "20/40 mesh",
+      "garnet 20/40 mesh"
+    ]
+  },
+  {
+    "pn": "RC-GARNET-3060MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "garnet",
+    "grade": "30/60 mesh",
+    "grades_satisfied": [
+      "30/60 mesh"
+    ],
+    "size": "US Mesh 30–60",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Garnet 30/60 mesh (US Mesh 30–60). Natural almandine garnet for waterjet cutting and open blasting",
+    "list_price_usd_per_lb": 0.32,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/garnet",
+      "kind": "RudCo website list price",
+      "text": "$0.32/lb"
+    },
+    "rfq_aliases": [
+      "30/60 mesh",
+      "30/60 mesh",
+      "garnet 30/60 mesh"
+    ]
+  },
+  {
+    "pn": "RC-GARNET-80MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "garnet",
+    "grade": "80 mesh",
+    "grades_satisfied": [
+      "80 mesh"
+    ],
+    "size": "US Mesh 80",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Garnet 80 mesh (US Mesh 80). Natural almandine garnet for waterjet cutting and open blasting",
+    "list_price_usd_per_lb": 0.36,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/garnet",
+      "kind": "RudCo website list price",
+      "text": "$0.36/lb"
+    },
+    "rfq_aliases": [
+      "80 mesh",
+      "80 mesh",
+      "garnet 80 mesh"
+    ]
+  },
+  {
+    "pn": "RC-GARNET-100MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "garnet",
+    "grade": "100 mesh",
+    "grades_satisfied": [
+      "100 mesh"
+    ],
+    "size": "US Mesh 100",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Garnet 100 mesh (US Mesh 100). Natural almandine garnet for waterjet cutting and open blasting",
+    "list_price_usd_per_lb": 0.37,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/garnet",
+      "kind": "RudCo website list price",
+      "text": "$0.37/lb"
+    },
+    "rfq_aliases": [
+      "100 mesh",
+      "100 mesh",
+      "garnet 100 mesh"
+    ]
+  },
+  {
+    "pn": "RC-GARNET-120MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "garnet",
+    "grade": "120 mesh",
+    "grades_satisfied": [
+      "120 mesh"
+    ],
+    "size": "US Mesh 120",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Garnet 120 mesh (US Mesh 120). Natural almandine garnet for waterjet cutting and open blasting",
+    "list_price_usd_per_lb": 0.39,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/garnet",
+      "kind": "RudCo website list price",
+      "text": "$0.39/lb"
+    },
+    "rfq_aliases": [
+      "120 mesh",
+      "120 mesh",
+      "garnet 120 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-DRIZORB",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "DriZorb",
+    "grades_satisfied": [
+      "DriZorb"
+    ],
+    "size": "Oil absorbent granule",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media DriZorb (Oil absorbent granule). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.48,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.48/lb"
+    },
+    "rfq_aliases": [
+      "DriZorb",
+      "DriZorb",
+      "corn cob DriZorb"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-8MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "+8 mesh",
+    "grades_satisfied": [
+      "+8 mesh"
+    ],
+    "size": "Extra coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media +8 mesh (Extra coarse). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.52,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.52/lb"
+    },
+    "rfq_aliases": [
+      "+8 mesh",
+      "+8 mesh",
+      "corn cob +8 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-812MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "8/12 mesh",
+    "grades_satisfied": [
+      "8/12 mesh"
+    ],
+    "size": "Coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media 8/12 mesh (Coarse). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.57,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.57/lb"
+    },
+    "rfq_aliases": [
+      "8/12 mesh",
+      "8/12 mesh",
+      "corn cob 8/12 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-1420MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "14/20 mesh",
+    "grades_satisfied": [
+      "14/20 mesh"
+    ],
+    "size": "Medium",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media 14/20 mesh (Medium). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.57,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.57/lb"
+    },
+    "rfq_aliases": [
+      "14/20 mesh",
+      "14/20 mesh",
+      "corn cob 14/20 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-2040MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "20/40 mesh",
+    "grades_satisfied": [
+      "20/40 mesh"
+    ],
+    "size": "Fine",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media 20/40 mesh (Fine). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.62,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.62/lb"
+    },
+    "rfq_aliases": [
+      "20/40 mesh",
+      "20/40 mesh",
+      "corn cob 20/40 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CORNCOB-4060MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "corn cob",
+    "grade": "40/60 mesh",
+    "grades_satisfied": [
+      "40/60 mesh"
+    ],
+    "size": "Extra fine",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "25 lb bags",
+      "50 lb bags",
+      "1,000 lb bulk bags"
+    ],
+    "description": "Corn Cob Blasting Media 40/60 mesh (Extra fine). Gentle, biodegradable abrasive for delicate surface cleaning",
+    "list_price_usd_per_lb": 0.67,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/corn-cob",
+      "kind": "RudCo website list price",
+      "text": "$0.67/lb"
+    },
+    "rfq_aliases": [
+      "40/60 mesh",
+      "40/60 mesh",
+      "corn cob 40/60 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CRUSHEDGLASS-1220MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "crushed glass",
+    "grade": "12/20 mesh",
+    "grades_satisfied": [
+      "12/20 mesh"
+    ],
+    "size": "Coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Crushed Glass 12/20 mesh (Coarse). Eco-friendly recycled glass abrasive for cost-effective surface preparation",
+    "list_price_usd_per_lb": 0.11,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/crushed-glass",
+      "kind": "RudCo website list price",
+      "text": "$0.11/lb"
+    },
+    "rfq_aliases": [
+      "12/20 mesh",
+      "12/20 mesh",
+      "crushed glass 12/20 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CRUSHEDGLASS-2040MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "crushed glass",
+    "grade": "20/40 mesh",
+    "grades_satisfied": [
+      "20/40 mesh"
+    ],
+    "size": "Medium",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Crushed Glass 20/40 mesh (Medium). Eco-friendly recycled glass abrasive for cost-effective surface preparation",
+    "list_price_usd_per_lb": 0.11,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/crushed-glass",
+      "kind": "RudCo website list price",
+      "text": "$0.11/lb"
+    },
+    "rfq_aliases": [
+      "20/40 mesh",
+      "20/40 mesh",
+      "crushed glass 20/40 mesh"
+    ]
+  },
+  {
+    "pn": "RC-CRUSHEDGLASS-4070MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "crushed glass",
+    "grade": "40/70 mesh",
+    "grades_satisfied": [
+      "40/70 mesh"
+    ],
+    "size": "Fine",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Crushed Glass 40/70 mesh (Fine). Eco-friendly recycled glass abrasive for cost-effective surface preparation",
+    "list_price_usd_per_lb": 0.14,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/crushed-glass",
+      "kind": "RudCo website list price",
+      "text": "$0.14/lb"
+    },
+    "rfq_aliases": [
+      "40/70 mesh",
+      "40/70 mesh",
+      "crushed glass 40/70 mesh"
+    ]
+  },
+  {
+    "pn": "RC-COPPERSLAG-2040MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "copper slag",
+    "grade": "20/40 mesh",
+    "grades_satisfied": [
+      "20/40 mesh"
+    ],
+    "size": "Coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Copper Slag 20/40 mesh (Coarse). Aggressive, expendable abrasive for heavy-duty open blasting",
+    "list_price_usd_per_lb": 0.09,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/copper-slag",
+      "kind": "RudCo website list price",
+      "text": "$0.09/lb"
+    },
+    "rfq_aliases": [
+      "20/40 mesh",
+      "20/40 mesh",
+      "copper slag 20/40 mesh"
+    ]
+  },
+  {
+    "pn": "RC-COPPERSLAG-4080MESH",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "copper slag",
+    "grade": "40/80 mesh",
+    "grades_satisfied": [
+      "40/80 mesh"
+    ],
+    "size": "Fine",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Copper Slag 40/80 mesh (Fine). Aggressive, expendable abrasive for heavy-duty open blasting",
+    "list_price_usd_per_lb": 0.11,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/copper-slag",
+      "kind": "RudCo website list price",
+      "text": "$0.11/lb"
+    },
+    "rfq_aliases": [
+      "40/80 mesh",
+      "40/80 mesh",
+      "copper slag 40/80 mesh"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G14",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-14",
+    "grades_satisfied": [
+      "G-14"
+    ],
+    "size": "US Mesh 14",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-14 (US Mesh 14). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.38,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.38/lb"
+    },
+    "rfq_aliases": [
+      "G-14",
+      "G14",
+      "steel grit G-14"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G16",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-16",
+    "grades_satisfied": [
+      "G-16"
+    ],
+    "size": "US Mesh 16",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-16 (US Mesh 16). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.40/lb"
+    },
+    "rfq_aliases": [
+      "G-16",
+      "G16",
+      "steel grit G-16"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G18",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-18",
+    "grades_satisfied": [
+      "G-18"
+    ],
+    "size": "US Mesh 18",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-18 (US Mesh 18). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.40/lb"
+    },
+    "rfq_aliases": [
+      "G-18",
+      "G18",
+      "steel grit G-18"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G25",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-25",
+    "grades_satisfied": [
+      "G-25"
+    ],
+    "size": "US Mesh 25",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-25 (US Mesh 25). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.40/lb"
+    },
+    "rfq_aliases": [
+      "G-25",
+      "G25",
+      "steel grit G-25"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G40",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-40",
+    "grades_satisfied": [
+      "G-40"
+    ],
+    "size": "US Mesh 40",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-40 (US Mesh 40). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.42,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.42/lb"
+    },
+    "rfq_aliases": [
+      "G-40",
+      "G40",
+      "steel grit G-40"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G50",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-50",
+    "grades_satisfied": [
+      "G-50"
+    ],
+    "size": "US Mesh 50",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-50 (US Mesh 50). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.42,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.42/lb"
+    },
+    "rfq_aliases": [
+      "G-50",
+      "G50",
+      "steel grit G-50"
+    ]
+  },
+  {
+    "pn": "RC-STEELGRIT-G80",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "steel grit",
+    "grade": "G-80",
+    "grades_satisfied": [
+      "G-80"
+    ],
+    "size": "US Mesh 80",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "Steel Grit G-80 (US Mesh 80). Angular crushed steel grit for aggressive profiling and coating prep",
+    "list_price_usd_per_lb": 0.42,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$0.42/lb"
+    },
+    "rfq_aliases": [
+      "G-80",
+      "G80",
+      "steel grit G-80"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S170304",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-170 (304)",
+    "grades_satisfied": [
+      "S-170 (304)",
+      "S-170"
+    ],
+    "size": "0.017\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-170 (304) (0.017\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.15,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.15/lb"
+    },
+    "rfq_aliases": [
+      "S-170 (304)",
+      "S170 (304)",
+      "stainless steel shot S-170 (304)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S230304",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-230 (304)",
+    "grades_satisfied": [
+      "S-230 (304)",
+      "S-230"
+    ],
+    "size": "0.023\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-230 (304) (0.023\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.15,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.15/lb"
+    },
+    "rfq_aliases": [
+      "S-230 (304)",
+      "S230 (304)",
+      "stainless steel shot S-230 (304)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S330304",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-330 (304)",
+    "grades_satisfied": [
+      "S-330 (304)",
+      "S-330"
+    ],
+    "size": "0.033\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-330 (304) (0.033\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.2,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.20/lb"
+    },
+    "rfq_aliases": [
+      "S-330 (304)",
+      "S330 (304)",
+      "stainless steel shot S-330 (304)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S170410",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-170 (410)",
+    "grades_satisfied": [
+      "S-170 (410)",
+      "S-170"
+    ],
+    "size": "0.017\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-170 (410) (0.017\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.25,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.25/lb"
+    },
+    "rfq_aliases": [
+      "S-170 (410)",
+      "S170 (410)",
+      "stainless steel shot S-170 (410)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S230410",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-230 (410)",
+    "grades_satisfied": [
+      "S-230 (410)",
+      "S-230"
+    ],
+    "size": "0.023\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-230 (410) (0.023\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.25,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.25/lb"
+    },
+    "rfq_aliases": [
+      "S-230 (410)",
+      "S230 (410)",
+      "stainless steel shot S-230 (410)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELSHOT-S330410",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel shot",
+    "grade": "S-330 (410)",
+    "grades_satisfied": [
+      "S-330 (410)",
+      "S-330"
+    ],
+    "size": "0.033\"",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Shot S-330 (410) (0.033\"). Iron-free stainless steel shot for contamination-sensitive applications",
+    "list_price_usd_per_lb": 7.3,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-shot",
+      "kind": "RudCo website list price",
+      "text": "$7.30/lb"
+    },
+    "rfq_aliases": [
+      "S-330 (410)",
+      "S330 (410)",
+      "stainless steel shot S-330 (410)"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELGRIT-G18",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel grit",
+    "grade": "G-18",
+    "grades_satisfied": [
+      "G-18"
+    ],
+    "size": "US Mesh 18",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Grit G-18 (US Mesh 18). Angular stainless steel grit for iron-free surface profiling",
+    "list_price_usd_per_lb": 7.35,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$7.35/lb"
+    },
+    "rfq_aliases": [
+      "G-18",
+      "G18",
+      "stainless steel grit G-18"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELGRIT-G25",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel grit",
+    "grade": "G-25",
+    "grades_satisfied": [
+      "G-25"
+    ],
+    "size": "US Mesh 25",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Grit G-25 (US Mesh 25). Angular stainless steel grit for iron-free surface profiling",
+    "list_price_usd_per_lb": 7.35,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$7.35/lb"
+    },
+    "rfq_aliases": [
+      "G-25",
+      "G25",
+      "stainless steel grit G-25"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELGRIT-G40",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel grit",
+    "grade": "G-40",
+    "grades_satisfied": [
+      "G-40"
+    ],
+    "size": "US Mesh 40",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Grit G-40 (US Mesh 40). Angular stainless steel grit for iron-free surface profiling",
+    "list_price_usd_per_lb": 7.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$7.40/lb"
+    },
+    "rfq_aliases": [
+      "G-40",
+      "G40",
+      "stainless steel grit G-40"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELGRIT-G50",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel grit",
+    "grade": "G-50",
+    "grades_satisfied": [
+      "G-50"
+    ],
+    "size": "US Mesh 50",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Grit G-50 (US Mesh 50). Angular stainless steel grit for iron-free surface profiling",
+    "list_price_usd_per_lb": 7.4,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$7.40/lb"
+    },
+    "rfq_aliases": [
+      "G-50",
+      "G50",
+      "stainless steel grit G-50"
+    ]
+  },
+  {
+    "pn": "RC-STAINLESSSTEELGRIT-G80",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "stainless steel grit",
+    "grade": "G-80",
+    "grades_satisfied": [
+      "G-80"
+    ],
+    "size": "US Mesh 80",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags"
+    ],
+    "description": "Stainless Steel Grit G-80 (US Mesh 80). Angular stainless steel grit for iron-free surface profiling",
+    "list_price_usd_per_lb": 7.45,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/stainless-steel-grit",
+      "kind": "RudCo website list price",
+      "text": "$7.45/lb"
+    },
+    "rfq_aliases": [
+      "G-80",
+      "G80",
+      "stainless steel grit G-80"
+    ]
+  },
+  {
+    "pn": "RC-STARBLAST-STARBLASTXL",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "starblast",
+    "grade": "StarBlast XL",
+    "grades_satisfied": [
+      "StarBlast XL"
+    ],
+    "size": "Coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "StarBlast StarBlast XL (Coarse). Naturally occurring staurolite mineral for fast, low-dust blasting",
+    "list_price_usd_per_lb": 0.17,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/starblast",
+      "kind": "RudCo website list price",
+      "text": "$0.17/lb"
+    },
+    "rfq_aliases": [
+      "StarBlast XL",
+      "StarBlast XL",
+      "starblast StarBlast XL"
+    ]
+  },
+  {
+    "pn": "RC-STARBLAST-STARBLASTCOARSE",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "starblast",
+    "grade": "StarBlast Coarse",
+    "grades_satisfied": [
+      "StarBlast Coarse"
+    ],
+    "size": "Medium-Coarse",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "StarBlast StarBlast Coarse (Medium-Coarse). Naturally occurring staurolite mineral for fast, low-dust blasting",
+    "list_price_usd_per_lb": 0.17,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/starblast",
+      "kind": "RudCo website list price",
+      "text": "$0.17/lb"
+    },
+    "rfq_aliases": [
+      "StarBlast Coarse",
+      "StarBlast Coarse",
+      "starblast StarBlast Coarse"
+    ]
+  },
+  {
+    "pn": "RC-STARBLAST-STANDARDSTARBLAST",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "starblast",
+    "grade": "Standard StarBlast",
+    "grades_satisfied": [
+      "Standard StarBlast"
+    ],
+    "size": "Medium",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "StarBlast Standard StarBlast (Medium). Naturally occurring staurolite mineral for fast, low-dust blasting",
+    "list_price_usd_per_lb": 0.17,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/starblast",
+      "kind": "RudCo website list price",
+      "text": "$0.17/lb"
+    },
+    "rfq_aliases": [
+      "Standard StarBlast",
+      "Standard StarBlast",
+      "starblast Standard StarBlast"
+    ]
+  },
+  {
+    "pn": "RC-STARBLAST-FINE",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "abrasive",
+    "material": "starblast",
+    "grade": "Fine",
+    "grades_satisfied": [
+      "Fine"
+    ],
+    "size": "Fine",
+    "standard": null,
+    "finish": null,
+    "unit": "lb",
+    "packaging": [
+      "50 lb bags",
+      "2,000 lb bulk bags",
+      "Palletized skids"
+    ],
+    "description": "StarBlast Fine (Fine). Naturally occurring staurolite mineral for fast, low-dust blasting",
+    "list_price_usd_per_lb": 0.19,
+    "list_price_source": {
+      "url": "https://www.rud-co.com/abrasives/starblast",
+      "kind": "RudCo website list price",
+      "text": "$0.19/lb"
+    },
+    "rfq_aliases": [
+      "Fine",
+      "Fine",
+      "starblast Fine"
+    ]
+  },
+  {
+    "pn": "RC-AL-P1020-TBARINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "T-Bar Ingot (~50 lb)",
+    "material": "aluminum",
+    "grade": "P1020",
+    "grades_satisfied": [
+      "P1020"
+    ],
+    "category": "Primary Aluminum",
+    "standard": "LME P1020A / ASTM B179 / EN 576 (EN AW-1070A equivalent)",
+    "unit": "lb",
+    "piece_weight": "~50 lb",
+    "packaging": [
+      "Pallet of T-bar (~2,000 lb)",
+      "Loose sow stack",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "P1020 Primary Aluminum Ingot, T-Bar Ingot (~50 lb). LME-grade 99.7% primary aluminum — the benchmark feedstock for foundries and remelt. Specs: LME P1020A, ASTM B179, EN 576 (EN AW-1070A equivalent).",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "P1020",
+      "P1020 ingot",
+      "P1020 aluminum ingot"
+    ],
+    "source_slug": "p1020"
+  },
+  {
+    "pn": "RC-AL-P1020-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow (~1,500–2,000 lb)",
+    "material": "aluminum",
+    "grade": "P1020",
+    "grades_satisfied": [
+      "P1020"
+    ],
+    "category": "Primary Aluminum",
+    "standard": "LME P1020A / ASTM B179 / EN 576 (EN AW-1070A equivalent)",
+    "unit": "lb",
+    "piece_weight": "~1,500–2,000 lb",
+    "packaging": [
+      "Pallet of T-bar (~2,000 lb)",
+      "Loose sow stack",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "P1020 Primary Aluminum Ingot, Sow (~1,500–2,000 lb). LME-grade 99.7% primary aluminum — the benchmark feedstock for foundries and remelt. Specs: LME P1020A, ASTM B179, EN 576 (EN AW-1070A equivalent).",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "P1020",
+      "P1020 sow",
+      "P1020 aluminum sow"
+    ],
+    "source_slug": "p1020"
+  },
+  {
+    "pn": "RC-AL-356-NOTCHEDINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "Notched Ingot (~22 lb)",
+    "material": "aluminum",
+    "grade": "356",
+    "grades_satisfied": [
+      "356"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 356.0 / 356.1 / ASTM B26 (sand) / ASTM B108 (permanent mold) / AMS 4260 / SAE J452",
+    "unit": "lb",
+    "piece_weight": "~22 lb",
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "356 Aluminum Casting Alloy Ingot, Notched Ingot (~22 lb). The workhorse Al-Si-Mg sand and permanent mold casting alloy. Specs: AA 356.0 / 356.1, ASTM B26 (sand), ASTM B108 (permanent mold), AMS 4260, SAE J452.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "356",
+      "356 ingot",
+      "356 aluminum ingot"
+    ],
+    "source_slug": "356"
+  },
+  {
+    "pn": "RC-AL-356-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow",
+    "material": "aluminum",
+    "grade": "356",
+    "grades_satisfied": [
+      "356"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 356.0 / 356.1 / ASTM B26 (sand) / ASTM B108 (permanent mold) / AMS 4260 / SAE J452",
+    "unit": "lb",
+    "piece_weight": null,
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "356 Aluminum Casting Alloy Ingot, Sow. The workhorse Al-Si-Mg sand and permanent mold casting alloy. Specs: AA 356.0 / 356.1, ASTM B26 (sand), ASTM B108 (permanent mold), AMS 4260, SAE J452.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "356",
+      "356 sow",
+      "356 aluminum sow"
+    ],
+    "source_slug": "356"
+  },
+  {
+    "pn": "RC-AL-A356-NOTCHEDINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "Notched Ingot (~22 lb)",
+    "material": "aluminum",
+    "grade": "A356",
+    "grades_satisfied": [
+      "A356"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA A356.0 / A356.2 / ASTM B26 / ASTM B108 / AMS 4217 / AMS 4218",
+    "unit": "lb",
+    "piece_weight": "~22 lb",
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "A356 Aluminum Casting Alloy Ingot, Notched Ingot (~22 lb). Low-iron Al-Si-Mg casting alloy for structural, aerospace, and wheel castings. Specs: AA A356.0 / A356.2, ASTM B26, ASTM B108, AMS 4217, AMS 4218.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "A356",
+      "A356 ingot",
+      "A356 aluminum ingot"
+    ],
+    "source_slug": "a356"
+  },
+  {
+    "pn": "RC-AL-A356-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow",
+    "material": "aluminum",
+    "grade": "A356",
+    "grades_satisfied": [
+      "A356"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA A356.0 / A356.2 / ASTM B26 / ASTM B108 / AMS 4217 / AMS 4218",
+    "unit": "lb",
+    "piece_weight": null,
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "A356 Aluminum Casting Alloy Ingot, Sow. Low-iron Al-Si-Mg casting alloy for structural, aerospace, and wheel castings. Specs: AA A356.0 / A356.2, ASTM B26, ASTM B108, AMS 4217, AMS 4218.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "A356",
+      "A356 sow",
+      "A356 aluminum sow"
+    ],
+    "source_slug": "a356"
+  },
+  {
+    "pn": "RC-AL-3191-NOTCHEDINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "Notched Ingot (~22 lb)",
+    "material": "aluminum",
+    "grade": "319.1",
+    "grades_satisfied": [
+      "319.1",
+      "319"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 319.0 / 319.1 / ASTM B26 / ASTM B108 / SAE J452 / AMS 4225",
+    "unit": "lb",
+    "piece_weight": "~22 lb",
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "319.1 Aluminum Sand Cast Alloy Ingot, Notched Ingot (~22 lb). Al-Si-Cu sand and permanent mold alloy — engine blocks, heads, and housings. Specs: AA 319.0 / 319.1, ASTM B26, ASTM B108, SAE J452, AMS 4225.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "319.1",
+      "319.1 ingot",
+      "319.1 aluminum ingot"
+    ],
+    "source_slug": "319-1"
+  },
+  {
+    "pn": "RC-AL-3191-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow",
+    "material": "aluminum",
+    "grade": "319.1",
+    "grades_satisfied": [
+      "319.1",
+      "319"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 319.0 / 319.1 / ASTM B26 / ASTM B108 / SAE J452 / AMS 4225",
+    "unit": "lb",
+    "piece_weight": null,
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "319.1 Aluminum Sand Cast Alloy Ingot, Sow. Al-Si-Cu sand and permanent mold alloy — engine blocks, heads, and housings. Specs: AA 319.0 / 319.1, ASTM B26, ASTM B108, SAE J452, AMS 4225.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "319.1",
+      "319.1 sow",
+      "319.1 aluminum sow"
+    ],
+    "source_slug": "319-1"
+  },
+  {
+    "pn": "RC-AL-380-NOTCHEDINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "Notched Ingot (~22 lb)",
+    "material": "aluminum",
+    "grade": "380",
+    "grades_satisfied": [
+      "380"
+    ],
+    "category": "Die Cast Alloy",
+    "standard": "AA 380.0 / 380.1 / 383.0 / 384.0 / ASTM B85 / SAE J453 / NADCA standards",
+    "unit": "lb",
+    "piece_weight": "~22 lb",
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "380 Aluminum Die Cast Alloy Ingot, Notched Ingot (~22 lb). The most widely used high-pressure die casting alloy on earth. Specs: AA 380.0 / 380.1 / 383.0 / 384.0, ASTM B85, SAE J453, NADCA standards.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "380",
+      "380 ingot",
+      "380 aluminum ingot"
+    ],
+    "source_slug": "380"
+  },
+  {
+    "pn": "RC-AL-380-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow",
+    "material": "aluminum",
+    "grade": "380",
+    "grades_satisfied": [
+      "380"
+    ],
+    "category": "Die Cast Alloy",
+    "standard": "AA 380.0 / 380.1 / 383.0 / 384.0 / ASTM B85 / SAE J453 / NADCA standards",
+    "unit": "lb",
+    "piece_weight": null,
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "380 Aluminum Die Cast Alloy Ingot, Sow. The most widely used high-pressure die casting alloy on earth. Specs: AA 380.0 / 380.1 / 383.0 / 384.0, ASTM B85, SAE J453, NADCA standards.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "380",
+      "380 sow",
+      "380 aluminum sow"
+    ],
+    "source_slug": "380"
+  },
+  {
+    "pn": "RC-AL-3321-NOTCHEDINGOT",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "ingot",
+    "form_detail": "Notched Ingot (~22 lb)",
+    "material": "aluminum",
+    "grade": "332.1",
+    "grades_satisfied": [
+      "332.1",
+      "332"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 332.0 / 332.1 / ASTM B108 / SAE J452",
+    "unit": "lb",
+    "piece_weight": "~22 lb",
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "332.1 Aluminum Ingot, Notched Ingot (~22 lb). Al-Si-Cu-Mg permanent mold piston alloy — high-temperature strength and low expansion. Specs: AA 332.0 / 332.1, ASTM B108, SAE J452.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "332.1",
+      "332.1 ingot",
+      "332.1 aluminum ingot"
+    ],
+    "source_slug": "332-1"
+  },
+  {
+    "pn": "RC-AL-3321-SOW",
+    "catalog": "rudco",
+    "catalog_provenance": "RudCo website product listing; stock and price not confirmed by RudCo",
+    "form": "sow",
+    "form_detail": "Sow",
+    "material": "aluminum",
+    "grade": "332.1",
+    "grades_satisfied": [
+      "332.1",
+      "332"
+    ],
+    "category": "Casting Alloy",
+    "standard": "AA 332.0 / 332.1 / ASTM B108 / SAE J452",
+    "unit": "lb",
+    "piece_weight": null,
+    "packaging": [
+      "Pallet of notched ingot (~2,000 lb)",
+      "Truckload (44,000 lb)",
+      "Container (40,000 lb)"
+    ],
+    "description": "332.1 Aluminum Ingot, Sow. Al-Si-Cu-Mg permanent mold piston alloy — high-temperature strength and low expansion. Specs: AA 332.0 / 332.1, ASTM B108, SAE J452.",
+    "list_price_usd_per_lb": null,
+    "list_price_source": null,
+    "rfq_aliases": [
+      "332.1",
+      "332.1 sow",
+      "332.1 aluminum sow"
+    ],
+    "source_slug": "332-1"
+  }
+]

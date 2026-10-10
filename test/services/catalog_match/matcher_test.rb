@@ -100,6 +100,34 @@ class CatalogMatch::MatcherTest < ActiveSupport::TestCase
     assert_matches_item "3/16 cad bolt 1 inch grip undrilled", "AN3-13A"
   end
 
+  test "RudCo abrasives and aluminum ingot match from their usual names" do
+    assert_matches_item "40,000 lb S-330 steel shot", "RC-STEELSHOT-S330"
+    assert_matches_item "S330 shot 20 bags", "RC-STEELSHOT-S330"
+    assert_matches_item "steel grit G-25 x 10 tons", "RC-STEELGRIT-G25"
+    assert_matches_item "P1020 aluminum ingot 44,000 lbs", "RC-AL-P1020-TBARINGOT"
+    assert_matches_item "P1020A sow", "RC-AL-P1020-SOW"
+    assert_matches_item "aluminum 356 ingot", "RC-AL-356-NOTCHEDINGOT"
+    assert_matches_item "A356.2 notched ingot 2 pallets", "RC-AL-A356-NOTCHEDINGOT"
+    assert_matches_item "36 grit aluminum oxide 50 bags", "RC-ALUMINUMOXIDE-36GRIT"
+  end
+
+  test "bulk quantities keep their unit" do
+    reading = match("40,000 lb S-330 steel shot").reading
+    assert_equal 40_000, reading["quantity"]
+    assert_equal "lb", reading["quantity_unit"]
+  end
+
+  test "RudCo lines that leave out the form or alloy ask for it" do
+    assert_question "P1020", /form.*sow or ingot/
+    assert_question "stainless S-330 2,000 lb", /S-330 \(304\) or S-330 \(410\)/
+  end
+
+  test "a galvanized coating is never read as a grit size" do
+    reading = match("G90 galv sheet 16ga 4x8").reading
+    assert_equal "galvanized steel", reading["material"]
+    assert_nil reading["grade"]
+  end
+
   test "every check quotes the buyer's words" do
     match("304 SS sheet 16ga 4x8").candidates.each do |candidate|
       candidate.checks.each { |check| assert check[:buyer_text].present?, check.inspect }

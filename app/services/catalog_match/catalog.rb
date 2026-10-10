@@ -4,6 +4,7 @@ module CatalogMatch
   class Catalog
     CATALOG_FILES = {
       "metals" => Rails.root.join("data/metals/catalog.json"),
+      "rudco" => Rails.root.join("data/rudco/catalog.json"),
       "aviation" => Rails.root.join("data/aviation/catalog.json")
     }.freeze
 
