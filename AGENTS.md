@@ -110,6 +110,8 @@ Read what your work touches. Each link says what the document is for.
 **Product (Ken)**
 - [Product brief](docs/product/PRD.md): what we build, for whom, and the commitments. Read first.
 - [Demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, what the rep sees, owners, and the video order.
+- [Brand position](docs/product/BRAND_POSITION.md): how we talk: voice, words to use and avoid, taglines, screen text, honesty guardrails.
+- [Style guide](docs/product/STYLE_GUIDE.md): how Quote Desk looks: RudCo palette, status colors, type, buttons, layout, logo use, and the token changes for `application.css`. Anyone touching page styles reads it.
 
 **Research (Ken)**
 - [Research report: what matters in RFQ to quote](docs/research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md): the problems, value props, and the angle we build (a quote that shows its work). [PDF](docs/research/20261010.01_rfq_sharper_angle/rfq_research_report.pdf).

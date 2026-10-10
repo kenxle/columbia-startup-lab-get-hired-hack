@@ -2,7 +2,7 @@
 
 **Status:** Approved by Ken, 2026-10-10. Every agent reads this before building.
 
-**Product name:** RudCo Quote Desk. Look, voice, and taglines are in the [brand position](BRAND_POSITION.md).
+**Product name:** RudCo Quote Desk. Voice and taglines are in the [brand position](BRAND_POSITION.md); the look is in the [style guide](STYLE_GUIDE.md).
 
 **Read with:** [the bulletin board](../BULLETIN.md) (who is doing what), [AGENTS.md](../../AGENTS.md) (team rules), and the [Devpost page](https://get-hired-hack-nyc.devpost.com/) (the challenge and the rules).
 
