@@ -1,5 +1,6 @@
 # USAF Gulfport, consumable metals for tech training (FA302024Q0014), 2024
 
+- **Full line list:** `sam_notice.txt`, from the public SAM.gov notice (quantities: 80, 40, 100, 20, 20 each).
 - **Source:** [BidNet Direct abstract 2476672502](https://www.bidnetdirect.com/public/supplier/solicitations/statewide/2476672502/abstract). Public combined synopsis/solicitation (RFQ). Saved page: `bidnet_abstract.html` (fetched 2026-10-10; the solicitation number field is members-only on BidNet, but the abstract text names FA302024Q0014).
 - **Date:** closed 1 February 2024, 1:00 PM CST.
 - **Buyer type:** federal government (US Air Force training squadron, Gulfport, Mississippi).

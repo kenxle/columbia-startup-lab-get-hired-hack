@@ -14,11 +14,11 @@
 | Folder | What | Lines public? |
 |---|---|---|
 | `20210615_iowa_steel_tubing/` | State of Iowa RFQ 245, 2021, 49 lines (sheet, tube, angle, flats, expanded metal) | Yes, full PDF |
-| `bidnet_2476672502/` | USAF Gulfport consumable metals RFQ, 2024: A36 plate, A1011 11 ga, 26 ga sheet, 5052 plate, "2B T-304 16 Gage x 4 x 8 or similar" | Abstract text with the lines |
+| `bidnet_2476672502/` | USAF Gulfport consumable metals RFQ FA302024Q0014, 2024: 80 A36 3/8 plates, 40 A1011 11 ga, 100 HR galvanized 26 ga, 20 5052-32 .063, 20 "2B T-304 16 Gage x 4 x 8" | Yes: full line list in `sam_notice.txt` (from SAM.gov) |
 | `bidnet_2403776002/` | USACE Pleasant Valley plates, bars, angles, 2023: "ASTM A-572 G50" | Abstract only |
 | `highergov_navy_hy80/` | Navy MIL-S-16216 HY-80 plate | Title and ID only (JavaScript page) |
 
-The current Iowa link serves the same PDF as the 2021 copy (identical SHA-256), so it is saved once. SAM.gov refuses automated fetches; the Army Corps notice there still needs a browser download.
+The current Iowa link serves the same PDF as the 2021 copy (identical SHA-256), so it is saved once. The research's "Army Corps RFQ on SAM.gov" link is in fact the USAF Gulfport notice FA302024Q0014 (same as `bidnet_2476672502/`); its full public text is saved there as `sam_notice.txt`. The Army Corps solicitation is `bidnet_2403776002/`.
 
 ## Already found in the research
 
