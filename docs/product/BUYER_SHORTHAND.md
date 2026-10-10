@@ -2,17 +2,20 @@
 
 **Status:** Draft for Ken's review.
 
-**Summary.** Buyers write one item many ways, and this file lists real strings from the team's research and RudCo's catalogs, grouped by kind, with what each means and whether buyer memory can hold it. Three of them make a clear learn-the-buyer beat: a bare "16 ga" that means stainless, an "SS304" code, and a "0.060 in" that means 16 gauge (see [Best for the demo](#best-for-the-demo)).
+**Summary.** Buyers write one item many ways, and this file lists real strings from the team's research, the team's real RFQ files (a State of Iowa RFQ and a Transnet steel shot tender) and RudCo's catalogs, grouped by kind, with what each means and whether buyer memory can hold it. Three of them make a clear learn-the-buyer beat: a bare "16 ga" that means stainless, an "SS304" code, and a "0.060 in" that means 16 gauge (see [Best for the demo](#best-for-the-demo)).
 
 **Read with:** [DEMO_SCRIPT, beat 8 (learn the buyer)](DEMO_SCRIPT.md), [WORKFLOW, step 9 (save what was learned about this buyer)](WORKFLOW.md#9-learn-the-buyer), [the research test set](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md#6-test-set).
 
 **Checked:** 2026-10-10 at 14:28, against commit e2a65c1. The buyer-memory code was still changing that afternoon, so re-check a cell before you rely on it.
+
+**Real RFQ rows:** rows 1.9, 1.10, 2.12, 2.13, 3.13 to 3.16, 4.7, 4.8, 5.8, 6.6, 6.7 and 7.5 come from the real RFQ files and were checked on 2026-10-10 at commit 77dd469. The matcher had changed since the commit above. I ran the fixed-rule readers outside Rails the same way: `RfqProcessing::RulesParser.parse` for intake and `CatalogMatch::DescriptionReader.read` for catalog. The language-model reader that the matcher can now call was not run. Each quoted string was checked against the saved PDF text by script.
 
 ## How to read the table
 
 - **Buyer wrote.** Text in backticks is copied from the source and was checked against the saved copy by script. A row marked **Illustration** is our own wording, built to show a point. It is not from a source.
 - **Intake and Catalog** are the two readers. Intake is the RFQ processing rules (`tools/rfq_processing`, Yuval). Catalog is the catalog reader (`app/services/catalog_match`, Tisch). "Reads it" and "misses it" come from running both readers on the line at the commit above, outside Rails.
 - **Could memory hold it?** uses three labels, defined in the next section: **Typed**, **Stored**, and **No field**.
+- **Real RFQ files.** Iowa rows cite the RFQ line number and PDF page of [iowa_rfq_2021.pdf](../rfqs/20210615_iowa_steel_tubing/iowa_rfq_2021.pdf). Transnet rows cite the PDF page, and the line in [extracted.txt](../example_rfqs/transnet-steel-shot-2024/extracted.txt) where it helps. Text that wrapped across lines in the source is joined with single spaces.
 - **Means.** Where the buyer's own long description sits next to a short code (the State of Iowa RFQs), the meaning comes from the buyer's words. Elsewhere the meaning comes from the research doc named in the Source column.
 
 ## What buyer memory can hold today
@@ -181,6 +184,8 @@ All three use the draft demo buyer, Northline Fabrication, from the [draft demo 
 - **Line shows:** `Northline (taught by the rep, confirmed on RFQ-0001): "0.060 in" means thickness 0.0625`. That is close to your wording, "Read as 0.0625 in, as you confirmed on RFQ-0001."
 - **Caveat:** the research shows sellers printing a gauge and a decimal that disagree (rows 1.2 and 1.3). It does not show this buyer repeating 0.060. Teach it only after the buyer has confirmed, as the question email does.
 
+**Real RFQ lines considered:** the Transnet S 390 steel shot line (row 6.6) and the Iowa 14 gauge stainless line (row 1.9) were the strongest candidates. Neither replaces a pick. Buyer memory has no field for the Transnet line's size, hardness or box size, and both readers already read the Iowa line right, so there is nothing to teach.
+
 **Runner-up:** "HRPO" (row 5.1) is the best-sourced fight over an abbreviation. The only expansion in the research is one commenter's, and RudCo does not list the product, so it makes a weaker beat.
 
 ## Cautions
@@ -194,12 +199,18 @@ All three use the draft demo buyer, Northline Fabrication, from the [draft demo 
   - Catalog: `ASTM A-572 G50 ...` reads steel grit G-50 (row 2.6).
   - Both: `glass bead #4` reads finish No. 4 (row 6.4).
   - Catalog: `Tubing 3 x 2 x .120` reads "3 x 2" as feet.
+  - Both: `Tubing 1 1/2 x 1 x .083` (Intake reads quantity 1; Catalog reads feet, row 3.14).
+  - Catalog: `Rectangular Tubing A513/A500 Grade B, 3" x 2" ...` reads a square tube and drops the 3 (row 3.15).
+  - Both: the Transnet steel shot line reads "40-50" or the container size wrong (rows 6.6 and 6.7). Intake reads `50 000KG` as quantity 0.
+  - Both: `Data Sheet` reads as the product form sheet (row 5.8).
+  - Size mismatch to ask the buyer about: the tender says 1.2 MM for S 390, and RudCo's S-390 is 0.99 mm (row 6.6).
 - **Sources I could not close.** The meanings of "18-8" digits, "W12 x 79", "XS", "DOM", "CDS" and "PL3848" are general knowledge or a guess. The research does not define them.
 - **This file changes no code.**
 
 ## Sources checked
 
 - Research: [domain rules](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md), [Reddit voice](../research/20261010.01_rfq_sharper_angle/research_voice_reddit.md), [open web voice](../research/20261010.01_rfq_sharper_angle/research_voice_open_web.md), [other sources voice](../research/20261010.01_rfq_sharper_angle/research_voice_other_sources.md), [report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md), [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md).
+- Real RFQ files: [State of Iowa RFQ 245, 2021](../rfqs/20210615_iowa_steel_tubing/NOTES.md) and [Transnet steel shot tender](../example_rfqs/transnet-steel-shot-2024/SOURCE.md).
 - Saved copies: the State of Iowa RFQ text files in [verification_docs](../research/20261010.01_rfq_sharper_angle/verification_docs/), and the normalized Reddit threads and search pages in [reddit_corpus](../research/20261010.01_rfq_sharper_angle/reddit_corpus/normalized/).
 - Catalogs: [RudCo](../../data/rudco/catalog.json) and [metals](../../data/metals/catalog.json).
 - Code: [buyer_profile.rb](../../tools/rfq_processing/lib/rfq_processing/buyer_profile.rb), [rules_parser.rb](../../tools/rfq_processing/lib/rfq_processing/rules_parser.rb), [client_term.rb](../../app/models/client_term.rb), [client_memory.rb](../../app/services/catalog_match/client_memory.rb), [description_reader.rb](../../app/services/catalog_match/description_reader.rb), [teach_buyer_term.rb](../../app/services/quote_workspace/teach_buyer_term.rb), [buyer_context.rb](../../app/services/quote_workspace/buyer_context.rb).

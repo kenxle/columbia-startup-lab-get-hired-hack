@@ -2,140 +2,48 @@
 
 **Status:** Draft for Ken's review.
 
-**Summary.** The new cut opens on RudCo's 24-hour quote promise, shows the gauge trap and a compliance flag, and closes on "Every line shows its work." and the pitch line. It swaps the hand-built quote card for real screens from the running app, so the video shows only what the build does today, and it marks the two shots that depend on unfinished work.
+**Summary.** The cut opens on Ken's lines about RFQs, the 24-hour promise and the cost of an error. It then shows the gauge trap, a compliance flag and a quote the rep approves, and closes on "Every line shows its work." Everything after the opening uses real screens from the running app, except the two drawn scenes (the gauge trap and the close).
 
-**Read with:** [brand position](../BRAND_POSITION.md), [style guide](../STYLE_GUIDE.md), [PRD value props](../PRD.md#the-job-to-be-done), [demo script](../DEMO_SCRIPT.md), [build map and status](../KEN_DESK.md#build-map). Sources for the current cut: [promo.html](promo.html), [vo.py](vo.py), [music.py](music.py), [capture.js](capture.js).
+## Shot list
 
-## Needs your call
+Nine shots, 30.0 seconds, 65 spoken words (see [Word count](#word-count)). Edit this table; git holds the old versions.
 
-- [ ] **Metals prices in the promo.** Shot 6 shows a dated benchmark price only if Tisch's pricer lands and you approve the "indicative price" idea (open item 11 on [Ken's Desk](../KEN_DESK.md#needs-your-call)). Without it, shot 6 falls back to RudCo's list price with its source. Both versions are written below.
-- [ ] **Blueprint look vs the style guide.** The current cut uses a navy blueprint frame, gold labels and gold rules. The [style guide](../STYLE_GUIDE.md#how-the-workspace-should-look-like-rud-cocom) allows gold in one place only (the rule under the sidebar product name). Keep the blueprint look for the promo, or move gold off the labels and rules? This list keeps the blueprint look and leaves gold on the frame and rules.
-
-## What the current cut has
-
-Read from [promo.html](promo.html) (on-screen text and timing) and [vo.py](vo.py) (voiceover). The mp4 and the music are both 30.0 seconds. The voiceover clips run 3.3 to 6.0 seconds each. The repo files do not say when each clip starts, so each line sits with its scene.
-
-| Time | Shot | On-screen text | Voiceover |
-|---|---|---|---|
-| 0:00 to 0:05.4 | Sheet 1/5. A messy RFQ email types out. Three phrases get a gold underline. Three numbered notes appear. | "RFQs arrive as shorthand." Email lines: "304 SS sheet 16ga 4x8, qty 20", "Sq tube A513/A500 1x1 .065w", "Plate SA-240 304L 3/16, 6 pcs". Notes: "16ga: which table?", "A513/A500: two specs", "SA-240: unwritten paperwork". | "RFQs arrive as shorthand. Every line hides a trap." (9 words) |
-| 0:05.5 to 0:11.1 | Sheet 2/5. Two drawn sheets with thickness arrows, a 4.2% delta box, then a cost line. | "Same line. Two different sheets." "304 SS, 16 GA (STAINLESS TABLE) 0.0625 in" against "STAINLESS 304, 0.060 IN 0.0600 in". "DELTA 4.2%". "$250K to $450K: One wrong stainless grade, caught after purchase." Source: self-reported by a supplier, r/metalworking. | "Sixteen gauge stainless is not point-oh-six-oh inch. And misreads surface after the metal is cut." (17 words) |
-| 0:11.2 to 0:15.5 | Sheet 3/5. A large quote on navy. | "Opacity is a tax on industrial procurement." (RudCo, LinkedIn, 2026-04-20). Then "Precision. Transparency. Trust." | "Opacity is a tax on industrial procurement." (7 words) |
-| 0:15.6 to 0:25.5 | Sheet 4/5. A hand-built HTML quote card with three rows (Ready, Needs the buyer, Ready), numbered notes, then a "REP APPROVED" stamp. | Headlines in turn: "The same messy email, read right." "Every line shows where it came from." "Unclear lines become one question." "Your rep approves and sends." Card: "Priced vs. dated benchmark", "Ships in 24 to 48 hours", "Mill test report needed, triggered by SA-240", "Approve and send". | "Quote Desk shows where every answer came from, flags the paperwork, and asks when it can't tell. Your rep approves and sends." (22 words) |
-| 0:25.6 to 0:30 | Sheet 5/5. RudCo mark with "RudCo / QUOTE DESK", gold rule, tagline, pitch line. | "Every line shows its work." "The agent prepares the conversation. The rep owns it." "PRECISION. TRANSPARENCY. TRUST." | "RudCo Quote Desk. Every line shows its work." (8 words) |
-
-The current voiceover is 61 words (counted with a script). The cut does not mention the 24-hour promise, and the quote card is a mock, not the app.
-
-## Revised opening (Ken, 14:39)
-
-Ken's direction: start with something higher stakes. His lines, as he wrote them:
-
-> RFQs are the lifeblood of our company
-> and show a bunch of paperwork flying onto a desk.
-> we promise 24 hour turnaround
-> but we also require accuracy and...
-
-This replaces shots 1 and 2 of the proposed list below. Shot 3 (the gauge trap) then picks up the word "accuracy".
-
-| # | Time | Shot | On-screen text | Voiceover | Source |
-|---|---|---|---|---|---|
-| 1a | 0:00 to 0:03 | Paperwork flies onto a desk: emails, PDFs, spreadsheets, a printed drawing, landing in a growing pile. Blueprint style, navy and line art, to match the current cut. | "RFQs are the lifeblood of our company." | "RFQs are the lifeblood of our company." (7) | New scene in promo.html |
-| 1b | 0:03 to 0:05.5 | The pile sits under the Quotes list's Due column, countdowns ticking. | "We promise 24-hour turnaround." | "We promise 24 hour turnaround" (5) | Real app: Quotes list, cropped to Due |
-| 1c | 0:05.5 to 0:07 | One sheet lifts off the pile and zooms to the 16 ga stainless line. | "But we also require accuracy and..." | "but we also require accuracy and..." (6) | Reuse scene 1 typing, shortened |
-
-Spoken words for the new opening: 18, against 11 for the two shots it replaces. To keep 30 seconds, shorten shot 5 or shot 6 voiceover by about seven words.
-
-**Your call:** how the "and..." finishes. It can hand straight to the value props, for example "...and a price that holds up" (competitive) before the gauge trap, or stay open and let shots 3 to 7 answer it. Say which, or write the ending.
-
-## Proposed shot list
-
-Eight shots, 30.0 seconds. The voiceover is 66 words (see [Voiceover word count](#voiceover-word-count)). The old cut ran 61 words at about 2.6 words per second, so this one is a little brisker. If a read-through runs long, cut the voiceover on shot 2 (4 words) and keep its picture.
-
-**Status marks** come from the [build map](../KEN_DESK.md#build-map) and [Where things stand](../KEN_DESK.md#where-things-stand), checked 14:26 on 2026-10-10. Built means the running app does it today. Depends means the shot needs work that is not finished.
+Status marks come from the [build map](../KEN_DESK.md#build-map) and [Where things stand](../KEN_DESK.md#where-things-stand). Built means the running app or a drawn scene does it today. Depends means the shot needs work that is not finished.
 
 | # | Time | Shot (what is on screen) | On-screen text | Voiceover | Source | Mark |
 |---|---|---|---|---|---|---|
-| 1 | 0:00 to 0:03.5 | The Quotes list, cropped to the Due column. Rows show "Due in 1h 00m" style countdowns beside RFQ titles and buyer names. Use rows that are not overdue. | "Quote within 24 hours." Small line: "RudCo's own promise." | "RudCo promises a quote within 24 hours." (7) | Real app: `http://127.0.0.1:3100/` (Quotes list). The promise comes from RudCo's quote form, cited in the [PRD](../PRD.md#the-job-to-be-done). | Built (countdowns are on the list today) |
-| 2 | 0:03.5 to 0:07 | The messy RFQ types out, with the three gold underlines on `16ga`, `A513/A500` and `SA-240`. No side notes. | "RFQs arrive as shorthand." | "RFQs arrive as shorthand." (4) | Reuse scene 1 of promo.html. Shorten the typing to about 1.2 seconds and drop the three numbered notes. | Built (it is a drawn scene) |
-| 3 | 0:07 to 0:11.5 | The two drawn sheets. Left: 0.0625 in, labeled with the stainless gauge table. Right: 0.0600 in. The 4.2% delta box sits between them. | "304 SS, 16 GA (stainless gauge table) = 0.0625 in" against "0.060 in". "Delta 4.2%". | "Sixteen gauge stainless reads point-oh-six-two-five inch, by the stainless gauge table." (11, counted with the numeral "0.0625") | Reuse scene 2 of promo.html. Trim the timing. Drop the "$250K to $450K" line and its source note. | Built (drawn scene). The 4.2% is (0.0625 - 0.060) / 0.060, computed by script. |
-| 4 | 0:11.5 to 0:15.5 | The real review screen on the stainless line. Click the thickness field. The RFQ words `16ga 4x8` light up on the left and the reading "0.0625 in" with "stainless gauge table" shows on the right. | Chip: "Accurate". Caption: "Read from `16ga` using the stainless gauge table." | "Every field shows the words and rule behind it." (9) | Capture from `http://127.0.0.1:3100/`: open the demo RFQ, open the stainless line. | Built (build map step 3 and step 7). Needs the final demo RFQ email, still with Tisch. Use the sample RFQ until it lands. |
-| 5 | 0:15.5 to 0:19 | The real compliance flag on the plate line, with `SA-240` highlighted in the RFQ text. | Caption: "Mill test report needed. Triggered by `SA-240`." | "It flags unwritten paperwork and names the trigger word." (9) | Capture from the app: click the flag on the SA-240 line. | Built (build map step 5, flags) |
-| 6 | 0:19 to 0:22.5 | The real price and lead time on a Ready line, then the held line beside it. | Chip: "Competitive". Version A (pricer lands): "Priced against a dated benchmark." Version B (fallback): "RudCo list price, source shown." Both: "Ships in 24 to 48 hours." | "Prices show their source and date." (6) | Capture from the app. | Depends. Version A needs Tisch's pricer pushed and your call on indicative prices. Version B is built today (list prices on RudCo items, sourced lead times). On a line with no benchmark, show the held state. |
-| 7 | 0:22.5 to 0:25.5 | The drafted buyer question ("RFQ-0001, line 3: 16 gauge or 0.060 in?") in the mail preview. Cut to the rep clicking "Approve quote". A short "REP APPROVED" stamp lands over it. | Chip: "Faster". Caption: "One question. One approval." | "Unclear lines become one question." (5) | Capture the question draft and the Approve quote button from the app. The stamp is a motion overlay from scene 4 of promo.html. | Built for the draft and the approval. The question does not send itself and the buyer cannot click an answer yet, so show the draft only. |
-| 8 | 0:25.5 to 0:30 | The L3 lockup on navy: RudCo round mark, "RudCo", "QUOTE DESK". Gold rule. Tagline, then pitch line. Footer: "Precision. Transparency. Trust." | "Every line shows its work." "The agent prepares the conversation, and the rep owns it." | "Every line shows its work. The agent prepares the conversation, and the rep owns it." (15) | Reuse scene 5 of promo.html. Change the pitch text. Hold the final frame for the last half second. | Built (drawn scene) |
+| 1 | 0:00 to 0:03 | Paperwork flies onto a desk: emails, PDFs, spreadsheets, a printed drawing, landing in a growing pile. Blueprint style, navy and line art, to match the current cut. | "RFQs are the lifeblood of our company." | "RFQs are the lifeblood of our company." (7) | New scene in promo.html | New drawn scene, not made yet |
+| 2 | 0:03 to 0:05.5 | The pile sits under the Quotes list's Due column, countdowns ticking. Use rows that are not overdue. | "We promise 24-hour turnaround." | "We promise 24 hour turnaround" (5) | Real app: `http://127.0.0.1:3100/` (Quotes list), cropped to Due. The promise comes from RudCo's quote form, cited in the [PRD](../PRD.md#the-job-to-be-done). | Built (countdowns are on the list today) |
+| 3 | 0:05.5 to 0:12.5 | One sheet lifts off the pile and the messy RFQ types out, seven lines, with gold underlines on `S 390`, `A513/A500` and `16 ga`. No side notes. The camera holds on the last line, the stainless 16 ga line. | Caption: "but we also require accuracy and the cost of an error can be hundreds of thousands of dollars"<br><br>Typed lines, top to bottom:<br>`SUPPLY AND DELIVER OF STEEL SHOT; S 390, CS, HRC 40-50, 1.2MM – 50 000KG`<br>`Stainless Tubing 1 x 1 x .05`<br>`SquareTubing A513/A500 Grade B, 1 x 1" x .065 wall thickness x 24' Long`<br>`Tubing 1 1/2 x 1 x .083`<br>`Cold Rolled Sheets CQ/A366, 48" x 96" x 18 Gauge`<br>`Stainless Steel Squares, Type 304, 3/4 x 12' Lengths`<br>`Stainless 304 sheet, 16 ga, 2B, 48 x 96, 20 sheets` | "but we also require accuracy and the cost of an error can be hundreds of thousands of dollars" (18) | Reuse scene 1 typing of promo.html with these lines. The lines are verbatim from real RFQs, except the last, which is from the team's demo RFQ. In order: (1) [Transnet steel shot tender](../../example_rfqs/transnet-steel-shot-2024/source.pdf), page 1; (2) [State of Iowa RFQ 245, 2021](../../rfqs/20210615_iowa_steel_tubing/iowa_rfq_2021.pdf), line 6, page 2; (3) Iowa, line 8, page 2; (4) Iowa, line 11, page 3; (5) Iowa, line 12, page 3; (6) Iowa, line 18, page 4; (7) the [demo RFQ for Northline](../demo_rfq/email.txt), line 1 (fictional, written to look real). | Built (drawn scene) |
+| 4 | 0:12.5 to 0:16.5 | The two drawn sheets. Left: 0.0625 in, labeled with the stainless gauge table. Right: 0.0600 in. The 4.2% delta box sits between them. | "304 SS, 16 GA (stainless gauge table) = 0.0625 in" against "0.060 in". "Delta 4.2%". | "Sixteen gauge stainless reads point-oh-six-two-five inch, by the stainless gauge table." (11, counted with the numeral "0.0625") | Reuse scene 2 of promo.html. Trim the timing. Drop the "$250K to $450K" line and its source note. | Built (drawn scene). The 4.2% is (0.0625 - 0.060) / 0.060, computed by script. |
+| 5 | 0:16.5 to 0:18.5 | The real review screen on the stainless line. Click the thickness field. The RFQ words `16 ga` light up on the left and the reading "0.0625 in" with "stainless gauge table" shows on the right. | Chip: "Accurate". Caption: "Every field shows the words and rule behind it. Read from `16 ga` using the stainless gauge table." | None. The caption carries it. | Capture from `http://127.0.0.1:3100/`: open the [demo RFQ](../demo_rfq/README.md), open the stainless line. | Built (build map step 3 and step 7) |
+| 6 | 0:18.5 to 0:21.5 | The real compliance flag on the plate line, with `SA-240` highlighted in the RFQ text. | Caption: "Mill test report needed. Triggered by `SA-240`." | "It flags unwritten paperwork and names the trigger word." (9) | Capture from the app: click the flag on the SA-240 line. | Built (build map step 5, flags) |
+| 7 | 0:21.5 to 0:23.5 | The real price and lead time on a Ready line, then the held line beside it. | Chip: "Competitive". Version A (pricer lands): "Priced against a dated benchmark." Version B (fallback): "RudCo list price, source shown." Both: "Ships in 24 to 48 hours." Caption: "Prices show their source and date." | None. The caption carries it. | Capture from the app. | Depends. Version A needs Tisch's pricer pushed and your call on indicative prices. Version B is built today (list prices on RudCo items, sourced lead times). On a line with no benchmark, show the held state. |
+| 8 | 0:23.5 to 0:25.5 | The drafted buyer question ("RFQ-0001, line 3: 16 gauge or 0.060 in?") in the mail preview. Cut to the rep clicking "Approve quote". A short "REP APPROVED" stamp lands over it. | Chip: "Faster". Caption: "Unclear lines become one question. One approval." | None. The caption carries it. | Capture the question draft and the Approve quote button from the app. The stamp is a motion overlay from scene 4 of promo.html. | Built for the draft and the approval. The question does not send itself and the buyer cannot click an answer yet, so show the draft only. |
+| 9 | 0:25.5 to 0:30 | The L3 lockup on navy: RudCo round mark, "RudCo", "QUOTE DESK". Gold rule. Tagline, then pitch line. Footer: "Precision. Transparency. Trust." Hold the final frame for the last half second. | "Every line shows its work." "The agent prepares the conversation, and the rep owns it." | "Every line shows its work. The agent prepares the conversation, and the rep owns it." (15) | Reuse scene 5 of promo.html. Change the pitch text to the brief's wording. Change the title block from "n/5" to "n/9". | Built (drawn scene) |
 
-### Value props on screen
+### Word count
 
-- **Accurate:** shots 3, 4 and 5 (the gauge table, the source words, the flag with its trigger word).
-- **Competitive:** shot 6 (a price with its source and date). We never say cheapest, per the [brand position](../BRAND_POSITION.md#words-to-use-and-avoid).
-- **Faster:** shot 1 (24 hours), shot 6 (24 to 48 hour lead time) and shot 7 (one question, one approval).
+65 spoken words: 7 + 5 + 18 + 11 + 9 + 15, counted with a script on the voiceover cells above. Ken's opening is 30 of them. Shots 5, 7 and 8 have no voiceover, because the opening's longer last line leaves less time for the rest. The lines dropped from the voiceover are "Every field shows the words and rule behind it.", "Prices show their source and date." and "Unclear lines become one question." Each now sits in its shot's caption.
 
-### Voiceover word count
+### Source notes
 
-Counted with a script on these lines.
+- **Opening (shots 1 to 3).** Ken's words, as he wrote them. Shot 1's line is his "RFQs are the lifeblood of our company", shot 2's his "we promise 24 hour turnaround", shot 3's his finished sentence, with his lowercase "but".
+- **Support for the cost line in shot 3.** One Reddit poster in the [Reddit research, costly mistakes](../../research/20261010.01_rfq_sharper_angle/research_voice_reddit.md#rq3-costly-mistakes) wrote "it was a $250k job that ended up costing close to $450k" after the wrong stainless was bought. The same section has a second poster whose expected $15-20k profit shrank to $2-3k because a material price in the quoting system was stale. Both are self-reported, in one Reddit thread, and neither was verified. The only figure near "hundreds of thousands" is the first poster's. The [research report](../../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md) repeats both. I did not find the sentence in the product brief or the brand position.
+- **The typing scene's lines.** Each line was checked against the PDF text by script. The Transnet line is the tender's title on page 1. The Iowa lines are item descriptions. All the files are in the repo's real RFQ folders. The last line is the demo RFQ's, not a real buyer's.
+- **Audio.** Keep [music.py](music.py) as the base. Retime its beat to shot 5 (0:16.5) and the final chord to shot 9 (0:25.5). Re-record the voiceover from the lines above with [vo.py](vo.py), same voice and instructions.
+- **Capture before editing.** From `http://127.0.0.1:3100`, at 1920 by 1080, on the demo RFQ: the Quotes list Due column (shot 2), the stainless line with the thickness field clicked (shot 5), the SA-240 flag (shot 6), a Ready line and a held line (shot 7), and the drafted question then the Approve quote click (shot 8).
+- **Other files.** [Brand position](../BRAND_POSITION.md), [style guide](../STYLE_GUIDE.md), [demo script](../DEMO_SCRIPT.md), [promo.html](promo.html), [capture.js](capture.js).
 
-| Shot | Line | Words |
-|---|---|---|
-| 1 | RudCo promises a quote within 24 hours. | 7 |
-| 2 | RFQs arrive as shorthand. | 4 |
-| 3 | Sixteen gauge stainless reads 0.0625 inch, by the stainless gauge table. | 11 |
-| 4 | Every field shows the words and rule behind it. | 9 |
-| 5 | It flags unwritten paperwork and names the trigger word. | 9 |
-| 6 | Prices show their source and date. | 6 |
-| 7 | Unclear lines become one question. | 5 |
-| 8 | Every line shows its work. The agent prepares the conversation, and the rep owns it. | 15 |
-| | **Total** | **66** |
+## Needs your call
 
-The script prints 69 with the longer shot 7 line ("Unclear lines become one question. The rep approves."). This list uses the shorter line, and the rep's approval is shown on screen instead.
+- [ ] **Metals prices in the promo.** Shot 7 shows a dated benchmark price only if Tisch's pricer lands and you approve the "indicative price" idea (open item 11 on [Ken's Desk](../KEN_DESK.md#needs-your-call)). Without it, shot 7 falls back to RudCo's list price with its source. Both versions are in the table.
+- [ ] **Blueprint look vs the style guide.** The current cut uses a navy blueprint frame, gold labels and gold rules. The [style guide](../STYLE_GUIDE.md#how-the-workspace-should-look-like-rud-cocom) allows gold in one place only (the rule under the sidebar product name). Keep the blueprint look for the promo, or move gold off the labels and rules? This list keeps the blueprint look.
+- [ ] **Three shots now have no voiceover.** Your opening is 30 spoken words, so shots 5, 7 and 8 carry their message in a caption and hold for 2.0 seconds each. Say if you would rather drop a shot than its voiceover.
 
-### Music and audio
+## Not shown because the build does not do it today
 
-Keep [music.py](music.py) as the base: it already builds a build on sheet 4 and a held chord on the close. Retime its section changes to the new shots: the beat starts at shot 4 (0:11.5) and the final chord lands at shot 8 (0:25.5). Re-record the voiceover from the new lines with [vo.py](vo.py), same voice and instructions.
-
-## Changes from the current cut
-
-**Keep**
-- The blueprint frame, title block and the typed-out email.
-- The two-sheet gauge trap, with the 4.2% delta box.
-- The closing lockup with the RudCo mark, the tagline "Every line shows its work." and the footer "Precision. Transparency. Trust."
-- The music bed and the voice.
-
-**Change**
-- Open on the 24-hour promise (new shot 1) instead of the shorthand email.
-- Replace the hand-built quote card with real screen captures (shots 4 to 7). The card is a drawing, so it can show things the app does not do.
-- Change the pitch line on the close to the brief's wording: "The agent prepares the conversation, and the rep owns it." The current cut splits it into two sentences.
-- Change "Your rep approves and sends" and the "Approve and send" button. Sending is not built. The app's button reads "Approve quote".
-- Change the card's "Priced vs. dated benchmark" and "Metal cost, 2026-10-10" text. The pricer is not built into the app yet. Use shot 6, version A or B.
-- Change the title block from "n/5" sheets to "n/8".
-- Check the close lockup against L3 ratios. L3 is a 32 px mark, an 18 px name and an 11 px label. At 4 times the size that is a 128 px mark, a 72 px name and a 44 px label. The current close uses a 128 px mark, a 92 px name and a 34 px label.
-
-**Add**
-- The 24-hour promise (shot 1), a requirement in the [PRD](../PRD.md#the-job-to-be-done) and the opener in the [demo script](../DEMO_SCRIPT.md).
-- Value-prop chips: Accurate, Competitive, Faster.
-- A real compliance flag with its trigger word (shot 5). The current cut shows it only inside the drawn card.
-- The drafted buyer question (shot 7).
-
-**Drop**
-- The "Opacity is a tax on industrial procurement." scene. There is no room in 30 seconds. The line stays in the [brand position](../BRAND_POSITION.md#how-this-aligns-with-rudcos-brand) and can go in the Devpost text.
-- The "$250K to $450K" line. It is self-reported by one supplier on Reddit, and the gauge shot makes the point without it.
-- The three side notes on shot 2 and the four side notes on the old quote card. The real screens carry that information.
-
-## How this complements the demo video
-
-The [demo script](../DEMO_SCRIPT.md) is the long walk-through, from intake to the approved PDF. The promo is the trailer for it. It uses the same two proof points (the gauge table and the flagged trigger word) and the same closing lines, and it leaves out intake, the held and No match lines, the learn-the-buyer beat, and the approved PDF. Those stay in the demo.
-
-## Left out because the build does not show it today
-
-- **Alternates:** "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in", each with its own price. The app shows options apart from the subtotal, but the prices wait on the pricer ([Where things stand](../KEN_DESK.md#where-things-stand)). Add it to a later cut.
+- **Alternates:** "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in", each with its own price. The prices wait on the pricer.
 - **The question emailing itself, the buyer clicking an answer, and the rep sending the reply.** None of the three is built.
-- **"Draft in minutes."** The demo script needs a visible, timed run for this claim. The promo does not show one, so it makes no such claim.
+- **"Draft in minutes."** The demo script needs a visible, timed run for this claim, so the promo makes no such claim.
 - **Learned buyer terms** with their source ("as you confirmed on RFQ-0001"). Waiting on Yuval's push.
-
-## To capture before editing
-
-1. The Quotes list, Due column, non-overdue rows (shot 1).
-2. The stainless line, with the thickness field clicked (shot 4).
-3. The SA-240 flag open (shot 5).
-4. A Ready line with price and lead time, plus a held line (shot 6).
-5. The drafted question in the mail preview, then the Approve quote click (shot 7).
-
-All five come from `http://127.0.0.1:3100`. Capture at 1920 by 1080, on the demo RFQ once Tisch's email lands.
