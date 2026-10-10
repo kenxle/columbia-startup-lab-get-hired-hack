@@ -115,6 +115,7 @@ The split between rules and the model is the main design choice. The teammates a
 - **No sample catalog or prices from RudCo.** We built the catalog from RudCo's own public site and added constructed sample metals items. The prices on RudCo items are RudCo's website list prices, not quote prices. The sample metals items have no prices.
 - **Pricing without making numbers up.** We hold any line that has no sourced price and leave it unpriced. The metals pricer is not finished, so metals lines show as held. We kept the rule.
 - **Four people building at once.** Parallel work meant constant handoffs. A bulletin board and a shared result format kept the parts connected.
+- **Unruly agents.** Some agents were being unruly and reporting completion when they were not done.
 
 ## What worked
 
