@@ -43,11 +43,11 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     post demo_quotes_path
     quote = Quote.find(response.location[%r{/quotes/(\d+)}, 1])
     get quote_path(quote)
-    assert_select "title", "1 question to send · #{quote.reference} · Quote Desk"
+    assert_select "title", "2 questions to send · #{quote.reference} · Quote Desk"
 
     quote.quote_lines.find_by!(state: "ready").update!(state: "needs_buyer")
     get quote_path(quote)
-    assert_select "title", "2 questions to send · #{quote.reference} · Quote Desk"
+    assert_select "title", "3 questions to send · #{quote.reference} · Quote Desk"
   end
 
   test "title fallback preserves nonquote pages and handles unprocessed RFQs" do

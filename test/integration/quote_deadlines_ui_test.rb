@@ -61,6 +61,8 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
     assert_select ".page-actions .status--needs-buyer", "Question to send"
 
     @quote.quote_lines.where(state: "needs_buyer").delete_all
+    @quote.quote_lines.find_by!(state: "no_match").update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "No catalog item fits."}})
     get quote_path(@quote)
     assert_select ".page-actions .status--no-match", "No match"
 
@@ -82,7 +84,7 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
       get quote_path(@quote, status: filter, line: held_line.id)
       assert_response :success
       assert_select ".status--needs-buyer", text: "Question to send", minimum: 1
-      assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
+      assert_select "title", "2 questions to send · #{@quote.reference} · Quote Desk"
       assert_select ".callout--held strong", "Question to send."
       refute_includes response.body, "Needs the buyer"
       refute_includes response.body, "Waiting on buyer"
@@ -93,7 +95,7 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select ".buyer-draft__badge", "Draft, not sent"
     assert_includes response.body, "Nothing was sent to the buyer."
-    assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
+    assert_select "title", "2 questions to send · #{@quote.reference} · Quote Desk"
     assert_equal "needs_buyer", held_line.reload.state
     assert_equal "Question to send", held_line.status_label
     assert_nil @quote.reload.sent_at

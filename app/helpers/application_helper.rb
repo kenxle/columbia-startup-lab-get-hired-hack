@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def buyer_question_counts(quote)
-    buyer_lines = quote.quote_lines.to_a.select { |line| line.state == "needs_buyer" }
+    buyer_lines = QuoteWorkspace::BuyerQuestionDraft.new(quote).held_lines
     waiting = buyer_lines.count { |line| line.current_question_delivery.present? }
     { unsent: buyer_lines.length - waiting, waiting: waiting }
   end

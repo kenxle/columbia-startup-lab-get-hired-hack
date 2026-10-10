@@ -18,6 +18,8 @@ class BuyerQuestionActivityUiTest < ActionDispatch::IntegrationTest
 
   test "successful local question preview shows waiting with its time recipient and exact text" do
     delivery = record_preview
+    @quote.quote_lines.find_by!(state: "no_match").update!(clarification_question: nil,
+      processing: {"match" => {"status" => "no_match", "reason" => "No catalog item fits."}})
 
     get quote_path(@quote, line: @line.id)
     assert_response :success
@@ -55,8 +57,8 @@ class BuyerQuestionActivityUiTest < ActionDispatch::IntegrationTest
 
     get quote_path(@quote, status: "all")
     assert_select ".page-actions .status--needs-buyer", "Question to send"
-    assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
-    assert_select ".summary__item", text: /Question to send.*1/m
+    assert_select "title", "2 questions to send · #{@quote.reference} · Quote Desk"
+    assert_select ".summary__item", text: /Question to send.*2/m
     assert_select ".summary__item", text: /Waiting on buyer.*local preview.*1/m
     assert_select ".lines-table .status--needs-buyer", "Waiting on buyer"
     assert_select ".lines-table .status--needs-buyer", "Question to send"
@@ -108,4 +110,14 @@ class BuyerQuestionActivityUiTest < ActionDispatch::IntegrationTest
     assert_select ".lines-table .status--needs-buyer", "Waiting on buyer"
     assert_select ".question-activity", /No email was sent to the buyer/
   end
+  test "an unpreviewed no-match question remains visible beside a waiting line" do
+    record_preview
+    get quote_path(@quote, line: @line.id)
+    assert_select ".page-actions .status--needs-buyer", "Question to send"
+    assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
+    assert_select ".summary__item", text: /Question to send.*1/m
+    assert_select ".summary__item", text: /Waiting on buyer.*local preview.*1/m
+    assert_select ".callout--held strong", "Waiting on buyer."
+  end
+
 end

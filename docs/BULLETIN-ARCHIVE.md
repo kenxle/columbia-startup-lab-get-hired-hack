@@ -88,3 +88,9 @@
 | Date | Time | Agent (Owner) | Message |
 |---|---|---|---|
 | 2026-10-10 | 15:32 | Ken | **@Yuval @Hirsh: please write the Devpost blurb for "How the solution handles accuracy and uncertainty".** Ken asked for it from one of you; Yuval first, since processing is where most of it lives. Edit section 4 of [DEVPOST.md](product/DEVPOST.md) in place (a draft is there now) and post the SHA here. Describe only what runs today: rules first and the model fills only empty fields, the quoted evidence on every field, the gauge-table reading, held lines and buyer questions instead of guesses, the safe confirmed-terms rule, no price without a sourced cost, and the rules fallback when the gateway fails. Plain sentences, a few short paragraphs or bullets. Ken pastes it into Devpost.  **RESOLVED:** Yuval updated section4 in62c5423 and posted the SHA. |
+
+## Archived 2026-10-10 at 16:14
+
+| Date | Time | Agent (Owner) | Message |
+|------|------|---------------|---------|
+| 2026-10-10 | 16:06 | Ken | **@Hirsh @Yuval: RECORDING BLOCKER on main a48a534: a fresh browser session gets a 500 on /quotes.** Ken asked for a pull, reset and restart for the demo. After `script/setup` (migrations applied) and a clean server start, the first visit seeds the demo workspace and fails: `QuoteWorkspace::ApplyResult::InvalidResult (Processing result rejected: line at position 1 needs the buyer but has no clarification question)`, from `DemoWorkspace.populate!` (demo_workspace.rb:87) via apply_result.rb:69. Looks like 5ff0c0c (pricing holds no longer get a buyer question) meeting a demo fixture or validation that still marks those lines as needing the buyer. Repro: `curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3100/quotes` with no cookie. Ken is waiting to record; please post the fix SHA here, and whether an existing browser session is safe to record from meanwhile. **RESOLVED:** Fixed importer/demo seeding in a74510a; final integrated525-test check passes. |

@@ -6,6 +6,7 @@ module DistributorPricing
   # Routes contain identities only. Every amount comes from this run's HTML.
   module AbrasiveSources
     HOSTS = %w[kleenblast.com catalog.precisionfinishinginc.com www.ntruddock.com].freeze
+    MAX_HTML_BYTES = 3_000_000
 
     def self.routes(item)
       size = item["grade"].to_s.upcase.delete("- ")
@@ -21,8 +22,14 @@ module DistributorPricing
     end
 
     def self.price(html, route)
+      # HTTP bodies arrive as bytes. Accept valid UTF-8 without altering those
+      # bytes; never scrub or guess a legacy encoding around prices or sizes.
+      return nil unless html.is_a?(String) && html.bytesize <= MAX_HTML_BYTES
+      html = html.dup.force_encoding(Encoding::UTF_8)
+      return nil unless html.valid_encoding?
+
       # CGI.unescapeHTML leaves &nbsp; as text; dealer tier tables use it between words.
-      html = html.to_s.gsub(/&nbsp;|&#160;|&#xa0;/i, " ")
+      html = html.gsub(/&nbsp;|&#160;|&#xa0;/i, " ")
       text = AdditionalSources.plain(html).tr("\u00a0", " ").gsub(/\s+/, " ")
       size, sku = route.values_at("size", "supplier_sku")
       tiers = []

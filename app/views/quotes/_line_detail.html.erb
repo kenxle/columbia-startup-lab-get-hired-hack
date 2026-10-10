@@ -53,6 +53,8 @@
     <div class="callout callout--held" role="note">
       <% if line.state.to_s == "no_match" %>
         <strong>No match.</strong> Nothing in the catalog fits this line, so it is not priced and is excluded from the subtotal.
+      <% elsif line.clarification_question.blank? && quote.internal_hold?(line) %>
+        <strong>Price to confirm.</strong> <%= quote.internal_hold_reason(line) %>
       <% elsif delivery %>
         <strong>Waiting on buyer.</strong> The question is in the local demo mail preview. No email was sent to the buyer. This line remains held and excluded from the subtotal; the rest of the quote can continue.
       <% else %>

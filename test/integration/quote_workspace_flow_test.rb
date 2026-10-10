@@ -258,4 +258,24 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     assert quote.reload.approved?
   end
 
+  test "price-only status does not inflate actual buyer-question membership" do
+    quote = create_demo_quote
+    price_hold = quote.quote_lines.second
+    price_hold.update!(clarification_question: nil, catalog_sku: "KNOWN", unit_price: nil,
+      unresolved_fields: ["unit_price"], processing: {"match" => {"status" => "exact"}})
+    assert_equal "Price to confirm", price_hold.status_label
+    assert_equal 1, quote.ready_count
+    assert_equal 1, QuoteWorkspace::BuyerQuestionDraft.new(quote).held_lines.length
+    assert_equal({unsent: 1, waiting: 0}, ApplicationController.helpers.buyer_question_counts(quote))
+    get quote_path(quote, line: price_hold.id)
+    assert_response :success
+    assert_select ".review-questions-link", text: "Review buyer questions (1)"
+    assert_select ".callout", text: /Price to confirm/
+    assert_select ".callout", text: /Question to send/, count: 0
+    price_hold.update!(processing: nil)
+    assert_equal "Question to send", price_hold.status_label
+    get quote_path(quote, line: price_hold.id)
+    assert_select ".review-questions-link", text: "Review buyer questions (2)"
+  end
+
 end

@@ -20,6 +20,35 @@ class AbrasiveSourcesTest < Minitest::Test
     assert_nil A.price(kleen.sub("50lb", "25lb"), route("kleen"))
     assert_nil A.price(kleen.sub("50lb Bag", "Bag"), route("kleen"))
   end
+
+  def test_binary_utf8_page_keeps_exact_price_and_does_not_mutate_source_bytes
+    body = (kleen.sub("50lb", "50\u00a0lb") + " © Supplier").b.freeze
+    result = A.price(body, route("kleen"))
+    assert_equal "72.5", result["unit_price"]
+    assert_equal "1.45", result["normalized_unit_price"]
+    assert_equal Encoding::BINARY, body.encoding
+    assert_equal " © Supplier".b, body.byteslice(-12, 12)
+    assert_nil A.price(body.sub("50".b, "25".b), route("kleen"))
+  end
+
+  def test_invalid_or_oversized_bytes_never_repair_a_price_into_evidence
+    assert_nil A.price(kleen.sub("72.50", "72\xFF.50".b).b, route("kleen"))
+    assert_nil A.price(kleen.b + "\xA9".b, route("kleen"))
+    assert_nil A.price(kleen + " " * A::MAX_HTML_BYTES, route("kleen"))
+    assert_nil A.price(nil, route("kleen"))
+  end
+
+  def test_invalid_binary_source_returns_unverified_listing_without_aborting_refresh
+    http = Object.new
+    body = kleen.b + "\xFF".b
+    http.define_singleton_method(:get) do |url|
+      {"ok" => true, "body" => body, "retrieved_at" => Time.now.utc.iso8601}
+    end
+    result = DistributorPricing::SourceBook.new(http_client: http).refresh(items: [ITEM], request: {"request_id" => "invalid-bytes"}).fetch(ITEM["part_number"])
+    assert_empty result["offers"]
+    assert_empty result["public_market_prices"]
+    assert result["source_checks"].any? { |check| check["listing_status"] == "price_or_specification_not_verified" }
+  end
   def test_actual_rudco_catalog_routes
     catalog = DistributorPricing::Catalog.new
     %w[RC-STEELSHOT-S330 RC-STEELSHOT-S170 RC-STEELGRIT-G40 RC-STEELGRIT-G25].each do |part|

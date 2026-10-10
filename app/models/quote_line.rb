@@ -77,6 +77,8 @@ class QuoteLine < ApplicationRecord
   end
 
   def status_label
+    return "Price to confirm" if state == "needs_buyer" && clarification_question.blank? && quote&.internal_hold?(self)
+
     return "Waiting on buyer" if state == "needs_buyer" && current_question_delivery
 
     STATE_LABELS.fetch(state, "Unknown")

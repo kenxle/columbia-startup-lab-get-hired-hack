@@ -20,8 +20,9 @@
   </div>
   <div class="page-actions">
     <%= link_to "Refresh live prices", quote_pricing_path(@quote), class: "button button--quiet" %>
-    <% if @quote.held_count.positive? %>
-      <%= link_to "Review buyer questions (#{@quote.held_count})", quote_buyer_questions_path(@quote),
+    <% question_count = QuoteWorkspace::BuyerQuestionDraft.new(@quote).held_lines.length %>
+    <% if question_count.positive? %>
+      <%= link_to "Review buyer questions (#{question_count})", quote_buyer_questions_path(@quote),
             class: "button button--quiet review-questions-link" %>
     <% end %>
     <%= quote_status_badge(@quote) %>
