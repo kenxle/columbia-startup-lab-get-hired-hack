@@ -23,6 +23,8 @@ class Quote < ApplicationRecord
 
   scope :for_workspace, ->(workspace_token) { where(workspace_token: workspace_token.to_s) }
 
+  before_validation :fill_default_title, on: :create
+
   validates :workspace_token, presence: true
   validates :title, presence: true, length: { maximum: 200 }
   validates :buyer_name, length: { maximum: 200 }
@@ -252,6 +254,17 @@ class Quote < ApplicationRecord
   end
 
   private
+
+  # An uploaded RFQ needs no typed title: use the file name, then the email
+  # subject, then the first non-blank line of the text.
+  def fill_default_title
+    return if title.present?
+
+    lines = source_text.to_s.lines.map(&:strip).reject(&:empty?)
+    subject = lines.find { |line| line.match?(/\Asubject:/i) }&.sub(/\Asubject:\s*/i, "")
+    from_file = File.basename(original_filename.to_s, ".*").tr("_-", "  ").squeeze(" ").strip if original_filename.present?
+    self.title = (from_file.presence || subject.presence || lines.first.presence || "New RFQ").truncate(200)
+  end
 
   def processing_evidence_shape
     self.class.processing_evidence_errors(source: processing_source, warnings: processing_warnings).each do |problem|
