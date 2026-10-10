@@ -1,5 +1,7 @@
 # RudCo: Company Profile
 
+**Status:** Approved by Ken, 2026-10-10.
+
 Researched 2026-10-10 from public pages only. Where a fact came from a search-result snippet and not from a page I read, it is marked **(snippet only)**. Text in quotation marks is exact wording I read on the linked page.
 
 ## What matters to them
