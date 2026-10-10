@@ -30,6 +30,14 @@ class FinalQuotesController < ApplicationController
       notice: "Local email preview saved with PDF and CSV attachments. Nothing was sent to the buyer.")
   end
 
+  def deliver
+    preview_id = QuoteWorkspace::SendApprovedQuote.call(quote: @quote, expected_revision: params[:reviewed_version])
+    redirect_to(preview_id ? quote_local_preview_path(@quote, preview_id) : quote_final_quote_path(@quote),
+      notice: "Sent to the local preview inbox with PDF and CSV attachments. Recipient: buyer@example.invalid (placeholder). No real email was sent.")
+  rescue QuoteWorkspace::SendApprovedQuote::Failed => error
+    redirect_to quote_final_quote_path(@quote), alert: error.message
+  end
+
   private
 
   def set_quote

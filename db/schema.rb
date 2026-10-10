@@ -152,6 +152,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_205000) do
     t.json "processing_warnings", default: [], null: false
     t.datetime "sent_at"
     t.string "sent_review_revision"
+    t.string "sent_recipient"
+    t.string "sent_channel"
+    t.string "sent_preview_id"
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 

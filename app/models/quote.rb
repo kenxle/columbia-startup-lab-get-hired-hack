@@ -166,10 +166,14 @@ class Quote < ApplicationRecord
     created_at && created_at + 24.hours
   end
 
-  # Delivery belongs to a reviewed revision. A later edit needs a new send;
-  # approval or opening a local mail preview never records a delivery.
+  # A send receipt belongs to a reviewed revision. A later edit needs a new
+  # send. Local receipts are explicitly identified in every status surface.
   def sent?
     approved? && sent_at.present? && sent_review_revision.present? && sent_review_revision == review_revision
+  end
+
+  def sent_locally?
+    sent? && sent_channel == "local_preview"
   end
 
   def sent_metadata_shape

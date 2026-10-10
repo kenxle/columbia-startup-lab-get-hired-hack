@@ -28,6 +28,9 @@
 
   <% if quote.approved? %>
     <div class="approval__done">
+      <% if quote.sent_locally? %>
+        <p>Sent to the local preview inbox <%= display_time(quote.sent_at) %> for <%= quote.sent_recipient %> (placeholder). No real email was sent.</p>
+      <% end %>
       <p>Approved <%= display_time(quote.approved_at) %>. Any line edit clears this approval.</p>
       <%= link_to "Prepare email and PDF", quote_final_quote_path(quote), class: "button button--primary" %>
       <%= link_to export_quote_path(quote, format: :csv), class: "button button--quiet", download: "" do %>

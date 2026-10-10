@@ -225,3 +225,7 @@ route. Review/source replacement is atomic, and ordinary links remain usable
 without JavaScript. No processing or write action runs when selecting a line.
 The quote-scoped teaching endpoint accepts the shared model's gauge, thickness
 and quantity-unit fields. Numeric meanings must be positive and finite.
+
+### Explicit local quote send
+
+`POST /quotes/:quote_id/final_quote/deliver` requires the current `reviewed_version` and approved, current pricing. The quote lock binds saved email/PDF/CSV and its receipt to one revision. Success stores `sent_at`, `sent_review_revision`, `sent_recipient`, `sent_channel: local_preview` and `sent_preview_id`. The recipient is the displayed `buyer@example.invalid` placeholder. Repeating the action for the same revision reuses the receipt. Any later content edit clears the current Sent/approval state. A plain preview remains non-mutating. No real email delivery is enabled.

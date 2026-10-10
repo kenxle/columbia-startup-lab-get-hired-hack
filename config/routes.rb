@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get :download
       get :pdf
       post :preview_email
+      post :deliver
     end
 
     resources :quote_lines, only: :update

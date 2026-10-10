@@ -93,7 +93,7 @@ module QuotesHelper
   def quote_status_badge(quote)
     question_counts = buyer_question_counts(quote)
     if quote.sent?
-      tag.span("Sent", class: "status status--ready")
+      tag.span(quote.sent_locally? ? "Sent (local preview)" : "Sent", class: "status status--ready")
     elsif quote.approved?
       tag.span("Ready to send", class: "status status--ready")
     elsif quote.awaiting_processing?

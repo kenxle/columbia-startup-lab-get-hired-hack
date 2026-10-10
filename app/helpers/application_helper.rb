@@ -8,7 +8,7 @@ module ApplicationHelper
     question_counts = buyer_question_counts(quote)
     no_match_count = lines.count { |line| line.state == "no_match" }
     attention = if quote.sent?
-      "Sent"
+      quote.sent_locally? ? "Sent (local preview)" : "Sent"
     elsif question_counts[:unsent].positive?
       "#{pluralize(question_counts[:unsent], 'question')} to send"
     elsif question_counts[:waiting].positive?
@@ -37,6 +37,7 @@ module ApplicationHelper
     if quote.sent?
       minutes = [(quote.sent_at - quote.created_at).div(60), 0].max
       label = "Sent in #{deadline_duration(minutes)}"
+      label += " (local preview)" if quote.sent_locally?
       state = "sent"
     else
       remaining = due_at - now
