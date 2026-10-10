@@ -56,9 +56,9 @@ The [app dry run](../../engineering/DRY_RUN-2026-10-10.md) also verified the com
   - Tisch's catalog matcher has a reader for messy wording such as "sixteen gauge, four by eight, twenty sheets".
   - The distributor pricing agent uses the gateway to split an RFQ into lines. The gateway is never a source for prices, stock, or cost.
   - In the demo as shown, the Rails app runs with the model switched off, so lines are read by the rules parser and matcher.
-- **Block Convey / PRISMtrace.** An optional background client records bounded model, outcome and timing metadata without RFQ text, buyer details or model responses. Telemetry failure does not block quoting. The local tests use fake HTTP; project credentials and a verified live trace are still pending.
-- **Jev.** A key is configured locally. Yuval's additive compliance integration is pending; no live Jev result is claimed.
-- **Ruby and Rails 8.** The quote app.
+- **Block Convey / PRISMtrace.** When configured, the optional background client sends model, outcome and timing metadata to PRISM, so failed calls can be inspected. No prompts, secrets, buyer data or model responses are sent. A tracing failure never stops a quote. Local tests pass; credentials and a verified live trace remain pending.
+- **Jev.** A key is configured locally. Yuval's additive compliance integration is pending review; no live Jev result is claimed.
+- **Ruby and Rails 8.** The web app.
 - **SQLite.** App storage.
 - **Prawn.** Builds the quote PDF.
 - **letter_opener.** Previews the buyer emails in the browser.

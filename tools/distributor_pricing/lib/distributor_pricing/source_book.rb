@@ -6,6 +6,7 @@ require "bigdecimal"
 require "time"
 require_relative "http_client"
 require_relative "additional_sources"
+require_relative "abrasive_sources"
 require_relative "lead_time"
 
 module DistributorPricing
@@ -16,7 +17,7 @@ module DistributorPricing
       @root, @clock = root, clock
       @observations = JSON.parse(File.read(File.join(root, "data/aviation/price_observations.json")))
       @directory = JSON.parse(File.read(File.join(root, "data/distributor_pricing/supplier_directory.json")))
-      hosts = HttpClient::DEFAULT_HOSTS + AdditionalSources::HOSTS + @directory.map { |r| URI(r.fetch("source_url")).hostname }
+      hosts = HttpClient::DEFAULT_HOSTS + AdditionalSources::HOSTS + AbrasiveSources::HOSTS + @directory.map { |r| URI(r.fetch("source_url")).hostname }
       @http = http_client || HttpClient.new(allowed_hosts: hosts.uniq)
     end
 
@@ -26,7 +27,7 @@ module DistributorPricing
         if item["source_catalog"] == "aviation"
           observation_rows(item).map { |row| row.fetch("source_url") } + AdditionalSources.routes(item).map { |route| route.fetch("source_url") }
         else
-          matching_routes(item).map { |route| route.fetch("source_url") }
+          (matching_routes(item) + AbrasiveSources.routes(item)).map { |route| route.fetch("source_url") }
         end
       end
       urls << LeadTime::POLICY_URL if unique_items.any? { |item| item["source_catalog"] == "aviation" }
@@ -79,6 +80,17 @@ module DistributorPricing
                                        "usable_as_delivered_benchmark" => false, "request_id" => request["request_id"])
           end
         else
+          AbrasiveSources.routes(item).each do |route|
+            response = pages.fetch(route.fetch("source_url"))
+            live = response["ok"] && AbrasiveSources.price(response.fetch("body"), route)
+            checks << response.reject { |key, _| key == "body" }.merge("supplier" => route["supplier"], "part_number" => item["part_number"],
+              "listing_status" => live ? "exact_size_package_price_observed" : "price_or_specification_not_verified")
+            routes << route.reject { |key, _| key == "parser" }.merge("checked_at" => response["retrieved_at"], "live_page_available" => response["ok"])
+            next unless live
+            extra_prices << live.merge("supplier" => route["supplier"], "part_number" => item["part_number"], "source_url" => route["source_url"],
+              "buy_url" => route["source_url"], "quote_url" => route["quote_url"],
+              "retrieved_at" => response["retrieved_at"], "request_id" => request["request_id"], "price_scope" => "product_only_published_basis", "usable_as_delivered_benchmark" => false)
+          end
           matching_routes(item).each do |route|
             response = pages.fetch(route.fetch("source_url"))
             checks << response.reject { |key, _| key == "body" }.merge("supplier" => route["supplier"], "purpose" => "live_supplier_quote_route")
