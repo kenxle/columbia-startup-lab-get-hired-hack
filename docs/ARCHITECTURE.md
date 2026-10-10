@@ -146,7 +146,6 @@ These come from the [product brief](product/PRD.md) commitments.
 - **Demo materials catalog (W4).** Tisch's current user-requested catalog is 500 aviation hardware items. Ken's 13:00 workflow requests steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate and the stainless gauge line. These need a separately sourced materials catalog; they are not fabricated or added to the aviation list in this change. Owner: Tisch.
 - **Processing data still awaiting presentation.** Hardware spec keys, `processing`, `line_id`, and `revision` now persist. Top-level extraction `source`/`warnings` are not yet stored or shown. Owner: Hirsh, coordinated with Yuval.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
-- **The confidence gate for auto-sending questions.** Hirsh proposed: every choice tied to catalog or spec evidence, no unresolved conflict outside the question, and a free-text fallback. Otherwise the rep reviews. Owner: Ken to confirm.
 - **W3: does a buyer's answer rerun only the answered lines?** Owner: Ken.
 - **Mail adapter.** letter_opener first, then a real email account. Proposed owner: Hirsh.
 - **Anthropic API key.** Specs run on recorded responses until one is in `.env`. Owner: Yuval.
