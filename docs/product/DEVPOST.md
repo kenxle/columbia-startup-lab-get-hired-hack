@@ -31,7 +31,9 @@ Remove this section before pasting into Devpost.
 
 ### Why
 
-RudCo supplies metals, abrasives, and aggregates to industrial buyers. Buyers write the same item many ways. One writes "304 SS sheet 16ga 4x8". Another writes "Stainless 304, 0.060 in, 48 x 96". Today a person decodes every line by hand. That is slow, and a wrong guess on grade or thickness becomes a wrong quote, a lost order, or a return.
+RFQs are the lifeblood of RudCo. RudCo supplies metals, abrasives, and aggregates to industrial buyers, and it promises a quote within 24 hours. It also has to be right: one error on a quote can cost hundreds of thousands of dollars.
+
+That is hard, because buyers write the same item many ways. One writes "304 SS sheet 16ga 4x8". Another writes "Stainless 304, 0.060 in, 48 x 96". Today a person decodes every line by hand, against the clock. A wrong guess on grade or thickness becomes a wrong quote, a lost order, or a return.
 
 ### What it is
 
