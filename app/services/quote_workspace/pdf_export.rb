@@ -6,9 +6,9 @@ module QuoteWorkspace
     class UnsupportedGlyph < StandardError; end
 
     FONT_ROOT = Rails.root.join("app/assets/fonts/noto").freeze
-    INK = "172335".freeze
-    MUTED = "52647C".freeze
-    BLUE = "255BD9".freeze
+    INK = "1A212D".freeze
+    MUTED = "454E5E".freeze
+    BLUE = "0063E6".freeze
 
     def initialize(quote)
       @final_quote = FinalQuote.new(quote)
@@ -34,7 +34,7 @@ module QuoteWorkspace
         text(pdf, "Approved: #{data[:approved_at]}", size: 8, color: MUTED)
         pdf.move_down 12
         if data[:sample]
-          text(pdf, FinalQuote::SAMPLE_NOTICE, size: 9, style: :bold, color: "785008")
+          text(pdf, FinalQuote::SAMPLE_NOTICE, size: 9, style: :bold, color: "7F4205")
           pdf.move_down 8
         end
         text(pdf, "Ready-line subtotal", size: 10, color: MUTED)
@@ -82,11 +82,11 @@ module QuoteWorkspace
     def render_line(pdf, line)
       @active_line = line[:position]
       pdf.start_new_page if pdf.cursor < 110
-      pdf.stroke_color "DCE3ED"
+      pdf.stroke_color "E5E7EB"
       pdf.stroke_horizontal_rule
       pdf.move_down 12
       text(pdf, "LINE #{line[:position]} / #{line[:status]}", size: 9, style: :bold,
-        color: line[:ready] ? BLUE : "785008")
+        color: line[:ready] ? BLUE : "7F4205")
       pdf.move_down 4
       text(pdf, line[:description], size: 12, style: :bold)
       line[:spec].each { |label, value| text(pdf, "#{label}: #{value}", size: 9) }
@@ -102,13 +102,13 @@ module QuoteWorkspace
           benchmark = line[:benchmark]
           text(pdf, "Benchmark: #{benchmark['name']}", size: 8, color: MUTED) if benchmark["name"].present?
           text(pdf, "As of: #{benchmark['as_of']}", size: 8, color: MUTED) if benchmark["as_of"].present?
-          text(pdf, "Sample benchmark", size: 8, color: "785008") if benchmark["kind"] == "sample"
+          text(pdf, "Sample benchmark", size: 8, color: "7F4205") if benchmark["kind"] == "sample"
           text(pdf, benchmark["explanation"], size: 8, color: MUTED) if benchmark["explanation"].present?
         else
           text(pdf, "Benchmark: not provided", size: 8, color: MUTED)
         end
       else
-        text(pdf, "Unpriced. Excluded from subtotal.", style: :bold, color: "785008")
+        text(pdf, "Unpriced. Excluded from subtotal.", style: :bold, color: "7F4205")
         text(pdf, "Question for the buyer: #{line[:question]}")
       end
       text(pdf, "Lead time: #{line[:lead_time]}")

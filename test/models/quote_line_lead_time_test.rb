@@ -122,6 +122,83 @@ class QuoteLineLeadTimeTest < ActiveSupport::TestCase
     assert_equal "5 working days after confirmation", @line.reload.display_lead_time
   end
 
+  test "nested stocked timing with source reaches display email PDF snapshot and CSV" do
+    result = nested_timing_result
+    apply(result)
+    line = @quote.reload.quote_lines.first
+    assert_equal "24 to 48 hours", line.display_lead_time
+    assert_equal "RudCo catalog stock confirmation", line.lead_time_source
+    @quote.approve!
+    assert_includes QuoteWorkspace::CsvExport.new(@quote).to_csv, '"24 to 48 hours","RudCo catalog stock confirmation"'
+    assert_includes QuoteWorkspace::FinalQuote.new(@quote).body, "Lead time: 24 to 48 hours"
+    QuoteWorkspace::FinalQuote.new(@quote).with_snapshot do |snapshot|
+      assert_equal "24 to 48 hours", snapshot[:lines].first[:lead_time]
+    end
+  end
+
+  test "nested timing does not infer stock from unknown or held lines" do
+    result = nested_timing_result
+    result["lines"].first["processing"]["lead_time"]["stocked"] = false
+    result["lines"].second["processing"] = nested_timing_result["lines"].first["processing"]
+    apply(result)
+    @quote.reload.quote_lines.first(2).each do |line|
+      assert_nil line.lead_time
+      assert_nil line.lead_time_source
+      assert_equal "to confirm", line.display_lead_time
+    end
+  end
+
+  test "third party source or candidate stock scope never establishes RudCo timing" do
+    [ "positive stock at a dealer warehouse", "third-party stock", "supplier inventory", "synthetic catalog", "stock unconfirmed" ].each do |source|
+      result = nested_timing_result
+      result["lines"].first["processing"]["lead_time"]["source"] = source
+      apply(result)
+      assert_equal "to confirm", @quote.reload.quote_lines.first.display_lead_time
+    end
+    [ { "stock_scope" => "positive stock at a dealer warehouse" }, { "stock_reported" => false }, { "catalog_provenance" => "sample inventory" } ].each do |stock|
+      result = nested_timing_result
+      first = result["lines"].first
+      first["processing"]["match"] = { "candidates" => [ { "item_id" => first["catalog_sku"], "stock" => stock } ] }
+      apply(result)
+      assert_equal "to confirm", @quote.reload.quote_lines.first.display_lead_time
+    end
+  end
+
+  test "malformed or unsourced nested timing rejects atomically" do
+    @quote.approve!
+    originals = @quote.quote_lines.map(&:attributes)
+    original_revision = @quote.review_revision
+    [ false, "soon", { "text" => "24 hours", "stocked" => "true", "source" => "RudCo" },
+      { "text" => "24 hours", "stocked" => true, "source" => " " },
+      { "text" => "24 hours", "stocked" => true, "source" => "x" * 201 },
+      { "text" => "24 hours", "stocked" => true, "source" => "RudCo", "unknown" => true } ].each do |timing|
+      result = nested_timing_result
+      result["lines"].first["processing"]["lead_time"] = timing
+      assert_raises(QuoteWorkspace::ApplyResult::InvalidResult) { apply(result) }
+      assert_equal originals, @quote.reload.quote_lines.map(&:attributes)
+      assert_equal original_revision, @quote.review_revision
+      assert @quote.approved?
+    end
+  end
+
+  test "explicit schema one timing or explicit nulls take precedence over nested timing" do
+    result = nested_timing_result
+    result["lines"].first.merge!("lead_time" => "5 days", "lead_time_source" => "Supplier confirmation")
+    apply(result)
+    assert_equal "5 days", @quote.reload.quote_lines.first.display_lead_time
+    result["lines"].first.merge!("lead_time" => nil, "lead_time_source" => nil)
+    apply(result)
+    assert_equal "to confirm", @quote.reload.quote_lines.first.display_lead_time
+  end
+
+  def nested_timing_result
+    result = QuoteWorkspace::Demo.result
+    result["lines"].first["processing"] = {
+      "lead_time" => { "text" => "24 to 48 hours", "stocked" => true, "source" => "RudCo catalog stock confirmation" }
+    }
+    result
+  end
+
   test "CSV includes safe timing and source and hides held timing" do
     @line.update!(lead_time: "=5+5", lead_time_source: "@supplier")
     held = @quote.quote_lines.second

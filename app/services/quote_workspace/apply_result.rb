@@ -164,10 +164,44 @@ module QuoteWorkspace
       attributes["edited_fields"] = []
       attributes["line_id"] = source["line_id"]
       attributes["processing"] = source["processing"]
+      bridge_processing_lead_time(source, attributes, label)
 
       check_required_evidence(attributes, label)
       check_state_rules(attributes, label)
       attributes
+    end
+
+    # Nested timing is a stock-based promise. Explicit schema-1 timing fields,
+    # including explicit nulls, retain precedence for backward compatibility.
+    def bridge_processing_lead_time(source, attributes, label)
+      processing = source["processing"]
+      return unless processing.is_a?(Hash) && processing.key?("lead_time")
+      return if processing["lead_time"].nil?
+
+      timing = processing["lead_time"]
+      unless timing.is_a?(Hash) && (timing.keys - %w[text stocked source]).empty? &&
+          [ true, false ].include?(timing["stocked"]) &&
+          %w[text source].all? { |key| timing[key].is_a?(String) && timing[key].strip.present? && timing[key].length <= 200 }
+        @problems << "#{label} processing lead_time must contain stocked boolean and bounded text and source"
+        return
+      end
+      return if source.key?("lead_time") || source.key?("lead_time_source")
+      return unless timing["stocked"] && attributes["state"] == "ready"
+      return if timing["text"].strip.casecmp?("to confirm")
+
+      candidates = processing.dig("match", "candidates") if processing["match"].is_a?(Hash)
+      candidate = Array(candidates).find do |entry|
+        entry.is_a?(Hash) && [ entry["item_id"], entry["part_number"] ].compact.include?(attributes["catalog_sku"])
+      end
+      stock = candidate && candidate["stock"].is_a?(Hash) ? candidate["stock"] : {}
+      return if stock["stock_reported"] == false || stock["in_stock"] == false
+
+      provenance = [ timing["source"], stock["stock_scope"], stock["catalog_provenance"], candidate&.[]("catalog") ].compact.join(" ")
+      # Third-party or constructed stock cannot establish RudCo inventory.
+      return if provenance.match?(/\b(?:third[ -]party|dealer|supplier|retailer|distributor|sample|synthetic|unknown|unconfirmed)\b|\bno stock\b|\bnot (?:in stock|stocked|RudCo inventory)\b/i)
+
+      attributes["lead_time"] = timing["text"].strip
+      attributes["lead_time_source"] = timing["source"].strip
     end
 
     def parse_decimal(value, field_name, label)

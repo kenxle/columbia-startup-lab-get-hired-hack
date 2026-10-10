@@ -178,3 +178,12 @@ Hirsh owns workspace controllers, views and minimal integration. Yuval's process
 and Tisch's catalog, matching and memory services remain their domains. Coordinate
 contract changes before editing those services. The coordinator owns shared Git,
 dependencies, integration checks and browser verification.
+
+### Processing timing bridge
+
+Optional `processing.lead_time` accepts `text`, a boolean `stocked`, and `source`.
+Valid sourced timing reaches display and exports only on Ready lines with confirmed
+stock; unknown timing and explicit third-party stock remain "to confirm".
+Explicit top-level timing fields, including null clears, take precedence. Malformed
+nested timing rejects the result atomically. Metadata is producer evidence, not
+independent verification of inventory.
