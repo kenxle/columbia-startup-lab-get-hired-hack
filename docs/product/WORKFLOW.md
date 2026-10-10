@@ -9,6 +9,7 @@
 Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation. Decided items move to [Decisions](#decisions) at the bottom.
 
 Nothing open.
+
 ---
 
 ## The flow
@@ -125,7 +126,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 | 6. Questions and replies | Hirsh |
 | 7. Review and approve | Hirsh |
 | 8. Send the reply | Hirsh |
-| 9. Learn the buyer | Yuval (parsing side), Tisch (per-buyer memory tables), Hirsh (where the rep confirms a reading) |
+| 9. Learn the buyer | Yuval (parsing side), Tisch (per-buyer memory tables), Hirsh (proposed: where the rep confirms a reading) |
 
 This table reflects the bulletin board as of 12:39. Owners, correct it if it is wrong.
 
