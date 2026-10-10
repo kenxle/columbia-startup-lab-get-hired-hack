@@ -100,4 +100,5 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 - Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a Quote Desk logo.
 - **Favicon** (Ken, 2026-10-10): RudCo's own favicon file, unchanged: [ead1229e….png](https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png). The tab title leads with what needs the rep, then the RFQ: "3 lines need the buyer · RFQ-0001". Pages with no status use "Quote Desk".
 - The share image's all-caps "RUDCO" wordmark is part of a picture. Do not trace it into the app.
+- **Icons** (Ken, 2026-10-10): use [Lucide](https://lucide.dev), the set RudCo's own site uses (its script bundle carries lucide-react v0.462.0). Icons RudCo already uses include Factory, Truck, ShieldCheck, Package, Boxes, FileText, Calculator, Clock, CircleCheck, TriangleAlert, Mail, Send, TrendingUp and TrendingDown. Pick from that list first.
 
