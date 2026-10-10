@@ -135,6 +135,7 @@ These come from the [product brief](product/PRD.md) commitments.
 
 ## Open questions and known gaps
 
+- **Lead time per line and in the export (Ken, 13:00).** Newly required, not implemented yet. Unknown timing must display "to confirm"; RudCo's 24 to 48 hour shipping promise applies only to confirmed stocked items, not an arbitrary match in the sample catalog. Owner: Hirsh, with stock/lead-time evidence from Yuval and Tisch.
 - **Which catalog the demo uses (W4).** The only catalog is aviation bolts. Metals lines will land as No match unless Tisch adds metal items. Owner: Tisch.
 - **Processing data still awaiting presentation.** Hardware spec keys, `processing`, `line_id`, and `revision` now persist. Top-level extraction `source`/`warnings` are not yet stored or shown. Owner: Hirsh, coordinated with Yuval.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
