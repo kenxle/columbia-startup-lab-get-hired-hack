@@ -46,6 +46,15 @@ module CatalogMatch
           catalog_sku: @item["pn"],
           state: "needs_buyer",
           unresolved_fields: [ "unit_price" ],
+          line_id: "match-#{@match_request.id}-#{@item['pn']}".first(200),
+          processing: {
+            "source" => "catalog_match",
+            "match_request_id" => @match_request.id,
+            "client" => @match_request.client.name,
+            "catalog" => @item["catalog"],
+            "catalog_provenance" => @item["catalog_provenance"],
+            "sample_data" => true
+          },
           notes: "Matched by the catalog agent to #{@item['pn']} for #{@match_request.client.name}; " \
                  "approved by the rep. No price yet: waiting for a benchmark price. " \
                  "#{@item['catalog_provenance'].to_s.upcase_first}."

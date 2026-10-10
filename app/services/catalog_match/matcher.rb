@@ -3,7 +3,7 @@ module CatalogMatch
   #
   # Each item is checked field by field against the reading. A field that agrees
   # is exact; a field that is close (a 4% thickness gap, a different spec than
-  # the one we stock) is near and becomes a question; a field that disagrees
+  # the one in the catalog) is near and becomes a question; a field that disagrees
   # rules the item out. The best items without conflicts are the suggestions.
   #
   # Outcomes follow the workflow: "match" (one item fits), "candidates" (two or
@@ -41,9 +41,9 @@ module CatalogMatch
       "standard" => "spec", "pn" => "part number"
     }.freeze
 
-    def self.call(description, client: nil, catalog: Catalog.default)
+    def self.call(description, client: nil, catalog: Catalog.default, given: {})
       terms = client ? ClientMemory.new(client).terms : []
-      new(DescriptionReader.read(description, client_terms: terms), catalog).call
+      new(DescriptionReader.read(description, client_terms: terms, given: given), catalog).call
     end
 
     def initialize(reading, catalog)
@@ -93,7 +93,7 @@ module CatalogMatch
       end
     end
 
-    # AN3-13 and AN3-13A differ only by the drilled shank; offer the variant we stock.
+    # AN3-13 and AN3-13A differ only by the drilled shank; offer the variant in the catalog.
     def related_part_numbers
       requested = @reading.part_numbers.first
       base = requested.sub(/A\z/, "")
@@ -102,7 +102,7 @@ module CatalogMatch
 
       candidates = related.map { |item| Candidate.new(item: item, checks: [ pn_check(item, :near) ]) }
       Result.new(outcome: "candidates", reading: @reading, candidates: candidates, closest: [],
-                 question: "We do not stock #{requested}. We stock #{related.map { |item| item['pn'] }.join(' and ')}, " \
+                 question: "#{requested} is not in our catalog. The catalog has #{related.map { |item| item['pn'] }.join(' and ')}, " \
                            "which differs in the drilled shank. Will that work?")
     end
 
@@ -114,7 +114,7 @@ module CatalogMatch
       end
 
       { field: "pn", status: status, buyer_text: requested, catalog_value: item["pn"], source: "text",
-        explanation: status == :exact ? "part number #{item['pn']} is in the catalog" : "closest stocked part number to #{requested}" }
+        explanation: status == :exact ? "part number #{item['pn']} is in the catalog" : "closest catalog part number to #{requested}" }
     end
 
     def empty_result
@@ -125,7 +125,7 @@ module CatalogMatch
     def no_match_result(ranked)
       closest = ranked.sort_by { |candidate| [ candidate.conflicts.size, -candidate.exact.size ] }.first(3)
       Result.new(outcome: "no_match", reading: @reading, candidates: [], closest: closest,
-                 question: "We do not stock an item that matches this line. #{closest_hint(closest)}".strip)
+                 question: "Our catalog has no item that matches this line. #{closest_hint(closest)}".strip)
     end
 
     def closest_hint(closest)
@@ -231,7 +231,7 @@ module CatalogMatch
       return conflict(field, "temper", item["temper"], "this item has no temper") if item["temper"].nil?
 
       if wanted == "T6" && item["temper"] == "T651" && item["form"] == "plate"
-        return near(field, "temper", item["temper"], "6061-T6 plate is usually stocked as T651, the stress-relieved form",
+        return near(field, "temper", item["temper"], "6061-T6 plate is usually supplied as T651, the stress-relieved form",
                     "You wrote 6061-T6 plate. Plate is usually T651 (stress relieved). Is T651 acceptable?")
       end
       conflict(field, "temper", item["temper"], "this item is #{item['temper']}")
@@ -264,7 +264,7 @@ module CatalogMatch
       elsif gap.abs <= THICKNESS_NEAR
         percent = (gap * 100).round(1)
         near(field, "thickness", label, "#{label} is #{percent.abs}% #{percent.positive? ? 'thicker' : 'thinner'} than the #{wanted} in written",
-             "You wrote \"#{field['text']}\". Our nearest stock is #{label}. Do you need exactly that thickness, or is #{label} acceptable?")
+             "You wrote \"#{field['text']}\". The nearest catalog item is #{label}. Do you need exactly that thickness, or is #{label} acceptable?")
       else
         conflict(field, "thickness", label, "this item is #{label}")
       end
@@ -280,15 +280,15 @@ module CatalogMatch
     def length_check(item, field)
       wanted = field["value"].to_f
       return plan_dimension_check(item, field, "length") if %w[sheet plate].include?(item["form"])
-      return conflict(field, "length", nil, "this item has no stock length") if item["length_in"].nil?
+      return conflict(field, "length", nil, "this item has no catalog length") if item["length_in"].nil?
       return exact(field, "length", "#{inches(item['length_in'] / 12.0)} ft") if close?(wanted, item["length_in"])
 
       if wanted < item["length_in"]
         return near(field, "length", "#{inches(item['length_in'] / 12.0)} ft",
-                    "we stock #{inches(item['length_in'] / 12.0)} ft lengths; #{inches(wanted / 12.0)} ft needs a cut",
-                    "We stock #{inches(item['length_in'] / 12.0)} ft lengths. Should we cut to #{inches(wanted / 12.0)} ft?")
+                    "the catalog item comes in #{inches(item['length_in'] / 12.0)} ft lengths; #{inches(wanted / 12.0)} ft needs a cut",
+                    "The catalog item comes in #{inches(item['length_in'] / 12.0)} ft lengths. Should it be cut to #{inches(wanted / 12.0)} ft?")
       end
-      conflict(field, "length", "#{inches(item['length_in'] / 12.0)} ft", "our stock length is shorter than #{inches(wanted / 12.0)} ft")
+      conflict(field, "length", "#{inches(item['length_in'] / 12.0)} ft", "the catalog length is shorter than #{inches(wanted / 12.0)} ft")
     end
 
     def finish_check(item, field)
@@ -301,8 +301,8 @@ module CatalogMatch
       matching = wanted.find { |spec| stocked.match?(/(?<![A-Z0-9])#{spec}|ASTM#{spec}|ASME#{spec}|\A#{spec}/) || stocked.include?(spec) }
       return exact(field, "spec", item["standard"]) if matching
 
-      near(field, "spec", item["standard"], "we stock this item to #{item['standard']}, not #{wanted.join(' or ')}",
-           "You wrote #{wanted.join(' / ')}. We stock this item to #{item['standard']}. Is that acceptable?")
+      near(field, "spec", item["standard"], "the catalog lists this item to #{item['standard']}, not #{wanted.join(' or ')}",
+           "You wrote #{wanted.join(' / ')}. Our catalog lists this item to #{item['standard']}. Is that acceptable?")
     end
 
     def normalize_grade(grade)

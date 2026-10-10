@@ -93,7 +93,22 @@ class CatalogMatch::MatcherTest < ActiveSupport::TestCase
     result = match("AN3-13")
     assert_equal "candidates", result.outcome
     assert_equal [ "AN3-13A" ], result.candidates.map { |candidate| candidate.item["pn"] }
-    assert_match(/do not stock AN3-13/, result.question)
+    assert_match(/AN3-13 is not in our catalog/, result.question)
+  end
+
+  test "aviation hardware keeps its real form, and MS and nut part numbers are read" do
+    catalog = CatalogMatch::Catalog.default
+    nut = catalog.items.find { |item| item["pn"] == "AN315-3L" }
+    assert_equal "plain hex nut", nut["form"]
+    assert_matches_item "AN315-3L nuts x 50", "AN315-3L"
+    screw = catalog.items.find { |item| item["form"] == "machine screw" }
+    assert_matches_item "need #{screw['pn'].downcase}", screw["pn"]
+  end
+
+  test "questions talk about the catalog, never claim stock" do
+    [ "AN3-13", "Stainless 304, 0.060 in, 48 x 96", "2x2 sq tube A53 Gr B .120 24ft", "please call me" ].each do |text|
+      assert_no_match(/\bstock/i, match(text).question.to_s, text)
+    end
   end
 
   test "bolts can be found from words" do

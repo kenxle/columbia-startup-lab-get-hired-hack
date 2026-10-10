@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Catalog matcher as a command: reads one JSON object on stdin and writes the
+# matcher's answer as one JSON object on stdout (RESULT-FORMAT.md contract).
+#
+#   echo '{"line_text":"40,000 lb S-330 steel shot"}' | bin/catalog-match
+require_relative "../config/environment"
+
+begin
+  input = JSON.parse($stdin.read)
+  puts JSON.generate(CatalogMatch::Contract.call(input))
+rescue JSON::ParserError => error
+  warn "catalog-match: input is not JSON (#{error.message})"
+  exit 2
+end

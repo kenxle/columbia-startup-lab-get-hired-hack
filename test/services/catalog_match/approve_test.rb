@@ -35,6 +35,30 @@ class CatalogMatch::ApproveTest < ActiveSupport::TestCase
     assert_not @quote.reload.approved?
   end
 
+  test "a request can only be approved once" do
+    CatalogMatch::Approve.call(match_request: @request, part_numbers: [ "RC-SS304-SHT-16GA-48X96-2B" ], quote: @quote)
+    assert_raises(CatalogMatch::Approve::Invalid) do
+      CatalogMatch::Approve.call(match_request: @request.reload, part_numbers: [ "RC-SS304-SHT-16GA-48X96-2B" ], quote: @quote)
+    end
+    assert_equal 1, @quote.quote_lines.count
+  end
+
+  test "an RFQ from another workspace is refused" do
+    other = Quote.create!(title: "Other", source_text: "x", workspace_token: "o" * 43)
+    assert_raises(CatalogMatch::Approve::Invalid) do
+      CatalogMatch::Approve.call(match_request: @request, part_numbers: [ "RC-SS304-SHT-16GA-48X96-2B" ], quote: other)
+    end
+    assert_equal 0, other.quote_lines.count
+  end
+
+  test "the line records where it came from and that the catalog is sample data" do
+    line = CatalogMatch::Approve.call(match_request: @request, part_numbers: [ "RC-SS304-SHT-16GA-48X96-2B" ], quote: @quote)[:lines].first
+    assert_equal "match-#{@request.id}-RC-SS304-SHT-16GA-48X96-2B", line.line_id
+    assert_equal "catalog_match", line.processing["source"]
+    assert_equal true, line.processing["sample_data"]
+    assert_no_match(/we stock/i, line.notes)
+  end
+
   test "only suggested items can be approved" do
     error = assert_raises(CatalogMatch::Approve::Invalid) do
       CatalogMatch::Approve.call(match_request: @request, part_numbers: [ "RC-A36-PLT-500-60X120" ], quote: @quote)

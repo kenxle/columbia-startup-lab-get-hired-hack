@@ -19,7 +19,7 @@ module CatalogMatch
 
     # Longest terms first, so a remembered phrase wins over a word inside it.
     def terms
-      @client.client_terms.to_a.sort_by { |term| [ -term.term.length, term.term ] }
+      ClientTerm.where(client: @client).includes(:client).to_a.sort_by { |term| [ -term.term.length, term.term ] }
     end
 
     def teach!(term:, field: nil, value: nil, part_number: nil)

@@ -7,6 +7,10 @@ module CatalogMatch
     def self.call(match_request:, part_numbers:, quote:, quantity: nil, catalog: Catalog.default)
       part_numbers = Array(part_numbers).map { |pn| pn.to_s.upcase }.uniq
       raise Invalid, "Choose at least one item to approve." if part_numbers.empty?
+      raise Invalid, "This request was already approved." if match_request.approved?
+      unless quote.workspace_token == match_request.client.workspace_token
+        raise Invalid, "That RFQ belongs to a different workspace."
+      end
 
       offered = (match_request.suggested_part_numbers + Array(match_request.result["closest"]).map { |entry| entry["pn"] }).map(&:upcase)
       unknown = part_numbers - offered
@@ -16,6 +20,9 @@ module CatalogMatch
       quantity = quantity.presence || match_request.quantity
 
       ActiveRecord::Base.transaction do
+        match_request.lock!
+        raise Invalid, "This request was already approved." if match_request.approved?
+
         lines = items.map { |item| AddToQuote.call(quote: quote, item: item, match_request: match_request, quantity: quantity) }
         memory = ClientMemory.new(match_request.client)
         learned = items.size == 1 ? memory.learn!(match_request: match_request, item: items.first) : []

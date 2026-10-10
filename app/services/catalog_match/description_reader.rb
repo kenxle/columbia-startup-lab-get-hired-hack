@@ -111,14 +111,15 @@ module CatalogMatch
       min max yield ksi cert certs certified mtr compliant tested equivalent or astm asme
     ].freeze
 
-    def self.read(text, client_terms: [])
-      new(text, client_terms).read
+    def self.read(text, client_terms: [], given: {})
+      new(text, client_terms, given).read
     end
 
-    def initialize(text, client_terms)
+    def initialize(text, client_terms, given = {})
       @original = text.to_s.strip
       @work = @original.dup
       @client_terms = client_terms
+      @given = (given || {}).to_h.stringify_keys
       @fields = {}
       @part_numbers = []
       @notes = []
@@ -140,6 +141,7 @@ module CatalogMatch
       read_finishes
       read_quantity
       read_dimensions
+      apply_given_spec
       apply_client_terms
       infer_material_from_grade
 
@@ -152,8 +154,9 @@ module CatalogMatch
 
     def read_part_numbers
       consume(/\bRC-[A-Z0-9]+(?:-[A-Z0-9]+)+\b/i) { |match| @part_numbers << match[0].upcase }
-      consume(/\bAN\s*(\d{1,2})\s*(?:-|\s|dash)\s*(\d{1,2})\s*(A)?\b/i) do |match|
-        @part_numbers << "AN#{match[1]}-#{match[2]}#{match[3]&.upcase}"
+      # AN/MS/NAS standard parts: AN3-13A, an3 dash 13a, AN315-3L, MS35206-245.
+      consume(/\b(AN|MS|NAS)\s*(\d{1,6})\s*(?:-|\s|dash)\s*([A-Z]{0,2}\d{1,3})\s*([A-Z]{1,2})?\b/i) do |match|
+        @part_numbers << "#{match[1].upcase}#{match[2]}-#{match[3]}#{match[4]&.upcase}"
       end
     end
 
@@ -430,6 +433,29 @@ module CatalogMatch
 
             set(field, value, match[0], "#{term.explanation_prefix} \"#{match[0]}\" means #{field} #{value}", source: "client_memory")
           end
+        end
+      end
+    end
+
+    GIVEN_TEXT_FIELDS = %w[material grade temper form finish standard schedule process thread].freeze
+    GIVEN_NUMBER_FIELDS = %w[thickness width length diameter nps gauge grip size_a size_b quantity].freeze
+
+    # A normalized spec from RFQ processing fills only fields the text did not
+    # state; the buyer's own words still win.
+    def apply_given_spec
+      part_number = @given["part_number"].to_s.strip
+      @part_numbers << part_number.upcase if part_number.present? && @part_numbers.empty?
+      @given.each do |name, value|
+        next if value.nil? || value.to_s.strip.empty?
+
+        if GIVEN_TEXT_FIELDS.include?(name)
+          set(name, value.to_s, value.to_s, "#{name} from RFQ processing", source: "rfq_processing")
+        elsif GIVEN_NUMBER_FIELDS.include?(name)
+          number = Float(value.to_s, exception: false)
+          next if number.nil?
+
+          number = number.to_i if %w[gauge quantity].include?(name)
+          set(name, number, value.to_s, "#{name} from RFQ processing", source: "rfq_processing")
         end
       end
     end

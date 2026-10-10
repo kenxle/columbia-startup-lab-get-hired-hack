@@ -39,10 +39,12 @@ module CatalogMatch
       JSON.parse(File.read(CATALOG_FILES.fetch(name))).map do |entry|
         next entry.merge("catalog" => name) if entry.key?("pn")
 
+        # "airframe hardware / hex-head bolt" -> "bolt"; "... / machine screw" -> "machine screw".
+        shape = entry["category"].to_s.split("/").last.to_s.strip
         entry.merge(
           "catalog" => name,
           "pn" => entry["part_number"],
-          "form" => "bolt",
+          "form" => shape.end_with?("bolt") ? "bolt" : shape.presence || "hardware",
           "description" => entry["normalized_description"],
           "unit" => entry["purchase_unit"],
           "standard" => entry["standard_designation"]
