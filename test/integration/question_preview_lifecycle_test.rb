@@ -27,8 +27,8 @@ class QuestionPreviewLifecycleTest < ActionDispatch::IntegrationTest
 
   test "real intake processing queues its held question automatically and reads do not repeat it" do
     assert_no_enqueued_jobs only: DispatchBuyerQuestionJob do
-      post quotes_path, params: { quote: { title: "Bag quantity to confirm", buyer_name: "Northline Fabrication",
-        source_text: "S-330 steel shot, 2 bags" } }
+      post quotes_path, params: { quote: { title: "Missing quantity to confirm", buyer_name: "Northline Fabrication",
+        source_text: "S-330 steel shot, lb" } }
     end
     quote = Quote.find(response.location[%r{/quotes/(\d+)}, 1])
     assert_enqueued_jobs 1, only: DispatchBuyerQuestionJob do
@@ -49,4 +49,19 @@ class QuestionPreviewLifecycleTest < ActionDispatch::IntegrationTest
     job = enqueued_jobs.find { |entry| entry[:job] == DispatchBuyerQuestionJob }
     assert_equal [line.id, line.question_delivery_fingerprint], job.fetch(:args)
   end
+  test "price-only intake holds do not queue buyer questions" do
+    assert_no_enqueued_jobs only: DispatchBuyerQuestionJob do
+      post quotes_path, params: {quote: {title: "Bag pricing to confirm",
+        source_text: "S-330 steel shot, 2 bags"}}
+      perform_enqueued_jobs only: ProcessRfqJob
+    end
+    quote = Quote.find(response.location[%r{/quotes/(\d+)}, 1])
+    assert_equal "succeeded", quote.processing_runs.sole.status
+    line = quote.quote_lines.sole
+    assert_nil line.clarification_question
+    assert quote.internal_hold?(line)
+    refute line.question_preview_eligible?
+    assert_equal 0, BuyerQuestionDelivery.count
+  end
+
 end

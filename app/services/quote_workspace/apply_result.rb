@@ -344,14 +344,18 @@ module QuoteWorkspace
           @problems << "#{label} is Ready without a named benchmark and its kind"
         end
       when "needs_buyer"
-        @problems << "#{label} needs the buyer but has no clarification question" if attributes["clarification_question"].blank?
+        @problems << "#{label} needs the buyer but has no clarification question" if attributes["clarification_question"].blank? && !internal_hold_attributes?(attributes)
       when "no_match"
-        @problems << "#{label} is No match but has no clarification question" if attributes["clarification_question"].blank?
+        @problems << "#{label} is No match but has no clarification question" if attributes["clarification_question"].blank? && !internal_hold_attributes?(attributes)
         @problems << "#{label} is No match but names a catalog SKU" if attributes["catalog_sku"].present?
       end
 
       quantity = attributes["quantity"]
       @problems << "#{label} quantity must be greater than zero" if quantity && !quantity.positive?
+    end
+
+    def internal_hold_attributes?(attributes)
+      @quote.internal_hold?(QuoteLine.new(attributes))
     end
 
     def check_unique_positions(line_attributes)

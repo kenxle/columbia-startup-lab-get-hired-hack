@@ -202,4 +202,39 @@ class QuoteWorkspaceApplyResultTest < ActiveSupport::TestCase
 
     assert_equal 3, @quote.reload.quote_lines.count
   end
+  test "evidenced internal holds import beside ready lines without buyer questions" do
+    result = demo_result
+    price_hold = result["lines"].second
+    price_hold.merge!("clarification_question" => nil, "catalog_sku" => "KNOWN", "unit_price" => nil,
+      "unresolved_fields" => ["unit_price"], "processing" => {"match" => {"status" => "exact"}})
+    result["lines"].third.merge!("clarification_question" => nil,
+      "processing" => {"match" => {"status" => "no_match", "reason" => "Unsupported screw"}})
+    apply(result)
+    assert @quote.reload.approvable?
+    assert_equal BigDecimal("4640"), @quote.subtotal
+    @quote.quote_lines.drop(1).each do |line|
+      assert_nil line.unit_price
+      assert_nil line.line_total
+      assert @quote.internal_hold?(line)
+    end
+    result["lines"].shift
+    apply(result)
+    refute @quote.reload.approvable?
+    assert_raises(Quote::NotApprovable) { @quote.approve! }
+  end
+
+  test "blank questions without matching internal hold evidence still roll back" do
+    apply(demo_result)
+    @quote.approve!
+    before = @quote.quote_lines.map(&:attributes)
+    ["needs_buyer", "no_match"].each do |state|
+      result = demo_result
+      result["lines"].second.merge!("state" => state, "clarification_question" => nil,
+        "catalog_sku" => nil, "processing" => {"match" => {"status" => "ambiguous"}})
+      assert_rejected(result, /no clarification question/)
+      assert_equal before, @quote.reload.quote_lines.map(&:attributes)
+      assert @quote.approved?
+    end
+  end
+
 end

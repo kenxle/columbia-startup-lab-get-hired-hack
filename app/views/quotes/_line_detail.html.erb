@@ -80,6 +80,7 @@
   <% end %>
 
   <%= form_with model: line, scope: :quote_line, url: quote_quote_line_path(quote, line), method: :patch, class: "line-form" do |form| %>
+    <%= hidden_field_tag :reviewed_version, quote.review_revision %>
     <%= hidden_field_tag :status, @status %>
     <% if @return_to == "buyer_questions" %>
       <%= hidden_field_tag :return_to, "buyer_questions" %>

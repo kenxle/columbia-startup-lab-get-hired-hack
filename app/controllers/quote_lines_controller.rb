@@ -10,7 +10,15 @@ class QuoteLinesController < ApplicationController
     @status = %w[all attention ready].include?(params[:status]) ? params[:status] : "all"
     @return_to = params[:return_to] == "buyer_questions" ? "buyer_questions" : nil
 
-    if line.apply_manual_edit(line_edit_attributes)
+    saved = @quote.with_lock do
+      version = params[:reviewed_version]
+      unless version.is_a?(String) && version.present? && version == @quote.review_revision
+        raise Quote::StaleReview
+      end
+      line.apply_manual_edit(line_edit_attributes)
+    end
+
+    if saved
       destination = if @return_to == "buyer_questions"
         quote_buyer_questions_path(@quote)
       else
@@ -28,6 +36,9 @@ class QuoteLinesController < ApplicationController
       @selected_line = line
       render "quotes/show", status: 422
     end
+  rescue Quote::StaleReview
+    redirect_to quote_path(@quote, line: line.id, status: @status),
+      alert: "This quote changed. Your changes were not saved. Review the latest line and try again."
   end
 
   private

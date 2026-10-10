@@ -126,7 +126,7 @@ class ReviewNavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "invalid edit still renders all rows and validation errors" do
-    patch quote_quote_line_path(@quote, @ready), params: { quote_line: { quantity: "invalid" } }
+    patch quote_quote_line_path(@quote, @ready), params: { reviewed_version: @quote.reload.review_revision, quote_line: { quantity: "invalid" } }
 
     assert_response 422
     assert_select ".lines-table tbody tr", count: 3
@@ -138,14 +138,14 @@ class ReviewNavigationTest < ActionDispatch::IntegrationTest
     [["attention", @held], ["ready", @ready], ["all", @unmatched]].each do |status, line|
       get quote_path(@quote, status: status, line: line.id)
       assert_select '.line-form input[name="status"][value=?]', status
-      patch quote_quote_line_path(@quote, line), params: { status: status, quote_line: { notes: "Reviewed #{status}" } }
+      patch quote_quote_line_path(@quote, line), params: { reviewed_version: @quote.reload.review_revision, status: status, quote_line: { notes: "Reviewed #{status}" } }
       assert_redirected_to quote_path(@quote, line: line.id, status: status)
     end
   end
 
   test "failed save preserves filter rows selection and hidden context" do
     [["attention", @held, 2], ["ready", @ready, 1]].each do |status, line, count|
-      patch quote_quote_line_path(@quote, line), params: { status: status, quote_line: { quantity: "invalid" } }
+      patch quote_quote_line_path(@quote, line), params: { reviewed_version: @quote.reload.review_revision, status: status, quote_line: { quantity: "invalid" } }
       assert_response 422
       assert_select ".lines-table tbody tr", count: count
       assert_select "#line-detail .form-errors", count: 1
@@ -157,7 +157,7 @@ class ReviewNavigationTest < ActionDispatch::IntegrationTest
 
   test "untrusted navigation parameters are ignored" do
     ["https://evil.example", { url: "https://evil.example" }, ["buyer_questions"]].each do |invalid|
-      patch quote_quote_line_path(@quote, @held), params: { status: invalid, return_to: invalid, quote_line: { notes: "Safe edit" } }
+      patch quote_quote_line_path(@quote, @held), params: { reviewed_version: @quote.reload.review_revision, status: invalid, return_to: invalid, quote_line: { notes: "Safe edit" } }
       assert_redirected_to quote_path(@quote, line: @held.id)
       get quote_path(@quote, line: @held.id), params: { return_to: invalid }
       assert_select '.line-form input[name="return_to"]', count: 0

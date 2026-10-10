@@ -157,7 +157,8 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
       result = CatalogMatch::Matcher::Result.new(outcome: outcome, candidates: [candidate], closest: [candidate])
       CatalogMatch::Matcher.stub(:call, ->(*) { result }) do
         assert_raises(QuoteWorkspace::ApplyBuyerAnswer::Invalid) do
-          matcher.match(line_text: "S-330 steel shot", quantity: 100, quantity_unit: "lb")
+          match = matcher.match(line_text: "S-330 steel shot", quantity: 100, quantity_unit: "lb")
+          QuoteWorkspace::ApplyBuyerAnswer::AnswerPipeline.new(matcher: matcher, llm: false).pick_item(match, item["pn"])
         end
       end
     end
@@ -238,9 +239,42 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
     matcher.chosen_item = "RC-STEELSHOT-S330"
     result = matcher.match(line_text: "S-330 steel shot, 100 lb", quantity: 100, quantity_unit: "lb")
     assert_equal matcher.chosen_item, result.dig("best", "item_id")
+    pipeline = QuoteWorkspace::ApplyBuyerAnswer::AnswerPipeline.new(matcher: matcher, llm: false)
+    assert_equal result, pipeline.pick_item(result, matcher.chosen_item).first
     matcher.chosen_item = "RC-STEELSHOT-S170"
     assert_raises(QuoteWorkspace::ApplyBuyerAnswer::Invalid) do
-      matcher.match(line_text: "S-330 steel shot, 100 lb", quantity: 100, quantity_unit: "lb")
+      pipeline.pick_item(result, matcher.chosen_item)
+    end
+  end
+
+  test "independent abrasive branches are validated only after their choices are assembled" do
+    matcher = QuoteWorkspace::ApplyBuyerAnswer::AnswerMatcher.new(
+      catalog: CatalogMatch::Catalog.new(["rudco"]), service: CatalogMatch::Matcher)
+    matcher.chosen_item = "RC-STEELSHOT-S390"
+    candidates = %w[S-330 S-390].map do |grade|
+      matcher.match(line_text: "Steel shot #{grade}, 2000 lb", quantity: 2000, quantity_unit: "lb").fetch("best")
+    end
+    assembled = {"status" => "ambiguous", "threshold" => 0.8, "best" => nil, "candidates" => candidates}
+    pipeline = QuoteWorkspace::ApplyBuyerAnswer::AnswerPipeline.new(matcher: matcher, llm: false)
+    candidates.each do |candidate|
+      picked, conflict = pipeline.pick_item(assembled, candidate.fetch("item_id"))
+      assert_nil conflict
+      assert_equal "exact", picked["status"]
+      assert_equal candidate["item_id"], picked.dig("best", "item_id")
+      assert_equal 0.4, picked.dig("best", "list_price_usd_per_lb")
+    end
+  end
+
+  test "assembled choices retain threshold mismatch and identity guards" do
+    matcher = QuoteWorkspace::ApplyBuyerAnswer::AnswerMatcher.new
+    pipeline = QuoteWorkspace::ApplyBuyerAnswer::AnswerPipeline.new(matcher: matcher, llm: false)
+    candidate = {"item_id" => "chosen", "score" => 0.9, "mismatches" => []}
+    %w[exact scored ambiguous].each do |status|
+      [{"score" => 0.79}, {"mismatches" => ["grade differs"]}, {"item_id" => "another"}].each do |change|
+        unsafe = candidate.merge(change)
+        result = {"status" => status, "threshold" => 0.8, "best" => unsafe, "candidates" => [unsafe]}
+        assert_raises(QuoteWorkspace::ApplyBuyerAnswer::Invalid) { pipeline.pick_item(result, "chosen") }
+      end
     end
   end
 

@@ -17,7 +17,7 @@ class HardwareReviewTest < ActionDispatch::IntegrationTest
     assert_select "input[name='quote_line[spec][diameter]'][value='0.1875']"
     assert_select ".field-row", text: /Part number.*Exact AN part number/m
     @quote.approve!
-    patch quote_quote_line_path(@quote, line), params: { quote_line: { spec: { drilling: "drilled shank" } } }
+    patch quote_quote_line_path(@quote, line), params: { reviewed_version: @quote.reload.review_revision, quote_line: { spec: { drilling: "drilled shank" } } }
     assert_redirected_to quote_path(@quote, line: line.id)
     assert_equal "drilled shank", line.reload.spec["drilling"]
     assert_equal "needs_buyer", line.state

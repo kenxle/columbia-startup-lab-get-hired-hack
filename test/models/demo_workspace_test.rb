@@ -36,7 +36,8 @@ class DemoWorkspaceTest < ActiveSupport::TestCase
     plate = quotes.find { |quote| quote.title == "Structural plate order" }.quote_lines.sole
     refute plate.quotable?
     assert_nil plate.unit_price
-    assert plate.clarification_question.present?
+    assert_nil plate.clarification_question
+    assert plate.quote.internal_hold?(plate)
   end
 
   test "refresh and explicit population are idempotent at twelve records" do

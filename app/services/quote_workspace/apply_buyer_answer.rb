@@ -5,22 +5,19 @@ module QuoteWorkspace
   class ApplyBuyerAnswer
     class Invalid < StandardError; end
 
+    class AnswerPipeline < RfqProcessing::Pipeline
+      def pick_item(match, item_id)
+        @matcher.validate_choice!(match, item_id)
+        super
+      end
+    end
+
     class AnswerMatcher < ProcessRfq::IntakeMatcher
       attr_accessor :chosen_item, :confirmed_answers
 
       def match(**input)
         result = super
         candidates = Array(result["candidates"])
-        if chosen_item
-          candidate = candidates.find { |entry| entry["item_id"].to_s == chosen_item.to_s }
-          best = result["best"]
-          chosen_best = %w[exact scored].include?(result["status"]) && best &&
-            best["item_id"].to_s == chosen_item.to_s && Array(best["mismatches"]).empty? &&
-            best["score"].to_f >= (result["threshold"] || RfqProcessing::CatalogMatchAdapter::THRESHOLD).to_f
-          unless chosen_best || (result["status"] == "ambiguous" && candidate && Array(candidate["mismatches"]).empty?)
-            raise Invalid, "This catalog choice needs rep review; its specifications are not confirmed."
-          end
-        end
         candidates.each do |candidate|
           price = candidate["list_price_usd_per_lb"]
           unless input[:quantity_unit].to_s == "lb" && price.is_a?(Numeric) && price.finite? && price.positive?
@@ -30,6 +27,22 @@ module QuoteWorkspace
         end
         result
       end
+
+      # Validate the assembled result, after any independent alternative branches.
+      def validate_choice!(result, item_id)
+        threshold = (result["threshold"] || RfqProcessing::CatalogMatchAdapter::THRESHOLD).to_f
+        acceptable = lambda do |candidate|
+          candidate.is_a?(Hash) && candidate["item_id"].to_s == item_id.to_s &&
+            Array(candidate["mismatches"]).empty? && candidate["score"].to_f >= threshold
+        end
+        chosen_best = %w[exact scored].include?(result["status"]) && acceptable.call(result["best"])
+        chosen_candidate = result["status"] == "ambiguous" && Array(result["candidates"]).any?(&acceptable)
+        unless chosen_best || chosen_candidate
+          raise Invalid, "This catalog choice needs rep review; its specifications are not confirmed."
+        end
+        true
+      end
+
       private
 
       def call_service(text, spec = {}, quantity = nil, confirmed_terms: [])
@@ -77,7 +90,7 @@ module QuoteWorkspace
       matcher = AnswerMatcher.new(client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
       matcher.chosen_item = @chosen_item
       matcher.confirmed_answers = @confirmed_answers
-      pipeline = RfqProcessing::Pipeline.new(matcher: matcher, llm: LiveModels.parser_argument)
+      pipeline = AnswerPipeline.new(matcher: matcher, llm: LiveModels.parser_argument)
       result = RfqProcessing::Answers.apply(previous_result: previous, answers: [answer], pipeline: pipeline,
         buyer_terms: context.fetch(:buyer_terms))
       unless result.is_a?(Hash) && result["changed_line_ids"] == [@stable_id]

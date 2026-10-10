@@ -74,7 +74,8 @@ class IntakeProcessingTest < ActionDispatch::IntegrationTest
     line = quote.reload.quote_lines.sole
     refute line.quotable?
     assert_nil line.unit_price
-    assert line.clarification_question.present?
+    assert_nil line.clarification_question
+    assert quote.internal_hold?(line)
     assert_equal BigDecimal("0"), quote.subtotal
   end
 

@@ -86,7 +86,7 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     assert quote.reload.approved?
     ready_line = quote.quote_lines.first
 
-    patch quote_quote_line_path(quote, ready_line), params: { quote_line: { notes: "Confirm the delivery window." } }
+    patch quote_quote_line_path(quote, ready_line), params: { reviewed_version: quote.reload.review_revision, quote_line: { notes: "Confirm the delivery window." } }
     assert_redirected_to quote_path(quote, line: ready_line.id)
 
     refute quote.reload.approved?
@@ -101,7 +101,7 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     ready_line = quote.quote_lines.first
 
     patch quote_quote_line_path(quote, ready_line),
-      params: { quote_line: { spec: { material: "Carbon steel" }, catalog_sku: "SAMPLE-INVENTED", state: "ready" } }
+      params: { reviewed_version: quote.reload.review_revision, quote_line: { spec: { material: "Carbon steel" }, catalog_sku: "SAMPLE-INVENTED", state: "ready" } }
     assert_response :redirect
 
     ready_line.reload
@@ -115,7 +115,7 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     quote = create_demo_quote
     ready_line = quote.quote_lines.first
 
-    patch quote_quote_line_path(quote, ready_line), params: { quote_line: { quantity: "abc", unit_price: "-4" } }
+    patch quote_quote_line_path(quote, ready_line), params: { reviewed_version: quote.reload.review_revision, quote_line: { quantity: "abc", unit_price: "-4" } }
     assert_response 422
 
     ready_line.reload
@@ -150,7 +150,7 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     other_browser.get source_quote_path(quote)
     assert_equal 404, other_browser.response.status
 
-    other_browser.patch quote_quote_line_path(quote, ready_line), params: { quote_line: { unit_price: "1.00" } }
+    other_browser.patch quote_quote_line_path(quote, ready_line), params: { reviewed_version: quote.reload.review_revision, quote_line: { unit_price: "1.00" } }
     assert_equal 404, other_browser.response.status
 
     refute quote.reload.approved?

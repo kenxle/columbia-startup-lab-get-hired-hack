@@ -126,7 +126,7 @@ class BuyerQuestionsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select '.line-form input[name="return_to"][value="buyer_questions"]'
 
-    patch quote_quote_line_path(@quote, line), params: {
+    patch quote_quote_line_path(@quote, line), params: { reviewed_version: @quote.reload.review_revision,
       status: "all", return_to: "buyer_questions", quote_line: { clarification_question: "?" * 1001 }
     }
     assert_response 422
@@ -134,7 +134,7 @@ class BuyerQuestionsTest < ActionDispatch::IntegrationTest
     assert_select '.line-form input[name="return_to"][value="buyer_questions"]'
     assert_select '.line-form input[name="status"][value="all"]'
 
-    patch quote_quote_line_path(@quote, line), params: {
+    patch quote_quote_line_path(@quote, line), params: { reviewed_version: @quote.reload.review_revision,
       status: "all", return_to: "buyer_questions", quote_line: { clarification_question: "Which grade do you need?" }
     }
     assert_redirected_to quote_buyer_questions_path(@quote)
