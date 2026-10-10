@@ -1,0 +1,280 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Quote Desk Promo</title>
+<style>
+:root{
+  --navy:#0f1f3d; --navy2:#0a1730; --line:#8fb8ff; --ink:#f0f4fc; --dim:#9fb3d6;
+  --gold:#eea91f; --blue:#0063e6; --card:#fafbfc; --body:#1a212d; --muted:#454e5e;
+  --ready:#126932; --readyT:#e7f9ed; --need:#7f4205; --needT:#fdf0d8; --div:#e5e7eb;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--navy)}
+body{font-family:var(--sans);color:var(--ink);position:relative;
+  background:
+    linear-gradient(rgba(143,184,255,.07) 1px,transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg,rgba(143,184,255,.07) 1px,transparent 1px) 0 0/24px 24px,
+    linear-gradient(rgba(143,184,255,.14) 1px,transparent 1px) 0 0/120px 120px,
+    linear-gradient(90deg,rgba(143,184,255,.14) 1px,transparent 1px) 0 0/120px 120px,
+    radial-gradient(ellipse at 50% 40%, #13284f 0%, #0f1f3d 55%, #0a1730 100%);
+}
+.abs{position:absolute}
+/* drawing frame */
+.frame{position:absolute;inset:36px;border:1.5px solid rgba(143,184,255,.55)}
+.frame:before{content:"";position:absolute;inset:8px;border:1px solid rgba(143,184,255,.22)}
+.tick{position:absolute;background:rgba(143,184,255,.55)}
+.zone{position:absolute;font:500 13px var(--mono);color:rgba(143,184,255,.6)}
+.tblock{position:absolute;right:36px;bottom:36px;width:640px;height:84px;border-left:1.5px solid rgba(143,184,255,.55);border-top:1.5px solid rgba(143,184,255,.55);
+  display:grid;grid-template-columns:1.7fr 1fr .7fr .6fr;background:rgba(10,23,48,.85);font-family:var(--mono)}
+.tblock div{border-right:1px solid rgba(143,184,255,.3);padding:10px 14px;position:relative}
+.tblock div:last-child{border-right:0}
+.tblock small{display:block;font-size:11px;letter-spacing:.12em;color:var(--dim);margin-bottom:6px}
+.tblock b{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:.04em}
+.sheetno{position:absolute;left:14px;top:27px;font-size:17px;font-weight:600}
+/* common text */
+.label{font:600 20px var(--mono);letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.h1{font-weight:700;font-size:76px;line-height:1.05;letter-spacing:-.01em}
+.h2{font-weight:700;font-size:54px;line-height:1.1}
+.sub{font-size:30px;color:var(--dim);line-height:1.35}
+.src{font:500 15px var(--mono);letter-spacing:.06em;color:var(--dim)}
+.balloon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;
+  border:2px solid var(--gold);color:var(--gold);font:700 19px var(--mono);flex:none}
+.balloon.sm{width:30px;height:30px;font-size:15px}
+/* scene 1 */
+.email{left:120px;top:330px;width:960px;border:1.5px solid rgba(143,184,255,.5);background:rgba(10,23,48,.75)}
+.email .bar{display:flex;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(143,184,255,.3);font:500 17px var(--mono);color:var(--dim);letter-spacing:.06em}
+.email pre{font:500 29px/1.75 var(--mono);color:var(--ink);padding:22px 26px 26px;white-space:pre}
+.hl{position:relative}
+.hl:after{content:"";position:absolute;left:-3px;right:-3px;bottom:2px;height:3px;background:var(--gold);transform-origin:left;transform:scaleX(var(--u,0))}
+.notes{left:1160px;top:330px;width:640px}
+.note{display:flex;gap:18px;align-items:flex-start;margin-bottom:34px}
+.note .t{font:600 22px/1.3 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.note .d{font-size:24px;color:var(--dim);margin-top:6px;line-height:1.3}
+/* scene 4 card */
+.card{left:120px;top:300px;width:1180px;background:var(--card);color:var(--body);border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden}
+.card .hd{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid var(--div);background:#f7f5f3}
+.brandrow{display:flex;align-items:center;gap:12px}
+.brandrow img{width:36px;height:36px;border-radius:50%}
+.bn{font-weight:600;font-size:20px;line-height:1.05}
+.bp{font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--blue);margin-top:3px}
+.rfq{font:600 16px var(--mono);color:var(--muted)}
+.row{display:grid;grid-template-columns:200px 1fr 270px;gap:22px;padding:22px 28px;border-bottom:1px solid var(--div);align-items:start;position:relative}
+.row:nth-child(odd){background:#f6f7f9}
+.badge{display:inline-block;padding:6px 12px;border-radius:4px;font-weight:600;font-size:17px}
+.b-ready{background:var(--readyT);color:var(--ready)}
+.b-need{background:#f59f0a;color:var(--body)}
+.it{font-weight:700;font-size:23px}
+.ev{font-size:18px;color:var(--muted);margin-top:6px}
+.ev code{font-family:var(--mono);background:#fff3d6;padding:1px 6px;border-radius:3px;color:var(--body)}
+.pr{font-size:17px;color:var(--muted);line-height:1.4}
+.pr b{color:var(--body);font-size:19px}
+.flag{display:inline-flex;gap:8px;align-items:center;margin-top:10px;padding:6px 12px;border:1px solid #d9b77a;background:var(--needT);color:var(--need);border-radius:4px;font-size:16px;font-weight:600}
+.cb{position:absolute;left:28px;top:70px}
+.ft{display:flex;justify-content:flex-end;gap:14px;padding:18px 28px;align-items:center}
+.btn{height:46px;padding:0 22px;border-radius:4px;font-weight:600;font-size:18px;display:inline-flex;align-items:center}
+.btn.o{border:1px solid var(--div);background:var(--card);color:var(--body)}
+.btn.p{background:var(--blue);color:var(--card)}
+.stamp{left:200px;top:790px;border:4px solid var(--ready);color:var(--ready);font:800 30px var(--mono);letter-spacing:.14em;padding:10px 22px;transform-origin:center;background:rgba(231,249,237,.92);border-radius:4px}
+.notes4{left:1400px;top:300px;width:420px}
+.notes4 .note{margin-bottom:30px}
+.notes4 .t{font-size:20px}
+/* scene 5 */
+.lock{display:flex;align-items:center;gap:28px}
+.lock img{width:128px;height:128px;border-radius:50%}
+.lock .n{font-weight:600;font-size:92px;line-height:1}
+.lock .p{font-weight:600;font-size:34px;letter-spacing:.08em;color:var(--line);margin-top:10px}
+.rule{height:3px;background:var(--gold);transform-origin:left}
+</style></head>
+<body>
+
+<!-- persistent drawing frame -->
+<div class="frame" data-in="0" data-dur=".6"></div>
+<div class="zone" style="left:62px;top:44px">A</div><div class="zone" style="left:62px;top:1010px">D</div>
+<div class="zone" style="left:480px;top:44px">1</div><div class="zone" style="left:960px;top:44px">2</div><div class="zone" style="left:1440px;top:44px">3</div>
+<div class="tblock" data-in="0.2">
+  <div><small>TITLE</small><b>RUDCO QUOTE DESK</b></div>
+  <div><small>DWG NO.</small><b>QD-001</b></div>
+  <div><small>REV</small><b>A</b></div>
+  <div><small>SHEET</small>
+    <span class="sheetno" data-in="0" data-out="5.5" data-dur=".2">1/5</span>
+    <span class="sheetno" data-in="5.5" data-out="11.2" data-dur=".2">2/5</span>
+    <span class="sheetno" data-in="11.2" data-out="15.6" data-dur=".2">3/5</span>
+    <span class="sheetno" data-in="15.6" data-out="25.6" data-dur=".2">4/5</span>
+    <span class="sheetno" data-in="25.6" data-dur=".2">5/5</span>
+  </div>
+</div>
+
+<!-- SCENE 1: the input -->
+<section data-in="0" data-out="5.4" data-dur=".01">
+  <div class="abs label" style="left:120px;top:120px" data-in=".2">01 / The request</div>
+  <div class="abs h1" style="left:120px;top:165px" data-in=".35" data-a="up">RFQs arrive as shorthand.</div>
+  <div class="abs email" data-in=".5">
+    <div class="bar"><span>FROM: BUYER, NORTHLINE FABRICATION (SAMPLE)</span><span>RE: PRICING ASAP</span></div>
+<pre data-type="1" data-in=".8" data-tdur="1.6">1) 304 SS sheet <span class="hl" data-u="2.7">16ga</span> 4x8, qty 20
+2) Sq tube <span class="hl" data-u="3.3">A513/A500</span> 1x1 .065w
+3) Plate <span class="hl" data-u="3.9">SA-240</span> 304L 3/16, 6 pcs
+Ship to: defense contractor, VA</pre>
+  </div>
+  <div class="abs notes">
+    <div class="note" data-in="2.6" data-a="up"><span class="balloon">1</span><div><div class="t">16ga: which table?</div><div class="d">Gauge means a different thickness for every metal.</div></div></div>
+    <div class="note" data-in="3.2" data-a="up"><span class="balloon">2</span><div><div class="t">A513/A500: two specs</div><div class="d">One line names two different products.</div></div></div>
+    <div class="note" data-in="3.8" data-a="up"><span class="balloon">3</span><div><div class="t">SA-240: unwritten paperwork</div><div class="d">Implies a mill test report. The buyer never says so.</div></div></div>
+  </div>
+</section>
+
+<!-- SCENE 2: the trap -->
+<section data-in="5.5" data-out="11.1" data-dur=".3">
+  <div class="abs label" style="left:120px;top:120px" data-in="5.6">02 / The trap</div>
+  <div class="abs h1" style="left:120px;top:165px" data-in="5.75" data-a="up">Same line. Two different sheets.</div>
+  <svg class="abs" style="left:120px;top:330px" width="1680" height="440" viewBox="0 0 1680 440" fill="none">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9z" fill="#eea91f"/></marker></defs>
+    <!-- left sheet: 0.0625 -->
+    <g data-in="6.0" data-dur=".7">
+      <rect x="40" y="150" width="620" height="125" stroke="#8fb8ff" stroke-width="2.5" fill="rgba(143,184,255,.10)"/>
+      <path d="M40 150 L660 150 M40 275 L660 275" stroke="#8fb8ff" stroke-width="2.5"/>
+      <g stroke="rgba(143,184,255,.35)" stroke-width="1.5">
+        <path d="M60 275 L95 150 M120 275 L155 150 M180 275 L215 150 M240 275 L275 150 M300 275 L335 150 M360 275 L395 150 M420 275 L455 150 M480 275 L515 150 M540 275 L575 150 M600 275 L635 150"/>
+      </g>
+    </g>
+    <g data-in="6.6" data-dur=".5">
+      <path d="M660 150 L740 150 M660 275 L740 275" stroke="#eea91f" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <path d="M720 158 L720 267" stroke="#eea91f" stroke-width="2.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <text x="40" y="120" fill="#9fb3d6" font-family="ui-monospace,Menlo" font-size="22" letter-spacing="2">304 SS, 16 GA (STAINLESS TABLE)</text>
+      <text x="40" y="330" fill="#f0f4fc" font-family="ui-monospace,Menlo" font-size="44" font-weight="700">0.0625 in</text>
+    </g>
+    <!-- right sheet: 0.060 -->
+    <g data-in="6.9" data-dur=".7">
+      <rect x="960" y="155" width="620" height="120" stroke="#8fb8ff" stroke-width="2.5" fill="rgba(143,184,255,.10)"/>
+      <g stroke="rgba(143,184,255,.35)" stroke-width="1.5">
+        <path d="M980 275 L1014 155 M1040 275 L1074 155 M1100 275 L1134 155 M1160 275 L1194 155 M1220 275 L1254 155 M1280 275 L1314 155 M1340 275 L1374 155 M1400 275 L1434 155 M1460 275 L1494 155 M1520 275 L1554 155"/>
+      </g>
+    </g>
+    <g data-in="7.5" data-dur=".5">
+      <path d="M1580 155 L1660 155 M1580 275 L1660 275" stroke="#eea91f" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <path d="M1640 163 L1640 267" stroke="#eea91f" stroke-width="2.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <text x="960" y="120" fill="#9fb3d6" font-family="ui-monospace,Menlo" font-size="22" letter-spacing="2">"STAINLESS 304, 0.060 IN"</text>
+      <text x="960" y="330" fill="#f0f4fc" font-family="ui-monospace,Menlo" font-size="44" font-weight="700">0.0600 in</text>
+    </g>
+    <g data-in="8.0" data-dur=".5" data-a="up">
+      <rect x="745" y="170" width="190" height="86" rx="4" fill="#0a1730" stroke="#eea91f" stroke-width="2"/>
+      <text x="840" y="208" text-anchor="middle" fill="#eea91f" font-family="ui-monospace,Menlo" font-size="20" letter-spacing="2">DELTA</text>
+      <text x="840" y="243" text-anchor="middle" fill="#eea91f" font-family="ui-monospace,Menlo" font-size="32" font-weight="700">4.2%</text>
+    </g>
+    <text x="40" y="405" data-in="8.3" fill="#9fb3d6" font-family="ui-sans-serif,system-ui" font-size="28">RudCo's own challenge calls these the same item. They are not. Nothing on the quote looks wrong.</text>
+  </svg>
+  <div class="abs" style="left:120px;top:830px;display:flex;gap:30px;align-items:baseline" data-in="9.1" data-a="up">
+    <span style="font:700 60px var(--mono);color:var(--gold)">$250K &rarr; $450K</span>
+    <span class="sub" style="color:var(--ink)">One wrong stainless grade, caught after purchase.</span>
+  </div>
+  <div class="abs src" style="left:120px;top:915px" data-in="9.3">SELF-REPORTED BY A SUPPLIER, R/METALWORKING. GAUGE VALUES: METAL SUPERMARKETS GAUGE CHART.</div>
+</section>
+
+<!-- SCENE 3: RudCo values -->
+<section data-in="11.2" data-out="15.5" data-dur=".3">
+  <div class="abs label" style="left:120px;top:120px" data-in="11.3">03 / What RudCo stands for</div>
+  <div class="abs" style="left:120px;top:300px;width:1560px" data-in="11.5" data-a="up">
+    <div style="font-weight:700;font-size:96px;line-height:1.08;letter-spacing:-.015em">&ldquo;Opacity is a tax on industrial procurement.&rdquo;</div>
+  </div>
+  <div class="abs rule" style="left:120px;top:540px;width:360px" data-in="12.3" data-a="grow"></div>
+  <div class="abs src" style="left:120px;top:565px;font-size:18px" data-in="12.4">RUDCO, LINKEDIN, 2026-04-20</div>
+  <div class="abs" style="left:120px;top:700px;display:flex;gap:70px;font-weight:700;font-size:64px;letter-spacing:.02em">
+    <span data-in="13.2" data-a="up">Precision.</span>
+    <span data-in="13.6" data-a="up">Transparency.</span>
+    <span data-in="14.0" data-a="up">Trust.</span>
+  </div>
+  <div class="abs src" style="left:120px;top:800px;font-size:18px" data-in="14.3">RUDCO, RUD-CO.COM</div>
+</section>
+
+<!-- SCENE 4: Quote Desk -->
+<section data-in="15.6" data-out="25.5" data-dur=".3">
+  <div class="abs label" style="left:120px;top:120px" data-in="15.7">04 / RudCo Quote Desk</div>
+  <div class="abs h2" style="left:120px;top:170px" data-in="15.85" data-out="18.9" data-a="up">The same messy email, read right.</div>
+  <div class="abs h2" style="left:120px;top:170px" data-in="19.0" data-out="21.4" data-a="up">Every line shows where it came from.</div>
+  <div class="abs h2" style="left:120px;top:170px" data-in="21.5" data-out="23.4" data-a="up">Unclear lines become one question.</div>
+  <div class="abs h2" style="left:120px;top:170px" data-in="23.5" data-a="up">Your rep approves and sends.</div>
+
+  <div class="abs card" data-in="16.0" data-a="up" data-dur=".6">
+    <div class="hd">
+      <div class="brandrow"><img src="rudco-mark.png" alt=""><div><div class="bn">RudCo</div><div class="bp">QUOTE DESK</div></div></div>
+      <div class="rfq">RFQ-0001 &middot; NORTHLINE FABRICATION (SAMPLE)</div>
+    </div>
+    <div class="row" data-in="16.5">
+      <div><span class="badge b-ready">Ready</span></div>
+      <div><div class="it">304 stainless sheet, 0.0625 in, 48 x 96 in</div>
+        <div class="ev">Read from <code>16ga 4x8</code> using the stainless gauge table</div></div>
+      <div class="pr"><b>Priced vs. dated benchmark</b><br>Metal cost, 2026-10-10<br>plus RudCo's margin<br>Ships in 24 to 48 hours</div>
+      <span class="balloon sm cb" data-in="19.1" data-a="pop">1</span>
+    </div>
+    <div class="row" data-in="16.8">
+      <div><span class="badge b-need">Needs the buyer</span></div>
+      <div><div class="it">Square tube, 1 x 1 in, 0.065 in wall</div>
+        <div class="ev"><code>A513/A500</code> names two products. Question drafted: A513 or A500?</div></div>
+      <div class="pr"><b>Not priced yet</b><br>Held until the buyer answers<br>Lead time: to confirm</div>
+      <span class="balloon sm cb" data-in="21.6" data-a="pop">3</span>
+    </div>
+    <div class="row" data-in="17.1">
+      <div><span class="badge b-ready">Ready</span></div>
+      <div><div class="it">304L plate, 3/16 in, SA-240, 6 pcs</div>
+        <div class="flag">Mill test report needed &middot; triggered by <code>SA-240</code></div></div>
+      <div class="pr"><b>Priced vs. dated benchmark</b><br>Metal cost, 2026-10-10<br>plus RudCo's margin<br>Ships in 24 to 48 hours</div>
+      <span class="balloon sm cb" data-in="20.2" data-a="pop">2</span>
+    </div>
+    <div class="ft"><span class="btn o">Edit</span><span class="btn p">Approve and send</span></div>
+  </div>
+  <div class="abs stamp" data-in="23.9" data-a="stamp" data-dur=".35">REP APPROVED</div>
+
+  <div class="abs notes4">
+    <div class="note" data-in="19.1" data-a="up"><span class="balloon">1</span><div><div class="t">Source on every field</div><div class="d">The RFQ words and the rule used.</div></div></div>
+    <div class="note" data-in="20.2" data-a="up"><span class="balloon">2</span><div><div class="t">Paperwork flagged</div><div class="d">The trigger word, highlighted.</div></div></div>
+    <div class="note" data-in="20.8" data-a="up"><span class="balloon">&#9679;</span><div><div class="t">Price in the open</div><div class="d">A dated benchmark, never a guess.</div></div></div>
+    <div class="note" data-in="21.6" data-a="up"><span class="balloon">3</span><div><div class="t">Asks, never guesses</div><div class="d">One precise question to the buyer.</div></div></div>
+  </div>
+</section>
+
+<!-- SCENE 5: close -->
+<section data-in="25.6" data-dur=".4">
+  <div class="abs" style="left:120px;top:250px" data-in="25.8" data-a="up">
+    <div class="lock"><img src="rudco-mark.png" alt=""><div><div class="n">RudCo</div><div class="p">QUOTE DESK</div></div></div>
+  </div>
+  <div class="abs rule" style="left:120px;top:470px;width:560px" data-in="26.3" data-a="grow"></div>
+  <div class="abs h1" style="left:120px;top:520px;font-size:88px" data-in="26.6" data-a="up">Every line shows its work.</div>
+  <div class="abs sub" style="left:120px;top:660px;font-size:38px;color:var(--ink)" data-in="27.5" data-a="up">The agent prepares the conversation. The rep owns it.</div>
+  <div class="abs src" style="left:120px;top:760px;font-size:20px;letter-spacing:.12em" data-in="28.2">PRECISION. TRANSPARENCY. TRUST.</div>
+</section>
+
+<script>
+const ease = x => 1 - Math.pow(1 - x, 3);
+const clamp = x => Math.max(0, Math.min(1, x));
+const els = [...document.querySelectorAll('[data-in]')];
+// stash typed text
+document.querySelectorAll('[data-type]').forEach(pre => {
+  pre._nodes = [];
+  const walk = n => { for (const c of n.childNodes) { if (c.nodeType === 3) { pre._nodes.push([c, c.textContent]); } else walk(c); } };
+  walk(pre);
+  pre._total = pre._nodes.reduce((s, [, t]) => s + t.length, 0);
+});
+window.render = function (t) {
+  for (const el of els) {
+    const tin = +el.dataset.in, tout = el.dataset.out ? +el.dataset.out : 1e9;
+    const dur = el.dataset.dur ? +el.dataset.dur : .5;
+    const p = ease(clamp((t - tin) / dur));
+    const q = clamp((tout - t) / .3);
+    const a = Math.min(p, q);
+    const kind = el.dataset.a || 'fade';
+    el.style.opacity = a;
+    if (kind === 'up') el.style.transform = `translateY(${(1 - p) * 26}px)`;
+    if (kind === 'grow') { el.style.opacity = q; el.style.transform = `scaleX(${p})`; }
+    if (kind === 'pop') el.style.transform = `scale(${0.4 + 0.6 * p})`;
+    if (kind === 'stamp') el.style.transform = `rotate(-8deg) scale(${1.8 - 0.8 * p})`;
+    if (el.dataset.type) {
+      const n = Math.floor(clamp((t - tin) / +el.dataset.tdur) * el._total);
+      let left = n;
+      for (const [node, full] of el._nodes) { node.textContent = full.slice(0, Math.max(0, left)); left -= full.length; }
+      el.style.opacity = q;
+    }
+  }
+  document.querySelectorAll('.hl[data-u]').forEach(h => h.style.setProperty('--u', ease(clamp((t - +h.dataset.u) / .4))));
+};
+render(new URLSearchParams(location.search).get('t') ? +new URLSearchParams(location.search).get('t') : 30);
+</script>
+</body></html>
