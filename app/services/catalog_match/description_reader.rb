@@ -26,8 +26,9 @@ module CatalogMatch
       [ /\b316\b/, "316", "stainless steel" ],
       [ /\b5052\b/, "5052", "aluminum" ],
       [ /\b6061\b/, "6061", "aluminum" ],
-      [ /\ba\s*-?\s*36\s*\/\s*a\s*-?\s*572(?:\s*-?\s*(?:gr\.?\s*)?50)?\b/i, "A36/A572-50", "carbon steel" ],
-      [ /\ba\s*-?\s*572(?:\s*-?\s*(?:gr\.?|grade)?\s*50)?\b/i, "A572-50", "carbon steel" ],
+      # "A572 Gr 50", "A-572 G50", "A572 grade 50": G50 here is the grade, not a grit size.
+      [ /\ba\s*-?\s*36\s*\/\s*a\s*-?\s*572(?:\s*-?\s*(?:g|gr\.?|grade)?\s*-?\s*50)?\b/i, "A36/A572-50", "carbon steel" ],
+      [ /\ba\s*-?\s*572(?:\s*-?\s*(?:g|gr\.?|grade)?\s*-?\s*50)?\b/i, "A572-50", "carbon steel" ],
       [ /\ba\s*-?\s*516\s*-?\s*(?:gr\.?\s*)?70\b/i, "A516-70", "carbon steel" ],
       [ /\ba\s*-?\s*36\b/i, "A36", "carbon steel" ]
     ].freeze
@@ -209,19 +210,27 @@ module CatalogMatch
     end
 
     def read_grade_and_material
+      # Carbon steel specs first, so "A-572 G50" is one grade before the
+      # shot and grit sizes get a look at "G50".
+      carbon, other = GRADES.partition { |_, _, material| material == "carbon steel" }
+      read_metal_grades(carbon)
       read_abrasives_and_alloys
-      GRADES.each do |pattern, grade, material|
+      read_metal_grades(other)
+      MATERIALS.each do |pattern, material|
+        next if set?("material")
+
+        consume(pattern) { |match| set("material", material, match[0], "#{match[0].strip} means #{material}") }
+      end
+    end
+
+    def read_metal_grades(grades)
+      grades.each do |pattern, grade, material|
         next if set?("grade")
 
         consume(pattern) do |match|
           set("grade", grade, match[0], "grade #{grade}")
           @grade_material = [ material, match[0] ]
         end
-      end
-      MATERIALS.each do |pattern, material|
-        next if set?("material")
-
-        consume(pattern) { |match| set("material", material, match[0], "#{match[0].strip} means #{material}") }
       end
     end
 
@@ -233,6 +242,10 @@ module CatalogMatch
           set("material", material, match[0], "#{match[0].strip} is #{material} blast media")
           set("form", "abrasive", match[0], "#{material} is sold as blast media", source: "rule")
         end
+      end
+      # Glass bead sizes are written "#4" to "#13": a size here, not a finish.
+      if value_of("material") == "glass bead"
+        consume(/#\s*(\d{1,2})\b/) { |match| set("grade", "##{match[1]}", match[0], "glass bead size ##{match[1]} (not a finish)") }
       end
       ABRASIVE_GRADES.each do |pattern, kind|
         next if set?("grade")
@@ -316,6 +329,8 @@ module CatalogMatch
     end
 
     def read_finishes
+      return if value_of("form") == "abrasive" # blast media has sizes, not finishes
+
       FINISHES.each do |pattern, finish|
         next if set?("finish")
 
@@ -473,9 +488,25 @@ module CatalogMatch
           next if number.nil?
 
           number = number.to_i if %w[gauge quantity].include?(name)
+          confirm_close_number(name, number, source) if source == "rfq_processing"
           set(name, number, text, explanation, source: source)
         end
       end
+    end
+
+    # RFQ processing sends the resolved reading of the line (buyer terms already
+    # applied). When its number is the same measurement as the text's own
+    # number, within 5%, it is a confirmed reading of those words and replaces
+    # them ("0.060 in" confirmed as 0.0625 in). A different number never does.
+    def confirm_close_number(name, number, source)
+      current = @fields[name]
+      return unless current && current["source"] == "text" && current["value"].to_f.positive?
+
+      gap = (number.to_f - current["value"].to_f).abs / current["value"].to_f
+      return if gap > 0.05 || gap.zero?
+
+      @fields.delete(name)
+      @confirmed_text = current["text"]
     end
 
     def unpack_given(name, given)
@@ -483,7 +514,7 @@ module CatalogMatch
         [ given["value"], given["text"].presence || given["value"].to_s,
           given["explanation"].presence || "#{name} from #{given['source'] || 'processing'}", given["source"] || "rfq_processing" ]
       else
-        [ given, given.to_s, "#{name} from RFQ processing", "rfq_processing" ]
+        [ given, given.to_s, "#{name} #{given} from RFQ processing (the buyer's confirmed reading of this line)", "rfq_processing" ]
       end
     end
 

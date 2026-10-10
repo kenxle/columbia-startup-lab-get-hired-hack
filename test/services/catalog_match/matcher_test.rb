@@ -159,3 +159,30 @@ class CatalogMatch::MatcherPartNumberGuardTest < ActiveSupport::TestCase
     assert_equal "match", CatalogMatch::Matcher.call("RC-SS304-SHT-16GA-48X96-2B 304 sheet 2B").outcome
   end
 end
+
+class CatalogMatch::MatcherShorthandTest < ActiveSupport::TestCase
+  test "A-572 G50 is a plate grade, not steel grit (Ken 14:36)" do
+    reading = CatalogMatch::Matcher.call("1/2 A-572 G50 plate 48x96 x2").reading
+    assert_equal "A572-50", reading["grade"]
+    assert_equal "carbon steel", reading["material"]
+    assert_equal "plate", reading["form"]
+  end
+
+  test "glass bead #4 is a bead size, not a No. 4 finish (Ken 14:36)" do
+    result = CatalogMatch::Matcher.call("glass bead #4, 10 bags")
+    assert_equal "match", result.outcome
+    assert_equal "RC-GLASSBEADS-4", result.best.item["pn"]
+    assert_nil result.reading["finish"]
+  end
+
+  test "a confirmed reading from RFQ processing resolves the gauge trap (Hirsh 14:34)" do
+    result = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets",
+                                           "spec" => { "thickness" => 0.0625, "material" => "stainless steel" } })
+    assert_equal "scored", result["status"]
+    assert_equal "RC-SS304-SHT-16GA-48X96-2B", result["best"]["part_number"]
+    assert_equal 1.0, result["best"]["score"]
+
+    different = CatalogMatch::Contract.call({ "line_text" => "Stainless 304, 0.125 in, 48 x 96, 2B", "spec" => { "thickness" => 0.0625 } })
+    assert_not_equal "RC-SS304-SHT-16GA-48X96-2B", different.dig("best", "part_number"), "a different number is never replaced"
+  end
+end
