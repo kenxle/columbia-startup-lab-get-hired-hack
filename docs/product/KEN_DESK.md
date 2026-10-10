@@ -8,7 +8,7 @@
 
 Each item says who is waiting and what Claude recommends.
 
-Nothing open.
+- [ ] **10. Quote alternates on unclear lines, so the quote still goes out inside 24 hours?** Your idea from the Devpost draft. Today an unclear line is held until the buyer answers. With alternates, the quote shows each reading as an option with its own price, for example "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in", and the buyer picks one when they accept. The question still goes out. *Recommendation: yes, for lines where the matcher already finds two or three candidates.* It meets RudCo's 24-hour promise without guessing, and it fits "ask, don't guess": we show both, we never pick one quietly. Cost: Yuval already returns the candidates; Tisch prices each one (needs the pricer); Hirsh shows them as options in the review screen and the PDF. Waiting: your call.
 
 ## See the demo now
 
