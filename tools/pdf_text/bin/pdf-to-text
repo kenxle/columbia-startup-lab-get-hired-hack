@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Usage: bin/pdf-to-text path/to/file.pdf
+# Prints the PDF's text to stdout. On failure, prints the reason to stderr and exits 1.
+
+require_relative '../lib/pdf_text'
+
+path = ARGV.first
+abort 'usage: bin/pdf-to-text path/to/file.pdf' unless path
+
+begin
+  puts PdfText.extract(File.binread(path)).text
+rescue PdfText::Error => e
+  warn e.reason
+  exit 1
+end

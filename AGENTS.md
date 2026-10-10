@@ -81,10 +81,12 @@ columbia-startup-lab-get-hired-hack/
 ├── AGENTS.md              # This file (source of truth for agents)
 ├── CLAUDE.md              # Pointer to this file
 ├── README.md              # Public-facing overview
-└── docs/
-    ├── BULLETIN.md        # Live bulletin board (read every pull)
-    ├── BULLETIN-ARCHIVE.md
-    └── diagrams/          # Mermaid diagrams of key flows
+├── docs/
+│   ├── BULLETIN.md        # Live bulletin board (read every pull)
+│   ├── BULLETIN-ARCHIVE.md
+│   └── diagrams/          # Mermaid diagrams of key flows
+└── tools/
+    └── pdf_text/          # PDF to text (Ruby, pdf-reader). See its README.
 ```
 
 Add the code layout here once it exists.
