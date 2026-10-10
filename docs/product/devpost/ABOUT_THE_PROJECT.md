@@ -18,7 +18,7 @@ That is hard, because buyers write the same item many ways. Today a person decod
 
 ### What it is
 
-RudCo Quote Desk is a web app for the quoting rep. RFQs are found in email, form submissions, or kicked off manually (email text, PDF, or spreadsheet). The app lists every line item and shows the RFQ beside the draft quote. Clarifications are automatically negotiated with the client. The rep reviews, approves, and sends. The agent prepares the quote, and the rep owns it.
+RudCo Quote Desk is a web app for the quoting rep. RFQs are found processed, negotiated, quoted, reviewed, approved, and sent. The agent prepares the quote, and the rep owns it.
 
 ### What it does today
 
