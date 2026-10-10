@@ -1,0 +1,7 @@
+CLAIM: Paul Parsons, VP sales/marketing 4GL: "There are things that happen in metal distribution centers that don't happen in generic distribution companies. Metal service centers are cutting into plate. They have remnants that need to be taken into consideration. All of those things generic software struggles with."
+URL: https://www.metalcenternews.com/editorial/search-back-issues/February2026/service-center-software/46080
+METHOD: chrome (curl and Playwright hit Cloudflare block/verification)
+VERDICT: VERIFIED
+MATCHING TEXT FROM SOURCE:
+> Parsons agrees. "There are things that happen in metal distribution centers that don't happen in generic distribution companies. Metal service centers are cutting into plate. They have remnants that need to be taken into consideration. All of those things generic software struggles with."
+NOTES: Article "Easing The Transition" by Dan Markham, Feb 27, 2026. Parsons identified earlier as "vice president of sales and marketing for 4GL". Source uses curly apostrophes.

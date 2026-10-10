@@ -8,7 +8,7 @@ Track: voice of user, open web (no Reddit). Run 2026-10-10. Covers the job steps
 
 - Speed matters, but the numbers behind "first responder wins" all come from sellers of quoting software.
 - Picking the wrong item from many look-alike candidates is the named cause of wrong shipments at a steel bar distributor.
-- A change of gauge, grade, or alternate forces a full manual re-quote.
+- A change of gauge, grade, or alternate material "would require an entire trigger of changes in the quote" (Utah Steel case study).
 - Quoting depends on a few senior people.
 - Buyers' own RFQs ask for unit price, delivery date, shipping included, and proof paperwork (mill test report, certificate of compliance, origin). A quote that skips any of these does not answer the RFQ.
 
@@ -52,7 +52,7 @@ No source lays out a full step list for a metals service center. Pieced together
 ### Where the time goes
 
 - **Large jobs at a steel supplier.** Utah Steel (Cedar City, Utah) said a large job took about two days to quote with three people on quotes. Requests for alternative materials or gauges forced a full round of manual changes. After buying SecturaFAB, it reports about two hours. Vendor case study, so these are the vendor's published numbers ([Utah Steel case study](https://get.secturafab.com/customers/utah-steel), summarizing fetch tool).
-- **Data work, not selling.** Brian Hopkins, COO of the consulting firm Distribution Strategy Group, estimates from his own team experience that quoting staff spend 75% to 80% of their time gathering and checking data. He says complex quotes sometimes took his team up to eight hours. It is one practitioner's observation, not research ([Hopkins, July 2025](https://distributionstrategy.com/2025/07/beyond-the-spreadsheet-transforming-order-quote-processes/), summarizing fetch tool).
+- **Data work, not selling.** Brian Hopkins, COO of the consulting firm Distribution Strategy Group, writes that on teams he built, people spent 75% of their time on data preparation, and in another passage 80% of their time hunting through systems, validating data, and assembling quotes by hand. He says complex quotes sometimes took his team up to eight hours. It is one practitioner's observation, not research ([Hopkins, July 2025](https://distributionstrategy.com/2025/07/beyond-the-spreadsheet-transforming-order-quote-processes/), summarizing fetch tool).
 - **Retyping.** A pipe, valve, and fitting vendor (SalesAPE, which sells RFQ software) says sales engineers waste hours retyping customer bill-of-material spreadsheets into the ERP and that spec parsing takes days instead of minutes. Its numbers are illustrative, not measured ([SalesAPE, July 2026](https://www.salesape.ai/articles/how-independent-valve-piping-distributors-streamline-rfq-triage-without-burning-out-sales-desks), vendor, summarizing fetch tool).
 - **Machine shops.** Paperless Parts (a quoting software seller) says it can take up to two hours to quote one part. This is from a sponsored article in Modern Machine Shop ([MMS, Nov 2021, sponsored by Paperless Parts](https://www.mmsonline.com/articles/when-it-comes-to-rfq-response-time-is-money), vendor, summarizing fetch tool).
 

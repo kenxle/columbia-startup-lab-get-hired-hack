@@ -1,0 +1,9 @@
+CLAIM: Detroit, aluminum
+URL: startup.jobs nox
+METHOD: chrome
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Nox Metals is a technology company in Detroit supplying aluminum plate, bar, and rounds to aerospace and defense manufacturers.
+
+NOTES: 

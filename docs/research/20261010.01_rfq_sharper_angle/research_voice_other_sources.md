@@ -219,7 +219,7 @@ Not covered by this track. One sentence from CloudForge's CEO is relevant: the p
 **1. The quote shows its work (every field links back to the RFQ words). Strongest support in this track.**
 
 - Both detailed postings make the check and the paper trail the center of the job: "Document assumptions, lead times, and any changes clearly on the quote so the customer is never surprised," "Run a final review of every quote," "every assumption documented" (Nox), and "You never guess on pricing or capability. You verify it."
-- A Paperless Parts reviewer praises the tool for catching what the human might overlook, and another says an estimate is "a little off at times." Trust depends on whether the user can see why a number is what it is.
+- A Paperless Parts reviewer praises the tool for catching what the human might overlook, and another says its estimated cycle time is "a little off at times." Trust depends on whether the user can see why a number is what it is.
 - The Canals case study says the rep's remaining job is "reviewing and confirming item matches." Showing the source words next to each match fits that step.
 - Gap: no one in these sources says "I wish the tool showed me where it got this." The support is inferred from the review step employers require.
 

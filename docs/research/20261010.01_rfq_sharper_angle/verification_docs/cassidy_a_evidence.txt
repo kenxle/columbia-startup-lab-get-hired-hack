@@ -1,0 +1,9 @@
+CLAIM: confidence scores; no source-text linking
+URL: wayback 20260418173906 of cassidyai.com ai-rfq-data-extraction-agent
+METHOD: curl (archive.org)
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> extracting item descriptions, quantities, part numbers... with confidence scoring for human review
+
+NOTES: Live page 404; no mention of linking fields to source text found in archived page. Page is pump/flow equipment specific. Only absence in page text, not proof of product lack.

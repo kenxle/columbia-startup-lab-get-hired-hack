@@ -1,0 +1,9 @@
+CLAIM: posting contains 'conflicting cert requirements'
+URL: startup.jobs nox
+METHOD: chrome
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Catch issues before they become problems, missing specs, mismatched POs, unrealistic dates, conflicting cert requirements
+
+NOTES: 

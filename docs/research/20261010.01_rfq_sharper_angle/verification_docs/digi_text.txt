@@ -1,0 +1,230 @@
+
+DigiFabster's new AI-powered Quote Agent for smooth RFQs processing - 3D Printing Industry
+DigiFabster’s new AI-powered Quote Agent for smooth RFQs processing
+News
+3D Scanners
+Aerospace
+Business
+Education
+Market Insights
+Medical & Dental
+Transport
+Artec 3D launches Neo wireless scanner with tolerance-driven 3D scanning
+Rodolfo Hernandez
+2 weeks ago
+ 0				
+SHINING 3D Metrology Presented Three Upgraded 3D Scanning Systems
+Aura Moreno
+4 weeks ago
+ 0				
+Trak In, Markers Out With SHINING 3D’s New EinScan Trak 3D Scanner
+Ada Shaikhnag
+1 month ago
+ 0				
+Skyrora Hot-Fires Scaled-Down Orbital Vehicle for 45 Seconds in Scotland
+Paloma Duran
+1 week ago
+ 0				
+ORNL 3D Prints Steel Mold for Boeing Aircraft Work
+Aura Moreno
+2 weeks ago
+ 0				
+AML3D Commits AU$0.53M to Project Targeting Aerospace Tooling Lead Times of Up to 24 Months
+Aura Moreno
+2 weeks ago
+ 0				
+Hyperion Systems and Inspire Robotics to Deploy Recycled-Plastic 3D Printing Factory in Timor-Leste
+Paloma Duran
+17 hours ago
+ 0				
+AM-Platform Joins Addliance as Core Member
+Aura Moreno
+3 days ago
+ 0				
+America Makes Releases Free “3D Printing for Drones” Curriculum Alongside Five-State Student Events
+Paloma Duran
+5 days ago
+ 0				
+NMSU’s DREAM Research Center trains third cohort of New Mexico K-12 teachers in 3D printing
+Paloma Duran
+2026-07-29 11:04 am
+ 0				
+Nigeria Bets on Hands-On 3D Printing Skills with New Czech-Backed STEAM Centre
+Paloma Duran
+2026-07-11 8:32 am
+ 0				
+AMUG names new board leadership for 2026–2027 term
+Aura Moreno
+2026-07-07 10:59 am
+ 0				
+AMPOWER Desktop 3D Printing Insights, Desktop 3D Printing Boom is Reshaping Factory Economics
+Michael Petch
+4 days ago
+ 0				
+America’s Small Factories are Still Waiting for Work
+Michael Petch
+1 week ago
+ 0				
+New infographic maps the 2024 AM hardware landscape
+Ada Shaikhnag
+2024-06-12 11:33 am
+ 0				
+PharmaTher Sets 3D Printed Medicine Roadmap, Targeting First CraftMake Orders This Quarter and a Rare Pediatric NDA by 2028
+Paloma Duran
+2 days ago
+ 0				
+MB Therapeutics Wins French Approval for 3D Printed Medicine Supply
+Paloma Duran
+5 days ago
+ 0				
+Myrava Moves Into Radiation Therapy With Cleared 3D Printed Bolus
+Paloma Duran
+1 week ago
+ 0				
+HVE Completes Tool-Free 3D Printing Process for Rail Components
+Paloma Duran
+2 months ago
+ 0				
+Ghana Eyes 3D Printing for Its Next Fleet of Vessels
+Ada Shaikhnag
+2026-03-20 5:32 pm
+ 0				
+How Armada Is Using 3D Printing to Make Ships More Fuel Efficient
+Ada Shaikhnag
+2026-01-23 8:56 am
+ 0				
+Guides
+The Free Beginner’s Guide
+Netfabb Guide
+Reviews
+Videos
+Events
+Directory
+Jobs
+Newsletter
+Data and analysis
+ Instant 3D Printing Quote 
+Home
+ - 
+DigiFabster’s new AI-powered Quote Agent for smooth RFQs processing
+3D Software
+DigiFabster’s new AI-powered Quote Agent for smooth RFQs processing
+Ada Shaikhnag
+2024-12-02 9:51 am
+ 0				
+3D printing software developer 
+DigiFabster
+ has unveiled its 
+AI-Powered Quote Agent
+ to tackle the time-consuming and often chaotic process of managing requests for quotes (RFQs). 
+Machinists and manufacturing shop owners frequently find themselves overwhelmed by the process of managing RFQs, which often includes navigating a flood of emails, organizing scattered CAD files, and digging through communications to locate essential details. These inefficiencies consume valuable time that could be better spent on machine operations or expanding business opportunities, says the company. With its novel offering, DigiFabster seeks to bring efficiency and precision to RFQ handling.
+“Our goal is simple,” said Const Ivanov, Founder of DigiFabster. “We want to make quoting less painful. Shops work hard to deliver great results, and the last thing they need is to waste time digging through RFQs. The AI Quote Agent helps them stay organized and respond faster, so they can focus on what really matters.”
+DigiFabster’s AI Quote Agent user interface. Image via DigiFabster.
+RFQ management with AI
+Designed to integrate directly with a shop’s RFQ inbox, the AI Quote Agent automates key tasks that traditionally required manual effort. Critical details are extracted from emails, CAD files and drawings are uploaded to a centralized system, and suggestions for materials, machines, and technologies are provided based on the shop’s capabilities. 
+Once the necessary data is compiled, a professional quote is generated, ready for review and approval. This seamless process reduces the time spent on repetitive administrative tasks, allowing businesses to focus on their core operations.
+Having adopted a CAD geometry-driven approach, DigiFabster sets itself apart from generalized quoting systems often used by marketplace platforms. The platform analyzes the unique geometry of each part, enabling quotes tailored to material requirements, machining needs, and design complexity. 
+This methodology incorporates design-for-manufacturing (DFM) checks, feature recognition, and complexity analysis to ensure precise and efficient quoting. Shop owners benefit from greater control over pricing and operations, without compromising on speed or accuracy.
+At its current stage, the AI Quote Agent is built for specific use cases, including the identification of materials, machines, technologies, and quantities directly from RFQs or emails, automatically converting them into detailed line items for quotes. 
+By transforming these details into ready-to-send quotes, the platform eliminates the limitations of one-size-fits-all solutions, delivering results that reflect the unique demands of each project. This tailored approach not only reduces quoting time but also enhances workflow efficiency, offering businesses the flexibility and precision they need to stay competitive.
+To safeguard sensitive information, DigiFabster employs AWS and GovCloud ITAR-compliant servers, ensuring compliance with the strict standards required for ITAR-regulated work. This robust infrastructure reflects the company’s commitment to data security while maintaining a seamless user experience.
+Plans for future updates include recognizing execution options such as tolerances and priorities, resolving mismatches between RFQ specifications and available inventory, and introducing a Message Center to centralize communication. These enhancements aim to provide an even more comprehensive solution for managing RFQ workflows effectively.
+DigiFabster’s AI Quote Agent is currently in its beta phase, and the company is inviting shop owners, estimators, and engineers to test its capabilities. Sign up for early access 
+HERE
+ to explore how this tool can streamline your workflow and save valuable time.
+AI-driven manufacturing quoting systems
+With AI streamlining tasks, many companies have integrated the technology in their quoting systems. 
+Back in 2021, Chinese rapid prototyping company 
+RapidDirect
+ launched its 
+AI-driven instant quote platform
+ to streamline rapid prototyping and on-demand manufacturing. Designed to tackle inefficiencies such as long lead times, high costs, and lack of transparency, the platform offers services like 3D printing, CNC machining, sheet metal fabrication, and injection molding. 
+Customers can upload CAD files, receive real-time quotes in under a minute, and manage orders efficiently within a single interface. With integrated DFM analysis, real-time tracking, and automated updates, the platform enhances productivity, shortens turnaround times, and boosts cost savings, potentially reducing budgets by up to 30%.
+In 2018, On-demand 3D printing technologies manufacturing service provider 
+Xometry
+ introduced an updated version of its 
+Instant Quoting Engine 3.0
+, designed to simplify the on-demand manufacturing process. Users can quickly review quotes with a redesigned summary view, make real-time modifications at the part level, and access a 3D viewer that delivers instant manufacturability feedback directly on models. 
+Offering services like CNC Machining, Sheet Metal Fabrication, 3D printing, and Urethane Casting, the platform enables users to manage part requirements efficiently while streamlining design and manufacturing workflows. In addition, the company has now integrated 
+AI-driven auto quoting
+ for laser tube cutting and tube bending.
+Vote now in the 
+2024 3D Printing Industry Awards
+!
+Catch up on all the news from 
+Formnext 2024
+.
+Want to share insights on key industry trends and the future of 3D printing? Register now to be included in the 
+2025 3D Printing Industry Executive Survey
+.
+What 
+3D printing trends
+ do the industry leaders anticipate this year?
+What does the 
+Future of 3D printing
+ hold for the next 10 years?
+To stay up to date with the latest 3D printing news, don’t forget to subscribe to the
+ 3D Printing Industry newsletter
+ or follow us on
+ Twitter
+, or like our page on
+ Facebook
+.
+While you’re here, why not subscribe to our
+ Youtube
+ channel? Featuring discussion, debriefs, video shorts, and webinar replays.
+Featured image shows DigiFabster’s AI Quote Agent user interface. Image via DigiFabster.
+Tags
+Const Ivanov
+digifabster
+RapidDirect
+xometry
+Ada Shaikhnag
+With a background in journalism, Ada has a keen interest in frontier technology and its application in the wider world. Ada reports on aspects of 3D printing ranging from aerospace and automotive to medical and dental.
+Share This
+Previous Article
+Hexagon’s Advanced Compensation Enhances Precision in Metal 3D Printing
+Next Article
+[INTERVIEW] Materialise at Formnext 2024: New Magics Updates and Partnerships
+2024-12-02 9:51 am
+Comments 
+(0)
+Leave a Reply 
+Cancel reply
+You must be 
+logged in
+ to post a comment.
+Contribute
+Advertise with us
+Share news and tips
+Report for us
+News
+3D Scanners
+Aerospace
+Business
+Education
+Market Insights
+Medical & Dental
+Transport
+Guides
+The Free Beginner’s Guide
+Netfabb Guide
+Reviews
+Videos
+Events
+Directory
+Jobs
+Newsletter
+Data and analysis
+ Instant 3D Printing Quote 
+Our site uses cookies. Learn more about our use of cookies: 
+cookie policy
+ACCEPT
+Lost Password
+Back ⟶
+Login
+Register
+Get new password
+Lost Password?
+Login
+Registration is disabled.

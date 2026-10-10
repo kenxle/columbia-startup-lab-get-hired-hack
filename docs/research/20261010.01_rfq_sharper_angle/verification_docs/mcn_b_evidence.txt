@@ -1,0 +1,7 @@
+CLAIM: Shawne O'Connor, director of Paragon Consulting Services (METALWARE): "Being able to work with multiple units of measures, mixing and matching your units. Those are key factors in managing your inventory."
+URL: https://www.metalcenternews.com/editorial/search-back-issues/February2026/service-center-software/46080
+METHOD: chrome
+VERDICT: VERIFIED
+MATCHING TEXT FROM SOURCE:
+> O'Connor says the unique nature of the service center industry makes it different than many distribution models, which may just involve picking boxes off shelves. "Being able to work with multiple units of measures, mixing and matching your units. Those are key factors in managing your inventory."
+NOTES: O'Connor identified earlier as "director of Paragon Consulting Services, makers of METALWARE".

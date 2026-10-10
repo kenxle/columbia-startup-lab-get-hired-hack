@@ -1,0 +1,9 @@
+CLAIM: Message Center planned
+URL: 3dprintingindustry
+METHOD: curl
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Plans for future updates include recognizing execution options such as tolerances and priorities, resolving mismatches between RFQ specifications and available inventory, and introducing a Message Center to centralize communication.
+
+NOTES: 

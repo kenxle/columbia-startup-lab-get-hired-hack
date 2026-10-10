@@ -1,0 +1,9 @@
+CLAIM: monthly fuel surcharge
+URL: nas news
+METHOD: playwright
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Effective October 1st, North American Stainless will increase the fuel surcharge to 58% for stainless flat and long products.
+
+NOTES: 

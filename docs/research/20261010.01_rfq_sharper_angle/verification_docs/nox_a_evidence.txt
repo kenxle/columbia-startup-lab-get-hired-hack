@@ -1,0 +1,9 @@
+CLAIM: posting contains 'Always ask questions, never guess when something is unclear'
+URL: startup.jobs nox
+METHOD: chrome
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Always ask questions, never guess when something is unclear
+
+NOTES: Posting closed but text still displayed

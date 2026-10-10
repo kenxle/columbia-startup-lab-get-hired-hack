@@ -1,0 +1,149 @@
+Skip to main content
+RELEASE CALENDAR
+TOOLS 
+NEWS
+BLOG
+ABOUT 
+Home > Categories > Prices > Commodities
+Global price of Nickel (PNICKUSDM)
+
+Observations 
+
+Jul 2026: 16,632.36136
+Updated: Aug 17, 2026 1:51 PM CDT
+Next Release Date: Not Available
+
+Units:
+
+U.S. Dollars per Metric Ton,
+Not Seasonally Adjusted
+
+Frequency:
+
+Monthly
+1Y
+5Y
+10Y
+Max
+From
+to
+Edit Graph 
+Download 
+
+Chart
+
+Line chart with 415 data points.
+View as data table, Chart
+The chart has 1 X axis displaying xAxis. Data ranges from 1992-01-01 1:00:00 to 2026-07-01 2:00:00.
+The chart has 2 Y axes displaying U.S. Dollars per Metric Ton and yAxisRight.
+0
+10,000
+20,000
+30,000
+40,000
+50,000
+60,000
+1994
+1996
+1998
+2000
+2002
+2004
+2006
+2008
+2010
+2012
+2014
+2016
+2018
+2020
+2022
+2024
+2026
+Global price of Nickel
+U.S. Dollars per Metric Ton
+End of interactive chart.
+Source: International Monetary Fund via FRED®
+fred.stlouisfed.org
+
+
+
+
+Fullscreen 
+
+Data in this graph are copyrighted. Please review the copyright information in the series notes before sharing.
+
+Share Graph 
+Account Tools 
+ 
+Notes
+
+Source: International Monetary Fund  
+
+Release: Primary Commodity Prices  
+
+Units:  U.S. Dollars per Metric Ton, Not Seasonally Adjusted
+
+Frequency:  Monthly
+
+Notes:
+
+Value represents the benchmark prices which are representative of the global market. They are determined by the largest exporter of a given commodity. Prices are period averages in nominal U.S. dollars.
+
+Copyright © 2016, International Monetary Fund. Reprinted with permission. Complete terms of use and contact details are available at http://www.imf.org/external/terms.htm.
+
+Suggested Citation:
+
+International Monetary Fund, Global price of Nickel [PNICKUSDM], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/PNICKUSDM, October 10, 2026.
+
+Related Data and Content
+Data Suggestions Based On Your Search
+Global price of Copper
+Global price of Zinc
+Global price of Aluminum
+Producer Price Index by Commodity: Metals and Metal Products: Nickel and Nickel-Base Alloy Mill Shapes
+See More...
+Content Suggestions
+FRED Blog
+All that glitters is not necessarily a good store of value
+FRED Blog
+Change in the metal value of coins
+ALFRED Vintage Series
+Global price of Nickel
+Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma
+Other Formats
+Annual, Not Seasonally Adjusted
+Quarterly, Not Seasonally Adjusted
+Related Categories
+Commodities
+Prices
+Releases
+More Series from Primary Commodity Prices
+Tags
+Nickel
+World
+Transnational
+International Monetary Fund
+Price
+Copyrighted: Citation Required
+Monthly
+Not Seasonally Adjusted
+
+
+SUBSCRIBE TO THE FRED NEWSLETTER
+Subscribe
+FOLLOW US
+ 
+Saint Louis Fed linkedin page
+ 
+Saint Louis Fed facebook page
+ 
+Saint Louis Fed X page
+Saint Louis Fed YouTube page
+ 
+NEED HELP?
+Questions or Comments
+FRED Help
+Legal
+Privacy Notice & Policy
+ 

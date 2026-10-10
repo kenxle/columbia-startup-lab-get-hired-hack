@@ -1,0 +1,9 @@
+CLAIM: a little off at times
+URL: saasworthy
+METHOD: playwright
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> The estimated cycle time feature is a great feature, but is a little off at times for larger more complex parts
+
+NOTES: Refers to the estimated cycle time feature, not the quote/estimate overall

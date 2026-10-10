@@ -1,0 +1,9 @@
+CLAIM: identifying features of a part that we might overlook
+URL: saasworthy
+METHOD: playwright
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> Paperless Parts is great at identifying features of a part that we might overlook while quoting
+
+NOTES: Attribution to G2 not checked here

@@ -1,0 +1,497 @@
+
+RFQ Response Drafting | Cassidy AI
+Product
+Platform
+Knowledge Base
+The context behind every automation
+Agents
+AI teammates anyone can build
+Workflows
+Multi-step automations that drive outcomes
+Meetings
+From conversation to action
+Platform
+One platform for AI that actually works
+Features
+Copilot
+Artifacts
+Skills
+Extensions
+Slides
+Human-In-The-Loop
+Documents
+Integrations
+Solutions
+Industries
+Insurance
+Brokerages, carriers, underwriting, and specialty insurance
+Industrials
+Manufacturing, construction, logistics, and field operations
+Employee Benefits & PEOs
+Census automation, plan comparisons, renewals, and benefits operations
+Professional Services
+Consulting, outsourcing, media, research, and client delivery
+departments
+Sales Enablement
+Customer Support
+Marketing
+Proposals
+See more (1,000+)
+Resources
+About us
+Blog
+Insights, updates, and ideas on AI automation
+Docs
+Get started and learn the basics of Cassidy
+Careers
+Insights, updates, and ideas on AI automation
+Partners
+Earn by referring new teams to Cassidy
+Security
+Enterprise-grade protection for your data
+Socials
+Follow us on LinkedIn
+Follow us on X (Twitter)
+Slack Community
+Enterprise
+Customers
+Sign In
+Get a Demo
+Filter
+All use cases
+Thank you! Your submission has been received!
+Oops! Something went wrong while submitting the form.
+Health Benefits Plan Comparison
+Automatically extracts and compares health insurance plans from current carrier renewal quotes and new carrier proposals. Analyzes rate documents to create Excel spreadsheets with side-by-side plan comparisons including plan designs, rates, annual costs, and savings calculations.
+Search Result
+Employee Benefits Guide Generator
+Automatically generates comprehensive employee benefits guides from Summary of Benefits and Coverage (SBC) documents. Extracts medical, dental, vision, and HRA plan details, enriches with company and carrier branding, and produces a polished presentation.
+Search Result
+Automated COI Processing and Issuance
+Automates COI requests end to end—pulling the right policy details, reasoning over coverage gaps, and drafting precise client-ready responses so account managers can hit the 24-hour SLA without manual lookups.
+Search Result
+Employee Enrollment Reconciliation & Scoring
+Compares employee enrollment records from carrier and internal systems to identify matches, discrepancies, and missing enrollments.
+Search Result
+Employee Benefits Census Generator
+Automatically processes employee census data, invoices, and renewal documents to generate a comprehensive health benefits census report with built-in validation for accuracy and compliance.
+Search Result
+Comprehensive Property Risk Assessment & Scoring
+Automated evaluation of property insurance broker reports covering safety management, construction, fire protection, natural hazards, and comprehensive risk scoring. Generates detailed assessments across multiple evaluation categories with weighted scoring methodology.
+Search Result
+Workers Compensation Census
+Automatically processes employee census data to extract employee information, research company headquarters, determine NCCI classification codes based on job titles, and generate a comprehensive workers compensation report in Excel format.
+Search Result
+Financial Risk Assessment for D&O Underwriting
+Analyzes company financial statements to extract key metrics, assess financial health, and identify risks relevant to Directors & Officers liability underwriting. Upload financial reports and supporting documents to generate a comprehensive risk assessment report.
+Search Result
+Marine Cargo Underwriting Assessment
+Comprehensive voyage underwriting workflow that analyzes shipping documentation, validates compliance against operational criteria, researches vessel and client history, and generates a detailed risk assessment report for marine cargo insurance decisions.
+Search Result
+AI Campaign ROI Report Agent
+AI campaign ROI reporting automation for marketing agencies—generate weekly ROI/ROAS reports, pacing alerts, and budget move recommendations
+Search Result
+AI Retainer Scope Tracking Agent
+AI retainer scope tracking and alerting tool for marketing agencies—stop scope creep, predict burn, and automate invoicing
+Search Result
+AI User Research Analysis Agent
+Automate AI user research analysis and insight synthesis for marketing agencies
+Search Result
+AI Media Spend Reconciliation Agent
+AI media spend reconciliation and audit tool for marketing agencies—automate invoice matching, sequential liability, and month‑end close
+Search Result
+AI Social Listening Insights Agent
+AI social listening data extraction and synthesis for marketing agencies—real-time alerts, aspect-based sentiment, and executive-ready insights
+Search Result
+AI QBR Report Agent
+Automate AI quarterly business review report automation for marketing agencies—evidence-backed QBR decks in minutes
+Search Result
+AI Account Escalation Routing Agent
+AI account escalation routing tool for marketing agencies—intent, sentiment, and VIP workflows
+Search Result
+AI Pitch Deck Research Agent
+AI new business pitch deck research automation for marketing agencies—TAM/SAM/SOM, competitive landscape, and cited stats in minutes
+Search Result
+AI Client Knowledge Management Agent
+AI client relationship knowledge management tool for marketing agencies: automate onboarding, SOPs, and QBR prep with governed RAG answers
+Search Result
+AI Campaign Launch Checklist Agent
+AI campaign launch checklist automation for marketing agencies: pre‑flight QA, UTM/pixel validation, and 72‑hour monitoring
+Search Result
+AI Influencer Search Agent
+AI influencer relationship search and matching tool for marketing agencies — automate discovery, brand‑fit scoring, and outreach
+Search Result
+AI Contract Compliance Agent
+AI client contract deliverable compliance monitoring for marketing agencies
+Search Result
+AI Client Sentiment Monitoring Agent
+Real-time VoC for agencies: AI client satisfaction & sentiment monitoring with automated alerts and routing
+Search Result
+AI Competitive Brand Audit Agent
+AI competitive brand analysis automation for marketing agencies—always‑on audits, LLM visibility, and share‑of‑voice tracking
+Search Result
+AI Client Onboarding Workflow Agent
+AI client onboarding workflow automation for marketing agencies—intake, docs, e-sign, CRM
+Search Result
+AI Multi-KPI Dashboard Report Agent
+Automate multi‑KPI reporting for marketing agencies with AI dashboards, NL insights, and anomaly alerts
+Search Result
+AI Traffic Report Agent
+AI multi-site traffic performance report automation for marketing agencies—connect GA4/GSC, track AI referrals, and auto-generate anomaly alerts and executive summaries
+Search Result
+AI Weekly Campaign Report Agent
+AI weekly campaign performance report automation for marketing agencies—connect GA4/Ads, deliver WoW insights to Slack/email
+Search Result
+AI Branded Client Deck Agent
+AI branded client reporting deck automation for marketing agencies—on‑brand PPTX from CRM/BI
+Search Result
+AI Asset Delivery Workflow Agent
+AI creative asset delivery workflow automation for marketing agencies—rights‑aware, omnichannel DAM to CMS/CDN publishing
+Search Result
+AI Campaign Data Validation Agent
+AI campaign data validation tool for marketing agencies: enforce UTM governance, naming rules, and auto-fix errors in real time
+Search Result
+AI Invoice Reconciliation Agent
+AI project invoice reconciliation automation for marketing agencies: 3‑way matching, duplicate detection, faster approvals
+Search Result
+AI Ad Compliance Monitoring Agent
+AI FTC ad compliance monitoring tool for marketing agencies: pre‑flight checks, auto‑pause, and audit‑ready evidence
+Search Result
+AI SEO Research Knowledge Agent
+AI SEO research knowledge management tool for marketing agencies—automate keyword discovery, clustering, and cited content briefs
+Search Result
+AI Social Media Triage Agent
+AI social media brand issue triage tool for marketing agencies: intelligent triage, sentiment-based SLA routing, and smart inbox automation
+Search Result
+AI Brand Voice Knowledge Agent
+On-brand automation: AI brand voice and content guidelines management for marketing agencies
+Search Result
+AI Creative Governance Agent
+AI creative governance and brand compliance tool for marketing agencies to automate approvals, enforce brand guidelines, and log audit trails
+Search Result
+AI Creative Approval Workflow Agent
+AI creative approval workflow automation for marketing agencies—auto‑routing, online proofing, brand compliance checks
+Search Result
+AI Client Email Drafting Agent
+AI client email drafting tool for marketing agency account executives—personalize outreach, automate follow-ups, and summarize threads
+Search Result
+AI Client Request Routing Agent
+AI client request triage and routing for marketing agencies: intent-based, skill-matched, omnichannel
+Search Result
+AI Team Onboarding Knowledge Agent
+Automate marketing agency onboarding with AI knowledge search and role-based workflows
+Search Result
+AI Account Context Search Agent
+AI account context search tool for marketing agencies: unify CRM, billing, and usage to automate account research and campaign planning
+Search Result
+AI Creative Brief Extraction Agent
+Automate AI creative brief extraction for marketing agencies—faster, accurate, client-ready
+Search Result
+AI Multi-Platform Client Report Agent
+AI multi-platform client report automation for marketing agencies—unify KPIs, detect anomalies, and generate client-ready decks
+Search Result
+AI Insurance Pre-Authorization Agent
+Pre-authorization automation with AI: FHIR PAS real-time decisions, fewer denials
+Search Result
+AI Physician Credentialing Agent
+Physician credentialing automation for real-time PSV, payer enrollment, and NCQA compliance
+Search Result
+AI Healthcare Financial Reconciliation Agent
+Automate healthcare financial reconciliation: ERA 835 posting, TRN matching, PLB controls
+Search Result
+AI Healthcare Vendor Contract Agent
+Automate healthcare vendor contract management with HIPAA/BAA guardrails and renewals control
+Search Result
+AI Referral Management Agent
+Referral management automation that extracts faxed referrals, triages, and schedules fast
+Search Result
+AI Telehealth Patient Routing Agent
+Telehealth routing automation for AI triage, care navigation, and self-scheduling
+Search Result
+AI Patient Communication Drafting Agent
+HIPAA-grade patient communication automation: empathetic AI drafts, triage, and routing
+Search Result
+AI Healthcare Policy Search Agent
+Automate healthcare policy search to find payer rules, medical necessity, and PA criteria fast
+Search Result
+AI Patient Message Routing Agent
+Patient intake automation that triages, prioritizes, and routes portal/SMS messages in your EHR
+Search Result
+AI Healthcare Compliance Report Agent
+Automate healthcare compliance reporting: HIPAA/CMS audit-ready reports and evidence
+Search Result
+AI Clinical Documentation Validation Agent
+Reduce denials with clinical documentation AI for compliant, evidence-cited validation
+Search Result
+AI Patient Safety Letter Agent
+Automate patient safety letters for recalls with HIPAA-compliant, EHR-integrated workflows
+Search Result
+AI Nursing Knowledge Management Agent
+Vendor-agnostic nursing knowledge management: RAG + FHIR to automate SBAR, care plans, and policy lookups with citations
+Search Result
+AI Payer Contract Compliance Agent
+Automate payer contract compliance: HPMS-to-CMS audit readiness, A&G and CLM integration
+Search Result
+AI Medical Coding Audit Agent
+Pre-bill medical coding audit automation: variance analysis to reduce denials
+Search Result
+AI HIPAA Compliance Monitoring Agent
+HIPAA monitoring AI that automates EHR audit reviews, UEBA alerts, and OCR-ready reports
+Search Result
+AI Quality Improvement Knowledge Agent
+Healthcare quality improvement automation with agentic RAG, KCS, and audited citations
+Search Result
+AI Operating Room Scheduling Agent
+OR scheduling automation to predict case length, free block time, and recommend best-fit slots
+Search Result
+AI Insurance EOB Extraction Agent
+Automate EOB extraction to 835 with line‑item posting, CARC/RARC mapping, and HIPAA‑safe accuracy
+Search Result
+AI Population Health Reporting Agent
+Automate population health reporting: AI-driven HEDIS/eCQM/MIPS and eCR workflows
+Search Result
+AI Patient Record Validation Agent
+Automate patient record validation with EMPI, FHIR checks, and evidence-linked chart review
+Search Result
+AI Case Management Report Agent
+Automate case management reporting with AI summaries, handoffs, and audit-ready reports
+Search Result
+AI Clinical Trial Eligibility Agent
+Automate clinical trial eligibility screening with explainable, EHR-integrated AI
+Search Result
+AI Patient Admission Workflow Agent
+Patient admission automation for intake, eligibility, and EHR-integrated registration
+Search Result
+AI Healthcare Compliance Agent
+Healthcare compliance search tool: HIPAA-ready AI to automate policy lookup and audit trails
+Search Result
+AI Emergency Department Triage Agent
+ED triage automation to cut wait times, reduce mistriage, and streamline intake
+Search Result
+AI Clinical Trial Eligibility Agent
+Automate clinical trial eligibility screening with explainable, EHR-integrated AI
+Search Result
+Trade Compliance / HTS Code Classifier
+Analyzes product specs to suggest HTS classifications, flags tariff exposure across your product catalog, and routes recommendations for compliance review.
+Search Result
+Sustainability Data Collector & Reporter
+Aggregates energy, emissions, and waste data from operations to generate compliance reports against your reporting requirements and benchmark performance against targets.
+Search Result
+Warranty Claim Validator
+Ingests claim submissions and validates against warranty terms, cross-references product specs and service history, and flags exceptions for human review.
+Search Result
+RFQ Response Drafting
+Ingests RFQs and extracts structured requirements, cross-references specs against your product catalog, and generates first-draft proposals ready for engineering review.
+Search Result
+Supplier Quality Notification Agent
+Auto-generates supplier notifications when quality issues are flagged—complete with evidence, timelines, and required corrective actions pulled from your supplier agreements and quality standards.
+Search Result
+Field Service Troubleshooting Agent
+Searches OEM manuals, past tickets, and technical documentation to guide field technicians through step-by-step diagnosis—deployed directly in Slack, Teams, or wherever your team operates.
+Search Result
+Technical Knowledge Agent
+Surfaces instant, cited answers from product specs, pricing catalogs, and compliance documents so field sales reps and onsite service teams can address technical questions without breaking stride.
+Search Result
+Technical Knowledge Agent for Field Service Teams
+Helps field service teams troubleshoot on-site issues by pulling from manuals, service logs, and past fixes to surface solutions and guide reps through root cause questioning in real time.
+Search Result
+Technical Knowledge Agent for Field Sales Teams
+Gives field sales reps cited answers to technical questions mid-meeting, pulling from real-time synced documents so they can respond with confidence instead of circling back.
+Search Result
+Aviation Underwriting
+Complete, structured data from every broker submission so underwriters can focus on evaluating risk, not organizing it.
+Search Result
+Employment Practices Liability
+Complete, structured data from every broker submission so underwriters can focus on evaluating risk, not manually compiling HR policies and financials.
+Search Result
+Fiduciary Liability
+Complete, structured data from every broker submission so underwriters can focus on evaluating plan risk, not manually extracting asset sizes and fee structures.
+Search Result
+Professional Liability
+Complete, structured data from every broker submission so underwriters can focus on evaluating professional risk, not manually extracting service details and coverage history.
+Search Result
+Deal and Customer Q&A
+Get complete context and keep deals moving smoothly by searching a unified knowledge base of client documents, contracts, and CRM records.
+Search Result
+Customer Support Auto-Responder
+Delivers fast, consistent, policy-aligned responses that boost customer satisfaction and trust.
+It pulls ticket and email details, searches a Knowledge Base, and generates on-brand reply drafts.
+Search Result
+RFP Response Drafting
+Automate RFP responses, improve accuracy, and accelerate proposal delivery.
+Streamline your workflow and free up SMEs for critical validation.
+Search Result
+Internal Answer Search
+Empower employees with instant, accurate information, streamlining operations and boosting productivity.
+Search Result
+Research Agent - Any Topic
+Unlock actionable intelligence faster.
+Our Research Agent autonomously gathers and synthesizes information,
+delivering trustworthy insights to accelerate your research cycles.
+Search Result
+Client Health Tracker Alerts
+Keep customer success and leadership teams informed of health shifts and account risk.
+Monitors a centralized client health tracker and summarizes changes.
+Search Result
+Underwriting Clause Risk Review
+Accelerate and standardize underwriting decisions with automated risk analysis and obligation tracking.
+Search Result
+User Story Creator
+Enhancing documentation consistency and efficiency.
+Generates detailed user stories, acceptance criteria, and user journeys from concise inputs.
+Search Result
+Candidate Resume Screening and Scoring
+Optimize your hiring process with AI-powered resume screening. Quickly identify top talent and reduce manual review time.
+Search Result
+New Lead Personalized Outreach Writer
+Automate personalized first-touch outreach to new leads, boosting reply rates and speed-to-lead. Deliver timely, relevant communication at scale with consistent quality and governance, all without increasing manual effort.
+Search Result
+Ticket Triage and Routing
+Optimize your help desk with Ticket Triage and Routing. This system accurately assigns and prioritizes tickets, ensuring faster resolutions and smoother team handoffs.
+Search Result
+Blog to Social Converter
+Transform your blog posts into a continuous stream of high-performing social media content. Increase your reach, frequency, and engagement without manual rewrites, by generating channel-optimized assets from your longm articles.
+Search Result
+SEO Article Drafting
+Optimize your content strategy with AI-powered SEO article drafting. Create structured, keyword-rich articles that rank higher and engage your target audience. Streamline your workflow and enhance consistency without manual SEO and linking.
+Search Result
+RFP Go/No‑Go Scoring
+Teams make faster, consistent bid decisions, focusing effort on high‑probability opportunities and avoiding time sifting through low‑fit RFPs. This works by ingesting new RFP documents, applying a custom go/no‑go rubric, and outputting a pursue/no‑bid recommendation with a scored breakdown and cited reasons.
+Search Result
+Onboarding Agents for New Employees
+Streamline onboarding for new employees.
+Provide timely, relevant support with role-aware, one-to-one guides.
+Enhance new hire integration and boost productivity through convenient direct messaging.
+Search Result
+QBR Auto-Builder
+The QBR Auto-Builder simplifies business reviews by automating data collection and report generation. It transforms manual busywork into consistent, insight-rich presentations, helping identify expansion opportunities and guide account plans.
+Search Result
+Weekly Competitor News Brief
+Keeps teams aligned on rival moves without manual tracking, enabling faster responses, informed planning, and timely enablement.
+Monitors a defined competitor set, aggregates notable updates from trusted sources each week, and delivers a concise brief to email and Slack.
+Search Result
+Added to demo agenda!
+Talk to our team to learn how Cassidy can help your team with this use case
+Cassidy Use Cases
+Search
+Home
+Sales Enablement
+Sidebar Link
+Customer Support
+Sidebar Link
+RFP
+Sidebar Link
+Operations
+Sidebar Link
+Marketing
+Sidebar Link
+Customer Success
+Sidebar Link
+Research
+Sidebar Link
+Legal
+Sidebar Link
+Product
+Sidebar Link
+Recruiting
+Sidebar Link
+Employee Benefits
+Sidebar Link
+Industrials
+Sidebar Link
+All use cases
+Curious to learn more? Get in touch with our team
+Book Demo
+RFQ Response Drafting
+Ingests RFQs and extracts structured requirements, cross-references specs against your product catalog, and generates first-draft proposals ready for engineering review.
+Thank you! Your submission has been received!
+Please enter a valid business email
+Overview
+Custom solution
+Workflow
+Share on LinkedIn
+Share on X (Twitter)
+What does this mean?
+Speeds response cycles and improves consistency so teams submit compliant, accurate proposals faster and with less manual effort.
+How it works?
+Ingests RFQ documents, extracts structured requirements, cross-references specs with your product catalog and prior responses, and produces a source-linked first-draft proposal ready for engineering review.
+Workflow steps
+Step 1: Ingest RFQ document
+The Workflow activates when a new RFQ document arrives—via email trigger, SharePoint trigger, or manual upload. Cassidy automatically extracts the full document content for processing.
+Step 2: Extract structured requirements
+Using a Generate Text with Cassidy Assistant action, Cassidy parses the RFQ to identify and organize key requirements—specifications, quantities, delivery timelines, compliance criteria, and evaluation factors—into a structured format.
+Step 3: Cross-reference product catalog and prior responses
+Cassidy searches your Knowledge Base to match extracted requirements against your product catalog, technical specs, and previously approved RFQ responses. This ensures accuracy and consistency with what your company has delivered before.
+Step 4: Generate first-draft proposal
+The Workflow produces a source-linked draft proposal that addresses each requirement, pulling in relevant product details and citing Knowledge Base sources so engineering can verify the information.
+Step 5: Route for engineering review
+The draft is sent to your engineering team via a Request Input from Team action, allowing them to review technical accuracy, make edits, and approve before final submission.
+Step 6: Export and deliver
+Once approved, Cassidy exports the proposal as a Microsoft Word document ready for submission.
+Implement it inside your company
+Get help from our team of specialists to quickly integrate this solution into your existing workflow and unlock new growth.
+Book Demo
+Hands-on onboarding and support
+Self-paced training for your team
+Dedicated implementation experts
+Ongoing use case discovery
+ROI tracking & analytics dashboards
+Proven playbooks to get started fast
+A dedicated team to drive adoption and results
+Our implementation experts work hands-on with your team to make sure you see real value - fast. From setup to optimization, we’re here to help every step of the way.
+We enable your teams - no IT required
+We train your builders, support their workflows, and make sure they get the most out of Cassidy without ever waiting on engineering.
+ Explore more  automations 
+Technical Knowledge Agent for Field Service Teams
+Helps field service teams troubleshoot on-site issues by pulling from manuals, service logs, and past fixes to surface solutions and guide reps through root cause questioning in real time.
+Link URL Content
+Technical Knowledge Agent for Field Sales Teams
+Gives field sales reps cited answers to technical questions mid-meeting, pulling from real-time synced documents so they can respond with confidence instead of circling back.
+Link URL Content
+Technical Knowledge Agent
+Surfaces instant, cited answers from product specs, pricing catalogs, and compliance documents so field sales reps and onsite service teams can address technical questions without breaking stride.
+Link URL Content
+Move from idea to production with Cassidy
+Thank you! Your submission has been received!
+Please enter a valid business email
+Features
+Homepage
+Knowledge Base
+Agents
+Workflows
+Meetings
+Copilot
+Artifacts
+Skills
+Extensions
+Solutions
+Insurance
+Employee Benefits
+Brokers
+Carriers & MGAs
+Property & Casualty
+Industrial
+Professional Services
+Sales enablement
+Customer support
+Operations
+Marketing
+All
+Product
+Integrations
+Documentation
+Enterprise
+Security
+Company
+Blog
+Careers
+Customers
+Legal
+Terms
+Privacy Policy
+Contact
+LinkedIn
+X (Twitter)
+Contact us
+Build AI Agents that operate like your team
+Cassidy Inc. © 2026

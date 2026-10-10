@@ -1,0 +1,9 @@
+CLAIM: FRED series
+URL: fred
+METHOD: playwright
+VERDICT: VERIFIED
+
+MATCHING TEXT:
+> see fred1/2/3_playwright.txt
+
+NOTES: 

@@ -1,0 +1,7 @@
+CLAIM: User "Neeman", Dec 21, 2020: "I need to improve the way we respond to quotes- only have 1 estimator and response time is too slow, I believe it is losing us business."
+URL: https://www.practicalmachinist.com/forum/threads/quoting-software-recommendations.385613/
+METHOD: playwright (curl hit Cloudflare block)
+VERDICT: VERIFIED
+MATCHING TEXT FROM SOURCE:
+> Neeman, Dec 21, 2020 #1: I'm acquiring a company late Feb and I need to improve the way we respond to quotes- only have 1 estimator and response time is too slow, I believe it is losing us business. Is there a particular software out there to assist with quoting?
+NOTES: Thread "quoting software recommendations", 0 replies. Page text saved in pm_playwright.txt. Chrome text for mcn not saved to a separate file; quotes confirmed from get_page_text output.
