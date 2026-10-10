@@ -117,7 +117,7 @@ Read what your work touches. Each link says what the document is for.
 - [Gauge tables, specs, and hidden requirements](docs/research/20261010.01_rfq_sharper_angle/research_domain_rules.md): the rules parsing and compliance flags follow.
 - [Existing tools and public price sources](docs/research/20261010.01_rfq_sharper_angle/research_tools_and_prices.md): competitors' AI quote tools, and free benchmarks for pricing.
 - [RudCo company profile](docs/research/20261010.02_rudco_profile/rudco_profile.md): who RudCo is and what matters to them.
-- RudCo competitive analysis: in progress, in `docs/research/20261010.03_rudco_competitive_analysis/`.
+- [RudCo competitive analysis](docs/research/20261010.03_rudco_competitive_analysis/competitive_analysis.md): what competitors offer that RudCo doesn't, and where the demo can put RudCo ahead.
 
 **Engineering (Hirsh)**
 - [Development baseline](docs/engineering/BASELINE.md): setup, run, and check commands.
