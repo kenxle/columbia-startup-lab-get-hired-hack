@@ -189,7 +189,7 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
     entry = entries.sole
     assert_equal "thickness", entry["field"]
     assert_equal 0.0625, entry["value"].to_f
-    assert_equal "0.060 in", entry["source_text"]
+    assert_equal @line.original_text, entry["source_text"]
     assert_equal @line.id, entry.dig("provenance", "quote_line_id")
     assert_equal "explicit_buyer_choice", entry.dig("provenance", "method")
     assert_empty service.send(:confirmed_answers_for, @line, nil)
@@ -198,6 +198,9 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
     assert_equal entries, result.processing.fetch("confirmed_answers")
     next_service = QuoteWorkspace::ApplyBuyerAnswer.new(**arguments)
     assert_equal entries, next_service.send(:confirmed_answers_for, result, nil)
+    result.processing["confirmed_answers"].first["source_text"] = "0.060 in"
+    assert_empty next_service.send(:confirmed_answers_for, result, nil)
+    result.processing["confirmed_answers"].first["source_text"] = result.original_text
     result.processing["confirmed_answers"].first["provenance"]["quote_line_id"] += 1
     assert_empty next_service.send(:confirmed_answers_for, result, nil)
   end

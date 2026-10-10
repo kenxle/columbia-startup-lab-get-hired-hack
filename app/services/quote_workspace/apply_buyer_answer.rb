@@ -157,13 +157,13 @@ module QuoteWorkspace
         evidence.is_a?(Hash) && evidence["location"] == "buyer answer" &&
           evidence["explanation"].to_s.start_with?("answered by the buyer: ") &&
           line.spec["thickness"].to_s.to_d == entry["value"].to_s.to_d &&
-          entry["source_text"] == original_thickness_phrase(line)
+          entry["source_text"] == line.original_text.to_s
       end.map(&:deep_dup)
       return prior unless choice && choice["field"] == "thickness_in" && valid_thickness?(choice["value"])
 
       phrase = original_thickness_phrase(line)
       return prior unless phrase.present? && phrase.length <= 200
-      [{ "field" => "thickness", "value" => choice["value"], "source_text" => phrase,
+      [{ "field" => "thickness", "value" => choice["value"], "source_text" => line.original_text.to_s,
         "provenance" => { "method" => "explicit_buyer_choice", "quote_id" => @quote.id,
           "quote_line_id" => line.id, "line_id" => line.line_id, "quote_reference" => @quote.reference,
           "revision_id" => @revision_id, "choice_id" => choice["id"], "source_sha256" => digest } }]
