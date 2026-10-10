@@ -26,7 +26,7 @@ One integration point: Yuval's library calls Tisch's matcher and produces the wh
 {
   "schema_version": 1,
   "sample_data": true,
-  "revision": { "id": "proc-20261010-125000-ab12cd34", "created_at": "2026-10-10T12:50:00-04:00", "processor": "rfq_processing 0.1" },
+  "revision": { "id": "proc-20261010-125000-ab12cd34", "created_at": "2026-10-10T12:50:00-04:00", "processor": "rfq_processing 0.1", "llm": null },
   "source": { "type": "email", "filename": null, "pages": null, "rows": null },
   "warnings": ["page 2 has no extractable text; it may be scanned"],
   "lines": []
@@ -34,6 +34,7 @@ One integration point: Yuval's library calls Tisch's matcher and produces the wh
 ```
 
 - `revision.id` is new for every processing run, including a rerun after a buyer answers. Hirsh asked for it so a reply can be tied to the run it answers.
+- `revision.llm` names the Claude step that ran: `{ "provider": "nicrron", "model": "anthropic/claude-opus-5" }` through the hackathon's Nicrron gateway, or `{ "provider": "anthropic", "model": "claude-opus-5" }` through the Anthropic API. It is `null` when the run was rules only. The model is Claude Opus 5 (Hirsh, 13:40); a gateway answer from any other model is dropped, never substituted.
 - `source.type` is `email`, `pdf`, or `spreadsheet`.
 - `warnings` carries extraction problems the rep must see. A page with no text is a warning, never a silent skip.
 - `sample_data` is true whenever the catalog or prices are ours, not RudCo's.

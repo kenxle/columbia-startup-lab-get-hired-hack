@@ -18,6 +18,7 @@ Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `scr
 
 - **The demo RFQ email.** Handed to Tisch, who has been collecting the RFQ and catalog data. Yuval checks that every line parses.
 - **The app reskin to the style guide, and a shared component library.** Asked the team on the board; Hirsh leads both.
+- **Drafts for your review:** [demo video script](DEMO_SCRIPT.md) and [Devpost write-up](DEVPOST.md), open in your browser.
 
 ## Where things stand
 

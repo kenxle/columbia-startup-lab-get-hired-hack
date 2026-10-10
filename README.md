@@ -26,7 +26,8 @@ Every document we made for this project, with a PDF where one exists. The [docum
 | [Brand position](docs/product/BRAND_POSITION.md) | How we talk: voice, words to use and avoid, taglines, screen text. | [PDF](docs/product/brand_position.pdf) |
 | [Style guide](docs/product/STYLE_GUIDE.md) | How it looks: RudCo palette, status colors, type, buttons, layout, logo. | [PDF](docs/product/style_guide.pdf) |
 | [Logo workshop](docs/product/logo_workshop.html) | The logo and favicon options, and the decision. | |
-| [Ken's Desk](docs/product/KEN_DESK.md) | Ken's working page: open decisions, status, and the build map. | |
+| [Demo video script](docs/product/DEMO_SCRIPT.md) | What the video shows and says, beat by beat, and what must work before recording. Draft. | |
+| [Devpost write-up](docs/product/DEVPOST.md) | The submission text. Draft. | |
 
 ### Research
 
