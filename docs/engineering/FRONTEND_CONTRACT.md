@@ -28,6 +28,8 @@ session token. This is a local prototype, not production authentication.
 | GET `/quotes/:quote_id/buyer_questions` | Consolidated preview of existing held-line questions |
 | GET `/quotes/:quote_id/buyer_questions/download` | Plain-text draft when every held line has a question |
 | POST `/quotes/:quote_id/buyer_questions/preview_email` | Local question email preview with revision check |
+| POST `/quotes/:quote_id/buyer_answers` | Apply one rep-entered buyer answer to its current held line |
+| POST `/quotes/:quote_id/buyer_terms` | Explicitly teach a supported field for this buyer, with source RFQ provenance |
 | POST `/quotes/:id/approve` | Human approval of the current whole quote |
 | GET `/quotes/:quote_id/final_quote` | Approved email draft and export preparation |
 | GET `/quotes/:quote_id/final_quote/download` | Approved plain-text email draft |
@@ -162,10 +164,13 @@ other transports are rejected. Previews use `buyer@example.invalid` and explicit
 say no email was sent to the buyer. Plain-text downloads name files to attach,
 without claiming attachments already exist in an email.
 
-Real inbox ingestion, buyer delivery, choice-response endpoints, confidence-based
-automatic sending, partial reruns and production authentication remain pending.
-Buyer answers must eventually bind to the line, choice and processing revision
-that produced them; stale answers must be rejected.
+Real inbox ingestion, buyer delivery, public choice-response links, confidence-based
+automatic sending, general re-quote redlines and production authentication remain pending.
+Rep-entered answers bind to the DB line, stable processing ID, current review revision
+and current processing revision. Stale answers, target rep edits and active runs are
+rejected. Only the answered line changes; other rows and edits keep their IDs and values.
+A successful answer clears approval. Explicit teaching stores a trusted source RFQ
+reference as `confirmed_on`, scoped to the same buyer and workspace.
 
 ## UI direction and ownership
 
@@ -191,10 +196,24 @@ independent verification of inventory.
 
 ## Local review data
 
-In development only, opening an empty Quotes workspace creates three persisted
+In development only, opening an empty Quotes workspace creates twelve persisted
 RFQs through `QuoteWorkspace::DemoWorkspace.seed_if_empty!`. Added material
 requests use the local rules parser and catalog with `llm: false`; no job, API
 call or email is sent. Existing workspaces are unchanged on ordinary visits.
 `DemoWorkspace.populate!(workspace_token:)` explicitly tops an older local
-workspace up to three, without changing its existing RFQs. Production does not
+workspace up to twelve, without changing its existing RFQs. Production does not
 seed. The fixed `Demo` factory remains available for repeatable workflow tests.
+
+## Desk deadlines and priced alternatives
+
+The quote list sorts unsent RFQs by receipt plus 24 hours, followed by sent RFQs.
+The badge updates each minute, turns amber at three hours, and turns red overdue.
+A current sent revision shows its receipt-to-send duration; approval and local
+mail preview never set delivery metadata. Constructed development sent history
+is explicitly created by the seed service and never calls a mail transport.
+
+`processing.alternates` follows Yuval's result format. The app shows 2–3 distinct
+options with their own specs, prices, benchmarks and lead-time sources. A missing
+or invalid price remains held. Quantity/unit mismatches, invalid dates and
+unresolved fields cannot produce a quotable price. Mutually exclusive options
+are not part of the Ready subtotal. Rep edits suppress stale options.

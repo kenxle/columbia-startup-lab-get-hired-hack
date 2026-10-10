@@ -1,16 +1,33 @@
 require Rails.root.join("tools/rfq_processing/lib/rfq_processing").to_s
 
 module QuoteWorkspace
-  # Development-only sample records, separate from the fixed Demo fixture.
-  # Existing RFQs are never replaced. Explicit populate! can top up an older
-  # local workspace; automatic first-visit seeding only touches an empty one.
+  # Fictional development RFQs, including constructed sent history. This never
+  # sends mail or replaces existing RFQs. The fixed Demo fixture stays separate.
   class DemoWorkspace
-    SIZE = 3
+    SIZE = 12
     REQUESTS = [
-      { title: "Steel shot replenishment", buyer_name: "Hudson Surface Prep",
+      { title: "Steel shot replenishment", buyer_name: "Hudson Surface Prep", age_hours: 23, approve: true,
         source_text: "S-330 steel shot, 100 lb" },
-      { title: "Structural plate order", buyer_name: "Harbor Fabrication",
-        source_text: "A36 plate 1/4 x 48 x 96, qty 5" }
+      { title: "Structural plate order", buyer_name: "Harbor Fabrication", age_hours: 22,
+        source_text: "A36 plate 1/4 x 48 x 96, qty 5" },
+      { title: "Blast room media restock", buyer_name: "Cedar Foundry", age_hours: 18,
+        source_text: "S-170 steel shot, 200 lb\nS-330 steel shot, 500 lb\nS-390 steel shot, 100 lb" },
+      { title: "Aerospace sheet request", buyer_name: "Beacon Machine Works", age_hours: 25,
+        source_text: "7075-T6 aluminum sheet .125 x 48 x 144, qty 2" },
+      { title: "Shop materials and blasting media", buyer_name: "Harbor Fabrication", age_hours: 10,
+        source_text: "S-330 steel shot, 250 lb\nPlate 1/4 x 48 x 96, qty 10\n304 SS sheet 16ga 4x8, qty 5\nG-40 steel grit, 100 lb\nP1020 aluminum ingot, 500 lb" },
+      { title: "Peening line refill", buyer_name: "Cedar Foundry", age_hours: 8, approve: true,
+        source_text: "S-230 steel shot, 300 lb" },
+      { title: "Plate dimensions to confirm", buyer_name: "Northline Fabrication", age_hours: 6,
+        source_text: "Steel plate 1/4, qty 12" },
+      { title: "Weekly blast media delivery", buyer_name: "Hudson Surface Prep", age_hours: 4, sent_hours: 3,
+        source_text: "S-330 steel shot, 400 lb" },
+      { title: "High strength aluminum panels", buyer_name: "Beacon Machine Works", age_hours: 3,
+        source_text: "7075-T6 aluminum sheet .250 x 48 x 144, qty 3" },
+      { title: "Foundry cleaning media", buyer_name: "Cedar Foundry", age_hours: 2, sent_hours: 1,
+        source_text: "S-170 steel shot, 150 lb" },
+      { title: "Afternoon media order", buyer_name: "Summit Coatings", age_hours: 1,
+        source_text: "S-460 steel shot, 200 lb" }
     ].freeze
 
     def self.seed_if_empty!(workspace_token:)
@@ -28,9 +45,11 @@ module QuoteWorkspace
         count = Quote.for_workspace(workspace_token).count
         return [] if count >= SIZE
 
+        now = Time.current
         created = []
         unless Quote.for_workspace(workspace_token).exists?(buyer_name: Demo::BUYER_NAME, source_text: Demo::SOURCE_TEXT)
           quote = Demo.create!(workspace_token: workspace_token)
+          quote.update_columns(created_at: now - 27.hours)
           created << quote
           count += 1
         end
@@ -38,11 +57,23 @@ module QuoteWorkspace
         matcher = ProcessRfq::IntakeMatcher.new(client: nil, catalog: catalog, service: CatalogMatch::Matcher)
         existing = Quote.for_workspace(workspace_token).pluck(:buyer_name, :source_text)
         missing = REQUESTS.reject { |attributes| existing.include?([ attributes[:buyer_name], attributes[:source_text] ]) }
-        missing.first(SIZE - count).each do |attributes|
-          quote = Quote.create!(attributes.merge(workspace_token: workspace_token, sample_data: true))
+        missing.first(SIZE - count).each do |recipe|
+          quote = Quote.create!(recipe.except(:age_hours, :sent_hours, :approve).merge(
+            workspace_token: workspace_token, sample_data: true, created_at: now - recipe[:age_hours].hours))
           result = RfqProcessing.process(content: quote.source_text, type: "email", matcher: matcher,
             sample_data: true, context: {}, buyer_terms: [], llm: false)
           ApplyResult.call(quote: quote, result: result)
+          if recipe[:approve] || recipe[:sent_hours]
+            raise "Approved demo RFQ must have only ready lines" unless quote.held_count.zero? && quote.ready_count.positive?
+
+            quote.approve!(approved_time: recipe[:sent_hours] ? now - recipe[:sent_hours].hours : now)
+          end
+          if recipe[:sent_hours]
+            sent_time = now - recipe[:sent_hours].hours
+            # Constructed history only. Preserve the reviewed version while
+            # recording sent state, without invoking any delivery service.
+            quote.update_columns(sent_at: sent_time, sent_review_revision: quote.review_revision)
+          end
           created << quote
         end
         created

@@ -63,6 +63,7 @@
             <% else %>
               <p class="buyer-draft__missing">Question missing. Add a specific question for the buyer.</p>
             <% end %>
+            <%= render "quotes/buyer_answer", quote: @quote, line: line %>
           </li>
         <% end %>
       </ol>

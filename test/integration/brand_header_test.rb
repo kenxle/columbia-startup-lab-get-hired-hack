@@ -1,7 +1,7 @@
 require "test_helper"
 
 class BrandHeaderTest < ActionDispatch::IntegrationTest
-  test "workspace header uses the approved lockup and keeps keyboard navigation available" do
+  test "sidebar alone uses the approved lockup and keeps keyboard navigation available" do
     get quotes_path
     assert_response :success
 
@@ -15,15 +15,9 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     assert_select 'link[href="/icon.png"], link[href="/icon.svg"]', count: 0
     assert_select 'a.skip-link[href="#main"]', "Skip to content"
     assert_select 'main#main[tabindex="-1"]'
-    assert_select "header.brand-header" do
-      assert_select "a.brand-header__lockup[href=?][aria-label=?]", root_path, "RudCo Quote Desk home" do
-        assert_select 'img[src="/brand/rudco-mark.png"][alt="RudCo"][width="32"][height="32"]'
-        assert_select ".brand-header__name", "RudCo"
-        assert_select ".brand-header__tagline", "QUOTE DESK"
-      end
-      assert_select 'nav[aria-label="Product"] a[href=?]', quotes_path, "Quote Desk"
-    end
-    assert_select ".sidebar__brand" do
+    assert_select "header.brand-header", count: 0
+    assert_select 'nav[aria-label="Product"]', count: 0
+    assert_select 'a.sidebar__brand[href=?][aria-label="RudCo Quote Desk home"]', root_path do
       assert_select 'img[src="/brand/rudco-mark.png"][width="32"][height="32"][alt=""]'
       assert_select ".sidebar__name", "RudCo"
       assert_select ".sidebar__product", "QUOTE DESK"
@@ -34,7 +28,7 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
 
   test "branding preserves catalog navigation and status words" do
     post demo_quotes_path
-    follow_redirect!
+    get response.location, params: { status: "all" }
     assert_response :success
 
     assert_select ".sidebar__nav a[href=?]", catalog_matches_path, "Find catalog item"

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
 
     resources :quote_lines, only: :update
+    resources :buyer_answers, only: :create
+    resources :buyer_terms, only: :create
     resource :processing, only: :create, controller: "processing_runs"
   end
 

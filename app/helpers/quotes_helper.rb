@@ -91,12 +91,18 @@ module QuotesHelper
   end
 
   def quote_status_badge(quote)
-    if quote.approved?
-      tag.span("Approved", class: "status status--ready")
+    if quote.sent?
+      tag.span("Sent", class: "status status--ready")
+    elsif quote.approved?
+      tag.span("Ready to send", class: "status status--ready")
     elsif quote.awaiting_processing?
       tag.span("Awaiting processing", class: "status status--neutral")
+    elsif quote.quote_lines.any? { |line| line.state == "needs_buyer" }
+      tag.span("Needs the buyer", class: "status status--needs-buyer")
+    elsif quote.quote_lines.any? { |line| line.state == "no_match" }
+      tag.span("No match", class: "status status--no-match")
     else
-      tag.span("In review", class: "status status--needs-buyer")
+      tag.span("In review", class: "status status--neutral")
     end
   end
 

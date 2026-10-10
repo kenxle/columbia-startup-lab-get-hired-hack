@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_10_184500) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_10_193000) do
   create_table "client_terms", force: :cascade do |t|
     t.integer "client_id", null: false
     t.string "term", null: false
@@ -109,6 +109,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_184500) do
     t.json "processing_revision"
     t.json "processing_source"
     t.json "processing_warnings", default: [], null: false
+    t.datetime "sent_at"
+    t.string "sent_review_revision"
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 

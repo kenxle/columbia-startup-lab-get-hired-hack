@@ -32,6 +32,7 @@ class Quote < ApplicationRecord
   validate :original_filename_present_with_file
   validate :processing_revision_shape
   validate :processing_evidence_shape
+  validate :sent_metadata_shape
 
   # Flat, bounded extraction metadata only. Unknown keys and source types are
   # rejected rather than silently retaining provider data or inventing a type.
@@ -158,6 +159,23 @@ class Quote < ApplicationRecord
 
   def approved?
     approved_at.present?
+  end
+
+  def due_at
+    created_at && created_at + 24.hours
+  end
+
+  # Delivery belongs to a reviewed revision. A later edit needs a new send;
+  # approval or opening a local mail preview never records a delivery.
+  def sent?
+    approved? && sent_at.present? && sent_review_revision.present? && sent_review_revision == review_revision
+  end
+
+  def sent_metadata_shape
+    return if sent_at.nil? && sent_review_revision.nil?
+
+    errors.add(:sent_review_revision, "must identify the sent revision") unless self.class.valid_processing_identifier?(sent_review_revision)
+    errors.add(:sent_at, "must be a delivery time on or after receipt") unless sent_at && (!created_at || sent_at >= created_at)
   end
 
   def awaiting_processing?

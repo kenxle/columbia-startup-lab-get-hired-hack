@@ -35,7 +35,7 @@ module QuoteWorkspace
         pdf.move_down 12
         text(pdf, "Ready-line subtotal", size: 10, color: MUTED)
         text(pdf, "USD #{data[:subtotal]}", size: 24, style: :bold, color: BLUE)
-        text(pdf, "Held lines are unpriced and excluded from this subtotal.", size: 8, color: MUTED)
+        text(pdf, data[:exclusion_notice], size: 8, color: MUTED)
         pdf.move_down 20
         data[:lines].each { |line| render_line(pdf, line) }
         pdf.move_down 10
@@ -102,9 +102,25 @@ module QuoteWorkspace
           text(pdf, "Benchmark: not provided", size: 8, color: MUTED)
         end
       else
-        text(pdf, "Unpriced. Excluded from subtotal.", style: :bold, color: "7F4205")
+        text(pdf, line[:options].any? { |option| option[:priced] } ? "Buyer choice. Options excluded from subtotal." : "Unpriced. Excluded from subtotal.", style: :bold, color: "7F4205")
         text(pdf, "Question for the buyer: #{line[:question]}")
       end
+      line[:options].each do |option|
+        pdf.move_down 8
+        text(pdf, "#{option[:label]} / #{option[:priced] ? 'Buyer choice' : 'Held, unpriced'}", style: :bold)
+        text(pdf, "Catalog SKU: #{option[:sku]}")
+        option[:spec].each { |key, value| text(pdf, "#{key.humanize}: #{value}") }
+        text(pdf, "Quantity: #{option[:quantity]} #{option[:quantity_unit]}")
+        if option[:priced]
+          text(pdf, "Unit price: USD #{option[:unit_price]} | Option total: USD #{option[:total]}", style: :bold)
+          text(pdf, "Price source: #{option[:price_source]}", size: 8, color: MUTED)
+          text(pdf, "Benchmark: #{option[:benchmark]['name']} | As of: #{option[:benchmark]['as_of']}", size: 8)
+          text(pdf, option[:benchmark]["explanation"], size: 8) if option[:benchmark]["explanation"].present?
+        end
+        text(pdf, "Lead time: #{option[:lead_time]}")
+        text(pdf, "Lead time source: #{option[:lead_time_source]}", size: 8) if option[:lead_time_source].present?
+      end
+      text(pdf, "Choose one option. Option totals are separate and excluded from the subtotal.", size: 8) if line[:options].any?
       text(pdf, "Lead time: #{line[:lead_time]}")
       text(pdf, "Lead time source: #{line[:lead_time_source]}", size: 8, color: MUTED) if line[:lead_time_source].present?
       if line[:compliance].any?

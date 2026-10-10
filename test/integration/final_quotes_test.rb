@@ -45,7 +45,10 @@ class FinalQuotesTest < ActionDispatch::IntegrationTest
     @quote.approve!
     get quote_final_quote_path(@quote)
     assert_response :success
-    assert_select "script", count: 0
+    assert_select "main script", count: 0
+    assert_select "head script", count: 1 do |scripts|
+      assert_match %r{/assets/quote_deadlines(?:-[a-f0-9]+)?\.js}, scripts.first["src"]
+    end
     assert_includes response.body, "&lt;script&gt;"
     refute_includes response.body, "SECRET-NOTE"
     get download_quote_final_quote_path(@quote)

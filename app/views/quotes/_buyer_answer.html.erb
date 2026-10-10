@@ -1,0 +1,48 @@
+<%# locals: (quote:, line:) %>
+<% revision_id = quote.processing_revision.is_a?(Hash) ? quote.processing_revision["id"] : nil %>
+<% unavailable = if line.state == "ready"
+  "This line is ready for rep review."
+elsif line.line_id.blank? || revision_id.blank?
+  "Process this RFQ before applying a buyer answer."
+elsif Array(line.edited_fields).any?
+  "This line has rep edits. Review those edits before applying a buyer answer."
+elsif quote.processing_runs.where(status: ProcessingRun::ACTIVE_STATUSES).exists?
+  "Processing is in progress. Review the updated line before applying an answer."
+end %>
+<section class="buyer-action" aria-labelledby="buyer-answer-heading-<%= line.id %>">
+  <h3 class="section-title" id="buyer-answer-heading-<%= line.id %>">Buyer answer</h3>
+  <% if unavailable %>
+    <p class="field__hint buyer-answer__unavailable"><%= unavailable %></p>
+  <% else %>
+    <% processing = line.processing.is_a?(Hash) ? line.processing : {} %>
+    <% choices = Array(processing["question_choices"]).select { |choice| choice.is_a?(Hash) && choice["id"].is_a?(String) && choice["id"].present? && choice["label"].is_a?(String) && choice["label"].present? } %>
+    <p class="section-hint" id="buyer-answer-hint-<%= line.id %>">Record the buyer's answer below. Applying it reruns this line and clears quote approval. Review the result before sending a quote.</p>
+    <% if choices.any? %>
+      <%= form_with url: quote_buyer_answers_path(quote), method: :post, class: "buyer-action__form buyer-answer__choice-form", aria: { describedby: "buyer-answer-hint-#{line.id}" } do %>
+        <%= hidden_field_tag :quote_line_id, line.id, id: nil %>
+        <%= hidden_field_tag :reviewed_version, quote.review_revision, id: nil %>
+        <%= hidden_field_tag :revision_id, revision_id, id: nil %>
+        <fieldset class="buyer-answer__choices">
+          <legend class="field__label">Select the buyer's answer</legend>
+          <% choices.each_with_index do |choice, index| %>
+            <label class="checkbox" for="buyer-choice-<%= line.id %>-<%= index %>">
+              <%= radio_button_tag :choice_id, choice["id"], false, id: "buyer-choice-#{line.id}-#{index}", class: "checkbox__input", required: true %>
+              <span class="checkbox__label"><%= choice["label"] %></span>
+            </label>
+          <% end %>
+        </fieldset>
+        <div class="form-actions"><%= submit_tag "Apply buyer answer", class: "button button--primary" %></div>
+      <% end %>
+    <% end %>
+    <%= form_with url: quote_buyer_answers_path(quote), method: :post, class: "buyer-action__form buyer-answer__text-form", aria: { describedby: "buyer-answer-hint-#{line.id}" } do %>
+      <%= hidden_field_tag :quote_line_id, line.id, id: nil %>
+      <%= hidden_field_tag :reviewed_version, quote.review_revision, id: nil %>
+      <%= hidden_field_tag :revision_id, revision_id, id: nil %>
+      <div class="field">
+        <%= label_tag "buyer-answer-text-#{line.id}", choices.any? ? "Or enter the buyer's own words" : "The buyer's answer", class: "field__label" %>
+        <%= text_area_tag :free_text, nil, id: "buyer-answer-text-#{line.id}", rows: 3, maxlength: 2_000, required: true, class: "input" %>
+      </div>
+      <div class="form-actions"><%= submit_tag "Apply buyer answer", class: "button button--primary" %></div>
+    <% end %>
+  <% end %>
+</section>

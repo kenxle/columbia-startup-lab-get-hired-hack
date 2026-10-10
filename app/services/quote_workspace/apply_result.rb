@@ -35,6 +35,14 @@ module QuoteWorkspace
     end
 
     def call
+      validated = validated_result
+      replace_lines(validated[:lines], sample_data: validated[:result]["sample_data"],
+        processing_revision: validated[:result]["revision"], processing_evidence: validated[:evidence])
+      @quote
+    end
+
+    # Validate without persistence so a selected-line update shares import rules.
+    def validated_result
       raise InvalidResult.new([ "result must be a hash" ]) unless @result.is_a?(Hash)
 
       check_processing_metadata
@@ -59,8 +67,7 @@ module QuoteWorkspace
       end
       raise InvalidResult.new(@problems) if @problems.any?
 
-      replace_lines(line_attributes, sample_data: result["sample_data"], processing_revision: result["revision"], processing_evidence: @processing_evidence)
-      @quote
+      { lines: line_attributes, result: result, evidence: @processing_evidence }
     end
 
     private

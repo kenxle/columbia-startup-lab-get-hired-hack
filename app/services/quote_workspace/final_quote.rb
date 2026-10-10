@@ -22,7 +22,7 @@ module QuoteWorkspace
         parts = [ "Draft, not sent", "Subject: Quote #{data[:reference]}" ]
         parts << "Buyer: #{data[:buyer]}" if data[:buyer].present?
         parts << "Approved quote #{data[:reference]}: #{data[:title]}"
-        parts << "Ready-line subtotal: USD #{data[:subtotal]}. Held lines are unpriced and excluded."
+        parts << "Ready-line subtotal: USD #{data[:subtotal]}. #{data[:exclusion_notice]}"
         data[:lines].each do |line|
           details = [ "Line #{line[:position]}: #{line[:description]}", "Status: #{line[:status]}",
             "Quantity: #{line[:quantity]}", "Lead time: #{line[:lead_time]}" ]
@@ -43,6 +43,21 @@ module QuoteWorkspace
           details << "Lead time source: #{line[:lead_time_source]}" if line[:lead_time_source].present?
           details << "Requested paperwork: #{line[:compliance].join('; ')}" if line[:compliance].any?
           details << "Question: #{line[:question]}" unless line[:ready]
+          line[:options].each do |option|
+            details << "#{option[:label]} / #{option[:priced] ? 'Buyer choice' : 'Held, unpriced'}"
+            details << "Catalog SKU: #{option[:sku]}"
+            details << option[:spec].map { |key, value| "#{key.humanize}: #{value}" }.join("; ")
+            details << "Quantity: #{option[:quantity]} #{option[:quantity_unit]}"
+            if option[:priced]
+              details << "Unit price: USD #{option[:unit_price]} | Option total: USD #{option[:total]}"
+              details << "Price source: #{option[:price_source]}"
+              details << "Benchmark: #{option[:benchmark]['name']} | As of: #{option[:benchmark]['as_of']}"
+              details << option[:benchmark]["explanation"] if option[:benchmark]["explanation"].present?
+            end
+            details << "Lead time: #{option[:lead_time]}"
+            details << "Lead time source: #{option[:lead_time_source]}" if option[:lead_time_source].present?
+          end
+          details << "Choose one option. Option totals are separate and excluded from the subtotal." if line[:options].any?
           parts << details.join("\n")
         end
         if attachments_included
@@ -63,6 +78,7 @@ module QuoteWorkspace
           raise NotApproved, "Review and approve the current quote before exporting."
         end
 
+        presented_lines = lines.map { |line| present_line(line) }
         yield({
           reference: @quote.reference,
           title: @quote.title,
@@ -71,7 +87,9 @@ module QuoteWorkspace
           sample: @quote.sample_data?,
           basename: "#{@quote.reference}-quote",
           subtotal: decimal(lines.select(&:quotable?).sum(BigDecimal("0"), &:line_total), 2),
-          lines: lines.map { |line| present_line(line) }
+          exclusion_notice: presented_lines.any? { |line| line[:options].any? { |option| option[:priced] } } ?
+            "Buyer-choice options and held lines are excluded. Option totals are mutually exclusive." : "Held lines are unpriced and excluded.",
+          lines: presented_lines
         })
       end
     end
@@ -85,6 +103,7 @@ module QuoteWorkspace
     def present_line(line)
       ready = line.quotable?
       benchmark = line.benchmark.is_a?(Hash) ? line.benchmark : {}
+      options = QuoteOptions.for(line)
       {
         position: line.position,
         description: line.description.presence || "Line #{line.position}",
@@ -93,7 +112,8 @@ module QuoteWorkspace
           [ key.humanize, value ] if value.present?
         end,
         ready: ready,
-        status: ready ? "Ready" : "Held: #{line.status_label}",
+        status: ready ? "Ready" : options.any? { |option| option[:priced] } ? "Buyer choice" : "Held: #{line.status_label}",
+        options: options,
         quantity: [ line.quantity && CsvExport.format_quantity(line.quantity), line.quantity_unit ].compact.join(" ").presence || "Not specified",
         sku: ready ? line.catalog_sku : nil,
         unit_price: ready ? decimal(line.unit_price, line.unit_price == line.unit_price.round(2) ? 2 : 4) : nil,

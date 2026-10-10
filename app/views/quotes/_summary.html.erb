@@ -17,7 +17,7 @@
       <dd><span class="count count--held"><%= quote.held_count %></span></dd>
     </div>
     <div class="summary__item summary__item--total">
-      <dt>Subtotal <span class="summary__qualifier">ready lines only</span></dt>
+      <dt title="Includes Ready lines only. Held lines and buyer-choice options are excluded." tabindex="0">Subtotal</dt>
       <dd class="mono">
         <%= quote.awaiting_processing? ? unknown_marker : display_money(quote.subtotal) %>
       </dd>

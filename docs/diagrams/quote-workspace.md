@@ -3,7 +3,7 @@
 ```mermaid
 graph TD
     A[Rep pastes email or uploads RFQ] --> B[Save session-scoped quote and original source]
-    B --> C[Enqueue durable processing run]
+    B --> C[Persist processing run and enqueue local job]
     C --> D[ProcessRfqJob captures source and current revision]
     D --> E[Rules extraction and normalization]
     E --> F[Workspace buyer context: rep-taught terms only]
@@ -17,16 +17,23 @@ graph TD
     L --> N[Retry empty RFQ]
     M --> N
     N --> C
-    O[Load labeled synthetic sample] --> K
+    O[Load development RFQs] --> K
     K --> P[Source beside quote lines and extraction evidence]
     J --> P
     L --> P
-    P --> Q[Filter all, attention needed or ready]
+    P --> Q[Default to Attention needed; clear RFQs show All]
     P --> R[Rep edits a line]
     R --> S[Clear approval and preserve edit context]
     S --> P
     P --> T[Held-line question draft]
     T --> U[Plain text or local question email preview]
+    T --> AA[Rep enters a current buyer answer]
+    AA --> AB[Recheck revision and preserve rep edits]
+    AB --> AC[Answers.apply reruns only that line]
+    AC --> S
+    P --> AD[Rep explicitly teaches buyer term with source RFQ]
+    AD --> F
+    P --> AE[Show priced alternates separately from subtotal]
     P --> V[Rep approves current whole-quote revision]
     V --> W[Locked approved snapshot]
     W --> X[PDF, CSV and email text draft]
@@ -37,7 +44,7 @@ Saving an RFQ starts processing automatically. Work runs outside the request and
 outside the quote lock; result application rechecks revision and rep edits under
 that lock. Duplicate active requests reuse one run. The status panel shows queued,
 running, succeeded, failed, stale or conflict. Existing lines are not destructively
-reprocessed through the manual endpoint. Partial reruns need a future merge contract.
+reprocessed through the manual endpoint. Rep-entered buyer answers selectively rerun one held line under fresh revision guards.
 
 Text-bearing PDF, CSV and pasted text extraction are connected. Unsupported or
 textless sources fail visibly. Source filename, page/row counts and bounded warnings
@@ -53,12 +60,12 @@ edits invalidate approval. Downloads and local previews preserve the quote.
 
 Final email text, PDF and CSV use the same approved revision in a local mail preview.
 PDF embeds Unicode fonts and rejects unsupported glyphs rather than altering specs.
-Sample data remains labeled; internal notes and extraction metadata stay out of buyer
+Constructed provenance stays internal; internal notes and extraction metadata stay out of buyer
 exports. Question drafts contain existing held-line questions only.
 
 Email previews use `letter_opener` in development and a test adapter in tests, with
-an invalid placeholder recipient. No buyer mail is sent. Real delivery, choice
-responses, confidence-based sending and partial reruns remain pending.
+an invalid placeholder recipient. No buyer mail is sent. Real delivery, public choice
+responses, confidence-based sending and general re-quote redlines remain pending.
 
 Presentation follows Ken's [style guide](../product/STYLE_GUIDE.md) and the shared
 [UI components](../engineering/UI_COMPONENTS.md).

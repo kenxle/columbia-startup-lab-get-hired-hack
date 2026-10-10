@@ -1,11 +1,11 @@
 <aside class="sidebar" aria-label="Primary">
-  <div class="sidebar__brand">
-    <%= image_tag "/brand/rudco-mark.png", alt: "", width: 32, height: 32, class: "brand-header__mark" %>
-    <span class="brand-header__identity">
+  <%= link_to root_path, class: "sidebar__brand", aria: { label: "RudCo Quote Desk home" } do %>
+    <%= image_tag "/brand/rudco-mark.png", alt: "", width: 32, height: 32, class: "brand__mark" %>
+    <span class="brand__identity">
       <span class="sidebar__name">RudCo</span>
       <span class="sidebar__product">QUOTE DESK</span>
     </span>
-  </div>
+  <% end %>
 
   <nav class="sidebar__nav" aria-label="Workspace">
     <%= link_to "Quotes", quotes_path,

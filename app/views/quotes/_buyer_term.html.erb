@@ -1,0 +1,29 @@
+<%# locals: (quote:, line:) %>
+<% if quote.persisted? && line.persisted? && line.quote_id == quote.id && quote.buyer_name.present? %>
+  <details class="evidence-disclosure buyer-action buyer-term">
+    <summary>Teach a buyer phrase</summary>
+    <p class="section-hint" id="buyer-term-hint-<%= line.id %>">Save a meaning for <%= quote.buyer_name %>'s future RFQs. This records your explicit teaching, with <%= quote.reference %>, line <%= line.position %> as its source.</p>
+    <% if line.original_text.present? %>
+      <blockquote class="quote-text quote-text--small"><%= line.original_text %></blockquote>
+    <% end %>
+    <%= form_with url: quote_buyer_terms_path(quote), method: :post, class: "buyer-action__form buyer-term__form", aria: { describedby: "buyer-term-hint-#{line.id}" } do %>
+      <%= hidden_field_tag :quote_line_id, line.id, id: nil %>
+      <%= hidden_field_tag :reviewed_version, quote.review_revision, id: nil %>
+      <div class="field">
+        <%= label_tag "buyer-term-#{line.id}", "Buyer phrase", class: "field__label" %>
+        <%= text_field_tag :term, nil, id: "buyer-term-#{line.id}", required: true, maxlength: 120, class: "input", autocomplete: "off" %>
+      </div>
+      <div class="field-pair">
+        <div class="field">
+          <%= label_tag "buyer-term-field-#{line.id}", "Field", class: "field__label" %>
+          <%= select_tag :field, options_for_select(ClientTerm::TEACHABLE_FIELDS.map { |field| [field.humanize, field] }), id: "buyer-term-field-#{line.id}", class: "input" %>
+        </div>
+        <div class="field">
+          <%= label_tag "buyer-term-value-#{line.id}", "Confirmed meaning", class: "field__label" %>
+          <%= text_field_tag :value, nil, id: "buyer-term-value-#{line.id}", required: true, maxlength: 200, class: "input", autocomplete: "off" %>
+        </div>
+      </div>
+      <div class="form-actions"><%= submit_tag "Teach buyer phrase", class: "button button--quiet" %></div>
+    <% end %>
+  </details>
+<% end %>

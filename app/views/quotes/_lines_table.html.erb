@@ -49,7 +49,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <th scope="row" colspan="4" class="num">Subtotal, ready lines only</th>
+          <th scope="row" colspan="4" class="num" title="Includes Ready lines only. Held lines and buyer-choice options are excluded." tabindex="0">Subtotal</th>
           <td class="num mono"><%= display_money(quote.subtotal) %></td>
           <td>
             <% if quote.held_count.to_i.positive? %>

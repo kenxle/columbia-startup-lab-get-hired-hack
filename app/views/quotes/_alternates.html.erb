@@ -1,0 +1,20 @@
+<% options = QuoteWorkspace::QuoteOptions.for(line) %>
+<% if options.any? %>
+  <section class="detail-section" aria-labelledby="alternates-<%= line.id %>">
+    <h3 id="alternates-<%= line.id %>" class="detail-section__title">Choose an option</h3>
+    <p class="muted">The buyer chooses one option on acceptance. Options are separate from the subtotal. An option without a sourced price stays held.</p>
+    <% options.each do |option| %>
+      <div class="card">
+        <h4><%= option[:label] %></h4>
+        <p><%= option[:sku] %> · <%= option[:spec].map { |field, value| "#{field.humanize}: #{value}" }.join(" · ") %></p>
+        <% if option[:priced] %>
+        <p><%= option[:quantity] %> <%= option[:quantity_unit] %> × USD <%= option[:unit_price] %> = <strong>USD <%= option[:total] %></strong></p>
+        <p>Price source: <%= option[:price_source] %></p>
+        <p>Benchmark: <%= option[:benchmark]["name"] %> · <%= option[:benchmark]["as_of"] %></p>
+        <% if option[:benchmark]["explanation"].present? %><p><%= option[:benchmark]["explanation"] %></p><% end %>
+        <% else %><p>Held, awaiting a sourced price.</p><% end %>
+        <p>Lead time: <%= option[:lead_time] %></p>
+      </div>
+    <% end %>
+  </section>
+<% end %>

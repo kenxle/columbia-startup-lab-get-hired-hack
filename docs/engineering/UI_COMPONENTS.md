@@ -65,8 +65,14 @@ These classes are the component library for plain Rails links, forms and semanti
 
 Native `details` and `summary` provide keyboard interaction without JavaScript. Keep visible focus styles, labels, table headers and the skip link. Put wide evidence tables inside `.table-wrap` so mobile scroll stays inside the table. Preserve source evidence and stored provenance when changing presentation. Ken's 13:48 video-demo direction removes concept/sample labels from the visible UI.
 
-The official RudCo logo is served unchanged from `/brand/rudco-mark.png`, per Ken's 13:51 asset handoff. See [asset attribution](../../app/assets/images/README.md). The shared application layout supplies the warm header and sidebar, with no concept footer. Its lockup is the unchanged 32px mark beside RudCo over QUOTE DESK. Attention-first browser titles describe held lines or approval status. The opt-in development-only LAHE review rail stays after the stylesheet.
+The official RudCo logo is served unchanged from `/brand/rudco-mark.png`, per Ken's 13:51 asset handoff. See [asset attribution](../../app/assets/images/README.md). The shared application layout supplies one full-height navy sidebar, with no top bar or concept footer. Its lockup is the unchanged 32px mark beside RudCo over QUOTE DESK. Attention-first browser titles describe held lines or approval status. The opt-in development-only LAHE review rail stays after the stylesheet.
 
 ## Checks
 
 `test/integration/brand_header_test.rb` covers header identity and accessibility hooks, preserved navigation, status words, catalog outcome mapping and escaped component labels. Existing quote and catalog integration tests cover their workflows. Check desktop and narrow mobile widths after changes to these primitives.
+
+The Quotes list prioritizes soonest due. A `deadline` badge shows receipt plus
+24 hours, becomes amber within three hours, and red overdue. Sent revisions show
+elapsed turnaround. The quote opens on Attention needed unless all lines are
+clear. Subtotal scope is in a tooltip. The source panel preserves the whole
+request and highlights selected evidence without a duplicated line excerpt.

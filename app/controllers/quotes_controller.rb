@@ -11,7 +11,9 @@ class QuotesController < ApplicationController
 
   def index
     QuoteWorkspace::DemoWorkspace.seed_if_empty!(workspace_token: workspace_token)
-    @quotes = workspace_quotes.includes(:quote_lines).order(created_at: :desc, id: :desc)
+    @quotes = workspace_quotes.includes(:quote_lines).to_a.sort_by do |quote|
+      [quote.sent? ? 1 : 0, quote.due_at, quote.id]
+    end
   end
 
   def new
@@ -53,13 +55,21 @@ class QuotesController < ApplicationController
   def show
     @return_to = params[:return_to] == "buyer_questions" ? "buyer_questions" : nil
     @lines = @quote.quote_lines.to_a
-    @status = %w[all attention ready].include?(params[:status]) ? params[:status] : "all"
+    requested_line = @lines.find { |line| line.id.to_s == params[:line].to_s }
+    @status = if params.key?(:status)
+      %w[all attention ready].include?(params[:status]) ? params[:status] : "all"
+    elsif requested_line&.quotable? || @lines.none? { |line| !line.quotable? }
+      "all"
+    else
+      "attention"
+    end
     @visible_lines = case @status
     when "attention" then @lines.reject(&:quotable?)
     when "ready" then @lines.select(&:quotable?)
     else @lines
     end
     @selected_line = @visible_lines.find { |line| line.id.to_s == params[:line].to_s } || @visible_lines.first
+    @source_document = QuoteWorkspace::SourceDocument.new(@quote).call
   end
 
   def approve

@@ -7,17 +7,37 @@ class ReviewNavigationTest < ActionDispatch::IntegrationTest
     @ready, @held, @unmatched = @quote.quote_lines.to_a
   end
 
-  test "filters show whole quote counts and default to all" do
+  test "filters show whole quote counts and default to first held line" do
     get quote_path(@quote)
 
     assert_response :success
     assert_select ".review-navigation[aria-label='Quote line review']" do
-      assert_select "a[aria-current='page']", text: /All\s+3/
+      assert_select "a[aria-current='page']", text: /Attention needed\s+2/
+      assert_select "a", text: /All\s+3/
       assert_select "a", text: /Attention needed\s+2/
       assert_select "a", text: /Ready\s+1/
     end
-    assert_select ".lines-table tbody tr", count: 3
+    assert_select ".lines-table tbody tr", count: 2
+    assert_select "#line-detail-heading", text: /Line 2:/
     assert_select ".review-questions-link[href=?]", quote_buyer_questions_path(@quote), text: "Review buyer questions (2)"
+  end
+
+  test "explicit ready line without filter stays selected and all-ready quotes default to all" do
+    get quote_path(@quote, line: @ready.id)
+    assert_select "#line-detail-heading", text: /Line 1:/
+    assert_select ".review-navigation a[aria-current='page']", text: /All/
+    @quote.quote_lines.where.not(id: @ready.id).delete_all
+    get quote_path(@quote)
+    assert_select ".review-navigation a[aria-current='page']", text: /All/
+    assert_select "#line-detail-heading", text: /Line 1:/
+  end
+
+  test "subtotal stays accurate with explanation in tooltip instead of visible qualifier" do
+    get quote_path(@quote)
+    assert_select ".summary__item--total dt", text: "Subtotal"
+    assert_select ".summary__item--total dt[title*='Ready lines only']"
+    assert_select ".lines-table tfoot th[title*='Ready lines only']", text: "Subtotal"
+    assert_select ".summary__qualifier", count: 0
   end
 
   test "attention preserves original numbering and hides held prices" do

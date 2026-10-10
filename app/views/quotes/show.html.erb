@@ -15,6 +15,7 @@
       <span class="dot" aria-hidden="true"></span>
       Received <%= display_time(@quote.created_at) %>
     </p>
+    <p class="page-deadline"><%= quote_deadline_badge(@quote) %></p>
   </div>
   <div class="page-actions">
     <% if @quote.held_count.positive? %>

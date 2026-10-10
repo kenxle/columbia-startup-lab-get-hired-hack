@@ -4,7 +4,7 @@
   <div>
     <p class="eyebrow">Workspace</p>
     <h1 class="page-title">Quotes</h1>
-    <p class="page-lede">RFQs saved in this browser session. Open one to review each line beside the original request.</p>
+    <p class="page-lede">Review incoming RFQs, resolve questions, and prepare quotes for approval.</p>
   </div>
   <div class="page-actions">
     <%= button_to "Load RFQ example", demo_quotes_path, method: :post, class: "button button--quiet" %>
@@ -35,6 +35,7 @@
             <th scope="col" class="num">Held</th>
             <th scope="col" class="num">Subtotal</th>
             <th scope="col">Status</th>
+            <th scope="col">Due</th>
             <th scope="col">Received</th>
           </tr>
         </thead>
@@ -52,6 +53,7 @@
               <td class="num"><%= quote.held_count %></td>
               <td class="num mono"><%= quote.awaiting_processing? ? unknown_marker : display_money(quote.subtotal) %></td>
               <td><%= quote_status_badge(quote) %></td>
+              <td><%= quote_deadline_badge(quote) %></td>
               <td class="muted"><%= display_time(quote.created_at) %></td>
             </tr>
           <% end %>

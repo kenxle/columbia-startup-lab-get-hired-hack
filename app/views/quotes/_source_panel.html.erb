@@ -2,7 +2,7 @@
   <div class="panel panel--source">
     <div class="panel__head">
       <h2 id="source-heading" class="panel__title">Original RFQ</h2>
-      <% if quote.original_filename.present? %>
+      <% if quote.source_bytes.present? && quote.original_filename.present? %>
         <%= link_to source_quote_path(quote), class: "file-link" do %>
           Download <span class="mono"><%= quote.original_filename %></span>
         <% end %>
@@ -10,33 +10,18 @@
     </div>
 
     <% if selected_line.present? %>
-      <p class="panel__meta">
-        Highlighted: the words line <%= selected_line.position %> was read from.
-      </p>
+      <p class="panel__meta">Source words for line <%= selected_line.position %> are highlighted where found.</p>
     <% end %>
-
-    <% if quote.source_text.present? %>
-      <pre class="source-text" tabindex="0" aria-label="Original RFQ text"><%= highlighted_source(quote.source_text, evidence_phrases(selected_line)) %></pre>
-    <% elsif quote.original_filename.present? %>
-      <div class="empty-state empty-state--inline">
-        <h3 class="empty-state__title">Original file saved</h3>
-        <p class="empty-state__body">No pasted text came with this RFQ. Download the file to read it. Its contents are not displayed here.</p>
-      </div>
-    <% else %>
-      <div class="empty-state empty-state--inline">
-        <p class="empty-state__body">No original text was provided.</p>
-      </div>
+    <% document = @source_document || QuoteWorkspace::SourceDocument.new(quote).call %>
+    <% document.sections.each do |section| %>
+      <% if document.sections.many? %><h3 class="section-title"><%= section[:label] %></h3><% end %>
+      <pre class="source-text" tabindex="0" aria-label="<%= section[:label] %>"><%= highlighted_source(section[:text], source_document_phrases(selected_line)) %></pre>
     <% end %>
-
-    <% if selected_line.present? %>
-      <div class="source-excerpt">
-        <h3 class="source-excerpt__title">Line <%= selected_line.position %> as written</h3>
-        <% if selected_line.original_text.present? %>
-          <blockquote class="quote-text"><%= selected_line.original_text %></blockquote>
-        <% else %>
-          <p class="muted"><%= unknown_marker %> No source text recorded for this line.</p>
-        <% end %>
-      </div>
+    <% document.warnings.each do |warning| %>
+      <p class="empty-state__body" role="note"><%= warning %></p>
+    <% end %>
+    <% if document.sections.empty? && document.warnings.empty? %>
+      <p class="empty-state__body">No original text was provided.</p>
     <% end %>
   </div>
 </section>

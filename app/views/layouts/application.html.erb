@@ -16,22 +16,11 @@
 
     <%= stylesheet_link_tag :app %>
     <%= render "layouts/lahe" %>
+    <%= javascript_include_tag "quote_deadlines", defer: true %>
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="brand-header">
-      <%= link_to root_path, class: "brand-header__lockup", aria: { label: "RudCo Quote Desk home" } do %>
-        <%= image_tag "/brand/rudco-mark.png", alt: "RudCo", width: 32, height: 32, class: "brand-header__mark" %>
-        <span class="brand-header__identity">
-          <span class="brand-header__name">RudCo</span>
-          <span class="brand-header__tagline">QUOTE DESK</span>
-        </span>
-      <% end %>
-      <nav class="brand-header__nav" aria-label="Product">
-        <%= link_to "Quote Desk", quotes_path, class: "brand-header__product" %>
-      </nav>
-    </header>
     <div class="shell">
       <%= render "layouts/sidebar" %>
       <main id="main" class="workspace" tabindex="-1">

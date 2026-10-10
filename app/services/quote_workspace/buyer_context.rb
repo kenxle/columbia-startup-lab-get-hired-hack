@@ -21,18 +21,41 @@ module QuoteWorkspace
         fields = record.field_values
         meaning["fields"] = fields.deep_dup if fields.any?
         meaning["part_number"] = record.part_number if record.part_number.present?
-        {
+        entry = {
           "term" => record.term,
           "meaning" => meaning,
           "source" => record.source,
           "times_confirmed" => record.times_confirmed,
           "client_name" => client.name
         }
+        provenance = provenance_for(record, client)
+        if provenance
+          entry["provenance"] = provenance
+          entry["source_quote_reference"] = provenance["quote_reference"]
+          entry["confirmed_on"] = provenance["quote_reference"]
+        end
+        entry
       end
       { client: client, buyer_terms: terms }
     end
 
     private
+
+    def provenance_for(record, client)
+      provenance = record.meaning.is_a?(Hash) && record.meaning["provenance"]
+      return unless provenance.is_a?(Hash) && provenance["method"] == "explicit_rep_teaching"
+      return unless %w[quote_id quote_line_id].all? { |key| provenance[key].is_a?(Integer) && provenance[key].positive? }
+      return unless provenance["taught_at"].is_a?(String) && provenance["taught_at"].length <= 40
+
+      source_quote = Quote.for_workspace(@quote.workspace_token).find_by(id: provenance["quote_id"])
+      return unless source_quote && source_quote.reference == provenance["quote_reference"]
+      return unless Client.normalize_value_for(:name, source_quote.buyer_name).to_s.casecmp?(client.name)
+
+      Time.iso8601(provenance["taught_at"])
+      provenance.slice("method", "quote_id", "quote_reference", "quote_line_id", "taught_at").deep_dup
+    rescue ArgumentError
+      nil
+    end
 
     def find_client
       # Compare in Ruby so Unicode case and legacy spacing use the same

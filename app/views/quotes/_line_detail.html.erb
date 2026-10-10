@@ -50,6 +50,10 @@
     </div>
   <% end %>
 
+  <% if held_line?(line) %>
+    <div class="detail-block"><%= render "quotes/buyer_answer", quote: quote, line: line %></div>
+  <% end %>
+
   <% if line.errors.any? %>
     <div class="form-errors" role="alert" aria-labelledby="line-errors-title">
       <h3 id="line-errors-title" class="form-errors__title">Line <%= line.position %> was not saved</h3>
@@ -182,6 +186,10 @@
     </div>
   <% end %>
 
+  <%= render "quotes/alternates", quote: quote, line: line %>
   <%= render "quotes/pricing_basis", line: line %>
   <%= render "quotes/compliance", line: line %>
+  <% if quote.buyer_name.present? %>
+    <div class="detail-block"><%= render "quotes/buyer_term", quote: quote, line: line %></div>
+  <% end %>
 </section>

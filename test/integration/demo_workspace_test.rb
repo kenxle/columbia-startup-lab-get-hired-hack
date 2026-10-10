@@ -2,9 +2,9 @@ require "test_helper"
 require "minitest/mock"
 
 class DemoWorkspaceFlowTest < ActionDispatch::IntegrationTest
-  test "first development visit shows three material RFQs and refresh does not duplicate them" do
+  test "first development visit shows twelve material RFQs and refresh does not duplicate them" do
     Rails.stub(:env, ActiveSupport::StringInquirer.new("development")) do
-      assert_difference "Quote.count", 3 do
+      assert_difference "Quote.count", 12 do
         get quotes_path
       end
       assert_response :success
@@ -13,7 +13,7 @@ class DemoWorkspaceFlowTest < ActionDispatch::IntegrationTest
       assert_includes response.body, "Structural plate order"
       assert_no_difference("Quote.count") { get quotes_path }
       browser = open_session
-      assert_difference "Quote.count", 3 do
+      assert_difference "Quote.count", 12 do
         browser.get quotes_path
       end
       assert_equal 200, browser.response.status
