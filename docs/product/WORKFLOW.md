@@ -29,6 +29,7 @@ flowchart TD
     H --> C
     F -- yes --> I["7. Rep reviews the final quote and approves"]
     I --> J["8. Agent replies on the buyer's thread with the quote"]
+    J --> K["9. Stretch: save what was learned about this buyer"]
 ```
 
 The loop from the buyer's reply back to step 3 reruns only the lines the buyer answered.
@@ -92,6 +93,13 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 - **The rep:** clicks send. The agent drafts; the rep sends.
 - **Format:** a short email body, plus the quote as a PDF and a spreadsheet.
 
+### 9. Stretch: learn the buyer
+
+- **What happens:** when the rep confirms or corrects a reading, the agent saves it for that buyer. Examples: this buyer's "16 ga" means 0.060 in; this buyer always needs a 3.1 cert.
+- **On the next RFQ from that buyer:** the agent applies what it learned and says so on the line. Example: "Read as 0.060 in, as you confirmed on RFQ-0001." The rep can undo it.
+- **Why it still shows trust:** the learned reading is visible and has a source, like every other field. Two vendors (Proton, Canals) claim to learn customer shorthand, but neither shows where a reading came from.
+- **For the demo:** a second, short RFQ from the same buyer, where the gauge line comes through already resolved.
+
 ---
 
 ## The video demo, in order
@@ -103,6 +111,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 5. Show a price beside its named, dated benchmark.
 6. Approve and send the questions. Show the buyer's reply coming back, and the line turning ready.
 7. Approve the final quote. Show the reply on the buyer's thread.
+8. Stretch: send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
 
 ## Who owns each step
 
@@ -116,5 +125,6 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 | 6. Questions and replies | Hirsh |
 | 7. Review and approve | Hirsh |
 | 8. Send the reply | Hirsh |
+| 9. Learn the buyer (stretch) | To be decided |
 
 This table reflects the bulletin board as of 12:39. Owners, correct it if it is wrong.
