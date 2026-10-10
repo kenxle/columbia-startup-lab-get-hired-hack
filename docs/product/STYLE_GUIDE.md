@@ -1,10 +1,10 @@
 # Style Guide: RudCo Quote Desk
 
-**Status:** Draft for Ken's review, 2026-10-10. Ken owns the design direction; Hirsh owns the page code and applies it.
+**Status:** Draft for Ken's review, 2026-10-10. This is the design direction, built from RudCo's site and our research. Ken owns it; Hirsh owns the page code and reskins the app to match.
 
 **What this is:** how Quote Desk looks: colors, status colors, type, buttons, layout and logo use. How we talk (voice, words, taglines, microcopy) lives in the [brand position](BRAND_POSITION.md).
 
-**Synced with the app** on 2026-10-10 against `app/assets/stylesheets/application.css`. The app still uses its first values; the [mapping table](#what-changes-from-hirshs-direction) lists each change.
+**Synced with the app** on 2026-10-10 against `app/assets/stylesheets/application.css`. The app still uses its first values; the [mapping table](#reskin-the-app-to-this-direction) lists each change.
 
 ## Palette
 
@@ -51,9 +51,9 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 - **Body:** white page, `#f3f5f7` panels, `#e5e7eb` dividers. RFQ on the left, quote on the right, as Hirsh has it now.
 - **Footer line:** "Concept built for RudCo · Get Hired Hack, 2026-10-10 · Sample data". See the [honesty guardrails](BRAND_POSITION.md#honesty-guardrails).
 
-## What changes from Hirsh's direction
+## Reskin the app to this direction
 
-The [frontend contract](../engineering/FRONTEND_CONTRACT.md#ui-direction) asked for warm white, charcoal type and rust-orange actions. The [current build](../engineering/UI_UX_APPROACH.md#current-implementation) already moved to cobalt actions and cool surfaces, with a navy sidebar. So the layout stays and only the color values change. Mapping from `app/assets/stylesheets/application.css`:
+This guide is the design direction. It comes from RudCo's own site and our research: the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), the [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md) and the [sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md). The earlier direction in the [frontend contract](../engineering/FRONTEND_CONTRACT.md#ui-direction) was set before that research existed, so this guide replaces it. Hirsh reskins the app to match: the layout stays, and the token values change. Mapping from `app/assets/stylesheets/application.css`:
 
 | Hirsh's token | Now | Change to |
 |---|---|---|
@@ -69,7 +69,7 @@ The [frontend contract](../engineering/FRONTEND_CONTRACT.md#ui-direction) asked 
 | `--radius-small` | 5px | 4px |
 | Header | none matching the site | add the RudCo lockup header described above |
 
-Any rust-orange left over from the first direction goes away. Hirsh owns `app/views/quotes/` and the stylesheets until he and Ken agree a handoff ([bulletin, 12:56](../BULLETIN.md)).
+Hirsh owns the page code and does the reskin ([bulletin, 13:15](../BULLETIN.md)).
 
 ## Logo use
 
