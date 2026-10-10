@@ -37,7 +37,7 @@ module CatalogMatch
           "price_source" => "Midpoint of #{suppliers.size} public listings (#{suppliers.values.map { |rows| rows.first['supplier'] }.join(', ')}), observed #{as_of.first(10)}",
           "benchmark" => {
             "name" => "Public listing midpoint, #{suppliers.size} suppliers",
-            "as_of" => as_of,
+            "as_of" => as_of.to_s.first(10),
             "kind" => "public_listing_midpoint",
             "unit" => "USD per #{item['unit'] || 'each'}",
             "explanation" => "Listings from #{prices.first.to_s('F')} to #{prices.last.to_s('F')} USD, product only; delivery surcharges and certificates " \

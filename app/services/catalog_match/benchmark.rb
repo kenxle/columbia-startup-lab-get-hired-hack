@@ -36,11 +36,11 @@ module CatalogMatch
         "price_source" => "RudCo website list price, rud-co.com, fetched #{as_of.to_s.first(10)}",
         "benchmark" => {
           "name" => "RudCo website list price",
-          "as_of" => as_of,
+          "as_of" => as_of.to_s.first(10),
           "kind" => "website_list_price",
           "unit" => "USD per lb",
-          "explanation" => "The $/lb shown on rud-co.com for #{item['grade']} (#{source['url']}). A list price, not a quote: " \
-                           "order quantity, freight and certificates are not included."
+          "explanation" => "RudCo's published price for #{item['grade']} on rud-co.com, " \
+                           "#{Date.iso8601(as_of.to_s.first(10)).strftime('%b %-d, %Y') rescue as_of.to_s.first(10)}, per lb (#{source['url']})."
         }
       }
     end
@@ -57,7 +57,7 @@ module CatalogMatch
         "price_source" => "Midpoint of #{reference['source_count']} public dealer listings, observed #{as_of.to_s.first(10)}",
         "benchmark" => {
           "name" => "Two-dealer public listing midpoint",
-          "as_of" => as_of,
+          "as_of" => as_of.to_s.first(10),
           "kind" => "dealer_listing_midpoint",
           "unit" => "USD each",
           "explanation" => "Listings from #{reference['min_usd_each']} to #{reference['max_usd_each']} USD each, one piece, " \

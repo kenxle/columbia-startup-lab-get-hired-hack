@@ -7,7 +7,9 @@ class CatalogMatch::BenchmarkTest < ActiveSupport::TestCase
     assert_equal "USD", price["currency"]
     assert_equal "website_list_price", price["benchmark"]["kind"]
     assert_match(/\A2026-10-10/, price["benchmark"]["as_of"])
-    assert_match(/not a quote/, price["benchmark"]["explanation"])
+    assert_equal "2026-10-10", price["benchmark"]["as_of"]
+    assert_no_match(/not a quote/, price["benchmark"]["explanation"])
+    assert_match(/RudCo.s published price for S-330 on rud-co.com, Oct 10, 2026/, price["benchmark"]["explanation"])
   end
 
   test "an aviation row carries the two-dealer midpoint" do
