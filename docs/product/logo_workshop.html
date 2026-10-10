@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo Workshop: RudCo Quote Desk</title>
+<style>
+  :root {
+    --navy: #0f1f3d; --ink: #1a212d; --muted: #454e5e; --page: #f3f5f7; --card: #fafbfc;
+    --stripe: #f6f7f9; --rule: #e5e7eb; --header: #f7f5f3; --blue: #0063e6; --gold: #eea91f;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 28px; font-weight: 700; margin: 0 0 8px; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  p, li { max-width: 72ch; }
+  .lede { color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px; }
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; }
+  .card p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--blue); border: 1px solid var(--blue); border-radius: 4px; padding: 0 6px; margin-left: 6px; vertical-align: 2px; }
+  .swatch { border-radius: 4px; padding: 16px; display: flex; align-items: center; gap: 10px; margin-top: 12px; min-height: 64px; }
+  .on-header { background: var(--header); border: 1px solid var(--rule); }
+  .on-navy { background: var(--navy); color: #f0f4fc; }
+  .mark { width: 32px; height: 32px; border-radius: 50%; flex: none; }
+  .mark-on-navy { box-shadow: 0 0 0 1px rgba(240,244,252,.35); }
+  .word { font-weight: 600; font-size: 18px; letter-spacing: 0; }
+  .sub { font-weight: 500; font-size: 18px; color: var(--muted); }
+  .on-navy .sub { color: #a6b6ce; }
+  .vrule { width: 1px; height: 22px; background: var(--rule); }
+  .on-navy .vrule { background: #2c3d57; }
+  .stack { display: flex; flex-direction: column; line-height: 1.1; }
+  .stack .small { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-top: 3px; }
+  .on-navy .stack .small { color: #8fb8ff; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .tab { display: flex; align-items: center; gap: 8px; background: #e8ebef; border-radius: 8px 8px 0 0; padding: 8px 12px; font-size: 13px; min-width: 200px; }
+  .tab.active { background: var(--card); border: 1px solid var(--rule); border-bottom: none; }
+  .sizes { display: flex; align-items: flex-end; gap: 16px; margin-top: 12px; }
+  .sizes figure { margin: 0; text-align: center; font-size: 12px; color: var(--muted); }
+  .q { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px; margin-top: 12px; }
+  .q strong { display: block; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Logo Workshop: RudCo Quote Desk</h1>
+  <p class="lede">A working page for picking the favicon and the logo with Ken. Comment on any option. Every option uses RudCo's own mark exactly as rud-co.com serves it: no redraw, no recolor. The type is the site's system sans, at the weights the style guide sets.</p>
+
+  <h2>Questions for you</h2>
+  <div class="q"><strong>Q1. Favicon: RudCo's mark as it is (F1)?</strong> That is your suggestion, and Claude agrees. It is the same file rud-co.com uses as its own favicon, so a Quote Desk tab looks like part of RudCo.</div>
+  <div class="q"><strong>Q2. Which logo lockup (L1 to L4)?</strong> Claude recommends L1: it reads as a RudCo product, and "Quote Desk" stays clearly secondary.</div>
+  <div class="q"><strong>Q3. The style guide currently says "Do not build a Quote Desk logo."</strong> Once you pick, Claude changes that rule to describe the chosen lockup, and posts it to Hirsh.</div>
+
+  <h2>RudCo's mark</h2>
+  <p>rud-co.com uses one mark everywhere: three faceted bars, like cut ingots, in a dark circle. The favicon, the header image, the footer image and the share image are the same 500 by 500 PNG artwork.</p>
+  <div class="sizes">
+    <figure><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="96" height="96" alt="RudCo mark"><figcaption>96 px</figcaption></figure>
+    <figure><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="32" height="32" alt="RudCo mark at 32 pixels"><figcaption>32 px</figcaption></figure>
+    <figure><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="16" height="16" alt="RudCo mark at 16 pixels"><figcaption>16 px</figcaption></figure>
+  </div>
+
+  <h2>Favicon</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>F1. RudCo's mark, unchanged <span class="tag">Recommended</span></h3>
+      <div class="tabs">
+        <div class="tab active"><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="16" height="16" alt="">RFQ-0001 · Quote Desk</div>
+        <div class="tab"><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="16" height="16" alt="">RudCo | Industrial…</div>
+      </div>
+      <p>Same icon as rud-co.com. The tab title does the work of saying "Quote Desk." The bars stay readable at 16 px. File: the site's own <code>ead1229e….png</code>.</p>
+    </div>
+    <div class="card">
+      <h3>F2. RudCo's mark, tab title leads with the RFQ</h3>
+      <div class="tabs">
+        <div class="tab active"><img src="https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png" width="16" height="16" alt="">3 lines need the buyer · RFQ-0001</div>
+      </div>
+      <p>Same icon, but the tab title carries status, so a rep with many tabs sees which RFQ needs them. A copy idea, not a different icon.</p>
+    </div>
+  </div>
+
+  <h2>Logo lockups</h2>
+  <p>Each one is shown on the warm header and on the navy sidebar, the two places it appears. The mark is 32 px, matching the site header.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>L1. RudCo, a thin rule, Quote Desk <span class="tag">Recommended</span></h3>
+      <div class="swatch on-header"><img class="mark" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">RudCo</span><span class="vrule"></span><span class="sub">Quote Desk</span></div>
+      <div class="swatch on-navy"><img class="mark mark-on-navy" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">RudCo</span><span class="vrule"></span><span class="sub">Quote Desk</span></div>
+      <p>RudCo's lockup stays exactly as the site sets it. "Quote Desk" sits after a 1 px rule in weight 500 and secondary text color. Reads as a RudCo product line.</p>
+    </div>
+    <div class="card">
+      <h3>L2. One line: RudCo Quote Desk</h3>
+      <div class="swatch on-header"><img class="mark" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">RudCo</span><span class="sub" style="margin-left:-4px">Quote Desk</span></div>
+      <div class="swatch on-navy"><img class="mark mark-on-navy" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">RudCo</span><span class="sub" style="margin-left:-4px">Quote Desk</span></div>
+      <p>The full name as one phrase, with the weight change doing the split. Simplest, and matches how the brief names the product.</p>
+    </div>
+    <div class="card">
+      <h3>L3. Stacked, Quote Desk as a label</h3>
+      <div class="swatch on-header"><img class="mark" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="stack"><span class="word">RudCo</span><span class="small">Quote Desk</span></span></div>
+      <div class="swatch on-navy"><img class="mark mark-on-navy" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="stack"><span class="word">RudCo</span><span class="small">Quote Desk</span></span></div>
+      <p>"Quote Desk" in small tracked capitals under RudCo, in action blue. Compact for the sidebar. The small caps are the one place blue is used as a label, which the style guide would need to allow.</p>
+    </div>
+    <div class="card">
+      <h3>L4. Quote Desk leads, RudCo mark only</h3>
+      <div class="swatch on-header"><img class="mark" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">Quote Desk</span></div>
+      <div class="swatch on-navy"><img class="mark mark-on-navy" src="https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png" alt="RudCo mark"><span class="word">Quote Desk</span></div>
+      <p>The mark says RudCo; the words say the product. Cleanest in the app, but on the Devpost page a judge may not read the mark as RudCo without the name.</p>
+    </div>
+  </div>
+
+  <h2>Rules every option keeps</h2>
+  <ul>
+    <li>RudCo's mark is used as the site serves it. Never redrawn, recolored, stretched, or traced.</li>
+    <li>The mark's height matches the header's 32 px. Words sit centered on it.</li>
+    <li>No new symbol for Quote Desk. The product is part of RudCo's service, so it borrows RudCo's identity.</li>
+    <li>Type is the system sans: 600 for RudCo, 500 for Quote Desk, per the <a href="STYLE_GUIDE.md">style guide</a>.</li>
+  </ul>
+</main>
+</body>
+</html>
