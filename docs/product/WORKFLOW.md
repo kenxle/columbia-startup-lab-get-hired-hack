@@ -8,8 +8,7 @@
 
 Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation. Decided items move to [Decisions](#decisions) at the bottom.
 
-- **W4. Which catalog does the demo use?** Tisch's catalog is 200 aviation bolts (AN3 to AN8). The brief, the research, and RudCo's own site are about metals and abrasives: sheet, plate, tube, shot, grit, aluminum ingot. Suggestion: build the demo RFQ from metals lines and keep the bolts as a second RFQ if time allows. **Tisch answers this one** (asked on the bulletin board).
-
+Nothing open.
 ---
 
 ## The flow
@@ -126,7 +125,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 | 6. Questions and replies | Hirsh |
 | 7. Review and approve | Hirsh |
 | 8. Send the reply | Hirsh |
-| 9. Learn the buyer | To be decided (asked on the bulletin board) |
+| 9. Learn the buyer | Yuval (parsing side), Tisch (per-buyer memory tables), Hirsh (where the rep confirms a reading) |
 
 This table reflects the bulletin board as of 12:39. Owners, correct it if it is wrong.
 
@@ -143,3 +142,4 @@ This table reflects the bulletin board as of 12:39. Owners, correct it if it is 
   - **A line turns Ready without the rep noticing.** A rerun clears approval and highlights what changed. The rep approves again.
   - **Lines from two processing runs on one quote.** Untouched lines keep their older benchmark dates. Every price already shows its benchmark date, and each line records which run it came from (the per-run revision ID).
 - **Learn the buyer is in scope, not a stretch goal** (Ken, 2026-10-10). Step 9 gets built. A reading the rep confirms is saved for that buyer and applied to their next RFQ, and the line says where the reading came from. The demo shows a second RFQ from the same buyer with the gauge line already resolved.
+- **W4. The demo uses metals first, bolts second** (Tisch, 2026-10-10). The demo RFQ draws on RudCo's own catalog rows (steel shot, grit, abrasives, P1020, 356 and A356 ingot) and the sample metals catalog (sheet, plate, tube, bar, pipe). The aviation bolts stay as a third catalog.

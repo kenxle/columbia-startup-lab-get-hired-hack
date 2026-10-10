@@ -2,30 +2,37 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 13:02, from the bulletin board through Hirsh's 13:00 post.
+**Last updated:** 2026-10-10 13:30, from the bulletin board through Yuval's 13:24 post.
 
 ## Needs your call
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **8. Anthropic API key for Yuval.** Yuval's parser runs on recorded responses until a key is in `.env` on his machine. If you have a key to share with him, send it to him directly, never in the repo or the chat. *Waiting: Yuval (PLAN.md, open question 5).*
+- [ ] **9. The demo RFQ email text.** Workflow step 1 is yours. Yuval asked for it in `docs/product/` so he can confirm every line parses (board, 13:24). *Recommendation:* Claude drafts it from the 25-line test set and Tisch's RudCo catalog (steel shot, aluminum ingot, steel plate, the stainless gauge line), and you approve it. Say "draft it" here.
+- [ ] **8. Anthropic API key for Yuval.** Processing runs without one today; the Claude step turns on when a key is in `.env`. Nobody has posted one yet (board, 13:24). If you have a key, send it to Yuval or Hirsh directly, never in the repo or the chat.
 
 ## Coming to you soon
 
 - **The working demo, as it is now.** Asked the team at 13:24 for a way to run it or a walkthrough.
 - **The app reskin to the style guide.** Asked Hirsh at 13:27.
-- **W4, which catalog the demo uses.** Tisch is answering. The brief now says the demo RFQ uses RudCo's materials, so Tisch needs metals catalog rows.
 
 ## Where things stand
 
+From the bulletin board through 13:24. Everyone is busy, and nobody has said they are idle.
+
 | Area | Owner | State |
 |---|---|---|
-| Quote app | Hirsh | Review, edit, approve, export, filters, and buyer-question draft work. 125 tests pass (board, 13:00). |
-| RFQ processing | Yuval | Result format and three fixtures done. Parser and rules in progress. |
-| Matching and pricing | Tisch | 200-item aviation catalog done. Matcher and pricer not in the repo yet. |
-| Email in and out | Hirsh (proposed) | letter_opener first, then a real email account. |
-| Product docs | Ken | Brief, workflow, architecture, research, profile, and competitive analysis all shipped. |
+| Quote app | Hirsh | Building the final email and PDF (step 8), lead time per line, and protection against stale processing runs. He has spare agents, and asked Yuval what to help with. Yuval named two tasks: wire processing into RFQ intake, and load the API key into the app. 148 tests pass (13:06). |
+| RFQ processing | Yuval | The library is on main and runs end to end: email, PDF and CSV in, parsed lines out, with gauge tables and compliance flags (COA, REACH, RoHS). 104 specs pass, including all 25 lines of your test set. W3 guard 4 (run ID and benchmark date per line) is in. Next is guard 1 (an answer about the whole RFQ reruns every line), aimed at 14:15. He owns the parsing side of learn the buyer. |
+| Matching and pricing | Tisch | Matcher is on main. Catalogs: 96 RudCo items read from their site, 143 sample metals items, and the bolts as a third. Per-buyer memory tables are built. The catalog matching page landed. **No pricer yet:** metals lines have no price, so they show as waiting until it lands. |
+| Email in and out | Hirsh | letter_opener first, then a real email account. Not started; the final email and PDF come first. |
+| Product docs | Ken | Brief, workflow, architecture, research, profile, competitive analysis, and brand position shipped. Style guide in review. |
 | Demo video | Ken | Not started. Yuval's plan has it recorded between 3:45 and 4:30. |
+
+**Who could use more work.** Nobody asked for any. Two gaps have no one on them yet:
+
+- **Pricing for metals lines.** It is Tisch's area and the next thing the demo needs for a priced quote. Free steel and aluminum price series exist (FRED, per the research).
+- **Re-quote on change.** No owner. It comes after the core demo works.
 
 ## Chat
 
@@ -34,6 +41,9 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- W4 answered by Tisch: metals first, bolts second. The demo uses RudCo's own catalog rows plus sample metals.
+- Style guide: no pure white. Off-white page, cards and stripes, all measured above 4.5:1.
 
 - Brand position approved and shipped, posted on the board and in WhatsApp. Marketing pages wait for the style guide (fast follow).
 
