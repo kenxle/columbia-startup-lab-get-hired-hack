@@ -8,7 +8,6 @@
 
 Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation. Decided items move to [Decisions](#decisions) at the bottom.
 
-- **W3. Does a buyer's answer rerun matching and pricing on its own?** Recommendation: yes, for the answered lines only. The rep still approves the final quote.
 - **W4. Which catalog does the demo use?** Tisch's catalog is 200 aviation bolts (AN3 to AN8). The brief, the research, and RudCo's own site are about metals and abrasives: sheet, plate, tube, shot, grit, aluminum ingot. Suggestion: build the demo RFQ from metals lines and keep the bolts as a second RFQ if time allows. **Tisch answers this one** (asked on the bulletin board).
 
 ---
@@ -78,7 +77,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
   - **Confident:** the email goes out on its own.
   - **Not confident:** the rep reviews and edits the question first, then sends it.
 - **The buyer:** clicks a button in the email for the choice they want. The click updates the RFQ on its own. Replying with the choice number also works.
-- **Then:** the agent reruns steps 3 to 5 for the answered lines only (W3).
+- **Then:** the agent reruns steps 3 to 5 for the answered lines only, with the guards listed under W3 in [Decisions](#decisions).
 - **Clear lines keep moving.** A question on line 3 does not hold up lines 1 and 2.
 
 ### 7. Present the final quote for approval
@@ -138,3 +137,8 @@ This table reflects the bulletin board as of 12:39. Owners, correct it if it is 
 - **Build order for Hirsh: the final email and PDF first** (Ken, 2026-10-10). Step 8 is the core demo. Buyer-answer buttons (step 6) and re-quote redlines come after it.
 - **Email for the demo: letter_opener first, then a real email account** (Ken, 2026-10-10). letter_opener shows each sent email in the browser during development, so the question and quote emails can be shown on screen. The goal after that is a real email account, so a real buyer email comes in and a real reply goes out.
 - **The confidence gate for auto-sending questions** (Ken, 2026-10-10; Hirsh owns it). A question sends on its own only when every choice is tied to catalog or spec evidence, no conflict is left unresolved outside the question, and the buyer can always write their own answer. Otherwise the rep reviews it first.
+- **W3. A buyer's answer reruns only the answered lines, on its own** (Ken, 2026-10-10). The rep still approves the final quote. Edge cases and their guards:
+  - **An answer that covers more than one line.** "All of it needs DFARS" or "everything is 304L" changes lines the buyer did not answer. If the answer applies to the whole RFQ, every line reruns.
+  - **The rep already edited the line.** A rerun never overwrites a field the rep edited. It flags the conflict for the rep instead.
+  - **A line turns Ready without the rep noticing.** A rerun clears approval and highlights what changed. The rep approves again.
+  - **Lines from two processing runs on one quote.** Untouched lines keep their older benchmark dates. Every price already shows its benchmark date, and each line records which run it came from (the per-run revision ID).
