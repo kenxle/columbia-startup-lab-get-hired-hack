@@ -1,6 +1,6 @@
 # Brand Position: RudCo Quote Desk
 
-**Status:** Draft for Ken's review, 2026-10-10. Name decided.
+**Status:** Approved by Ken, 2026-10-10. The look lives in the [style guide](STYLE_GUIDE.md), still in review.
 
 **Read with:** [the product brief](PRD.md), [the demo workflow](WORKFLOW.md), [the RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), [the competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md), [the sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md).
 
