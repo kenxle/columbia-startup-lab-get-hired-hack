@@ -98,7 +98,7 @@ module QuotesHelper
     elsif quote.awaiting_processing?
       tag.span("Awaiting processing", class: "status status--neutral")
     elsif quote.quote_lines.any? { |line| line.state == "needs_buyer" }
-      tag.span("Needs the buyer", class: "status status--needs-buyer")
+      tag.span("Question to send", class: "status status--needs-buyer")
     elsif quote.quote_lines.any? { |line| line.state == "no_match" }
       tag.span("No match", class: "status status--no-match")
     else

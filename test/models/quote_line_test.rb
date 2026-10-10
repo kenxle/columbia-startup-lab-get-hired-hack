@@ -10,7 +10,7 @@ class QuoteLineTest < ActiveSupport::TestCase
 
   test "status labels use the product brief wording" do
     assert_equal "Ready", @ready_line.status_label
-    assert_equal "Needs the buyer", @held_line.status_label
+    assert_equal "Question to send", @held_line.status_label
     assert_equal "No match", @no_match_line.status_label
   end
 

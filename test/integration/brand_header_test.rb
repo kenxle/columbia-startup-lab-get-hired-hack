@@ -35,7 +35,7 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     assert_select ".sidebar__nav a[href=?]", new_quote_path, "New RFQ"
     assert_select ".sidebar__mark", count: 0
     assert_select ".status--ready", text: "Ready", minimum: 1
-    assert_select ".status--needs-buyer", text: "Needs the buyer", minimum: 1
+    assert_select ".status--needs-buyer", text: "Question to send", minimum: 1
     assert_select ".status--no-match", text: "No match", minimum: 1
   end
 
@@ -43,11 +43,11 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     post demo_quotes_path
     quote = Quote.find(response.location[%r{/quotes/(\d+)}, 1])
     get quote_path(quote)
-    assert_select "title", "1 line needs the buyer · #{quote.reference} · Quote Desk"
+    assert_select "title", "1 question to send · #{quote.reference} · Quote Desk"
 
     quote.quote_lines.find_by!(state: "ready").update!(state: "needs_buyer")
     get quote_path(quote)
-    assert_select "title", "2 lines need the buyer · #{quote.reference} · Quote Desk"
+    assert_select "title", "2 questions to send · #{quote.reference} · Quote Desk"
   end
 
   test "title fallback preserves nonquote pages and handles unprocessed RFQs" do

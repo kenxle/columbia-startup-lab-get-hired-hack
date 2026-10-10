@@ -38,7 +38,7 @@ class QuoteWorkspaceCsvExportTest < ActiveSupport::TestCase
     assert_includes output, "Mill test report"
 
     rows = output.split("\r\n")
-    held_row = rows.find { |row| row.start_with?(%("2","Needs the buyer")) }
+    held_row = rows.find { |row| row.start_with?(%("2","Question to send")) }
     no_match_row = rows.find { |row| row.start_with?(%("3","No match")) }
     assert held_row
     assert no_match_row

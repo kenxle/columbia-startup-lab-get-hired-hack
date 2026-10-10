@@ -58,7 +58,7 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
 
   test "review status shows buyer attention until approval and never claims a preview was sent" do
     get quote_path(@quote)
-    assert_select ".page-actions .status--needs-buyer", "Needs the buyer"
+    assert_select ".page-actions .status--needs-buyer", "Question to send"
 
     @quote.quote_lines.where(state: "needs_buyer").delete_all
     get quote_path(@quote)
@@ -69,5 +69,47 @@ class QuoteDeadlinesUiTest < ActionDispatch::IntegrationTest
     assert_select ".page-actions .status--ready", "Ready to send"
     assert_select '.page-deadline [data-quote-deadline="due"]'
     assert_select '.page-deadline [data-quote-deadline="sent"]', count: 0
+  end
+
+  test "unsent question labels persist across the list filters and local question preview" do
+    held_line = @quote.quote_lines.find_by!(state: "needs_buyer")
+    get quotes_path
+    assert_select ".status--needs-buyer", "Question to send"
+    refute_includes response.body, "Needs the buyer"
+    refute_includes response.body, "Waiting on buyer"
+
+    %w[all attention].each do |filter|
+      get quote_path(@quote, status: filter, line: held_line.id)
+      assert_response :success
+      assert_select ".status--needs-buyer", text: "Question to send", minimum: 1
+      assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
+      assert_select ".callout--held strong", "Question to send."
+      refute_includes response.body, "Needs the buyer"
+      refute_includes response.body, "Waiting on buyer"
+    end
+
+    post preview_email_quote_buyer_questions_path(@quote), params: { reviewed_version: @quote.review_revision }
+    assert_redirected_to quote_buyer_questions_path(@quote)
+    follow_redirect!
+    assert_select ".buyer-draft__badge", "Draft, not sent"
+    assert_includes response.body, "Nothing was sent to the buyer."
+    assert_select "title", "1 question to send · #{@quote.reference} · Quote Desk"
+    assert_equal "needs_buyer", held_line.reload.state
+    assert_equal "Question to send", held_line.status_label
+    assert_nil @quote.reload.sent_at
+
+    get quote_path(@quote)
+    assert_select ".page-actions .status--needs-buyer", "Question to send"
+    refute_includes response.body, "Waiting on buyer"
+  end
+
+  test "final quote delivery does not claim its unanswered question was delivered" do
+    @quote.approve!
+    @quote.update_columns(sent_at: Time.current, sent_review_revision: @quote.review_revision)
+
+    get quote_path(@quote, status: "all")
+    assert_select ".page-actions .status--ready", "Sent"
+    assert_select ".status--needs-buyer", text: "Question to send", minimum: 1
+    refute_includes response.body, "Waiting on buyer"
   end
 end

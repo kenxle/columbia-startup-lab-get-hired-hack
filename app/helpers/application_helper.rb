@@ -10,7 +10,7 @@ module ApplicationHelper
     attention = if quote.sent?
       "Sent"
     elsif buyer_count.positive?
-      "#{pluralize(buyer_count, 'line')} #{buyer_count == 1 ? 'needs' : 'need'} the buyer"
+      "#{pluralize(buyer_count, 'question')} to send"
     elsif no_match_count.positive?
       "#{pluralize(no_match_count, 'line')} #{no_match_count == 1 ? 'has' : 'have'} no match"
     elsif lines.empty?

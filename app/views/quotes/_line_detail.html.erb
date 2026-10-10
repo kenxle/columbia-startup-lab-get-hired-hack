@@ -42,7 +42,7 @@
       <% if line.state.to_s == "no_match" %>
         <strong>No match.</strong> Nothing in the catalog fits this line, so it is not priced and is excluded from the subtotal.
       <% else %>
-        <strong>Needs the buyer.</strong> This line is held, not priced, and excluded from the subtotal until the buyer answers.
+        <strong>Question to send.</strong> Review the question before sending it to the buyer. This line is held, not priced, and excluded from the subtotal.
       <% end %>
       <% if Array(line.unresolved_fields).any? %>
         Unresolved: <%= Array(line.unresolved_fields).map { |field| spec_label(field) }.to_sentence %>.
@@ -181,7 +181,7 @@
     </div>
 
     <div class="form-actions form-actions--split">
-      <p class="field__hint">Changing spec or quantity marks the line Needs the buyer for reprocessing. Saved changes clear quote approval.</p>
+      <p class="field__hint">Changing spec or quantity marks the line Question to send for reprocessing. Saved changes clear quote approval.</p>
       <%= form.submit "Save line", class: "button button--primary" %>
     </div>
   <% end %>

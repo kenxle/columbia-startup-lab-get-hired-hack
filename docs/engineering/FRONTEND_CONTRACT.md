@@ -156,7 +156,7 @@ explicitly rather than silently changing specifications.
 Internal notes, processing metadata and original source bytes stay out of buyer
 exports. CSV text escapes spreadsheet formula prefixes. The demo exports omit concept/sample labels while retaining source names and dates.
 The question draft needs at least one held line and a question for every held line.
-Preview and download actions do not approve the quote or mutate its lines.
+Preview and download actions do not approve the quote or mutate its lines. Internal `needs_buyer` lines display as `Question to send`; filters and counts use the same wording. `Waiting on buyer` is reserved for a future verified question-delivery event, not a local preview or the final quote's sent history.
 
 `EmailPreview` captures email text, PDF and CSV under one quote lock and revision
 check. Development uses `letter_opener`; tests use the test mail adapter. SMTP and

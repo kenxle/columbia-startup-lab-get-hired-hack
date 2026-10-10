@@ -3,7 +3,7 @@ class QuoteLine < ApplicationRecord
   HELD_STATES = %w[needs_buyer no_match].freeze
   STATE_LABELS = {
     "ready" => "Ready",
-    "needs_buyer" => "Needs the buyer",
+    "needs_buyer" => "Question to send",
     "no_match" => "No match"
   }.freeze
   SPEC_KEYS = %w[material grade form thickness width length standard finish part_number diameter thread grip drilling].freeze
@@ -100,7 +100,7 @@ class QuoteLine < ApplicationRecord
   end
 
   # Applies a quoting rep's edit. Spec or quantity changes send the line back
-  # for reprocessing as Needs the buyer; price and note changes keep the state.
+  # for reprocessing as Question to send; price and note changes keep the state.
   # Any saved change clears the quote approval in the same transaction.
   def apply_manual_edit(edit_attributes)
     quote.with_lock do
