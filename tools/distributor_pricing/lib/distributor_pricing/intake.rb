@@ -32,7 +32,9 @@ module DistributorPricing
         reading = RfqProcessing::RulesParser.parse(line.text, location: line.location)
         match = @catalog.match(line.text, reading.fields)
         recognized = match["status"] != "no_match"
-        next unless recognized || reading.fields["form"] || reading.fields["part_number"] || line.text.match?(/\b(?:shot|grit|ingot|sow|sheet|plate|tube|bolt|screw|washer|nut)\b/i)
+        model_item = Array(model_lines).any? { |candidate| candidate["original_text"] == line.text }
+        quantity_request = line.text.match?(/\b(?:qty|quantity)\s*[:=]?\s*\d|\b\d+\s*(?:each|ea|pcs|pieces|lbs?|kg)\b/i)
+        next unless recognized || model_item || quantity_request || reading.fields["form"] || reading.fields["part_number"] || line.text.match?(/\b(?:shot|grit|ingot|sow|sheet|plate|tube|bolt|screw|washer|nut)\b/i)
 
         item = match["best"] && (@catalog.find(match["best"]["part_number"]) || @catalog.items.find { |i| i["item_id"] == match["best"]["item_id"] })
         quantity, unit, quantity_evidence = quantity_in(line.text, reading, item)

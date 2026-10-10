@@ -159,12 +159,12 @@ The question draft needs at least one held line and a question for every held li
 Preview and download actions do not approve the quote or mutate its lines. Internal `needs_buyer` lines display as `Question to send`; filters and counts use the same wording. A successful current automatic per-question preview displays `Waiting on buyer` with explicit local-demo wording. Manual batch preview and final-quote sent history do not establish this state.
 
 `EmailPreview` captures email text, PDF and CSV under one quote lock and revision
-check. Development uses `letter_opener`; tests use the test mail adapter. SMTP and
+check. Development uses `silent_letter_opener`; tests use the test mail adapter. No delivery launches a browser. The scoped `/quotes/:quote_id/local_previews` inbox lists only that workspace quote’s saved messages, with escaped text and attachment downloads. SMTP and
 other transports are rejected. Previews use `buyer@example.invalid` and explicitly
 say no email was sent to the buyer. Plain-text downloads name files to attach,
 without claiming attachments already exist in an email.
 
-`DispatchBuyerQuestionJob` runs after eligible held-line changes commit in development/test. It records a `BuyerQuestionDelivery` snapshot with the exact question, line position, placeholder recipient, fingerprint and successful preview time. Duplicate attempts do not send again; stale queued work is ignored. Failed/pending attempts never display waiting. Historical previews remain visible after line replacement. Only local/test mail transport is allowed; automatic previews do not require quote approval or mutate totals, source or review revisions.
+`DispatchBuyerQuestionJob` runs after explicit intake, answer or edited-question drafting commits in development/test. `ApplyResult` must opt in with `preview_questions: true`; its default, demo seeding, reseeding, generic saves and all GET actions do not enqueue previews. It records a `BuyerQuestionDelivery` snapshot with the exact question, line position, placeholder recipient, fingerprint and successful preview time. Duplicate attempts do not send again; stale queued work is ignored. Failed/pending attempts never display waiting. Historical previews remain visible after line replacement; matching unchanged drafts retain the receipt and do not preview again. Only local/test mail transport is allowed; automatic previews do not require quote approval or mutate totals, source or review revisions.
 
 Real inbox ingestion, buyer delivery, public choice-response links, confidence-based
 automatic sending, general re-quote redlines and production authentication remain pending.

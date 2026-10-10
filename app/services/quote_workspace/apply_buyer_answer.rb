@@ -69,6 +69,7 @@ module QuoteWorkspace
         line.update!(validated[:lines].sole)
         @quote.update!(processing_revision: result["revision"], **validated[:evidence])
         @quote.invalidate_approval!
+        line.enqueue_question_preview_after_commit
         line
       end
     rescue ActiveRecord::RecordInvalid, ApplyResult::InvalidResult, ProcessRfq::InputError => error

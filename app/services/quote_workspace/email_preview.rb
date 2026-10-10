@@ -6,13 +6,13 @@ module QuoteWorkspace
 
     def self.delivery_method!
       required = if Rails.env.development?
-        :letter_opener
+        :silent_letter_opener
       elsif Rails.env.test?
         :test
       end
       unless required && QuoteMailer.delivery_method == required &&
           QuoteMailer.delivery_methods.key?(required) && QuoteMailer.perform_deliveries
-        raise Unavailable, "Local email preview is available only with letter_opener in development or test delivery in tests."
+        raise Unavailable, "Local email preview is available only with silent local delivery in development or test delivery in tests."
       end
       required
     end
@@ -66,6 +66,7 @@ module QuoteWorkspace
 
     def freeze_snapshot(subject:, body:, attachments:)
       {
+        quote_id: @quote.id,
         subject: subject.gsub(/[\r\n]+/, " ").freeze,
         body: ("Local preview: Placeholder recipient buyer@example.invalid. No email is sent to the buyer.\n\n" + body).freeze,
         attachments: attachments.map { |entry| entry.transform_values { |value| value.dup.freeze }.freeze }.freeze

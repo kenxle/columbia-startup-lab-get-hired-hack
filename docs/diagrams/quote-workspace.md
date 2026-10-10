@@ -68,9 +68,9 @@ edits invalidate approval. Downloads and local previews preserve the quote.
 Final email text, PDF and CSV use the same approved revision in a local mail preview.
 PDF embeds Unicode fonts and rejects unsupported glyphs rather than altering specs.
 Constructed provenance stays internal; internal notes and extraction metadata stay out of buyer
-exports. Question drafts contain existing held-line questions only. New or changed held questions also queue an automatic local preview after commit. Successful current previews produce a locally labeled waiting state; changed questions clear that state without deleting history. Pending or failed previews never imply success. No quote totals, approval or source bytes change when a preview is recorded.
+exports. Question drafts contain existing held-line questions only. Explicit intake, buyer-answer or edited-question drafting queues an automatic local preview after commit. Page loads, generic saves and demo seeds never queue previews. Successful current previews produce a locally labeled waiting state; changed questions clear that state without deleting history. Pending or failed previews never imply success. No quote totals, approval or source bytes change when a preview is recorded.
 
-Email previews use `letter_opener` in development and a test adapter in tests, with
+Email previews use a silent `letter_opener` renderer and scoped local inbox in development and a test adapter in tests, with
 an invalid placeholder recipient. No buyer mail is sent. Real delivery, public choice
 responses, confidence-based sending and general re-quote redlines remain pending.
 

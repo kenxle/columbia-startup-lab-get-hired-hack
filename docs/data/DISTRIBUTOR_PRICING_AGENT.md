@@ -24,6 +24,14 @@ Industrial sourcing routes include Ervin, Tech Aluminum, Cambridge Metal, Online
 
 ## Run and Rails entry point
 
+The website now links **Refresh live prices** from every RFQ to `/quotes/:id/pricing`. Enter destination, currency and optional delivery date, then start a background price check. HTML and JSON show per-item source prices, five-competitor gaps, sourcing tasks, dated material context, lead time and cost/margin evidence. GET only reads the saved result; each new POST runs fresh source checks.
+
+Install the migration with `script/setup` or `bin/rails db:prepare` after pulling. `PricingRun` stores a bounded audit. Late or superseded results cannot overwrite the current RFQ. Only exact, individual USD matches with complete ready evidence can update unedited quote lines through the existing handoff. Rep edits, other unresolved specs and consolidated groups remain unchanged. Bound live prices expire and are blocked from approval/export if their source, values or latest run changes.
+
+Every item carries `lead_time_estimate`. Supplier-confirmed total calendar days come only from current commercial evidence. Aircraft Spruce's freshly read dispatch policy can support a conditional same-business-day dispatch estimate when the current listing covers quantity; carrier transit, paperwork and distributor handling still need confirmation. Partial dispatch timing is not total delivery. No exact RudCo stock/lead-time proof has been obtained for S-330, G-40, S-170 or G-25; those stay to confirm. Confirmed timing reaches existing quote review and exports alongside its source.
+
+The [live verification audit](../../data/distributor_pricing/live_verification.json) records an actual AN3-13A check across Aircraft Spruce, Wicks, Airfasco, Pegasus and Monroe. Some sale units or MOQ differ; five public product prices are not five complete delivered benchmarks. This audit is a point-in-time example and is never read as cached pricing.
+
 `ruby tools/distributor_pricing/bin/quote` reads one JSON request on stdin and returns one result. Example input:
 
 ```json
@@ -38,7 +46,7 @@ Rails calls `DistributorPricing::QuoteAgent.call(rfq:, destination:, **options)`
 
 ## Provider configuration
 
-The ignored `.env` or server environment may contain `NINOO_API_KEY`, `NINOO_MODEL` and `DISTRIBUTOR_PROCUREMENT_FEED`. The confirmed Nicrron gateway handles RFQ interpretation only. It cannot produce factual prices, stock or costs. Its output is restricted to exact RFQ substrings and quantity evidence. A gateway failure leaves deterministic intake available.
+The ignored `.env` or server environment may contain `NINOO_API_KEY`, `NINOO_MODEL` and `DISTRIBUTOR_PROCUREMENT_FEED`. The confirmed Nicrron gateway handles RFQ interpretation only, defaulting to the team's requested `anthropic/claude-opus-5`. Returned model identity must match. It runs only when deterministic quantity/unit evidence is incomplete, keeping straightforward RFQs fast. It cannot produce factual prices, stock or costs. Its output is restricted to exact RFQ substrings and quantity evidence. A gateway failure leaves deterministic intake available; no alternative model is substituted.
 
 The procurement feed is an operator-configured HTTPS adapter, not the LLM gateway. No executable procurement feed is connected yet. It must query current supplier commercial terms and five competing delivered offers for the request; a historical quote database alone is insufficient.
 

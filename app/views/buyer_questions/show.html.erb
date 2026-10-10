@@ -7,6 +7,7 @@
     <p class="page-lede">One draft with the questions for every held line.</p>
   </div>
   <div class="page-actions">
+    <%= link_to "Local email previews", quote_local_previews_path(@quote), class: "button button--quiet" if local_email_preview_available? %>
     <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
     <% if @draft.ready? %>
       <%= link_to "Download draft (.txt)", download_quote_buyer_questions_path(@quote), class: "button button--primary" %>

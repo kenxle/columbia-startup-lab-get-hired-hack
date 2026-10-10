@@ -23,6 +23,7 @@ module QuoteWorkspace
         end
         options = choices.each_with_index.map { |label, index| "#{index + 1}. #{label}" }.join("\n")
         snapshot = {
+          quote_id: line.quote_id,
           subject: "Local preview: #{line.quote.reference}, question for line #{line.position}".freeze,
           body: ("Local preview only. No email has been sent to the buyer.\n" \
             "Placeholder recipient: buyer@example.invalid\n\n" \

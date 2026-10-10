@@ -22,6 +22,8 @@ The current Iowa link serves the same PDF as the 2021 copy (identical SHA-256), 
 
 ## Already found in the research
 
+Tisch's uploaded examples are kept in the dedicated [example RFQ folder](../example_rfqs/README.md). The [Transnet S390 steel-shot RFQ](../example_rfqs/transnet-steel-shot-2024/SOURCE.md) includes the original PDF, extracted text and source notes. Link to that original rather than copying it here.
+
 These public solicitations are cited in the [open-web research](../research/20261010.01_rfq_sharper_angle/research_voice_open_web.md). They are the first ones to save here.
 
 - [State of Iowa RFQ](https://bidopportunities.iowa.gov/Home/GetBidOpportunityDocument/e7ca77d0-dcf9-41e7-ad5c-dc15cca2a45e). Its 2021 version is already saved at [iowa2021.pdf](../research/20261010.01_rfq_sharper_angle/verification_docs/iowa2021.pdf).

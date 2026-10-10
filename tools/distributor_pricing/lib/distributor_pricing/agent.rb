@@ -26,7 +26,7 @@ module DistributorPricing
     def self.configured(root: File.expand_path("../../../..", __dir__))
       config = LocalConfig.read(root: root)
       catalog = Catalog.new(root: root)
-      gateway = GatewayClient.new(token: config["NINOO_API_KEY"], model: config["NINOO_MODEL"] || "nicrron/auto") if config["NINOO_API_KEY"]
+      gateway = GatewayClient.new(token: config["NINOO_API_KEY"], model: config["NINOO_MODEL"] || "anthropic/claude-opus-5") if config["NINOO_API_KEY"]
       feed = SupplierFeed.new(endpoint: config["DISTRIBUTOR_PROCUREMENT_FEED"]) if config["DISTRIBUTOR_PROCUREMENT_FEED"]
       new(catalog: catalog, source_book: SourceBook.new(root: root), gateway: gateway, supplier_feed: feed)
     end
@@ -40,9 +40,16 @@ module DistributorPricing
       request_id = SecureRandom.uuid
       extraction = RfqProcessing::Extractor.extract(rfq, type: type, filename: filename)
       text = extraction.lines.map(&:text).join("\n")
-      interpretation = @gateway ? @gateway.extract(text) : { "ok" => false, "error" => "No model configured; deterministic RFQ intake used." }
-      intake = @intake.parse(rfq: rfq, type: type, filename: filename, destination: destination,
-                             model_lines: interpretation["ok"] ? interpretation["lines"] : [])
+      intake = @intake.parse(rfq: rfq, type: type, filename: filename, destination: destination)
+      model_needed = intake["lines"].any? { |line| !line["quantity"] || !line["unit"] }
+      interpretation = if @gateway && model_needed
+        @gateway.extract(text)
+      else
+        { "ok" => false, "skipped" => true, "reason" => @gateway ? "Quantity and unit evidence is complete; no model call needed." : "No model configured; deterministic RFQ intake used." }
+      end
+      if interpretation["ok"]
+        intake = @intake.parse(rfq: rfq, type: type, filename: filename, destination: destination, model_lines: interpretation["lines"])
+      end
       original_line_count = intake["lines"].size
       intake["lines"] = consolidate(intake["lines"])
       request = {
@@ -124,7 +131,7 @@ module DistributorPricing
           "status" => item ? "needs_buyer" : "no_match", "unit_price" => nil, "quote_total" => nil,
           "buyer_questions" => questions.empty? ? ["Confirm the exact catalog item or source this line separately."] : questions,
           "procurement_tasks" => [], "reasons" => questions
-        })
+        }, "lead_time_estimate" => LeadTime.for_line(pricing: {}, source: {}, quantity: line["quantity"]))
       end
       source = sources.fetch(item.fetch("part_number"), { "offers" => [], "public_market_prices" => [], "supplier_routes" => [], "source_checks" => [] })
       feed_line = commercial["ok"] && (commercial["lines"][line["line_id"]] || commercial["lines"][item["part_number"]]) || {}
@@ -155,6 +162,7 @@ module DistributorPricing
         hold!(price, "Catalog supplier specification holds are unresolved.")
       end
       line.reject { |key, _| key == "item" }.merge(
+        "lead_time_estimate" => LeadTime.for_line(pricing: price, source: source, quantity: line["quantity"]),
         "competitor_coverage" => { "required" => @policy.minimum_benchmark_suppliers,
           "comparable_delivered_suppliers" => price.dig("pricing_analysis", "independent_benchmark_suppliers") || 0,
           "public_product_price_suppliers" => source["public_market_prices"].map { |record| record["supplier"] }.uniq.size,

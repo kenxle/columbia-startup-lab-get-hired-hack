@@ -1,0 +1,16 @@
+<% content_for :title, "Local email previews" %>
+<header class="page-header">
+  <div><p class="eyebrow"><%= @quote.reference %></p><h1 class="page-title">Local email previews</h1>
+  <p class="page-lede">Saved on this computer. No email was sent to the buyer.</p></div>
+  <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
+</header>
+<section class="panel">
+  <% if @previews.empty? %>
+    <p>No saved local previews for this RFQ yet.</p>
+  <% else %>
+    <ul><% @previews.each do |preview| %>
+      <li><%= link_to preview[:subject].presence || "Local preview", quote_local_preview_path(@quote, preview[:id]) %>
+      <span class="muted"><%= preview[:received_at].strftime("%b %-d, %H:%M") %></span></li>
+    <% end %></ul>
+  <% end %>
+</section>

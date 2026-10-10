@@ -79,7 +79,7 @@ class EmailPreviewTest < ActiveSupport::TestCase
 
   test "mailer removes subject newlines" do
     message = QuoteMailer.local_preview(snapshot: {
-      subject: "Preview\r\nBcc: nobody@example.invalid", body: "Local demo", attachments: []
+      quote_id: @quote.id, subject: "Preview\r\nBcc: nobody@example.invalid", body: "Local demo", attachments: []
     }).deliver_now
     refute_match(/[\r\n]/, message.subject)
     assert_nil message.bcc

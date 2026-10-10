@@ -3,6 +3,7 @@ class QuoteMailer < ActionMailer::Base
 
   def local_preview(snapshot:)
     method = QuoteWorkspace::EmailPreview.delivery_method!
+    headers["X-Quote-Desk-Quote-Id"] = snapshot.fetch(:quote_id).to_s
     snapshot.fetch(:attachments).each do |attachment|
       attachments[attachment.fetch(:filename)] = {
         mime_type: attachment.fetch(:content_type), content: attachment.fetch(:content)

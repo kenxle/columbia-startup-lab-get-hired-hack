@@ -78,7 +78,7 @@ the public bulletin. The root bundle includes csv, pdf-reader and anthropic;
 Yuval owns provider implementation and activation. A missing provider/key must
 not be represented as an LLM run. Rules-based processing works without a key.
 
-Email preview uses letter_opener in development and fixed `.invalid` addresses.
+Email preview uses a silent letter_opener renderer in development and fixed `.invalid` addresses. Restart Rails after pulling this transport change. Previews save to the quote’s Local email inbox without opening tabs; page loads and demo seeding never enqueue questions.
 Open an approved quote's **Prepare email and PDF** screen, then preview locally.
 PDF and CSV attachments are generated from the same approved revision. No real
 mailbox is configured, and production mail delivery is disabled.
@@ -96,3 +96,9 @@ Nicrron uses the OpenAI-compatible protocol; its key is not an Anthropic key.
 Yuval owns the gateway provider adapter. The app remains rules-based until that
 adapter is connected. A local Opus 5 smoke request returned HTTP 502 on
 2026-10-10; provider availability is not yet verified.
+
+## Local Jev credential
+
+Jev is not active in the app yet. Keep its actual key in ignored `.env` as `JEV_API_KEY`. If this Mac already has a Keychain generic-password entry under your account named `jev-api-key`, run `script/load-jev-key` to import it without printing the value. The helper preserves other environment entries. Restart Rails afterward.
+
+For a single terminal session, use `export JEV_API_KEY="$(security find-generic-password -a "$USER" -s jev-api-key -w)"`. This lookup does not transfer a key from another person’s Mac, and shell commands placed literally in `.env` will not retrieve it. A missing Keychain entry leaves `.env` unchanged.

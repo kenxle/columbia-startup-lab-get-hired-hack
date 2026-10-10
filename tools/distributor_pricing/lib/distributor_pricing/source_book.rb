@@ -6,6 +6,7 @@ require "bigdecimal"
 require "time"
 require_relative "http_client"
 require_relative "additional_sources"
+require_relative "lead_time"
 
 module DistributorPricing
   # Saved records identify real sources; they never supply current quote prices.
@@ -28,6 +29,7 @@ module DistributorPricing
           matching_routes(item).map { |route| route.fetch("source_url") }
         end
       end
+      urls << LeadTime::POLICY_URL if unique_items.any? { |item| item["source_catalog"] == "aviation" }
       pages = fetch_pages(urls.uniq) # This quote only, never reused next run.
       unique_items.to_h do |item|
         offers, checks, routes, extra_prices = [], [], [], []
@@ -50,8 +52,9 @@ module DistributorPricing
               "id" => "#{request['request_id']}-#{row['observation_id']}", "supplier" => row["supplier"],
               "part_number" => item["part_number"], "supplier_sku" => row["supplier_part_number"],
               "source_url" => url, "quote_url" => url, "buy_url" => url,
-              "retrieved_at" => response.fetch("retrieved_at"), "currency" => "USD", "unit" => "each",
-              "unit_price" => live.fetch("price"), "pack_size" => "1", "minimum_quantity" => "1",
+              "retrieved_at" => response.fetch("retrieved_at"), "currency" => "USD", "unit" => live.fetch("unit", "each"),
+              "unit_price" => live.fetch("price"), "pack_size" => live.fetch("unit", "each") == "each" ? "1" : nil,
+              "minimum_quantity" => live.fetch("unit", "each") == "each" ? "1" : nil,
               "tier" => { "min" => "1", "max" => "1" },
               "stock_quantity" => live["stock_quantity"], "stock_confirmed" => false,
               "stock_listing_claim" => live["stock_claim"], "commercial_terms_verified" => false,
@@ -83,12 +86,20 @@ module DistributorPricing
           end
         end
         [item.fetch("part_number"), { "offers" => offers, "public_market_prices" => offers.map { |o| public_reference(o) } + extra_prices,
+                                      "dispatch_policy" => dispatch_policy(pages[LeadTime::POLICY_URL]),
                                       "supplier_routes" => routes, "source_checks" => checks,
                                       "refreshed_for_request_id" => request["request_id"] }]
       end
     end
 
     private
+
+    def dispatch_policy(response)
+      return {} unless response
+      output = response.reject { |key, _| key == "body" }
+      text = response["body"] && AdditionalSources.plain(response["body"])
+      output.merge("verified_same_day_policy" => !!(response["ok"] && text.match?(/Orders placed by 4:00 pm EST/i) && text.match?(/in.stock items are normally shipped same day/i)))
+    end
 
     def observation_rows(item)
       @observations.select { |row| row["canonical_part_number"] == item["part_number"] || row["supplier_part_number"] == item["part_number"] }
@@ -121,7 +132,7 @@ module DistributorPricing
 
     def public_reference(offer)
       offer.slice("supplier", "part_number", "supplier_sku", "unit", "currency", "unit_price", "retrieved_at", "source_url").merge(
-        "price_scope" => "product_only_single_piece", "usable_as_delivered_benchmark" => false,
+        "price_scope" => offer["unit"] == "each" ? "product_only_single_piece" : "product_only_sale_unit_unconfirmed", "usable_as_delivered_benchmark" => false,
         "reason" => "Requested quantity, destination, required charges, certification and delivery terms are not confirmed.")
     end
 
@@ -152,10 +163,10 @@ module DistributorPricing
         embedded = positive(tr.match(/itemprop="lowPrice" content="([\d.]+)"/)&.[](1))
         return nil unless price && price == embedded
         sold = tr.match(/data-field-name="sold by"\s+data-field-value="([^"]*)"/)&.[](1)
-        return nil unless sold == "Each"
+        return nil if sold && sold != "Each"
         claim = CGI.unescapeHTML(tr.gsub(/<[^>]*>/, " ")).match(/Qty in Stock:\s*(\d+)|Out of Stock/)&.[](0)
         qty = claim&.match(/Qty in Stock:\s*(\d+)/)&.[](1)
-        { "price" => price, "stock_quantity" => qty&.to_i || 0, "stock_claim" => claim || "unconfirmed" }
+        { "price" => price, "unit" => sold == "Each" ? "each" : nil, "stock_quantity" => qty&.to_i || 0, "stock_claim" => claim || "unconfirmed" }
       end
     rescue JSON::ParserError, ArgumentError, TypeError
       nil
