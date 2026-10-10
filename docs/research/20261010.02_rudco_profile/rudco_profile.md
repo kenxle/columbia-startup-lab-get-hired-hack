@@ -13,6 +13,11 @@ Researched 2026-10-10 from public pages only. Where a fact came from a search-re
 
 ## Company
 
+![RudCo's home page banner: "Metals, Alloys & Abrasives Supplier. Direct sourcing for foundries, mills & OEMs."](https://www.rud-co.com/og/home.png)
+
+*RudCo's home page share image, from [rud-co.com](https://www.rud-co.com/).*
+
+
 - **What it is.** Legal name The Ruddock Company LLC; trades as RudCo ([site metadata](https://www.rud-co.com/), `legalName` field). Website: [rud-co.com](https://www.rud-co.com/). The site is a Lovable-built single-page app (the page source references lovable.dev), so every URL returns the same shell and the text lives in the JavaScript bundle.
 - **One-line description, two versions.**
   - Columbia directory: an "industrial supply company that streamlines procurement for the metal, abrasive and aggregate space" aiming to supply raw materials to "America's largest manufacturing companies" ([Columbia Entrepreneurship directory](https://entrepreneurship.columbia.edu/?p=81629)). The directory text has a typo ("provide and provide"), so it looks lightly edited.
@@ -31,6 +36,19 @@ Public professional information only.
 - **Who judges.** Devpost lists one judge, Somya Gupta, with no affiliation shown ([Devpost](https://get-hired-hack-nyc.devpost.com/)). The page says the founders "write the challenges, walk the floor and judge the demos," so Sam Ruddock is likely on the floor. That is an inference.
 
 ## Business model and customers
+
+![RudCo's platform banner: "RudCo Procurement Platform. Live pricing, planning & compliance tools."](https://www.rud-co.com/og/platform.png)
+
+*The platform page's share image, from [rud-co.com](https://www.rud-co.com/).*
+
+What they sell, as pictured on their product pages:
+
+| Steel shot | Stainless steel shot | Garnet | Aluminum oxide |
+|---|---|---|---|
+| ![Steel shot](https://www.rud-co.com/assets/steel-shot-DLgk4-cM.jpg) | ![Stainless steel shot](https://www.rud-co.com/assets/stainless-steel-shot-DSxZpz8w.jpg) | ![Garnet](https://www.rud-co.com/assets/garnet-BXbxNB8w.png) | ![Aluminum oxide](https://www.rud-co.com/assets/aluminum-oxide-pO11cfLy.png) |
+
+*Product photos from [rud-co.com](https://www.rud-co.com/).*
+
 
 **What they sell.** The site lists abrasives (steel shot and grit, garnet, aluminum oxide, corn cob, glass bead, stainless abrasives) and metals (primary aluminum P1020, 356 alloys, titanium, steel billets and plate, copper cathode, master alloys, fluxes, ferro alloys) ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). A recycling page covers scrap aluminum and spent abrasive media.
 
