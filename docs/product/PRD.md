@@ -130,7 +130,7 @@ flowchart TD
 ## What it is not
 
 - **An auto-sender.** The rep approves every quote. The agent drafts.
-- **A general chatbot.** There is no chat box. The product is the quote.
+- **A general chatbot.** The product is the quote, not a chat box. Idea: the rep edits the quote in place and leaves a note on any line for the agent to act on, the way [LAHE](https://github.com/kenxle/live-agentic-html-editor) works.
 - **A supplier search across the market.** It matches against one supplier's catalog.
 
 ## A sharper angle
