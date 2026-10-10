@@ -2,40 +2,39 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 14:06, from the bulletin board through 14:03.
+**Last updated:** 2026-10-10 14:26, from the bulletin board through 14:22.
 
 ## Needs your call
 
 Each item says who is waiting and what Claude recommends.
 
-Nothing open.
+- [ ] **11. Show a price on metals lines in the video, or leave them unpriced?** Tisch's pricer (14:12) reads live steel and aluminum prices from FRED and checks two dealers, with a 15% target margin and an 8% floor. But Tisch keeps the firm price empty until freight, supplier stock, certification and terms are known. So metals lines would show no price in the video. *Recommendation:* show an **indicative price** on metals lines: the dated FRED benchmark plus the target margin, labeled "Indicative, from [benchmark, date]. Final price after freight." It answers the challenge's "price each line against market benchmarks" and keeps the no-hallucination rule, because every number shows its source. Waiting: Tisch, Hirsh.
 
 ## Coming to you soon
 
-- **The demo RFQ email.** Handed to Tisch, who has been collecting the RFQ and catalog data. Yuval checks that every line parses.
-- **The app reskin to the style guide, and a shared component library.** Asked the team on the board; Hirsh leads both.
-- **Drafts for your review:** [demo video script](DEMO_SCRIPT.md) and [Devpost write-up](DEVPOST.md), open in your browser.
+- **Ken's 14:10 and 14:11 fixes:** the evidence pill in the quote header, and a line click that opens the line in place. Hirsh's workers are on them.
+- **The demo RFQ email.** Still with Tisch. Hirsh is ready to load it the moment it lands.
+- **Buyer shorthand examples** from our research, for the learn-the-buyer beat. A subagent is collecting them.
+- **Dry run of the demo script at 3:15**, run by Hirsh.
 
 ## Where things stand
 
-From the bulletin board through 14:03. The dry run of the demo script is set for 3:15; recording is about 3:45.
-
-**Biggest risk: Tisch has not posted since 13:30**, and three video beats wait on Tisch: the demo RFQ email, the pricer for metals lines and alternate options, and the teachable gauge fields that learn the buyer needs.
+From the bulletin board through 14:22. Recording is about 3:45.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Paste, PDF and CSV intake works. Busy Quotes list and due countdown asked of Hirsh. Demo RFQ email still with Tisch. |
-| 2. Pull the data | ✅ | Yuval, Hirsh | Excel needs one gem added to the app. |
-| 3. Parse | ✅ | Yuval | 24 of 25 test lines read as expected. The Claude step is being moved to the sponsor gateway on Opus 5; Hirsh's first test call got a server error (502), so it runs on rules today. |
-| 4. Match | ✅ | Tisch | Done for the demo. |
-| 5. Price, flags, lead time | 🟡 | Tisch | Flags and lead times work. **No pricer yet:** metals lines and alternate options have no named, dated price. |
-| Alternates | 🟡 | Yuval, Tisch, Hirsh | The data shape is agreed (`processing.alternates`). Yuval is building it; Hirsh shows options apart from the subtotal until the buyer picks. Needs Tisch's prices. |
-| 6. Buyer questions | 🟡 | Hirsh, Yuval | The rep entering the buyer's answer on a held line: Hirsh's backend is built locally (29 tests pass), forms built, testing next. Yuval's rerun is stable. Sending email and the buyer's click are not started. |
-| 7. Review and approve | ✅ | Hirsh | Reskinned, L3 logo, three test RFQs. Top bar removal asked. |
-| 8. Send the reply | 🟡 | Hirsh | Approved PDF, CSV and email draft with local mail preview. Real delivery not started. |
-| 9. Learn the buyer | 🟡 | Hirsh, Yuval, Tisch | Hirsh is building teach-on-this-quote; Yuval words the reading "as you confirmed on RFQ-0001". Blocked on Tisch's teachable fields. |
+| 1. RFQ arrives | 🟡 | Hirsh, Tisch | Twelve varied RFQs fill the Quotes list, with live 24-hour countdowns and sent times. The demo email is still with Tisch. |
+| 2. Pull the data | 🟡 | Yuval | A real 35-page tender (Transnet steel shot, from Tisch) came out as 257 held lines and none Ready: boilerplate read as items, packaging read as orders. Fine for the compact demo email; a real limit for real RFQs. Yuval is on table and item boundaries. |
+| 3. Parse | ✅ | Yuval | The Opus 5 gateway client is written but not pushed. Yuval's session is moving to a new agent, with a [handoff note](../rfq_processing/HANDOFF.md). |
+| 4. Match | ✅ | Tisch | Screws, nuts and washers added; quantities read before forms. |
+| 5. Price, flags, lead time | 🟡 | Tisch | Pricer with live FRED and two-dealer checks, being tested before push. Firm prices stay empty (item 11 above). |
+| Alternates | 🟡 | Hirsh, Yuval, Tisch | The app shows options apart from the subtotal. Waits on Yuval's push and Tisch's prices. |
+| 6. Buyer questions | ✅ for the demo | Hirsh | The rep enters the buyer's answer, and only that line reruns. Sending email and the buyer's click are not built. |
+| 7. Review and approve | ✅ | Hirsh | Sidebar-only nav, full height, attention-first, the whole original RFQ with highlights, subtotal tooltip. 364 tests pass. |
+| 8. Send the reply | 🟡 | Hirsh | Approved PDF, CSV and email draft with local preview. Real delivery not built. |
+| 9. Learn the buyer | 🟡 | Hirsh, Tisch, Yuval | Teaching on a quote records the source RFQ. Tisch's teachable gauge fields are in. Waits on Yuval's "as you confirmed on" wording push. |
 
-**Roles Hirsh posted at 14:03:** Ken owns product decisions, the demo script, Devpost and the recording story, and keeps the build map current. Hirsh owns every app screen and the dry run. Yuval owns processing and the Opus 5 gateway. Tisch owns the demo email, the catalog, and pricing.
+**Also:** a 30-second promo video is in [docs/product/promo/](promo/), committed from your account at 14:20.
 
 ## Build map
 

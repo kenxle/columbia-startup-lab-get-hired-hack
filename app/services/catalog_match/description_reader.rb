@@ -436,6 +436,9 @@ module CatalogMatch
 
         consume(pattern) { nil } if @work.match?(pattern)
         term.field_values.each do |field, value|
+          # A confirmed meaning replaces the generic reading of the same words
+          # ("0.060 in" confirmed as 16 ga), never a reading of other words.
+          @fields.delete(field) if set?(field) && same_words?(@fields[field]["text"], found[0])
           next if set?(field)
 
           set(field, value, found[0], "#{term.explanation_prefix} \"#{found[0]}\" means #{field} #{value}", source: "client_memory")
@@ -443,7 +446,13 @@ module CatalogMatch
       end
     end
 
-    GIVEN_TEXT_FIELDS = %w[material grade temper form finish standard schedule process thread].freeze
+    def same_words?(field_text, term_text)
+      a = field_text.to_s.downcase.gsub(/\s+/, "")
+      b = term_text.to_s.downcase.gsub(/\s+/, "")
+      a.present? && b.present? && (a.include?(b) || b.include?(a))
+    end
+
+    GIVEN_TEXT_FIELDS =%w[material grade temper form finish standard schedule process thread].freeze
     GIVEN_NUMBER_FIELDS = %w[thickness width length diameter nps gauge grip size_a size_b quantity].freeze
 
     # A normalized spec from RFQ processing fills only fields the text did not
