@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+required=$(cat "$project_dir/.ruby-version")
+current=$(ruby -e 'print RUBY_VERSION' 2>/dev/null || true)
+
+if [ "$current" != "$required" ]; then
+  for candidate in /opt/homebrew/opt/ruby@3.4/bin /usr/local/opt/ruby@3.4/bin; do
+    if [ -x "$candidate/ruby" ] && [ "$("$candidate/ruby" -e 'print RUBY_VERSION')" = "$required" ]; then
+      PATH="$candidate:$PATH"
+      export PATH
+      break
+    fi
+  done
+fi
+
+if [ "$(ruby -e 'print RUBY_VERSION' 2>/dev/null || true)" != "$required" ]; then
+  echo "Use Ruby $required from .ruby-version. See docs/engineering/BASELINE.md." >&2
+  exit 1
+fi
+
+if [ "$#" -eq 0 ]; then
+  echo 'Usage: script/with-ruby COMMAND [ARGUMENTS...]' >&2
+  exit 1
+fi
+
+gem_bin=$(ruby -rrubygems -e 'print Gem.bindir')
+PATH="$gem_bin:$PATH"
+export PATH
+exec "$@"

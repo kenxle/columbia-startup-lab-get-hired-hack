@@ -52,6 +52,17 @@ Several agents push to `main` at once. If you go a while without pulling, you wi
 6. Whenever you read the Bulletin Board.
 7. When code does not look the way you expect. Someone may have changed it.
 
+## Parallel coding agents
+
+- Pull before assigning work, between integration batches, and immediately before committing. During long tasks, check upstream at natural checkpoints, aiming for every 5 to 10 minutes.
+- Re-read the bulletin after each pull. Reconcile new ownership or interface decisions before continuing.
+- One coordinating agent owns Git mutations in a shared checkout. Workers do not pull, commit, or push independently. This is the worker exception to the session and commit rules above.
+- Assign each worker a concrete task, acceptance criteria, owned files, and a starting commit. Use separate checkouts for overlapping edits. Never overwrite or stash another worker's work to make a pull succeed.
+- Run reviewers against a stable revision. Integrate incoming changes at a safe checkpoint and rerun affected checks before publishing. If a push is rejected, reconcile upstream changes before retrying; never force-push shared main.
+- Claude profiles live in `.claude/agents/`: `rfq-implementer`, `rfq-reviewer`, and `rfq-debugger`. Reviewers are read-only. The coordinator validates findings and integrates changes.
+- Hirsh owns the quote application and Yuval owns RFQ processing. Agree on exact file ownership and the shared result format before concurrent implementation. See `docs/engineering/REVIEW-2026-10-10.md` for the responsibilities and interface refinements.
+- Use Claude Opus 5.5 (`claude-opus-5-5`) for Claude work. If unavailable, report the blocker instead of silently selecting another model.
+
 ## Team
 
 Teammates: add yourself here and in Core Domains when you join. Your @-handle is your first name.
@@ -59,7 +70,8 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 | Name | Handle | Area(s) |
 |------|--------|---------|
 | Ken | `@Ken` | Product design, user research, product management |
-| Hirsh | `@Hirsh` | TBD |
+| Hirsh | `@Hirsh` | Quote application development |
+| Yuval | `@Yuval` | RFQ processing, catalog and benchmark data sourcing |
 
 ## Core Domains
 
@@ -68,7 +80,8 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Name | Core Domain | Owns (files, folders, systems) |
 |------|-------------|--------------------------------|
 | Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
-| Hirsh | TBD | TBD |
+| Hirsh | Quote application | Upload/pasted-email UI, persistence, catalog storage/import, quote review, deterministic price math, human approval, and export. Agree on exact paths per task. |
+| Yuval | RFQ processing | Document extraction, LLM integration, normalized specs and source evidence, catalog matching, compliance flags, draft questions, and catalog/benchmark data sourcing. Agree on exact paths per task. |
 
 ## Project overview
 
@@ -93,7 +106,12 @@ Add the code layout here once it exists.
 
 ## Development commands
 
-TBD. Add how to install, run, and test once the stack is chosen.
+Stack: Ruby on Rails. See `docs/engineering/BASELINE.md` for the pinned local toolchain and setup.
+
+- `script/with-ruby ruby --version`: verify the pinned Ruby.
+- `script/with-ruby rails --version`: verify Rails tooling.
+- `script/check`: run the existing PDF utility tests.
+- The Rails application has not been scaffolded yet.
 
 ## Git conventions
 
