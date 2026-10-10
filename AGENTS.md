@@ -114,7 +114,6 @@ Read what your work touches. Each link says what the document is for.
 - [Demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, what the rep sees, owners, and the video order.
 - [Brand position](docs/product/BRAND_POSITION.md): **approved.** The language to use everywhere: voice, words to use and avoid, taglines, screen text, honesty guardrails.
 - [Style guide](docs/product/STYLE_GUIDE.md): **approved.** How everything looks: RudCo palette, status colors, type, buttons, layout, logo use. Use it for every page, email, PDF and marketing piece.
-- [Ken's Desk](docs/product/KEN_DESK.md): Ken's working page: open decisions, what is coming to him, where each area stands, and the [build map](docs/product/KEN_DESK.md#build-map) of every workflow path marked built or not. Owners post progress on the bulletin board; Claude updates the map from the board.
 - [Name workshop](docs/product/NAME_WORKSHOP.md): how the name RudCo Quote Desk was chosen.
 
 **Research (Ken)**

@@ -4,6 +4,26 @@
 
 **What this is:** how Quote Desk looks: colors, status colors, type, buttons, layout and logo use. How we talk (voice, words, taglines, microcopy) lives in the [brand position](BRAND_POSITION.md).
 
+## Samples
+
+What the style looks like on a screen. The live page is [style_samples.html](style_samples.html). The SKUs and prices in it are placeholders.
+
+![Palette swatches with role and hex](style_samples/palette.png)
+
+The palette, one swatch per role.
+
+![Status badges, buttons and a compliance flag](style_samples/components.png)
+
+The three status badges, the button pairs and a compliance flag with its trigger word highlighted.
+
+![The L3 logo lockup on the warm header and on the navy sidebar](style_samples/lockup.png)
+
+The L3 lockup on the warm header and on the navy sidebar.
+
+![A sample workspace with a three-line quote](style_samples/workspace.png)
+
+A sample workspace: navy sidebar, warm header, and a quote card with one Ready line, one No match line and one Needs the buyer line.
+
 ## Palette
 
 All values come from RudCo's live site, read on 2026-10-10. The CSS stores colors as HSL custom properties on `:root` in [index-A39G_5VS.css](https://www.rud-co.com/assets/index-A39G_5VS.css). The hex values and every contrast ratio below come from [brand_colors.py](brand_colors.py) and [surface_contrast.py](surface_contrast.py), not by eye.
