@@ -12,6 +12,21 @@ class PdfExportTest < ActiveSupport::TestCase
     PDF::Reader.new(StringIO.new(@export.to_pdf))
   end
 
+  test "buyer email and PDF format source dates and retain commercial exclusions without internal wording" do
+    line = @quote.quote_lines.first
+    evidence = { "name" => "RudCo website list price", "as_of" => "2026-10-10T17:04:39Z", "kind" => "website_list_price",
+      "explanation" => "The price shown on rud-co.com. A list price, not a quote: order quantity, freight and certificates are not included." }
+    line.update!(benchmark: evidence)
+    [QuoteWorkspace::FinalQuote.new(@quote).body(attachments_included: true), reader.pages.map(&:text).join("\n")].each do |content|
+      assert_includes content, "RudCo website list price"
+      assert_includes content, "As of: 2026-10-10"
+      refute_includes content, "2026-10-10T17:04:39Z"
+      refute_includes content, "A list price, not a quote"
+      assert_includes content.gsub(/\s+/, " "), "order quantity, freight and certificates are not included."
+    end
+    assert_equal evidence, line.reload.benchmark
+  end
+
   test "approved sample PDF includes quote details prices held questions and honest labels" do
     assert_equal "#{@quote.reference}-quote.pdf", @export.filename
     document = reader

@@ -19,7 +19,8 @@ module QuoteWorkspace
 
     def body(attachments_included: false)
       with_snapshot do |data|
-        parts = [ "Draft, not sent", "Subject: Quote #{data[:reference]}" ]
+        local_preview = attachments_included || @quote.sent_locally?
+        parts = [ local_preview ? "Approved quote, local preview" : "Draft, not sent", "Subject: Quote #{data[:reference]}" ]
         parts << "Buyer: #{data[:buyer]}" if data[:buyer].present?
         parts << "Approved quote #{data[:reference]}: #{data[:title]}"
         parts << "Ready-line subtotal: USD #{data[:subtotal]}. #{data[:exclusion_notice]}"
@@ -60,7 +61,7 @@ module QuoteWorkspace
           details << "Choose one option. Option totals are separate and excluded from the subtotal." if line[:options].any?
           parts << details.join("\n")
         end
-        if attachments_included
+        if local_preview
           parts << "Attached to this local preview: #{data[:basename]}.pdf and #{data[:basename]}.csv."
           parts << "No email has been sent to the buyer."
         else
@@ -103,7 +104,9 @@ module QuoteWorkspace
     def present_line(line)
       ready = line.quotable?
       benchmark = line.benchmark.is_a?(Hash) ? line.benchmark : {}
-      options = QuoteOptions.for(line)
+      options = QuoteOptions.for(line).map do |option|
+        option.merge(benchmark: buyer_benchmark(option[:benchmark]))
+      end
       {
         position: line.position,
         description: line.description.presence || "Line #{line.position}",
@@ -120,12 +123,30 @@ module QuoteWorkspace
         total: ready ? decimal(line.line_total, 2) : nil,
         price_source: ready ? line.price_source : nil,
         rep_price: ready && line.rep_entered_price?,
-        benchmark: ready && !line.rep_entered_price? ? benchmark.slice("name", "as_of", "kind", "explanation") : {},
+        benchmark: ready && !line.rep_entered_price? ? buyer_benchmark(benchmark) : {},
         compliance: Array(line.compliance).filter_map { |entry| entry["label"].presence if entry.is_a?(Hash) },
         lead_time: line.display_lead_time,
         lead_time_source: line.sourced_lead_time? ? line.lead_time_source : nil,
         question: ready ? nil : line.clarification_question
       }
+    end
+
+    # Presentation only: keep the original observation and provenance in storage.
+    def buyer_benchmark(benchmark)
+      return {} unless benchmark.is_a?(Hash)
+
+      benchmark.slice("name", "as_of", "kind", "explanation").tap do |presented|
+        if presented["as_of"].present?
+          presented["as_of"] = begin
+            Date.iso8601(presented["as_of"].to_s).iso8601
+          rescue Date::Error
+            "Date not provided"
+          end
+        end
+        if presented["explanation"].present?
+          presented["explanation"] = presented["explanation"].sub("A list price, not a quote: ", "Commercial exclusions: ")
+        end
+      end
     end
   end
 end

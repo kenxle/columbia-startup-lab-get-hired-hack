@@ -15,6 +15,9 @@
 .buyer-draft__line-heading h3 { font-size: 14px; }
 .buyer-draft__line-heading a { font-size: 13px; font-weight: 600; }
 .buyer-draft__question { white-space: pre-wrap; color: var(--ink-soft); }
+.buyer-draft__body { min-width: 0; max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.7; }
+.buyer-draft__body + .page-actions { flex-wrap: wrap; min-width: 0; }
+.buyer-draft__body + .page-actions .button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.4; padding: .6rem 1rem; }
 .buyer-draft__error { margin: 24px 28px 0; padding: 18px; border: 1px solid var(--held-rule); border-radius: var(--radius); background: var(--held-wash); color: var(--held-ink); }
 .buyer-draft__error h2 { font-size: 16px; }
 .buyer-draft__error p { margin: 6px 0 12px; }

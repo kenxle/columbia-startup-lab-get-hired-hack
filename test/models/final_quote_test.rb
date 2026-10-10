@@ -21,7 +21,19 @@ class FinalQuoteTest < ActiveSupport::TestCase
   test "local email preview describes its actual attachments" do
     body = @draft.body(attachments_included: true)
     assert_includes body, "Attached to this local preview:"
+    assert_includes body, "Approved quote, local preview"
+    refute_includes body, "Draft, not sent"
     assert_includes body, "No email has been sent to the buyer."
+    refute_includes body, "Files are not attached"
+  end
+
+  test "recorded local send remains an approved preview when reopened" do
+    @quote.update_columns(sent_at: Time.current, sent_review_revision: @quote.review_revision, sent_channel: "local_preview")
+    body = @draft.body
+    assert_includes body, "Approved quote, local preview"
+    assert_includes body, "Attached to this local preview:"
+    assert_includes body, "No email has been sent to the buyer."
+    refute_includes body, "Draft, not sent"
     refute_includes body, "Files are not attached"
   end
 

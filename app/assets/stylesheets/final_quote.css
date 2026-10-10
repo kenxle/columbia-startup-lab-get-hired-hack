@@ -1,10 +1,11 @@
-.final-quote { overflow: hidden; }
+.final-quote { min-width: 0; max-width: 100%; overflow: hidden; }
 .final-quote__status { padding: 1.1rem 1.4rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
 .final-quote__status p { margin: .65rem 0 0; max-width: 76ch; color: var(--muted); }
 .final-quote__content { padding: 1.4rem; }
 .final-quote__body { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.7; margin: 1.5rem 0; max-width: 86ch; }
 .final-quote__documents { display: flex; flex-wrap: wrap; gap: .65rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 .final-quote__delivery { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.final-quote .button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.4; padding: .6rem 1rem; }
 @media (max-width: 600px) {
   .final-quote__content, .final-quote__status { padding: 1rem; }
   .final-quote__documents { flex-direction: column; align-items: stretch; }

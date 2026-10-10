@@ -32,6 +32,8 @@ class SendApprovedQuoteTest < ActiveSupport::TestCase
     assert message.attachments.find { |part| part.filename.end_with?(".pdf") }.decoded.start_with?("%PDF")
     assert_includes message.attachments.find { |part| part.filename.end_with?(".csv") }.decoded, '"232.00","4640.00"'
     assert_includes message.text_part.decoded, "No email is sent to the buyer."
+    assert_includes message.text_part.decoded, "Approved quote, local preview"
+    refute_includes message.text_part.decoded, "Draft, not sent"
     sent_at = @quote.sent_at
     send_quote(revision)
     assert_equal 1, ActionMailer::Base.deliveries.size
