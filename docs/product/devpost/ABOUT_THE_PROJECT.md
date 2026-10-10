@@ -14,11 +14,11 @@ Copied from the live Devpost field at 15:37, with your edits made there. The acc
 
 RFQs are the lifeblood of RudCo. RudCo supplies metals, abrasives, and aggregates to industrial buyers, and it promises a quote within 24 hours. It also has to be right: one error on a quote can cost hundreds of thousands of dollars.
 
-That is hard, because buyers write the same item many ways. One writes "304 SS sheet 16ga 4x8". Another writes "Stainless 304, 0.060 in, 48 x 96". Today a person decodes every line by hand, against the clock. A wrong guess on grade or thickness becomes a wrong quote, a lost order, or a return.
+That is hard, because buyers write the same item many ways. Today a person decodes every line by hand, against the clock. A wrong guess on grade or thickness becomes a wrong quote, a lost order, or a return.
 
 ### What it is
 
-RudCo Quote Desk is a web app for the quoting rep. RFQ are found in email, form submission, or kicked off manually (email text, PDF, or spreadsheet). The app lists every line item and shows the RFQ beside the draft quote. Clarifications are automatically negotiated with the client. The rep reviews, approves, and sends. The agent prepares the quote, and the rep owns it.
+RudCo Quote Desk is a web app for the quoting rep. RFQs are found in email, form submissions, or kicked off manually (email text, PDF, or spreadsheet). The app lists every line item and shows the RFQ beside the draft quote. Clarifications are automatically negotiated with the client. The rep reviews, approves, and sends. The agent prepares the quote, and the rep owns it.
 
 ### What it does today
 
