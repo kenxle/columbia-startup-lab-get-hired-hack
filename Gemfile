@@ -10,6 +10,8 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 # Generate portable quote PDFs without a browser or external renderer.
 gem "prawn", "~> 2.5"
+# Excel (.xlsx) RFQ intake, read lazily by tools/rfq_processing Extractor.from_xlsx
+gem "roo", "~> 2.10", require: false
 gem "csv", "~> 3.3"
 gem "pdf-reader", "~> 2.16"
 gem "anthropic"

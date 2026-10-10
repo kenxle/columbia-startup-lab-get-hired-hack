@@ -127,8 +127,8 @@ class ProcessRfqTest < ActiveSupport::TestCase
     assert_equal originals, @quote.quote_lines.ids
   end
 
-  test "unsupported Excel and raw MIME fail honestly without invoking parser" do
-    {"rfq.xlsx" => /CSV/, "rfq.xls" => /CSV/, "rfq.eml" => /Raw email/}.each do |filename, message|
+  test "old .xls and raw MIME fail honestly without invoking parser" do
+    {"rfq.xls" => /\.xlsx or CSV/, "rfq.eml" => /Raw email/}.each do |filename, message|
       @quote.update!(source_bytes: "fake source", original_filename: filename)
       run = enqueue
       RfqProcessing.stub(:process, ->(**) { flunk "Unsupported source must not reach parser" }) { perform(run) }
@@ -137,8 +137,8 @@ class ProcessRfqTest < ActiveSupport::TestCase
     end
   end
 
-  test "CSV and PDF adapter pass original bytes and constrained sample matcher" do
-    {"rfq.csv" => "csv", "rfq.pdf" => "pdf"}.each do |filename, type|
+  test "CSV, PDF and Excel adapter pass original bytes and constrained sample matcher" do
+    {"rfq.csv" => "csv", "rfq.pdf" => "pdf", "rfq.xlsx" => "xlsx"}.each do |filename, type|
       @quote.update!(source_bytes: "source bytes", original_filename: filename)
       run = enqueue
       RfqProcessing.stub(:process, lambda { |**input|

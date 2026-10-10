@@ -53,7 +53,21 @@ class IntakeProcessingTest < ActionDispatch::IntegrationTest
     assert_select ".lines-table tbody tr", count: 1
   end
 
-  test "unsupported saved spreadsheet fails recoverably without inventing quote lines" do
+  test "an Excel RFQ is read row by row and processed like a pasted one" do
+    upload = Rack::Test::UploadedFile.new(file_fixture("northline_rfq_lines.xlsx"),
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", true, original_filename: "northline.xlsx")
+    quote = save_rfq(source_text: "", source_file: upload)
+    perform_enqueued_jobs only: ProcessRfqJob
+    assert_equal "succeeded", quote.processing_runs.sole.status
+    lines = quote.reload.quote_lines.order(:position)
+    assert_equal 3, lines.size
+    shot = lines.find { |line| line.catalog_sku == "RC-STEELSHOT-S330" }
+    assert shot, lines.map(&:catalog_sku).inspect
+    assert_equal BigDecimal("2000"), shot.quantity
+    assert_match(/row 2/, shot.evidence.values.map { |entry| entry["location"] }.join(" "))
+  end
+
+  test "an unreadable Excel file fails recoverably without inventing quote lines" do
     upload = Rack::Test::UploadedFile.new(StringIO.new("private workbook bytes"),
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", true, original_filename: "request.xlsx")
     quote = save_rfq(source_text: "", source_file: upload)
@@ -62,7 +76,7 @@ class IntakeProcessingTest < ActionDispatch::IntegrationTest
     assert_empty quote.reload.quote_lines
     assert_equal "private workbook bytes", quote.source_bytes
     get quote_path(quote)
-    assert_select ".processing-run__error", text: /save.*CSV/i
+    assert_select ".processing-run__error, .processing-run__warning, .processing-run", text: /Excel/i
     assert_select '.processing-run__form input[value="Retry processing"]'
     refute_includes response.body, "private workbook bytes"
   end

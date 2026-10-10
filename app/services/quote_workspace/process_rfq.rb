@@ -215,7 +215,7 @@ module QuoteWorkspace
     def capture_source
       if @quote.source_bytes.present?
         filename = @quote.original_filename
-        type = {".pdf" => "pdf", ".csv" => "csv", ".txt" => "email"}.fetch(File.extname(filename.to_s).downcase, "unsupported")
+        type = {".pdf" => "pdf", ".csv" => "csv", ".txt" => "email", ".xlsx" => "xlsx"}.fetch(File.extname(filename.to_s).downcase, "unsupported")
         [@quote.source_bytes.dup, type, filename]
       else
         [@quote.source_text.to_s.dup, "email", nil]
@@ -224,12 +224,13 @@ module QuoteWorkspace
 
     def validate_source!(input)
       extension = File.extname(input[:filename].to_s).downcase
-      raise InputError, "Save this Excel file as CSV and upload it again." if %w[.xls .xlsx].include?(extension)
+      # .xlsx is read by the processing library (roo); the old binary .xls is not.
+      raise InputError, "Save this older .xls file as .xlsx or CSV and upload it again." if extension == ".xls"
       raise InputError, "Raw email files are not connected. Paste the email body or upload its PDF or CSV attachment." if extension == ".eml"
-      raise InputError, "This source type is not supported. Use pasted text, PDF, or CSV." if input[:type] == "unsupported"
+      raise InputError, "This source type is not supported. Use pasted text, PDF, CSV, or Excel (.xlsx)." if input[:type] == "unsupported"
       raise InputError, "The source is empty." if input[:content].empty?
       raise InputError, "The source is larger than 10 MB." if input[:content].bytesize > Quote::MAXIMUM_SOURCE_BYTES
-      if input[:type] != "pdf"
+      unless %w[pdf xlsx].include?(input[:type]) # binary formats are decoded by the library
         input[:content] = input[:content].dup.force_encoding(Encoding::UTF_8)
         raise InputError, "The source is not valid UTF-8 text. Save it as UTF-8 and try again." unless input[:content].valid_encoding?
       end
