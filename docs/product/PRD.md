@@ -176,3 +176,4 @@ The job has one test, and each thing it does has one, run against our test RFQs.
 ## Decisions
 
 - **A person reviews every quote before it goes out** (2026-10-10). The user is the supplier's quoting rep. The agent drafts; the rep checks, edits, and sends. The buyer only sees the finished quote and the questions.
+- **Clarifying questions can send on their own** (2026-10-10). When the agent is confident about the choices to offer, it emails the buyer without review. The buyer answers by clicking a choice in the email. The rep still approves every final quote. Details in [WORKFLOW.md](WORKFLOW.md).

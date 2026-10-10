@@ -6,10 +6,8 @@
 
 ## Needs your call
 
-Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation.
+Hirsh asked these on the bulletin board, and they shape steps 6 to 8. Each has a recommendation. Decided items move to [Decisions](#decisions) at the bottom.
 
-- **W1. Does the rep approve clarifying questions before they go out?** Recommendation: yes. The brief says the agent drafts and a person sends. One click sends all questions in one email.
-- **W2. How does the buyer answer?** Recommendation: by replying to the email, with numbered choices to pick from. It keeps the whole demo in email, the way RFQs really arrive. A secure answer link is a stretch.
 - **W3. Does a buyer's answer rerun matching and pricing on its own?** Recommendation: yes, for the answered lines only. The rep still approves the final quote.
 - **W4. Which catalog does the demo use?** Tisch's catalog is 200 aviation bolts (AN3 to AN8). The brief, the research, and RudCo's own site are about metals and abrasives: sheet, plate, tube, shot, grit, aluminum ingot. Recommendation: build the demo RFQ from metals lines and keep the bolts as a second RFQ if time allows. Ken to confirm with Tisch.
 
@@ -24,8 +22,8 @@ flowchart TD
     C --> D["4. Match each line to the catalog"]
     D --> E["5. Price, flag compliance, list assumptions"]
     E --> F{"Every line clear?"}
-    F -- no --> G["6. Rep approves questions, agent emails the buyer"]
-    G --> H["Buyer replies with choices"]
+    F -- no --> G["6. Agent emails the buyer a question with choices"]
+    G --> H["Buyer clicks a choice in the email"]
     H --> C
     F -- yes --> I["7. Rep reviews the final quote and approves"]
     I --> J["8. Agent replies on the buyer's thread with the quote"]
@@ -74,9 +72,12 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 
 ### 6. Send clarifying questions to the buyer
 
-- **What happens:** every held line gets one specific question with choices. Example: "Line 3 says 16 gauge and 0.060 in. These differ. Do you need (a) 16 gauge, 0.0625 in, or (b) exactly 0.060 in?"
-- **The rep:** reviews the questions, edits any, and sends them all in one email with one click (W1).
-- **The buyer:** replies with the choice numbers (W2). The agent reads the reply and reruns steps 3 to 5 for those lines only (W3).
+- **What happens:** every held line gets one specific question with a few choices. Example: "Line 3 says 16 gauge and 0.060 in. These differ. Do you need 16 gauge (0.0625 in) or exactly 0.060 in?"
+- **Who sends it:** the agent scores how sure it is that the choices cover what the buyer meant.
+  - **Confident:** the email goes out on its own.
+  - **Not confident:** the rep reviews and edits the question first, then sends it.
+- **The buyer:** clicks a button in the email for the choice they want. The click updates the RFQ on its own. Replying with the choice number also works.
+- **Then:** the agent reruns steps 3 to 5 for the answered lines only (W3).
 - **Clear lines keep moving.** A question on line 3 does not hold up lines 1 and 2.
 
 ### 7. Present the final quote for approval
@@ -109,7 +110,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 3. Click the stainless line. Show "16 ga" reading as 0.0625 in, with the table named. Point out that RudCo's own challenge treats it as 0.060 in.
 4. Show a hidden-requirement flag, with its trigger word highlighted.
 5. Show a price beside its named, dated benchmark.
-6. Approve and send the questions. Show the buyer's reply coming back, and the line turning ready.
+6. Show the question email going out, the buyer clicking a choice, and the line turning ready.
 7. Approve the final quote. Show the reply on the buyer's thread.
 8. Stretch: send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
 
@@ -128,3 +129,8 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 | 9. Learn the buyer (stretch) | To be decided |
 
 This table reflects the bulletin board as of 12:39. Owners, correct it if it is wrong.
+
+## Decisions
+
+- **W1. Clarifying questions send on their own when the agent is confident** (Ken, 2026-10-10). If the agent is confident it can name the choices the buyer meant, the email goes out with no review. If not, the rep reviews it first. The final quote still needs the rep's approval.
+- **W2. The buyer answers by clicking a choice in the email** (Ken, 2026-10-10). Each choice is a button. A click updates the RFQ on its own. Replying with the choice number also works.
