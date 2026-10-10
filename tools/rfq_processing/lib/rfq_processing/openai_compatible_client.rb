@@ -3,6 +3,7 @@
 require "json"
 require "net/http"
 require "uri"
+require "securerandom"
 
 module RfqProcessing
   # A small chat completions client for OpenAI-compatible gateways: the hackathon's
@@ -21,12 +22,18 @@ module RfqProcessing
     SCHEMA_NAME = "rfq_line"
     PLAIN_JSON_INSTRUCTION = "Answer with exactly one JSON object and nothing else, matching this JSON schema:"
 
+    # Metadata-only hook shared with the app's PRISM listener. Disabled by
+    # default; one event for each actual inference HTTP attempt, not /models.
+    class << self
+      attr_accessor :trace_listener
+    end
+
     attr_reader :base_url, :model, :last_status
 
     # http: a callable for tests, ->(request) { [status, body_string] }, where request is a Hash
     # with string keys "method" ("POST" or "GET"), "url", "headers", and "body" (the body as a
     # Hash, nil for a GET). Nil means Net::HTTP.
-    def initialize(api_key:, base_url:, model:, open_timeout: 10, read_timeout: 90, http: nil)
+    def initialize(api_key:, base_url:, model:, open_timeout: 10, read_timeout: 90, http: nil, trace_listener: nil, session_id: nil, run_id: nil)
       @api_key = api_key.to_s
       @base_url = base_url.to_s.strip.sub(%r{/+\z}, "")
       @model = model.to_s
@@ -34,6 +41,9 @@ module RfqProcessing
       @read_timeout = read_timeout
       @http = http || method(:over_net_http)
       @last_status = nil
+      @trace_listener = trace_listener
+      @session_id = trace_uuid(session_id)
+      @run_id = trace_uuid(run_id)
     end
 
     def url
@@ -47,16 +57,17 @@ module RfqProcessing
     # { "text" => the assistant message content, "model" => the model the gateway names, or nil }.
     # Nil on any failure, after one warn line.
     def chat(system:, user:, schema:, max_tokens:)
-      status, raw = post(structured_body(system, user, schema, max_tokens))
+      trace_run_id = @run_id || SecureRandom.uuid
+      status, raw = post(structured_body(system, user, schema, max_tokens), run_id: trace_run_id)
       return nil if status.nil?
 
       if schema_rejected?(status, raw)
         first = status
-        status, raw = post(plain_body(system, user, schema, max_tokens))
+        status, raw = post(plain_body(system, user, schema, max_tokens), run_id: trace_run_id)
         return nil if status.nil?
 
         unless success?(status)
-          warn "OpenAiCompatibleClient: chat endpoint answered #{first} with response_format, then #{status} without it,; no reading"
+          warn "OpenAiCompatibleClient: chat endpoint answered #{first} with response_format, then #{status} without it; no reading"
           return nil
         end
         warn "OpenAiCompatibleClient: chat endpoint rejected response_format (#{first}); the retry with the schema in the system message succeeded"
@@ -99,22 +110,62 @@ module RfqProcessing
 
     # [status, body] after at most one same-request retry on a transient status.
     # Nil when the retry is transient too, after the one warn line.
-    def post(body)
-      status, raw = send_once("POST", url, body)
+    def post(body, run_id:)
+      status, raw = send_once("POST", url, body, run_id: run_id)
       return [status, raw] unless TRANSIENT_STATUSES.include?(status)
 
       sleep(TRANSIENT_PAUSE_SECONDS)
-      status, raw = send_once("POST", url, body)
+      status, raw = send_once("POST", url, body, run_id: run_id)
       return [status, raw] unless TRANSIENT_STATUSES.include?(status)
 
       warn "OpenAiCompatibleClient: chat endpoint answered #{status} twice; giving up"
       nil
     end
 
-    def send_once(method, target, body)
+    def send_once(method, target, body, run_id: nil)
+      started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      @last_status = nil
       status, raw = @http.call({ "method" => method, "url" => target, "headers" => headers, "body" => body })
       @last_status = Integer(status)
       [@last_status, raw.to_s]
+    ensure
+      trace_attempt(started, @last_status, raw, run_id) if method == "POST"
+    end
+
+    def trace_uuid(value)
+      text = value.to_s
+      text if text.match?(/\A[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\z/i)
+    end
+
+    def trace_attempt(started, status, raw, run_id)
+      listener = @trace_listener.nil? ? self.class.trace_listener : @trace_listener
+      return unless listener && started
+
+      # Do not reflect response model/ID strings: provider errors can echo input.
+      safe_model = @model if @model.match?(/\A(?:anthropic\/)?claude-(?:opus|sonnet|haiku)-\d+(?:-\d+)*(?:@\d{8})?\z/i)
+      verified = nil
+      outcome = status.nil? ? "network_error" : "http_error"
+      if status && success?(status)
+        envelope = JSON.parse(raw.to_s) rescue nil
+        returned = envelope.is_a?(Hash) && envelope["model"]
+        if !envelope.is_a?(Hash)
+          outcome = "invalid_response"
+        elsif !returned.is_a?(String) || returned.strip.empty?
+          outcome = "model_identity_missing"
+          verified = false
+        else
+          expected = @model.strip.downcase.sub(%r{\A[^/]+/}, "")
+          actual = returned.strip.downcase.sub(%r{\A[^/]+/}, "")
+          verified = !expected.empty? && (actual == expected || actual.match?(/\A#{Regexp.escape(expected)}[-@]\d{8}\z/))
+          outcome = verified ? "http_success" : "model_mismatch"
+        end
+      end
+      event = { model: safe_model, elapsed_ms: ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - started) * 1000).round,
+                      outcome: outcome, request_id: SecureRandom.uuid, run_id: run_id, session_id: @session_id,
+                      http_status: status, returned_model_verified: verified }.freeze
+      listener.call(**event)
+    rescue StandardError
+      nil # Telemetry must never affect a request or disclose listener errors.
     end
 
     def headers

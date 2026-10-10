@@ -65,6 +65,87 @@ RSpec.describe RfqProcessing::OpenAiCompatibleClient do
     end
   end
 
+  describe "metadata-only inference tracing" do
+    let(:events) { [] }
+
+    around do |example|
+      prior = described_class.trace_listener
+      described_class.trace_listener = ->(event) { events << event }
+      example.run
+    ensure
+      described_class.trace_listener = prior
+    end
+
+    it "records each retry with one run ID, distinct local attempt IDs, and honest model verification" do
+      http, = fake_http([502, "PRIVATE_RESPONSE_SENTINEL"], [200, completion(reading_json)])
+      client = client_for(http)
+      allow(client).to receive(:sleep)
+      expect(chat(client)).not_to be_nil
+      expect(events.map { |e| e[:http_status] }).to eq([502, 200])
+      expect(events.map { |e| e[:outcome] }).to eq(["http_error", "http_success"])
+      expect(events.map { |e| e[:returned_model_verified] }).to eq([nil, true])
+      expect(events.map { |e| e[:run_id] }.uniq.size).to eq(1)
+      expect(events.map { |e| e[:request_id] }.uniq.size).to eq(2)
+      expect(events).to all(include(model: model, session_id: nil, elapsed_ms: a_value >= 0))
+      expect(events.first.keys).to match_array(%i[model elapsed_ms outcome request_id run_id session_id http_status returned_model_verified])
+      expect(JSON.generate(events)).not_to include("PRIVATE_RESPONSE_SENTINEL", "test-key-not-real", "304 SS sheet")
+    end
+
+    it "records a transport exception without carrying forward an earlier HTTP status" do
+      http, = fake_http([200, completion(reading_json)], IOError.new("PRIVATE_RESPONSE_SENTINEL"))
+      client = client_for(http)
+      chat(client)
+      result, warning = capturing_stderr { chat(client) }
+      expect(result).to be_nil
+      expect(events.last).to include(http_status: nil, outcome: "network_error", returned_model_verified: nil)
+      expect(events.map { |e| e[:run_id] }.uniq.size).to eq(2)
+      expect(JSON.generate(events) + warning).not_to include("PRIVATE_RESPONSE_SENTINEL")
+    end
+
+    it "does not reflect a returned model or provider request ID" do
+      envelope = JSON.parse(completion(reading_json, model: "PRIVATE_RESPONSE_SENTINEL"))
+      envelope["id"] = "PRIVATE_RESPONSE_SENTINEL"
+      http, = fake_http([200, JSON.generate(envelope)])
+      chat(client_for(http))
+      expect(events.last).to include(outcome: "model_mismatch", returned_model_verified: false)
+      expect(JSON.generate(events)).not_to include("PRIVATE_RESPONSE_SENTINEL")
+    end
+
+    it "traces schema retries but excludes model-list requests" do
+      http, = fake_http([400, "response_format unsupported"], [200, completion(reading_json)], [200, '{"data":[]}'])
+      client = client_for(http)
+      capturing_stderr { chat(client) }
+      client.models
+      expect(events.map { |e| e[:http_status] }).to eq([400, 200])
+      expect(events.map { |e| e[:run_id] }.uniq.size).to eq(1)
+    end
+
+    it "keeps requests successful when the listener fails and stays silent about its contents" do
+      described_class.trace_listener = ->(_) { raise "PRIVATE_LISTENER_SENTINEL" }
+      http, = fake_http([200, completion(reading_json)])
+      result, warning = capturing_stderr { chat(client_for(http)) }
+      expect(result).not_to be_nil
+      expect(warning).to be_empty
+    end
+
+    it "supports the shared initializer's strict keyword listener" do
+      received = []
+      described_class.trace_listener = ->(**event) { received << event }
+      http, = fake_http([200, completion(reading_json)])
+      expect(chat(client_for(http))).not_to be_nil
+      expect(received.size).to eq(1)
+      expect(received.first).to include(model: model, outcome: "http_success", returned_model_verified: true)
+      expect(received.first[:run_id]).to match(/\A[0-9a-f-]{36}\z/)
+    end
+
+    it "can be disabled on an instance even when the shared listener is configured" do
+      http, = fake_http([200, completion(reading_json)])
+      client = described_class.new(api_key: "fake", base_url: "https://not-called.invalid", model: model, http: http, trace_listener: false)
+      expect(chat(client)).not_to be_nil
+      expect(events).to be_empty
+    end
+  end
+
   describe "#chat" do
     it "posts one chat completion with the bearer key, JSON content type, and a strict json_schema response_format" do
       http, requests = fake_http([200, completion(reading_json)])
