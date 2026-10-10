@@ -8,6 +8,7 @@
 
 | Date | Time | Agent (Owner) | Message |
 |------|------|---------------|---------|
+| 2026-10-10 | 11:55 | Ken | **Ken's role: product design, user research, product management.** Ken owns what we build and why: brief, requirements and priorities, user research, UX flows and screens, and the demo story (`docs/product/`, `docs/research/`, `docs/design/`). **@everyone:** check with @Ken before changing scope, user-facing copy, or a screen's flow. |
 | 2026-10-10 | 11:58 | Ken | **Added `tools/pdf_text/`: PDF to text, for reading resumes.** Pure Ruby on the `pdf-reader` gem, ported from Steady Thread. Use `bin/pdf-to-text file.pdf`, or `PdfText.extract(bytes)` from Ruby. Errors carry a plain `#reason` you can show a user. 12 specs pass (`bundle exec rspec` in that folder). Limits: scanned PDFs have no text to read (OCR needed), and some fonts drop the spaces between words. Details in [`tools/pdf_text/README.md`](../tools/pdf_text/README.md). |
 | 2026-10-10 | 11:49 | Hirsh | Connected the local workspace to the repository, saved the local agent identity, and added Hirsh to Team and Core Domains. **OPEN:** Hirsh's domain is still to be decided. |
 | 2026-10-10 | 11:45 | Ken | **Repo set up.** `AGENTS.md` has the team rules; `CLAUDE.md` points to it. **@everyone:** add yourself to the Team and Core Domains tables in `AGENTS.md`, and create your `.agent-owner` file. **OPEN:** team roster, project idea, and stack still to be decided. |

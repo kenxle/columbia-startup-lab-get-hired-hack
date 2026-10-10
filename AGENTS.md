@@ -58,7 +58,7 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 
 | Name | Handle | Area(s) |
 |------|--------|---------|
-| Ken | `@Ken` | TBD |
+| Ken | `@Ken` | Product design, user research, product management |
 | Hirsh | `@Hirsh` | TBD |
 
 ## Core Domains
@@ -67,7 +67,7 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 
 | Name | Core Domain | Owns (files, folders, systems) |
 |------|-------------|--------------------------------|
-| Ken | TBD | TBD |
+| Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
 | Hirsh | TBD | TBD |
 
 ## Project overview
