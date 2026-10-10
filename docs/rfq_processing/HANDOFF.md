@@ -130,7 +130,7 @@ Each worker gets one task, acceptance criteria, owned paths, the starting commit
 
 ## Current session, 2026-10-10 at 15:09
 
-- Yuval authorizes code pushes after teammate inspection, without personal review. Hirsh cleared parser/BuyerProfile at 14:52, disabled provider and corrected result/answers/adapter at 14:58, and extraction/compliance at 15:07 after reproducing the fixes. Parser is in `9fa2c86`; provider is in `7e3d2c6`; the remaining dependency batch accompanies this handoff.
+- Yuval authorizes code pushes after teammate inspection, without personal review. Hirsh cleared parser/BuyerProfile at 14:52, disabled provider and corrected result/answers/adapter at 14:58, and extraction/compliance at 15:07 after reproducing the fixes. Parser is in `9fa2c86`; provider is in `7e3d2c6`; the remaining dependency batch is pushed as `e4ec750`. Latest app verification: 451 Rails tests / 3721 assertions and 12 PDF utility specs pass.
 - All 297 processing specs pass after Ken rebuilt the demo PDF. Email/PDF/CSV checks retain eight items, correct demand and source scope. Email and PDF explicitly require MTR on all steel, including shot; CSV contains narrower per-row requirements. Demo pair and buyer-answer end-to-end checks pass: four Ready, or three Ready plus one quantity question, then four Ready after 2000 lb.
 - Source evidence, blank-quantity PDF rows, scoped body compliance, selective answer reruns, stable line IDs, compatible priced alternates and candidate-selection guards are implemented. Transnet's bounded table yields its actual 50,000 kg S390 item; Iowa 2021 remains an unsupported fragmented layout and must not be presented as fully parsed.
 - Local Ruflo registers workers; actual implementation/review workers run through authorized Astra. Opus independent review remains quota-blocked until 16:50 ET. Do not claim it occurred.
@@ -138,7 +138,7 @@ Each worker gets one task, acceptance criteria, owned paths, the starting commit
 - Hirsh took the unsafe matcher numeric override at 15:08. The new `e2e-teaching-match.rb` diagnostic exits 2 until untaught plain given values cannot replace explicit 0.060 thickness or quantity 100. No safe teaching acceptance is claimed. Our adapter currently sends plain given values, so a vetted same-phrase provenance interface remains necessary.
 - Jev doubtful-compliance diagnostics remain pending a usable client/key and calibration examples. Never remove deterministic flags or grant readiness from Jev confidence. Hirsh owns the question-checking path.
 - Local browser records: `/quotes/14` has four Ready abrasive lines totaling USD1810; `/quotes/17` has three Ready totaling USD1010 plus one Waiting on buyer, explicitly local preview. `/quotes/16` demonstrates taught RFQ provenance, but matcher safety remains blocked. Sourced stock/lead times remain unknown.
-- Local server PID 32718 ran with LAUNCHY_DRY_RUN=true. Hirsh's silent preview hotfix is now pulled; restart after local migration to load it. No real buyer email was sent.
+- Local server PID 35740 runs with LAUNCHY_DRY_RUN=true after migration and restart. Hirsh's silent preview hotfix is loaded; browser RFQ-0017 is verified. No real buyer email was sent.
 - Coordinator alone owns Git. Pull and reread the board before every task/commit. Board watcher fetches only. Keep answering all owner mentions and post a handoff at session end.
 
 ## 9. Status log
