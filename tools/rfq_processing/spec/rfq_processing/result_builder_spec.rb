@@ -50,7 +50,9 @@ RSpec.describe RfqProcessing::ResultBuilder do
     expect(line["state"]).to eq("needs_buyer")
     expect(line["catalog_sku"]).to eq("RC-A36-PLT-500-60X120")
     expect(line["unresolved_fields"]).to eq(["unit_price"])
-    expect(line["clarification_question"]).to include("matched to RC-A36-PLT-500-60X120")
+    expect(line["clarification_question"]).to be_nil
+    expect(line["unit_price"]).to be_nil
+    expect(line.dig("processing", "question_choices")).to eq([])
   end
 end
 

@@ -84,6 +84,8 @@ Solid lines exist or are being built. Dotted lines are planned.
 
 ### RFQ processing (Yuval)
 
+- **Recording holds, Oct 10:** a matched line missing only `unit_price` stays unquotable with no buyer clarification. The rep must supply a supported price. An explicitly unmatched screw whose only unknown is material displays No match and retains that unknown, rather than asking a material question that cannot establish a catalog item. Hirsh reviewed the four-file correction at 16:00; processing suite 373 examples passes.
+
 - **Where:** `tools/rfq_processing/` (library and specs), `docs/rfq_processing/` (plan and format). Plain Ruby, no Rails. The app loads it as a path gem.
 - **The pipeline**, from [PLAN.md](rfq_processing/PLAN.md):
   1. Extract: email text passes through, PDFs go through `tools/pdf_text`, spreadsheets become one line per row. Page and row positions are kept.

@@ -62,7 +62,7 @@ module RfqProcessing
         # "waiting for price" state, so the line is held with unit_price unresolved, as Tisch's AddToQuote does.
         state = "needs_buyer"
         unresolved = ["unit_price"]
-        question = "Line #{position} is matched to #{best['part_number'] || best['item_id']}. The price is to be confirmed by the rep before this line can be quoted."
+        question = nil # Rep pricing work must not become a buyer clarification.
         ready = false
       end
 
