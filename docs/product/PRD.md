@@ -8,7 +8,6 @@
 
 - **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table and label them as sample data on screen. Yuval is finding this out.
 - **Q2. What is our sharper angle?** Uniqueness is a quarter of the score. Candidates are under [A sharper angle](#a-sharper-angle). Ken picks one.
-- **Q3. Is the user RudCo's own quoting rep?** This brief assumes the rep reviews every quote before it goes out, and the buyer only sees the finished quote and the questions. Confirm with RudCo.
 
 ---
 
@@ -163,3 +162,7 @@ Each job has one test, run against a set of test RFQs we write early in the day.
 - **Price and explain.** Each price sits next to its benchmark, and the explanation names that benchmark.
 - **Flag compliance.** Every certification the test RFQs require, stated or implied, shows up as a flag.
 - **Ask, don't guess.** Every line we planted as ambiguous comes back as a question. No clear line gets a question it did not need.
+
+## Decisions
+
+- **A person reviews every quote before it goes out** (2026-10-10). The user is the supplier's quoting rep. The agent drafts; the rep checks, edits, and sends. The buyer only sees the finished quote and the questions.
