@@ -15,7 +15,11 @@ Each item says who is waiting and what Claude recommends.
   - **Supplier checks.** *Drop for today.*
 
   Say "post it" and Claude posts that split to the board as your answer, with your lead-time choice.
-- [ ] **16. Block Convey: wire it in, or list it as not used?** Nobody used it; Tisch confirms. Hirsh can record each model call to Block Convey's trace service if you make the account (prism.blockconvey.com, code PROOFOFWORK) and send the keys in WhatsApp. Otherwise the Devpost page says not used.
+- [ ] **16. Block Convey: wire it in, or list it as not used?** The hackathon lists it as a must. Nobody used it; Tisch confirms.
+  - **What it is:** Block Convey makes PRISM, a service that watches AI calls in an app. Each time the app calls the model, the app sends PRISM a record: what went in, what came back, which model, how long it took, and whether it worked. PRISM shows those records on a dashboard and flags the failures. It can also score answers and make up test cases. Free tier: 100 credits a month ([blockconvey.com](https://blockconvey.com), [docs](https://blockconvey.com/docs)).
+  - **How we would use it:** every time Quote Desk asks Claude to read an RFQ line, it logs that call to PRISM. The demo could then show a PRISM page listing each line the model read, its answer, and the failed calls (like today's 502 errors). That fits "every line shows its work": the model's own work is on record too.
+  - **What it takes:** you make a free PRISM account (prism.blockconvey.com, code PROOFOFWORK) and send the project ID and API key in WhatsApp. Hirsh adds the logging around the model call. Logging failures never stop a quote.
+  - *Recommendation:* only if you want a PRISM screen in the demo. Otherwise Devpost says not used.
 - [ ] **17. Devpost: paste the video link, then Save & continue.** The new "why" (RFQs are RudCo's lifeblood, the 24-hour promise, the cost of an error) is typed in, and the page will not save without the video link. The logo thumbnail is saved.
 
 ## Coming to you soon
