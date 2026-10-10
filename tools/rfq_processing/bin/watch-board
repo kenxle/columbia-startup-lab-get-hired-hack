@@ -1,0 +1,43 @@
+#!/bin/sh
+# Board watcher for the coordinator. Fetches origin/main every INTERVAL seconds
+# and never pulls, so workers editing the checkout are never disturbed. When
+# origin/main moves it prints the new commits, every new bulletin row (rows that
+# mention @Yuval first), and the changed files under the watched paths, records
+# the new commit, and exits 0 so the caller wakes up. After MAX_ROUNDS quiet
+# rounds it prints "quiet" and exits 0 so the caller can restart it.
+#
+# usage: tools/rfq_processing/bin/watch-board STATE_DIR [INTERVAL_SECONDS] [MAX_ROUNDS]
+set -u
+state_dir=${1:?state dir}
+interval=${2:-300}
+max_rounds=${3:-11}
+owner=$(cat .agent-owner 2>/dev/null || echo Yuval)
+mkdir -p "$state_dir"
+last_file="$state_dir/last-commit"
+[ -f "$last_file" ] || git rev-parse origin/main > "$last_file"
+watched="tools/rfq_processing app/services/catalog_match app/models app/services/quote_workspace Gemfile docs/ARCHITECTURE.md docs/product docs/rfq_processing AGENTS.md .claude/agents"
+
+round=0
+while [ "$round" -lt "$max_rounds" ]; do
+  round=$((round + 1))
+  git fetch -q origin main 2>/dev/null
+  last=$(cat "$last_file")
+  new=$(git rev-parse origin/main)
+  if [ "$new" != "$last" ]; then
+    echo "origin/main moved $last -> $new at $(date '+%H:%M')"
+    echo "--- new commits ---"
+    git log --oneline "$last..$new"
+    echo "--- new bulletin rows mentioning @$owner ---"
+    git diff "$last" "$new" -- docs/BULLETIN.md | grep '^+| 20' | grep "@$owner" | cut -c2- || echo "(none)"
+    echo "--- all new bulletin rows ---"
+    git diff "$last" "$new" -- docs/BULLETIN.md | grep '^+| 20' | cut -c2- || echo "(none)"
+    echo "--- changed files under watched paths ---"
+    # shellcheck disable=SC2086
+    git diff --stat "$last" "$new" -- $watched || true
+    echo "$new" > "$last_file"
+    exit 0
+  fi
+  sleep "$interval"
+done
+echo "quiet: origin/main still $(cat "$last_file") after $round rounds at $(date '+%H:%M')"
+exit 0

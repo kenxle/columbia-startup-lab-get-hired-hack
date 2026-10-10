@@ -8,7 +8,7 @@
 
 RudCo Quote Desk: an agent that turns a messy industrial RFQ (email, PDF, spreadsheet) into a quote a sales rep can check and send. Every field shows the words it came from. Unclear lines become one buyer question with choices. The hackathon ends at 4:30 PM ET on 2026-10-10 with a video demo. Read, in this order:
 
-1. [AGENTS.md](../../AGENTS.md): the team rules. One coordinator owns git per checkout; workers never pull, commit, or push. Pull before every task and every commit, and every 5 to 10 minutes during long work. Reread [docs/BULLETIN.md](../BULLETIN.md) after every pull. No AI co-author trailers on commits. No em dashes in docs. Claude Opus 5.5 for Claude agents.
+1. [AGENTS.md](../../AGENTS.md): the team rules. One coordinator owns git per checkout; workers never pull, commit, or push. Pull before every task and every commit, and every 5 to 10 minutes during long work. Reread [docs/BULLETIN.md](../BULLETIN.md) after every pull. No AI co-author trailers on commits. No em dashes in docs. Claude Opus 5 (`claude-opus-5`) for every Claude process, per Hirsh's 13:40 board row; the `.claude/agents/` profiles are team files, so ask Hirsh before changing a model there.
 2. [docs/product/PRD.md](../product/PRD.md): the brief. Commitments: show the source, ask instead of guess, label sample data, no hallucinated pricing.
 3. [docs/product/WORKFLOW.md](../product/WORKFLOW.md): the eight demo steps and the decisions (W1 to W4, the confidence gate, the four W3 guards).
 4. [docs/ARCHITECTURE.md](../ARCHITECTURE.md): the four parts and the contracts. Yuval's section is "RFQ processing". Update it in the same commit as any contract or status change.
@@ -48,11 +48,11 @@ Returns the schema-1 hash in [RESULT-FORMAT.md](RESULT-FORMAT.md). In the app, `
 | `result_builder.rb` | One line hash in the app's shape, with prices only from a labeled source (dealer midpoint, RudCo list price). Matched lines with no price are held with `unresolved_fields: ["unit_price"]`. |
 | `pipeline.rb` | Extract, pick item lines, read body sentences for compliance, parse, match, decide, flag, assemble. `process_line` takes `overrides` and `extra_text`. |
 | `answers.rb` | W3: a buyer answer reruns only the answered lines; `scope: rfq` reruns all. See RESULT-FORMAT.md. 18 specs. |
-| `llm_parser.rb` | The Claude step (Opus 5.5 through the `anthropic` gem, structured output, `anyOf` null fields). Auto-on when `ANTHROPIC_API_KEY` is set; never overwrites a rules value; drops any Claude field whose quoted evidence is not in the line. Not yet run against the live API: smoke test first. |
+| `llm_parser.rb`, `openai_compatible_client.rb` | The Claude step, Claude Opus 5. Two transports: the hackathon's Nicrron gateway (OpenAI-compatible chat, `NICRRON_API_KEY`, `NICRRON_BASE_URL` default `https://api.nicrron.ai/v1`, `NICRRON_MODEL` default `anthropic/claude-opus-5`, Net::HTTP, no gem) and the `anthropic` gem (`ANTHROPIC_API_KEY`, model `claude-opus-5`). Auto-on when a key is set, Nicrron first; `RFQ_LLM_PROVIDER` forces one. Never overwrites a rules value; drops any Claude field whose quoted evidence is not in the line; drops any answer from a model other than the one requested. `describe` gives `revision.llm`. `bin/llm-smoke` compares rules and Claude per line. Not yet run against the live gateway: Hirsh's own smoke request got HTTP 502 at 13:47. |
 
 Specs: `spec/rfq_processing/*_spec.rb`. Fixtures: `spec/fixtures/test_set.yml` (Ken's 25 lines with expected readings), `spec/fixtures/results/*.json` (three result fixtures that pass `ApplyResult`), `spec/fixtures/demo_rfq_email.txt` (proposed demo email).
 
-Helpers in `tools/rfq_processing/bin/`: `test-set-report` (regenerates TEST-RESULTS.md), `apply-fixtures.rb`, `e2e-apply-result.rb`, `e2e-tisch-matcher.rb` (run through `bin/rails runner` in the test env with a rollback), `merge-bulletin.py` (resolves a bulletin merge conflict by keeping every row, newest first).
+Helpers in `tools/rfq_processing/bin/`: `test-set-report` (regenerates TEST-RESULTS.md), `apply-fixtures.rb`, `e2e-apply-result.rb`, `e2e-tisch-matcher.rb` (run through `bin/rails runner` in the test env with a rollback), `merge-bulletin.py` (resolves a bulletin merge conflict by keeping every row, newest first), `watch-board` (the board watcher: fetches origin/main every 5 minutes, never pulls, prints new commits and rows and exits so the coordinator wakes; run it in the background and restart it after each wake), `llm-smoke` (rules versus Claude on every line of a file), `e2e-answers.rb` (buyer answers end to end in the Rails test env).
 
 ## 4. Commands (copy exactly)
 
@@ -96,7 +96,7 @@ Start the session in the repo root. Claude Code will ask to enable the project M
 | data and flags worker | `rfq-implementer` | `lib/rfq_processing/{compliance,buyer_profile,extractor}.rb` and specs | invent domain rules not in the research |
 | llm worker | `rfq-implementer` | `lib/rfq_processing/llm_parser.rb` and spec; the live smoke test once a key exists | call the API without the coordinator's go |
 | reviewer | `rfq-reviewer` (read only) | reviews each batch at a named commit before the coordinator pushes | edit anything |
-| board watcher | a small loop: `git pull --ff-only` then print rows newer than the last seen time | reports new rows and @Yuval mentions to the coordinator every 5 minutes | post or commit |
+| board watcher | `bin/watch-board <state dir> 300 11` in the background | fetches only (a pull while workers edit could disturb them; the coordinator pulls at checkpoints), prints new commits, new rows, @Yuval rows, and changed files under watched paths, then exits so the coordinator wakes | pull, post, or commit |
 
 Each worker gets: one task, acceptance criteria, owned paths, the starting commit, and the exact rspec command. Workers return changed paths and the rspec summary. The coordinator runs the full suite, then commits with explicit paths so a worker's half-written file is never swept in.
 
@@ -106,7 +106,7 @@ Done and on main (see the log): the whole library above, 150 specs including all
 
 Open, in priority order for the demo:
 
-1. **A real Claude run.** When a key exists: `ANTHROPIC_API_KEY` in `.env` (gitignored), then `RfqProcessing::LlmParser.from_env` in the pipeline, and a smoke test on the demo email. Compare the rules reading and the Claude reading on every line; the rules win on numbers.
+1. **A real Claude run through Nicrron.** Hirsh shared the key privately with the team; Yuval puts it in `.env` (gitignored) as `NICRRON_API_KEY`. Then, from `tools/rfq_processing`, `env $(grep -v '^#' ../../.env | xargs) bin/llm-smoke` on the demo email. Compare the rules reading and the Claude reading on every line; the rules win on numbers. Hirsh's own request got a 502, so a gateway failure is possible; the run must stay green without Claude.
 2. **Ken's demo email.** When Ken posts it, run it through `bin/e2e-tisch-matcher.rb` (edit the text in the script) and fix any line that does not read as the research expects. Lead with the gauge line: 16 ga stainless is 0.0625 in, not 0.060.
 3. **Hirsh's intake call.** When his invocation lands, run a pasted email in the app at `http://127.0.0.1:3100` (`script/dev`) and check the lines, the evidence, and the questions on screen.
 4. **Answers end to end.** `Answers.apply` with Hirsh's response handler, once his buyer-answer buttons exist.
@@ -131,5 +131,6 @@ Paste this as the first message:
 
 | Time | State |
 |---|---|
+| 13:53 | Session 2 at 77b9980. Gates green at pickup. Hirsh's intake and ApplyResult changes pulled, root bundle installed, test database prepared. Workers running: Nicrron provider (llm_parser.rb, openai_compatible_client.rb, bin/llm-smoke) and answers e2e plus `revision.llm` (pipeline.rb, answers.rb, bin/e2e-answers.rb). Watcher running. Board rows read through 13:49. |
 | 13:36 | Last push: 57a343a (code) and 8593c8b (board post). All three workers landed and are integrated: `answers.rb` (18 specs), `llm_parser.rb` (15 specs, auto-on with a key), `bin/test-set-report` and TEST-RESULTS.md. Excel intake, Tisch contract adapter, production wording, lead time. 150 specs green. Board rows read through 13:35 (Ken 13:32: Tisch writes the demo email in `docs/product/demo_rfq/`, Yuval checks it parses; Ken 13:31: production data wording; Tisch 13:30: `CatalogMatch::Contract` and `bin/catalog-match`; Hirsh 13:33: his third agent is finishing automatic intake from Yuval's handoff; Ken 13:35: brand position and style guide approved, use their words everywhere). |
 | 13:30 | Commits on main by Yuval: e4d2233 (library), a4e05ad (adapter, buyer profiles, RudCo vocabulary, flags), 437a98b (board post), df4eb25 (demo email, body sentences feed compliance, answers plumbing and contract). 114 specs green before the workers' modules. Three workers running: answers (W3), llm_parser, test-set report. Excel intake written and green locally, not yet pushed. Last board rows read: 13:28 (Hirsh took the Rails invocation and `.env`; asked Ken to name a key owner). |
