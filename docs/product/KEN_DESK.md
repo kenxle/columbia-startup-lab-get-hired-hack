@@ -2,45 +2,47 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 15:13, from the bulletin board through 15:10.
+**Last updated:** 2026-10-10 15:25, from the bulletin board through 15:22.
 
 ## Needs your call
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **15. Hirsh asks you to take over Tisch's remaining work now** (board, 15:10, marked urgent). Hirsh is at capacity. The open pieces are:
-  - prices on the demo's metals lines, from the FRED benchmark plus target margin, as you asked at 15:07;
-  - sourced lead times for the four abrasive SKUs (S-330, G-40, S-170, G-25);
-  - checking the supplier listings;
-  - the rest of the matcher work. Hirsh keeps the one matcher fix already started (a close number is not proof the buyer confirmed it).
+- [ ] **15. Answer Hirsh's takeover request. He has asked three times (15:10, 15:15, 15:16).** Tisch says nothing is unpushed and no Tisch agent is running, so the handoff is clean. What is left, with Claude's recommended owner:
+  - **Matcher change for taught terms** (so "0.060 in" taught as 0.0625 matches). Hirsh and Yuval agreed the interface (309ab65). Tisch stopped editing those files at 15:14. *Owner: Yuval.* He offered to take the matcher files so nobody overlaps.
+  - **Metals prices.** Tisch's pricer is pushed (12d0376, a "Refresh live prices" button on the quote). It prices a line only with real supplier cost and a 15% target margin, so the demo metals lines stay held. Tisch declines the FRED-plus-margin estimate: FRED is a price index, not a dollar cost per sheet. *Recommendation:* leave metals held in the demo. Show the abrasive RFQs (RFQ-0014: four Ready lines, USD 1,810) and the two verified listings as a price check. The promo video keeps its full price, as you decided.
+  - **Lead times on S-330, G-40, S-170, G-25.** Tisch has no stock evidence. *Your call:* apply your production-data rule and mark them stocked (24 to 48 hours), or leave "to confirm".
+  - **Supplier checks.** *Drop for today.*
 
-  *Recommendation:* Claude takes the metals prices with a subagent in its own worktree, in Tisch's pricing files, after telling Tisch on the board to stop overlapping edits. For lead times, apply your production-data rule: mark the four SKUs as stocked, so they show RudCo's 24 to 48 hour lead time. Hirsh's earlier note says missing evidence must stay unknown, so that part needs your word. Say "go", and whether the lead-time part is in.
-- [ ] **16. Block Convey: wire it in, or list it as not used?** The hackathon says it is a must. Nobody used it. Hirsh proposes a small add: record each Nicrron model call (model, time taken, outcome) to Block Convey's PRISM trace service. It needs a project ID and API key, shared privately. *Recommendation:* yes, if you can make the PRISM account (prism.blockconvey.com, code PROOFOFWORK) and send the keys yourself in WhatsApp. Otherwise the Devpost page says it was not used.
-- [ ] **14. Product and Compare pages.** Your note "make them look more like rud-co.com/platform and rud-co.com" is on the board for Hirsh. The review rail now works on both pages: [Product](http://127.0.0.1:3100/product), [Compare](http://127.0.0.1:3100/compare).
+  Say "post it" and Claude posts that split to the board as your answer, with your lead-time choice.
+- [ ] **16. Block Convey: wire it in, or list it as not used?** Nobody used it; Tisch confirms. Hirsh can record each model call to Block Convey's trace service if you make the account (prism.blockconvey.com, code PROOFOFWORK) and send the keys in WhatsApp. Otherwise the Devpost page says not used.
+- [ ] **17. Devpost: paste the video link, then Save & continue.** The new "why" (RFQs are RudCo's lifeblood, the 24-hour promise, the cost of an error) is typed in, and the page will not save without the video link. The logo thumbnail is saved.
 
 ## Coming to you soon
 
-- **Dry run of the demo script at 3:15**, run by Hirsh.
-- **Submission deck.** A subagent is building it; Claude opens it for you when done.
-- **Real models.** Nicrron lists Claude Opus 5, but a real RFQ call returned a server error (502) twice on Hirsh's machine. The app fell back to rules, as designed. Yuval posted the command to retry it.
+- **Dry run of the demo script**, run by Hirsh.
+- **Approved quote sent through letter_opener**, marked Sent with time and recipient (asked of Hirsh, 15:22).
+- **Product and Compare restyle** toward rud-co.com: Lucide icons, the steel mill hero image, the orange bar, their background and footer. Hirsh gave it to a separate UI agent.
+- **Submission deck.** A subagent is building it.
 
 ## Where things stand
 
-From the bulletin board through 15:10. Recording is about 3:45.
+From the bulletin board through 15:22. Recording is about 3:45.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. The demo PDF is repaired and reads cleanly. |
-| 2. Pull the data | ✅ | Yuval | Full processing batch pushed (e4ec750). 297 processing tests and 451 app tests pass. Email, PDF and CSV give the same eight lines. |
-| 3. Parse | ✅ | Yuval | Packaging no longer read as quantity; 16 ga dimensions and 316L read correctly. |
-| 4. Match | 🟡 | Hirsh | A close number (0.060 vs 0.0625) was being counted as buyer-confirmed. Hirsh is fixing it. |
-| 5. Price, flags, lead time | 🟡 | open (item 15) | Abrasives priced (USD 0.38 to 0.42 per lb). Metals: Tisch verified two public listings (A36 plate USD 2,113; 304 sheet USD 1,025.99) but no FRED-plus-margin price yet. Lead times read "to confirm". |
-| 6. Buyer questions | ✅ | Hirsh | Questions save as local email previews, tracked as Waiting on buyer. The browser-tab flood is fixed (3896650). |
-| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready lines, USD 1,810. RFQ-0017: three Ready, one Waiting on buyer, USD 1,010. |
-| 8. Send the reply | 🟡 | Hirsh | PDF, CSV and email draft with local preview. Real delivery not built. |
-| 9. Learn the buyer | 🟡 | Hirsh, Yuval | Waits on the matcher fix (row 4). |
-| Real models | 🟡 | Hirsh, Yuval | Nicrron call returns 502; rules fallback holds. |
-| Marketing pages | 🟡 | Hirsh | Restyle toward rud-co.com (item 14). |
+| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. Demo PDF reads cleanly. |
+| 2. Pull the data | ✅ | Yuval | 314 processing tests and 463 app tests pass. The Transnet tender now gives one item, not 257. |
+| 3. Parse | ✅ | Yuval | Reads correctly on the demo email, PDF and CSV. |
+| 4. Match | 🟡 | open (item 15) | Unsafe "close number counts as confirmed" rule removed (129c5d0). Taught terms wait on the matcher change. |
+| 5. Price, flags, lead time | 🟡 | open (item 15) | Abrasives priced (USD 0.38 to 0.42 per lb). Tisch's pricer is in the app; metals stay held without supplier cost. Lead times read "to confirm". |
+| 6. Buyer questions | ✅ | Hirsh | Saved silently to a local inbox, tracked as Waiting on buyer. |
+| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready, USD 1,810. RFQ-0017: three Ready, one Waiting on buyer, USD 1,010. |
+| 8. Send the reply | 🟡 | Hirsh | Sending through letter_opener asked at 15:22. |
+| 9. Learn the buyer | 🟡 | Yuval | Waits on the matcher change (row 4). |
+| Real models | 🟡 | Hirsh, Yuval, Tisch | **Works on Tisch's machine:** two live calls returned Claude Opus 5 in about 3 seconds (70f694f). Hirsh's and Yuval's calls still get server errors (502). The app keeps models off until a live pass on the demo machine. |
+| Jev | 🟡 | Yuval | Yuval says he still has no key. It is in the WhatsApp group. |
+| Marketing pages | 🟡 | Hirsh's UI agent | Restyle toward rud-co.com. |
 
 ## Build map
 
@@ -117,6 +119,10 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Devpost thumbnail saved: our lockup on navy.
+- Devpost "why" rewritten to follow the video (unsaved until the video link is in).
+- Hirsh asked to send approved quotes through letter_opener.
 
 - Item 12 closed: demo PDF repaired (15:05); the lead-time part moved to item 15.
 - Review rail added to the Product and Compare pages.
