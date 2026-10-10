@@ -100,6 +100,10 @@ VIDEO LINK
 
 https://github.com/kenxle/columbia-startup-lab-get-hired-hack
 
+## 9. Additional links
+
+- **Slides (PDF):** https://github.com/kenxle/columbia-startup-lab-get-hired-hack/blob/main/docs/product/deck/quote_desk_deck.pdf
+
 ---
 
 The sections below are the Devpost story fields. Paste them where Devpost asks for them.

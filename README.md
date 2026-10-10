@@ -27,6 +27,7 @@ Key documentation, with a PDF where one exists. The [documentation map in AGENTS
 | [Style guide](docs/product/STYLE_GUIDE.md) | How it looks: RudCo palette, status colors, type, buttons, layout, logo. | [PDF](docs/product/style_guide.pdf) |
 | [Demo video script](docs/product/DEMO_SCRIPT.md) | What the video shows and says, beat by beat, and what must work before recording. Draft. | |
 | [Devpost write-up](docs/product/DEVPOST.md) | The submission text. Draft. | |
+| [Pitch deck](docs/product/deck/index.html) | The submission slides. | [PDF](docs/product/deck/quote_desk_deck.pdf) |
 
 ### Research
 
