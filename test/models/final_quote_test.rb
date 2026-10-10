@@ -7,12 +7,12 @@ class FinalQuoteTest < ActiveSupport::TestCase
     @draft = QuoteWorkspace::FinalQuote.new(@quote)
   end
 
-  test "email draft labels sample and concept data without claiming sending or attachments" do
+  test "email draft preserves quote details without claiming sending or attachments" do
     assert_equal "Quote #{@quote.reference}", @draft.subject
-    assert_equal "#{@quote.reference}-quote-SAMPLE-email-draft.txt", @draft.filename
+    assert_equal "#{@quote.reference}-quote-email-draft.txt", @draft.filename
     body = @draft.body
-    [ "Draft, not sent", "Concept quote", "SAMPLE DATA", "USD 4640.00", "Files are not attached", "no email has been sent",
-      "#{@quote.reference}-quote-SAMPLE.pdf", "#{@quote.reference}-quote-SAMPLE.csv", "Lead time: to confirm", "Mill test report" ].each do |value|
+    [ "Draft, not sent", "USD 4640.00", "Files are not attached", "no email has been sent",
+      "#{@quote.reference}-quote.pdf", "#{@quote.reference}-quote.csv", "Lead time: to confirm", "Mill test report" ].each do |value|
       assert_includes body, value
     end
     @quote.quote_lines.reject(&:quotable?).each { |line| assert_includes body, line.clarification_question }
@@ -23,6 +23,22 @@ class FinalQuoteTest < ActiveSupport::TestCase
     assert_includes body, "Attached to this local preview:"
     assert_includes body, "No email has been sent to the buyer."
     refute_includes body, "Files are not attached"
+  end
+
+  test "presentation cleanup preserves user text and pricing evidence verbatim" do
+    @quote.update!(title: "SAMPLE requested by buyer")
+    line = @quote.quote_lines.find_by!(position: 1)
+    line.update!(price_source: "Sample price table, supplied source", benchmark: {
+      "name" => "Sample benchmark supplied by rep", "as_of" => "2026-10-10", "kind" => "sample"
+    })
+    @quote.approve!
+    body = @draft.body
+    assert_includes body, "SAMPLE requested by buyer"
+    assert_includes body, "Sample price table, supplied source"
+    assert_includes body, "Sample benchmark supplied by rep"
+    assert_includes body, "2026-10-10"
+    refute_includes body, "Concept quote"
+    refute_includes body, "SAMPLE DATA:"
   end
 
   test "unapproved and invalid quotes refuse every exposed draft action" do

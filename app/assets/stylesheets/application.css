@@ -25,6 +25,7 @@
   --sidebar: #0f1f3d;
   --sidebar-ink: #f0f4fc;
   --sidebar-muted: #a6b6ce;
+  --sidebar-product: #8fb8ff;
   --sidebar-rule: #2c3d57;
   --sidebar-control-rule: #50617c;
   --sidebar-hover: rgba(250, 251, 252, 0.04);
@@ -162,7 +163,7 @@ a:hover {
 .brand-header__lockup {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--ink);
   text-decoration: none;
 }
@@ -183,7 +184,7 @@ a:hover {
 .brand-header__identity {
   display: flex;
   flex-direction: column;
-  line-height: 1.25;
+  line-height: 1.1;
 }
 
 .brand-header__name {
@@ -191,9 +192,21 @@ a:hover {
   font-weight: 600;
 }
 
+.brand-header__tagline,
+.sidebar__product {
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .brand-header__tagline {
-  color: var(--muted);
-  font-size: 12px;
+  color: var(--accent);
+}
+
+.sidebar__product {
+  color: var(--sidebar-product);
 }
 
 .brand-header__product {
@@ -219,14 +232,6 @@ a:hover {
 
 .workspace:focus {
   outline: none;
-}
-
-.workspace-footer {
-  margin-top: 32px;
-  padding-top: 16px;
-  border-top: 1px solid var(--rule);
-  color: var(--muted);
-  font-size: 12px;
 }
 
 /* Sidebar */
@@ -255,8 +260,7 @@ a:hover {
 
 .sidebar__name {
   font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.01em;
+  font-size: 18px;
 }
 
 .sidebar__nav {
@@ -315,12 +319,6 @@ a:hover {
 
 .sidebar__sample:hover {
   border-color: var(--accent);
-}
-
-.sidebar__note {
-  color: var(--sidebar-muted);
-  font-size: 12px;
-  line-height: 1.45;
 }
 
 /* Flash */
@@ -1456,10 +1454,6 @@ textarea.input {
     margin-left: auto;
     padding: 0;
     border-top: 0;
-  }
-
-  .sidebar__note {
-    display: none;
   }
 
   .workspace {

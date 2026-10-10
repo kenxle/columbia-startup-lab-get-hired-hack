@@ -3,7 +3,6 @@ module QuoteWorkspace
   class BuyerQuestionDraft
     class Incomplete < StandardError; end
 
-    SAMPLE_NOTICE = "SAMPLE DATA: Synthetic RFQ for demonstration.".freeze
 
     attr_reader :quote
 
@@ -31,7 +30,6 @@ module QuoteWorkspace
       raise Incomplete, "Every held line needs a question before downloading." unless ready?
 
       parts = [ "Draft, not sent" ]
-      parts << SAMPLE_NOTICE if quote.sample_data?
       parts << "Subject: #{subject}"
       parts << "Buyer: #{quote.buyer_name}" if quote.buyer_name.present?
       parts << "Please clarify the following lines from your RFQ:"
@@ -42,7 +40,7 @@ module QuoteWorkspace
     end
 
     def filename
-      "#{quote.sample_data? ? 'SAMPLE-' : ''}#{quote.reference}-buyer-questions.txt"
+      "#{quote.reference}-buyer-questions.txt"
     end
   end
 end

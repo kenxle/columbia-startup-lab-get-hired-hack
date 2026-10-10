@@ -25,12 +25,6 @@
   </div>
 </header>
 
-<% if @quote.sample_data? %>
-  <div class="sample-banner" role="note">
-    <%= sample_badge %>
-    <p>This RFQ, its catalog matches and its prices are synthetic sample data for demonstration. They are not live market prices and not real stock.</p>
-  </div>
-<% end %>
 
 <%= render "quotes/summary", quote: @quote, lines: @lines %>
 <%= render "quotes/processing_run", quote: @quote %>

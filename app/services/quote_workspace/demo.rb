@@ -4,7 +4,7 @@ module QuoteWorkspace
   # data and are labeled that way.
   class Demo
     BUYER_NAME = "Northline Fabrication".freeze
-    TITLE = "Sample RFQ: sheet and plate".freeze
+    TITLE = "Sheet and plate sourcing".freeze
     SAMPLE_PRICE_SOURCE = "Sample price table (not live market data)".freeze
 
     SOURCE_TEXT = <<~TEXT.freeze

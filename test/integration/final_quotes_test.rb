@@ -33,11 +33,11 @@ class FinalQuotesTest < ActionDispatch::IntegrationTest
     get pdf_quote_final_quote_path(@quote)
     assert_response :success
     assert_equal "application/pdf", response.media_type
-    assert_match(/attachment.*SAMPLE.pdf/, response.headers["Content-Disposition"])
+    assert_match(/attachment.*-quote.pdf/, response.headers["Content-Disposition"])
     text = PDF::Reader.new(StringIO.new(response.body)).pages.map(&:text).join("\n")
     assert_includes text, "4640.00"
     assert_includes text, "Lead time: to confirm"
-    assert_includes text, "SAMPLE DATA"
+    refute_includes text, "SAMPLE DATA"
   end
 
   test "email draft escapes HTML and excludes private data" do

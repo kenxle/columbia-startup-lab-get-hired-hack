@@ -11,14 +11,14 @@ class BuyerQuestionsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "Review buyer questions"
     assert_select ".buyer-draft__badge", "Draft, not sent"
-    assert_select ".buyer-draft__sample", /SAMPLE DATA: Synthetic RFQ/
+    assert_select ".buyer-draft__sample", count: 0
     assert_select ".buyer-draft__questions > li", count: 2
     @quote.quote_lines.reject(&:quotable?).each do |line|
       assert_select "a[href=?]", quote_path(@quote, line: line.id, return_to: "buyer_questions", anchor: "line-detail"), text: "Edit question"
       assert_select ".buyer-draft__question", text: line.clarification_question
     end
     assert_select "a[href=?]", download_quote_buyer_questions_path(@quote), text: "Download draft (.txt)"
-    assert_includes response.body, "Email delivery and buyer responses are not connected."
+    assert_includes response.body, "Open a local email preview or download the draft."
   end
 
   test "download is a plain text draft without prices internal notes or source content" do
@@ -27,9 +27,9 @@ class BuyerQuestionsTest < ActionDispatch::IntegrationTest
     get download_quote_buyer_questions_path(@quote)
     assert_response :success
     assert_equal "text/plain", response.media_type
-    assert_match(/attachment.*SAMPLE-#{@quote.reference}-buyer-questions.txt/, response.headers["Content-Disposition"])
+    assert_match(/attachment.*#{@quote.reference}-buyer-questions.txt/, response.headers["Content-Disposition"])
     assert_includes response.body, "Draft, not sent"
-    assert_includes response.body, "SAMPLE DATA"
+    refute_includes response.body, "SAMPLE DATA"
     @quote.quote_lines.reject(&:quotable?).each { |line| assert_includes response.body, line.clarification_question }
     %w[PRIVATE-INTERNAL-NOTE PRIVATE-SOURCE-LINE 987.6543 232 4640 PRIVATE-FULL-RFQ PRIVATE-BYTES].each do |private_value|
       refute_includes response.body, private_value

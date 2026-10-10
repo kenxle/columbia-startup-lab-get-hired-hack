@@ -36,6 +36,8 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_response :success
+    assert_includes response.body, "RFQ example created. Review the quote lines."
+    refute_includes response.body, "Catalog items and prices are sample data."
 
     get quote_path(quote, line: quote.quote_lines.second.id)
     assert_response :success
@@ -55,8 +57,8 @@ class QuoteWorkspaceFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_match %r{\Atext/csv}, response.media_type
     assert_match(/attachment/, response.headers["Content-Disposition"])
-    assert_match(/SAMPLE/, response.headers["Content-Disposition"])
-    assert_includes response.body, "SAMPLE DATA"
+    refute_match(/SAMPLE/, response.headers["Content-Disposition"])
+    refute_includes response.body, "SAMPLE DATA"
     assert_includes response.body, %("4640.00")
   end
 

@@ -8,7 +8,8 @@ memory. Follow Ken's approved [product brief](../product/PRD.md) and
 The app now processes saved RFQs asynchronously. It uses rules-based parsing,
 the RudCo and metals catalogs, and supported source prices. No AI provider is
 called by the current intake path. Provider integration and credentials remain
-pending. Synthetic catalog data and sample prices remain explicitly labeled.
+pending. The demo presentation follows Ken's 13:48 decision: no concept/sample banners.
+Internal provenance and pricing evidence remain stored.
 
 ## Application routes
 
@@ -20,7 +21,7 @@ session token. This is a local prototype, not production authentication.
 | GET `/`, `/quotes` | Workspace quote list |
 | GET `/quotes/new` | Paste or upload an RFQ |
 | POST `/quotes` | Save intake and enqueue processing; preserve saved intake if queuing fails |
-| POST `/quotes/demo` | Create the fixed, labeled synthetic sample |
+| POST `/quotes/demo` | Create the fixed demonstration RFQ |
 | GET `/quotes/:id` | Source, processing status, extraction warnings, quote lines and editing |
 | POST `/quotes/:quote_id/processing` | Revision-guarded processing or retry of an empty quote |
 | PATCH `/quotes/:quote_id/quote_lines/:id` | Save rep edits and invalidate approval |
@@ -40,7 +41,7 @@ Catalog matching routes are `/catalog_matches` (GET, POST),
 `/catalog_matches/teach` (POST), and `/catalog_matches/forget` (DELETE).
 Approval is idempotent and only adds offered candidates without near/conflict
 checks. It rejects closest-only results, cross-workspace quotes and other buyers'
-quotes. Added catalog lines remain unpriced and make the target quote sample-labeled.
+quotes. Added catalog lines remain unpriced and retain internal catalog provenance.
 
 ## Intake and processing
 
@@ -94,7 +95,7 @@ form, thickness, width, length, standard, finish, part_number, diameter, thread,
 grip and drilling. Evidence maps a spec key or quantity to
 `{text, location, explanation}`. Compliance entries use `{label, evidence, note}`
 and describe requested paperwork, not certified stock. Benchmark entries use
-`{name, as_of, unit, kind, explanation}`. Sample benchmarks are visibly labeled.
+`{name, as_of, unit, kind, explanation}`. Benchmark kind remains in stored evidence; the demo omits sample badges.
 
 A quotable line needs positive quantity, nonnegative price, price source, SKU,
 state `ready`, and no unresolved fields. Unknowns remain empty. Held lines have
@@ -151,7 +152,7 @@ Embedded licensed fonts preserve supported Unicode specs; unsupported glyphs fai
 explicitly rather than silently changing specifications.
 
 Internal notes, processing metadata and original source bytes stay out of buyer
-exports. CSV text escapes spreadsheet formula prefixes. Sample exports are labeled.
+exports. CSV text escapes spreadsheet formula prefixes. The demo exports omit concept/sample labels while retaining source names and dates.
 The question draft needs at least one held line and a question for every held line.
 Preview and download actions do not approve the quote or mutate its lines.
 
@@ -171,7 +172,7 @@ that produced them; stale answers must be rejected.
 Ken's [style guide](../product/STYLE_GUIDE.md) is the visual source of truth.
 Use [UI_COMPONENTS.md](UI_COMPONENTS.md) for shared tokens, status badges, panels,
 flags and forms. It replaces earlier ad hoc color and component guidance. Keep
-source evidence, status words, sample labeling and human approval visible. Retain
+source evidence, status words and human approval visible. Retain
 semantic tables, real labels, keyboard focus and responsive layouts.
 
 Hirsh owns workspace controllers, views and minimal integration. Yuval's processor
@@ -187,3 +188,13 @@ stock; unknown timing and explicit third-party stock remain "to confirm".
 Explicit top-level timing fields, including null clears, take precedence. Malformed
 nested timing rejects the result atomically. Metadata is producer evidence, not
 independent verification of inventory.
+
+## Local review data
+
+In development only, opening an empty Quotes workspace creates three persisted
+RFQs through `QuoteWorkspace::DemoWorkspace.seed_if_empty!`. Added material
+requests use the local rules parser and catalog with `llm: false`; no job, API
+call or email is sent. Existing workspaces are unchanged on ordinary visits.
+`DemoWorkspace.populate!(workspace_token:)` explicitly tops an older local
+workspace up to three, without changing its existing RFQs. Production does not
+seed. The fixed `Demo` factory remains available for repeatable workflow tests.

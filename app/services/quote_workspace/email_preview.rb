@@ -50,7 +50,7 @@ module QuoteWorkspace
       pdf = PdfExport.new(@quote)
       csv = CsvExport.new(@quote)
       freeze_snapshot(
-        subject: "DEMO PREVIEW: #{final.subject}",
+        subject: "Local preview: #{final.subject}",
         body: final.body(attachments_included: true),
         attachments: [
           {filename: pdf.filename, content_type: "application/pdf", content: pdf.to_pdf},
@@ -61,13 +61,13 @@ module QuoteWorkspace
 
     def questions_snapshot
       draft = BuyerQuestionDraft.new(@quote)
-      freeze_snapshot(subject: "DEMO PREVIEW: #{draft.subject}", body: draft.body, attachments: [])
+      freeze_snapshot(subject: "Local preview: #{draft.subject}", body: draft.body, attachments: [])
     end
 
     def freeze_snapshot(subject:, body:, attachments:)
       {
         subject: subject.gsub(/[\r\n]+/, " ").freeze,
-        body: ("LOCAL DEMO PREVIEW: Placeholder recipient buyer@example.invalid. No email is sent to the buyer.\n\n" + body).freeze,
+        body: ("Local preview: Placeholder recipient buyer@example.invalid. No email is sent to the buyer.\n\n" + body).freeze,
         attachments: attachments.map { |entry| entry.transform_values { |value| value.dup.freeze }.freeze }.freeze
       }.freeze
     end

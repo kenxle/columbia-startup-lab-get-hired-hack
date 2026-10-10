@@ -9,7 +9,6 @@ module QuoteWorkspace
     class NotApproved < StandardError; end
 
     FORMULA_PREFIXES = [ "=", "+", "-", "@", "\t", "\r", "\n", "＝", "＋", "－", "＠" ].freeze
-    SAMPLE_NOTICE = "SAMPLE DATA: catalog items and prices in this quote are sample values, not live market data.".freeze
     COLUMN_HEADERS = [
       "Line", "Status", "Description", "Material", "Grade", "Form", "Thickness", "Width", "Length",
       "Standard", "Finish", "Part number", "Diameter", "Thread", "Grip", "Drilling",
@@ -45,8 +44,7 @@ module QuoteWorkspace
     end
 
     def filename
-      suffix = @quote.sample_data? ? "-SAMPLE" : ""
-      "#{@quote.reference}-quote#{suffix}.csv"
+      "#{@quote.reference}-quote.csv"
     end
 
     def to_csv
@@ -64,7 +62,6 @@ module QuoteWorkspace
     def rows
       lines = @quote.quote_lines.to_a
       output = []
-      output << [ "SAMPLE", SAMPLE_NOTICE ] if @quote.sample_data?
       output << [ "Quote reference", @quote.reference ]
       output << [ "Title", text(@quote.title) ]
       output << [ "Buyer", text(@quote.buyer_name) ]
@@ -75,7 +72,6 @@ module QuoteWorkspace
       output << []
       output << [ "Subtotal, Ready lines only (USD)", self.class.format_decimal(@quote.subtotal, 2) ]
       output << [ "Held lines", "#{@quote.held_count} held lines are not priced and are excluded from the subtotal." ]
-      output << [ "SAMPLE", SAMPLE_NOTICE ] if @quote.sample_data?
       output
     end
 
