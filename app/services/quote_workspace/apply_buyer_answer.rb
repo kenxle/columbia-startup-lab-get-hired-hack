@@ -1,3 +1,4 @@
+require "digest"
 require Rails.root.join("tools/rfq_processing/lib/rfq_processing").to_s
 
 module QuoteWorkspace
@@ -5,14 +6,18 @@ module QuoteWorkspace
     class Invalid < StandardError; end
 
     class AnswerMatcher < ProcessRfq::IntakeMatcher
-      attr_accessor :chosen_item
+      attr_accessor :chosen_item, :confirmed_answers
 
       def match(**input)
         result = super
         candidates = Array(result["candidates"])
         if chosen_item
           candidate = candidates.find { |entry| entry["item_id"].to_s == chosen_item.to_s }
-          unless result["status"] == "ambiguous" && candidate && Array(candidate["mismatches"]).empty?
+          best = result["best"]
+          chosen_best = %w[exact scored].include?(result["status"]) && best &&
+            best["item_id"].to_s == chosen_item.to_s && Array(best["mismatches"]).empty? &&
+            best["score"].to_f >= (result["threshold"] || RfqProcessing::CatalogMatchAdapter::THRESHOLD).to_f
+          unless chosen_best || (result["status"] == "ambiguous" && candidate && Array(candidate["mismatches"]).empty?)
             raise Invalid, "This catalog choice needs rep review; its specifications are not confirmed."
           end
         end
@@ -25,10 +30,27 @@ module QuoteWorkspace
         end
         result
       end
+      private
+
+      def call_service(text, spec = {}, quantity = nil, confirmed_terms: [])
+        return super unless @service.equal?(CatalogMatch::Matcher) && Array(confirmed_answers).any?
+        callable = @service.method(:call)
+        supported = callable.parameters.any? { |kind, name| kind == :keyrest || ([:key, :keyreq].include?(kind) && name == :confirmed_answers) }
+        return super unless supported
+
+        arguments = { client: nil, llm: false, given: given_spec(spec, quantity: quantity),
+          confirmed_answers: confirmed_answers.deep_dup }
+        arguments[:catalog] = @catalog if @catalog
+        arguments[:confirmed_terms] = confirmed_terms if accepts_confirmed_terms?(callable)
+        @service.call(text, **arguments)
+      rescue StandardError
+        nil
+      end
+
     end
 
-    def self.call(**arguments)
-      new(**arguments).call
+    def self.call(**arguments, &block)
+      new(**arguments).call(&block)
     end
 
     def initialize(quote:, quote_line_id:, reviewed_version:, revision_id:, choice_id: nil, free_text: nil)
@@ -45,6 +67,7 @@ module QuoteWorkspace
         choice = choices.find { |entry| entry.is_a?(Hash) && entry["id"] == @choice_id } if @choice_id
         raise Invalid, "Choose an option from the current question." if @choice_id && !choice
         @chosen_item = choice["value"] if choice && choice["field"] == "catalog_item"
+        @confirmed_answers = confirmed_answers_for(line, choice)
         payload = { "line_id" => line.line_id, "revision_id" => @revision_id }
         payload[@choice_id ? "choice_id" : "free_text"] = @choice_id || @free_text
         @stable_id, @position = line.line_id, line.position
@@ -53,6 +76,7 @@ module QuoteWorkspace
 
       matcher = AnswerMatcher.new(client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
       matcher.chosen_item = @chosen_item
+      matcher.confirmed_answers = @confirmed_answers
       pipeline = RfqProcessing::Pipeline.new(matcher: matcher, llm: LiveModels.parser_argument)
       result = RfqProcessing::Answers.apply(previous_result: previous, answers: [answer], pipeline: pipeline,
         buyer_terms: context.fetch(:buyer_terms))
@@ -63,6 +87,10 @@ module QuoteWorkspace
       unless lines.length == 1 && lines.first["position"] == @position && result.dig("revision", "id").present? && result.dig("revision", "id") != @revision_id
         raise Invalid, "The processor returned an inconsistent answer revision. Existing lines were preserved."
       end
+      if @confirmed_answers.any?
+        lines.first["processing"] ||= {}
+        lines.first["processing"]["confirmed_answers"] = @confirmed_answers.deep_dup
+      end
       validated = ApplyResult.new(quote: @quote, result: result.merge("lines" => lines)).validated_result
       @quote.with_lock do
         line = checked_line!
@@ -70,6 +98,7 @@ module QuoteWorkspace
         @quote.update!(processing_revision: result["revision"], **validated[:evidence])
         @quote.invalidate_approval!
         line.enqueue_question_preview_after_commit
+        yield line if block_given?
         line
       end
     rescue ActiveRecord::RecordInvalid, ApplyResult::InvalidResult, ProcessRfq::InputError => error
@@ -109,6 +138,45 @@ module QuoteWorkspace
         raise Invalid, "This line needs a stable processing identity before an answer can be applied."
       end
       line
+    end
+
+    # Only a persisted, current multiple-choice answer grants numeric authority.
+    # Free text and ordinary normalized specs never create this attestation.
+    def confirmed_answers_for(line, choice)
+      digest = Digest::SHA256.hexdigest(line.original_text.to_s)
+      prior = Array(line.processing&.dig("confirmed_answers")).select do |entry|
+        next false unless entry.is_a?(Hash) && entry["field"] == "thickness" && valid_thickness?(entry["value"])
+        provenance = entry["provenance"]
+        next false unless provenance.is_a?(Hash) && provenance["method"] == "explicit_buyer_choice" &&
+          provenance["quote_id"] == @quote.id && provenance["quote_line_id"] == line.id &&
+          provenance["line_id"] == line.line_id && provenance["quote_reference"] == @quote.reference &&
+          provenance["source_sha256"] == digest && provenance["choice_id"].is_a?(String) && provenance["choice_id"].present? &&
+          provenance["revision_id"].is_a?(String) && provenance["revision_id"].present?
+        next false unless line.processing.dig("answered", "choice_id").to_s.split(",").map(&:strip).include?(provenance["choice_id"])
+        evidence = line.evidence&.dig("thickness")
+        evidence.is_a?(Hash) && evidence["location"] == "buyer answer" &&
+          evidence["explanation"].to_s.start_with?("answered by the buyer: ") &&
+          line.spec["thickness"].to_s.to_d == entry["value"].to_s.to_d &&
+          entry["source_text"] == original_thickness_phrase(line)
+      end.map(&:deep_dup)
+      return prior unless choice && choice["field"] == "thickness_in" && valid_thickness?(choice["value"])
+
+      phrase = original_thickness_phrase(line)
+      return prior unless phrase.present? && phrase.length <= 200
+      [{ "field" => "thickness", "value" => choice["value"], "source_text" => phrase,
+        "provenance" => { "method" => "explicit_buyer_choice", "quote_id" => @quote.id,
+          "quote_line_id" => line.id, "line_id" => line.line_id, "quote_reference" => @quote.reference,
+          "revision_id" => @revision_id, "choice_id" => choice["id"], "source_sha256" => digest } }]
+    end
+
+    def valid_thickness?(value)
+      number = Float(value, exception: false) if value.is_a?(Numeric) || value.is_a?(String)
+      number && number.finite? && number.positive? && number <= 1000
+    end
+
+    def original_thickness_phrase(line)
+      reading = CatalogMatch::DescriptionReader.read(line.original_text)
+      reading.fields.dig("thickness", "text")
     end
 
     def snapshot

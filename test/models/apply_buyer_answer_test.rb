@@ -176,4 +176,69 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
       assert_nil output["best"]
     end
   end
+  test "only a current persisted thickness choice builds buyer confirmation" do
+    @quote.update!(source_text: "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets")
+    matcher = QuoteWorkspace::ProcessRfq::IntakeMatcher.new(client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
+    QuoteWorkspace::ApplyResult.call(quote: @quote, result: RfqProcessing.process(content: @quote.source_text, matcher: matcher, llm: false))
+    @line = @quote.quote_lines.reload.first
+    choice = @line.processing.fetch("question_choices").find { |c| c["field"] == "thickness_in" && c["value"].to_f == 0.0625 }
+    assert choice, "The genuine gauge question must offer the stainless gauge thickness"
+    service = QuoteWorkspace::ApplyBuyerAnswer.new(**arguments.merge(free_text: nil, choice_id: choice["id"]))
+    entries = service.send(:confirmed_answers_for, @line, choice)
+    assert_equal 1, entries.size
+    entry = entries.sole
+    assert_equal "thickness", entry["field"]
+    assert_equal 0.0625, entry["value"].to_f
+    assert_equal "0.060 in", entry["source_text"]
+    assert_equal @line.id, entry.dig("provenance", "quote_line_id")
+    assert_equal "explicit_buyer_choice", entry.dig("provenance", "method")
+    assert_empty service.send(:confirmed_answers_for, @line, nil)
+
+    result = service.call
+    assert_equal entries, result.processing.fetch("confirmed_answers")
+    next_service = QuoteWorkspace::ApplyBuyerAnswer.new(**arguments)
+    assert_equal entries, next_service.send(:confirmed_answers_for, result, nil)
+    result.processing["confirmed_answers"].first["provenance"]["quote_line_id"] += 1
+    assert_empty next_service.send(:confirmed_answers_for, result, nil)
+  end
+
+  test "answer matcher forwards explicit attestations only to a capable consumer" do
+    catalog = CatalogMatch::Catalog.new(["rudco"])
+    matcher = QuoteWorkspace::ApplyBuyerAnswer::AnswerMatcher.new(catalog: catalog, service: CatalogMatch::Matcher)
+    matcher.confirmed_answers = [{"field" => "thickness", "value" => 0.0625}]
+    seen = nil
+    CatalogMatch::Matcher.stub(:call, ->(text, **kwargs) { seen = kwargs; nil }) do
+      matcher.send(:call_service, "steel", {"thickness_in" => 0.0625}, 10)
+    end
+    assert_equal matcher.confirmed_answers, seen.fetch(:confirmed_answers)
+    assert_equal false, seen.fetch(:llm)
+    assert_nil seen.fetch(:client)
+
+  end
+
+  test "completion block is atomic with the answer write" do
+    before_line = @line.attributes
+    before_quote = @quote.attributes
+    assert_raises(RuntimeError) do
+      QuoteWorkspace::ApplyBuyerAnswer.call(**arguments) do |line|
+        assert line.quotable?
+        raise "Token already consumed"
+      end
+    end
+    assert_equal before_line, @line.reload.attributes
+    assert_equal before_quote, @quote.reload.attributes
+  end
+
+  test "a chosen exact current best is accepted without accepting another SKU" do
+    catalog = CatalogMatch::Catalog.new(["rudco"])
+    matcher = QuoteWorkspace::ApplyBuyerAnswer::AnswerMatcher.new(catalog: catalog, service: CatalogMatch::Matcher)
+    matcher.chosen_item = "RC-STEELSHOT-S330"
+    result = matcher.match(line_text: "S-330 steel shot, 100 lb", quantity: 100, quantity_unit: "lb")
+    assert_equal matcher.chosen_item, result.dig("best", "item_id")
+    matcher.chosen_item = "RC-STEELSHOT-S170"
+    assert_raises(QuoteWorkspace::ApplyBuyerAnswer::Invalid) do
+      matcher.match(line_text: "S-330 steel shot, 100 lb", quantity: 100, quantity_unit: "lb")
+    end
+  end
+
 end

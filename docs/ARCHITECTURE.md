@@ -209,3 +209,7 @@ Final email and PDF format benchmark observation dates as plain dates while reta
 ### Demo verification
 
 The [2026-10-10 dry run](engineering/DRY_RUN-2026-10-10.md) covers fresh RFQ intake, clarification, approval, saved local reply with PDF/CSV and approval invalidation after editing. Synthetic pricing checks verify missing/stale evidence holds; real procurement and live-provider dependencies remain explicit. Windows test fixtures now use database microsecond precision and skip only unsupported symlink creation, while other access-control tests always run.
+
+### Explicit buyer-choice matching authority
+
+`ApplyBuyerAnswer` builds `confirmed_answers` only from a persisted current thickness choice and retains verified evidence for a later SKU choice. Each entry binds the numeric value and original phrase to quote, line, processing revision, choice ID and original-source digest. `AnswerMatcher` forwards this separate optional keyword only to a compatible matcher. It never labels buyer responses as rep teaching. The consumer remains Yuval-owned; until it supports this contract, mismatched source dimensions stay held. An optional completion block runs inside the final checked quote transaction so a one-time answer link can consume its token atomically with the line update.
