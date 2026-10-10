@@ -31,13 +31,16 @@
 
 .match-cards { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 1rem; }
 .match-card {
-  display: grid; grid-template-columns: auto 240px 1fr; gap: 1rem; align-items: start;
+  display: grid; grid-template-columns: auto 260px 1fr; gap: 1rem; align-items: start;
   border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); padding: 1rem;
 }
 .match-card:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .match-card--closest { border-style: dashed; }
 .match-card__pick input { width: 1.25rem; height: 1.25rem; margin-top: 0.25rem; }
-.match-card__picture p { margin: 0.25rem 0 0; text-align: center; }
+.match-card__specs { display: grid; gap: 0.35rem; margin: 0; padding: 0.75rem; background: var(--surface-sunk); border-radius: var(--radius-small); font-size: 0.85rem; }
+.match-card__specs div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.5rem; }
+.match-card__specs dt { color: var(--muted); }
+.match-card__specs dd { margin: 0; font-weight: 600; color: var(--ink); }
 .match-card__pn { font-size: 1.1rem; font-weight: 700; margin: 0; color: var(--ink); }
 .match-card__desc { margin: 0.25rem 0 0.5rem; }
 .match-checks summary { cursor: pointer; color: var(--accent-strong); margin: 0.5rem 0; }
@@ -50,16 +53,10 @@
   border-top: 1px solid var(--rule); padding-top: 1rem;
 }
 
-.item-drawing { width: 100%; height: auto; background: var(--surface-sunk); border-radius: var(--radius-small); }
-.item-drawing__face { fill: var(--accent-wash); stroke: var(--accent-strong); stroke-width: 1.5; }
-.item-drawing__edge { fill: var(--rule); stroke: var(--accent-strong); stroke-width: 1.5; }
-.item-drawing__hole { fill: var(--surface); stroke: var(--accent-strong); stroke-width: 1.5; }
-.item-drawing__line { stroke: var(--accent-strong); stroke-width: 1; }
-.item-drawing__label { fill: var(--ink-soft); font: 11px var(--font-sans); }
 
 @media (max-width: 720px) {
   .match-card { grid-template-columns: auto 1fr; }
-  .match-card__picture { grid-column: 2; }
+  .match-card__specs { grid-column: 2; }
   .match-card__body { grid-column: 1 / -1; }
   .match-approve__bar { grid-template-columns: 1fr; }
 }

@@ -62,10 +62,11 @@
                   disabled: @match_request.approved? %>
             <span class="visually-hidden">Choose <%= candidate["pn"] %></span>
           </label>
-          <div class="match-card__picture">
-            <%= item_drawing(item) %>
-            <p class="small muted">Drawn from catalog specs, not a photo</p>
-          </div>
+          <dl class="match-card__specs">
+            <% item_specs(item).each do |label, value| %>
+              <div><dt><%= label %></dt><dd><%= value %></dd></div>
+            <% end %>
+          </dl>
           <div class="match-card__body">
             <p class="match-card__pn mono"><%= candidate["pn"] %></p>
             <p class="match-card__desc"><%= candidate["description"] %></p>
