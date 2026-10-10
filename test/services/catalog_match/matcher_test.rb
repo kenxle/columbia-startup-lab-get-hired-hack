@@ -214,3 +214,86 @@ class CatalogMatch::MatcherShorthandTest < ActiveSupport::TestCase
     assert_equal "rfq_processing", reading.fields["quantity"]["source"]
   end
 end
+
+class CatalogMatch::MatcherTest
+  def confirmed_decimal_term(fields = { "gauge" => 16, "thickness" => 0.0625 })
+    { "term" => "0.060 in", "source" => "taught", "confirmed_on" => "RFQ-0001",
+      "meaning" => { "fields" => fields, "provenance" => {
+        "method" => "explicit_rep_teaching", "quote_id" => 1, "quote_line_id" => 2,
+        "quote_reference" => "RFQ-0001", "taught_at" => "2026-10-10T14:00:00Z"
+      } } }
+  end
+
+  def confirmed_decimal_match(terms, text: "Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets", given: {})
+    CatalogMatch::Matcher.call(text, client: nil, catalog: CatalogMatch::Catalog.new(%w[rudco metals]),
+      given: given, confirmed_terms: terms, llm: false)
+  end
+
+  test "validated same phrase teaching corrects thickness and retains source words and provenance" do
+    result = confirmed_decimal_match([confirmed_decimal_term])
+    assert_equal "match", result.outcome
+    assert_equal "RC-SS304-SHT-16GA-48X96-2B", result.best.item["pn"]
+    assert_equal 0.0625, result.reading["thickness"]
+    evidence = result.reading.fields["thickness"]
+    assert_equal "0.060 in", evidence["text"]
+    assert_equal "confirmed_term", evidence["source"]
+    assert_equal "RFQ-0001", evidence["confirmed_on"]
+    assert_equal 2, evidence.dig("provenance", "quote_line_id")
+    assert_includes evidence["explanation"], "RFQ-0001"
+    assert_equal "0.060 in", result.best.checks.find { |check| check[:field] == "thickness" }[:buyer_text]
+  end
+
+  test "plain numeric given and claimed confirmation labels do not override source text" do
+    [0.0625, { "value" => 0.0625, "source" => "confirmed_term", "confirmed_on" => "RFQ-0001" }].each do |value|
+      result = confirmed_decimal_match([], given: { "thickness" => value })
+      assert_equal 0.06, result.reading["thickness"]
+      assert_equal "text", result.reading.fields["thickness"]["source"]
+    end
+    unproven = confirmed_decimal_term
+    unproven["meaning"].delete("provenance")
+    assert_equal 0.06, confirmed_decimal_match([unproven]).reading["thickness"]
+    inferred = confirmed_decimal_term.merge("source" => "learned")
+    assert_equal 0.06, confirmed_decimal_match([inferred]).reading["thickness"]
+    assert_equal 0.06, confirmed_decimal_match([]).reading["thickness"], "Other buyers have no confirmed terms"
+  end
+
+  test "confirmation cannot cross phrase boundaries or replace an unrelated field" do
+    ["0.060", "060 in", "in", "not present"].each do |phrase|
+      assert_equal 0.06, confirmed_decimal_match([confirmed_decimal_term.merge("term" => phrase)]).reading["thickness"]
+    end
+    wrong = confirmed_decimal_term("material" => "aluminum")
+    assert_equal "stainless steel", confirmed_decimal_match([wrong]).reading["material"]
+    result = confirmed_decimal_match([confirmed_decimal_term], text: "Stainless 304, 10.060 in, 48 x 96, 2B, 8 sheets")
+    baseline = confirmed_decimal_match([], text: "Stainless 304, 10.060 in, 48 x 96, 2B, 8 sheets")
+    assert_equal baseline.reading.fields, result.reading.fields
+  end
+
+  test "confirmation rejects nested part numbers and unrelated unsupported values" do
+    [%w[part_number RC-AL-P1020-INGOT], ["quantity", 100], ["width", 60]].each do |field, value|
+      bad = confirmed_decimal_term("thickness" => 0.0625, field => value)
+      result = confirmed_decimal_match([bad])
+      assert_equal 0.06, result.reading["thickness"]
+      assert_empty result.reading.part_numbers
+    end
+    bad = confirmed_decimal_term
+    bad["meaning"]["part_number"] = "RC-AL-P1020-INGOT"
+    assert_equal 0.06, confirmed_decimal_match([bad]).reading["thickness"]
+  end
+
+  test "conflicting confirmations and separately stated thickness remain unconfirmed" do
+    conflicting = confirmed_decimal_term("thickness" => 0.05)
+    assert_equal 0.06, confirmed_decimal_match([confirmed_decimal_term, conflicting]).reading["thickness"]
+    result = confirmed_decimal_match([confirmed_decimal_term], text: "Stainless 304, 0.060 in, 0.080 in, 48 x 96, 2B, 8 sheets")
+    assert_equal 0.06, result.reading["thickness"]
+    assert_equal "text", result.reading.fields["thickness"]["source"]
+  end
+
+  test "invalid provenance and nonfinite teaching values cannot change the reading" do
+    ["quote_id", "quote_line_id", "quote_reference", "taught_at", "method"].each do |key|
+      bad = confirmed_decimal_term
+      bad["meaning"]["provenance"].delete(key)
+      assert_equal 0.06, confirmed_decimal_match([bad]).reading["thickness"]
+    end
+    assert_equal 0.06, confirmed_decimal_match([confirmed_decimal_term("thickness" => "NaN")]).reading["thickness"]
+  end
+end

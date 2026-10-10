@@ -115,14 +115,16 @@ module CatalogMatch
       min max yield ksi cert certs certified mtr compliant tested equivalent or astm asme
     ].freeze
 
-    def self.read(text, client_terms: [], given: {})
-      new(text, client_terms, given).read
+    def self.read(text, client_terms: [], given: {}, confirmed_terms: [])
+      new(text, client_terms, given, confirmed_terms: confirmed_terms).read
     end
 
-    def initialize(text, client_terms, given = {})
+    def initialize(text, client_terms, given = {}, confirmed_terms: [])
       @original = text.to_s.strip
       @work = @original.dup
       @client_terms = client_terms
+      @confirmed_terms = Array(confirmed_terms)
+      @explicit_field_conflicts = []
       @given = (given || {}).to_h.stringify_keys
       @fields = {}
       @part_numbers = []
@@ -147,6 +149,7 @@ module CatalogMatch
       read_dimensions
       apply_given_spec
       apply_client_terms
+      apply_confirmed_terms
       infer_material_from_grade
 
       Reading.new(text: @original, fields: @fields, part_numbers: @part_numbers.uniq,
@@ -461,6 +464,72 @@ module CatalogMatch
       end
     end
 
+    CONFIRMED_FIELDS = %w[material grade temper form finish standard quantity_unit gauge thickness].freeze
+
+    # Only the explicit validated channel may replace source text, and only
+    # the same complete phrase. Caller owns persisted buyer/workspace checks.
+    # Ordinary given values, legacy memory and labels never grant this authority.
+    def apply_confirmed_terms
+      return if @questions.any? || @explicit_field_conflicts.any?
+
+      matches = @confirmed_terms.filter_map do |raw|
+        next unless raw.is_a?(Hash)
+        term = raw.deep_stringify_keys
+        meaning = term["meaning"]
+        next unless term["source"] == "taught" && meaning.is_a?(Hash) && !meaning.key?("part_number")
+        values = meaning["fields"]
+        provenance = meaning["provenance"]
+        next unless values.is_a?(Hash) && values.any? && (values.keys - CONFIRMED_FIELDS).empty?
+        next unless provenance.is_a?(Hash) && provenance["method"] == "explicit_rep_teaching"
+        next unless %w[quote_id quote_line_id].all? { |key| provenance[key].is_a?(Integer) && provenance[key].positive? }
+        next unless term["confirmed_on"].is_a?(String) && term["confirmed_on"].present? && provenance["quote_reference"] == term["confirmed_on"]
+        begin
+          Time.iso8601(provenance["taught_at"].to_s)
+        rescue ArgumentError
+          next
+        end
+        phrase = term["term"].to_s.strip
+        next if phrase.empty? || phrase.length > 120
+        pattern = /(?<![[:alnum:]_])#{Regexp.escape(phrase).gsub('\ ', '\s+')}(?![[:alnum:]_])/i
+        found = @original.match(pattern)
+        next unless found
+        normalized = values.dup
+        valid = normalized.all? do |field, value|
+          if %w[gauge thickness].include?(field)
+            number = Float(value.to_s, exception: false)
+            next false unless number && number.finite? && number.positive? && (field != "gauge" || number == number.to_i)
+            normalized[field] = field == "gauge" ? number.to_i : number
+          else
+            next false unless value.is_a?(String) && value.strip.present? && value.length <= 200
+            normalized[field] = value.strip
+          end
+          existing = @fields[field]
+          # A fill from processing is not independent source text. It may be
+          # replaced only if its value already agrees with this teaching.
+          !existing || (existing["source"] == "text" && exact_phrase?(existing["text"], found[0])) ||
+            (existing["source"] == "rfq_processing" && existing["value"] == normalized[field])
+        end
+        [term, found, normalized, provenance] if valid
+      end
+      competing = matches.flat_map { |_, _, fields, _| fields.to_a }.group_by(&:first)
+                         .select { |_, fields| fields.map(&:last).uniq.size > 1 }.keys
+      return if competing.any?
+
+      matches.each do |term, found, fields, provenance|
+        fields.each do |field, value|
+          @fields.delete(field)
+          set(field, value, found[0], "Read as #{field} #{value}, as the rep taught on #{term['confirmed_on']}", source: "confirmed_term")
+          @fields[field]["confirmed_on"] = term["confirmed_on"]
+          @fields[field]["provenance"] = provenance.deep_dup
+        end
+        consume(/(?<![[:alnum:]_])#{Regexp.escape(found[0])}(?![[:alnum:]_])/i) { nil } if @work.include?(found[0])
+      end
+    end
+
+    def exact_phrase?(left, right)
+      left.to_s.strip.gsub(/\s+/, " ").casecmp?(right.to_s.strip.gsub(/\s+/, " "))
+    end
+
     def same_words?(field_text, term_text)
       a = field_text.to_s.downcase.gsub(/\s+/, "")
       b = term_text.to_s.downcase.gsub(/\s+/, "")
@@ -547,7 +616,10 @@ module CatalogMatch
 
     # The first reading of a field wins; later, weaker rules never overwrite it.
     def set(name, value, text, explanation, source: "text")
-      return if @fields.key?(name)
+      if @fields.key?(name)
+        @explicit_field_conflicts << name if source == "text" && @fields[name]["source"] == "text" && @fields[name]["value"] != value
+        return
+      end
 
       @fields[name] ={ "value" => value, "text" => text.to_s.strip, "explanation" => explanation, "source" => source }
     end
