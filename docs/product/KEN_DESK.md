@@ -2,7 +2,7 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 13:30, from the bulletin board through Yuval's 13:24 post.
+**Last updated:** 2026-10-10 13:52, from the bulletin board through Hirsh's 13:40 post.
 
 ## Needs your call
 
@@ -21,21 +21,21 @@ Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `scr
 
 ## Where things stand
 
-From the bulletin board through 13:24. Everyone is busy, and nobody has said they are idle.
+From the bulletin board through 13:40.
 
 | Area | Owner | State |
 |---|---|---|
-| Quote app | Hirsh | Building the final email and PDF (step 8), lead time per line, and protection against stale processing runs. He has spare agents, and asked Yuval what to help with. Yuval named two tasks: wire processing into RFQ intake, and load the API key into the app. 148 tests pass (13:06). |
-| RFQ processing | Yuval | The library is on main and runs end to end: email, PDF and CSV in, parsed lines out, with gauge tables and compliance flags (COA, REACH, RoHS). 104 specs pass, including all 25 lines of your test set. W3 guard 4 (run ID and benchmark date per line) is in. Next is guard 1 (an answer about the whole RFQ reruns every line), aimed at 14:15. He owns the parsing side of learn the buyer. |
-| Matching and pricing | Tisch | Matcher is on main. Catalogs: 96 RudCo items read from their site, 143 sample metals items, and the bolts as a third. Per-buyer memory tables are built. The catalog matching page landed. **No pricer yet:** metals lines have no price, so they show as waiting until it lands. |
-| Email in and out | Hirsh | letter_opener first, then a real email account. Not started; the final email and PDF come first. |
-| Product docs | Ken | Brief, workflow, architecture, research, profile, competitive analysis, and brand position shipped. Style guide in review. |
+| Quote app | Hirsh | Three agents running: one reskins every page to the style guide and builds the shared components, one finishes automatic RFQ intake, one reviews Tisch's matcher against the app. 284 app tests pass. Next up from your notes: seed RFQs, the L3 logo and favicon, no disclaimers. |
+| RFQ processing | Yuval | Buyer-answer reruns are on main: one-line answers rerun that line, whole-RFQ answers rerun all. Excel intake and the Claude reading step are in; the Claude step has not run against the live API yet. 150 specs pass; 24 of 25 test lines read as the research expects. |
+| Matching and pricing | Tisch | Fixed Hirsh's matcher points: real part forms, part numbers, a contract for Yuval, safer approvals. Writing the demo RFQ email (from Yuval's draft). **Still no pricer** for metals lines. |
+| API key | Hirsh | Using the hackathon's sponsor gateway (Nicrron). The key is shared privately and kept out of the repo. |
+| Product docs | Ken | All shipped and approved. PDFs of each are linked from the [README](../../README.md#documents). |
 | Demo video | Ken | Not started. Yuval's plan has it recorded between 3:45 and 4:30. |
 
-**Who could use more work.** Nobody asked for any. Two gaps have no one on them yet:
+**Two things from the board for you:**
 
-- **Pricing for metals lines.** It is Tisch's area and the next thing the demo needs for a priced quote. Free steel and aluminum price series exist (FRED, per the research).
-- **Re-quote on change.** No owner. It comes after the core demo works.
+- **Hirsh requires Opus 5, not Opus 5.5, for every Claude process** (13:40), because the sponsor gateway lists Opus 5 only. This session runs Opus 5.5. Say if you want it switched.
+- **Hirsh says the demo prices are synthetic** and need a sourced replacement before they can show as real (13:33). That pulls against your call to build for production data. The fix that keeps both: Tisch's pricer, which prices from a named, dated benchmark.
 
 ## Build map
 

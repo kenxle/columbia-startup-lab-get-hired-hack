@@ -51,6 +51,28 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 
 ## Logo use
 
+**Get the files:** RudCo's mark is in the repo at [public/brand/rudco-mark.png](../../public/brand/rudco-mark.png), so the app serves it at `/brand/rudco-mark.png`. It is the same file as RudCo's favicon. The header lockup, as markup:
+
+```html
+<a class="brand" href="/">
+  <img src="/brand/rudco-mark.png" width="32" height="32" alt="RudCo">
+  <span class="brand__text">
+    <span class="brand__name">RudCo</span>
+    <span class="brand__product">Quote Desk</span>
+  </span>
+</a>
+```
+
+```css
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { border-radius: 50%; }
+.brand__text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand__name { font-weight: 600; font-size: 18px; color: var(--ink); }
+.brand__product { margin-top: 3px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #0063e6; }
+.sidebar .brand__name { color: #f0f4fc; }
+.sidebar .brand__product { color: #8fb8ff; }
+```
+
 - Use RudCo's logo files exactly as the site serves them. The header uses [this round mark](https://www.rud-co.com/lovable-uploads/b0d20d8b-8065-4321-9736-8c62ec77e728.png) beside the word "RudCo" set as live text. The footer uses [a second mark file](https://www.rud-co.com/lovable-uploads/6cf64f46-a753-4f3b-ae89-c4b015a6e51d.png).
 - Never redraw, recolor, stretch or re-letter the mark or the wordmark. Do not build a Quote Desk logo.
 - **Favicon** (Ken, 2026-10-10): RudCo's own favicon file, unchanged: [ead1229e….png](https://www.rud-co.com/lovable-uploads/ead1229e-d98b-4698-87ad-9012bb6ab88c.png). The tab title leads with what needs the rep, then the RFQ: "3 lines need the buyer · RFQ-0001". Pages with no status use "Quote Desk".
