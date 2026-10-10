@@ -63,9 +63,9 @@ These classes are the component library for plain Rails links, forms and semanti
 | `.field`, `.field__label`, `.field__hint`, `.input` | Labeled form controls and helper text |
 | `.form-errors`, `.callout--held` | Validation errors and buyer clarification holds |
 
-Native `details` and `summary` provide keyboard interaction without JavaScript. Keep visible focus styles, labels, table headers and the skip link. Put wide evidence tables inside `.table-wrap` so mobile scroll stays inside the table. Preserve visible source and synthetic-data provenance when changing presentation.
+Native `details` and `summary` provide keyboard interaction without JavaScript. Keep visible focus styles, labels, table headers and the skip link. Put wide evidence tables inside `.table-wrap` so mobile scroll stays inside the table. Preserve source evidence and stored provenance when changing presentation. Ken's 13:48 video-demo direction removes concept/sample labels from the visible UI.
 
-The official RudCo logo remains an unchanged local asset. See [asset attribution](../../app/assets/images/README.md). The shared application layout supplies the warm header, sidebar and concept footer.
+The official RudCo logo is served unchanged from `/brand/rudco-mark.png`, per Ken's 13:51 asset handoff. See [asset attribution](../../app/assets/images/README.md). The shared application layout supplies the warm header and sidebar, with no concept footer. Its lockup is the unchanged 32px mark beside RudCo over QUOTE DESK. Attention-first browser titles describe held lines or approval status. The opt-in development-only LAHE review rail stays after the stylesheet.
 
 ## Checks
 

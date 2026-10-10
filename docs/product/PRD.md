@@ -36,7 +36,7 @@
 
 An agent that reads a messy request for quote (RFQ) and drafts a quote that is ready to send. A buyer's email, PDF, or spreadsheet goes in. A priced quote comes out, line by line. Each line shows where its answer came from.
 
-When a line is unclear, the agent does not guess. It writes the buyer a short, specific question and holds that line until the buyer answers.
+When a line is unclear, the agent does not guess. It writes the buyer a short, specific question. If the line has two or three likely readings, the quote shows each one as an option with its own price, and the buyer picks one when they accept. A line with no match, or with no benchmark price, is held. Every RFQ gets a quote back to the buyer within 24 hours, even when some lines are unclear.
 
 ## Who it is for
 
@@ -90,15 +90,17 @@ The job the rep needs done:
 
 > Send the buyer an accurate, competitive quote, faster than competitors.
 
+**The quote reaches the buyer within 24 hours of the RFQ.** RudCo's own quote form promises a reply "within 24 hours" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). We treat that promise as a requirement. It holds for every RFQ, including one with unclear lines. An unclear line goes out as priced options or as a held line with its question, so it never holds the quote back.
+
 The three parts, in priority order. The order comes from the research: accuracy first, then speed. Competitive sits second because it is RudCo's own theme.
 
 | # | Value prop | What it means | Proof the demo shows | Workflow step |
 |---|---|---|---|---|
 | 1 | **Accurate** | Each line is read right, matched to an item RudCo stocks, and carries the paperwork the buyer needs: MTR, COA, country of origin, DFARS, REACH, RoHS. | Click the stainless line: "16 ga" reads as 0.0625 in, with the stainless gauge table named. A hidden-requirement flag shows its trigger word. A line with no fit says "No match" instead of grabbing the closest item. | [3 Parse](WORKFLOW.md#3-parse-each-line-into-a-standard-spec), [4 Match](WORKFLOW.md#4-match-each-line-to-the-catalog), [5 Flags](WORKFLOW.md#5-price-flag-compliance-list-assumptions) |
 | 2 | **Competitive** | The price holds up, and the quote says why. | Each price sits beside a named, dated benchmark. The line says the price tracks published metal cost plus RudCo's margin. No benchmark means no price: the line is held. | [5 Price](WORKFLOW.md#5-price-flag-compliance-list-assumptions) |
-| 3 | **Faster** | The rep checks a draft instead of decoding every line. Clear lines keep moving while one line waits on the buyer. Each line shows a lead time, so the buyer has a ship date with the price. | The question email goes out, the buyer clicks a choice, and the line turns Ready. Each line shows its lead time: stocked lines use RudCo's 24 to 48 hour promise, anything else says "to confirm". The rep approves and the reply lands on the buyer's thread. | [5 Lead time](WORKFLOW.md#5-price-flag-compliance-list-assumptions), [6 Questions](WORKFLOW.md#6-send-clarifying-questions-to-the-buyer), [7 Approve](WORKFLOW.md#7-present-the-final-quote-for-approval), [8 Send](WORKFLOW.md#8-send-the-quote-back-to-the-buyer) |
+| 3 | **Faster** | The rep checks a draft instead of decoding every line. Clear lines keep moving, and an unclear line goes out as priced options, so the quote reaches the buyer within 24 hours. Each line shows a lead time, so the buyer has a ship date with the price. | The question email goes out, the buyer clicks a choice, and the line turns Ready. Each line shows its lead time: stocked lines use RudCo's 24 to 48 hour promise, anything else says "to confirm". The rep approves and the reply lands on the buyer's thread. | [5 Lead time](WORKFLOW.md#5-price-flag-compliance-list-assumptions), [6 Questions](WORKFLOW.md#6-send-clarifying-questions-to-the-buyer), [7 Approve](WORKFLOW.md#7-present-the-final-quote-for-approval), [8 Send](WORKFLOW.md#8-send-the-quote-back-to-the-buyer) |
 
-On speed, we use RudCo's own terms, as [How we know it works](#how-we-know-it-works) does. Their quote form promises a reply "within 24 hours", and their FAQ says "Stocked lines ship in 24–48 hours" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The demo line is: RudCo promises a quote within 24 hours; watch the agent draft it in minutes ([WORKFLOW video, step 1](WORKFLOW.md#the-video-demo-in-order)). That line holds only if the video shows the draft in minutes. Every win-rate number about fast quotes comes from a vendor selling quoting software ([sharper-angle report, 6.3](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#63-the-value-props-ranked)), so we do not use one.
+On speed, we use RudCo's own terms, as [How we know it works](#how-we-know-it-works) does. Their quote form promises a reply "within 24 hours", and their FAQ says "Stocked lines ship in 24–48 hours" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The 24-hour reply is a requirement for every RFQ, as stated above. The demo line is: RudCo promises a quote within 24 hours; watch the agent draft it in minutes ([WORKFLOW video, step 1](WORKFLOW.md#the-video-demo-in-order)). That line holds only if the video shows the draft in minutes. Every win-rate number about fast quotes comes from a vendor selling quoting software ([sharper-angle report, 6.3](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md#63-the-value-props-ranked)), so we do not use one.
 
 ## What it does
 
@@ -109,7 +111,8 @@ These come from RudCo's challenge, in order.
 3. **Price each line against market benchmarks.** Then explain, in a sentence, why the price is competitive. Each line also carries a lead time, because buyers' RFQs ask for a delivery date and RudCo promises 24 to 48 hour shipping on stocked lines (per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
 4. **Flag compliance requirements.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH and RoHS, and spec certifications, whether the buyer asked for them outright or the spec implies them. RudCo already promises customers this paperwork ("PO→COA/MTR" and "DFARS/REACH/RoHS flags", per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
 5. **Ask instead of guess.** Send any unclear line back to the buyer with one clarifying question.
-6. **Learn the buyer.** When the rep confirms how a buyer writes an item, the next RFQ from that buyer reads it that way, and the line says where the reading came from. This is our own addition to the challenge. It is how we beat Proton and Canals, which claim to learn shorthand but do not show the source ([workflow step 9](WORKFLOW.md#9-learn-the-buyer)).
+6. **Quote the alternates.** When the matcher finds two or three candidates for a line, or a line has two readings, the quote does not hold the line. It shows each reading as an option with its own price. Example: "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in". The buyer picks one when they accept, and the clarifying question still goes out. The agent shows every reading and never picks one quietly. A line with no match, or with no benchmark price, is still held.
+7. **Learn the buyer.** When the rep confirms how a buyer writes an item, the next RFQ from that buyer reads it that way, and the line says where the reading came from. This is our own addition to the challenge. It is how we beat Proton and Canals, which claim to learn shorthand but do not show the source ([workflow step 9](WORKFLOW.md#9-learn-the-buyer)).
 
 **Stretch, if we get there:** suggest the margin on each line, not only the benchmark price. The rep still owns the final number.
 
@@ -119,7 +122,7 @@ These come from RudCo's challenge, in order.
 2. The agent lists every line it found, each as a standard spec.
 3. Each line shows a status:
    - **Ready:** read, matched, and priced
-   - **Needs the buyer:** unclear, with the question drafted
+   - **Needs the buyer:** unclear, with the question drafted. When the line has two or three readings, each shows as a priced option.
    - **No match:** nothing in the catalog fits
 4. The rep clicks any field to see the words in the RFQ it came from, and why the agent read it that way.
 5. The rep edits anything, then exports the quote and the buyer questions together.
@@ -129,13 +132,16 @@ flowchart TD
     A["Messy RFQ<br/>email, PDF, or spreadsheet"] --> B["Read each line into a standard spec"]
     B --> C{"Clear enough to quote?"}
     C -- no --> Q["Draft a question for the buyer"]
+    Q --> R{"Two or three readings?"}
+    R -- yes --> S["Price each reading as an option"]
+    R -- no --> H
+    S --> H
     C -- yes --> D["Match to the catalog"]
     D --> E{"Catalog match?"}
     E -- no --> N["Mark as no match"]
     E -- yes --> F["Price against benchmarks<br/>and explain"]
     F --> G["Flag compliance needs"]
     G --> H["Rep reviews the quote"]
-    Q --> H
     N --> H
     H --> I["Send the quote and the questions"]
 ```
@@ -186,7 +192,8 @@ Not everything goes to an LLM. A number that can be looked up or computed is loo
 These hold for every part of the build.
 
 - **Show the source.** Every field traces to the words in the RFQ, and every price traces to a named benchmark.
-- **Ask, don't guess.** A line the agent is not sure about becomes a question, never a quiet assumption.
+- **Ask, don't guess.** A line the agent is not sure about becomes a question, never a quiet assumption. When the line has two or three readings, the quote shows every reading as an option and never picks one quietly.
+- **Quote within 24 hours.** Every RFQ gets a quote back to the buyer within 24 hours, even when some lines are unclear.
 - **Build for production data.** The product works from RudCo's real catalog, inventory and prices. The demo stands in data shaped like theirs, and the screens and copy are written as if it were live.
 - **Accuracy first.** We cannot have hallucinated pricing. 0% mistakes on this front.
 - **Keep it demoable.** `main` runs end to end at every push, so the video can be recorded at any point.
@@ -196,13 +203,17 @@ These hold for every part of the build.
 The job has one test, and each thing it does has one, run against our test RFQs.
 
 - **The job.** On our test RFQs, the rep goes from RFQ to a quote they would send in a few clicks, and every line is right. In RudCo's terms: their quote form promises a reply within 24 hours today, and the agent drafts it in minutes.
+- **Quote within 24 hours.** On our test RFQs, including the ones with unclear lines, a complete quote is ready for the rep to send well inside 24 hours of the RFQ arriving.
 - **Read each line.** On our test RFQs, every line comes out with the right material, grade, size, quantity, and standard.
 - **Match to the catalog.** Each ready line points at the right catalog item. Lines with no fit are marked no match, never forced onto the closest item.
 - **Price and explain.** Each price sits next to its benchmark, and the explanation names that benchmark.
 - **Flag compliance.** Every certification the test RFQs require, stated or implied, shows up as a flag.
 - **Ask, don't guess.** Every line we planted as ambiguous comes back as a question. No clear line gets a question it did not need.
+- **Alternates.** Every planted line with two or three readings shows each reading as an option with its own price. No reading is picked quietly. A line with no match, or no benchmark price, stays held.
 
 ## Decisions
 
 - **A person reviews every quote before it goes out** (2026-10-10). The user is the supplier's quoting rep. The agent drafts; the rep checks, edits, and sends. The buyer only sees the finished quote and the questions.
 - **Clarifying questions can send on their own** (2026-10-10). When the agent is confident about the choices to offer, it emails the buyer without review. The buyer answers by clicking a choice in the email. The rep still approves every final quote. Details in [WORKFLOW.md](WORKFLOW.md).
+- **RudCo's 24-hour quote promise is a core requirement** (Ken, 2026-10-10). RudCo's quote form promises a reply "within 24 hours" ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). Every RFQ gets a quote back to the buyer within 24 hours, even when some lines are unclear. It is a requirement on the build, and it is also a talking point for speed.
+- **Quote alternates on unclear lines** (Ken, 2026-10-10). When the matcher finds two or three candidates for a line, or a line has two readings such as "16 ga" and "0.060 in", the quote does not hold the line. It shows each reading as an option with its own price, for example "Option A: 16 ga, 0.0625 in" and "Option B: exactly 0.060 in". The buyer picks one when they accept. The clarifying question still goes out. Nothing is guessed: the quote shows every reading and never picks one quietly. A line with no match, or with no benchmark price, is still held. Yuval's processing already returns the candidates. Tisch prices each candidate (this needs the pricer). Hirsh shows the alternates on the review screen and in the quote PDF.

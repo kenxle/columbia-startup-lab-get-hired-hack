@@ -21,12 +21,8 @@
 <section class="buyer-draft" aria-labelledby="buyer-draft-heading">
   <div class="buyer-draft__status">
     <span class="buyer-draft__badge">Draft, not sent</span>
-    <p>Email delivery and buyer responses are not connected. Open a local email preview or download this draft to use outside the workspace.</p>
+    <p>Open a local email preview or download the draft.</p>
   </div>
-
-  <% if @quote.sample_data? %>
-    <p class="buyer-draft__sample"><%= QuoteWorkspace::BuyerQuestionDraft::SAMPLE_NOTICE %></p>
-  <% end %>
 
   <% if @draft.held_lines.empty? %>
     <div class="buyer-draft__empty">

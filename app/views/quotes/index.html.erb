@@ -7,7 +7,7 @@
     <p class="page-lede">RFQs saved in this browser session. Open one to review each line beside the original request.</p>
   </div>
   <div class="page-actions">
-    <%= button_to "Load sample RFQ", demo_quotes_path, method: :post, class: "button button--quiet" %>
+    <%= button_to "Load RFQ example", demo_quotes_path, method: :post, class: "button button--quiet" %>
     <%= link_to "New RFQ", new_quote_path, class: "button button--primary" %>
   </div>
 </header>
@@ -15,10 +15,10 @@
 <% if @quotes.blank? %>
   <section class="empty-state" aria-labelledby="empty-title">
     <h2 id="empty-title" class="empty-state__title">No RFQs yet</h2>
-    <p class="empty-state__body">Paste a buyer email or upload a file to start a quote. To see the review flow first, load the sample RFQ. It is labeled as sample data throughout.</p>
+    <p class="empty-state__body">Paste a buyer email or upload a file to start a quote. To see the review flow, load the RFQ example.</p>
     <div class="empty-state__actions">
       <%= link_to "New RFQ", new_quote_path, class: "button button--primary" %>
-      <%= button_to "Load sample RFQ", demo_quotes_path, method: :post, class: "button button--quiet" %>
+      <%= button_to "Load RFQ example", demo_quotes_path, method: :post, class: "button button--quiet" %>
     </div>
   </section>
 <% else %>
@@ -46,7 +46,6 @@
               </th>
               <td>
                 <%= display_value(quote.title) %>
-                <% if quote.sample_data? %> <%= sample_badge("Sample") %><% end %>
               </td>
               <td><%= display_value(quote.buyer_name) %></td>
               <td class="num"><%= quote.ready_count %></td>

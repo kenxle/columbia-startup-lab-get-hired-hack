@@ -4,7 +4,6 @@ module QuoteWorkspace
   class FinalQuote
     class NotApproved < StandardError; end
 
-    SAMPLE_NOTICE = "SAMPLE DATA: Synthetic RFQ, catalog items and prices for demonstration.".freeze
 
     def initialize(quote)
       @quote = quote
@@ -20,8 +19,7 @@ module QuoteWorkspace
 
     def body(attachments_included: false)
       with_snapshot do |data|
-        parts = [ "Draft, not sent", "Concept quote", "Subject: Quote #{data[:reference]}" ]
-        parts << SAMPLE_NOTICE if data[:sample]
+        parts = [ "Draft, not sent", "Subject: Quote #{data[:reference]}" ]
         parts << "Buyer: #{data[:buyer]}" if data[:buyer].present?
         parts << "Approved quote #{data[:reference]}: #{data[:title]}"
         parts << "Ready-line subtotal: USD #{data[:subtotal]}. Held lines are unpriced and excluded."
@@ -37,7 +35,6 @@ module QuoteWorkspace
             elsif benchmark["name"].present?
               details << "Benchmark: #{benchmark['name']}"
               details << "As of: #{benchmark['as_of']}" if benchmark["as_of"].present?
-              details << "Sample benchmark" if benchmark["kind"] == "sample"
               details << benchmark["explanation"] if benchmark["explanation"].present?
             else
               details << "Benchmark: not provided"
@@ -48,7 +45,6 @@ module QuoteWorkspace
           details << "Question: #{line[:question]}" unless line[:ready]
           parts << details.join("\n")
         end
-        parts << "Paperwork requirements record buyer requests, not certification of stock."
         if attachments_included
           parts << "Attached to this local preview: #{data[:basename]}.pdf and #{data[:basename]}.csv."
           parts << "No email has been sent to the buyer."
@@ -73,7 +69,7 @@ module QuoteWorkspace
           buyer: @quote.buyer_name,
           approved_at: @quote.approved_at.utc.iso8601,
           sample: @quote.sample_data?,
-          basename: "#{@quote.reference}-quote#{@quote.sample_data? ? '-SAMPLE' : ''}",
+          basename: "#{@quote.reference}-quote",
           subtotal: decimal(lines.select(&:quotable?).sum(BigDecimal("0"), &:line_total), 2),
           lines: lines.map { |line| present_line(line) }
         })

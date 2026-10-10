@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= content_for?(:title) ? "#{yield(:title)} · RudCo Quote Desk" : "RudCo Quote Desk" %></title>
+    <title><%= workspace_document_title(page_title: content_for(:title), quote: @quote) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="RudCo Quote Desk">
@@ -22,10 +22,10 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="brand-header">
       <%= link_to root_path, class: "brand-header__lockup", aria: { label: "RudCo Quote Desk home" } do %>
-        <%= image_tag "rudco-mark.png", alt: "RudCo Industrial Materials Platform logo", width: 32, height: 32, class: "brand-header__mark" %>
+        <%= image_tag "/brand/rudco-mark.png", alt: "RudCo", width: 32, height: 32, class: "brand-header__mark" %>
         <span class="brand-header__identity">
           <span class="brand-header__name">RudCo</span>
-          <span class="brand-header__tagline">Industrial Materials Platform</span>
+          <span class="brand-header__tagline">QUOTE DESK</span>
         </span>
       <% end %>
       <nav class="brand-header__nav" aria-label="Product">
@@ -37,7 +37,6 @@
       <main id="main" class="workspace" tabindex="-1">
         <%= render "layouts/flash" %>
         <%= yield %>
-        <footer class="workspace-footer">Concept built for RudCo · Get Hired Hack, 2026-10-10</footer>
       </main>
     </div>
   </body>

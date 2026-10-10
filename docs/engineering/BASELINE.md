@@ -42,7 +42,7 @@ whether their review is still applicable.
 The reusable Claude agents are `rfq-implementer`, `rfq-reviewer`, and
 `rfq-debugger` in `.claude/agents/`. Use an explicit task and owned paths for each
 worker. Implementer/debugger profiles request Fable; the reviewer requests Opus
-5.5. Use Astra through native delegation when Fable is unavailable. Keep API
+5. Use Astra through native delegation when Fable is unavailable. Keep API
 keys out of prompts and committed files.
 
 ## Application status
@@ -52,6 +52,13 @@ RudCo/metals catalog matching, source-backed review, edits, approval, PDF/CSV
 export and local email previews. See [the frontend contract](FRONTEND_CONTRACT.md).
 Pasted text, PDF and CSV can run through the processor. Excel files must be saved
 as CSV first; raw `.eml` files require pasting the body or uploading attachments.
+
+In development, the first visit to an empty Quotes workspace creates three RFQs
+for review: a mixed-material request, steel shot replenishment, and structural
+plate. This uses the local rules parser and catalog without API calls or email.
+Existing RFQs are preserved, and production does not seed automatically.
+For an older local workspace, `QuoteWorkspace::DemoWorkspace.populate!` can top
+it up to three records when passed its `workspace_token`.
 
 Run `script/setup` after pulling migrations or dependencies, then `script/dev`.
 The development async job adapter runs in the Rails process. Refresh the quote

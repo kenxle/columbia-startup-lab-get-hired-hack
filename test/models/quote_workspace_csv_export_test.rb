@@ -30,8 +30,8 @@ class QuoteWorkspaceCsvExportTest < ActiveSupport::TestCase
     csv_export = QuoteWorkspace::CsvExport.new(@quote.reload)
     output = csv_export.to_csv
 
-    assert_match(/SAMPLE/, csv_export.filename)
-    assert output.start_with?(%("SAMPLE","SAMPLE DATA))
+    refute_match(/SAMPLE/, csv_export.filename)
+    assert output.start_with?(%("Quote reference",))
     assert_includes output, %("#{@quote.reference}")
     assert_includes output, %("232.00","4640.00")
     assert_includes output, %("Subtotal, Ready lines only (USD)","4640.00")

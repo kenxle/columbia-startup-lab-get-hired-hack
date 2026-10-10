@@ -14,11 +14,8 @@
 <section class="panel final-quote" aria-labelledby="final-quote-heading">
   <div class="final-quote__status">
     <span class="buyer-draft__badge">Draft, not sent</span>
-    <p>Preview the email locally, or download the documents. A real inbox and replies on the buyer's email thread are not connected yet.</p>
+    <p>Preview the email locally, or download the documents.</p>
   </div>
-  <% if @quote.sample_data? %>
-    <p class="buyer-draft__sample">SAMPLE DATA: This quote uses sample catalog items and prices.</p>
-  <% end %>
   <div class="final-quote__content">
     <h2 id="final-quote-heading" class="section-title">Email preview</h2>
     <dl class="buyer-draft__envelope">
@@ -35,7 +32,7 @@
       <div class="final-quote__delivery">
         <%= button_to "Open local email with attachments", preview_email_quote_final_quote_path(@quote),
               params: { reviewed_version: @quote.review_revision }, class: "button button--primary" %>
-        <p class="field__hint">Opens in your default browser. Uses demo email addresses. Nothing is sent.</p>
+        <p class="field__hint">Opens a local preview. Nothing is sent.</p>
       </div>
     <% end %>
   </div>

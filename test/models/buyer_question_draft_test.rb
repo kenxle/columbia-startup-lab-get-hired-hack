@@ -6,14 +6,14 @@ class BuyerQuestionDraftTest < ActiveSupport::TestCase
     @draft = QuoteWorkspace::BuyerQuestionDraft.new(@quote)
   end
 
-  test "draft includes existing questions in original line order with sample notice" do
+  test "draft includes existing questions in original line order without presentation labels" do
     assert @draft.ready?
     assert_equal [ 2, 3 ], @draft.held_lines.map(&:position)
     assert_empty @draft.missing_question_lines
     assert_equal "Questions about #{@quote.reference}", @draft.subject
-    assert_equal "SAMPLE-#{@quote.reference}-buyer-questions.txt", @draft.filename
+    assert_equal "#{@quote.reference}-buyer-questions.txt", @draft.filename
     assert_includes @draft.body, "Draft, not sent"
-    assert_includes @draft.body, "SAMPLE DATA: Synthetic RFQ"
+    refute_includes @draft.body, "SAMPLE DATA: Synthetic RFQ"
     assert_includes @draft.body, "Buyer: #{@quote.buyer_name}"
     @draft.held_lines.each { |line| assert_includes @draft.body, "Line #{line.position}\n#{line.clarification_question}" }
     assert_operator @draft.body.index("Line 2"), :<, @draft.body.index("Line 3")

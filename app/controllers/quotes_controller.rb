@@ -10,6 +10,7 @@ class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show approve export source]
 
   def index
+    QuoteWorkspace::DemoWorkspace.seed_if_empty!(workspace_token: workspace_token)
     @quotes = workspace_quotes.includes(:quote_lines).order(created_at: :desc, id: :desc)
   end
 
@@ -46,7 +47,7 @@ class QuotesController < ApplicationController
 
   def demo
     quote = QuoteWorkspace::Demo.create!(workspace_token: workspace_token)
-    redirect_to quote_path(quote), notice: "Sample RFQ created. Catalog items and prices are sample data."
+    redirect_to quote_path(quote), notice: "RFQ example created. Review the quote lines."
   end
 
   def show

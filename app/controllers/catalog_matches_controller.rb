@@ -63,7 +63,7 @@ class CatalogMatchesController < ApplicationController
         result
       end
       [ quote_path(quote, line: outcome[:lines].first.id),
-        "Added #{outcome[:lines].size} #{'line'.pluralize(outcome[:lines].size)} to #{quote.reference}. Catalog data is sample data; added lines remain unpriced." ]
+        "Added #{outcome[:lines].size} #{'line'.pluralize(outcome[:lines].size)} to #{quote.reference}. Added lines remain unpriced." ]
     end
     redirect_to destination, notice: notice
   rescue CatalogMatch::Approve::Invalid, ActiveRecord::RecordInvalid => error

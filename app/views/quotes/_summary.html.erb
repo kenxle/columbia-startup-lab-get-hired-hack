@@ -20,7 +20,6 @@
       <dt>Subtotal <span class="summary__qualifier">ready lines only</span></dt>
       <dd class="mono">
         <%= quote.awaiting_processing? ? unknown_marker : display_money(quote.subtotal) %>
-        <% if quote.sample_data? %> <%= sample_badge("Sample") %><% end %>
       </dd>
     </div>
     <div class="summary__item">

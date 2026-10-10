@@ -18,6 +18,7 @@ Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `scr
 
 - **The demo RFQ email.** Handed to Tisch, who has been collecting the RFQ and catalog data. Yuval checks that every line parses.
 - **The app reskin to the style guide, and a shared component library.** Asked the team on the board; Hirsh leads both.
+- **Drafts for your review:** [demo video script](DEMO_SCRIPT.md) and [Devpost write-up](DEVPOST.md), open in your browser.
 
 ## Where things stand
 
@@ -112,6 +113,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- 24-hour quote promise is now a core requirement, and unclear lines get quoted as alternates. Posted to the team; docs being updated.
 
 - Favicon and logo: RudCo's own mark, unchanged, for both. Posted to Hirsh.
 - Build map moved here from its own doc, with a shareable image.

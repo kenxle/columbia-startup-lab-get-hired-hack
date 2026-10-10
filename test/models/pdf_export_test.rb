@@ -13,16 +13,16 @@ class PdfExportTest < ActiveSupport::TestCase
   end
 
   test "approved sample PDF includes quote details prices held questions and honest labels" do
-    assert_equal "#{@quote.reference}-quote-SAMPLE.pdf", @export.filename
+    assert_equal "#{@quote.reference}-quote.pdf", @export.filename
     document = reader
     text = document.pages.map(&:text).join("\n")
-    [ "CONCEPT QUOTE", @quote.reference, "SAMPLE DATA", "Approved:", "USD 4640.00", "USD 232.00", "LINE 1", "LINE 2", "LINE 3",
-      "Unpriced. Excluded from subtotal.", "Sample price table", "2026-10-10", "Lead time: to confirm", "not certification of stock",
+    [ "RUDCO / QUOTE DESK", @quote.reference, "Approved:", "USD 4640.00", "USD 232.00", "LINE 1", "LINE 2", "LINE 3",
+      "Unpriced. Excluded from subtotal.", "Sample price table", "2026-10-10", "Lead time: to confirm",
       "Mill test report" ].each { |value| assert_includes text, value }
     @quote.quote_lines.reject(&:quotable?).each do |line|
       assert_includes text.gsub(/\s+/, " "), line.clarification_question.gsub(/\s+/, " ")
     end
-    assert document.pages.all? { |page| page.text.include?("SAMPLE DATA / Concept quote") }
+    assert document.pages.all? { |page| page.text.include?("RudCo Quote Desk") }
   end
 
   test "PDF refuses stale approvals and currently invalid lines" do
@@ -76,7 +76,7 @@ class PdfExportTest < ActiveSupport::TestCase
     assert_includes reader.pages.map(&:text).join, "Benchmark: not provided"
   end
 
-  test "long multi-page quotes wrap every line and repeat sample label page numbers and reference" do
+  test "long multi-page quotes wrap every line and repeat brand page numbers and reference" do
     template = @quote.quote_lines.first.attributes.except("id", "created_at", "updated_at", "quote_id")
     12.times do |index|
       @quote.quote_lines.create!(template.merge("position" => index + 4, "description" => "Long line #{index + 4}: " + "industrial sheet specification " * 12))
@@ -86,7 +86,7 @@ class PdfExportTest < ActiveSupport::TestCase
     text = document.pages.map(&:text).join("\n")
     (1..15).each { |position| assert_includes text, "LINE #{position} /" }
     document.pages.each_with_index do |page, index|
-      assert_includes page.text, "SAMPLE DATA / Concept quote"
+      assert_includes page.text, "RudCo Quote Desk"
       assert_includes page.text, @quote.reference
       assert_includes page.text, "Page #{index + 1} of #{document.page_count}"
     end

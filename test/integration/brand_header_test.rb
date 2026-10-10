@@ -1,11 +1,11 @@
 require "test_helper"
 
 class BrandHeaderTest < ActionDispatch::IntegrationTest
-  test "workspace header identifies the concept and keeps keyboard navigation available" do
+  test "workspace header uses the approved lockup and keeps keyboard navigation available" do
     get quotes_path
     assert_response :success
 
-    assert_select "title", /RudCo Quote Desk/
+    assert_select "title", "Quotes · Quote Desk"
     assert_select 'meta[name="application-name"][content="RudCo Quote Desk"]'
     %w[icon apple-touch-icon].each do |relation|
       assert_select 'link[rel=?][type="image/png"]', relation, count: 1 do |icons|
@@ -17,18 +17,22 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     assert_select 'main#main[tabindex="-1"]'
     assert_select "header.brand-header" do
       assert_select "a.brand-header__lockup[href=?][aria-label=?]", root_path, "RudCo Quote Desk home" do
-        assert_select 'img[alt="RudCo Industrial Materials Platform logo"][width="32"][height="32"]' do |images|
-          assert_match %r{/assets/rudco-mark(?:-[a-f0-9]+)?\.png}, images.first["src"]
-        end
+        assert_select 'img[src="/brand/rudco-mark.png"][alt="RudCo"][width="32"][height="32"]'
         assert_select ".brand-header__name", "RudCo"
-        assert_select ".brand-header__tagline", "Industrial Materials Platform"
+        assert_select ".brand-header__tagline", "QUOTE DESK"
       end
       assert_select 'nav[aria-label="Product"] a[href=?]', quotes_path, "Quote Desk"
     end
-    assert_select ".workspace-footer", "Concept built for RudCo · Get Hired Hack, 2026-10-10"
+    assert_select ".sidebar__brand" do
+      assert_select 'img[src="/brand/rudco-mark.png"][width="32"][height="32"][alt=""]'
+      assert_select ".sidebar__name", "RudCo"
+      assert_select ".sidebar__product", "QUOTE DESK"
+    end
+    assert_select ".workspace-footer, .sidebar__note", count: 0
+    assert_select ".sidebar__sample", "Load demo RFQ"
   end
 
-  test "branding preserves catalog navigation and sample status words" do
+  test "branding preserves catalog navigation and status words" do
     post demo_quotes_path
     follow_redirect!
     assert_response :success
@@ -39,7 +43,29 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     assert_select ".status--ready", text: "Ready", minimum: 1
     assert_select ".status--needs-buyer", text: "Needs the buyer", minimum: 1
     assert_select ".status--no-match", text: "No match", minimum: 1
-    assert_select ".sample-banner", minimum: 1
+  end
+
+  test "quote tab titles lead with buyer attention and keep the RFQ reference" do
+    post demo_quotes_path
+    quote = Quote.find(response.location[%r{/quotes/(\d+)}, 1])
+    get quote_path(quote)
+    assert_select "title", "1 line needs the buyer · #{quote.reference} · Quote Desk"
+
+    quote.quote_lines.find_by!(state: "ready").update!(state: "needs_buyer")
+    get quote_path(quote)
+    assert_select "title", "2 lines need the buyer · #{quote.reference} · Quote Desk"
+  end
+
+  test "title fallback preserves nonquote pages and handles unprocessed RFQs" do
+    get new_quote_path
+    assert_response :success
+    assert_select "title", "New RFQ · Quote Desk"
+
+    helper = ApplicationController.helpers
+    assert_equal "Quote Desk", helper.workspace_document_title
+    assert_equal "New RFQ · Quote Desk", helper.workspace_document_title(page_title: "New RFQ", quote: Quote.new)
+    quote = Quote.create!(title: "New buyer request", source_text: "Please quote plate", workspace_token: "brand-title-test")
+    assert_equal "Awaiting processing · #{quote.reference} · Quote Desk", helper.workspace_document_title(quote: quote)
   end
 
   test "shared status and flag components escape labels and constrain variants" do

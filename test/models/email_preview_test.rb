@@ -23,15 +23,15 @@ class EmailPreviewTest < ActiveSupport::TestCase
     assert_equal ["quote-desk@example.invalid"], message.from
     assert_equal ["buyer@example.invalid"], message.to
     assert_kind_of Mail::TestMailer, message.delivery_method
-    assert_match(/DEMO PREVIEW/, message.subject)
-    assert_match(/LOCAL DEMO PREVIEW/, message.text_part.decoded)
+    assert_match(/Local preview/, message.subject)
+    assert_match(/Local preview/, message.text_part.decoded)
     assert_match(/No email/, message.text_part.decoded)
     assert_equal 2, message.attachments.length
     pdf = message.attachments.find { |attachment| attachment.filename.end_with?(".pdf") }
     csv = message.attachments.find { |attachment| attachment.filename.end_with?(".csv") }
     assert pdf.decoded.start_with?("%PDF")
     assert_includes csv.decoded, '"232.00","4640.00"'
-    assert_includes csv.decoded, "SAMPLE DATA"
+    refute_includes csv.decoded, "SAMPLE DATA"
     assert_nil message.in_reply_to
   end
 

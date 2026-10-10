@@ -33,17 +33,12 @@ module QuoteWorkspace
         text(pdf, "Buyer: #{data[:buyer]}", color: MUTED) if data[:buyer].present?
         text(pdf, "Approved: #{data[:approved_at]}", size: 8, color: MUTED)
         pdf.move_down 12
-        if data[:sample]
-          text(pdf, FinalQuote::SAMPLE_NOTICE, size: 9, style: :bold, color: "7F4205")
-          pdf.move_down 8
-        end
         text(pdf, "Ready-line subtotal", size: 10, color: MUTED)
         text(pdf, "USD #{data[:subtotal]}", size: 24, style: :bold, color: BLUE)
         text(pdf, "Held lines are unpriced and excluded from this subtotal.", size: 8, color: MUTED)
         pdf.move_down 20
         data[:lines].each { |line| render_line(pdf, line) }
         pdf.move_down 10
-        text(pdf, "Requested paperwork records buyer requirements, not certification of stock.", size: 8, color: MUTED)
         pdf.number_pages "Page <page> of <total>", at: [ pdf.bounds.width - 100, -27 ],
           width: 100, align: :right, size: 8, color: MUTED
         pdf.render
@@ -68,11 +63,11 @@ module QuoteWorkspace
           pdf.fill_color BLUE
           pdf.fill_rectangle [ 0, pdf.page.dimensions[3] ], pdf.page.dimensions[2], 6
           pdf.fill_color INK
-          pdf.text_box "QUOTE DESK / CONCEPT QUOTE", at: [ 46, pdf.page.dimensions[3] - 28 ],
+          pdf.text_box "RUDCO / QUOTE DESK", at: [ 46, pdf.page.dimensions[3] - 28 ],
             width: 320, height: 20, size: 9, style: :bold
           pdf.text_box data[:reference], at: [ pdf.page.dimensions[2] - 180, pdf.page.dimensions[3] - 28 ],
             width: 134, height: 20, align: :right, size: 9
-          footer = data[:sample] ? "SAMPLE DATA / Concept quote" : "Concept quote"
+          footer = "RudCo Quote Desk"
           pdf.fill_color MUTED
           pdf.text_box footer, at: [ 46, 40 ], width: 350, height: 18, size: 8
         end
@@ -102,7 +97,6 @@ module QuoteWorkspace
           benchmark = line[:benchmark]
           text(pdf, "Benchmark: #{benchmark['name']}", size: 8, color: MUTED) if benchmark["name"].present?
           text(pdf, "As of: #{benchmark['as_of']}", size: 8, color: MUTED) if benchmark["as_of"].present?
-          text(pdf, "Sample benchmark", size: 8, color: "7F4205") if benchmark["kind"] == "sample"
           text(pdf, benchmark["explanation"], size: 8, color: MUTED) if benchmark["explanation"].present?
         else
           text(pdf, "Benchmark: not provided", size: 8, color: MUTED)
@@ -114,7 +108,7 @@ module QuoteWorkspace
       text(pdf, "Lead time: #{line[:lead_time]}")
       text(pdf, "Lead time source: #{line[:lead_time_source]}", size: 8, color: MUTED) if line[:lead_time_source].present?
       if line[:compliance].any?
-        text(pdf, "Requested paperwork (not certified): #{line[:compliance].join('; ')}", size: 9)
+        text(pdf, "Requested paperwork: #{line[:compliance].join('; ')}", size: 9)
       end
       pdf.move_down 18
       @active_line = nil

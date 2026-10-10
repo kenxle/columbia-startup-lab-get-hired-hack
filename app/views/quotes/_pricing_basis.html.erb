@@ -20,7 +20,6 @@
         <dt>Benchmark</dt>
         <dd>
           <%= display_value(benchmark["name"]) %>
-          <% if sample_benchmark?(line) %> <%= sample_badge("Sample benchmark") %><% end %>
         </dd>
       </div>
       <div>
@@ -34,9 +33,6 @@
     </dl>
     <% if benchmark["explanation"].present? %>
       <p class="basis__explanation"><%= benchmark["explanation"] %></p>
-    <% end %>
-    <% if sample_benchmark?(line) %>
-      <p class="section-hint">This benchmark is sample data, not live market data.</p>
     <% end %>
   <% end %>
 </div>

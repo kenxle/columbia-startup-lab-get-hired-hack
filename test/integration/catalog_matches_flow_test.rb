@@ -26,6 +26,8 @@ class CatalogMatchesFlowTest < ActionDispatch::IntegrationTest
     assert_equal "Acme Fabrication", line.quote.buyer_name
     assert line.quote.sample_data?
     assert_nil line.unit_price
+    assert_includes flash[:notice], "Added lines remain unpriced."
+    refute_includes flash[:notice], "sample data"
 
     post catalog_matches_path, params: { client_name: "Acme Fabrication", description: "304 SS sheet 16ga 4x8 x10" }
     follow_redirect!
@@ -126,7 +128,7 @@ class CatalogMatchesFlowTest < ActionDispatch::IntegrationTest
     refute request_record.reload.approved?
   end
 
-  test "same buyer normalized case is accepted and existing quote becomes sample labeled" do
+  test "same buyer normalized case is accepted and provenance stays internal" do
     request_record = exact_request
     quote = Quote.create!(workspace_token: request_record.client.workspace_token, buyer_name: " acme   FABRICATION ", title: "Actual RFQ", source_text: "Request", sample_data: false)
     approve(request_record, quote_id: quote.id)
@@ -135,7 +137,7 @@ class CatalogMatchesFlowTest < ActionDispatch::IntegrationTest
     assert_equal 1, quote.quote_lines.count
     assert_nil quote.quote_lines.first.unit_price
     follow_redirect!
-    assert_select ".sample-banner", count: 1
+    assert_select ".sample-banner", count: 0
   end
 
   test "invalid approval rolls back the new RFQ and all side effects" do
