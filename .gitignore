@@ -1,0 +1,23 @@
+# Agent identity and scratch files (per machine, never committed)
+.agent-owner
+.claude-commit*
+.codex-commit*
+.claude/settings.local.json
+
+# Secrets (this repo is public)
+.env
+.env.*
+!.env.example
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+.obsidian/
+
+# Dependencies and builds
+node_modules/
+__pycache__/
+.venv/
+dist/
+build/
