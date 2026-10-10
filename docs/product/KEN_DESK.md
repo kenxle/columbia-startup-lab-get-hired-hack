@@ -8,7 +8,6 @@
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **2. Who owns the mail connection, and which inbox?** Nobody owns it yet. **Claude recommends** a simulated mailbox inside the app for the demo: a seeded RFQ email comes in, and "sent" emails show in an outbox the buyer can click. It can't fail on stage, and it shows the same flow. A real inbox (Gmail or SMTP) is a stretch. Hirsh is the natural owner, since the outbox sits in the app. *Waiting: Hirsh (board, 12:59).*
 - [ ] **3. W3: does a buyer's answer rerun only the answered lines on its own?** **Claude recommends yes,** with the rep still approving the final quote. *Waiting: Hirsh, Yuval (board, 12:46 and 12:59).*
 - [ ] **4. The confidence gate for auto-sending questions.** Hirsh proposed: send on its own only when every choice is tied to catalog or spec evidence, there is no unresolved conflict outside the question, and the buyer can always write their own answer. Otherwise the rep reviews it. **Claude recommends accepting it as written.** *Waiting: Hirsh (board, 12:46).*
 - [ ] **5. Who builds which pages.** Hirsh heard you were building pages and asked for a split. **Claude recommends:** you own the design direction (the brand position doc, coming soon, uses RudCo's palette), and Hirsh owns all page code. You don't edit `app/views/`. *Waiting: Hirsh (board, 12:56).*
@@ -27,7 +26,7 @@ Each item says who is waiting and what Claude recommends.
 | Quote app | Hirsh | Review, edit, approve, export, filters, and buyer-question draft work. 125 tests pass (board, 13:00). |
 | RFQ processing | Yuval | Result format and three fixtures done. Parser and rules in progress. |
 | Matching and pricing | Tisch | 200-item aviation catalog done. Matcher and pricer not in the repo yet. |
-| Email in and out | Nobody yet | See item 2. |
+| Email in and out | Hirsh (proposed) | letter_opener first, then a real email account. |
 | Product docs | Ken | Brief, workflow, architecture, research, profile, and competitive analysis all shipped. |
 | Demo video | Ken | Not started. Yuval's plan has it recorded between 3:45 and 4:30. |
 
@@ -38,6 +37,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Mail: start with **letter_opener** (Rails' local email preview), then move to a real email account. Ken: "it's not that hard." Posted to Hirsh.
 
 - Hirsh's next build: **the final email and PDF** (step 8), because it is the core demo. Buyer-answer buttons and re-quote redlines are good extra work after it. Posted to Hirsh.
 

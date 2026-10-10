@@ -110,7 +110,8 @@ Solid lines exist or are being built. Dotted lines are planned.
 - **Outbound questions:** send automatically when the agent is confident about the choices, otherwise after rep review ([WORKFLOW.md](product/WORKFLOW.md), W1).
 - **Buyer response:** each choice is a button in the email. A click updates the RFQ with no login (W2). Reply-by-number is the fallback.
 - **Final quote:** sent on the buyer's original thread after the rep approves.
-- **Owner:** Hirsh owns the question and response UI. The mail adapter itself has no owner yet.
+- **How (Ken, 2026-10-10):** start with letter_opener, which opens each sent email in the browser in development. Then connect a real email account for inbound RFQs and outbound replies.
+- **Owner:** Hirsh owns the question and response UI, and is the proposed owner of the mail connection.
 
 ## Contracts
 
@@ -147,7 +148,7 @@ These come from the [product brief](product/PRD.md) commitments.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
 - **The confidence gate for auto-sending questions.** Hirsh proposed: every choice tied to catalog or spec evidence, no unresolved conflict outside the question, and a free-text fallback. Otherwise the rep reviews. Owner: Ken to confirm.
 - **W3: does a buyer's answer rerun only the answered lines?** Owner: Ken.
-- **Mail adapter.** No owner yet.
+- **Mail adapter.** letter_opener first, then a real email account. Proposed owner: Hirsh.
 - **Anthropic API key.** Specs run on recorded responses until one is in `.env`. Owner: Yuval.
 - **Re-quote on change** (bulletin, 12:42). Detection would sit in RFQ processing after the core pipeline works. No owner yet.
 
