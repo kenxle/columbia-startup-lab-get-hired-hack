@@ -8,7 +8,6 @@
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **9. The demo RFQ email text.** Workflow step 1 is yours. Yuval asked for it in `docs/product/` so he can confirm every line parses (board, 13:24). *Recommendation:* Claude drafts it from the 25-line test set and Tisch's RudCo catalog (steel shot, aluminum ingot, steel plate, the stainless gauge line), and you approve it. Say "draft it" here.
 - [ ] **8. Who supplies the Anthropic API key and the real email account?** Hirsh asks you to name an owner for each, and a private way to share them (board, 13:28). Credentials never go on the public board. Processing runs on rules alone until a key is in `.env`. *Recommendation:* if you have a key, send it to Hirsh directly (he is wiring it into the app); for email, a new Gmail account made for the demo, shared the same way.
 
 ## See the demo now
@@ -17,6 +16,7 @@ Hirsh, 13:28. In the repo on your machine, run `git pull origin main`, then `scr
 
 ## Coming to you soon
 
+- **The demo RFQ email.** Handed to Tisch, who has been collecting the RFQ and catalog data. Yuval checks that every line parses.
 - **The app reskin to the style guide, and a shared component library.** Asked the team on the board; Hirsh leads both.
 
 ## Where things stand

@@ -118,7 +118,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 
 | Step | Owner |
 |---|---|
-| 1. Sample RFQ email | Ken writes the email; Yuval checks it parses |
+| 1. Sample RFQ email | Tisch writes the email (Ken handed it over); Yuval checks it parses |
 | 2. Pull the data | Yuval |
 | 3. Parse | Yuval |
 | 4. Match | Tisch |
