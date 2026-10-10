@@ -111,3 +111,21 @@ class CatalogMatch::ClientMemoryDemoTermsTest < ActiveSupport::TestCase
     assert_empty @acme.client_terms.where(term: %w[zz qq yy])
   end
 end
+
+class CatalogMatch::ClientMemoryConfirmedWordingTest < ActiveSupport::TestCase
+  test "a confirmed meaning of the buyer's exact words resolves the gauge trap next time" do
+    client = Client.create!(name: "Northline Fabrication", workspace_token: "t" * 43)
+    before = CatalogMatch::Matcher.call("Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets", client: client)
+    assert_equal "candidates", before.outcome
+
+    CatalogMatch::ClientMemory.new(client).teach!(term: "0.060 in", fields: { "gauge" => "16", "thickness" => "0.0625" },
+                                                  confirmed_on: "RFQ-0001")
+    after = CatalogMatch::Matcher.call("Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets", client: client)
+    assert_equal "match", after.outcome
+    assert_equal "RC-SS304-SHT-16GA-48X96-2B", after.best.item["pn"]
+    assert_match(/confirmed on RFQ-0001/, after.reading.fields["thickness"]["explanation"])
+
+    other_words = CatalogMatch::Matcher.call("Stainless 304, 0.125 in, 48 x 96, 2B", client: client)
+    assert_equal 0.125, other_words.reading["thickness"], "a different thickness the buyer wrote is never replaced"
+  end
+end
