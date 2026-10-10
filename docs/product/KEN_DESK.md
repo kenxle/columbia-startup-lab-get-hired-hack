@@ -45,6 +45,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 
 Newest first.
 
+- Brand position and style guide approved, posted on the board and in WhatsApp. AGENTS.md now links every ongoing doc.
+
 - W4 answered by Tisch: metals first, bolts second. The demo uses RudCo's own catalog rows plus sample metals.
 - Style guide: no pure white. Off-white page, cards and stripes, all measured above 4.5:1.
 

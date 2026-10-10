@@ -1,6 +1,6 @@
 # Style Guide: RudCo Quote Desk
 
-**Status:** Draft for Ken's review, 2026-10-10. This is the design direction, built from RudCo's site and our research. Ken owns it.
+**Status:** Approved by Ken, 2026-10-10. This is the design direction, built from RudCo's site and our research. Ken owns it.
 
 **What this is:** how Quote Desk looks: colors, status colors, type, buttons, layout and logo use. How we talk (voice, words, taglines, microcopy) lives in the [brand position](BRAND_POSITION.md).
 

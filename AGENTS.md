@@ -98,7 +98,9 @@ Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog 
 
 ## Project overview
 
-We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing). Then read the [demo workflow](docs/product/WORKFLOW.md): the eight steps from RFQ email to sent quote, and who owns each.
+We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing). Then read the [demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, and who owns each.
+
+**Words and look.** Every word a user or judge sees follows the [brand position](docs/product/BRAND_POSITION.md): screens, emails, the PDF, the Devpost page, slides. Everything visual follows the [style guide](docs/product/STYLE_GUIDE.md): colors, type, buttons, layout, logo. Both are approved. Build pages from the shared component library so the UI stays consistent.
 
 ### Documentation map
 
@@ -110,8 +112,10 @@ Read what your work touches. Each link says what the document is for.
 **Product (Ken)**
 - [Product brief](docs/product/PRD.md): what we build, for whom, and the commitments. Read first.
 - [Demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, what the rep sees, owners, and the video order.
-- [Brand position](docs/product/BRAND_POSITION.md): how we talk: voice, words to use and avoid, taglines, screen text, honesty guardrails.
-- [Style guide](docs/product/STYLE_GUIDE.md): how Quote Desk looks: RudCo palette, status colors, type, buttons, layout, logo use, and the token changes for `application.css`. Anyone touching page styles reads it.
+- [Brand position](docs/product/BRAND_POSITION.md): **approved.** The language to use everywhere: voice, words to use and avoid, taglines, screen text, honesty guardrails.
+- [Style guide](docs/product/STYLE_GUIDE.md): **approved.** How everything looks: RudCo palette, status colors, type, buttons, layout, logo use. Use it for every page, email, PDF and marketing piece.
+- [Ken's Desk](docs/product/KEN_DESK.md): Ken's working page: open decisions, what is coming to him, and where each area stands.
+- [Name workshop](docs/product/NAME_WORKSHOP.md): how the name RudCo Quote Desk was chosen.
 
 **Research (Ken)**
 - [Research report: what matters in RFQ to quote](docs/research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md): the problems, value props, and the angle we build (a quote that shows its work). [PDF](docs/research/20261010.01_rfq_sharper_angle/rfq_research_report.pdf).
@@ -121,11 +125,18 @@ Read what your work touches. Each link says what the document is for.
 - [RudCo company profile](docs/research/20261010.02_rudco_profile/rudco_profile.md): who RudCo is and what matters to them.
 - [RudCo competitive analysis](docs/research/20261010.03_rudco_competitive_analysis/competitive_analysis.md): what competitors offer that RudCo doesn't, and where the demo can put RudCo ahead.
 
+**RFQ processing (Yuval)**
+- [Plan](docs/rfq_processing/PLAN.md): the processing lane's plan and open questions.
+- [Result format](docs/rfq_processing/RESULT-FORMAT.md): the schema-1 hash processing hands to the app.
+- [Test results](docs/rfq_processing/TEST-RESULTS.md): how processing reads each line of the 25-line test set. Generated; do not edit by hand.
+- [Handoff](docs/rfq_processing/HANDOFF.md): starting notes for the next session on this lane.
+
 **Engineering (Hirsh)**
 - [Development baseline](docs/engineering/BASELINE.md): setup, run, and check commands.
 - [Frontend contract](docs/engineering/FRONTEND_CONTRACT.md): routes, models, and the processing-result shape.
 - [UI/UX approach](docs/engineering/UI_UX_APPROACH.md) and [design skills](docs/engineering/DESIGN_SKILLS.md).
 - [Quote workspace diagram](docs/diagrams/quote-workspace.md).
+- [Repository review, 2026-10-10](docs/engineering/REVIEW-2026-10-10.md): findings from the first code and docs review.
 
 **Catalog and pricing (Tisch)**
 - [Catalog and pricing method](docs/data/CATALOG_PRICING.md): how items and benchmarks are admitted.
