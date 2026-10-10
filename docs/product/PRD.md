@@ -40,6 +40,8 @@ When a line is unclear, the agent does not guess. It writes the buyer a short, s
 
 **The quoting rep at an industrial supplier like RudCo.** RudCo supplies metals, abrasives, and aggregates to industrial buyers ([Columbia startup directory](https://entrepreneurship.columbia.edu/?p=81629)). The rep gets RFQs all day from buyers who each write the same item their own way. The rep's job is to send back an accurate, competitive quote fast, before a competitor does.
 
+RudCo's founder puts the rep's role this way: people stay central, and technology gives them "better information for the conversation" (founder interview, via the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)). Our framing for the pitch: **the agent prepares the conversation, and the rep has it.**
+
 **The buyer** is the second user. They see the finished quote and any clarifying questions. They never see the agent's working.
 
 ## The problem
@@ -94,8 +96,8 @@ These come from RudCo's challenge, in order.
 
 1. **Read each line into a standard spec.** Material, grade, dimensions, quantity, and standard (such as ASTM).
 2. **Match each line to the supplier catalog.** Find the item RudCo actually stocks, or say there is no match.
-3. **Price each line against market benchmarks.** Then explain, in a sentence, why the price is competitive.
-4. **Flag compliance requirements.** Mill test reports, country of origin, and spec certifications, whether the buyer asked for them outright or the spec implies them.
+3. **Price each line against market benchmarks.** Then explain, in a sentence, why the price is competitive. Each line also carries a lead time, because buyers' RFQs ask for a delivery date and RudCo promises 24 to 48 hour shipping on stocked lines (per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
+4. **Flag compliance requirements.** Mill test reports, certificates of analysis, country of origin, DFARS, REACH and RoHS, and spec certifications, whether the buyer asked for them outright or the spec implies them. RudCo already promises customers this paperwork ("PO→COA/MTR" and "DFARS/REACH/RoHS flags", per the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)).
 5. **Ask instead of guess.** Send any unclear line back to the buyer with one clarifying question.
 
 **Stretch, if we get there:** suggest the margin on each line, not only the benchmark price. The rep still owns the final number.
@@ -166,7 +168,7 @@ These hold for every part of the build.
 
 The job has one test, and each thing it does has one, run against our test RFQs.
 
-- **The job.** On our test RFQs, the rep goes from RFQ to a quote they would send in a few clicks, and every line is right.
+- **The job.** On our test RFQs, the rep goes from RFQ to a quote they would send in a few clicks, and every line is right. In RudCo's terms: their quote form promises a reply within 24 hours today, and the agent drafts it in minutes.
 - **Read each line.** On our test RFQs, every line comes out with the right material, grade, size, quantity, and standard.
 - **Match to the catalog.** Each ready line points at the right catalog item. Lines with no fit are marked no match, never forced onto the closest item.
 - **Price and explain.** Each price sits next to its benchmark, and the explanation names that benchmark.

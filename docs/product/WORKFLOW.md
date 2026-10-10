@@ -37,7 +37,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 ### 1. The RFQ email arrives
 
 - **What happens:** a buyer's email lands in RudCo's quote inbox. It has a short body and one or two attachments: a PDF and a spreadsheet.
-- **For the demo:** we write one realistic RFQ email, built from the [test set](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md#test-set). It mixes clean lines, the gauge trap, a contradiction, and a hidden requirement. It is labeled as sample data.
+- **For the demo:** we write one realistic RFQ email, built from the [test set](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md#test-set). It mixes clean lines, the gauge trap, a contradiction, and a hidden requirement. It uses RudCo's own materials (steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate) next to the stainless gauge line, so it looks like their business. The Devpost stainless example is outside RudCo's listed range. It is labeled as sample data.
 - **The rep sees:** a new RFQ in the workspace list, with the buyer's name, the subject, and a count of lines.
 
 ### 2. Pull the data from the email
@@ -67,7 +67,8 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 ### 5. Price, flag compliance, list assumptions
 
 - **Price:** each matched line gets a price beside a named, dated benchmark. The quote says the price tracks published metal cost plus RudCo's margin. It never claims RudCo is cheapest. No benchmark means no price: the line is held.
-- **Compliance flags:** mill test reports, certifications, country of origin, DFARS, Buy America. Each flag highlights the words that triggered it, such as "DFARS", "SA-240", or "domestic". A flag that comes from context, like a defense ship-to, says so.
+- **Lead time:** each line shows when it can ship. Stocked lines use RudCo's 24 to 48 hour promise. Anything else says "to confirm" rather than guessing.
+- **Compliance flags:** mill test reports, certificates of analysis (COA), certifications, country of origin, DFARS, Buy America, REACH, RoHS. Each flag highlights the words that triggered it, such as "DFARS", "SA-240", or "domestic". A flag that comes from context, like a defense ship-to, says so.
 - **Assumptions:** each line lists what it assumed. Examples: finish not stated, dual cert accepted, spec edition.
 
 ### 6. Send clarifying questions to the buyer
@@ -92,7 +93,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 
 - **What happens:** the agent replies on the buyer's original email thread. The reply holds the quote, the compliance notes, and any open questions on held lines.
 - **The rep:** clicks send. The agent drafts; the rep sends.
-- **Format:** a short email body, plus the quote as a PDF and a spreadsheet.
+- **Format:** a short email body, plus the quote as a PDF and a spreadsheet. Each line shows its price, benchmark, lead time, and the paperwork that ships with it.
 
 ### 9. Stretch: learn the buyer
 
@@ -105,13 +106,13 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 
 ## The video demo, in order
 
-1. Show the RFQ email with its attachments.
+1. Show the RFQ email with its attachments. Say the line: RudCo promises a quote within 24 hours; watch the agent draft it in minutes.
 2. Open it in the workspace. The lines appear, each with a status.
 3. Click the stainless line. Show "16 ga" reading as 0.0625 in, with the table named. Point out that RudCo's own challenge treats it as 0.060 in.
 4. Show a hidden-requirement flag, with its trigger word highlighted.
 5. Show a price beside its named, dated benchmark.
 6. Show the question email going out, the buyer clicking a choice, and the line turning ready.
-7. Approve the final quote. Show the reply on the buyer's thread.
+7. Approve the final quote. Show the reply on the buyer's thread. Close on the framing: the agent prepares the conversation, and the rep has it.
 8. Stretch: send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
 
 ## Who owns each step
