@@ -10,7 +10,7 @@ module QuoteWorkspace
     LINE_KEYS = %w[
       position description original_text spec quantity quantity_unit catalog_sku
       unit_price price_source state clarification_question notes evidence
-      compliance benchmark unresolved_fields
+      compliance benchmark unresolved_fields line_id processing
     ].freeze
     TEXT_KEYS = %w[description original_text quantity_unit catalog_sku price_source clarification_question notes].freeze
     DECIMAL_PATTERN = /\A\d+(\.\d+)?\z/
@@ -37,7 +37,13 @@ module QuoteWorkspace
     def call
       raise InvalidResult.new([ "result must be a hash" ]) unless @result.is_a?(Hash)
 
+      check_processing_metadata
+      raise InvalidResult.new(@problems) if @problems.any?
+
       result = @result.deep_stringify_keys
+      unless Quote.valid_processing_metadata?(result["revision"], revision: true)
+        @problems << "revision must be bounded JSON with a nonblank revision id"
+      end
       @problems << "schema_version must be #{SCHEMA_VERSION}" unless result["schema_version"] == SCHEMA_VERSION
       @problems << "sample_data must be true or false" unless [ true, false ].include?(result["sample_data"])
 
@@ -46,22 +52,55 @@ module QuoteWorkspace
       if raw_lines.is_a?(Array) && raw_lines.any?
         line_attributes = raw_lines.each_with_index.map { |raw_line, index| build_line_attributes(raw_line, index) }
         check_unique_positions(line_attributes.compact)
+        line_ids = line_attributes.compact.filter_map { |attributes| attributes["line_id"] }
+        @problems << "line_id must be unique within a quote" unless line_ids.uniq.length == line_ids.length
       else
         @problems << "lines must be a non-empty list"
       end
       raise InvalidResult.new(@problems) if @problems.any?
 
-      replace_lines(line_attributes, sample_data: result["sample_data"])
+      replace_lines(line_attributes, sample_data: result["sample_data"], processing_revision: result["revision"])
       @quote
     end
 
     private
 
-    def replace_lines(line_attributes, sample_data:)
+    def check_processing_metadata
+      if @result.keys.map(&:to_s).uniq.length != @result.keys.length
+        @problems << "result keys must be unique after converting to text"
+        return
+      end
+      revision = @result.key?("revision") ? @result["revision"] : @result[:revision]
+      unless Quote.valid_processing_metadata?(revision, revision: true)
+        @problems << "revision must be bounded JSON with a nonblank revision id"
+      end
+      raw_lines = @result["lines"] || @result[:lines]
+      return unless raw_lines.is_a?(Array)
+
+      raw_lines.each_with_index do |line, index|
+        next unless line.is_a?(Hash)
+
+        if line.keys.map(&:to_s).uniq.length != line.keys.length
+          @problems << "line #{index + 1} keys must be unique after converting to text"
+          next
+        end
+
+        processing = line.key?("processing") ? line["processing"] : line[:processing]
+        identifier = line.key?("line_id") ? line["line_id"] : line[:line_id]
+        unless Quote.valid_processing_metadata?(processing)
+          @problems << "line #{index + 1} processing must be bounded JSON"
+        end
+        unless identifier.nil? || Quote.valid_processing_identifier?(identifier)
+          @problems << "line #{index + 1} line_id must be nonblank text of 200 characters or fewer"
+        end
+      end
+    end
+
+    def replace_lines(line_attributes, sample_data:, processing_revision:)
       @quote.with_lock do
         @quote.quote_lines.delete_all
         line_attributes.each { |attributes| @quote.quote_lines.create!(attributes) }
-        @quote.update_columns(sample_data: sample_data)
+        @quote.update_columns(sample_data: sample_data, processing_revision: processing_revision)
         @quote.invalidate_approval!
       end
     rescue ActiveRecord::RecordInvalid => error
@@ -116,6 +155,8 @@ module QuoteWorkspace
       attributes["benchmark"] = clean_benchmark(source["benchmark"], label)
       attributes["unresolved_fields"] = clean_field_list(source["unresolved_fields"], label)
       attributes["edited_fields"] = []
+      attributes["line_id"] = source["line_id"]
+      attributes["processing"] = source["processing"]
 
       check_required_evidence(attributes, label)
       check_state_rules(attributes, label)

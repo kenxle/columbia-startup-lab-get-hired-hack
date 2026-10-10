@@ -1,0 +1,18 @@
+<% held_lines = lines.reject(&:quotable?) %>
+<% other_held_lines = held_lines.reject { |line| line.id == selected_line&.id } %>
+<% next_held = other_held_lines.find { |line| selected_line.nil? || line.position > selected_line.position } || other_held_lines.first %>
+<nav class="review-navigation" aria-label="Quote line review">
+  <div class="review-navigation__filters">
+    <% [["all", "All", lines.length], ["attention", "Attention needed", held_lines.length], ["ready", "Ready", lines.length - held_lines.length]].each do |value, label, count| %>
+      <%= link_to quote_path(quote, status: value, line: selected_line&.id),
+            class: "review-navigation__filter", aria: { current: status == value ? "page" : nil } do %>
+        <span><%= label %></span>
+        <span class="review-navigation__count"><%= count %></span>
+      <% end %>
+    <% end %>
+  </div>
+  <% if next_held %>
+    <%= link_to "Next held line", quote_path(quote, status: "attention", line: next_held.id),
+          class: "review-navigation__next", aria: { label: "Next held line, line #{next_held.position}" } %>
+  <% end %>
+</nav>

@@ -12,7 +12,8 @@ module QuoteWorkspace
     SAMPLE_NOTICE = "SAMPLE DATA: catalog items and prices in this quote are sample values, not live market data.".freeze
     COLUMN_HEADERS = [
       "Line", "Status", "Description", "Material", "Grade", "Form", "Thickness", "Width", "Length",
-      "Standard", "Finish", "Quantity", "Unit", "Catalog SKU", "Unit price (USD)", "Line total (USD)",
+      "Standard", "Finish", "Part number", "Diameter", "Thread", "Grip", "Drilling",
+      "Quantity", "Unit", "Catalog SKU", "Unit price (USD)", "Line total (USD)",
       "Price source", "Benchmark", "Compliance requested", "Question for the buyer"
     ].freeze
 

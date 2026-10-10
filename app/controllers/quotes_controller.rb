@@ -36,8 +36,15 @@ class QuotesController < ApplicationController
   end
 
   def show
+    @return_to = params[:return_to] == "buyer_questions" ? "buyer_questions" : nil
     @lines = @quote.quote_lines.to_a
-    @selected_line = @lines.find { |line| line.id.to_s == params[:line].to_s } || @lines.first
+    @status = %w[all attention ready].include?(params[:status]) ? params[:status] : "all"
+    @visible_lines = case @status
+    when "attention" then @lines.reject(&:quotable?)
+    when "ready" then @lines.select(&:quotable?)
+    else @lines
+    end
+    @selected_line = @visible_lines.find { |line| line.id.to_s == params[:line].to_s } || @visible_lines.first
   end
 
   def approve

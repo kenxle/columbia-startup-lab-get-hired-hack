@@ -28,6 +28,7 @@ flowchart TD
         INTAKE["Intake: paste or upload"]
         APPLY["ApplyResult: validate and save atomically"]
         REVIEW["Review screen: RFQ beside quote"]
+        QUESTIONS["Buyer-question preview and text draft"]
         APPROVE["Approve"]
         EXPORT["CSV export"]
     end
@@ -52,6 +53,7 @@ flowchart TD
     MATCHER --> PRICER --> READY
     READY --> CLARIFY --> ASSEMBLE --> APPLY
     APPLY --> REVIEW --> APPROVE --> EXPORT
+    REVIEW --> QUESTIONS
     CLARIFY -.-> OUT
     CLICK -.-> PARSE
     APPROVE -.-> OUT
@@ -63,15 +65,17 @@ Solid lines exist or are being built. Dotted lines are planned.
 
 ### Quote app (Hirsh)
 
-- **Where:** repo root. `app/controllers/quotes_controller.rb`, `quote_lines_controller.rb`; `app/models/quote.rb`, `quote_line.rb`; `app/services/quote_workspace/` (`apply_result.rb`, `demo.rb`, `csv_export.rb`, `session_scope.rb`).
+- **Where:** repo root. `app/controllers/quotes_controller.rb`, `quote_lines_controller.rb`, `buyer_questions_controller.rb`; `app/models/quote.rb`, `quote_line.rb`; `app/services/quote_workspace/` (`apply_result.rb`, `demo.rb`, `csv_export.rb`, `buyer_question_draft.rb`, `session_scope.rb`). Quote and question views live in `app/views/quotes/` and `app/views/buyer_questions/`.
 - **Stack:** Ruby 3.4.11, Rails 8.1.4, SQLite. Setup in [BASELINE.md](engineering/BASELINE.md).
-- **What works today:** intake by paste or upload, a labeled sample quote, the review screen, line edits, approval, and CSV export. Hirsh reports 81 tests passing (bulletin, 12:44).
+- **What works today:** intake by paste or upload, a labeled sample quote, source-backed review, attention/ready filters, held-line navigation, line edits, approval, and CSV export. Buyer questions consolidate into a labeled draft with edit links and plain-text download; every held line needs a question before download. Hardware fields retain evidence, appear on relevant lines, and export under matching column headers.
 - **Key rules:**
   - Workspaces are scoped to a browser session. This is not real authentication.
   - Uploads stay "awaiting processing" until a valid result arrives. Nothing is invented.
   - Any edit clears approval. A stale review cannot approve newer content (`Quote#review_revision`).
   - Held lines never count toward the subtotal. Sample data is labeled SAMPLE.
-- **In progress (bulletin, 12:49):** held-line navigation, and a buyer-question preview and draft (`BuyerQuestionsController`, `QuoteWorkspace::BuyerQuestionDraft`).
+- **Processing integration:** stores optional `revision` as `Quote#processing_revision`, plus each line's `line_id` and `processing` JSON. Existing schema-version-1 payloads still work. Metadata is validated and stored atomically with the result; it never grants readiness or approval.
+- **Checked:** 125 Rails tests / 918 assertions and 12 PDF utility specs pass. Opus 5.5 reviewed fixed UI and metadata snapshots; findings were fixed. Desktop/mobile review navigation, question-edit return and actual draft download were verified in the browser.
+- **Remaining gaps:** real parser invocation, result `source`/`warnings` presentation, email transport, buyer-choice response endpoints and re-quote history/redlines. Preview/download are read-only and never report a sent message. Stored choice/revision metadata prepares replies but does not implement them.
 
 ### RFQ processing (Yuval)
 
@@ -110,13 +114,13 @@ Solid lines exist or are being built. Dotted lines are planned.
 | Result hash (`schema_version: 1`) | RFQ processing → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md), [FRONTEND_CONTRACT.md](engineering/FRONTEND_CONTRACT.md) | Draft 1, three fixtures pass |
 | `ApplyResult.call(quote:, result:)` | RFQ processing → app | `app/services/quote_workspace/apply_result.rb` | Built |
 | Matcher input and output | RFQ processing ↔ Tisch | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Agreed in principle |
-| Stable `line_id` and `revision.id` | Processing → app → email | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | In the hash. The app does not store them yet |
-| Question choice IDs | Processing → email → app | Not written | Open |
+| Stable `line_id` and `revision.id` | Processing → app → email | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored by the app. Reply validation and history still pending |
+| Question choice IDs | Processing → email → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored in `processing.question_choices`; response handler must bind choices to the originating revision |
 
 ## Data model
 
-- **`Quote`:** title, buyer name, source text and file, session token, sample flag, approval time, review revision. Has many ordered `QuoteLine`s.
-- **`QuoteLine`:** original text, spec (JSON), quantity and unit, catalog SKU, unit price, price source, state (`ready`, `needs_buyer`, `no_match`), clarification question, notes, evidence (JSON, per field), compliance (JSON), benchmark (JSON), unresolved and edited fields.
+- **`Quote`:** title, buyer name, source text and file, session token, sample flag, approval time, review revision, optional processing revision (JSON). Has many ordered `QuoteLine`s.
+- **`QuoteLine`:** original text, metals/hardware spec (JSON), quantity and unit, catalog SKU, unit price, price source, state (`ready`, `needs_buyer`, `no_match`), clarification question, notes, evidence (JSON, per field), compliance (JSON), benchmark (JSON), unresolved and edited fields, optional `line_id` and `processing` JSON.
 - Full field list in the [frontend contract](engineering/FRONTEND_CONTRACT.md).
 
 ## Trust rules the architecture enforces
@@ -132,7 +136,7 @@ These come from the [product brief](product/PRD.md) commitments.
 ## Open questions and known gaps
 
 - **Which catalog the demo uses (W4).** The only catalog is aviation bolts. Metals lines will land as No match unless Tisch adds metal items. Owner: Tisch.
-- **The app drops data the processing hash carries.** Hardware spec keys, `processing`, `line_id`, and `revision` are discarded today (Yuval, PLAN.md). Owner: Hirsh.
+- **Processing data still awaiting presentation.** Hardware spec keys, `processing`, `line_id`, and `revision` now persist. Top-level extraction `source`/`warnings` are not yet stored or shown. Owner: Hirsh, coordinated with Yuval.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
 - **The confidence gate for auto-sending questions.** Hirsh proposed: every choice tied to catalog or spec evidence, no unresolved conflict outside the question, and a free-text fallback. Otherwise the rep reviews. Owner: Ken to confirm.
 - **W3: does a buyer's answer rerun only the answered lines?** Owner: Ken.

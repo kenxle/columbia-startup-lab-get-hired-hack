@@ -1,6 +1,7 @@
 <% if lines.blank? %>
   <div class="empty-state empty-state--inline">
-    <p class="empty-state__body">No lines found.</p>
+    <p class="empty-state__body">No lines in this view.</p>
+    <%= link_to "Show all lines", quote_path(quote, status: "all") %>
   </div>
 <% else %>
   <div class="table-wrap">
@@ -22,7 +23,7 @@
           <tr class="<%= class_names('is-selected': selected, 'is-held': held_line?(line)) %>">
             <td class="num mono"><%= line.position %></td>
             <th scope="row" class="lines-table__item">
-              <%= link_to quote_path(quote, line: line.id), class: "row-link",
+              <%= link_to quote_path(quote, line: line.id, status: local_assigns.fetch(:status, "all")), class: "row-link",
                     aria: { current: selected ? "true" : nil } do %>
                 <%= line.display_description.presence || "Line #{line.position}" %>
               <% end %>

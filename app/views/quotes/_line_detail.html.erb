@@ -54,6 +54,10 @@
   <% end %>
 
   <%= form_with model: line, scope: :quote_line, url: quote_quote_line_path(quote, line), method: :patch, class: "line-form" do |form| %>
+    <%= hidden_field_tag :status, @status %>
+    <% if @return_to == "buyer_questions" %>
+      <%= hidden_field_tag :return_to, "buyer_questions" %>
+    <% end %>
     <h3 class="section-title">Spec and source</h3>
     <p class="section-hint">Open a field to see the words it was read from and to edit it.</p>
 
@@ -74,7 +78,7 @@
         </div>
       </details>
 
-      <% QuotesHelper::SPEC_FIELDS.each do |key| %>
+      <% spec_fields_for(line).each do |key| %>
         <% value = spec_value(line, key) %>
         <% evidence = evidence_for(line, key) %>
         <% unresolved = unresolved_field?(line, key) %>

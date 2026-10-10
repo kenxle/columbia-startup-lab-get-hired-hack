@@ -1,0 +1,71 @@
+<% content_for :title, "Buyer questions · #{@quote.reference}" %>
+
+<header class="page-header">
+  <div>
+    <p class="eyebrow"><%= @quote.reference %> / Buyer questions</p>
+    <h1 class="page-title">Review buyer questions</h1>
+    <p class="page-lede">One draft with the questions for every held line.</p>
+  </div>
+  <div class="page-actions">
+    <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
+    <% if @draft.ready? %>
+      <%= link_to "Download draft (.txt)", download_quote_buyer_questions_path(@quote), class: "button button--primary" %>
+    <% end %>
+  </div>
+</header>
+
+<section class="buyer-draft" aria-labelledby="buyer-draft-heading">
+  <div class="buyer-draft__status">
+    <span class="buyer-draft__badge">Draft, not sent</span>
+    <p>Email delivery and buyer responses are not connected. Download this draft to use outside the workspace.</p>
+  </div>
+
+  <% if @quote.sample_data? %>
+    <p class="buyer-draft__sample"><%= QuoteWorkspace::BuyerQuestionDraft::SAMPLE_NOTICE %></p>
+  <% end %>
+
+  <% if @draft.held_lines.empty? %>
+    <div class="buyer-draft__empty">
+      <h2 id="buyer-draft-heading">No buyer questions to draft</h2>
+      <p><%= @quote.awaiting_processing? ? "This RFQ is awaiting processing. Questions will appear here when held lines are available." : "There are no held lines in this quote." %></p>
+    </div>
+  <% else %>
+    <% if @draft.missing_question_lines.any? %>
+      <div class="buyer-draft__error" role="alert">
+        <h2>Add the missing questions before downloading</h2>
+        <p>Every held line needs a question. Open each line below to add one.</p>
+        <ul>
+          <% @draft.missing_question_lines.each do |line| %>
+            <li><%= link_to "Add a question for line #{line.position}", quote_path(@quote, line: line.id, return_to: "buyer_questions", anchor: "line-detail") %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="buyer-draft__message">
+      <h2 id="buyer-draft-heading">Question preview</h2>
+      <dl class="buyer-draft__envelope">
+        <dt>Subject</dt><dd><%= @draft.subject %></dd>
+        <% if @quote.buyer_name.present? %>
+          <dt>Buyer</dt><dd><%= @quote.buyer_name %></dd>
+        <% end %>
+      </dl>
+      <p>Please clarify the following lines from your RFQ:</p>
+      <ol class="buyer-draft__questions">
+        <% @draft.held_lines.each do |line| %>
+          <li>
+            <div class="buyer-draft__line-heading">
+              <h3>Line <%= line.position %></h3>
+              <%= link_to "Edit question", quote_path(@quote, line: line.id, return_to: "buyer_questions", anchor: "line-detail"), aria: { label: "Edit question for line #{line.position}" } %>
+            </div>
+            <% if line.clarification_question.present? %>
+              <p class="buyer-draft__question"><%= line.clarification_question %></p>
+            <% else %>
+              <p class="buyer-draft__missing">Question missing. Add a specific question for the buyer.</p>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
+</section>

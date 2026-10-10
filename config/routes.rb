@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get :source
     end
 
+    resource :buyer_questions, only: :show do
+      get :download
+    end
+
     resources :quote_lines, only: :update
   end
 end

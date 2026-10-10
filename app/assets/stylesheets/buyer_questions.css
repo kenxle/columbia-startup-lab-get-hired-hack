@@ -1,0 +1,27 @@
+.buyer-draft { max-width: 960px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.buyer-draft__status { display: flex; align-items: center; gap: 18px; padding: 22px 28px; background: var(--accent-wash); color: var(--ink-soft); }
+.buyer-draft__status p { font-size: 13px; max-width: 570px; }
+.buyer-draft__badge { flex-shrink: 0; border: 1px solid #c0d1fc; padding: 5px 10px; border-radius: 6px; color: var(--accent-strong); font-size: 12px; font-weight: 700; }
+.buyer-draft__sample { padding: 12px 28px; background: var(--held-wash); color: var(--held-ink); font-size: 12px; font-weight: 650; }
+.buyer-draft__message, .buyer-draft__empty { padding: 28px; }
+.buyer-draft h2 { font-size: 18px; }
+.buyer-draft__envelope { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 8px 18px; margin: 20px 0 28px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
+.buyer-draft__envelope dt { color: var(--muted); font-size: 13px; }
+.buyer-draft__envelope dd, .buyer-draft__question { overflow-wrap: anywhere; }
+.buyer-draft__questions { list-style: none; padding: 0; margin-top: 24px; }
+.buyer-draft__questions li { border-top: 1px solid var(--rule); padding: 22px 0; }
+.buyer-draft__questions li:last-child { padding-bottom: 0; }
+.buyer-draft__line-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+.buyer-draft__line-heading h3 { font-size: 14px; }
+.buyer-draft__line-heading a { font-size: 13px; font-weight: 600; }
+.buyer-draft__question { white-space: pre-wrap; color: var(--ink-soft); }
+.buyer-draft__error { margin: 24px 28px 0; padding: 18px; border: 1px solid #ead295; border-radius: 8px; background: var(--held-wash); color: var(--held-ink); }
+.buyer-draft__error h2 { font-size: 16px; }
+.buyer-draft__error p { margin: 6px 0 12px; }
+.buyer-draft__missing { color: var(--held-ink); }
+.buyer-draft__empty p { margin-top: 12px; color: var(--muted); }
+@media (max-width: 640px) {
+  .buyer-draft__status { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .buyer-draft__status, .buyer-draft__sample, .buyer-draft__message, .buyer-draft__empty { padding: 18px; }
+  .buyer-draft__error { margin: 18px 18px 0; }
+}

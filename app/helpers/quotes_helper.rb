@@ -1,5 +1,6 @@
 module QuotesHelper
   SPEC_FIELDS = %w[material grade form thickness width length standard finish].freeze
+  HARDWARE_FIELDS = %w[part_number diameter thread grip drilling].freeze
 
   SPEC_LABELS = {
     "material" => "Material",
@@ -55,6 +56,13 @@ module QuotesHelper
 
   def spec_label(key)
     SPEC_LABELS.fetch(key.to_s) { key.to_s.humanize }
+  end
+
+  def spec_fields_for(line)
+    has_hardware = HARDWARE_FIELDS.any? do |key|
+      spec_value(line, key).present? || evidence_for(line, key).present? || unresolved_field?(line, key)
+    end
+    has_hardware ? SPEC_FIELDS + HARDWARE_FIELDS : SPEC_FIELDS
   end
 
   def spec_value(line, key)

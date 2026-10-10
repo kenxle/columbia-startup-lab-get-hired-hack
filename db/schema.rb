@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_10_170100) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_10_180000) do
   create_table "quote_lines", force: :cascade do |t|
     t.integer "quote_id", null: false
     t.integer "position", null: false
@@ -32,6 +32,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_170100) do
     t.json "edited_fields"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "line_id"
+    t.json "processing"
+    t.index ["quote_id", "line_id"], name: "index_quote_lines_on_quote_id_and_line_id", unique: true
     t.index ["quote_id", "position"], name: "index_quote_lines_on_quote_id_and_position", unique: true
     t.index ["quote_id"], name: "index_quote_lines_on_quote_id"
   end
@@ -47,6 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_170100) do
     t.datetime "approved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "processing_revision"
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 

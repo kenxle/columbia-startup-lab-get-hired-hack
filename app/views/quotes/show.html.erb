@@ -17,6 +17,10 @@
     </p>
   </div>
   <div class="page-actions">
+    <% if @quote.held_count.positive? %>
+      <%= link_to "Review buyer questions (#{@quote.held_count})", quote_buyer_questions_path(@quote),
+            class: "button button--quiet review-questions-link" %>
+    <% end %>
     <%= quote_status_badge(@quote) %>
   </div>
 </header>
@@ -46,7 +50,10 @@
           <p class="empty-state__body">The original RFQ is saved. Quote lines appear here once the reading and matching results are applied. Nothing has been inferred or priced yet.</p>
         </div>
       <% else %>
-        <%= render "quotes/lines_table", quote: @quote, lines: @lines, selected_line: @selected_line %>
+        <%= render "quotes/review_navigation", quote: @quote, lines: @lines,
+              selected_line: @selected_line, status: @status || "all" %>
+        <%= render "quotes/lines_table", quote: @quote, lines: @visible_lines || @lines,
+              selected_line: @selected_line, status: @status || "all" %>
       <% end %>
     </div>
 

@@ -18,6 +18,49 @@ class Quote < ApplicationRecord
   validate :source_present
   validate :source_bytes_within_limit
   validate :original_filename_present_with_file
+  validate :processing_revision_shape
+
+  # Optional provider metadata is inert JSON, bounded before serialization.
+  # The depth and node limits also reject circular Ruby containers.
+  def self.valid_processing_metadata?(value, revision: false)
+    return true if value.nil?
+    return false unless value.is_a?(Hash)
+
+    remaining = 1_000
+    inspect_value = lambda do |entry, depth|
+      remaining -= 1
+      return false if remaining.negative? || depth > 8
+
+      case entry
+      when Hash
+        entry.size <= 1_000 && entry.keys.map(&:to_s).uniq.length == entry.size && entry.all? do |key, child|
+          (key.is_a?(String) || key.is_a?(Symbol)) && key.to_s.bytesize <= 200 &&
+            inspect_value.call(child, depth + 1)
+        end
+      when Array
+        entry.size <= 1_000 && entry.all? { |child| inspect_value.call(child, depth + 1) }
+      when String
+        entry.valid_encoding? && entry.bytesize <= 32_768
+      when Float
+        entry.finite?
+      when Integer, TrueClass, FalseClass, NilClass
+        true
+      else
+        false
+      end
+    end
+    return false unless inspect_value.call(value, 0)
+    return false if JSON.generate(value).bytesize > 32_768
+
+    identifier = value["id"] || value[:id]
+    !revision || valid_processing_identifier?(identifier)
+  rescue JSON::GeneratorError, EncodingError
+    false
+  end
+
+  def self.valid_processing_identifier?(value)
+    value.is_a?(String) && value.valid_encoding? && value.strip.present? && value.length <= 200
+  end
 
   # Strips any directory component and replaces characters outside a
   # conservative set, so a stored name is safe in a download header.
@@ -95,6 +138,12 @@ class Quote < ApplicationRecord
   end
 
   private
+
+  def processing_revision_shape
+    unless self.class.valid_processing_metadata?(processing_revision, revision: true)
+      errors.add(:processing_revision, "must be bounded JSON with a nonblank revision id")
+    end
+  end
 
   def next_review_timestamp
     now = Time.current

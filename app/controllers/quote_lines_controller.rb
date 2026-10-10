@@ -7,12 +7,24 @@ class QuoteLinesController < ApplicationController
   def update
     @quote = workspace_quotes.find(params[:quote_id])
     line = @quote.quote_lines.find(params[:id])
+    @status = %w[all attention ready].include?(params[:status]) ? params[:status] : "all"
+    @return_to = params[:return_to] == "buyer_questions" ? "buyer_questions" : nil
 
     if line.apply_manual_edit(line_edit_attributes)
-      redirect_to quote_path(@quote, line: line.id),
+      destination = if @return_to == "buyer_questions"
+        quote_buyer_questions_path(@quote)
+      else
+        quote_path(@quote, line: line.id, status: (%w[all attention ready].include?(params[:status]) ? @status : nil))
+      end
+      redirect_to destination,
         notice: "Line #{line.position} saved. Approve the quote again before exporting."
     else
       @lines = @quote.quote_lines.reload.to_a
+      @visible_lines = case @status
+      when "attention" then @lines.reject(&:quotable?)
+      when "ready" then @lines.select(&:quotable?)
+      else @lines
+      end
       @selected_line = line
       render "quotes/show", status: 422
     end

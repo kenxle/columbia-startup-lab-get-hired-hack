@@ -6,7 +6,7 @@ class QuoteLine < ApplicationRecord
     "needs_buyer" => "Needs the buyer",
     "no_match" => "No match"
   }.freeze
-  SPEC_KEYS = %w[material grade form thickness width length standard finish].freeze
+  SPEC_KEYS = %w[material grade form thickness width length standard finish part_number diameter thread grip drilling].freeze
   EVIDENCE_KEYS = (SPEC_KEYS + %w[quantity]).freeze
   EVIDENCE_ENTRY_KEYS = %w[text location explanation].freeze
   COMPLIANCE_ENTRY_KEYS = %w[label evidence note].freeze
@@ -29,6 +29,7 @@ class QuoteLine < ApplicationRecord
 
   validates :position, numericality: { only_integer: true, greater_than: 0 }
   validates :position, uniqueness: { scope: :quote_id }
+  validates :line_id, uniqueness: { scope: :quote_id }, allow_nil: true
   validates :state, inclusion: { in: STATES }
   validates :quantity, numericality: { greater_than: 0, less_than: MAXIMUM_DECIMAL }, allow_nil: true
   validates :unit_price, numericality: { greater_than_or_equal_to: 0, less_than: MAXIMUM_DECIMAL }, allow_nil: true
@@ -46,6 +47,7 @@ class QuoteLine < ApplicationRecord
   validate :compliance_shape
   validate :benchmark_shape
   validate :field_lists_shape
+  validate :processing_metadata_shape
 
   def spec_value(spec_key)
     spec.is_a?(Hash) ? spec[spec_key.to_s] : nil
@@ -125,6 +127,16 @@ class QuoteLine < ApplicationRecord
   end
 
   private
+
+  def processing_metadata_shape
+    identifier = line_id_before_type_cast
+    unless identifier.nil? || Quote.valid_processing_identifier?(identifier)
+      errors.add(:line_id, "must be nonblank text of 200 characters or fewer")
+    end
+    unless Quote.valid_processing_metadata?(processing)
+      errors.add(:processing, "must be bounded JSON")
+    end
+  end
 
   def assign_editable_attributes(edit_attributes)
     changed_fields = []
