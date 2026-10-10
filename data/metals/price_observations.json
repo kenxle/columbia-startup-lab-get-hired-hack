@@ -1,0 +1,42 @@
+[
+  {
+    "pn": "RC-SS304-SHT-16GA-48X96-4",
+    "supplier": "Zoro (Zoro Select)",
+    "supplier_sku": "SSH304/063/4-48X96, Zoro # G815771482",
+    "source_url": "https://www.zoro.com/zoro-select-stainless-sheet-ssh3040634-48x96/i/G815771482/",
+    "observed_at": "2026-10-10T19:00:00Z",
+    "observed_by": "Tisch, in the browser (page text saved in the bulletin at 15:03)",
+    "unit_price_usd": 1025.99,
+    "sale_unit": "each",
+    "surcharges": "additional $105.00 delivery surcharge per item; ships in 2 business days",
+    "grade": "304",
+    "finish": "#4",
+    "thickness_in": 0.063,
+    "width_in": 48,
+    "length_in": 96,
+    "standard": "ASTM A240",
+    "certs_included": false,
+    "price_type": "public_advertised_listing",
+    "notes": "Exact spec match except thickness 0.063 in listed against the catalog's 0.0625 in (0.8%). No material certificate included; MTR would be extra."
+  },
+  {
+    "pn": "RC-A36-PLT-500-60X120",
+    "supplier": "MetalsDepot",
+    "supplier_sku": "A36 Steel Plate 1/2 inch, 5 Ft. x 10 Ft.",
+    "source_url": "https://www.metalsdepot.com/steel-products/steel-plate",
+    "observed_at": "2026-10-10T19:10:00Z",
+    "observed_by": "Tisch, in the browser (size selected on the page; price shown after selection)",
+    "unit_price_usd": 2113.0,
+    "sale_unit": "each",
+    "surcharges": "freight not included; IN STOCK, ships in 1 to 5 days",
+    "grade": "A36",
+    "finish": "hot rolled",
+    "thickness_in": 0.5,
+    "width_in": 60,
+    "length_in": 120,
+    "standard": "ASTM A36",
+    "certs_included": null,
+    "price_type": "public_advertised_listing",
+    "notes": "Exact size and thickness. Page lists weight 20.42 lb/sqft (about 1,021 lb per plate), so about $2.07/lb product only."
+  }
+]
