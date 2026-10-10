@@ -111,7 +111,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 4. Show a hidden-requirement flag, with its trigger word highlighted.
 5. Show a price beside its named, dated benchmark.
 6. Show the question email going out, the buyer clicking a choice, and the line turning ready.
-7. Approve the final quote. Show the reply on the buyer's thread. Close on the framing: the agent prepares the conversation, and the rep has it.
+7. Approve the final quote. Show the reply on the buyer's thread. Close on the framing: the agent prepares the conversation, and the rep owns it.
 8. Stretch: send a second RFQ from the same buyer. Show the gauge line resolved from what the agent learned.
 
 ## Who owns each step

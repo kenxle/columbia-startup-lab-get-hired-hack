@@ -42,7 +42,7 @@ When a line is unclear, the agent does not guess. It writes the buyer a short, s
 
 **The quoting rep at an industrial supplier like RudCo.** RudCo supplies metals, abrasives, and aggregates to industrial buyers ([Columbia startup directory](https://entrepreneurship.columbia.edu/?p=81629)). The rep gets RFQs all day from buyers who each write the same item their own way. The rep's job is to send back an accurate, competitive quote fast, before a competitor does.
 
-RudCo's founder puts the rep's role this way: people stay central, and technology gives them "better information for the conversation" (founder interview, via the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)). Our framing for the pitch: **the agent prepares the conversation, and the rep has it.**
+RudCo's founder puts the rep's role this way: people stay central, and technology gives them "better information for the conversation" (founder interview, via the [RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md)). Our framing for the pitch: **the agent prepares the conversation, and the rep owns it.**
 
 **The buyer** is the second user. They see the finished quote and any clarifying questions. They never see the agent's working.
 

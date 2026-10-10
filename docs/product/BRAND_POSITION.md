@@ -4,7 +4,7 @@
 
 **Read with:** [the product brief](PRD.md), [the demo workflow](WORKFLOW.md), [the RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), [the competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md), [the sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md).
 
-**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep has it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon, with sample data.
+**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep owns it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon, with sample data.
 
 ## Needs your call
 
@@ -25,7 +25,7 @@ Each claim we make, and each tagline, maps to one of RudCo's own lines. The anch
 | Every field shows the RFQ words and the rule it came from. | "Supply chains and distribution are really about data and how that data is managed" | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
 | Each line carries price, benchmark, lead time and paperwork, so the buyer can decide on one page. | "A buyer needs to understand pricing, supply, inventory, and transportation well enough to make a sound decision quickly." | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
 | The rep approves and sends every quote. The buyer hears from a person. | "People still want to deal with people, especially when the decision is important" | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
-| Pitch line: the agent prepares the conversation, and the rep has it. Unclear lines become a question to the buyer. | "Technology can handle more of the coordination and give those people better information for the conversation." | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
+| Pitch line: the agent prepares the conversation, and the rep owns it. Unclear lines are automatically resolved with the buyer. | "Technology can handle more of the coordination and give those people better information for the conversation." | [Digital Journal](https://www.digitaljournal.com/article/ai-infrastructure-boom-reshapes-industrial-materials-procurement/) |
 | Every price sits beside a named benchmark with a one-sentence reason. Tagline 1: "Every line shows its work." | "Opacity is a tax on industrial procurement." | [LinkedIn, 2026-04-20](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_opacity-is-a-tax-on-industrial-procurement-activity-7451955371537059840-lsR0) |
 | Every benchmark carries its date. A line with no benchmark is held, not priced. Tagline 3: "A price with its date and its source." | "The market moves every day. The quote in your inbox often doesn't." | [LinkedIn, 2026-05-11](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_have-you-ever-wondered-if-youre-getting-activity-7459610821522833408--F-1) |
 | A messy email in, a quote on RudCo's own lines (steel shot, aluminum ingot, plate) out. | "Industrial materials simplified." | [site code](https://www.rud-co.com/assets/index-B04wKX3n.js) |
@@ -62,7 +62,7 @@ Each sits under "Precision. Transparency. Trust."
 2. **Read right. Priced in the open. Sent by your rep.** (One phrase for each word of "Precision. Transparency. Trust.")
 3. **A price with its date and its source.** (Answers "The market moves every day. The quote in your inbox often doesn't.")
 
-**Pitch line** (from the [brief](PRD.md#who-it-is-for)): "The agent prepares the conversation, and the rep has it." It restates the founder's "better information for the conversation" in our terms. Use it to close the video, as [WORKFLOW](WORKFLOW.md#the-video-demo-in-order) says.
+**Pitch line** (from the [brief](PRD.md#who-it-is-for)): "The agent prepares the conversation, and the rep owns it." It restates the founder's "better information for the conversation" in our terms. Use it to close the video, as [WORKFLOW](WORKFLOW.md#the-video-demo-in-order) says.
 
 ### Words to use and avoid
 
