@@ -11,7 +11,8 @@
 # pipeline picks it (NICRRON_API_KEY, or ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN, with
 # RFQ_LLM_PROVIDER to force one). This script reads no .env file; set the variables
 # in the shell. Exit 2 when no key is set; with --models, exit 1 when the listing fails,
-# 0 otherwise (listed or not). Nothing is written anywhere.
+# 0 otherwise (listed or not). An inference run exits 1 if no lines
+# were tested or any model response was rejected/failed, even when rules succeed.
 
 require_relative "../lib/rfq_processing"
 require "json"
@@ -54,6 +55,19 @@ class SmokeStubClient
   end
 end
 
+# Observe the parser's actual validated read without a second API call or
+# confusing an unchanged rules reading with a successful provider response.
+module SmokeReadStatus
+  attr_reader :smoke_response_accepted
+
+  def read(text)
+    @smoke_response_accepted = false
+    result = super
+    @smoke_response_accepted = !result.nil?
+    result
+  end
+end
+
 def source_type(path)
   case File.extname(path).downcase
   when ".pdf" then "pdf"
@@ -65,6 +79,8 @@ end
 
 # The item lines the pipeline reads, picked the way Pipeline#process picks them.
 def item_lines(extraction)
+  return RfqProcessing::ItemLines.pdf(extraction) if extraction.source_type == "pdf"
+
   picker = RfqProcessing::Pipeline.new(llm: false)
   extraction.lines.filter_map do |line|
     next if RfqProcessing::Pipeline::HEADER.match?(line.text)
@@ -97,6 +113,8 @@ if parser.nil?
   exit 2
 end
 
+parser.singleton_class.prepend(SmokeReadStatus)
+
 described = parser.describe
 puts "provider: #{described['provider']}  model: #{described['model']}#{ENV['RFQ_LLM_SMOKE_STUB'] == '1' ? '  (stub client, no network)' : ''}"
 
@@ -125,6 +143,7 @@ if models_mode
   else
     puts "configured model #{parser.model} is listed as #{listed.join(', ')}"
   end
+  puts "Model listing only; no inference response was tested."
   exit 0
 end
 
@@ -136,6 +155,8 @@ extraction = RfqProcessing::Extractor.extract(content, type: type, filename: Fil
 extraction.warnings.each { |w| puts "warning: #{w}" }
 lines = item_lines(extraction)
 
+accepted_lines = 0
+failed_lines = 0
 added_lines = 0
 conflict_lines = 0
 lines.each_with_index do |line, i|
@@ -143,6 +164,8 @@ lines.each_with_index do |line, i|
   before = reading.fields.dup
   conflicts_before = reading.conflicts.size
   parser.refine(reading, line.text)
+  accepted = parser.smoke_response_accepted
+  accepted ? accepted_lines += 1 : failed_lines += 1
 
   added = reading.fields.select { |field, value| before[field].nil? && !value.nil? }
   disagreements = reading.conflicts.drop(conflicts_before).select { |c| c["code"] == "llm_disagrees" }
@@ -152,6 +175,9 @@ lines.each_with_index do |line, i|
   puts
   puts "#{i + 1}. [#{line.location}] #{line.text}"
   puts "   rules:        #{show_fields(before)}"
+  status = parser.client.respond_to?(:last_status) ? parser.client.last_status : nil
+  puts "   model response: #{accepted ? 'accepted' : 'FAILED or rejected'}#{status ? " (HTTP #{status})" : ''}"
+
   if added.empty?
     puts "   claude added: (nothing)"
   else
@@ -165,3 +191,10 @@ end
 
 puts
 puts "lines: #{lines.size}  lines where Claude added fields: #{added_lines}  lines with llm_disagrees conflicts: #{conflict_lines}"
+mode = ENV["RFQ_LLM_SMOKE_STUB"] == "1" ? "STUB, no live provider tested" : "provider inference"
+puts "#{mode}: accepted responses #{accepted_lines}; failed/rejected responses #{failed_lines}"
+if lines.empty? || failed_lines.positive? || accepted_lines.zero?
+  puts "FAILED: no complete successful model-response smoke run. Rules output does not establish provider success."
+  exit 1
+end
+puts "PASSED: every tested line returned an accepted model response#{ENV['RFQ_LLM_SMOKE_STUB'] == '1' ? ' from the stub only' : ''}."

@@ -85,6 +85,24 @@ RSpec.describe RfqProcessing::LlmParser do
     end
   end
 
+  [[], "scalar", 42, true, nil, {},
+   { "fields" => [], "evidence" => [], "unclear" => [] },
+   { "fields" => {}, "evidence" => {}, "unclear" => [] },
+   { "fields" => {}, "evidence" => [], "unclear" => "unknown" },
+   { "fields" => { "material" => {} }, "evidence" => [], "unclear" => [] },
+   { "fields" => {}, "evidence" => ["wrong"], "unclear" => [] },
+   { "fields" => {}, "evidence" => [], "unclear" => [{}] }].each do |payload|
+    it "rejects malformed reading shape #{payload.inspect} for either provider" do
+      json = JSON.generate(payload)
+      clients = [StubClient.new(Response.new([TextBlock.new(:text, json)], "claude-opus-5")),
+                 ChatStub.new({ "text" => json, "model" => "anthropic/claude-opus-5" }, nil, "anthropic/claude-opus-5")]
+      clients.each do |client|
+        warning = payload.nil? ? "" : "LlmParser: malformed reading shape; reading dropped\n"
+        expect { expect(parser_for(client).read("steel shot")).to be_nil }.to output(warning).to_stderr
+      end
+    end
+  end
+
   describe "#refine" do
     let(:line) { "Stnless 304 sht 16ga 4x8 qty 5" }
 

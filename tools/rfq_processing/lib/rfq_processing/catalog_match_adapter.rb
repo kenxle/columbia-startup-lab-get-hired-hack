@@ -31,11 +31,16 @@ module RfqProcessing
       @service = service
     end
 
-    def match(line_text:, spec: {}, quantity: nil, quantity_unit: nil)
-      direct = call_contract(line_text, spec, quantity, quantity_unit)
+    def match(line_text:, spec: {}, quantity: nil, quantity_unit: nil, confirmed_terms: [])
+      direct = call_contract(line_text, spec, quantity, quantity_unit, confirmed_terms: confirmed_terms)
       return direct if direct
 
-      result = call_service(line_text, spec, quantity)
+      service_method = method(:call_service)
+      positional = service_method.parameters.count { |kind, _| %i[req opt].include?(kind) }
+      service_args = positional >= 3 || service_method.parameters.any? { |kind, _| kind == :rest } ? [line_text, spec, quantity] : [line_text]
+      service_keywords = {}
+      service_keywords[:confirmed_terms] = confirmed_terms if confirmed_terms.any? && accepts_keyword?(service_method, :confirmed_terms)
+      result = call_service(*service_args, **service_keywords)
       return { "status" => "no_match", "threshold" => THRESHOLD, "best" => nil, "candidates" => [], "total_candidates" => 0, "reason" => "matcher unavailable" } unless result
 
       candidates = Array(result.candidates).map { |c| convert(c) }
@@ -58,11 +63,12 @@ module RfqProcessing
     private
 
     # Tisch's CatalogMatch::Contract speaks this contract directly (13:30): a hash in, a hash out.
-    def call_contract(text, spec, quantity, quantity_unit)
+    def call_contract(text, spec, quantity, quantity_unit, confirmed_terms: [])
       contract = @service.nil? && defined?(::CatalogMatch::Contract) && ::CatalogMatch::Contract
       return nil unless contract
 
       input = { "line_text" => text, "spec" => given_spec(spec), "quantity" => quantity, "quantity_unit" => quantity_unit }
+      input["confirmed_terms"] = confirmed_terms unless confirmed_terms.empty?
       input["client"] = @client.respond_to?(:name) ? @client.name : @client if @client
       out = if @client.respond_to?(:workspace_token)
               contract.call(input, workspace_token: @client.workspace_token)
@@ -142,17 +148,22 @@ module RfqProcessing
       nil
     end
 
-    def call_service(text, spec = {}, quantity = nil)
+    def call_service(text, spec = {}, quantity = nil, confirmed_terms: [])
       service = @service || (defined?(::CatalogMatch::Matcher) && ::CatalogMatch::Matcher)
       return nil unless service
 
       args = { client: @client }
       args[:catalog] = @catalog if @catalog
       args[:given] = given_spec(spec, quantity: quantity) if accepts_given?(service)
+      args[:confirmed_terms] = confirmed_terms if confirmed_terms.any? && accepts_keyword?(service.method(:call), :confirmed_terms)
       service.call(text, **args)
     rescue StandardError => e
       warn "CatalogMatchAdapter: #{e.class}: #{e.message}"
       nil
+    end
+
+    def accepts_keyword?(callable, keyword)
+      callable.parameters.any? { |kind, name| kind == :keyrest || %i[key keyreq].include?(kind) && name == keyword }
     end
 
     # Tisch's Matcher.call takes given:; a stand-in service that does not is called the old way.

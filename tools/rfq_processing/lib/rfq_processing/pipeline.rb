@@ -80,7 +80,12 @@ module RfqProcessing
       reading = RulesParser.parse(line.text, position: position, location: line.location, buyer_terms: buyer_terms, overrides: overrides)
       reading = @llm.refine(reading, line.text) if @llm
       spec = reading.fields.reject { |_, v| v.nil? }
-      match = @matcher.match(line_text: line.text, spec: spec, quantity: reading.fields["quantity"], quantity_unit: reading.fields["quantity_unit"])
+      match_input = { line_text: line.text, spec: spec, quantity: reading.fields["quantity"], quantity_unit: reading.fields["quantity_unit"] }
+      confirmed = confirmed_terms_for(buyer_terms, line.text, reading)
+      if confirmed.any? && @matcher.method(:match).parameters.any? { |kind, name| kind == :keyrest || %i[key keyreq].include?(kind) && name == :confirmed_terms }
+        match_input[:confirmed_terms] = confirmed
+      end
+      match = @matcher.match(**match_input)
       match, rejected = pick_item(match, chosen_item) if chosen_item
       decision = Readiness.decide(reading, match: match, position: position)
       # Recorded after the decision, so the line keeps its state; Answers.apply turns it into a warning.
@@ -91,6 +96,53 @@ module RfqProcessing
       requirement_body = Compliance.requirement_text(extra_text)
       result["processing"]["rfq_body"] = requirement_body unless requirement_body.empty?
       result
+    end
+
+    CONFIRMED_TERM_FIELDS = %w[material grade temper form finish standard quantity_unit gauge thickness].freeze
+
+    # BuyerContext owns persisted workspace/buyer/source-record validation. This
+    # boundary additionally requires that the vetted teaching actually survived
+    # parsing this exact phrase; plain specs and claimed RFQ labels are not proof.
+    def confirmed_terms_for(terms, text, reading)
+      return [] if reading.conflicts.any? || reading.unknowns.any?
+
+      pairs = Array(terms).filter_map do |raw|
+        next unless raw.is_a?(Hash) && raw["source"] == "taught"
+        meaning = raw["meaning"]
+        next unless meaning.is_a?(Hash) && meaning["fields"].is_a?(Hash)
+        next unless meaning["fields"].keys.all? { |field| CONFIRMED_TERM_FIELDS.include?(field) }
+        next if meaning.key?("part_number")
+        provenance = meaning["provenance"] || raw["provenance"]
+        next unless provenance.is_a?(Hash) && provenance["method"] == "explicit_rep_teaching"
+        next unless %w[quote_id quote_line_id].all? { |key| provenance[key].is_a?(Integer) && provenance[key].positive? }
+        next if raw["confirmed_on"].to_s.empty? || provenance["quote_reference"] != raw["confirmed_on"]
+        begin
+          Time.iso8601(provenance["taught_at"].to_s)
+        rescue ArgumentError
+          next
+        end
+        hit = BuyerProfile.apply([raw], text).first
+        next unless hit && hit.fields.any?
+        # Underscores, like letters and digits, remain part of a token.
+        before = hit.match.begin(0).positive? ? text[hit.match.begin(0) - 1] : nil
+        after = text[hit.match.end(0)]
+        next if [before, after].compact.any? { |char| char.match?(/[[:alnum:]_]/) }
+        normalized = Marshal.load(Marshal.dump(raw))
+        normalized["meaning"]["provenance"] = Marshal.load(Marshal.dump(provenance))
+        [normalized, hit]
+      end
+      competing = pairs.flat_map { |_, hit| hit.fields.to_a }.group_by(&:first)
+                       .select { |_, fields| fields.map(&:last).uniq.size > 1 }.keys
+      conflicts = reading.conflicts.flat_map { |conflict| Array(conflict["fields"]) } + reading.unknowns.map { |unknown| unknown["field"] }
+      pairs.filter_map do |term, hit|
+        next if (hit.fields.keys & (competing + conflicts)).any?
+        applied = hit.fields.all? do |field, value|
+          evidence = reading.evidence[field] || {}
+          reading.fields[field] == value && evidence["text"] == hit.match[0] &&
+            evidence["explanation"] == hit.explanation && evidence["location"].to_s.end_with?("chars #{hit.match.begin(0) + 1}-#{hit.match.end(0)}")
+        end
+        term if applied
+      end
     end
 
     REJECTED_PICK = "chosen_item_rejected"

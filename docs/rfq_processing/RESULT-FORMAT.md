@@ -194,6 +194,12 @@ Tisch owns the matcher. RFQ processing calls it once per line and copies its ans
 }
 ```
 
+**Confirmed buyer teaching (optional)**
+
+The agreed in-process matcher interface adds `confirmed_terms: []`; the hash contract carries the same array under `confirmed_terms`. Entries retain `term`, `meaning.fields`, `source: "taught"`, `confirmed_on`, and `meaning.provenance` containing `method: "explicit_rep_teaching"`, `quote_id`, `quote_line_id`, `quote_reference`, and `taught_at`.
+
+The app must validate the persisted source record, same workspace and buyer before passing these terms. A claimed RFQ label is insufficient. Processing forwards only token-bounded phrases actually applied to this reading, with matching field values and source evidence, and no remaining conflicts or unknowns on the line. Top-level validated BuyerContext provenance is copied into `meaning.provenance`. Other `given` values remain fill-only. Older injected matchers without this keyword continue safely without teaching replacement. App forwarding and matcher implementation must both be present before claiming end-to-end teaching.
+
 **Output**
 
 ```json

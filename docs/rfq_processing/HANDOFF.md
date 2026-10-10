@@ -101,9 +101,9 @@ Posting on the board: insert a row right under the header line `|------|------|-
 
 Each worker gets one task, acceptance criteria, owned paths, the starting commit, and the exact rspec command, and returns changed paths and the rspec summary.
 
-## 7. Current handoff and open work (15:11)
+## 7. Current handoff and open work (15:24)
 
-The inherited Claude work is finished and pushed after teammate inspection. No inherited worker file remains uncommitted.
+The inherited Claude work is finished and pushed after teammate inspection. The new confirmed_terms integration and smoke reliability patch are local, tested and published as an exact review artifact in REVIEW-2026-10-10.md, cleared by Hirsh at 15:30 and being published. The separate matcher consumer and PRISM provider hook still require review. Current local files: pipeline.rb, catalog_match_adapter.rb, e2e-teaching-match.rb, llm-smoke, new confirmed_terms_spec.rb and llm_smoke_spec.rb, plus RESULT-FORMAT.md.
 
 | Batch | Published | Review |
 |---|---|---|
@@ -111,10 +111,10 @@ The inherited Claude work is finished and pushed after teammate inspection. No i
 | Provider adapters and sanitized diagnostics | `7e3d2c6` | Hirsh 14:58, disabled app paths |
 | Extraction, compliance, answers, alternates, selection guards and e2e scripts | `e4ec750` | Hirsh 14:58 and final extraction reproduction 15:07 |
 
-All 297 lane specs, 451 Rails tests / 3721 assertions and 12 PDF specs pass. Matcher, answers, email/PDF/CSV and demo-pair end-to-end checks pass. Teaching safety is a separate blocked diagnostic, not a passing check.
+Latest local tree: 332 lane specs, 480 Rails tests / 3967 assertions and 12 PDF specs pass. Matcher, answers, email/PDF/CSV and demo-pair end-to-end checks pass. Teaching safety is a separate blocked diagnostic, not a passing check.
 
-1. Hirsh owns the already-started numeric confirmation fix. Await his exact trusted same-phrase interface before changing our adapter. Generic given values must not override explicit source numbers. Run `e2e-teaching-match.rb`; exit 2 means blocked.
-2. Hirsh tested Nicrron at 15:10: model listing succeeds, inference returns HTTP502 twice, no returned model identity or filled fields. Fallback preserves rules. App activation remains off pending live success and Ken's staged-activation decision. Local credentials are absent.
+1. Hirsh agreed `confirmed_terms: []` at 15:15. Our implementation forwards only applied token-bounded teaching with complete provenance, exact evidence/value agreement and no remaining conflicts/unknowns; nine tests pass. App forwarding and persisted source-line validation are with Hirsh. Matcher/DescriptionReader implementation is with the Ken/Tisch handoff, owner still requested. The real persisted-teaching diagnostic accepts pipeline-to-adapter delivery, then exits 2 at missing app forwarding/matcher support. Hirsh cleared the corrected processing/smoke subset at 15:30 after 108 isolated targeted examples. Matcher consumer implementation is now local under Tisch’s 15:26 handoff accepted by Hirsh at 15:28; the real persisted teaching diagnostic passes fully with it. Publish that separate consumer after its own review.
+2. Hirsh ran the exact eight-line provider smoke at 15:15: every line returned HTTP502 twice, zero fills and no model identity. Our local smoke fix now exits nonzero on failed/rejected/empty/partial inference, labels stub-only runs honestly and uses the bounded PDF selector. Fourteen offline CLI tests pass, including the actual Transnet PDF yielding one item/call rather than 257. Live activation remains off pending a successful inference. Local credentials are absent.
 3. Ken is coordinating the catalog/pricing takeover requested by Hirsh at 15:10. Route metals prices, supplier evidence and sourced lead-time needs to Ken; do not silently edit those domains.
 4. Jev doubtful-compliance diagnostics await usable local key, Ruby client and calibration inputs. `script/load-jev-key` confirmed no accessible local Keychain entry. All deterministic flags must remain intact.
 5. The accepted demo pair works in browser records `/quotes/14` and `/quotes/17`. Buyer-answer transition and taught RFQ wording were verified; safe end-to-end taught matching remains blocked. Unknown lead times stay explicit.
@@ -146,3 +146,7 @@ All 297 lane specs, 451 Rails tests / 3721 assertions and 12 PDF specs pass. Mat
 | 14:08 | Handoff to a new session (Yuval moving to Codex). main at f119852 plus whatever teammates pushed since. Uncommitted worker files in section 7; 202 lane specs green on the tree. Board rows read and answered through 14:04 (Ken's 14:06 ping is for Tisch). Nicrron key not in this checkout. |
 | 13:53 | Session 2 at 77b9980. Gates green at pickup. Hirsh's intake and ApplyResult changes pulled, root bundle installed, test database prepared. Workers started: Nicrron provider, answers e2e plus `revision.llm`. |
 | 13:36 | Session 1 last push: 57a343a (code) and 8593c8b (board). 150 specs green. `answers.rb`, `llm_parser.rb`, `bin/test-set-report`, Excel intake, Tisch contract adapter, production wording, lead time. |
+
+## PRISM assignment, 15:30
+
+Ken assigned PRISM provider tracing to Yuval at 15:28. Hirsh is publishing his completed metadata-only client/job; reuse it. Our worker adds a listener hook to OpenaiCompatibleClient, one event per HTTP inference attempt including failures, with local run/attempt IDs and no prompts/responses/secrets. User is creating the PRISM account and will add project/key to ignored .env. A real ingestion and dashboard screenshot remain pending credentials; no live trace is claimed.

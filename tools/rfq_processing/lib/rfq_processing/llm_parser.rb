@@ -297,10 +297,14 @@ module RfqProcessing
 
     # The parsed JSON in the schema's shape, with only known fields and typed values.
     def normalize(parsed)
-      parsed = {} unless parsed.is_a?(Hash)
-      fields = parsed["fields"].is_a?(Hash) ? parsed["fields"] : {}
-      evidence = parsed["evidence"].is_a?(Array) ? parsed["evidence"].select { |e| e.is_a?(Hash) } : []
-      unclear = parsed["unclear"].is_a?(Array) ? parsed["unclear"] : []
+      unless reading_shape?(parsed)
+        warn "LlmParser: malformed reading shape; reading dropped"
+        return nil
+      end
+
+      fields = parsed["fields"]
+      evidence = parsed["evidence"]
+      unclear = parsed["unclear"]
       {
         "fields" => FIELDS.to_h { |field| [field, coerce(field, fields[field])] },
         "evidence" => evidence.map do |e|
@@ -308,6 +312,20 @@ module RfqProcessing
         end,
         "unclear" => unclear.map(&:to_s)
       }
+    end
+
+    # Missing field values may be normalized to nil, but malformed containers
+    # must never masquerade as a successful, empty provider reading.
+    def reading_shape?(parsed)
+      return false unless parsed.is_a?(Hash) && parsed["fields"].is_a?(Hash) &&
+                          parsed["evidence"].is_a?(Array) && parsed["unclear"].is_a?(Array)
+      return false unless parsed["fields"].values.all? { |value| value.nil? || value.is_a?(String) || value.is_a?(Numeric) }
+      return false unless parsed["unclear"].all? { |note| note.is_a?(String) }
+
+      parsed["evidence"].all? do |entry|
+        entry.is_a?(Hash) && %w[field text note].all? { |key| entry[key].is_a?(String) } &&
+          (entry["confidence"].is_a?(Numeric) || entry["confidence"].is_a?(String))
+      end
     end
 
     def coerce(field, value)
