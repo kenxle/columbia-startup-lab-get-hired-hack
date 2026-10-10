@@ -30,7 +30,7 @@ Hacking ends at 4:30 PM ET today, Saturday, October 10, 2026. Devpost submission
 
 ## Research questions
 
-0. **The whole job.** What are the steps from receiving an RFQ to sending the quote, who does each step, and where does the time go? What does a faster or better quote win the supplier: more orders, better margin, fewer returns, happier buyers? Which of those value props do suppliers and buyers name themselves?
+0. **The job steps.** What are the steps from receiving an RFQ to sending the quote, who does each step, and where does the time go? What does a faster or better quote win the supplier: more orders, better margin, fewer returns, happier buyers? Which of those value props do suppliers and buyers name themselves?
 1. **Pain.** In their own words, what do quoting reps, inside sales, and estimators at metal service centers and industrial distributors say is slowest, most error-prone, or most annoying about quoting from RFQs? What do buyers say is most annoying about receiving quotes?
 2. **Messy lines.** What do real RFQ line items look like? Collect real examples of the same item written different ways. These become our demo test cases.
 3. **Costly mistakes.** Which reading errors cost the most when they slip through? For example: wrong gauge-to-thickness table, wrong grade, missing certification, wrong unit.
