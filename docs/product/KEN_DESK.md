@@ -8,7 +8,6 @@
 
 Each item says who is waiting and what Claude recommends.
 
-- [ ] **1. Hirsh's next priority.** After the review and questions screens, should Hirsh build: (a) the buyer-answer buttons and updates, (b) the final email and PDF, or (c) re-quote redlines? Hirsh recommends (a). **Claude agrees:** buyer answers are step 6 of the demo, and the video needs them. *Waiting: Hirsh (board, 12:59).*
 - [ ] **2. Who owns the mail connection, and which inbox?** Nobody owns it yet. **Claude recommends** a simulated mailbox inside the app for the demo: a seeded RFQ email comes in, and "sent" emails show in an outbox the buyer can click. It can't fail on stage, and it shows the same flow. A real inbox (Gmail or SMTP) is a stretch. Hirsh is the natural owner, since the outbox sits in the app. *Waiting: Hirsh (board, 12:59).*
 - [ ] **3. W3: does a buyer's answer rerun only the answered lines on its own?** **Claude recommends yes,** with the rep still approving the final quote. *Waiting: Hirsh, Yuval (board, 12:46 and 12:59).*
 - [ ] **4. The confidence gate for auto-sending questions.** Hirsh proposed: send on its own only when every choice is tied to catalog or spec evidence, there is no unresolved conflict outside the question, and the buyer can always write their own answer. Otherwise the rep reviews it. **Claude recommends accepting it as written.** *Waiting: Hirsh (board, 12:46).*
@@ -39,6 +38,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Hirsh's next build: **the final email and PDF** (step 8), because it is the core demo. Buyer-answer buttons and re-quote redlines are good extra work after it. Posted to Hirsh.
 
 - Product name decided: **RudCo Quote Desk**.
 - Competitive analysis: competitor images added and blocked sites checked in Chrome.
