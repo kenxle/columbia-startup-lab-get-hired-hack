@@ -1,0 +1,9 @@
+<%# Ken's review rail (LAHE). Development only, and only when this machine sets
+    LAHE_REVIEW and LAHE_TOKEN in .env.development.local, which git ignores. %>
+<% if Rails.env.development? && ENV["LAHE_REVIEW"].present? && ENV["LAHE_TOKEN"].present? %>
+  <script src="http://127.0.0.1:7817/lahe-layer.js"
+          data-lahe-review="<%= ENV["LAHE_REVIEW"] %>"
+          data-lahe-token="<%= ENV["LAHE_TOKEN"] %>"
+          data-lahe-helper="http://127.0.0.1:7817"
+          defer></script>
+<% end %>

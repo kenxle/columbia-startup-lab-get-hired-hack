@@ -41,7 +41,7 @@ From the bulletin board through 13:24. Everyone is busy, and nobody has said the
 
 Every path through the [demo workflow](WORKFLOW.md), with the loops for buyer questions and the rep checkpoints. [Image to share](build_map.png).
 
-**Checked:** 2026-10-10 13:37, against `main` at commit `5cc142b` and the bulletin board. Owners, correct a mark when you land something.
+**Checked:** 2026-10-10 13:37, against `main` at commit `5cc142b` and the bulletin board. Claude updates the marks from the board; owners post progress there.
 
 **Key:**
 - ✅ Built and on `main`.

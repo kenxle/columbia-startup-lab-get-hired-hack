@@ -48,3 +48,8 @@ for sname, s in surfaces.items():
 print()
 # white button text on the action blue stays (it is text, not a surface)
 print(f"button text {hsl_hex(210, 20, 98.5)} on #0063e6: {ratio(hsl_hex(210, 20, 98.5), '#0063e6'):.2f}:1")
+
+# Logo lockup L3 (Ken, 2026-10-10): "QUOTE DESK" label under "RudCo"
+print()
+for label, t, bg in [("label on header", "#0063e6", hsl_hex(40, 20, 96)), ("label on navy sidebar", "#8fb8ff", "#0f1f3d"), ("RudCo on navy sidebar", "#f0f4fc", "#0f1f3d")]:
+    print(f"{label:24s} {t} on {bg}: {ratio(t, bg):.2f}:1")

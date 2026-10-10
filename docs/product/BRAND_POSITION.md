@@ -4,13 +4,7 @@
 
 **Read with:** [the product brief](PRD.md), [the demo workflow](WORKFLOW.md), [the RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), [the competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md), [the sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md).
 
-**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep owns it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon. It is written as if it runs on RudCo's real catalog, inventory and prices.
-
-## Needs your call
-
-Nothing open. The name is decided: **RudCo Quote Desk** (see [Decisions](#decisions)).
-
----
+**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep owns it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). It is written as if it runs on RudCo's real catalog, inventory and prices.
 
 ## Where the product story lives
 
@@ -97,8 +91,6 @@ The look (palette, status colors, type, buttons, layout and logo use) lives in t
 
 ## Honesty guardrails
 
-- **Label it a concept.** Every screen and the video say it is a concept built for RudCo at Get Hired Hack. It is not a shipped RudCo product.
-- **No endorsement.** Never say or imply that RudCo endorses, uses or sells Quote Desk.
 - **No customers.** RudCo names no customer in public ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#business-model-and-customers)). The sample buyer stays fictional (Northline Fabrication, per the [frontend contract](../engineering/FRONTEND_CONTRACT.md#processing-handoff)).
 - **Flags, not certificates.** A compliance flag records what the buyer needs. It does not certify RudCo's material ([frontend contract](../engineering/FRONTEND_CONTRACT.md#model-and-view-interface)).
 - **Quotes stay exact.** Any RudCo line used in the pitch is quoted word for word from its linked page.
@@ -133,19 +125,3 @@ The look (palette, status colors, type, buttons, layout and logo use) lives in t
 - [Get Hired Hack on Devpost](https://get-hired-hack-nyc.devpost.com/)
 - [Precision Steel Services estimator posting](https://jobs.workable.com/jobs/0862cc67-073f-4e64-8eb0-0057c054e3bf.md)
 - [Cassidy](https://www.cassidyai.com/solutions/ai-rfq-data-extraction-agent), [Proton](https://www.proton.ai/order-and-quote-automation), [Central Steel & Wire FAQ](https://centralsteel.com/home/customerservice/faq), [Yarde](https://www.yarde.com/), [N.T. Ruddock](https://www.ntruddock.com/), [Winoa](https://www.winoa.com/)
-
-## Decisions
-
-- **The name is RudCo Quote Desk** (Ken, 2026-10-10). It names the rep's desk, where the agent prepares the quote and the rep has the conversation. It fits the founder's "People still want to deal with people." Ken's rule: this is an internal name for part of RudCo's service, not a standalone product, so other companies using the name does not matter.
-
-Options weighed:
-
-| Option | Why | What the search found |
-|---|---|---|
-| **QuoteTrace** (recommended) | RudCo already sells traceability: documents tied back to the PO, lot and heat number ([site code](https://www.rud-co.com/assets/index-B04wKX3n.js)). The name says the quote is traceable too. A rep can say "run it through QuoteTrace." | No product by that exact name. The closest is QuoTrak, a quoting tool for trade contractors ([Capterra](https://www.capterra.ca/software/1097122/QuoTrak)). Different spelling and market. |
-| **Line Check** | Plain and literal. It names what the rep does: check each line. | No quoting product by that name ([search results](https://www.alcircle.com/blog/rfq-vs-rfp-in-metal-trading-whats-the-difference-and-why-it-matters) were general RFQ articles). Weakness: it sounds like a checker, not a quote tool. |
-| **Quote Desk** | Sounds like a place in the office where quotes get made. Easy to say. | Taken twice: a general quoting platform called QuoteDesk on [G2](https://www.g2.com/categories/cpq?page=16), and a B2B app called "Quote Desk: AI B2B Quotes" on [pickyourapp](https://pickyourapp.com/es/products/quote-desk). |
-| **Open Quote** | Echoes RudCo's line "Opacity is a tax on industrial procurement" ([LinkedIn](https://www.linkedin.com/posts/www%2Erud-co%2Ecom_opacity-is-a-tax-on-industrial-procurement-activity-7451955371537059840-lsR0)). | Taken: OpenQuote is an open-source insurance quoting system ([UNIX forum release note](https://community.unix.com/t/openquote-1-0-released/204959)). Different market, but the same name. |
-| **ClearQuote** | Says "transparent" in one word. | Taken more than once: an automotive repair-estimate company ([CB Insights](https://www.cbinsights.com/company/clear-quote/customers)) and a 2017 trademark for order-entry software ([Justia, PGT Industries](https://trademark.justia.com/owners/pgt-industries-llc-5866381)). Drop it. |
-
-
