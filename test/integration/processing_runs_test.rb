@@ -93,12 +93,12 @@ class ProcessingRunsTest < ActionDispatch::IntegrationTest
   end
 
   test "unsupported source shows failure and a revision guarded retry" do
-    @quote.update!(source_bytes: "private workbook bytes", original_filename: "rfq.xlsx")
+    @quote.update!(source_bytes: "private workbook bytes", original_filename: "rfq.xls")
     perform_enqueued_jobs(only: ProcessRfqJob) { submit_processing }
     assert_equal "failed", latest_run.status
     get quote_path(@quote)
     assert_select ".processing-run__status", text: /Failed/
-    assert_select ".processing-run__error", text: /Save this Excel file as CSV/
+    assert_select ".processing-run__error", text: /Save this older \.xls file as \.xlsx or CSV/
     assert_select '.processing-run__form input[type="submit"][value="Retry processing"]'
     assert_select '.processing-run__form input[name="reviewed_version"][value=?]', @quote.reload.review_revision
     refute_includes response.body, "private workbook bytes"
