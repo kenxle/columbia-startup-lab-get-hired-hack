@@ -186,7 +186,9 @@ module CatalogMatch
       when "material" then material_check(item, field)
       when "grade" then grade_check(item, field)
       when "temper" then temper_check(item, field)
-      when "form" then equal_check(field, "form", item["form"], value == item["form"])
+      # "screw" fits "machine screw"; "nut" fits "plain hex nut".
+      when "form" then equal_check(field, "form", item["form"], value == item["form"] || item["form"].to_s.end_with?(" #{value}"))
+      when "thread" then equal_check(field, "thread", item["thread"], value == item["thread"])
       when "gauge" then gauge_check(item, field)
       when "thickness" then thickness_check(item, field)
       when "width" then plan_dimension_check(item, field, "width")

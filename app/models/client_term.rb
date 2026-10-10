@@ -9,7 +9,12 @@ class ClientTerm < ApplicationRecord
   SOURCES = %w[taught learned].freeze
   TEXT_FIELDS = %w[material grade temper form finish standard quantity_unit].freeze
   NUMBER_FIELDS = %w[gauge thickness].freeze
-  TEACHABLE_FIELDS = (TEXT_FIELDS + NUMBER_FIELDS).freeze
+  # What a rep may teach by typing a word and a meaning (Hirsh's teaching form
+  # keeps numbers out of that path).
+  TEACHABLE_FIELDS = TEXT_FIELDS
+  # What memory can hold: also a confirmed gauge or thickness, recorded with the
+  # RFQ that confirmed it (CatalogMatch::ClientMemory#teach!, buyer answers).
+  STORABLE_FIELDS = (TEXT_FIELDS + NUMBER_FIELDS).freeze
 
   belongs_to :client
 
@@ -21,7 +26,7 @@ class ClientTerm < ApplicationRecord
 
   # Values typed the way the reader uses them: gauge an integer, thickness inches.
   def field_values
-    raw = meaning.is_a?(Hash) ? meaning.fetch("fields", {}).slice(*TEACHABLE_FIELDS) : {}
+    raw = meaning.is_a?(Hash) ? meaning.fetch("fields", {}).slice(*STORABLE_FIELDS) : {}
     raw.to_h { |field, value| [ field, self.class.cast(field, value) ] }.compact
   end
 
@@ -66,7 +71,7 @@ class ClientTerm < ApplicationRecord
       return
     end
     raw = meaning.fetch("fields", {})
-    unknown = raw.keys - TEACHABLE_FIELDS
+    unknown = raw.keys - STORABLE_FIELDS
     errors.add(:meaning, "has fields that cannot be taught: #{unknown.join(', ')}") if unknown.any?
     invalid = raw.slice(*NUMBER_FIELDS).select { |field, value| self.class.cast(field, value).nil? }.keys
     errors.add(:meaning, "needs a positive number for #{invalid.join(', ')}") if invalid.any?

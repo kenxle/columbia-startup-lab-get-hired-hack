@@ -82,6 +82,9 @@ module CatalogMatch
       [ /\br(?:oun)?d\.?\s*bars?\b|\brods?\b|\bround\b/i, "round bar" ],
       [ /\bpipes?\b/i, "pipe" ],
       [ /\bbolts?\b/i, "bolt" ],
+      [ /\b(?:(?:hex\s+)?cap\s+|machine\s+)?screws?\b/i, "screw" ],
+      [ /\bnuts?\b/i, "nut" ],
+      [ /\bwashers?\b/i, "washer" ],
       [ /\bingots?\b|\bt[\s-]?bars?\b|\bpigs?\b/i, "ingot" ],
       [ /\bsows?\b/i, "sow" ],
       [ /\b(?:blast(?:ing)?\s+)?(?:media|abrasives?)\b/i, "abrasive" ]
@@ -137,9 +140,9 @@ module CatalogMatch
       read_standards
       read_tempers
       read_process_and_schedule
+      read_quantity
       read_forms
       read_finishes
-      read_quantity
       read_dimensions
       apply_given_spec
       apply_client_terms
@@ -180,7 +183,8 @@ module CatalogMatch
     end
 
     def read_bolt_specs
-      consume(/\b(10-32|1\/4-28|5\/16-24|3\/8-24|7\/16-20|1\/2-20)\b/) do |match|
+      # Unified thread sizes: 10-32, 1/4-20, 6-32, 1/2-13.
+      consume(%r{(?<![\w./-])((?:\d+/\d+|#?\d{1,2})-\d{2})(?![\w./-])}) do |match|
         set("thread", match[1], match[0], "thread size #{match[1]}")
       end
       consume(/\b(un)?drilled\b/i) do |match|
