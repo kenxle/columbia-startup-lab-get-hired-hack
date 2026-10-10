@@ -72,6 +72,7 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 | Ken | `@Ken` | Product design, user research, product management |
 | Hirsh | `@Hirsh` | Quote application development |
 | Yuval | `@Yuval` | RFQ processing, catalog and benchmark data sourcing |
+| Elad Tisch | `@Elad` | RFQ catalog development, market data collection, and evidence-backed pricing |
 
 ## Core Domains
 
@@ -82,6 +83,17 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Ken | Product (design, research, PM) | What we build and why: the product brief, requirements and priorities, user research notes and interviews, UX flows and screen designs, and the demo story. Lives in `docs/product/`, `docs/research/`, `docs/design/`. Agents: check with @Ken before changing scope, user-facing copy, or the flow of a screen. |
 | Hirsh | Quote application | Upload/pasted-email UI, persistence, catalog storage/import, quote review, deterministic price math, human approval, and export. Agree on exact paths per task. |
 | Yuval | RFQ processing | Document extraction, LLM integration, normalized specs and source evidence, catalog matching, compliance flags, draft questions, and catalog/benchmark data sourcing. Agree on exact paths per task. |
+| Elad Tisch | Catalog and market pricing | Builds structured item lists, collects comparable supplier prices, and develops transparent pricing references. Owns `docs/data/`, `data/aviation/`, and `tools/catalog_research/`. See [catalog and pricing scope](docs/data/CATALOG_PRICING.md). Coordinate with Yuval on data sourcing and RFQ integration, Hirsh on catalog import and pricing math, and Ken on product scope. |
+
+## Catalog and pricing guidance
+
+Elad Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog of clearly specified industrial items, traceable market-price observations, and reproducible price comparisons that a quoting rep can review. Use RFQ (request for quotation) for this work, consistent with the challenge brief.
+
+- Select benchmark items with public prices from at least two independent suppliers for matching material, grade, temper, shape, dimensions, quantity, and sale unit. Verify tolerances, finish, standards, and certification requirements before calling a comparison equivalent.
+- Record supplier, SKU, source URL, observation date, currency, quantity tier, and all known charges. Keep product price and delivered price separate. Mark missing freight, tax, or certification charges as unknown.
+- Normalize units with explicit calculations. Do not silently substitute grades, lengths, pack sizes, or certification levels. Commodity indices provide context, not a finished-item price.
+- Separate observed market prices, constructed sample catalog entries, and suggested quote prices. Public listings do not establish RudCo inventory or acquisition cost. The rep owns the final quote price.
+- Follow [docs/data/CATALOG_PRICING.md](docs/data/CATALOG_PRICING.md) for item admission, benchmark evidence, and pricing methodology.
 
 ## Project overview
 

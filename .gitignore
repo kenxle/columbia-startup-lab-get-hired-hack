@@ -21,3 +21,6 @@ __pycache__/
 .venv/
 dist/
 build/
+
+# Local supplier page snapshots, retained for audit but not republished
+data/aviation/raw/

@@ -1,0 +1,2672 @@
+[
+  {
+    "part_number": "AN3-3",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN3-3A",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN3C-3",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-3A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=15/32; Wicks=3/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-4",
+    "reasons": [
+      "grip unreadable: Spruce=1/8; Wicks=8-jan"
+    ]
+  },
+  {
+    "part_number": "AN3-4A",
+    "reasons": [
+      "grip unreadable: Spruce=1/8; Wicks=8-jan",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-4",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=17/32; Wicks=1/2",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-4A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=17/32; Wicks=1/2",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-5",
+    "reasons": [
+      "grip unreadable: Spruce=1/4; Wicks=4-jan",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-5A",
+    "reasons": [
+      "grip unreadable: Spruce=1/4; Wicks=4-jan",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-5",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=21/32; Wicks=5/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-5A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=21/32; Wicks=5/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-6",
+    "reasons": [
+      "grip unreadable: Spruce=3/8; Wicks=8-mar"
+    ]
+  },
+  {
+    "part_number": "AN3-6A",
+    "reasons": [
+      "grip unreadable: Spruce=3/8; Wicks=8-mar",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-6",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=25/32; Wicks=3/4",
+      "grip conflict: Spruce=3/8; Wicks=5/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-6A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=25/32; Wicks=3/4"
+    ]
+  },
+  {
+    "part_number": "AN3-7",
+    "reasons": [
+      "grip unreadable: Spruce=1/2; Wicks=2-jan",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-7A",
+    "reasons": [
+      "grip unreadable: Spruce=1/2; Wicks=2-jan"
+    ]
+  },
+  {
+    "part_number": "AN3C-7",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-7A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=29/32; Wicks=7/8"
+    ]
+  },
+  {
+    "part_number": "AN3-10",
+    "reasons": [
+      "grip unreadable: Spruce=5/8; Wicks=8-may"
+    ]
+  },
+  {
+    "part_number": "AN3-10A",
+    "reasons": [
+      "grip unreadable: Spruce=5/8; Wicks=8-may"
+    ]
+  },
+  {
+    "part_number": "AN3C-10",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-1/32; Wicks=1"
+    ]
+  },
+  {
+    "part_number": "AN3C-10A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-1/32; Wicks=1"
+    ]
+  },
+  {
+    "part_number": "AN3-11",
+    "reasons": [
+      "grip unreadable: Spruce=3/4; Wicks=4-mar"
+    ]
+  },
+  {
+    "part_number": "AN3-11A",
+    "reasons": [
+      "grip unreadable: Spruce=3/4; Wicks=4-mar"
+    ]
+  },
+  {
+    "part_number": "AN3C-11",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-11A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-5/32; Wicks=1 1/8",
+      "grip conflict: Spruce=3/4; Wicks=5/8"
+    ]
+  },
+  {
+    "part_number": "AN3-12",
+    "reasons": [
+      "length conflict: Spruce=1-9/32; Wicks=1 7/32",
+      "grip unreadable: Spruce=7/8; Wicks=8-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-12A",
+    "reasons": [
+      "length conflict: Spruce=1-9/32; Wicks=1 7/32",
+      "grip unreadable: Spruce=7/8; Wicks=8-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-12",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+    ]
+  },
+  {
+    "part_number": "AN3C-12A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+    ]
+  },
+  {
+    "part_number": "AN3-13",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-13",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-13A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-13/32; Wicks=1 3/8"
+    ]
+  },
+  {
+    "part_number": "AN3-14",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-14A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-14",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-17/32; Wicks=1 1/2",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-14A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+    ]
+  },
+  {
+    "part_number": "AN3C-15",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-21/32; Wicks=1 5/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-15A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+    ]
+  },
+  {
+    "part_number": "AN3-16A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-16A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-25/32; Wicks=1 3/4"
+    ]
+  },
+  {
+    "part_number": "AN3-17",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-17",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-17A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-29/32; Wicks=1 7/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-20",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-20A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-1/32; Wicks=2"
+    ]
+  },
+  {
+    "part_number": "AN3C-21A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-5/32; Wicks=2 1/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-22A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-9/32; Wicks=2 1/4"
+    ]
+  },
+  {
+    "part_number": "AN3C-23A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-13/32; Wicks=2 3/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-24A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-17/32; Wicks=2 1/2"
+    ]
+  },
+  {
+    "part_number": "AN3C-25A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3C-26A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-25/32; Wicks=2 3/4"
+    ]
+  },
+  {
+    "part_number": "AN3-27",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3C-27A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-29/32; Wicks=2 7/8"
+    ]
+  },
+  {
+    "part_number": "AN3C-30A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=3-1/32; Wicks=3"
+    ]
+  },
+  {
+    "part_number": "AN3-35A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN3-42",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-45",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-50A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-51",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-54",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-56",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-56A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-57A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN3-62A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-3",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN4-3A",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN4C-3",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4C-3A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=15/32; Wicks=3/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-4",
+    "reasons": [
+      "grip unreadable: Spruce=1/8; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN4-4A",
+    "reasons": [
+      "grip unreadable: Spruce=1/8; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN4C-4",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4C-4A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=17/32; Wicks=1/2",
+      "grip conflict: Spruce=1/8; Wicks=1/16"
+    ]
+  },
+  {
+    "part_number": "AN4-5",
+    "reasons": [
+      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+    ]
+  },
+  {
+    "part_number": "AN4-5A",
+    "reasons": [
+      "grip unreadable: Spruce=3/16; Wicks=16-mar",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-5",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=21/32; Wicks=5/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-5A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=21/32; Wicks=5/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-6",
+    "reasons": [
+      "grip unreadable: Spruce=5/16; Wicks=16-may",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-6A",
+    "reasons": [
+      "grip unreadable: Spruce=5/16; Wicks=16-may",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-6",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=25/32; Wicks=3/4"
+    ]
+  },
+  {
+    "part_number": "AN4C-6A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-7",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-7A",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul"
+    ]
+  },
+  {
+    "part_number": "AN4C-7",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=29/32; Wicks=7/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-7A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-10",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-10A",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-10",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-1/32; Wicks=1",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-10A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-1/32; Wicks=1"
+    ]
+  },
+  {
+    "part_number": "AN4-11",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN4-11A",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN4C-11",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-11A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-5/32; Wicks=1 1/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-12",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-9/32; Wicks=1 1/4",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-12A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-9/32; Wicks=1 1/4"
+    ]
+  },
+  {
+    "part_number": "AN4-13A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-13",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-13/32; Wicks=1 3/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-13A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-13/32; Wicks=1 3/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-14",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN4-14A",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-14",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+    ]
+  },
+  {
+    "part_number": "AN4C-14A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-17/32; Wicks=1 1/2"
+    ]
+  },
+  {
+    "part_number": "AN4C-15",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-15A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-21/32; Wicks=1 5/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-16A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-25/32; Wicks=1 3/4"
+    ]
+  },
+  {
+    "part_number": "AN4-17A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-17",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4C-17A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-29/32; Wicks=1 7/8"
+    ]
+  },
+  {
+    "part_number": "AN4-20A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-20",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4C-20A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-1/32; Wicks=2"
+    ]
+  },
+  {
+    "part_number": "AN4-21",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-21A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-5/32; Wicks=2 1/8"
+    ]
+  },
+  {
+    "part_number": "AN4-22A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-22A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-9/32; Wicks=2 1/4"
+    ]
+  },
+  {
+    "part_number": "AN4C-23A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-13/32; Wicks=2 3/8"
+    ]
+  },
+  {
+    "part_number": "AN4C-24A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-17/32; Wicks=2 1/2",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-25A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-21/32; Wicks=2 5/8"
+    ]
+  },
+  {
+    "part_number": "AN4-26A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4C-26A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=2-25/32; Wicks=2 3/4"
+    ]
+  },
+  {
+    "part_number": "AN4C-27A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless"
+    ]
+  },
+  {
+    "part_number": "AN4C-30A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=3-1/32; Wicks=3"
+    ]
+  },
+  {
+    "part_number": "AN4-31",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-32A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-35A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-36",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-46A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-47",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-50A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-55",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-57A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-60",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-60A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-61A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN4-62A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-64",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-64A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-66A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN4-72A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-3",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-3A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-4",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN5-4A",
+    "reasons": [
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN5C-4",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-4A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-5",
+    "reasons": [
+      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+    ]
+  },
+  {
+    "part_number": "AN5-5A",
+    "reasons": [
+      "grip unreadable: Spruce=3/16; Wicks=16-mar",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-5",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-5A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=23/32; Wicks=5/8"
+    ]
+  },
+  {
+    "part_number": "AN5-6",
+    "reasons": [
+      "grip unreadable: Spruce=5/16; Wicks=16-may"
+    ]
+  },
+  {
+    "part_number": "AN5-6A",
+    "reasons": [
+      "grip unreadable: Spruce=5/16; Wicks=16-may"
+    ]
+  },
+  {
+    "part_number": "AN5C-6",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-6A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=27/32; Wicks=3/4"
+    ]
+  },
+  {
+    "part_number": "AN5-7",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-7A",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-7",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-7A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=31/32; Wicks=7/8"
+    ]
+  },
+  {
+    "part_number": "AN5-10",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep"
+    ]
+  },
+  {
+    "part_number": "AN5-10A",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep"
+    ]
+  },
+  {
+    "part_number": "AN5C-10A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-3/32; Wicks=1"
+    ]
+  },
+  {
+    "part_number": "AN5-11",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN5-11A",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-11A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-7/32; Wicks=1 1/8"
+    ]
+  },
+  {
+    "part_number": "AN5C-12",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-12A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-11/32; Wicks=1 1/4"
+    ]
+  },
+  {
+    "part_number": "AN5C-13A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-15/32; Wicks=1 3/8"
+    ]
+  },
+  {
+    "part_number": "AN5-14",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN5-14A",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN5C-14A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-19/32; Wicks=1 1/2"
+    ]
+  },
+  {
+    "part_number": "AN5-15A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-15A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-23/32; Wicks=1 5/8"
+    ]
+  },
+  {
+    "part_number": "AN5-16A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-17",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-17A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless",
+      "length conflict: Spruce=1-31/32; Wicks=1 7/8",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-20",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-20A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5C-21A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-23",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-23A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-25A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-26",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-26A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-27",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5C-27A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-31",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-31A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-34",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-34A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-37",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-37A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-41",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-47",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-51",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-52",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-52A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-53",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-53A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-54",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-54A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-55",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-55A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-56A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-57",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-57A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN5-60A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-61A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN5-65A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-4",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-4A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-5",
+    "reasons": [
+      "length conflict: Spruce=23/32; Wicks=45/64",
+      "grip unreadable: Spruce=1/16; Wicks=16-jan",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-5A",
+    "reasons": [
+      "length conflict: Spruce=23/32; Wicks=45/64",
+      "grip unreadable: Spruce=1/16; Wicks=16-jan"
+    ]
+  },
+  {
+    "part_number": "AN6C-5A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-7",
+    "reasons": [
+      "length conflict: Spruce=31/32; Wicks=61/64",
+      "grip unreadable: Spruce=5/16; Wicks=16-may"
+    ]
+  },
+  {
+    "part_number": "AN6-7A",
+    "reasons": [
+      "length conflict: Spruce=31/32; Wicks=61/64",
+      "grip unreadable: Spruce=5/16; Wicks=16-may"
+    ]
+  },
+  {
+    "part_number": "AN6C-7",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6C-7A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-10",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-sep"
+    ]
+  },
+  {
+    "part_number": "AN6-10A",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul"
+    ]
+  },
+  {
+    "part_number": "AN6C-10A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless"
+    ]
+  },
+  {
+    "part_number": "AN6-11",
+    "reasons": [
+      "length conflict: Spruce=1-7/32; Wicks=1 5/64",
+      "grip unreadable: Spruce=9/16; Wicks=16-jul"
+    ]
+  },
+  {
+    "part_number": "AN6-11A",
+    "reasons": [
+      "length conflict: Spruce=1-7/32; Wicks=1 5/64",
+      "grip unreadable: Spruce=9/16; Wicks=16-jul"
+    ]
+  },
+  {
+    "part_number": "AN6C-11",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6C-11A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-12",
+    "reasons": [
+      "length conflict: Spruce=1-11/32; Wicks=1 21/64",
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN6-12A",
+    "reasons": [
+      "length conflict: Spruce=1-11/32; Wicks=1 21/64",
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN6C-12",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6C-12A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-13",
+    "reasons": [
+      "length conflict: Spruce=1-15/32; Wicks=1 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-13A",
+    "reasons": [
+      "length conflict: Spruce=1-15/32; Wicks=1 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6C-13A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-14",
+    "reasons": [
+      "length conflict: Spruce=1-19/32; Wicks=1 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-14A",
+    "reasons": [
+      "length conflict: Spruce=1-19/32; Wicks=1 37/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6C-14",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6C-14A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-15",
+    "reasons": [
+      "length conflict: Spruce=1-23/32; Wicks=1 45/64",
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN6-15A",
+    "reasons": [
+      "length conflict: Spruce=1-23/32; Wicks=1 45/64",
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN6C-15A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-17",
+    "reasons": [
+      "length conflict: Spruce=1-31/32; Wicks=1 61/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-17A",
+    "reasons": [
+      "length conflict: Spruce=1-31/32; Wicks=1 61/64"
+    ]
+  },
+  {
+    "part_number": "AN6C-17A",
+    "reasons": [
+      "Initial catalog selects cadmium-plated alloy steel only",
+      "Material not selected: 431 Stainless"
+    ]
+  },
+  {
+    "part_number": "AN6-20",
+    "reasons": [
+      "length conflict: Spruce=2-3/32; Wicks=2 5/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-20A",
+    "reasons": [
+      "length conflict: Spruce=2-3/32; Wicks=2 5/64"
+    ]
+  },
+  {
+    "part_number": "AN6-21",
+    "reasons": [
+      "length conflict: Spruce=2-7/32; Wicks=2 13/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-21A",
+    "reasons": [
+      "length conflict: Spruce=2-7/32; Wicks=2 13/64"
+    ]
+  },
+  {
+    "part_number": "AN6-22",
+    "reasons": [
+      "length conflict: Spruce=2-11/32; Wicks=2 21/64"
+    ]
+  },
+  {
+    "part_number": "AN6-22A",
+    "reasons": [
+      "length conflict: Spruce=2-11/32; Wicks=2 21/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-23",
+    "reasons": [
+      "length conflict: Spruce=2-15/32; Wicks=2 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-23A",
+    "reasons": [
+      "length conflict: Spruce=2-15/32; Wicks=2 29/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-24",
+    "reasons": [
+      "length conflict: Spruce=2-19/32; Wicks=2 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-24A",
+    "reasons": [
+      "length conflict: Spruce=2-19/32; Wicks=2 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-25",
+    "reasons": [
+      "length conflict: Spruce=2-23/32; Wicks=2 45/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-25A",
+    "reasons": [
+      "length conflict: Spruce=2-23/32; Wicks=2 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-26",
+    "reasons": [
+      "length conflict: Spruce=2-27/32; Wicks=2 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-26A",
+    "reasons": [
+      "length conflict: Spruce=2-27/32; Wicks=2 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-27",
+    "reasons": [
+      "length conflict: Spruce=2-31/32; Wicks=2 61/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-27A",
+    "reasons": [
+      "length conflict: Spruce=2-31/32; Wicks=2 61/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-30",
+    "reasons": [
+      "length conflict: Spruce=3-3/32; Wicks=3 5/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-30A",
+    "reasons": [
+      "length conflict: Spruce=3-3/32; Wicks=3 5/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-31",
+    "reasons": [
+      "length conflict: Spruce=3-7/32; Wicks=3 13/64"
+    ]
+  },
+  {
+    "part_number": "AN6-31A",
+    "reasons": [
+      "length conflict: Spruce=3-7/32; Wicks=3 13/64"
+    ]
+  },
+  {
+    "part_number": "AN6-32",
+    "reasons": [
+      "length conflict: Spruce=3-11/32; Wicks=3 21/64"
+    ]
+  },
+  {
+    "part_number": "AN6-32A",
+    "reasons": [
+      "length conflict: Spruce=3-11/32; Wicks=3 21/64"
+    ]
+  },
+  {
+    "part_number": "AN6-33",
+    "reasons": [
+      "length conflict: Spruce=3-15/32; Wicks=3 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-33A",
+    "reasons": [
+      "length conflict: Spruce=3-15/32; Wicks=3 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-34",
+    "reasons": [
+      "length conflict: Spruce=3-19/32; Wicks=3 37/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-34A",
+    "reasons": [
+      "length conflict: Spruce=3-19/32; Wicks=3 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-35",
+    "reasons": [
+      "length conflict: Spruce=3-23/32; Wicks=3 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-35A",
+    "reasons": [
+      "length conflict: Spruce=3-23/32; Wicks=3 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-36",
+    "reasons": [
+      "length conflict: Spruce=3-27/32; Wicks=3 53/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-36A",
+    "reasons": [
+      "length conflict: Spruce=3-27/32; Wicks=3 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-37",
+    "reasons": [
+      "length conflict: Spruce=3-31/32; Wicks=3 61/64"
+    ]
+  },
+  {
+    "part_number": "AN6-37A",
+    "reasons": [
+      "length conflict: Spruce=3-31/32; Wicks=3 61/64"
+    ]
+  },
+  {
+    "part_number": "AN6-40",
+    "reasons": [
+      "length conflict: Spruce=4-3/32; Wicks=4 5/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-40A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-41",
+    "reasons": [
+      "length conflict: Spruce=4-7/32; Wicks=4 13/64"
+    ]
+  },
+  {
+    "part_number": "AN6-41A",
+    "reasons": [
+      "length conflict: Spruce=4-7/32; Wicks=4 13/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-42",
+    "reasons": [
+      "length conflict: Spruce=4-11/32; Wicks=4 21/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-42A",
+    "reasons": [
+      "length conflict: Spruce=4-11/32; Wicks=4 21/64"
+    ]
+  },
+  {
+    "part_number": "AN6-43",
+    "reasons": [
+      "length conflict: Spruce=4-15/32; Wicks=4 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-43A",
+    "reasons": [
+      "length conflict: Spruce=4-15/32; Wicks=4 29/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-44",
+    "reasons": [
+      "length conflict: Spruce=4-19/32; Wicks=4 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-44A",
+    "reasons": [
+      "length conflict: Spruce=4-19/32; Wicks=4 37/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-45",
+    "reasons": [
+      "length conflict: Spruce=4-23/32; Wicks=4 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-45A",
+    "reasons": [
+      "length conflict: Spruce=4-23/32; Wicks=4 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-46",
+    "reasons": [
+      "length conflict: Spruce=4-27/32; Wicks=4 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-46A",
+    "reasons": [
+      "length conflict: Spruce=4-27/32; Wicks=4 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-47",
+    "reasons": [
+      "length conflict: Spruce=4-31/32; Wicks=4 61/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-47A",
+    "reasons": [
+      "length conflict: Spruce=4-31/32; Wicks=4 61/64"
+    ]
+  },
+  {
+    "part_number": "AN6-50",
+    "reasons": [
+      "length conflict: Spruce=5-3/32; Wicks=5 5/64"
+    ]
+  },
+  {
+    "part_number": "AN6-50A",
+    "reasons": [
+      "length conflict: Spruce=5-3/32; Wicks=5 5/64"
+    ]
+  },
+  {
+    "part_number": "AN6-51",
+    "reasons": [
+      "length conflict: Spruce=5-7/32; Wicks=5 13/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-51A",
+    "reasons": [
+      "length conflict: Spruce=5-7/32; Wicks=5 13/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-52",
+    "reasons": [
+      "length conflict: Spruce=5-11/32; Wicks=5 21/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-52A",
+    "reasons": [
+      "length conflict: Spruce=5-11/32; Wicks=5 21/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-53",
+    "reasons": [
+      "length conflict: Spruce=5-15/32; Wicks=5 29/64"
+    ]
+  },
+  {
+    "part_number": "AN6-53A",
+    "reasons": [
+      "length conflict: Spruce=5-15/32; Wicks=5 29/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-54",
+    "reasons": [
+      "length conflict: Spruce=5-19/32; Wicks=5 37/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-54A",
+    "reasons": [
+      "length conflict: Spruce=5-19/32; Wicks=5 37/64"
+    ]
+  },
+  {
+    "part_number": "AN6-55",
+    "reasons": [
+      "length conflict: Spruce=5-23/32; Wicks=5 45/64"
+    ]
+  },
+  {
+    "part_number": "AN6-55A",
+    "reasons": [
+      "length conflict: Spruce=5-23/32; Wicks=5 45/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-56",
+    "reasons": [
+      "length conflict: Spruce=5-27/32; Wicks=5 53/64"
+    ]
+  },
+  {
+    "part_number": "AN6-56A",
+    "reasons": [
+      "length conflict: Spruce=5-27/32; Wicks=5 53/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-57",
+    "reasons": [
+      "length conflict: Spruce=5-31/32; Wicks=5 61/64",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN6-57A",
+    "reasons": [
+      "length conflict: Spruce=5-31/32; Wicks=5 61/64"
+    ]
+  },
+  {
+    "part_number": "AN6-60",
+    "reasons": [
+      "length conflict: Spruce=6-3/32; Wicks=6 5/64"
+    ]
+  },
+  {
+    "part_number": "AN6-60A",
+    "reasons": [
+      "length conflict: Spruce=6-3/32; Wicks=6 5/64"
+    ]
+  },
+  {
+    "part_number": "AN6-61A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN6-64",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-6A",
+    "reasons": [
+      "grip unreadable: Spruce=3/16; Wicks=16-mar"
+    ]
+  },
+  {
+    "part_number": "AN7-7A",
+    "reasons": [
+      "grip unreadable: Spruce=5/16; Wicks=16-may",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-10",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-10A",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-11A",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-12",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN7-12A",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-13",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-13A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-14",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-15",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-15A",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN7-16",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-16A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-17A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-20",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-22",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-24A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-25",
+    "reasons": [
+      "grip conflict: Spruce=2-1/16; Wicks=2 1/8"
+    ]
+  },
+  {
+    "part_number": "AN7-25A",
+    "reasons": [
+      "grip conflict: Spruce=2-1/16; Wicks=2 1/8"
+    ]
+  },
+  {
+    "part_number": "AN7-26A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-27A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-30A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-31",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-32A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-33A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-35",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-36",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-36A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-37",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-40",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-40A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-42",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-42A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-43",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-43A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-44",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-44A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-45",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-45A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-47",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-50",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-50A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-52",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-52A",
+    "reasons": [
+      "length conflict: Spruce=5-11/32; Wicks=5 1/4",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN7-56",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-56A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN7-60",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-6A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-7",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-7A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-10A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-11",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul"
+    ]
+  },
+  {
+    "part_number": "AN8-11A",
+    "reasons": [
+      "grip unreadable: Spruce=7/16; Wicks=16-jul",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-12",
+    "reasons": [
+      "grip unreadable: Spruce=9/16; Wicks=16-sep"
+    ]
+  },
+  {
+    "part_number": "AN8-12A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-13",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN8-13A",
+    "reasons": [
+      "grip unreadable: Spruce=11/16; Wicks=16-nov"
+    ]
+  },
+  {
+    "part_number": "AN8-14",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-14A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-15A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-16",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN8-16A",
+    "reasons": [
+      "grip unreadable: Spruce=1-1/16; Wicks=1-1-2016"
+    ]
+  },
+  {
+    "part_number": "AN8-17A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-20",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-20A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-21",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-21A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-22A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-23A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-24",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-24A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-25",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-25A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-26",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-27A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-30",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-31A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-32A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-33",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-33A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-34",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-35A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-41",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-42",
+    "reasons": [
+      "length conflict: Spruce=4-11/32; Wicks=4 9/32",
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-43A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-44",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-47",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-51A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-52",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-53",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-54A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-55",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-56",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-56A",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  },
+  {
+    "part_number": "AN8-57",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-57A",
+    "reasons": [
+      "No exact Wicks part number in retrieved family table"
+    ]
+  },
+  {
+    "part_number": "AN8-60",
+    "reasons": [
+      "Stock not reported by both dealers at retrieval"
+    ]
+  }
+]

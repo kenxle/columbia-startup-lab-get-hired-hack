@@ -1,0 +1,233 @@
+[
+  {
+    "id": "wicks-an4",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an4-1-4-28/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an4-1-4-28/",
+    "retrieved_at": "2026-10-10T16:15:58.773Z",
+    "http_status": 200,
+    "bytes": 817371,
+    "sha256": "53190be00935086e60675408a5c4b962d33d876eaa534af00fb71a4555fd830d",
+    "raw_file": "raw/wicks-an4.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an3",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an3.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an3.php",
+    "retrieved_at": "2026-10-10T16:15:59.879Z",
+    "http_status": 200,
+    "bytes": 659466,
+    "sha256": "af9dc3a590be0e63763ad1dbed197af0424a1f8953a694ad08693bf395c2f12c",
+    "raw_file": "raw/spruce-an3.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an4",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an4.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an4.php",
+    "retrieved_at": "2026-10-10T16:16:00.673Z",
+    "http_status": 200,
+    "bytes": 611241,
+    "sha256": "5e9f8f8907b5f658cdbc56a6be8e827db6508bfc35d0616046ad8d3ca0e423f5",
+    "raw_file": "raw/spruce-an4.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-bolts",
+    "url": "https://www.wicksaircraft.com/c/fasteners-hardware/aircraft-bolts/",
+    "final_url": "https://www.wicksaircraft.com/c/fasteners-hardware/aircraft-bolts/",
+    "retrieved_at": "2026-10-10T16:16:43.495Z",
+    "http_status": 200,
+    "bytes": 156658,
+    "sha256": "1024786101cc41fce36623e263f068367aedec268c925bd1ea390fc53da23222",
+    "raw_file": "raw/wicks-bolts.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an5",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an5.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an5.php",
+    "retrieved_at": "2026-10-10T16:16:44.293Z",
+    "http_status": 200,
+    "bytes": 515179,
+    "sha256": "41358e3ec0d1670b5fbb5527e544a70642741c9d6279eb0e9628313416ebbe5d",
+    "raw_file": "raw/spruce-an5.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an6",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an6.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an6.php",
+    "retrieved_at": "2026-10-10T16:16:44.806Z",
+    "http_status": 200,
+    "bytes": 464007,
+    "sha256": "44677060ac55a438236812cf8b78d91739be583021526d223e943c47df6d8589",
+    "raw_file": "raw/spruce-an6.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an7",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an7.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an7.php",
+    "retrieved_at": "2026-10-10T16:16:45.245Z",
+    "http_status": 200,
+    "bytes": 327715,
+    "sha256": "32e0877a9539c668325b50d117df74384c3d3586c1d0358ec3fa8167d0d8d9c5",
+    "raw_file": "raw/spruce-an7.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an8",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an8.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an8.php",
+    "retrieved_at": "2026-10-10T16:16:45.722Z",
+    "http_status": 200,
+    "bytes": 304198,
+    "sha256": "17a620a1c9bb069c01057739c5ccb87973ac7af010d4b359c84ff0647a673ddc",
+    "raw_file": "raw/spruce-an8.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an3",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an3-3-16-1032/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an3-3-16-1032/",
+    "retrieved_at": "2026-10-10T16:17:10.734Z",
+    "http_status": 200,
+    "bytes": 753895,
+    "sha256": "414fd31a0bfe4f5db12df53c3f5f16740bccd6cb6d4c55502c1b5a0d3a7d9a22",
+    "raw_file": "raw/wicks-an3.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an5",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an5-5-16-24/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an5-5-16-24/",
+    "retrieved_at": "2026-10-10T16:17:10.836Z",
+    "http_status": 200,
+    "bytes": 693630,
+    "sha256": "78acd21559f063a192ac0794493bbca9e2c49273a40ea7e5eddda40d0690f421",
+    "raw_file": "raw/wicks-an5.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an6",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an6-3-8-24/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an6-3-8-24/",
+    "retrieved_at": "2026-10-10T16:17:10.904Z",
+    "http_status": 200,
+    "bytes": 687951,
+    "sha256": "e5aa6ba914b7b28249a5009cbc67038ef9c4312f39726e8657e4bda4681d252e",
+    "raw_file": "raw/wicks-an6.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an7",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an7-7-16-20/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an7-7-16-20/",
+    "retrieved_at": "2026-10-10T16:17:10.960Z",
+    "http_status": 200,
+    "bytes": 474087,
+    "sha256": "6468adb0f0eb3f7b2a709562a2b2682e4c204bbb1cef212e6243b9dc3779424a",
+    "raw_file": "raw/wicks-an7.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an8",
+    "url": "https://www.wicksaircraft.com/shop/bolt-an8-1-2-20/",
+    "final_url": "https://www.wicksaircraft.com/shop/bolt-an8-1-2-20/",
+    "retrieved_at": "2026-10-10T16:17:11.009Z",
+    "http_status": 200,
+    "bytes": 463558,
+    "sha256": "0a4b4a66ab26e3fe59128548bf0101ced73e5b726d2cb80008853c1af711adaa",
+    "raw_file": "raw/wicks-an8.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an970",
+    "url": "https://www.wicksaircraft.com/shop/an970-flat-washer/",
+    "final_url": "https://www.wicksaircraft.com/shop/an970-flat-washer/",
+    "retrieved_at": "2026-10-10T16:18:40.730Z",
+    "http_status": 200,
+    "bytes": 205597,
+    "sha256": "ef960d8462a6d7ad40778c693620aaa281d61f7164704e3e0cd7fc54e99d8f94",
+    "raw_file": "raw/wicks-an970.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an970",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an970flatwashers.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an970flatwashers.php",
+    "retrieved_at": "2026-10-10T16:18:41.206Z",
+    "http_status": 200,
+    "bytes": 154715,
+    "sha256": "4f029404b867c888939891aafee27fb8d3c9763a30b94c86274eefd6fa23d397",
+    "raw_file": "raw/spruce-an970.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an900",
+    "url": "https://www.wicksaircraft.com/shop/an900-copper-crush-washer/",
+    "final_url": "https://www.wicksaircraft.com/shop/an900-copper-crush-washer/",
+    "retrieved_at": "2026-10-10T16:18:41.256Z",
+    "http_status": 200,
+    "bytes": 294550,
+    "sha256": "367c19dcc5e20fe09eb8be980ad2764ac1d6021a6e2bdc203c25bc9add27ce6c",
+    "raw_file": "raw/wicks-an900.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an900",
+    "url": "https://www.aircraftspruce.com/catalog/eppages/an900.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/eppages/an900.php",
+    "retrieved_at": "2026-10-10T16:18:41.639Z",
+    "http_status": 200,
+    "bytes": 321576,
+    "sha256": "213586922979b073a5ed5bb5ab281f9d70c56361d88d62d9d8440d5c64dbddb8",
+    "raw_file": "raw/spruce-an900.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-nuts",
+    "url": "https://www.wicksaircraft.com/c/fasteners-hardware/nuts/",
+    "final_url": "https://www.wicksaircraft.com/c/fasteners-hardware/nuts/",
+    "retrieved_at": "2026-10-10T16:18:41.691Z",
+    "http_status": 200,
+    "bytes": 214657,
+    "sha256": "ec312de24bcad3e6d482c6a015ca1844d4767cda65f14ba8f912226aa4fd955f",
+    "raw_file": "raw/wicks-nuts.html",
+    "publication_date": null
+  },
+  {
+    "id": "spruce-an310",
+    "url": "https://www.aircraftspruce.com/catalog/hapages/an310_320.php",
+    "final_url": "https://www.aircraftspruce.com/catalog/hapages/an310_320.php",
+    "retrieved_at": "2026-10-10T16:18:42.046Z",
+    "http_status": 200,
+    "bytes": 217091,
+    "sha256": "3ef44de63e34d9594ea500885e46e1ee9b5276b313f899ab73295dad27430e2e",
+    "raw_file": "raw/spruce-an310.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an310",
+    "url": "https://www.wicksaircraft.com/shop/castellated-nut-an310/",
+    "final_url": "https://www.wicksaircraft.com/shop/castellated-nut-an310/",
+    "retrieved_at": "2026-10-10T16:19:26.908Z",
+    "http_status": 200,
+    "bytes": 254082,
+    "sha256": "f9eabb5028e92d078e94d8c09b042489759106e7ea872dd88ce51a9a70807e32",
+    "raw_file": "raw/wicks-an310.html",
+    "publication_date": null
+  },
+  {
+    "id": "wicks-an320",
+    "url": "https://www.wicksaircraft.com/shop/an320-shear-nut/",
+    "final_url": "https://www.wicksaircraft.com/shop/an320-shear-nut/",
+    "retrieved_at": "2026-10-10T16:19:26.952Z",
+    "http_status": 200,
+    "bytes": 202610,
+    "sha256": "f45de03fdacd831fed2097669dbd8eed7dbf9780295c59d4dded34dbd3f2cbba",
+    "raw_file": "raw/wicks-an320.html",
+    "publication_date": null
+  }
+]
