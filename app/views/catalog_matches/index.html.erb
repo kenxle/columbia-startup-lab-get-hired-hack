@@ -1,0 +1,110 @@
+<% content_for :title, "Find catalog item" %>
+
+<header class="page-header">
+  <div>
+    <p class="eyebrow">Catalog matching</p>
+    <h1 class="page-title">Find the catalog item</h1>
+    <p class="page-lede">Paste what the client asked for, in their words: a part number or a description. The agent suggests the catalog items it most likely means, shows why, and asks when it is not sure.</p>
+  </div>
+</header>
+
+<%= form_with url: catalog_matches_path, method: :post, class: "intake match-intake" do %>
+  <div class="intake__grid">
+    <div class="field">
+      <%= label_tag :client_name, "Client", class: "field__label" %>
+      <%= text_field_tag :client_name, @client&.name, class: "input", list: "client-names", required: true,
+            autocomplete: "off", placeholder: "Company name" %>
+      <datalist id="client-names">
+        <% @clients.each do |client| %>
+          <option value="<%= client.name %>"></option>
+        <% end %>
+      </datalist>
+      <p class="field__hint">Each client has its own memory of what its words mean.</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= label_tag :description, "What the client asked for", class: "field__label" %>
+    <%= text_area_tag :description, nil, rows: 3, maxlength: 2_000, required: true, class: "input input--mono",
+          placeholder: "40,000 lb S-330 steel shot   ·   P1020 ingot   ·   304 SS sheet 16ga 4x8 x25   ·   RC-A36-PLT-500-48X96" %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag "Find items", class: "button button--primary" %>
+  </div>
+<% end %>
+
+<% if @clients.any? %>
+  <nav class="match-clients" aria-label="Clients">
+    <span class="muted small">Client memory:</span>
+    <% @clients.each do |client| %>
+      <%= link_to client.name, catalog_matches_path(client_id: client.id),
+            class: [ "match-chip", ("is-active" if client == @client) ], aria: { current: client == @client ? "page" : nil } %>
+    <% end %>
+  </nav>
+<% end %>
+
+<% if @client %>
+  <div class="match-columns">
+    <section class="panel" aria-labelledby="memory-title">
+      <div class="panel__head">
+        <h2 id="memory-title" class="panel__title">What <%= @client.name %>'s words mean</h2>
+      </div>
+      <% if @terms.empty? %>
+        <p class="muted small">Nothing yet. When you approve an item, the agent remembers the client's words for next time. You can also teach a word here.</p>
+      <% else %>
+        <table class="data-table match-terms">
+          <thead><tr><th scope="col">Word</th><th scope="col">Means</th><th scope="col">From</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+          <tbody>
+            <% @terms.each do |term| %>
+              <tr>
+                <td class="mono"><%= term.term %></td>
+                <td><%= term.describe %></td>
+                <td class="small muted"><%= term.source == "taught" ? "taught by rep" : "learned, #{pluralize(term.times_confirmed, 'approval')}" %></td>
+                <td><%= button_to "Forget", forget_catalog_matches_path(client_id: @client.id, term_id: term.id), method: :delete, class: "button button--quiet" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <%= form_with url: teach_catalog_matches_path, method: :post, class: "match-teach" do %>
+        <%= hidden_field_tag :client_id, @client.id %>
+        <div class="field">
+          <%= label_tag :term, "Word or phrase", class: "field__label" %>
+          <%= text_field_tag :term, nil, class: "input input--mono", required: true, maxlength: 120, placeholder: "KB" %>
+        </div>
+        <div class="field">
+          <%= label_tag :field, "Means", class: "field__label" %>
+          <%= select_tag :field, options_for_select(ClientTerm::TEACHABLE_FIELDS.map { |field| [ field.humanize, field ] }), class: "input" %>
+        </div>
+        <div class="field">
+          <%= label_tag :value, "Value", class: "field__label" %>
+          <%= text_field_tag :value, nil, class: "input", required: true, maxlength: 100, placeholder: "#4" %>
+        </div>
+        <div class="form-actions">
+          <%= submit_tag "Teach", class: "button" %>
+        </div>
+      <% end %>
+    </section>
+
+    <section class="panel" aria-labelledby="recent-title">
+      <div class="panel__head">
+        <h2 id="recent-title" class="panel__title">Recent requests</h2>
+      </div>
+      <% if @recent.empty? %>
+        <p class="muted small">No requests from <%= @client.name %> yet.</p>
+      <% else %>
+        <ul class="plain-list match-recent">
+          <% @recent.each do |request| %>
+            <li>
+              <%= link_to request.description.truncate(70), catalog_match_path(request), class: "row-link mono" %>
+              <%= match_outcome_badge(request.outcome) %>
+              <% if request.approved? %><span class="small muted">approved: <%= request.approved_part_numbers.join(", ") %></span><% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </section>
+  </div>
+<% end %>

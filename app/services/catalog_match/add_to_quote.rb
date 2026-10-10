@@ -48,7 +48,7 @@ module CatalogMatch
           unresolved_fields: [ "unit_price" ],
           notes: "Matched by the catalog agent to #{@item['pn']} for #{@match_request.client.name}; " \
                  "approved by the rep. No price yet: waiting for a benchmark price. " \
-                 "#{@item['catalog_provenance'].to_s.capitalize}."
+                 "#{@item['catalog_provenance'].to_s.upcase_first}."
         )
         line.save!
         @quote.invalidate_approval!

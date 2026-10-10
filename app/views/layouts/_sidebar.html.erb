@@ -11,6 +11,9 @@
     <%= link_to "New RFQ", new_quote_path,
           class: ["sidebar__link", ("is-active" if current_page?(new_quote_path))],
           aria: { current: current_page?(new_quote_path) ? "page" : nil } %>
+    <%= link_to "Find catalog item", catalog_matches_path,
+          class: ["sidebar__link", ("is-active" if controller_name == "catalog_matches")],
+          aria: { current: controller_name == "catalog_matches" ? "page" : nil } %>
   </nav>
 
   <div class="sidebar__footer">

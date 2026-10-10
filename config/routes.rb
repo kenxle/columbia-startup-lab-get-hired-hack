@@ -22,4 +22,13 @@ Rails.application.routes.draw do
 
     resources :quote_lines, only: :update
   end
+
+  # Tisch: catalog matching agent (client description -> catalog items -> RFQ).
+  resources :catalog_matches, only: %i[index create show] do
+    member { post :approve }
+    collection do
+      post :teach
+      delete :forget
+    end
+  end
 end

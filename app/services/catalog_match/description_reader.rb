@@ -7,7 +7,7 @@ module CatalogMatch
   # itself; the buyer's explicit words always win.
   class DescriptionReader
     # notes are things the rep should see; questions block a confident match.
-    Reading = Struct.new(:text, :fields, :part_numbers, :unknown_words, :notes, :questions, keyword_init: true) do
+    Reading = Struct.new(:text, :fields, :part_numbers, :unknown_words, :notes, :questions, :remembered_term, keyword_init: true) do
       def [](name) = fields[name.to_s]&.fetch("value")
       def set?(name) = fields.key?(name.to_s)
       def product_fields = fields.except("quantity", "quantity_unit")
@@ -144,7 +144,8 @@ module CatalogMatch
       infer_material_from_grade
 
       Reading.new(text: @original, fields: @fields, part_numbers: @part_numbers.uniq,
-                  unknown_words: unknown_words, notes: @notes, questions: @questions)
+                  unknown_words: unknown_words, notes: @notes, questions: @questions,
+                  remembered_term: @remembered_term)
     end
 
     private
@@ -447,6 +448,7 @@ module CatalogMatch
       return unless term
 
       @part_numbers << term.part_number.upcase
+      @remembered_term = term
       @notes << "#{term.explanation_prefix} this exact request means #{term.part_number}."
     end
 

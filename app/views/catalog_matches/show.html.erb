@@ -1,0 +1,133 @@
+<% content_for :title, "Suggested items" %>
+<% reading = @match_request.result["reading"] || {} %>
+<% question = @match_request.result["question"] %>
+<% notes = Array(@match_request.result["notes"]) %>
+<% options = @candidates.presence || @closest %>
+<% preselect = @match_request.outcome == "match" %>
+
+<header class="page-header">
+  <div>
+    <p class="eyebrow"><%= link_to "Catalog matching", catalog_matches_path(client_id: @client.id), class: "crumb" %> · <%= @client.name %></p>
+    <h1 class="page-title">Suggested items <%= match_outcome_badge(@match_request.outcome) %></h1>
+    <blockquote class="match-request mono"><%= @match_request.description %></blockquote>
+  </div>
+</header>
+
+<% if question.present? %>
+  <div class="callout callout--held" role="status">
+    <strong>Question for the buyer:</strong> <%= question %>
+  </div>
+<% end %>
+<% notes.each do |note| %>
+  <p class="small muted match-note"><%= note %></p>
+<% end %>
+
+<section class="panel match-reading" aria-labelledby="reading-title">
+  <div class="panel__head">
+    <h2 id="reading-title" class="panel__title">How the agent read it</h2>
+  </div>
+  <% if reading.empty? %>
+    <p class="muted small">No product fields were found in this text.</p>
+  <% else %>
+    <ul class="match-fields">
+      <% reading.each do |name, field| %>
+        <li class="match-field<%= ' match-field--memory' if field['source'] == 'client_memory' %>" title="<%= field['explanation'] %>">
+          <span class="match-field__name"><%= name.humanize %></span>
+          <span class="match-field__value"><%= reading_value(field["value"]) %></span>
+          <span class="match-field__text mono">"<%= field["text"] %>"</span>
+          <% if field["source"] == "client_memory" %><span class="flag flag--source">client memory</span><% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
+
+<% if options.empty? %>
+  <div class="empty-state">
+    <p class="empty-state__title">Nothing in the catalog fits.</p>
+    <p class="empty-state__body">The line is never forced onto a different item. Ask the buyer for the material, form and size.</p>
+  </div>
+<% else %>
+  <%= form_with url: approve_catalog_match_path(@match_request), method: :post, class: "match-approve" do %>
+    <h2 class="section-title">
+      <%= @candidates.any? ? "Catalog items that fit" : "Closest items (not a match: each differs from the request)" %>
+    </h2>
+
+    <ol class="match-cards">
+      <% options.each_with_index do |candidate, index| %>
+        <% item = @catalog.find(candidate["pn"]) %>
+        <li class="match-card<%= ' match-card--closest' if @candidates.empty? %>">
+          <label class="match-card__pick">
+            <%= check_box_tag "part_numbers[]", candidate["pn"], preselect && index.zero?, id: "pick-#{index}",
+                  disabled: @match_request.approved? %>
+            <span class="visually-hidden">Choose <%= candidate["pn"] %></span>
+          </label>
+          <div class="match-card__picture">
+            <%= item_drawing(item) %>
+            <p class="small muted">Drawn from catalog specs, not a photo</p>
+          </div>
+          <div class="match-card__body">
+            <p class="match-card__pn mono"><%= candidate["pn"] %></p>
+            <p class="match-card__desc"><%= candidate["description"] %></p>
+            <p class="small">
+              <% if @candidates.any? %>
+                <strong><%= candidate["confidence"] %>%</strong> of what the buyer wrote agrees with this item.
+              <% end %>
+              <span class="muted"><%= item&.dig("catalog_provenance")&.upcase_first %>.</span>
+            </p>
+            <% if item&.dig("list_price_usd_per_lb") %>
+              <p class="small muted">RudCo website list price: $<%= item["list_price_usd_per_lb"] %>/lb (not a quote price).</p>
+            <% end %>
+            <% if item&.dig("packaging").present? %>
+              <p class="small muted">Packaging: <%= item["packaging"].join(", ") %></p>
+            <% end %>
+            <details class="match-checks" <%= "open" if index.zero? %>>
+              <summary>Why this item</summary>
+              <table class="data-table">
+                <thead><tr><th scope="col">Field</th><th scope="col">Buyer wrote</th><th scope="col">Catalog</th><th scope="col">Result</th></tr></thead>
+                <tbody>
+                  <% Array(candidate["checks"]).each do |check| %>
+                    <tr class="match-check match-check--<%= check['status'] %>">
+                      <td><%= check["field"].to_s.humanize %></td>
+                      <td class="mono">"<%= check["buyer_text"] %>"<% if check["source"] == "client_memory" %> <span class="flag flag--source">memory</span><% end %></td>
+                      <td><%= reading_value(check["catalog_value"]) %></td>
+                      <td><span class="match-check__status"><%= check_status_label(check["status"]) %></span><br><span class="small muted"><%= check["explanation"] %></span></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+
+    <% if @match_request.approved? %>
+      <p class="callout">Approved: <%= @match_request.approved_part_numbers.join(", ") %>
+        <% if (quote = @quotes.find { |candidate_quote| candidate_quote.id == @match_request.quote_id }) %>
+          on <%= link_to quote.reference, quote_path(quote) %>
+        <% end %>.
+      </p>
+    <% else %>
+      <div class="match-approve__bar">
+        <div class="field">
+          <%= label_tag :quantity, "Quantity", class: "field__label" %>
+          <%= number_field_tag :quantity, @match_request.quantity&.to_s&.sub(/\.0+\z/, ""), min: 0, step: "any", class: "input" %>
+          <% unit = reading.dig("quantity_unit", "value") %>
+          <% if unit %><p class="field__hint">Written as <%= unit %></p><% end %>
+        </div>
+        <div class="field">
+          <%= label_tag :quote_id, "Add to RFQ", class: "field__label" %>
+          <%= select_tag :quote_id,
+                options_for_select([ [ "New RFQ for #{@client.name}", CatalogMatchesController::NEW_QUOTE ] ] +
+                  @quotes.map { |quote| [ "#{quote.reference}: #{quote.title.truncate(50)}", quote.id ] }),
+                class: "input" %>
+        </div>
+        <div class="form-actions">
+          <%= submit_tag "Client approved: add to RFQ", class: "button button--primary" %>
+        </div>
+      </div>
+      <p class="small muted">Approving one item teaches <%= @client.name %>'s memory what these words meant. The line is added without a price; pricing comes next.</p>
+    <% end %>
+  <% end %>
+<% end %>

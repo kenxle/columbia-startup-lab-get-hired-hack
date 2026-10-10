@@ -108,7 +108,12 @@ module CatalogMatch
 
     def pn_check(item, status)
       requested = @reading.part_numbers.first
-      { field: "pn", status: status, buyer_text: requested, catalog_value: item["pn"],
+      if (term = @reading.remembered_term)
+        return { field: "pn", status: status, buyer_text: @reading.text, catalog_value: item["pn"], source: "client_memory",
+                 explanation: "#{term.explanation_prefix} this exact request was approved as #{item['pn']}" }
+      end
+
+      { field: "pn", status: status, buyer_text: requested, catalog_value: item["pn"], source: "text",
         explanation: status == :exact ? "part number #{item['pn']} is in the catalog" : "closest stocked part number to #{requested}" }
     end
 
