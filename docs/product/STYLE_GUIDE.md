@@ -48,7 +48,7 @@ Don't use the site's own solid pairs for status badges. White on `--available` i
 - **Sidebar:** navy (`#0f1f3d`) with white and light-slate text. This carries the brand color the way the share images do.
 - **Gold:** one thin gold rule under the sidebar's product name, echoing the share image. Nowhere else.
 - **Body:** `#f3f5f7` page, `#fafbfc` cards and table, `#f6f7f9` stripes, `#e5e7eb` dividers. No pure white. RFQ on the left, quote on the right, as Hirsh has it now.
-- **Footer line:** "Concept built for RudCo · Get Hired Hack, 2026-10-10 · Sample data". See the [honesty guardrails](BRAND_POSITION.md#honesty-guardrails).
+- **Footer line:** "Concept built for RudCo · Get Hired Hack, 2026-10-10". See the [honesty guardrails](BRAND_POSITION.md#honesty-guardrails).
 
 ## Logo use
 

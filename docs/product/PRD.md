@@ -8,7 +8,7 @@
 
 ## Open questions
 
-- **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table and label them as sample data on screen. Yuval is finding this out.
+- **Q1. Where does the catalog and price data come from?** RudCo gave no sample catalog or benchmark prices on the Devpost page. If they give us data at the event, we use it. If not, we build a small catalog and price table shaped like theirs, and treat it as production data. Yuval is finding this out.
 - **Q2. What is our sharper angle?** Uniqueness is a quarter of the score. Candidates are under [A sharper angle](#a-sharper-angle). Ken picks one once the [research](../research/20261010.01_rfq_sharper_angle/) lands.
 
 ---
@@ -187,7 +187,7 @@ These hold for every part of the build.
 
 - **Show the source.** Every field traces to the words in the RFQ, and every price traces to a named benchmark.
 - **Ask, don't guess.** A line the agent is not sure about becomes a question, never a quiet assumption.
-- **Say when data is sample data.** If we built the catalog or the prices ourselves, the screen says so.
+- **Build for production data.** The product works from RudCo's real catalog, inventory and prices. The demo stands in data shaped like theirs, and the screens and copy are written as if it were live.
 - **Accuracy first.** We cannot have hallucinated pricing. 0% mistakes on this front.
 - **Keep it demoable.** `main` runs end to end at every push, so the video can be recorded at any point.
 

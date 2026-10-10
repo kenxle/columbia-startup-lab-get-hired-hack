@@ -4,7 +4,7 @@
 
 **Read with:** [the product brief](PRD.md), [the demo workflow](WORKFLOW.md), [the RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md), [the competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md), [the sharper-angle report](../research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md).
 
-**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep owns it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon, with sample data.
+**Summary.** We present the product as a RudCo tool for its quoting reps. The name is RudCo Quote Desk. It looks like part of rud-co.com: RudCo's navy, its bright blue for actions, its system sans type, and its own logo files, unchanged. The message is one idea: every line on the quote shows where it came from. The pitch line is the brief's: the agent prepares the conversation, and the rep owns it. Every claim we make maps to a line RudCo has written itself ([alignment table](#how-this-aligns-with-rudcos-brand)). The screen says plainly that this is a concept built for RudCo at the hackathon. It is written as if it runs on RudCo's real catalog, inventory and prices.
 
 ## Needs your call
 
@@ -42,7 +42,7 @@ Each claim we make, and each tagline, maps to one of RudCo's own lines. The anch
 
 **We learn the buyer.** It is how we beat competitors on their own claim. Proton and Canals say they learn customers' shorthand. Ours shows where each learned reading came from: "Read as 0.060 in, as you confirmed on RFQ-0001" ([workflow step 9](WORKFLOW.md#9-learn-the-buyer), [competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#where-rudco-can-get-ahead)).
 
-**What we do not claim.** We do not imply live inventory, credit terms, cutting, or ERP links. Lead times follow RudCo's stated promise or say "to confirm". The demo covers quote preparation only ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#what-our-demo-should-show)).
+**What we do not claim.** We do not imply credit terms, cutting, or ERP links. Lead times come from RudCo's inventory: stocked lines ship in 24 to 48 hours, and anything else says "to confirm". The demo covers quote preparation only ([competitive analysis](../research/20261010.03_rudco_competitive_analysis/competitive_analysis.md#what-our-demo-should-show)).
 
 ## Voice and messaging
 
@@ -70,18 +70,18 @@ Each sits under "Precision. Transparency. Trust."
 |---|---|
 | quote, line, RFQ, buyer, rep | "AI-powered", "autonomous", "magic" |
 | read as, matched to, priced against | "cheapest", "lowest price", "best price" |
-| benchmark, dated, published metal cost plus RudCo's margin | "real-time" or "live" pricing (the data is sample data) |
+| benchmark, dated, published metal cost plus RudCo's margin | "real-time" or "live" pricing (benchmarks are dated, not live) |
 | compliance, compliance flag, mill test report (MTR), certificate of analysis (COA), country of origin, DFARS, REACH, RoHS | "certified" (we flag what the buyer needs; we do not certify stock) |
 | lead time, in stock, ships in 24 to 48 hours (stocked lines), to confirm | |
 | ask, question, needs the buyer, the conversation | "replaces your rep", "hands-free" |
-| sample data | "instant", "guaranteed" |
+| inventory, stocked | "instant", "guaranteed" |
 
 ### Sample UI microcopy
 
-The SKU, benchmark and prices below are placeholders. The real screen fills them from the sample catalog and labels them as sample data.
+The SKU, benchmark and prices below are placeholders. The screen fills them from RudCo's catalog, inventory and benchmarks.
 
-- **Ready line:** "Ready. Read as 304 stainless sheet, 0.0625 in (16 ga, stainless gauge table), 48 x 96 in. Matched to SKU [SKU]. Price tracks [benchmark name, date] plus RudCo's margin. Lead time: 24 to 48 hours (stocked line, sample catalog)."
-- **Lead time not known:** "Lead time: to confirm. This item is not marked as stocked."
+- **Ready line:** "Ready. Read as 304 stainless sheet, 0.0625 in (16 ga, stainless gauge table), 48 x 96 in. Matched to SKU [SKU]. Price tracks [benchmark name, date] plus RudCo's margin. Lead time: 24 to 48 hours (in stock)."
+- **Lead time not known:** "Lead time: to confirm. This item is not in stock."
 - **Needs-the-buyer line:** "Needs the buyer. Line 3 says 16 gauge and 0.060 in. Those are different thicknesses. Question drafted."
 - **Compliance flag:** "Mill test report needed. Triggered by "SA-240" in line 4, an ASME pressure-vessel spec."
 - **COA flag:** "Certificate of analysis needed. Triggered by "COA required" in the email body. Applies to lines 2 and 3."
@@ -98,10 +98,8 @@ The look (palette, status colors, type, buttons, layout and logo use) lives in t
 ## Honesty guardrails
 
 - **Label it a concept.** Every screen and the video say it is a concept built for RudCo at Get Hired Hack. It is not a shipped RudCo product.
-- **Label sample data.** The catalog, SKUs, prices and benchmarks are sample data unless RudCo gave them to us. The screen says so on every price, as the [PRD commits](PRD.md#commitments).
 - **No endorsement.** Never say or imply that RudCo endorses, uses or sells Quote Desk.
 - **No customers.** RudCo names no customer in public ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#business-model-and-customers)). The sample buyer stays fictional (Northline Fabrication, per the [frontend contract](../engineering/FRONTEND_CONTRACT.md#processing-handoff)).
-- **No stock claims.** Do not say an item is in stock in RudCo's real warehouse. A lead time of 24 to 48 hours appears only on lines the sample catalog marks as stocked, and it is labeled sample data. The site's product data shows a price of "0" and in-stock for every item, which reads as placeholder data ([RudCo profile](../research/20261010.02_rudco_profile/rudco_profile.md#business-model-and-customers)).
 - **Flags, not certificates.** A compliance flag records what the buyer needs. It does not certify RudCo's material ([frontend contract](../engineering/FRONTEND_CONTRACT.md#model-and-view-interface)).
 - **Quotes stay exact.** Any RudCo line used in the pitch is quoted word for word from its linked page.
 

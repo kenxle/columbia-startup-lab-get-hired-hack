@@ -36,7 +36,7 @@ The loop from the buyer's reply back to step 3 reruns only the lines the buyer a
 ### 1. The RFQ email arrives
 
 - **What happens:** a buyer's email lands in RudCo's quote inbox. It has a short body and one or two attachments: a PDF and a spreadsheet.
-- **For the demo:** we write one realistic RFQ email, built from the [test set](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md#test-set). It mixes clean lines, the gauge trap, a contradiction, and a hidden requirement. It uses RudCo's own materials (steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate) next to the stainless gauge line, so it looks like their business. The Devpost stainless example is outside RudCo's listed range. It is labeled as sample data.
+- **For the demo:** we write one realistic RFQ email, built from the [test set](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md#test-set). It mixes clean lines, the gauge trap, a contradiction, and a hidden requirement. It uses RudCo's own materials (steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate) next to the stainless gauge line, so it looks like their business. The Devpost stainless example is outside RudCo's listed range.
 - **The rep sees:** a new RFQ in the workspace list, with the buyer's name, the subject, and a count of lines.
 
 ### 2. Pull the data from the email
