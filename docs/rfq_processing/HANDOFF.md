@@ -1,6 +1,6 @@
 # Handoff: RFQ processing lane (Yuval)
 
-**For:** the next agent session working for Yuval in this repo. The previous session ran in Claude Code; the next one may be Codex. Everything here is tool-neutral. Read this file first, then do "First ten minutes". Everything here was true at 14:08 on 2026-10-10. The repo and the bulletin board are the truth after that.
+**For:** the next agent session working for Yuval in this repo. The previous session ran in Claude Code; the next one may be Codex. Everything here is tool-neutral. Read this file first, then do "First ten minutes". The original pickup notes below describe 14:08 on 2026-10-10. Read the latest status log and current-session notes first; the repo and bulletin board are authoritative.
 
 **Owner:** Yuval Gerber (`@Yuval`, GitHub `Yuval-Gerber`). `.agent-owner` in the repo root says `Yuval`. The git identity of this clone is Yuval Gerber. Codex commit scratch files are `.codex-commitYYYYMMDDHHMM` (see AGENTS.md, Git conventions). No AI co-author trailers.
 
@@ -81,7 +81,7 @@ Posting on the board: insert a row right under the header line `|------|------|-
 
 ## 5. Working rules Yuval set
 
-- Yuval reviews code before it is pushed. Board rows and lane docs are posted and pushed without waiting, because teammates are waiting on answers. Say in each report what was pushed and what waits.
+- Updated by Yuval at 14:47: push code after teammate inspection without asking Yuval again. He separately approved the first parser batch. Board rows and lane review docs are authorized for immediate push. Say exactly what landed and what still needs teammate review.
 - Answer every question and request on the board aimed at Yuval; ask teammates for what you need there; integrate their answers.
 - Give Yuval short reports.
 - Agents must not step on each other on this Mac: one git actor (the coordinator), workers on disjoint file sets, a board watcher that only fetches. Keep everything about this lane in `docs/rfq_processing/`.
@@ -128,10 +128,24 @@ Each worker gets one task, acceptance criteria, owned paths, the starting commit
 
 > Read docs/rfq_processing/HANDOFF.md and follow it exactly. You work for Yuval. Pull, read the bulletin board rows newer than 14:04, run the lane specs and script/check, read the uncommitted lane files listed in section 7 and finish or verify them, then post one row on the board and keep working on the open items in order. Yuval reviews code before you push it; board rows and lane docs you post right away. Give Yuval short reports. Run a board agent that fetches every 5 minutes and tells you and the workers what changed.
 
+## Current session, 2026-10-10 at 14:50
+
+- Review artifact: [exact processing diff](REVIEW-2026-10-10.md), based on `981a911`, published in `efd4cbc` and merged/pushed through `ac12fcc`. It contains the runtime changes for Hirsh/Tisch inspection, not an installed code commit. Do not mistake the review artifact for landed implementation.
+- Yuval now permits pushes after teammate review, without personal approval. First parser batch already has his approval; it also needs BuyerProfile provenance to make its tests pass. Hirsh/Tisch were asked to review that dependency and the rest of the exact diff at 14:48.
+- Local Ruflo registers workers but its spawn command does not execute them without an Anthropic provider. Actual workers are authorized GPT-6 Astra Codex agents. Local config is excluded from Git. Required Opus review is blocked by Claude quota until 16:50 ET, not replaced by claiming Astra is Opus.
+- Inherited provider, alternates, selection guard and source-provenance work is finished locally. Additional fixes cover bounded PDF rows/page evidence, Transnet total versus package quantity, numbered schedules, scoped body compliance across answers, stable answer identities, candidate-price validation and Ken's three priority shorthand misreads.
+- Tests before the newest app override: 395 Rails tests / 3240 assertions, 12 PDF specs, matcher e2e and answer e2e pass. Latest library: 286 examples, two failures from the malformed upstream demo PDF. New candidate-price/answer tests: 44 pass. Both smoke modes pass with `RFQ_LLM_SMOKE_STUB=1` and pinned Ruby. No live model calls.
+- `981a911` changed Hirsh's IntakeMatcher override to one-argument `call_service`, while our inherited adapter supplies three. Hirsh owns the requested app fix; retain `llm: false` and `client: nil`. Rerun app/e2e checks after it lands.
+- Tisch must repair final demo PDF and add the narrow trusted-term matcher argument. Taught normalized thickness and RFQ provenance are correct locally; current matcher reparses original 0.060 and stays ambiguous. Do not override all source numbers or restore unconfirmed client memory.
+- Ken's latest 14:48 request is a demo walkthrough and two focused RFQs. Local `/quotes/10` is a deliberately unmatched 7075 sheet: no catalog item, price, lead time, finish or standard. We are preparing existing sourced abrasive lines for the mostly-working example, with all stock/pricing claims checked against catalog data. Do not fill empty fields with invented values.
+- Local server launched by this session: PID 25953, port 3100. Restart our server after Ruby library changes before browser verification. Local RFQ-0013 demonstrated a held shot becoming Ready after `100 lb`, USD 40, approval still required. Never send to real buyers as part of this test.
+- Board watcher is fetch-only in an ignored `.claude-flow/yuval-board` directory. Pull and reread board before every new task/commit and at natural checkpoints. Coordinator owns Git; workers never pull/commit/push.
+
 ## 9. Status log
 
 | Time | State |
 |---|---|
+| 14:50 | Codex continuation, current notes above. Runtime fixes local; exact diff published for teammate inspection. Updated user authorization: teammate review is the code-push gate. Ken requests two focused demo RFQs. PDF repair and matcher trusted-term interface remain with Tisch; app override arity with Hirsh. |
 | 14:08 | Handoff to a new session (Yuval moving to Codex). main at f119852 plus whatever teammates pushed since. Uncommitted worker files in section 7; 202 lane specs green on the tree. Board rows read and answered through 14:04 (Ken's 14:06 ping is for Tisch). Nicrron key not in this checkout. |
 | 13:53 | Session 2 at 77b9980. Gates green at pickup. Hirsh's intake and ApplyResult changes pulled, root bundle installed, test database prepared. Workers started: Nicrron provider, answers e2e plus `revision.llm`. |
 | 13:36 | Session 1 last push: 57a343a (code) and 8593c8b (board). 150 specs green. `answers.rb`, `llm_parser.rb`, `bin/test-set-report`, Excel intake, Tisch contract adapter, production wording, lead time. |

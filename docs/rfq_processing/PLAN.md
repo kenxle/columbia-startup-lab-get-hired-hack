@@ -2,7 +2,7 @@
 
 **Owner:** Yuval (`@Yuval`). This is the working document for the RFQ processing domain. It holds the plan, the decisions, the status log, and the open questions for this lane. The contract with the app lives in [RESULT-FORMAT.md](RESULT-FORMAT.md). Data sources and their limits live in [DATA.md](DATA.md).
 
-**Read with:** [the product brief](../product/PRD.md), [the frontend contract](../engineering/FRONTEND_CONTRACT.md), [Elad's catalog and pricing scope](../data/CATALOG_PRICING.md), and [the bulletin board](../BULLETIN.md).
+**Read with:** [the product brief](../product/PRD.md), [the frontend contract](../engineering/FRONTEND_CONTRACT.md), [Tisch's catalog and pricing scope](../data/CATALOG_PRICING.md), and [the bulletin board](../BULLETIN.md).
 
 ## Scope
 
@@ -15,7 +15,7 @@ Hirsh's split, agreed 2026-10-10. Yuval builds the part that understands the RFQ
 5. Flag unclear lines and draft questions instead of guessing.
 6. Find catalog and benchmark data, and explain what the benchmarks actually support.
 
-Not in this lane: the Rails app, persistence, screens, the rep's edits, price math, totals, export (Hirsh). Catalog rows and price observations (Elad, consumed here). Product scope and the demo (Ken).
+Not in this lane: the Rails app, persistence, screens, the rep's edits, price math, totals, export (Hirsh). Catalog rows and price observations (Tisch, consumed here). Product scope and the demo (Ken).
 
 ## Owned paths
 
@@ -34,29 +34,29 @@ Three fixtures ship with the format so the app can be built against them before 
 
 ## How it works
 
-Rules do everything that can be computed. The LLM only reads messy text into fields and words the buyer questions.
+Rules compute normalization, readiness, matching checks and questions. Optional Claude refinement fills evidence-backed blanks and records disagreements; the app currently disables it.
 
 1. **Extract.** Email text passes through. PDFs go through `tools/pdf_text`. Spreadsheets become one text line per row. Page and row positions are kept for evidence.
-2. **Parse.** One Claude call per RFQ (Claude Opus 5.5, structured output against the result schema). Every field returns a value, the exact source words, and a confidence.
+2. **Parse.** Rules read each extracted item. Optional Claude Opus 5 refinement runs per item through Nicrron or Anthropic. Every accepted field needs exact source words and valid confidence; rules values remain authoritative.
 3. **Normalize.** Rules: gauge to inches by material (gauge tables differ by material), feet to inches, "4x8" to 48 by 96, aliases such as SS to stainless, AN part number parsing (family, dash number, A and H designations).
 4. **Readiness.** Rules: required fields present for the form, confidence above threshold, no conflicts such as a gauge that disagrees with a stated decimal. A score alone never makes a line Ready when required evidence is missing.
 5. **Match.** Hard filters first (material, grade, form, or the exact part number for hardware), then a score on dimensions and standard. Below the threshold the line is No match. The nearest item is never forced.
 6. **Compliance.** A rules table from Ken's domain research: explicit mentions (MTR, certs, domestic, DFARS) and requirements implied by a standard. Each flag carries its source words. Unknowns stay unknown.
-7. **Clarify.** Rules decide a line is unclear. A second Claude call only words the question and offers two or three catalog-grounded choices.
+7. **Clarify.** Rules decide a line is unclear and build its question and choices. Catalog alternates carry labeled prices only when comparable evidence exists.
 8. **Result.** One hash per line in the agreed shape.
 
 ## Data
 
-- **Catalog:** Elad's `data/aviation/catalog.json`, 200 cadmium-plated AN bolt part numbers across AN3, AN4, AN5, AN7, and AN8, each with aliases, synthetic RFQ examples, compliance gaps, and two dealer price observations. Labeled sample data. Not confirmed RudCo stock.
-- **Benchmarks:** Elad's `price_observations.json`, two public dealer listings per item, product-only, single-piece basis. These support a two-dealer reference for the same part number. They do not support a delivered price, a bulk tier, or a market index. The benchmark hash on each line says so.
-- **Metals test set:** Ken's [domain rules research](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md), section 6, 25 labeled lines with expected readings and questions. No metals catalog exists yet, so metal lines land as No match unless Elad adds metal items.
+- **Catalog:** Tisch's `data/aviation/catalog.json`, 200 cadmium-plated AN bolt part numbers across AN3, AN4, AN5, AN7, and AN8, each with aliases, synthetic RFQ examples, compliance gaps, and two dealer price observations. Labeled sample data. Not confirmed RudCo stock.
+- **Benchmarks:** Tisch's `price_observations.json`, two public dealer listings per item, product-only, single-piece basis. These support a two-dealer reference for the same part number. They do not support a delivered price, a bulk tier, or a market index. The benchmark hash on each line says so.
+- **Metals test set:** Ken's [domain rules research](../research/20261010.01_rfq_sharper_angle/research_domain_rules.md), section 6, 25 labeled lines with expected readings and questions. No metals catalog exists yet, so metal lines land as No match unless Tisch adds metal items.
 
 ## Timeline for 2026-10-10
 
 | When | What |
 |---|---|
 | By 12:55 | Step 0 done: clone, toolchain, this doc. Step 1: result format and three fixtures, bulletin post to Hirsh, Elad, Ken. |
-| 12:55 to 2:00 | Normalizer, readiness rules, parser with recorded fixtures. Specs from Elad's synthetic RFQ examples and Ken's verbatim lines. |
+| 12:55 to 2:00 | Normalizer, readiness rules, parser with recorded fixtures. Specs from Tisch's synthetic RFQ examples and Ken's verbatim lines. |
 | 2:00 to 2:45 | Compliance table. Wire in Tisch's matcher through the agreed contract, with a stub until it lands. |
 | 2:45 to 3:15 | Clarifier with catalog-grounded choices, benchmark hash per line with honest limits. Check that Ken's sample RFQ email parses. |
 | 3:15 to 3:45 | Integration with the app, three fixtures end to end, freeze. |
@@ -64,7 +64,7 @@ Rules do everything that can be computed. The LLM only reads messy text into fie
 
 ## Working rules for this lane
 
-- Nothing is pushed before Yuval has reviewed it.
+- Yuval now authorizes code pushes after teammate inspection, without another personal review. Bulletin coordination updates are authorized for immediate push.
 - Pull and reread the bulletin board before every task, before every commit, and every ten minutes during long work.
 - Post to the bulletin board at every handoff and at session end, with @-mentions.
 - Commits use Yuval's git identity, no AI co-author trailers (team rule).
@@ -83,18 +83,21 @@ Rules do everything that can be computed. The LLM only reads messy text into fie
 - **Claude Opus 5 through Nicrron** (Hirsh, 13:39 and 13:40; Ken, 13:36). The hackathon's sponsor gateway is OpenAI-compatible chat at `https://api.nicrron.ai/v1`, model `anthropic/claude-opus-5`; the direct Anthropic model is `claude-opus-5`. Processing owns the provider adapter (Yuval's lane is LLM integration). `LlmParser` gets an OpenAI-compatible client with no new gem, prefers Nicrron when its key exists, and drops any answer from a model other than the one requested. The hash records the provider and model in `revision.llm`.
 - **Production data wording** (Ken, 13:31): `sample_data` defaults to false, price sources name the observation and date, benchmark `kind` is `list_price` or `dealer_midpoint`, stocked rows carry the 24 to 48 hour lead time.
 
-## Open questions
+## Current open items (2026-10-10, 14:45)
 
-1. **@Ken @Tisch:** the demo catalog. Ken's workflow W4 recommends a metals demo RFQ with bolts as a second RFQ. Today's only catalog is 200 aviation bolts. A metals demo needs metal catalog items, or every metal line lands as No match. This lane parses both kinds either way, and the gauge example is a parser showcase even without a catalog.
-2. **@Hirsh:** the `spec` hash is metals-shaped. Hardware lines add part_number, diameter, thread, grip, drilling. Can the review screen show extra spec keys as they come? Also, the `processing` key on each line: store it, or ignore it?
-3. **@Hirsh:** who sets `unit_price` on a Ready line. Proposal: this lane copies Tisch's suggested price when one exists, with `price_source` naming the observations, and the rep edits it. Until Tisch's pricer exists, the fixtures use the two-dealer midpoint.
-4. **@Ken:** re-quote on change (bulletin 12:42). Detection of a change request on a quote thread would sit in this lane after the core pipeline works. Not before 3:15.
-5. An Anthropic API key for `.env`. Until one exists, specs run against recorded responses.
+1. Hirsh/Tisch inspect the published review diff before runtime changes are pushed. Yuval approved the first parser batch and authorized teammate review for subsequent pushes.
+2. Tisch repairs the committed demo PDF. The current bytes fail PDF::Reader validation. Email and CSV produce eight items; two lane specs remain red because the PDF is malformed.
+3. Tisch supplies a matcher contract for vetted buyer terms. Normalized taught thickness is correct, but the matcher reparses the original decimal and ignores the plain given value. Keep Hirsh's `client: nil` intake restriction.
+4. Ken/Tisch settle the final screw example: it omits material, so processing correctly holds it instead of showing the desired No match badge. Metals without sourced prices remain held.
+5. Nicrron/Anthropic keys are absent. Stub smoke passes with pinned Ruby. A live call still requires Yuval's go. Required Opus 5 independent review is blocked by Claude quota until 16:50 ET; Astra reviews are supplemental.
+6. Ken's shorthand worklist is now the parser priority. Glass bead size, stainless shot and Gage dimensions have local regression fixes. Ambiguous short descriptions must use their full source, not invented units.
+7. Ken's Jev request is acknowledged. Yuval owns doubtful-compliance diagnostics after the demo correction batch, with all flags retained. Client/key and calibration fixtures are pending. Hirsh owns question routing and explicit answer-scope review; typed choice evidence needs a shared contract.
 
 ## Status log
 
 | Date | Time | Entry |
 |---|---|---|
+| 2026-10-10 | 14:45 | Local review batch: provider model/evidence guards, priced alternates, candidate selection guards, taught-source provenance, bounded PDF item extraction, packaging versus demand, scoped body compliance preserved on answers, and three priority shorthand fixes. 395 Rails tests / 3240 assertions and 12 PDF utility specs pass. Matcher and answer e2e ACCEPTED; 281 lane specs have two failures caused by the malformed upstream demo PDF. Code not pushed. Board requests through 14:40 answered and pushed. |
 | 2026-10-10 | 13:53 | New session picked up the lane at 77b9980. Gates green before any change: 150 lane specs, Rails check, e2e through Tisch's matcher (6 lines accepted). Hirsh's intake landed on main (`QuoteWorkspace::ProcessRfq`, `ApplyResult` now keeps `line_id`, `processing`, `revision`). Model switched to Claude Opus 5 by Hirsh. Two workers running: Nicrron provider in `LlmParser`, and `bin/e2e-answers.rb` plus `revision.llm`. Board watcher `bin/watch-board` fetches every 5 minutes and never pulls. Nicrron key not yet in this checkout. |
 | 2026-10-10 | 13:40 | Steps 2 to 4 done. Workers delivered `answers.rb` (W3: a buyer answer reruns only the answered lines, whole-RFQ answers rerun all), `llm_parser.rb` (Claude Opus 5.5 through the anthropic gem, structured output, auto-on when a key exists, rules win on numbers), and `TEST-RESULTS.md` (24 of 25 research lines read as expected). Excel intake through roo. Adapter now calls Tisch's `CatalogMatch::Contract` directly. Ken's production-data decision applied: no sample labels, benchmark kinds `list_price` and `dealer_midpoint`, lead time 24 to 48 hours for stocked rows else "to confirm" in `processing.lead_time`. 150 specs green. HANDOFF.md written for the next session. |
 | 2026-10-10 | 13:30 | Step 2 and most of step 3 done. Library on main: rules parser with per-material gauge tables, readiness rule, compliance flags (now with COA, REACH, RoHS), extractor, fallback catalog matcher, Tisch matcher adapter, buyer profiles, pipeline. 102 specs green, including all 25 lines of Ken's test set. A six-line sample email ran end to end into `ApplyResult` and was accepted. |
