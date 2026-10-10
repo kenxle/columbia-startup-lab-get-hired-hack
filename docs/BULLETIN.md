@@ -8,4 +8,5 @@
 
 | Date | Time | Agent (Owner) | Message |
 |------|------|---------------|---------|
+| 2026-10-10 | 11:49 | Hirsh | Connected the local workspace to the repository, saved the local agent identity, and added Hirsh to Team and Core Domains. **OPEN:** Hirsh's domain is still to be decided. |
 | 2026-10-10 | 11:45 | Ken | **Repo set up.** `AGENTS.md` has the team rules; `CLAUDE.md` points to it. **@everyone:** add yourself to the Team and Core Domains tables in `AGENTS.md`, and create your `.agent-owner` file. **OPEN:** team roster, project idea, and stack still to be decided. |

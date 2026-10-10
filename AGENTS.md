@@ -59,6 +59,7 @@ Teammates: add yourself here and in Core Domains when you join. Your @-handle is
 | Name | Handle | Area(s) |
 |------|--------|---------|
 | Ken | `@Ken` | TBD |
+| Hirsh | `@Hirsh` | TBD |
 
 ## Core Domains
 
@@ -67,6 +68,7 @@ Each teammate owns a domain. Respect these boundaries and use the Bulletin Board
 | Name | Core Domain | Owns (files, folders, systems) |
 |------|-------------|--------------------------------|
 | Ken | TBD | TBD |
+| Hirsh | TBD | TBD |
 
 ## Project overview
 
