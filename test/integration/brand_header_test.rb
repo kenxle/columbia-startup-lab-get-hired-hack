@@ -17,7 +17,7 @@ class BrandHeaderTest < ActionDispatch::IntegrationTest
     assert_select 'main#main[tabindex="-1"]'
     assert_select "header.brand-header", count: 0
     assert_select 'nav[aria-label="Product"]', count: 0
-    assert_select 'a.sidebar__brand[href=?][aria-label="RudCo Quote Desk home"]', root_path do
+    assert_select 'a.sidebar__brand[href=?][aria-label="RudCo Quote Desk home"]', quotes_path do
       assert_select 'img[src="/brand/rudco-mark.png"][width="32"][height="32"][alt=""]'
       assert_select ".sidebar__name", "RudCo"
       assert_select ".sidebar__product", "QUOTE DESK"
