@@ -2,38 +2,40 @@
 
 **What this is:** Ken's working page for the hackathon. The top holds what needs Ken now. Comment on any item, and Claude answers on the page and updates the work. Hacking ends at **4:30 PM ET**, and the Devpost submission needs a video.
 
-**Last updated:** 2026-10-10 15:42, from the bulletin board through 15:37.
+**Last updated:** 2026-10-10 15:54, from the bulletin board through 15:51.
 
 ## Needs your call
 
-- [ ] **18. Send the real Jev key in WhatsApp.** The first file held a Keychain command that only works on your Mac. The new file has the key itself: `~/Desktop/jev_for_team/JEV_API_KEY_value.txt`. Yuval is waiting on it.
-- [ ] **17. Devpost "About the project."** Edit it on [its review page](devpost/ABOUT_THE_PROJECT.md); Claude pastes it back. It now has Yuval's accuracy section. Then paste the video link and Save & continue. The thumbnail is saved.
+- [ ] **19. Record.** A fresh walkthrough passed on Hirsh's machine at 15:46 (RFQ-0023). **Use fresh intake, not the old demo records:** stored RFQs keep the old "to confirm" lead times. Hirsh's walkthrough: 3 Ready and 1 held at USD 1,010, the question goes to the local inbox, answer "2000 lb", 4 Ready at USD 1,810, COA flags, lead times 24 to 48 hours, approve, send, PDF and CSV download, no browser errors.
+- [ ] **18. Send the real Jev key in WhatsApp** (`~/Desktop/jev_for_team/JEV_API_KEY_value.txt`). Yuval's agent cannot read WhatsApp, so Yuval saves it into his own git-ignored env file.
+- [ ] **17. Devpost.** The About field is pasted from [its page](devpost/ABOUT_THE_PROJECT.md) but not saved: add the video link, then Save & continue. The page now also has everyone's "What we learned" lines; I paste again when you say. Hirsh's caveats are in it (demo lead times are an assumption, live model use not claimed, Jev and PRISM pending). Say if any should go.
 
 ## Coming to you soon
 
-- **Lead times on the four abrasive SKUs**, set to in stock, 24 to 48 hours, as you decided (asked of Tisch, 15:40).
-- **Block Convey PRISM tracing.** Hirsh built the client; Yuval is making the account and adding his hook.
-- **Jev on doubtful compliance hits**, by Yuval, once the key arrives.
-- **Flow walk and Playwright tests.** An agent is walking the demo script in its own copy of the app.
+- **Recording fixes from the flow walk (15:45).** Hirsh's five are built and publishing (15:51): the sent email says "Approved quote, local preview", plain dates, no internal list-price line, no sideways scroll, PDF warmed. Yuval is fixing the buyer-question wording (a missing price stays with the rep, not the buyer) and the "No match" screw line.
+- **The Northline gauge line turning Ready after the buyer picks.** Yuval and Hirsh are agreeing a safe way to pass a buyer's choice to the matcher. Not before 4:00.
+- **One-click buyer answers.** Hirsh has a worker on the single-use links.
+- **One priced alternate on an abrasive line.** Asked of Yuval.
+- **Jev.** Yuval's code is ready; Hirsh found two review fixes (spelled numbers in capitals, and Jev must stay off unless switched on).
+- **Block Convey PRISM.** Yuval's hook and Hirsh's client are pushed. Yuval made the account; the key is not moved yet, so no trace yet.
 - **Submission deck.** A subagent is building it.
 
 ## Where things stand
 
-From the bulletin board through 15:37. Hirsh's [dry-run report](../engineering/DRY_RUN-2026-10-10.md) is up.
+From the bulletin board through 15:51.
 
 | Workflow step | State | Who | What is left |
 |---|---|---|---|
-| 1. RFQ arrives | ✅ | Hirsh | Busy Quotes list with countdowns. |
-| 2. Pull the data | ✅ | Yuval | Email, PDF and CSV each give the same eight lines. |
-| 3. Parse | ✅ | Yuval | 332 processing tests pass. |
-| 4. Match | ✅ | Yuval | Taught terms now match exactly (62c5423); an untaught buyer stays held. |
-| 5. Price, flags, lead time | 🟡 | Tisch | Abrasives priced. Metals held, Tisch's call. Lead times being set (see above). |
-| 6. Buyer questions | ✅ | Hirsh | Local inbox, tracked as Waiting on buyer. |
-| 7. Review and approve | ✅ | Hirsh | RFQ-0014: four Ready, USD 1,810. Dry run passes. |
-| 8. Send the reply | ✅ | Hirsh | Approved quote goes to the local inbox with PDF and CSV, marked Sent (03615d3). |
-| 9. Learn the buyer | ✅ | Yuval, Hirsh | Teaching works end to end through the app. |
-| Real models | 🟡 | Hirsh, Yuval | Gateway calls still return 502 on Hirsh's and Yuval's machines. Rules fallback holds. |
-| Marketing pages | ✅ | Hirsh | Restyled toward rud-co.com (a306057). |
+| 1. RFQ arrives | ✅ | Hirsh | Fresh paste into New RFQ works (Tisch, RFQ-0029: 8 lines read). |
+| 2. Pull the data | ✅ | Yuval | Email, PDF and CSV give the same eight lines. |
+| 3. Parse | ✅ | Yuval | A fix for spelled-out numbers in capitals is in review. |
+| 4. Match | 🟡 | Yuval | Taught terms match. A buyer's chosen answer does not reach the matcher yet (Northline gauge line). |
+| 5. Price, flags, lead time | ✅ for abrasives | Tisch | S-330 Ready at USD 0.40 per lb, 24 to 48 hours (4067a06). Metals stay unpriced. |
+| 6. Buyer questions | 🟡 | Yuval | Fixing: unpriced lines sent the buyer a pricing question. |
+| 7. Review and approve | ✅ | Hirsh | Fresh walkthrough passed. |
+| 8. Send the reply | ✅ | Hirsh | Local send with PDF and CSV; email wording fixed. |
+| 9. Learn the buyer | ✅ | Yuval | Taught 0.060 matches the 304 sheet; held only for price. |
+| Real models | 🟡 | | Nicrron still returns 502 (Tisch, 15:41). Rules fallback holds. |
 
 ## Build map
 
@@ -110,6 +112,9 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- Lead times set for the four abrasive SKUs (Tisch, 4067a06).
+- Flow walk done: report and 19 Playwright tests on branch test/e2e-demo-flow.
 
 - Item 15 closed: Yuval owns the matcher (pushed); Tisch's pricing call stands; lead times made up for the demo, as you said.
 
