@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$project_dir"
+export BUNDLE_GEMFILE="$project_dir/Gemfile"
+"$project_dir/script/with-ruby" bundle _2.4.19_ install
+"$project_dir/script/with-ruby" bin/rails db:prepare
+cd "$project_dir/tools/pdf_text"
+export BUNDLE_GEMFILE="$project_dir/tools/pdf_text/Gemfile"
+exec "$project_dir/script/with-ruby" bundle _2.4.19_ install

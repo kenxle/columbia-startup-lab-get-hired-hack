@@ -11,4 +11,16 @@ Our team's project for the Columbia Startup Lab Get Hired hackathon.
 
 ## What we're building
 
-TBD.
+A Rails workspace that turns industrial RFQs into reviewed quotes. The rep can inspect source evidence, resolve unclear lines, and export an approved quote.
+
+## Local development
+
+Install Ruby 3.4.11 and Bundler 2.4.19, then run:
+
+```sh
+script/setup
+script/check
+script/dev
+```
+
+Open http://127.0.0.1:3100. See [the development baseline](docs/engineering/BASELINE.md) and [frontend integration contract](docs/engineering/FRONTEND_CONTRACT.md).

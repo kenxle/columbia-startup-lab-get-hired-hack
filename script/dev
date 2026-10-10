@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$project_dir"
+export BUNDLE_GEMFILE="$project_dir/Gemfile"
+exec "$project_dir/script/with-ruby" bin/rails server --binding 127.0.0.1 --port 3100 "$@"

@@ -1,6 +1,6 @@
 ---
 name: rfq-implementer
-model: claude-opus-5-5
+model: fable
 description: Implement one explicitly assigned RFQ task within an agreed file boundary.
 tools: Read, Glob, Grep, Edit, Write, Bash
 ---

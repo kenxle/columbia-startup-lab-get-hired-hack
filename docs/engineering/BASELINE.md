@@ -1,12 +1,14 @@
 # Development baseline
 
 Prepared for Hirsh on 2026-10-10. The application stack is Ruby on Rails.
-The Rails application has not been generated yet.
+The Rails 8.1.4 application lives at the repository root and uses local SQLite.
 
 - Ruby: 3.4.11, recorded in the root `.ruby-version`.
 - Bundler: 2.4.19 for the existing PDF utility's lockfile.
-- Rails tooling: 8.1.4. Pin this in the application Gemfile when scaffolding.
-- Claude Code agents: Claude Opus 5.5 (`claude-opus-5-5`).
+- Rails: 8.1.4, pinned by Gemfile.lock.
+- Complex implementation and decisions: Fable and GPT-6 Astra.
+- Independent review: Claude Opus 5.5 (`claude-opus-5-5`).
+- Fable currently requires account usage credits; Astra is the authorized available path.
 
 `script/with-ruby` selects the pinned interpreter from the current environment
 or a Homebrew Ruby 3.4 installation. It does not change the system Ruby or shell
@@ -19,8 +21,9 @@ Ruby version manager first.
 brew install ruby@3.4
 script/with-ruby gem install bundler -v 2.4.19 --no-document
 script/with-ruby gem install rails -v 8.1.4 --no-document
-(cd tools/pdf_text && ../../script/with-ruby bundle _2.4.19_ install)
+script/setup
 script/check
+script/dev
 ```
 
 Check the selected tools with `script/with-ruby ruby --version` and
@@ -38,11 +41,18 @@ whether their review is still applicable.
 
 The reusable Claude agents are `rfq-implementer`, `rfq-reviewer`, and
 `rfq-debugger` in `.claude/agents/`. Use an explicit task and owned paths for each
-worker. Opus 5.5 is pinned in each profile. Do not silently fall back to another
-model. Keep API keys out of prompts and committed files.
+worker. Implementer/debugger profiles request Fable; the reviewer requests Opus
+5.5. Use Astra through native delegation when Fable is unavailable. Keep API
+keys out of prompts and committed files.
 
-## Next setup step
+## Application status
 
-Agree on the app/pipeline result format and owned paths before scaffolding Rails.
-The current test command runs the PDF utility only; it is not an end-to-end RFQ
-test or evidence that the future application works.
+The Rails shell, SQLite configuration, dependency lockfile and run scripts are
+ready. The quote workspace is being integrated against
+[the frontend contract](FRONTEND_CONTRACT.md). Real RFQ extraction, catalog
+matching and pricing providers are separate team integrations. Saved uploads
+must remain awaiting processing until those services return a valid result.
+
+Local browser sessions isolate prototype workspaces. This is not production
+user authentication. Configure persistent storage and authentication before
+considering deployment.

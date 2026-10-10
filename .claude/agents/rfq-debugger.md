@@ -1,6 +1,6 @@
 ---
 name: rfq-debugger
-model: claude-opus-5-5
+model: fable
 description: Reproduce a specific RFQ failure and identify its smallest safe fix.
 tools: Read, Glob, Grep, Bash
 ---

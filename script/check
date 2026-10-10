@@ -1,5 +1,8 @@
 #!/bin/sh
 set -eu
 project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$project_dir"
+BUNDLE_GEMFILE="$project_dir/Gemfile" "$project_dir/script/with-ruby" bin/rails db:prepare
+BUNDLE_GEMFILE="$project_dir/Gemfile" "$project_dir/script/with-ruby" bin/rails test "$@"
 cd "$project_dir/tools/pdf_text"
-exec "$project_dir/script/with-ruby" bundle _2.4.19_ exec rspec "$@"
+exec env BUNDLE_GEMFILE="$project_dir/tools/pdf_text/Gemfile" "$project_dir/script/with-ruby" bundle _2.4.19_ exec rspec

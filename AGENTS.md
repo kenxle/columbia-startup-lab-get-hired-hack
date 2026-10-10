@@ -61,7 +61,7 @@ Several agents push to `main` at once. If you go a while without pulling, you wi
 - Run reviewers against a stable revision. Integrate incoming changes at a safe checkpoint and rerun affected checks before publishing. If a push is rejected, reconcile upstream changes before retrying; never force-push shared main.
 - Claude profiles live in `.claude/agents/`: `rfq-implementer`, `rfq-reviewer`, and `rfq-debugger`. Reviewers are read-only. The coordinator validates findings and integrates changes.
 - Hirsh owns the quote application and Yuval owns RFQ processing. Agree on exact file ownership and the shared result format before concurrent implementation. See `docs/engineering/REVIEW-2026-10-10.md` for the responsibilities and interface refinements.
-- Use Claude Opus 5.5 (`claude-opus-5-5`) for Claude work. If unavailable, report the blocker instead of silently selecting another model.
+- Use Fable and GPT-6 Astra for complex implementation, decisions, and debugging. Use Claude Opus 5.5 (`claude-opus-5-5`) for independent review. Fable currently requires usage credits on Hirsh's account, so use the authorized Astra model while blocked. Report model availability issues instead of silently substituting.
 
 ## Team
 
@@ -126,8 +126,9 @@ Stack: Ruby on Rails. See `docs/engineering/BASELINE.md` for the pinned local to
 
 - `script/with-ruby ruby --version`: verify the pinned Ruby.
 - `script/with-ruby rails --version`: verify Rails tooling.
-- `script/check`: run the existing PDF utility tests.
-- The Rails application has not been scaffolded yet.
+- `script/setup`: install app and PDF dependencies and prepare the local database.
+- `script/dev`: start the Rails app at http://127.0.0.1:3100.
+- `script/check`: prepare the database and run Rails tests and PDF utility specs.
 
 ## Git conventions
 
