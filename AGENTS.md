@@ -97,9 +97,38 @@ Tisch leads the data foundation for the RudCo RFQ-to-quote challenge: a catalog 
 
 ## Project overview
 
-We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** Then read the [demo workflow](docs/product/WORKFLOW.md): the eight steps from RFQ email to sent quote, and who owns each. It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing).
+We are building RudCo's RFQ to Quote track: an agent that turns a messy industrial RFQ into an accurate, competitive quote, faster than competitors. **Read the [product brief](docs/product/PRD.md) before you build anything.** It says who the user is, how the judges score us, and the commitments every part of the build keeps (show the source, ask instead of guess, no hallucinated pricing). Then read the [demo workflow](docs/product/WORKFLOW.md): the eight steps from RFQ email to sent quote, and who owns each.
 
-Research behind it lives in [docs/research/](docs/research/).
+### Documentation map
+
+Read what your work touches. Each link says what the document is for.
+
+**Product (Ken)**
+- [Product brief](docs/product/PRD.md): what we build, for whom, and the commitments. Read first.
+- [Demo workflow](docs/product/WORKFLOW.md): the steps from RFQ email to sent quote, what the rep sees, owners, and the video order.
+
+**Research (Ken)**
+- [Research report: what matters in RFQ to quote](docs/research/20261010.01_rfq_sharper_angle/report_rfq_sharper_angle.md): the problems, value props, and the angle we build (a quote that shows its work). [PDF](docs/research/20261010.01_rfq_sharper_angle/rfq_research_report.pdf).
+- [Test set of 25 messy RFQ lines](docs/research/20261010.01_rfq_sharper_angle/research_domain_rules.md#6-test-set): each with the correct reading and the buyer question. Use it for tests and the demo RFQ.
+- [Gauge tables, specs, and hidden requirements](docs/research/20261010.01_rfq_sharper_angle/research_domain_rules.md): the rules parsing and compliance flags follow.
+- [Existing tools and public price sources](docs/research/20261010.01_rfq_sharper_angle/research_tools_and_prices.md): competitors' AI quote tools, and free benchmarks for pricing.
+- [RudCo company profile](docs/research/20261010.02_rudco_profile/rudco_profile.md): who RudCo is and what matters to them.
+- RudCo competitive analysis: in progress, in `docs/research/20261010.03_rudco_competitive_analysis/`.
+
+**Engineering (Hirsh)**
+- [Development baseline](docs/engineering/BASELINE.md): setup, run, and check commands.
+- [Frontend contract](docs/engineering/FRONTEND_CONTRACT.md): routes, models, and the processing-result shape.
+- [UI/UX approach](docs/engineering/UI_UX_APPROACH.md) and [design skills](docs/engineering/DESIGN_SKILLS.md).
+- [Quote workspace diagram](docs/diagrams/quote-workspace.md).
+
+**Catalog and pricing (Tisch)**
+- [Catalog and pricing method](docs/data/CATALOG_PRICING.md): how items and benchmarks are admitted.
+- [Aviation hardware catalog, 200 items](docs/data/AVIATION_ITEMS_200.md).
+
+**Tools**
+- [PDF to text](tools/pdf_text/README.md): extracts text from RFQ PDFs.
+
+Add your new documents to this map when you create them.
 
 ## Repo structure
 
@@ -111,7 +140,9 @@ columbia-startup-lab-get-hired-hack/
 ├── docs/
 │   ├── product/PRD.md     # Product brief (read before building)
 │   ├── product/WORKFLOW.md # Demo workflow, step by step
-│   ├── research/          # Research reports
+│   ├── research/          # Research reports and company profile
+│   ├── engineering/       # Baseline, frontend contract, UI approach
+│   ├── data/              # Catalog and pricing
 │   ├── BULLETIN.md        # Live bulletin board (read every pull)
 │   ├── BULLETIN-ARCHIVE.md
 │   └── diagrams/          # Mermaid diagrams of key flows
