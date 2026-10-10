@@ -1,0 +1,23 @@
+From: Dana Ortiz <purchasing@northline-fab.example>
+To: quotes@rud-co.example
+Subject: RFQ 2026-1010, Northline Fabrication, sheet, plate, blast media and ingot
+Attachments: northline_rfq_2026-1010.pdf, northline_rfq_2026-1010.csv
+
+Hi RudCo team,
+
+Please quote the lines below. The same list is attached as a PDF and a spreadsheet.
+Ship to: US 07105 (Newark, NJ). We need delivery by the end of the month.
+MTRs required on all steel. Send a COA with each lot of abrasive.
+
+1. Stainless 304 sheet, 16 ga, 2B, 48 x 96, 20 sheets
+2. Stainless 304, 0.060 in, 48 x 96, 10 sheets
+3. SA-240 316L 3/8 plate 60 x 120, 2 plates, with 3.1 cert
+4. Steel shot S-330, 2,000 lb, in 50 lb bags
+5. P1020 aluminum T-bar ingot, 5,000 lb
+6. Aluminum 356 notched ingot, 2,000 lb
+7. 1/2 A36 plate 5x10, 3 plates
+8. 1/4-20 x 1 in hex cap screws, zinc plated, 500 pcs
+
+Thanks,
+Dana Ortiz
+Purchasing, Northline Fabrication

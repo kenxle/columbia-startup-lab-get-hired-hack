@@ -1,0 +1,13 @@
+From: Dana Ortiz <purchasing@northline-fab.example>
+To: quotes@rud-co.example
+Subject: RFQ 2026-1017, Northline Fabrication, stainless sheet
+
+Hi RudCo team,
+
+Same sheet as last week, please.
+Ship to: US 07105 (Newark, NJ).
+
+1. Stainless 304, 0.060 in, 48 x 96, 2B, 8 sheets
+
+Thanks,
+Dana
