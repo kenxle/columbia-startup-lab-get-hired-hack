@@ -376,6 +376,36 @@ class ProcessRfqTest < ActiveSupport::TestCase
     assert @quote.reload.awaiting_processing?
   end
 
+  test "rules intake never initializes or reads the configured catalog provider" do
+    defaults = 0
+    provider = Object.new
+    provider.define_singleton_method(:read) { |*| raise "Catalog provider must not read intake" }
+    CatalogMatch::LlmReader.stub(:default, lambda {
+      defaults += 1
+      provider
+    }) do
+      ["S-330 steel shot, 100 lb", "mystery special material, 100 lb"].each do |source|
+        @quote.update!(source_text: source)
+        assert_equal "succeeded", perform(enqueue).status
+      end
+    end
+    assert_equal 0, defaults
+    refute @quote.reload.quote_lines.first.quotable?
+  end
+
+  test "rules boundary preserves an injected matcher without requiring an llm keyword" do
+    catalog = CatalogMatch::Catalog.new(%w[rudco metals])
+    seen = []
+    service = lambda do |text, client:, catalog:|
+      seen << [text, client, catalog]
+      CatalogMatch::Matcher.call(text, client: client, catalog: catalog, llm: false)
+    end
+    matcher = QuoteWorkspace::ProcessRfq::IntakeMatcher.new(catalog: catalog, service: service)
+    result = matcher.match(line_text: "S-330 steel shot", quantity: 100, quantity_unit: "lb")
+    assert_equal [["S-330 steel shot", nil, catalog]], seen
+    assert_equal "RC-STEELSHOT-S330", result.fetch("best").fetch("item_id")
+  end
+
   test "intake pins the restricted matcher and never calls the automatic contract" do
     CatalogMatch::Contract.stub(:call, ->(*) { flunk "Unrestricted contract must not run" }) do
       @quote.update!(source_text: "S-330 steel shot, 100 lb")

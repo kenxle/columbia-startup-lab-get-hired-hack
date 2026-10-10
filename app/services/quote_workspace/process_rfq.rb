@@ -29,6 +29,18 @@ module QuoteWorkspace
 
       private
 
+      # The catalog matcher has its own optional provider, independent of the
+      # processing pipeline's llm flag. Keep both intake and answer reruns local.
+      def call_service(text)
+        return super unless @service.equal?(CatalogMatch::Matcher)
+
+        arguments = { client: @client, llm: false }
+        arguments[:catalog] = @catalog if @catalog
+        @service.call(text, **arguments)
+      rescue StandardError
+        nil # match turns unavailable matching into the existing safe failure.
+      end
+
       # The upstream PN shortcut does not verify other stated attributes.
       # Fail closed until shared matching checks the complete specification.
       def explicit_catalog_part_number?(text)

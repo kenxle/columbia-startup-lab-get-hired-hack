@@ -15,6 +15,24 @@ class ApplyBuyerAnswerTest < ActiveSupport::TestCase
       revision_id: @quote.processing_revision.fetch("id"), free_text: "100 lb"}
   end
 
+  test "answer rerun never initializes or reads the configured catalog provider" do
+    defaults = 0
+    provider = Object.new
+    provider.define_singleton_method(:read) { |*| raise "Catalog provider must not read buyer answers" }
+    CatalogMatch::LlmReader.stub(:default, lambda {
+      defaults += 1
+      provider
+    }) do
+      result = QuoteWorkspace::ApplyBuyerAnswer.call(**arguments)
+      assert result.quotable?
+      matcher = QuoteWorkspace::ApplyBuyerAnswer::AnswerMatcher.new(
+        catalog: CatalogMatch::Catalog.new(%w[rudco metals]), service: CatalogMatch::Matcher)
+      result = matcher.match(line_text: "mystery special material", quantity: 100, quantity_unit: "lb")
+      assert_nil result["best"]
+    end
+    assert_equal 0, defaults
+  end
+
   test "free text reruns only the held line preserving other edits and clearing approval" do
     untouched = @quote.quote_lines.last
     untouched.apply_manual_edit("notes" => "Rep note to preserve")
