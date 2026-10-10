@@ -94,6 +94,7 @@ Solid lines exist or are being built. Dotted lines are planned.
 
 ### Matching and pricing (Tisch)
 
+- **Public RFQ example:** [Transnet steel shot](data/example_rfqs/transnet-steel-shot-2024/SOURCE.md) includes the authentic 35-page PDF and extracted text. The closed December 2024 request asks for 50,000 kg of S390; blank price fields provide no benchmark. Source, packaging, currency and specification conflicts are recorded for intake tests.
 - **Where:** `data/aviation/` (catalog and observations), `tools/catalog_research/catalog_reader.rb` (Ruby data adapter and validation), `tools/catalog_research/` (offline supplier-research scripts), `docs/data/`. The Rails app can read the JSON through Ruby without a Node runtime dependency.
 - **Data today:** [500 aviation hardware items](data/AVIATION_ITEMS_500.md) and 1,000 real public dealer price observations, two per item. Includes bolts, screws, nuts, washers and gaskets. Original AVI-001 through AVI-200 are preserved. Each observation has a URL, retrieval time and one-piece price basis. Both dealers report stock at retrieval. The assembled catalog is labeled sample data and does not claim RudCo stock.
 - **Specification status:** 225 items have agreeing readable dimensional fields. Another 275 have real same-part price evidence but need supplier specification confirmation. Readable conflicts were rejected. Explicit right-hand nut SKU mappings are recorded. None is certified for a particular helicopter or automatically ready to quote.
