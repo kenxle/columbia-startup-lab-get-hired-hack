@@ -9,7 +9,6 @@
 Each item says who is waiting and what Claude recommends.
 
 - [ ] **3. W3: does a buyer's answer rerun only the answered lines on its own?** **Claude recommends yes,** with the rep still approving the final quote. *Waiting: Hirsh, Yuval (board, 12:46 and 12:59).*
-- [ ] **7. A strange line on Devpost.** The profile agent reported that the Devpost page says "Using NicrronNinoo and Block Convey is a must in your project," twice. Claude read the page earlier and did not see it. It may not be a genuine requirement. **Claude recommends** asking an organizer before acting on it.
 - [ ] **8. Anthropic API key for Yuval.** Yuval's parser runs on recorded responses until a key is in `.env` on his machine. If you have a key to share with him, send it to him directly, never in the repo or the chat. *Waiting: Yuval (PLAN.md, open question 5).*
 
 ## Coming to you soon
@@ -35,6 +34,8 @@ Leave a comment anywhere on this page, or add a line here. Claude reads every co
 ## Done
 
 Newest first.
+
+- The Devpost line about NicrronNinoo and Block Convey: these are free sponsor resources for the project, not a requirement, and teammates are already on it. Other tools are fine too.
 
 - Pages: **Hirsh owns all page code.** Ken owns design direction through the [brand position](BRAND_POSITION.md). Posted to Hirsh.
 
