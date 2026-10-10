@@ -130,6 +130,12 @@ The split between rules and the model is the main design choice. The teammates a
 - **Rules first, model second.** Gauge tables, unit conversion, and readiness are fixed rules. The model handles the language around them. That kept the accuracy checkable.
 - **Ask, don't guess, and keep the rest moving.** One unclear line should not hold up the clear ones.
 
+From each of us:
+
+- **Hirsh.** A clear review screen depends on preserving where each value came from and exactly which version the rep approved. Testing the whole buyer-question-to-quote flow exposed gaps that isolated passing tests did not.
+- **Yuval.** A correct value is not enough; the matcher must know whether it came from source words, a buyer answer, or explicit teaching. Keeping those origins separate lets us learn buyer shorthand without silently changing their specifications.
+- **Tisch.** The same item really is written a dozen ways, so the matcher has to show the words it read each field from and ask when two catalog items fit; a confident guess on gauge or finish is the expensive mistake. Real prices are scarce and messy: public listings disagree, hide behind size selectors and add delivery surcharges, so a price only counts when two independent sellers list the exact spec, and everything else stays "to confirm".
+
 ## What's next
 
 These are designed and partly built. We list them here so the submission does not claim them.
