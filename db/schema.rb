@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_10_181500) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_10_184500) do
   create_table "client_terms", force: :cascade do |t|
     t.integer "client_id", null: false
     t.string "term", null: false
@@ -46,6 +46,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_181500) do
     t.index ["client_id"], name: "index_match_requests_on_client_id"
   end
 
+  create_table "processing_runs", force: :cascade do |t|
+    t.integer "quote_id", null: false
+    t.string "status", default: "queued", null: false
+    t.string "requested_revision", null: false
+    t.string "source_revision", null: false
+    t.binary "source_content", limit: 10485760
+    t.string "source_type"
+    t.string "source_filename"
+    t.text "error_message"
+    t.json "warnings"
+    t.datetime "queued_at", null: false
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id", "status"], name: "index_processing_runs_on_quote_id_and_status"
+    t.index ["quote_id"], name: "index_processing_runs_on_quote_id"
+  end
+
   create_table "quote_lines", force: :cascade do |t|
     t.integer "quote_id", null: false
     t.integer "position", null: false
@@ -69,6 +88,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_181500) do
     t.datetime "updated_at", null: false
     t.string "line_id"
     t.json "processing"
+    t.string "lead_time"
+    t.string "lead_time_source"
     t.index ["quote_id", "line_id"], name: "index_quote_lines_on_quote_id_and_line_id", unique: true
     t.index ["quote_id", "position"], name: "index_quote_lines_on_quote_id_and_position", unique: true
     t.index ["quote_id"], name: "index_quote_lines_on_quote_id"
@@ -86,10 +107,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_10_181500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "processing_revision"
+    t.json "processing_source"
+    t.json "processing_warnings", default: [], null: false
     t.index ["workspace_token", "created_at"], name: "index_quotes_on_workspace_token_and_created_at"
   end
 
   add_foreign_key "client_terms", "clients", on_delete: :cascade
   add_foreign_key "match_requests", "clients", on_delete: :cascade
+  add_foreign_key "processing_runs", "quotes", on_delete: :cascade
   add_foreign_key "quote_lines", "quotes", on_delete: :cascade
 end

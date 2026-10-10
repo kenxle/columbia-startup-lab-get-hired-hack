@@ -7,7 +7,7 @@
         <%= line.display_description.presence || "No description" %>
       </h2>
     </div>
-    <%= status_badge(line) %>
+    <%= render "shared/status_badge", label: line.status_label, state: line.state %>
   </div>
 
   <dl class="facts">
@@ -28,6 +28,14 @@
       <dd class="mono"><%= line.line_total.nil? ? unknown_marker : display_money(line.line_total) %></dd>
     </div>
   </dl>
+
+  <div class="detail-block">
+    <h3 class="section-title">Lead time</h3>
+    <p><%= line.display_lead_time %></p>
+    <% if line.sourced_lead_time? %>
+      <p class="field__hint">Source: <%= line.lead_time_source %></p>
+    <% end %>
+  </div>
 
   <% if held_line?(line) %>
     <div class="callout callout--held" role="note">

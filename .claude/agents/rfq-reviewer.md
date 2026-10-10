@@ -1,6 +1,6 @@
 ---
 name: rfq-reviewer
-model: claude-opus-5-5
+model: claude-opus-5
 description: Review RFQ code or product contracts for concrete correctness and integration risks without changing files.
 tools: Read, Glob, Grep
 ---

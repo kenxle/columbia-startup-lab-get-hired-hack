@@ -1,0 +1,3 @@
+<%# locals: (label:, tone: "source") %>
+<% variant = %w[source edited unresolved].include?(tone.to_s) ? tone.to_s : "source" %>
+<span class="flag flag--<%= variant %>"><%= label %></span>

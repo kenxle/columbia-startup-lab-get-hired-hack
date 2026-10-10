@@ -33,6 +33,8 @@
 <% end %>
 
 <%= render "quotes/summary", quote: @quote, lines: @lines %>
+<%= render "quotes/processing_run", quote: @quote %>
+<%= render "quotes/processing_evidence", quote: @quote %>
 
 <div class="review">
   <%= render "quotes/source_panel", quote: @quote, selected_line: @selected_line %>

@@ -9,7 +9,7 @@
 }
 .match-chip.is-active, .match-chip:hover { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-wash); }
 
-.match-columns { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.match-columns { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
 .match-teach { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); align-items: end; margin-top: 1rem; }
 .match-recent li { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
 
@@ -19,7 +19,7 @@
 }
 .match-note { margin: 0.25rem 0; }
 .match-reading { margin: 1rem 0 1.5rem; }
-.match-fields { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.match-fields { list-style: none; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .match-field {
   display: inline-flex; flex-wrap: wrap; gap: 0.35rem; align-items: baseline;
   border: 1px solid var(--rule); border-radius: var(--radius-small); padding: 0.3rem 0.6rem; background: var(--surface);
@@ -32,15 +32,15 @@
 .match-cards { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 1rem; }
 .match-card {
   display: grid; grid-template-columns: auto 240px 1fr; gap: 1rem; align-items: start;
-  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); padding: 1rem;
+  padding: 1rem; min-width: 0;
 }
 .match-card:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .match-card--closest { border-style: dashed; }
-.match-card__pick input { width: 1.25rem; height: 1.25rem; margin-top: 0.25rem; }
+.match-card__body, .match-card__picture { min-width: 0; overflow-wrap: anywhere; }
+.match-card__pick input { accent-color: var(--accent); width: 1.25rem; height: 1.25rem; margin-top: 0.25rem; }
 .match-card__picture p { margin: 0.25rem 0 0; text-align: center; }
 .match-card__pn { font-size: 1.1rem; font-weight: 700; margin: 0; color: var(--ink); }
 .match-card__desc { margin: 0.25rem 0 0.5rem; }
-.match-checks summary { cursor: pointer; color: var(--accent-strong); margin: 0.5rem 0; }
 .match-check--exact .match-check__status { color: var(--ready-ink); font-weight: 600; }
 .match-check--near .match-check__status { color: var(--held-ink); font-weight: 600; }
 .match-check--conflict .match-check__status { color: var(--nomatch-ink); font-weight: 600; }

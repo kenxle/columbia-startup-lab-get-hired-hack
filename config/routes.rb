@@ -18,9 +18,17 @@ Rails.application.routes.draw do
 
     resource :buyer_questions, only: :show do
       get :download
+      post :preview_email
+    end
+
+    resource :final_quote, only: :show do
+      get :download
+      get :pdf
+      post :preview_email
     end
 
     resources :quote_lines, only: :update
+    resource :processing, only: :create, controller: "processing_runs"
   end
 
   # Tisch: catalog matching agent (client description -> catalog items -> RFQ).

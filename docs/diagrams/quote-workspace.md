@@ -2,30 +2,63 @@
 
 ```mermaid
 graph TD
-    A[Rep pastes email or uploads RFQ] --> B[Session-scoped quote saved]
-    B --> C[Awaiting processing]
-    C --> D[Yuval processing result]
-    D --> E[Validate lines and metadata and apply atomically]
-    F[Load labeled synthetic sample] --> E
-    E --> G[Source beside quote lines]
-    G --> H[Ready lines with sourced prices]
-    G --> I[Held lines with buyer questions]
-    G --> N[Filter all, attention needed or ready]
-    I --> O[Review consolidated buyer-question draft]
-    O --> P[Download plain text when all questions exist]
-    O --> L
-    H --> J[Rep reviews and approves]
-    I --> J
-    J --> K[CSV: priced ready lines and unpriced held lines]
-    G --> L[Rep edits a line]
-    L --> M[Invalidate approval]
-    M --> G
+    A[Rep pastes email or uploads RFQ] --> B[Save session-scoped quote and original source]
+    B --> C[Enqueue durable processing run]
+    C --> D[ProcessRfqJob captures source and current revision]
+    D --> E[Rules extraction and normalization]
+    E --> F[Workspace buyer context: rep-taught terms only]
+    F --> G[RudCo and metals catalog matching]
+    G --> H[Readiness and supported-unit source pricing]
+    H --> I{Revision current and no rep edits?}
+    I -- No --> J[Stale or conflict: preserve current lines]
+    I -- Yes --> K[Validate and apply lines, revision and evidence atomically]
+    E --> L[Extraction failure: retain warnings and preserve lines]
+    C --> M[Queue failure: retain saved RFQ]
+    L --> N[Retry empty RFQ]
+    M --> N
+    N --> C
+    O[Load labeled synthetic sample] --> K
+    K --> P[Source beside quote lines and extraction evidence]
+    J --> P
+    L --> P
+    P --> Q[Filter all, attention needed or ready]
+    P --> R[Rep edits a line]
+    R --> S[Clear approval and preserve edit context]
+    S --> P
+    P --> T[Held-line question draft]
+    T --> U[Plain text or local question email preview]
+    P --> V[Rep approves current whole-quote revision]
+    V --> W[Locked approved snapshot]
+    W --> X[PDF, CSV and email text draft]
+    W --> Y[Local email preview with PDF and CSV attachments]
 ```
 
-The processing service is an internal handoff, not yet wired to a provider.
-Uploads are stored without invented extraction. Held lines never contribute to
-the subtotal. Filters do not change totals or approval scope. Hardware specs,
-processing metadata, stable line IDs and the processing revision are stored.
-The question preview and draft download do not change the quote or approval.
-No buyer email is sent. Ken approved email choices and response behavior in the
-demo workflow; delivery, response handling and the confidence gate remain pending.
+Saving an RFQ starts processing automatically. Work runs outside the request and
+outside the quote lock; result application rechecks revision and rep edits under
+that lock. Duplicate active requests reuse one run. The status panel shows queued,
+running, succeeded, failed, stale or conflict. Existing lines are not destructively
+reprocessed through the manual endpoint. Partial reruns need a future merge contract.
+
+Text-bearing PDF, CSV and pasted text extraction are connected. Unsupported or
+textless sources fail visibly. Source filename, page/row counts and bounded warnings
+are stored as internal evidence. Rules parsing and RudCo/metals matching are active;
+no AI provider is called by this intake path. Rep-taught buyer terms are scoped to
+the workspace. Automatically learned memory and aviation matching are excluded from
+intake until their contracts are safe.
+
+Held lines never enter the subtotal. Unsupported sale units stay unpriced. Lead
+time is sourced or shown as `to confirm`. Filters never change totals or approval
+scope. Spec and quantity edits hold lines and clear lead-time evidence. All saved
+edits invalidate approval. Downloads and local previews preserve the quote.
+
+Final email text, PDF and CSV use the same approved revision in a local mail preview.
+PDF embeds Unicode fonts and rejects unsupported glyphs rather than altering specs.
+Sample data remains labeled; internal notes and extraction metadata stay out of buyer
+exports. Question drafts contain existing held-line questions only.
+
+Email previews use `letter_opener` in development and a test adapter in tests, with
+an invalid placeholder recipient. No buyer mail is sent. Real delivery, choice
+responses, confidence-based sending and partial reruns remain pending.
+
+Presentation follows Ken's [style guide](../product/STYLE_GUIDE.md) and the shared
+[UI components](../engineering/UI_COMPONENTS.md).

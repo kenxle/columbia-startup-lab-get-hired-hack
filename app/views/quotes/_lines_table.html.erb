@@ -34,6 +34,7 @@
                   No catalog item
                 <% end %>
               </span>
+              <span class="lines-table__sku">Lead time: <%= line.display_lead_time %></span>
             </th>
             <td class="num"><%= display_quantity(line) %></td>
             <td class="num mono">
@@ -42,7 +43,7 @@
             <td class="num mono">
               <%= line.line_total.nil? ? unknown_marker : display_money(line.line_total) %>
             </td>
-            <td><%= status_badge(line) %></td>
+            <td><%= render "shared/status_badge", label: line.status_label, state: line.state %></td>
           </tr>
         <% end %>
       </tbody>

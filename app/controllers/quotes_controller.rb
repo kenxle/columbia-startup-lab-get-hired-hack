@@ -22,7 +22,21 @@ class QuotesController < ApplicationController
     upload_problem = attach_upload(@quote)
 
     if upload_problem.nil? && @quote.save
-      redirect_to quote_path(@quote), notice: "RFQ saved. It is awaiting processing."
+      begin
+        run = QuoteWorkspace::ProcessRfq.enqueue(quote: @quote, expected_revision: @quote.review_revision)
+        case run.status
+        when "queued", "running"
+          redirect_to quote_path(@quote), notice: "RFQ saved. Processing is #{run.status}. Refresh the quote to see the results."
+        when "succeeded"
+          redirect_to quote_path(@quote), notice: "RFQ saved and processed. Review the extracted lines."
+        else
+          redirect_to quote_path(@quote), alert: "RFQ saved. #{run.error_message.presence || 'Processing could not start. Review the source and retry.'}"
+        end
+      rescue StandardError
+        # Intake is already saved. Queue failure must leave a recoverable RFQ,
+        # without leaking provider, storage or adapter exception details.
+        redirect_to quote_path(@quote), alert: "RFQ saved, but processing could not be queued. Open the RFQ and select Process RFQ to retry."
+      end
     else
       @quote.validate
       @quote.errors.add(:base, upload_problem) if upload_problem
@@ -55,7 +69,7 @@ class QuotesController < ApplicationController
 
     if @quote.approvable?
       @quote.approve!(expected_revision: params[:reviewed_version])
-      redirect_to quote_path(@quote), notice: "Quote approved. The CSV export is available."
+      redirect_to quote_path(@quote), notice: "Quote approved. Email, PDF and CSV preparation is available."
     else
       redirect_to quote_path(@quote),
         alert: "Approval needs at least one Ready line, and every held line needs a question for the buyer."

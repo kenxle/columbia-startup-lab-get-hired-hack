@@ -36,21 +36,36 @@ class CatalogMatchesController < ApplicationController
     @catalog = CatalogMatch::Catalog.default
     @candidates = Array(@match_request.result["candidates"])
     @closest = Array(@match_request.result["closest"])
-    @quotes = workspace_quotes.order(created_at: :desc).limit(20)
+    @quotes = workspace_quotes.order(created_at: :desc).select { |quote| same_buyer?(quote) }.first(20)
   end
 
   def approve
-    quote = target_quote
-    outcome = CatalogMatch::Approve.call(
-      match_request: @match_request,
-      part_numbers: Array(params[:part_numbers]),
-      quote: quote,
-      quantity: params[:quantity].presence
-    )
-    learned = outcome[:learned].map(&:term)
-    notice = "Added #{outcome[:lines].size} #{'line'.pluralize(outcome[:lines].size)} to #{quote.reference}."
-    notice += " Remembered for #{@match_request.client.name}: #{learned.map { |term| "\"#{term}\"" }.to_sentence}." if learned.any?
-    redirect_to quote_path(quote, line: outcome[:lines].first.id), notice: notice
+    destination, notice = @match_request.with_lock do
+      if @match_request.approved?
+        existing_quote = workspace_quotes.find(@match_request.quote_id)
+        next [ quote_path(existing_quote), "This request was already approved. Existing quote lines are unchanged." ]
+      end
+
+      selected = approved_candidates!
+      quote = target_quote
+      outcome = quote.with_lock do
+        unless same_buyer?(quote)
+          raise CatalogMatch::Approve::Invalid, "The RFQ buyer changed. Choose an RFQ for #{@match_request.client.name}."
+        end
+        result = CatalogMatch::Approve.call(
+          match_request: @match_request,
+          part_numbers: selected,
+          quote: quote,
+          quantity: params[:quantity].presence
+        )
+        # The assembled catalog is sample data even when the RFQ itself is real.
+        quote.update!(sample_data: true)
+        result
+      end
+      [ quote_path(quote, line: outcome[:lines].first.id),
+        "Added #{outcome[:lines].size} #{'line'.pluralize(outcome[:lines].size)} to #{quote.reference}. Catalog data is sample data; added lines remain unpriced." ]
+    end
+    redirect_to destination, notice: notice
   rescue CatalogMatch::Approve::Invalid, ActiveRecord::RecordInvalid => error
     redirect_to catalog_match_path(@match_request), alert: error.message
   end
@@ -96,7 +111,37 @@ class CatalogMatchesController < ApplicationController
         sample_data: true
       )
     else
-      workspace_quotes.find(params[:quote_id])
+      quote = workspace_quotes.find(params[:quote_id])
+      unless same_buyer?(quote)
+        raise CatalogMatch::Approve::Invalid, "Choose an RFQ for #{@match_request.client.name}. Quote lines cannot be added to another buyer's RFQ."
+      end
+      quote
     end
+  end
+
+  def same_buyer?(quote)
+    buyer = quote.buyer_name.to_s.squish
+    buyer.present? && buyer.casecmp?(@match_request.client.name.to_s.squish)
+  end
+
+  def approved_candidates!
+    selected = Array(params[:part_numbers]).map { |part_number| part_number.to_s.upcase }.uniq
+    raise CatalogMatch::Approve::Invalid, "Choose at least one item to approve." if selected.empty?
+    if @match_request.outcome == "no_match"
+      raise CatalogMatch::Approve::Invalid, "No catalog match is confirmed. Closest items cannot be approved; clarify the request first."
+    end
+
+    candidates = Array(@match_request.result["candidates"])
+    selected.each do |part_number|
+      candidate = candidates.find { |entry| entry.is_a?(Hash) && entry["pn"].to_s.upcase == part_number }
+      unless candidate
+        raise CatalogMatch::Approve::Invalid, "Only offered matching candidates can be approved. Closest items are not confirmed matches."
+      end
+      checks = Array(candidate["checks"])
+      if checks.any? { |check| check.is_a?(Hash) && %w[near conflict].include?(check["status"].to_s) }
+        raise CatalogMatch::Approve::Invalid, "The selected item differs from the request. Resolve its near matches and conflicts before approval."
+      end
+    end
+    selected
   end
 end

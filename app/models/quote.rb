@@ -5,8 +5,20 @@ class Quote < ApplicationRecord
 
   class NotApprovable < StandardError; end
   class StaleReview < NotApprovable; end
+  class InvalidProcessingEvidence < ArgumentError
+    attr_reader :problems
+
+    def initialize(problems)
+      @problems = problems
+      super(problems.join("; "))
+    end
+  end
+
+  PROCESSING_SOURCE_TYPES = %w[email pdf spreadsheet text csv].freeze
+  PROCESSING_SOURCE_KEYS = %w[type filename pages rows].freeze
 
   has_many :quote_lines, -> { order(:position) }, dependent: :delete_all, inverse_of: :quote
+  has_many :processing_runs, dependent: :delete_all
 
   scope :for_workspace, ->(workspace_token) { where(workspace_token: workspace_token.to_s) }
 
@@ -19,6 +31,59 @@ class Quote < ApplicationRecord
   validate :source_bytes_within_limit
   validate :original_filename_present_with_file
   validate :processing_revision_shape
+  validate :processing_evidence_shape
+
+  # Flat, bounded extraction metadata only. Unknown keys and source types are
+  # rejected rather than silently retaining provider data or inventing a type.
+  def self.processing_evidence_errors(source:, warnings:)
+    problems = []
+    unless source.nil?
+      if !source.is_a?(Hash)
+        problems << "source must be a hash or null"
+      elsif source.keys.any? { |key| !key.is_a?(String) && !key.is_a?(Symbol) } ||
+          source.keys.map(&:to_s).uniq.length != source.keys.length ||
+          (source.keys.map(&:to_s) - PROCESSING_SOURCE_KEYS).any?
+        problems << "source must contain only unique type, filename, pages and rows keys"
+      else
+        fields = source.stringify_keys
+        problems << "source type is unsupported" unless PROCESSING_SOURCE_TYPES.include?(fields["type"])
+        filename = fields["filename"]
+        unless filename.nil? || (filename.is_a?(String) && filename.valid_encoding? && filename.length <= 255)
+          problems << "source filename must be text of 255 characters or fewer, or null"
+        end
+        %w[pages rows].each do |key|
+          value = fields[key]
+          unless value.nil? || (value.is_a?(Integer) && value >= 0)
+            problems << "source #{key} must be a nonnegative whole number or null"
+          end
+        end
+      end
+    end
+    unless warnings.is_a?(Array) && warnings.length <= 100 && warnings.all? { |warning| warning.is_a?(String) && warning.valid_encoding? && warning.length <= 1_000 }
+      problems << "warnings must be a list of at most 100 strings, each 1000 characters or fewer"
+    end
+    if problems.empty? && JSON.generate({ source: source, warnings: warnings }).bytesize > 32_768
+      problems << "source and warnings must total 32 KiB or less"
+    end
+    problems
+  rescue JSON::GeneratorError, EncodingError
+    [ "source and warnings must be valid JSON text" ]
+  end
+
+  def self.normalized_processing_evidence(source:, warnings:)
+    warnings = [] if warnings.nil?
+    problems = processing_evidence_errors(source: source, warnings: warnings)
+    raise InvalidProcessingEvidence.new(problems) if problems.any?
+
+    { processing_source: source&.stringify_keys, processing_warnings: warnings.dup }
+  end
+
+  # Used for zero-line extraction failures as well as successful results.
+  # Callers own their transaction, run status and explicit save.
+  def assign_processing_evidence(source:, warnings:)
+    assign_attributes(self.class.normalized_processing_evidence(source: source, warnings: warnings))
+    self
+  end
 
   # Optional provider metadata is inert JSON, bounded before serialization.
   # The depth and node limits also reject circular Ruby containers.
@@ -138,6 +203,12 @@ class Quote < ApplicationRecord
   end
 
   private
+
+  def processing_evidence_shape
+    self.class.processing_evidence_errors(source: processing_source, warnings: processing_warnings).each do |problem|
+      errors.add(:base, "Extraction metadata: #{problem}")
+    end
+  end
 
   def processing_revision_shape
     unless self.class.valid_processing_metadata?(processing_revision, revision: true)

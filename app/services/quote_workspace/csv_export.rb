@@ -14,7 +14,8 @@ module QuoteWorkspace
       "Line", "Status", "Description", "Material", "Grade", "Form", "Thickness", "Width", "Length",
       "Standard", "Finish", "Part number", "Diameter", "Thread", "Grip", "Drilling",
       "Quantity", "Unit", "Catalog SKU", "Unit price (USD)", "Line total (USD)",
-      "Price source", "Benchmark", "Compliance requested", "Question for the buyer"
+      "Price source", "Benchmark", "Compliance requested", "Question for the buyer",
+      "Lead time", "Lead time source"
     ].freeze
 
     def self.escape_formula(value)
@@ -93,7 +94,9 @@ module QuoteWorkspace
         quotable ? text(line.price_source) : "",
         quotable && !line.rep_entered_price? ? text(benchmark_summary(line)) : "",
         text(compliance_summary(line)),
-        quotable ? "" : text(line.clarification_question)
+        quotable ? "" : text(line.clarification_question),
+        text(line.display_lead_time),
+        line.sourced_lead_time? ? text(line.lead_time_source) : ""
       ]
     end
 

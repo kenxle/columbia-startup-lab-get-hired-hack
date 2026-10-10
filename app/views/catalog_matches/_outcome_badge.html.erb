@@ -1,0 +1,3 @@
+<%# locals: (outcome:) %>
+<% label = CatalogMatchesHelper::OUTCOME_LABELS.fetch(outcome, [outcome.to_s.humanize]).first %>
+<%= render "shared/status_badge", label: label, state: outcome %>

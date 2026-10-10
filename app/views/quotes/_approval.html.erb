@@ -29,7 +29,8 @@
   <% if quote.approved? %>
     <div class="approval__done">
       <p>Approved <%= display_time(quote.approved_at) %>. Any line edit clears this approval.</p>
-      <%= link_to export_quote_path(quote, format: :csv), class: "button button--primary", download: "" do %>
+      <%= link_to "Prepare email and PDF", quote_final_quote_path(quote), class: "button button--primary" %>
+      <%= link_to export_quote_path(quote, format: :csv), class: "button button--quiet", download: "" do %>
         Export quote and questions, CSV<% if quote.sample_data? %> (SAMPLE)<% end %>
       <% end %>
     </div>

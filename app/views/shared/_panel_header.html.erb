@@ -1,0 +1,7 @@
+<%# locals: (title:, id:, eyebrow: nil) %>
+<div class="panel__head">
+  <div>
+    <% if eyebrow.present? %><p class="eyebrow"><%= eyebrow %></p><% end %>
+    <h2 id="<%= id %>" class="panel__title"><%= title %></h2>
+  </div>
+</div>

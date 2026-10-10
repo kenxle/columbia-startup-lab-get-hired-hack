@@ -1,0 +1,3 @@
+<%# locals: (label:, state:) %>
+<% variant = { "ready" => "ready", "match" => "ready", "needs_buyer" => "needs-buyer", "candidates" => "needs-buyer", "no_match" => "no-match", "neutral" => "neutral" }.fetch(state.to_s, "unknown") %>
+<span class="status status--<%= variant %>"><%= label %></span>

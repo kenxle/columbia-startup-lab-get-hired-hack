@@ -10,6 +10,10 @@
     <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
     <% if @draft.ready? %>
       <%= link_to "Download draft (.txt)", download_quote_buyer_questions_path(@quote), class: "button button--primary" %>
+      <% if local_email_preview_available? %>
+        <%= button_to "Open local email preview", preview_email_quote_buyer_questions_path(@quote),
+              params: { reviewed_version: @quote.review_revision }, class: "button button--quiet" %>
+      <% end %>
     <% end %>
   </div>
 </header>
@@ -17,7 +21,7 @@
 <section class="buyer-draft" aria-labelledby="buyer-draft-heading">
   <div class="buyer-draft__status">
     <span class="buyer-draft__badge">Draft, not sent</span>
-    <p>Email delivery and buyer responses are not connected. Download this draft to use outside the workspace.</p>
+    <p>Email delivery and buyer responses are not connected. Open a local email preview or download this draft to use outside the workspace.</p>
   </div>
 
   <% if @quote.sample_data? %>

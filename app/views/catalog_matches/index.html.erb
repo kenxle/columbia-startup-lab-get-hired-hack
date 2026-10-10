@@ -47,13 +47,11 @@
 <% if @client %>
   <div class="match-columns">
     <section class="panel" aria-labelledby="memory-title">
-      <div class="panel__head">
-        <h2 id="memory-title" class="panel__title">What <%= @client.name %>'s words mean</h2>
-      </div>
+      <%= render "shared/panel_header", id: "memory-title", title: "What #{@client.name}'s words mean" %>
       <% if @terms.empty? %>
-        <p class="muted small">Nothing yet. When you approve an item, the agent remembers the client's words for next time. You can also teach a word here.</p>
+        <p class="panel__body muted small">Nothing yet. When you approve an item, the agent remembers the client's words for next time. You can also teach a word here.</p>
       <% else %>
-        <table class="data-table match-terms">
+        <div class="table-wrap"><table class="data-table match-terms">
           <thead><tr><th scope="col">Word</th><th scope="col">Means</th><th scope="col">From</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
           <tbody>
             <% @terms.each do |term| %>
@@ -65,10 +63,10 @@
               </tr>
             <% end %>
           </tbody>
-        </table>
+        </table></div>
       <% end %>
 
-      <%= form_with url: teach_catalog_matches_path, method: :post, class: "match-teach" do %>
+      <%= form_with url: teach_catalog_matches_path, method: :post, class: "panel__body match-teach" do %>
         <%= hidden_field_tag :client_id, @client.id %>
         <div class="field">
           <%= label_tag :term, "Word or phrase", class: "field__label" %>
@@ -83,23 +81,21 @@
           <%= text_field_tag :value, nil, class: "input", required: true, maxlength: 100, placeholder: "#4" %>
         </div>
         <div class="form-actions">
-          <%= submit_tag "Teach", class: "button" %>
+          <%= submit_tag "Teach", class: "button button--quiet" %>
         </div>
       <% end %>
     </section>
 
     <section class="panel" aria-labelledby="recent-title">
-      <div class="panel__head">
-        <h2 id="recent-title" class="panel__title">Recent requests</h2>
-      </div>
+      <%= render "shared/panel_header", id: "recent-title", title: "Recent requests" %>
       <% if @recent.empty? %>
-        <p class="muted small">No requests from <%= @client.name %> yet.</p>
+        <p class="panel__body muted small">No requests from <%= @client.name %> yet.</p>
       <% else %>
         <ul class="plain-list match-recent">
           <% @recent.each do |request| %>
             <li>
               <%= link_to request.description.truncate(70), catalog_match_path(request), class: "row-link mono" %>
-              <%= match_outcome_badge(request.outcome) %>
+              <%= render "catalog_matches/outcome_badge", outcome: request.outcome %>
               <% if request.approved? %><span class="small muted">approved: <%= request.approved_part_numbers.join(", ") %></span><% end %>
             </li>
           <% end %>

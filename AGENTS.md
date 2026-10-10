@@ -62,7 +62,7 @@ Several agents push to `main` at once. If you go a while without pulling, you wi
 - Run reviewers against a stable revision. Integrate incoming changes at a safe checkpoint and rerun affected checks before publishing. If a push is rejected, reconcile upstream changes before retrying; never force-push shared main.
 - Claude profiles live in `.claude/agents/`: `rfq-implementer`, `rfq-reviewer`, and `rfq-debugger`. Reviewers are read-only. The coordinator validates findings and integrates changes.
 - Hirsh owns the quote application and Yuval owns RFQ processing. Agree on exact file ownership and the shared result format before concurrent implementation. See `docs/engineering/REVIEW-2026-10-10.md` for the responsibilities and interface refinements.
-- Use Fable and GPT-6 Astra for complex implementation, decisions, and debugging. Use Claude Opus 5.5 (`claude-opus-5-5`) for independent review. Fable currently requires usage credits on Hirsh's account, so use the authorized Astra model while blocked. Report model availability issues instead of silently substituting.
+- Use Fable and GPT-6 Astra for complex implementation, decisions, and debugging. Use Claude Opus 5 (`claude-opus-5`) for independent review. Fable currently requires usage credits on Hirsh's account, so use the authorized Astra model while blocked. Report model availability issues instead of silently substituting.
 
 ## Team
 
@@ -135,6 +135,7 @@ Read what your work touches. Each link says what the document is for.
 - [Development baseline](docs/engineering/BASELINE.md): setup, run, and check commands.
 - [Frontend contract](docs/engineering/FRONTEND_CONTRACT.md): routes, models, and the processing-result shape.
 - [UI/UX approach](docs/engineering/UI_UX_APPROACH.md) and [design skills](docs/engineering/DESIGN_SKILLS.md).
+- [UI components](docs/engineering/UI_COMPONENTS.md): shared Rails partials and CSS primitives following Ken's style guide.
 - [Quote workspace diagram](docs/diagrams/quote-workspace.md).
 - [Repository review, 2026-10-10](docs/engineering/REVIEW-2026-10-10.md): findings from the first code and docs review.
 

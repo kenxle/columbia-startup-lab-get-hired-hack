@@ -10,9 +10,9 @@ module QuoteWorkspace
     LINE_KEYS = %w[
       position description original_text spec quantity quantity_unit catalog_sku
       unit_price price_source state clarification_question notes evidence
-      compliance benchmark unresolved_fields line_id processing
+      compliance benchmark unresolved_fields line_id processing lead_time lead_time_source
     ].freeze
-    TEXT_KEYS = %w[description original_text quantity_unit catalog_sku price_source clarification_question notes].freeze
+    TEXT_KEYS = %w[description original_text quantity_unit catalog_sku price_source clarification_question notes lead_time lead_time_source].freeze
     DECIMAL_PATTERN = /\A\d+(\.\d+)?\z/
 
     class InvalidResult < StandardError
@@ -59,7 +59,7 @@ module QuoteWorkspace
       end
       raise InvalidResult.new(@problems) if @problems.any?
 
-      replace_lines(line_attributes, sample_data: result["sample_data"], processing_revision: result["revision"])
+      replace_lines(line_attributes, sample_data: result["sample_data"], processing_revision: result["revision"], processing_evidence: @processing_evidence)
       @quote
     end
 
@@ -69,6 +69,13 @@ module QuoteWorkspace
       if @result.keys.map(&:to_s).uniq.length != @result.keys.length
         @problems << "result keys must be unique after converting to text"
         return
+      end
+      source = @result.key?("source") ? @result["source"] : @result[:source]
+      warnings = @result.key?("warnings") ? @result["warnings"] : @result[:warnings]
+      begin
+        @processing_evidence = Quote.normalized_processing_evidence(source: source, warnings: warnings)
+      rescue Quote::InvalidProcessingEvidence => error
+        @problems.concat(error.problems)
       end
       revision = @result.key?("revision") ? @result["revision"] : @result[:revision]
       unless Quote.valid_processing_metadata?(revision, revision: true)
@@ -96,11 +103,11 @@ module QuoteWorkspace
       end
     end
 
-    def replace_lines(line_attributes, sample_data:, processing_revision:)
+    def replace_lines(line_attributes, sample_data:, processing_revision:, processing_evidence:)
       @quote.with_lock do
         @quote.quote_lines.delete_all
         line_attributes.each { |attributes| @quote.quote_lines.create!(attributes) }
-        @quote.update_columns(sample_data: sample_data, processing_revision: processing_revision)
+        @quote.update_columns({ sample_data: sample_data, processing_revision: processing_revision }.merge(processing_evidence))
         @quote.invalidate_approval!
       end
     rescue ActiveRecord::RecordInvalid => error

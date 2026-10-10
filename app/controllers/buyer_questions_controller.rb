@@ -2,6 +2,8 @@ class BuyerQuestionsController < ApplicationController
   include QuoteWorkspace::SessionScope
 
   before_action :set_draft
+  rescue_from QuoteWorkspace::EmailPreview::Incomplete, Quote::StaleReview, with: :review_required
+  rescue_from QuoteWorkspace::EmailPreview::Unavailable, with: :preview_unavailable
 
   def show
   end
@@ -19,10 +21,25 @@ class BuyerQuestionsController < ApplicationController
       disposition: "attachment"
   end
 
+  def preview_email
+    QuoteWorkspace::EmailPreview.call(quote: @quote, kind: "questions", expected_revision: params[:reviewed_version])
+    redirect_to quote_buyer_questions_path(@quote),
+      notice: "Local question email preview opened. Nothing was sent to the buyer."
+  end
+
   private
 
   def set_draft
+    response.headers["Cache-Control"] = "no-store"
     @quote = workspace_quotes.find(params[:quote_id])
     @draft = QuoteWorkspace::BuyerQuestionDraft.new(@quote)
+  end
+
+  def review_required
+    redirect_to quote_buyer_questions_path(@quote), alert: "Review the latest questions before opening an email preview. Every held line needs a question."
+  end
+
+  def preview_unavailable
+    redirect_to quote_buyer_questions_path(@quote), alert: "Local email previews are available only in development. No email was sent."
   end
 end

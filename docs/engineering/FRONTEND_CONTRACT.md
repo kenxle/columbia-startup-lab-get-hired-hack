@@ -1,142 +1,180 @@
-# Quote workspace: first working slice
+# Quote workspace contract
 
-Hirsh owns the Rails front end and the minimal supporting persistence in this
-slice. Yuval owns real extraction, normalization, matching and provider calls.
-This slice implements Ken's approved PRD at `d64cfc8`; it does not pretend to
-process an uploaded document. Demo results are explicitly sample data.
+Hirsh owns the Rails workspace and its integration with processing. Yuval owns
+RFQ extraction and normalization. Tisch owns catalog matching, pricing and buyer
+memory. Follow Ken's approved [product brief](../product/PRD.md) and
+[workflow](../product/WORKFLOW.md).
+
+The app now processes saved RFQs asynchronously. It uses rules-based parsing,
+the RudCo and metals catalogs, and supported source prices. No AI provider is
+called by the current intake path. Provider integration and credentials remain
+pending. Synthetic catalog data and sample prices remain explicitly labeled.
 
 ## Application routes
 
-- GET `/` and GET `/quotes`: workspace list, scoped to the current browser session.
-- GET `/quotes/new`: upload or paste RFQ, with title and buyer name.
-- POST `/quotes`: save intake; show Awaiting processing until the real pipeline applies results.
-- POST `/quotes/demo`: create an editable sample RFQ for this session, then redirect to it.
-- GET `/quotes/:id`: original RFQ beside quote lines, evidence, questions and editing.
-- GET `/quotes/:quote_id/buyer_questions`: review existing questions for all held lines.
-- GET `/quotes/:quote_id/buyer_questions/download`: plain-text draft, only when every held line has a question. This does not send mail or change approval.
-- PATCH `/quotes/:quote_id/quote_lines/:id`: save line edits and invalidate quote approval.
-- POST `/quotes/:id/approve`: explicit human confirmation of ready lines and held lines/questions.
-- GET `/quotes/:id/export`: CSV of approved quote, ready lines priced, held lines unpriced with questions.
-- GET `/quotes/:id/source`: original file as a download, never render untrusted HTML inline.
+All quote and catalog records are scoped to the browser's opaque workspace
+session token. This is a local prototype, not production authentication.
 
-The quote workspace is local development, not production authentication. Scope
-records to an opaque token in the Rails session so browsers cannot access one
-another's RFQs by guessing IDs.
+| Method and path | Behavior |
+|---|---|
+| GET `/`, `/quotes` | Workspace quote list |
+| GET `/quotes/new` | Paste or upload an RFQ |
+| POST `/quotes` | Save intake and enqueue processing; preserve saved intake if queuing fails |
+| POST `/quotes/demo` | Create the fixed, labeled synthetic sample |
+| GET `/quotes/:id` | Source, processing status, extraction warnings, quote lines and editing |
+| POST `/quotes/:quote_id/processing` | Revision-guarded processing or retry of an empty quote |
+| PATCH `/quotes/:quote_id/quote_lines/:id` | Save rep edits and invalidate approval |
+| GET `/quotes/:quote_id/buyer_questions` | Consolidated preview of existing held-line questions |
+| GET `/quotes/:quote_id/buyer_questions/download` | Plain-text draft when every held line has a question |
+| POST `/quotes/:quote_id/buyer_questions/preview_email` | Local question email preview with revision check |
+| POST `/quotes/:id/approve` | Human approval of the current whole quote |
+| GET `/quotes/:quote_id/final_quote` | Approved email draft and export preparation |
+| GET `/quotes/:quote_id/final_quote/download` | Approved plain-text email draft |
+| GET `/quotes/:quote_id/final_quote/pdf` | Approved PDF quote |
+| POST `/quotes/:quote_id/final_quote/preview_email` | Local email preview with actual PDF and CSV attachments |
+| GET `/quotes/:id/export` | Approved CSV, with held lines unpriced |
+| GET `/quotes/:id/source` | Download original source, never render uploaded HTML inline |
+
+Catalog matching routes are `/catalog_matches` (GET, POST),
+`/catalog_matches/:id` (GET), `/catalog_matches/:id/approve` (POST),
+`/catalog_matches/teach` (POST), and `/catalog_matches/forget` (DELETE).
+Approval is idempotent and only adds offered candidates without near/conflict
+checks. It rejects closest-only results, cross-workspace quotes and other buyers'
+quotes. Added catalog lines remain unpriced and make the target quote sample-labeled.
+
+## Intake and processing
+
+`QuoteWorkspace::ProcessRfq.enqueue(quote:, expected_revision:)` creates a persisted
+`ProcessingRun` and enqueues `ProcessRfqJob`. Intake calls it after saving. The
+request does not run extraction synchronously. `ProcessRfq.perform(run_id)`
+captures source and buyer context, processes outside the quote lock, then checks
+the quote revision again before applying results. Development dispatch uses an
+in-process async queue; persisted runs do not make that queue durable across
+server restarts. A timed-out run can be explicitly retried after five minutes.
+
+Run states are `queued`, `running`, `succeeded`, `failed`, `stale`, and `conflict`.
+Duplicate active submissions reuse the same run. Newer revisions or rep edits
+prevent a late job from replacing current lines. The manual endpoint only accepts
+empty quotes. Failed empty quotes can be retried. Existing reviewed lines need a
+future merge workflow, not destructive full reprocessing.
+
+Pasted text, text uploads, text-bearing PDFs and CSV files are supported. Excel
+files need conversion to CSV; raw `.eml` files need a pasted body or supported
+attachment. Scans without extractable text fail with warnings. Intake is capped
+at 10 MB for files and 50,000 characters for pasted text. Original bytes stay
+unchanged. Queue and processing failures leave a recoverable RFQ and visible status.
+
+Intake supplies an explicit RudCo and metals catalog to the matcher. Aviation
+is excluded from this path while its readiness contract is unresolved. RudCo
+per-pound prices apply only to pound quantities; unsupported units stay held.
+Explicit known catalog part numbers fail with a rep-review message while the
+shared matcher shortcut cannot verify all other stated attributes.
+A named buyer resolves to a normalized, case-insensitive client within the same
+workspace. Blank buyers have no shared anonymous client. `BuyerContext.for(quote)`
+returns `{client:, buyer_terms:}` with only persisted rep-taught terms and client
+provenance. Automatically learned terms are excluded, and intake passes no client
+memory to the matcher. Automatic learning is not complete.
 
 ## Model and view interface
 
-`Quote`: title, buyer_name, source_text, original_filename, source_bytes (binary),
-workspace_token, sample_data (boolean), approved_at, created_at, processing_revision (optional JSON). Ordered
-`quote_lines` association. Methods: `reference` (RFQ-0001 format), `subtotal`
-(BigDecimal sum of quotable lines only), `ready_count`, `held_count`,
-`approved?`, `awaiting_processing?` (no lines), `approvable?` (at least one quotable
-line and every held line has a question). File intake capped at 10 MB; text at
-50,000 characters. Uploaded PDFs/spreadsheets are stored without claimed parsing.
+`Quote` holds title, buyer_name, source_text, original_filename, source_bytes,
+workspace_token, sample_data, approved_at, processing_revision, processing_source
+and processing_warnings. Ordered `quote_lines` and `processing_runs` associations
+support review. `reference` uses RFQ-0001 format. `subtotal` sums rounded quotable
+line totals. `ready_count`, `held_count`, `approved?`, `awaiting_processing?`,
+`approvable?` and `review_revision` drive the UI.
 
-`QuoteLine`: position, description, original_text, spec (JSON hash), quantity
-(decimal), quantity_unit, catalog_sku, unit_price (decimal), price_source,
-state (`ready`, `needs_buyer`, `no_match`), clarification_question, notes,
-evidence (JSON hash), compliance (JSON array), benchmark (JSON hash),
-unresolved_fields (JSON array), edited_fields (JSON array), line_id (optional stable
-processing identifier), processing (optional JSON hash).
+`QuoteLine` holds position, description, original_text, spec, quantity,
+quantity_unit, catalog_sku, unit_price, price_source, state, clarification_question,
+notes, evidence, compliance, benchmark, unresolved_fields, edited_fields,
+line_id, processing, lead_time and lead_time_source.
 
-Spec keys: material, grade, form, thickness, width, length, standard, finish.
-Hardware adds part_number, diameter, thread, grip and drilling. The review shows
-these fields when the line has hardware values, evidence or unresolved fields.
-CSV headers include the hardware fields in the same order as the stored spec keys.
-Evidence maps a spec key (or quantity) to `{text, location, explanation}`.
-Compliance entries: `{label, evidence, note}`. These record requested paperwork,
-not certification of actual stock. Benchmark: `{name, as_of, unit, kind,
-explanation}`. `kind: sample` must be displayed as sample, never live market data.
+States are `ready`, `needs_buyer`, and `no_match`. Spec keys are material, grade,
+form, thickness, width, length, standard, finish, part_number, diameter, thread,
+grip and drilling. Evidence maps a spec key or quantity to
+`{text, location, explanation}`. Compliance entries use `{label, evidence, note}`
+and describe requested paperwork, not certified stock. Benchmark entries use
+`{name, as_of, unit, kind, explanation}`. Sample benchmarks are visibly labeled.
 
-Line methods: `quotable?`, `line_total` (nil for held lines), `status_label`,
-`display_description`. A quotable line must be in state ready, have positive
-quantity, nonnegative price, a price source, a catalog SKU, and no unresolved
-fields. Positive quantity and valid decimal prices are model-validated. Null
-prices are allowed only for held lines. Unknowns remain empty, not invented.
+A quotable line needs positive quantity, nonnegative price, price source, SKU,
+state `ready`, and no unresolved fields. Unknowns remain empty. Held lines have
+no exported price or total. `display_lead_time` returns sourced lead time only
+for a quotable line with both lead_time and lead_time_source; otherwise it returns
+`to confirm`. Spec or quantity edits clear lead-time evidence.
 
-Manual edits: the UI can update description, spec fields, quantity, quantity_unit,
-unit_price, notes and clarification_question. Do not expose a free-text catalog
-SKU or arbitrary state input. Editing material/spec/quantity marks a line for
-reprocessing (`needs_buyer`), records the changed fields, and adds an explicit
-question if none exists. Price/note edits invalidate quote approval but do not
-invent a match. A rep-entered price is labeled as such. Do not automatically
-clear ambiguity or compliance requirements merely because a text field changed.
+Controllers expose `@quote`, whole-quote `@lines`, filtered `@visible_lines`,
+`@status` (`all`, `attention`, `ready`) and `@selected_line`. Filters affect the
+table only, not totals or approval. Edits preserve allowlisted filter context;
+question edits use the fixed `buyer_questions` return marker. Validation errors
+retain the selected line and return context.
 
-Controllers expose `@quote`, `@lines` (the whole quote), `@visible_lines`,
-`@status` (`all`, `attention`, `ready`), `@selected_line` (query parameter `line`,
-default first visible line), and `@quotes` on the list. Filters only change the
-table; totals and approval always use the whole quote. Validation errors render in the page.
-Use Rails forms and server redirects; no JavaScript is needed for core actions.
-The quote export is unavailable before human approval and invalidated by any
-edit. Sample exports must be labeled SAMPLE. Escape spreadsheet formula prefixes
-in every user-controlled CSV string. No buyer emails are sent.
+The rep may edit description, spec, quantity, unit, price, notes and question.
+SKU and state are not arbitrary form inputs. Spec or quantity edits hold the line
+for reprocessing; price edits are labeled rep-entered and drop prior benchmark
+claims. Description edits do not rerun matching. Every saved edit clears approval.
 
-## Processing handoff
+## Result handoff and metadata
 
-`QuoteWorkspace::ApplyResult.call(quote:, result:)` is the internal integration
-point. It accepts a Ruby hash with string keys: `schema_version: 1`,
-`sample_data: boolean`, and `lines: [...]` in the QuoteLine shape above.
-Validate all rows, required evidence and statuses before replacing existing
-results in one transaction. Never trust an LLM's ready flag without validating
-quantity, catalog ID, price and source. This method is not an unauthenticated
-HTTP endpoint. Yuval can call it when processing completes; no parser namespace
-or provider selection is imposed on his implementation.
+`QuoteWorkspace::ApplyResult.call(quote:, result:)` accepts schema_version 1,
+sample_data, nonempty lines, and optional revision, source and warnings. It
+validates evidence and readiness, then replaces lines and metadata under the quote
+lock in one transaction. Invalid results preserve the prior quote. This is an
+internal service, not a public result-ingestion endpoint.
 
-Yuval's optional extensions now persist: top-level `revision` becomes
-`Quote#processing_revision`; each line retains `line_id` and `processing`, including
-choice IDs, assumptions, rules and match details. They are inert metadata, not
-authority to mark a line ready or send a message. Each metadata hash is limited to
-32 KiB, depth 8 and 1,000 nodes, with JSON-compatible values; a revision needs a
-nonblank `id`. Line IDs are nonblank strings up to 200 characters and unique within
-a quote. Older payloads may omit these keys. Whole-result replacement clears
-omitted extensions, validates before writing, and rolls back on invalid rows.
+Top-level revision maps to processing_revision. Each line may retain a stable
+line_id and processing hash. Metadata hashes are limited to 32 KiB, depth 8 and
+1,000 nodes. Revisions need a nonblank id; line IDs are at most 200 characters and
+unique within a quote. Metadata does not authorize sending or make a line ready.
 
-Reply handling is still pending. It must bind the line and choice to the processing
-revision that produced the question and reject stale answers. Keep the line ID
-when the buyer changes wording; do not treat array-index choice IDs as stable
-across changed options. `source` and `warnings` from the result format are not
-stored yet; extraction-warning presentation remains an integration gap.
+Source maps to processing_source and accepts only type, filename, pages and rows.
+Types are email, pdf, spreadsheet, text and csv. Filename is optional text of up
+to 255 characters; counts are optional nonnegative integers. Unknown source keys
+or types are rejected. processing_warnings contains at most 100 strings of up to
+1,000 characters each. Combined source and warning JSON is capped at 32 KiB.
+Omitted or null evidence clears previous values. `assign_processing_evidence`
+validates and assigns without saving, so a failed zero-line extraction can retain
+warnings without replacing existing quote lines. The evidence panel escapes all
+text. This metadata is internal and excluded from buyer exports.
 
-The demo factory is `QuoteWorkspace::Demo.create!(workspace_token:)`. It creates
-three known lines from a fixed synthetic RFQ: one ready, one missing material,
-and one without a catalog match. It does not parse arbitrary input. Use a price
-of USD 232.00 per sheet and quantity 20 for the ready line (sample subtotal
-USD 4,640.00). A second line has quantity 10, and the third quantity 2. No price
-is assigned to either held line. Use fictional buyer Northline Fabrication.
+## Approval, exports and local email
 
-## UI direction
+Approval requires `reviewed=1` and the current `reviewed_version`. Quote edits and
+applied results advance that revision under the same parent quote lock. A stale
+review cannot approve newer content.
 
-Build a focused industrial quoting workspace. Cool paper surfaces,
-slate typography, cobalt actions, subtle dividers, clear
-green/amber/red status labels. A slim desktop sidebar, spacious header, compact
-summary strip, then the original email on the left and the quote on the right.
-The selected line shows editable fields, source evidence, pricing basis and a
-note. Use the PRD labels Ready, Needs the buyer and No match. Show explicit
-sample data labeling, held lines excluded from subtotal, and human review.
-Use a responsive stacked layout on narrow screens, real form labels, keyboard
-focus, semantic tables, and helpful empty states. No dead navigation or actions.
+`FinalQuote` and `PdfExport` reload approval and lines under the quote lock and
+reject unapproved or invalid quotes. Unit prices retain up to four decimal places;
+line totals round to cents before summing. PDF includes normalized specs, pricing
+sources and benchmarks, lead times, requested paperwork and held questions.
+Rep overrides do not retain old benchmark claims. Missing benchmarks say so.
+Embedded licensed fonts preserve supported Unicode specs; unsupported glyphs fail
+explicitly rather than silently changing specifications.
 
-## Work boundaries
+Internal notes, processing metadata and original source bytes stay out of buyer
+exports. CSV text escapes spreadsheet formula prefixes. Sample exports are labeled.
+The question draft needs at least one held line and a question for every held line.
+Preview and download actions do not approve the quote or mutate its lines.
 
-- UI worker: `app/views/**`, `app/assets/stylesheets/**`, `app/helpers/quotes_helper.rb`.
-- Supporting app worker: models, quote controllers, `app/services/quote_workspace/**`,
-  database migrations, app tests, and `config/routes.rb`.
-- Coordinator: dependencies, shared configuration, docs, Git, integration and browser QA.
-- Yuval's real parsing/matching/provider code remains outside this assignment.
+`EmailPreview` captures email text, PDF and CSV under one quote lock and revision
+check. Development uses `letter_opener`; tests use the test mail adapter. SMTP and
+other transports are rejected. Previews use `buyer@example.invalid` and explicitly
+say no email was sent to the buyer. Plain-text downloads name files to attach,
+without claiming attachments already exist in an email.
 
-## Review revision and export details
+Real inbox ingestion, buyer delivery, choice-response endpoints, confidence-based
+automatic sending, partial reruns and production authentication remain pending.
+Buyer answers must eventually bind to the line, choice and processing revision
+that produced them; stale answers must be rejected.
 
-Approval posts `reviewed=1` plus `reviewed_version`, obtained from
-`Quote#review_revision`. Saved edits and processing results advance that revision;
-a stale browser review cannot approve newer content. Result application and edits
-share the quote lock. UI-only description edits do not re-run matching.
+## UI direction and ownership
 
-Unit prices retain up to four decimal places, including in the CSV. Line totals
-round to cents before the subtotal is summed. Internal notes stay out of the
-buyer-facing CSV. A rep price override does not inherit the old benchmark claim.
+Ken's [style guide](../product/STYLE_GUIDE.md) is the visual source of truth.
+Use [UI_COMPONENTS.md](UI_COMPONENTS.md) for shared tokens, status badges, panels,
+flags and forms. It replaces earlier ad hoc color and component guidance. Keep
+source evidence, status words, sample labeling and human approval visible. Retain
+semantic tables, real labels, keyboard focus and responsive layouts.
 
-The current session workspace is a local prototype. Real inbox ingestion,
-provider parsing, buyer delivery/replies and production authentication are not
-connected. Ken's approved workflow defines the target behavior; the question
-preview is a draft-only foundation for its delivery and reply steps.
+Hirsh owns workspace controllers, views and minimal integration. Yuval's processor
+and Tisch's catalog, matching and memory services remain their domains. Coordinate
+contract changes before editing those services. The coordinator owns shared Git,
+dependencies, integration checks and browser verification.

@@ -48,6 +48,7 @@ class QuoteLine < ApplicationRecord
   validate :benchmark_shape
   validate :field_lists_shape
   validate :processing_metadata_shape
+  validate :lead_time_shape
 
   def spec_value(spec_key)
     spec.is_a?(Hash) ? spec[spec_key.to_s] : nil
@@ -82,6 +83,14 @@ class QuoteLine < ApplicationRecord
     description.presence || original_text.to_s.squish.truncate(80).presence || "Line #{position}"
   end
 
+  def sourced_lead_time?
+    quotable? && lead_time.present? && lead_time_source.present?
+  end
+
+  def display_lead_time
+    sourced_lead_time? ? lead_time : "to confirm"
+  end
+
   def rep_entered_price?
     price_source == REP_ENTERED_PRICE_SOURCE
   end
@@ -104,6 +113,8 @@ class QuoteLine < ApplicationRecord
       reprocessing_fields = changed_fields & REPROCESSING_FIELDS
       if reprocessing_fields.any?
         self.state = "needs_buyer"
+        self.lead_time = nil
+        self.lead_time_source = nil
         if clarification_question.blank?
           field_names = reprocessing_fields.map { |field_name| field_name.humanize(capitalize: false) }.join(", ")
           self.clarification_question =
@@ -127,6 +138,18 @@ class QuoteLine < ApplicationRecord
   end
 
   private
+
+  def lead_time_shape
+    %w[lead_time lead_time_source].each do |field|
+      value = read_attribute_before_type_cast(field)
+      unless value.nil? || (value.is_a?(String) && value.length <= 200)
+        errors.add(field, "must be text of 200 characters or fewer")
+      end
+    end
+    if lead_time.present? && lead_time_source.blank?
+      errors.add(:lead_time_source, "is required when a lead time is provided")
+    end
+  end
 
   def processing_metadata_shape
     identifier = line_id_before_type_cast

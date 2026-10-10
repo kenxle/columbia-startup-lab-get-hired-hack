@@ -1,0 +1,42 @@
+<% content_for :title, "Final quote · #{@quote.reference}" %>
+
+<header class="page-header">
+  <div>
+    <p class="eyebrow"><%= @quote.reference %> / Approved quote</p>
+    <h1 class="page-title">Email and quote documents</h1>
+    <p class="page-lede">The approved lines, with prices, lead times and requested paperwork.</p>
+  </div>
+  <div class="page-actions">
+    <%= link_to "Back to quote", quote_path(@quote), class: "button button--quiet" %>
+  </div>
+</header>
+
+<section class="panel final-quote" aria-labelledby="final-quote-heading">
+  <div class="final-quote__status">
+    <span class="buyer-draft__badge">Draft, not sent</span>
+    <p>Preview the email locally, or download the documents. A real inbox and replies on the buyer's email thread are not connected yet.</p>
+  </div>
+  <% if @quote.sample_data? %>
+    <p class="buyer-draft__sample">SAMPLE DATA: This quote uses sample catalog items and prices.</p>
+  <% end %>
+  <div class="final-quote__content">
+    <h2 id="final-quote-heading" class="section-title">Email preview</h2>
+    <dl class="buyer-draft__envelope">
+      <dt>Subject</dt><dd><%= @draft.subject %></dd>
+      <dt>Buyer</dt><dd><%= @quote.buyer_name.presence || "Not provided" %></dd>
+    </dl>
+    <pre class="final-quote__body"><%= @body %></pre>
+    <div class="final-quote__documents" aria-label="Quote documents">
+      <%= link_to "Download quote PDF", pdf_quote_final_quote_path(@quote), class: "button button--primary" %>
+      <%= link_to "Download spreadsheet (.csv)", export_quote_path(@quote, format: :csv), class: "button button--quiet" %>
+      <%= link_to "Download email draft (.txt)", download_quote_final_quote_path(@quote), class: "button button--quiet" %>
+    </div>
+    <% if local_email_preview_available? %>
+      <div class="final-quote__delivery">
+        <%= button_to "Open local email with attachments", preview_email_quote_final_quote_path(@quote),
+              params: { reviewed_version: @quote.review_revision }, class: "button button--primary" %>
+        <p class="field__hint">Opens in your default browser. Uses demo email addresses. Nothing is sent.</p>
+      </div>
+    <% end %>
+  </div>
+</section>

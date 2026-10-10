@@ -11,7 +11,7 @@ The system has four parts:
 - **The quote app** (Hirsh): a Rails 8 app at the repo root. The rep sees the RFQ beside the quote, edits, approves, and exports.
 - **RFQ processing** (Yuval): a plain Ruby library in `tools/rfq_processing/`. It turns an RFQ into one result hash.
 - **Matching and pricing** (Tisch): finds the catalog item for each line and prices it from sourced observations.
-- **Email in and out:** receives the RFQ and sends questions and the quote. **Not built yet.**
+- **Email in and out (Hirsh):** local question and approved-quote previews with PDF/CSV attachments. A real mailbox and buyer responses are still pending.
 
 They meet at one point. RFQ processing assembles a single hash, and the app takes it through `QuoteWorkspace::ApplyResult.call(quote:, result:)`.
 
@@ -26,11 +26,12 @@ flowchart TD
     end
     subgraph APP["Quote app, Rails (Hirsh)"]
         INTAKE["Intake: paste or upload"]
+        RUN["ProcessingRun: capture source and review revision"]
         APPLY["ApplyResult: validate and save atomically"]
         REVIEW["Review screen: RFQ beside quote"]
-        QUESTIONS["Buyer-question preview and text draft"]
+        QUESTIONS["Buyer-question draft and local mail preview"]
         APPROVE["Approve"]
-        EXPORT["CSV export"]
+        EXPORT["Approved email draft, PDF and CSV"]
     end
     subgraph PROC["RFQ processing, tools/rfq_processing (Yuval)"]
         EXTRACT["Extract text: pdf_text, spreadsheet rows"]
@@ -47,7 +48,7 @@ flowchart TD
         CATALOG[("data/aviation catalog and price observations")]
     end
     IN --> INTAKE
-    INTAKE --> EXTRACT
+    INTAKE --> RUN --> EXTRACT
     EXTRACT --> PARSE --> NORM --> MATCHER
     MATCHER --> CATALOG
     PRICER --> READER --> CATALOG
@@ -66,19 +67,15 @@ Solid lines exist or are being built. Dotted lines are planned.
 
 ### Quote app (Hirsh)
 
-- **Where:** repo root. `app/controllers/quotes_controller.rb`, `quote_lines_controller.rb`, `buyer_questions_controller.rb`; `app/models/quote.rb`, `quote_line.rb`; `app/services/quote_workspace/` (`apply_result.rb`, `demo.rb`, `csv_export.rb`, `buyer_question_draft.rb`, `session_scope.rb`). Quote and question views live in `app/views/quotes/` and `app/views/buyer_questions/`.
-- **Stack:** Ruby 3.4.11, Rails 8.1.4, SQLite. Setup in [BASELINE.md](engineering/BASELINE.md).
-- **What works today:** intake by paste or upload, a labeled sample quote, source-backed review, attention/ready filters, held-line navigation, line edits, approval, and CSV export. Buyer questions consolidate into a labeled draft with edit links and plain-text download; every held line needs a question before download. Hardware fields retain evidence, appear on relevant lines, and export under matching column headers.
-- **Key rules:**
-  - Workspaces are scoped to a browser session. This is not real authentication.
-  - Uploads stay "awaiting processing" until a valid result arrives. Nothing is invented.
-  - Any edit clears approval. A stale review cannot approve newer content (`Quote#review_revision`).
-  - Held lines never count toward the subtotal. Sample data is labeled SAMPLE.
-- **Processing integration:** stores optional `revision` as `Quote#processing_revision`, plus each line's `line_id` and `processing` JSON. Existing schema-version-1 payloads still work. Metadata is validated and stored atomically with the result; it never grants readiness or approval.
-- **Incoming catalog services:** Tisch's `app/services/catalog_match/` and client/match-request models are on main; their migration is applied locally. No quote UI route invokes them yet. The description/struct-based matcher and direct line writer need reconciliation with Yuval's single-result contract before wiring. Integration findings are on the bulletin at 13:06.
-- **Checked:** 125 Rails tests / 918 assertions and 12 PDF utility specs pass. Opus 5.5 reviewed fixed UI and metadata snapshots; findings were fixed. Desktop/mobile review navigation, question-edit return and actual draft download were verified in the browser.
-- **Latest teammate sync:** 148 Rails tests / 1,028 assertions, 12 PDF specs and the standalone reader's 9 tests / 222 assertions pass with the 500-item aviation catalog. These checks do not establish that the unwired matcher and processing contracts agree.
-- **Remaining gaps:** real parser invocation, result `source`/`warnings` presentation, email transport, buyer-choice response endpoints and re-quote history/redlines. Preview/download are read-only and never report a sent message. Stored choice/revision metadata prepares replies but does not implement them.
+- **Where:** Rails root, `app/controllers/`, `app/models/`, `app/jobs/process_rfq_job.rb`, `app/services/quote_workspace/`, `app/mailers/quote_mailer.rb`, and quote, question, final-quote and catalog views. Stack and setup: [BASELINE.md](engineering/BASELINE.md).
+- **Review:** session-scoped intake, source beside quote, filters, line edits, held-line questions, explicit approval and four-decimal unit prices. Every edit invalidates approval. Held lines are unpriced and excluded from totals.
+- **Processing:** intake queues `ProcessRfqJob`. `ProcessingRun` snapshots the source and review revision. Provider work happens outside the quote lock; applying results rechecks the revision, run and rep edits. Duplicate requests share an active run. Explicit retries replace timed-out runs after five minutes. Errors preserve existing lines. The public retry action accepts only quotes without lines; partial reruns are still pending.
+- **Matcher boundary:** initial intake uses Yuval's adapter with RudCo/metals catalogs. Aviation stays excluded until its specification holds survive the shared adapter. Per-pound prices require a positive price and an `lb` quantity. Explicit known catalog part numbers require rep review until the matcher validates all stated attributes. Matcher failures become processing errors. Buyer context is workspace-scoped and passes explicitly taught terms only; inferred catalog memory remains excluded pending confirmation provenance.
+- **Evidence:** `ApplyResult` validates and saves optional `revision`, per-line `line_id`/`processing`, extraction `source` and `warnings` in the same transaction as lines. Extraction warnings appear above the review; they do not grant readiness. Sourced lead times appear in the review, CSV, email and PDF. Missing timing is "to confirm".
+- **Final quote:** approved snapshot produces a buyer-facing email body, PDF and CSV. Internal notes stay out. A stale or revoked approval blocks export. Embedded PDF fonts preserve industrial symbols and fail explicitly if a character cannot be rendered. Existing synthetic demo data stays labeled until replaced by sourced data.
+- **Local mail:** `EmailPreview` captures one locked revision and frozen attachment bytes. Development uses letter_opener; tests use the test mailer. Production transport is disabled. A preview never marks a quote sent.
+- **Design:** Ken's [style guide](product/STYLE_GUIDE.md) governs all page tokens and the unchanged RudCo logo. [UI components](engineering/UI_COMPONENTS.md) documents the shared Rails/CSS pieces, including catalog pages.
+- **Remaining:** production authentication/storage, real mailbox/thread IDs, buyer-choice endpoints and evidence gate, partial reruns with conflict/redline review, and saving confirmed buyer corrections with their original RFQ provenance. The current session workspace is a local prototype.
 
 ### RFQ processing (Yuval)
 
@@ -108,14 +105,14 @@ Solid lines exist or are being built. Dotted lines are planned.
 - **Status:** the catalog and Ruby data reader are built and validated. Nine Ruby tests (222 assertions), seven research-parser tests and full verification of all 1,000 prices against saved supplier pages pass. The scored matcher is built (above; 168 Rails tests pass including its tests from the research test set). The final selling-price policy remains to be implemented.
 - **Reader interface:** `RfqCatalog::Reader.new(Rails.root.join("data/aviation"))`, `validate!`, `find(part_number)`, `offers_for(part_number)`, and `price_reference(part_number)`. Details and Rails example: [data README](../data/aviation/README.md).
 
-### Email in and out (not built)
+### Email in and out (Hirsh)
 
 - **Inbound:** receive the RFQ email and its attachments, then create a quote. Today the rep pastes or uploads instead.
 - **Outbound questions:** send automatically when the agent is confident about the choices, otherwise after rep review ([WORKFLOW.md](product/WORKFLOW.md), W1).
 - **Buyer response:** each choice is a button in the email. A click updates the RFQ with no login (W2). Reply-by-number is the fallback.
 - **Final quote:** sent on the buyer's original thread after the rep approves.
-- **How (Ken, 2026-10-10):** start with letter_opener, which opens each sent email in the browser in development. Then connect a real email account for inbound RFQs and outbound replies.
-- **Owner:** Hirsh owns the question and response UI, and is the proposed owner of the mail connection.
+- **Local preview built:** letter_opener opens question drafts and approved final quotes with PDF/CSV attachments in development. It uses fixed `.invalid` recipients and cannot fall through to SMTP. Real inbound/outbound mail remains pending credentials and thread metadata.
+- **Owner:** Hirsh owns the mail integration and question/response UI. Ken has been asked to name the credential owner and secure handoff method.
 
 ## Contracts
 
@@ -123,15 +120,16 @@ Solid lines exist or are being built. Dotted lines are planned.
 |---|---|---|---|
 | Result hash (`schema_version: 1`) | RFQ processing → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md), [FRONTEND_CONTRACT.md](engineering/FRONTEND_CONTRACT.md) | Draft 1, three fixtures pass |
 | `ApplyResult.call(quote:, result:)` | RFQ processing → app | `app/services/quote_workspace/apply_result.rb` | Built |
-| Matcher input and output | RFQ processing ↔ Tisch | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Agreed in principle |
+| Matcher input and output | RFQ processing ↔ Tisch | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Shared adapter wired for RudCo/metals intake; aviation readiness integration pending |
 | Stable `line_id` and `revision.id` | Processing → app → email | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored by the app. Reply validation and history still pending |
 | Question choice IDs | Processing → email → app | [RESULT-FORMAT.md](rfq_processing/RESULT-FORMAT.md) | Stored in `processing.question_choices`; response handler must bind choices to the originating revision |
 | Catalog evidence reader | Tisch → RFQ processing / Rails | [Data README](../data/aviation/README.md), `tools/catalog_research/catalog_reader.rb` | Built; Ruby tests pass; price evidence only, no result assembly |
 
 ## Data model
 
-- **`Quote`:** title, buyer name, source text and file, session token, sample flag, approval time, review revision, optional processing revision (JSON). Has many ordered `QuoteLine`s.
-- **`QuoteLine`:** original text, metals/hardware spec (JSON), quantity and unit, catalog SKU, unit price, price source, state (`ready`, `needs_buyer`, `no_match`), clarification question, notes, evidence (JSON, per field), compliance (JSON), benchmark (JSON), unresolved and edited fields, optional `line_id` and `processing` JSON.
+- **`Quote`:** title, buyer name, source text and file, session token, sample flag, approval time, review revision, optional processing revision/source/warnings (JSON). Has many ordered `QuoteLine`s and `ProcessingRun`s.
+- **`ProcessingRun`:** queued/running/succeeded/failed/stale/conflict, source snapshot, requested and captured review revisions, timestamps and bounded failure details.
+- **`QuoteLine`:** original text, metals/hardware spec (JSON), quantity and unit, catalog SKU, unit price, price source, state (`ready`, `needs_buyer`, `no_match`), clarification question, notes, evidence (JSON, per field), compliance (JSON), benchmark (JSON), unresolved and edited fields, optional `line_id` and `processing` JSON, lead time and its source.
 - Full field list in the [frontend contract](engineering/FRONTEND_CONTRACT.md).
 
 ## Trust rules the architecture enforces
@@ -146,13 +144,12 @@ These come from the [product brief](product/PRD.md) commitments.
 
 ## Open questions and known gaps
 
-- **Lead time per line and in the export (Ken, 13:00).** Newly required, not implemented yet. Unknown timing must display "to confirm"; RudCo's 24 to 48 hour shipping promise applies only to confirmed stocked items, not an arbitrary match in the sample catalog. Owner: Hirsh, with stock/lead-time evidence from Yuval and Tisch.
+- **Stock evidence:** lead-time storage and display are built. Unknown timing displays "to confirm". Confirmed stocked rows still need catalog evidence before applying RudCo's 24 to 48 hour promise. Owners: Yuval and Tisch for evidence, Hirsh for presentation.
 - **Demo materials catalog (W4).** Tisch's current user-requested catalog is 500 aviation hardware items. Ken's 13:00 workflow requests steel shot S-330, P1020 aluminum ingot, aluminum 356, steel plate and the stainless gauge line. These need a separately sourced materials catalog; they are not fabricated or added to the aviation list in this change. Owner: Tisch. **Update (Tisch, 13:30):** answered: metals first, bolts second. RudCo's own materials are in `data/rudco/` from RudCo's public site; plate and the stainless gauge line are in `data/metals/` (constructed sample). Still open: real stock, lead times and quote prices for these rows.
-- **Processing data still awaiting presentation.** Hardware spec keys, `processing`, `line_id`, and `revision` now persist. Top-level extraction `source`/`warnings` are not yet stored or shown. Owner: Hirsh, coordinated with Yuval.
 - **Who sets `unit_price` on a Ready line.** Yuval proposes copying Tisch's suggested price, with the rep able to edit. Owners: Hirsh, Tisch.
-- **Mail adapter.** letter_opener first, then a real email account. Proposed owner: Hirsh.
+- **Real mail account.** Local letter_opener preview is built. Credentials and original thread metadata remain outstanding. Owner: Hirsh; credential supplier requested from Ken.
 - **Anthropic API key.** Specs run on recorded responses until one is in `.env`. Owner: Yuval.
-- **Learn the buyer (workflow step 9, Ken, 13:23).** Now in scope. When the rep confirms or corrects a reading, it is saved for that buyer and applied to their next RFQ, with the source shown on the line. Needs a place to store confirmed readings per buyer, and a hook in parsing to apply them. No owner yet.
+- **Learn the buyer (workflow step 9, Ken, 13:23).** Now in scope. When the rep confirms or corrects a reading, it is saved for that buyer and applied to their next RFQ, with the source shown on the line. Needs a place to store confirmed readings per buyer, and a hook in parsing to apply them. Hirsh owns app storage/integration; Yuval owns parser application, coordinated with Tisch's ClientTerm store. Only explicitly taught terms are accepted by intake today.
 - **Re-quote on change** (bulletin, 12:42). Detection would sit in RFQ processing after the core pipeline works. No owner yet.
 
 ## Keeping this current

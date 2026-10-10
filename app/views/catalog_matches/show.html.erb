@@ -8,7 +8,7 @@
 <header class="page-header">
   <div>
     <p class="eyebrow"><%= link_to "Catalog matching", catalog_matches_path(client_id: @client.id), class: "crumb" %> · <%= @client.name %></p>
-    <h1 class="page-title">Suggested items <%= match_outcome_badge(@match_request.outcome) %></h1>
+    <h1 class="page-title">Suggested items <%= render "catalog_matches/outcome_badge", outcome: @match_request.outcome %></h1>
     <blockquote class="match-request mono"><%= @match_request.description %></blockquote>
   </div>
 </header>
@@ -23,19 +23,17 @@
 <% end %>
 
 <section class="panel match-reading" aria-labelledby="reading-title">
-  <div class="panel__head">
-    <h2 id="reading-title" class="panel__title">How the agent read it</h2>
-  </div>
+  <%= render "shared/panel_header", id: "reading-title", title: "How the agent read it" %>
   <% if reading.empty? %>
-    <p class="muted small">No product fields were found in this text.</p>
+    <p class="panel__body muted small">No product fields were found in this text.</p>
   <% else %>
-    <ul class="match-fields">
+    <ul class="panel__body match-fields">
       <% reading.each do |name, field| %>
         <li class="match-field<%= ' match-field--memory' if field['source'] == 'client_memory' %>" title="<%= field['explanation'] %>">
           <span class="match-field__name"><%= name.humanize %></span>
           <span class="match-field__value"><%= reading_value(field["value"]) %></span>
           <span class="match-field__text mono">"<%= field["text"] %>"</span>
-          <% if field["source"] == "client_memory" %><span class="flag flag--source">client memory</span><% end %>
+          <% if field["source"] == "client_memory" %><%= render "shared/flag", label: "client memory" %><% end %>
         </li>
       <% end %>
     </ul>
@@ -56,7 +54,7 @@
     <ol class="match-cards">
       <% options.each_with_index do |candidate, index| %>
         <% item = @catalog.find(candidate["pn"]) %>
-        <li class="match-card<%= ' match-card--closest' if @candidates.empty? %>">
+        <li class="card match-card<%= ' match-card--closest' if @candidates.empty? %>">
           <label class="match-card__pick">
             <%= check_box_tag "part_numbers[]", candidate["pn"], preselect && index.zero?, id: "pick-#{index}",
                   disabled: @match_request.approved? %>
@@ -81,21 +79,21 @@
             <% if item&.dig("packaging").present? %>
               <p class="small muted">Packaging: <%= item["packaging"].join(", ") %></p>
             <% end %>
-            <details class="match-checks" <%= "open" if index.zero? %>>
+            <details class="evidence-disclosure match-checks" <%= "open" if index.zero? %>>
               <summary>Why this item</summary>
-              <table class="data-table">
+              <div class="table-wrap"><table class="data-table">
                 <thead><tr><th scope="col">Field</th><th scope="col">Buyer wrote</th><th scope="col">Catalog</th><th scope="col">Result</th></tr></thead>
                 <tbody>
                   <% Array(candidate["checks"]).each do |check| %>
                     <tr class="match-check match-check--<%= check['status'] %>">
                       <td><%= check["field"].to_s.humanize %></td>
-                      <td class="mono">"<%= check["buyer_text"] %>"<% if check["source"] == "client_memory" %> <span class="flag flag--source">memory</span><% end %></td>
+                      <td class="mono">"<%= check["buyer_text"] %>"<% if check["source"] == "client_memory" %> <%= render "shared/flag", label: "memory" %><% end %></td>
                       <td><%= reading_value(check["catalog_value"]) %></td>
                       <td><span class="match-check__status"><%= check_status_label(check["status"]) %></span><br><span class="small muted"><%= check["explanation"] %></span></td>
                     </tr>
                   <% end %>
                 </tbody>
-              </table>
+              </table></div>
             </details>
           </div>
         </li>

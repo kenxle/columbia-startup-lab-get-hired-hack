@@ -37,7 +37,7 @@
     <%= form.file_field :source_file, class: "input input--file",
           accept: ".pdf,.txt,.csv,.xlsx,.xls,.eml,text/plain,text/csv,application/pdf",
           aria: { describedby: "source-file-hint" } %>
-    <p id="source-file-hint" class="field__hint">PDF, spreadsheet, or text, up to 10 MB. The file is stored for download and shown as Awaiting processing until line results are applied. It is not parsed on upload.</p>
+    <p id="source-file-hint" class="field__hint">PDF, CSV, or text, up to 10 MB. Processing starts after saving; the original stays available for download. Save Excel files as CSV first. For email files, paste the body or upload the attachment.</p>
   </div>
 
   <div class="form-actions">
