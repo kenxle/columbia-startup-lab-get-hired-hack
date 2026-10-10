@@ -19,7 +19,10 @@ class PricingRun < ApplicationRecord
   end
 
   def current_for?(record)
-    [source_revision, applied_revision].compact.include?(record.review_revision) && source_digest == DistributorPricing::Run.source_digest(record)
+    return false unless source_digest == DistributorPricing::Run.source_digest(record)
+    binding = result && result.dig("website_binding", "input_fingerprint")
+    return binding == DistributorPricing::Run.input_fingerprint(record) if binding
+    [source_revision, applied_revision].compact.include?(record.review_revision)
   end
 
   def output_available?(record)

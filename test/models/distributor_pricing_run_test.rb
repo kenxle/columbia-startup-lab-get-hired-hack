@@ -31,7 +31,7 @@ class DistributorPricingRunTest < ActiveSupport::TestCase
     result["lines"][0]["pricing"] = {
       "part_number" => "AN3-13A", "status" => "ready", "unit_price" => "2.00", "quote_total" => "2.00",
       "currency" => "USD", "quote_valid_until" => expiry, "calculated_at" => result["calculated_at"],
-      "price_scope" => "delivered_ex_tax", "cost_breakdown" => { "total_cost" => "1.70" },
+      "price_scope" => "delivered_ex_tax", "cost_breakdown" => { "total_cost" => "1.70", "total_before_payment_fee" => "1.70", "payment_fee_rate" => "0" },
       "pricing_analysis" => { "realized_margin" => "0.15", "independent_benchmark_suppliers" => 5 },
       "selected_offer" => { "supplier" => "SYNTHETIC TEST supplier" },
       "procurement_plan" => { "supplier_offer_evidence" => { "source_url" => "https://test.example/offer" } }
@@ -139,6 +139,7 @@ class DistributorPricingRunTest < ActiveSupport::TestCase
     assert line.reload.quotable?
     @quote.reload.approve!(expected_revision: @quote.review_revision)
     assert @quote.approved?
+    assert run.reload.output_available?(@quote)
     travel 2.hours do
       refute line.quotable?
       refute @quote.approved?
@@ -152,6 +153,18 @@ class DistributorPricingRunTest < ActiveSupport::TestCase
     DistributorPricing::QuoteAgent.stub(:call, ready_output) { PriceRfqJob.perform_now(run.id) }
     assert line.reload.quotable?
     @quote.update!(source_text: "AN3-13A qty 2 ea")
+    refute line.quotable?
+    refute @quote.approvable?
+  end
+
+  test "explicit manual overrides preserve current supply evidence and minimum profit" do
+    line = quote_line
+    run = enqueue
+    DistributorPricing::QuoteAgent.stub(:call, ready_output) { PriceRfqJob.perform_now(run.id) }
+    assert line.reload.apply_manual_edit("unit_price" => "3.00")
+    assert line.quotable?
+    refute run.reload.output_available?(@quote.reload)
+    assert line.apply_manual_edit("unit_price" => "1.00")
     refute line.quotable?
     refute @quote.approvable?
   end

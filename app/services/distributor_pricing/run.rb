@@ -14,6 +14,13 @@ module DistributorPricing
       Digest::SHA256.hexdigest(JSON.generate([text, filename]).b + "\0".b + bytes.to_s.b)
     end
 
+    # Approval timestamps are not pricing inputs. Other saved line/header
+    # changes still invalidate the displayed result.
+    def self.input_fingerprint(quote)
+      rows = quote.quote_lines.order(:id).map { |line| line.attributes.except("created_at", "updated_at") }
+      Digest::SHA256.hexdigest(JSON.generate([quote.title, quote.buyer_name, source_digest(quote), rows]))
+    end
+
     def self.enqueue(quote:, expected_revision:, destination:, currency: "USD", delivery_by: nil)
       new(quote).enqueue(expected_revision, destination, currency, delivery_by)
     end
@@ -73,6 +80,8 @@ module DistributorPricing
         run.reload
         next unless run.status == "running" && eligible?(run)
         applied_ids = apply_ready_lines(result, run)
+        result = result.deep_dup
+        result["website_binding"] = { "input_fingerprint" => self.class.input_fingerprint(@quote) }
         run.update!(status: "succeeded", result: result, finished_at: Time.current,
           applied_line_ids: applied_ids, applied_revision: applied_ids.any? ? @quote.reload.review_revision : nil)
       end
@@ -138,7 +147,10 @@ module DistributorPricing
         end
         line.processing = (line.processing || {}).merge("distributor_pricing" => {
           "run_id" => run.id, "valid_until" => price["quote_valid_until"],
-          "source_digest" => run.source_digest, "fingerprint" => LineValidity.fingerprint(line)
+          "source_digest" => run.source_digest, "fingerprint" => LineValidity.fingerprint(line),
+          "goods_fingerprint" => LineValidity.goods_fingerprint(line),
+          "cost_before_payment_fee" => price.dig("cost_breakdown", "total_before_payment_fee"),
+          "payment_fee_rate" => price.dig("cost_breakdown", "payment_fee_rate")
         })
         line.save!
         applied << line.id
