@@ -1,0 +1,601 @@
+{
+  "test_input_kind": "Synthetic demonstration RFQ with freshly fetched public source evidence; not a purchase order",
+  "checked_at": "2026-10-11T16:19:27Z",
+  "destination": {
+    "country": "US",
+    "postal_code": "10027"
+  },
+  "elapsed_seconds": 5.51,
+  "quote_total": null,
+  "limitations": "Point-in-time audit only, never used as cached pricing. Product references do not establish executable acquisition or delivered comparison evidence.",
+  "lines": [
+    {
+      "part_number": "RC-STEELSHOT-S330",
+      "status": "needs_procurement",
+      "competitor_coverage": {
+        "required": 5,
+        "comparable_delivered_suppliers": 0,
+        "public_product_price_suppliers": 3,
+        "gap": 5
+      },
+      "public_market_prices": [
+        {
+          "supplier_sku": "SS50330",
+          "size": "S330",
+          "unit_price": "89.95",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.799",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELSHOT-S330",
+          "source_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50330",
+          "buy_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50330",
+          "quote_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50330",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "ABR-011",
+          "size": "S330",
+          "unit_price": "54.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "1",
+              "max": "9",
+              "unit_price": "54.0"
+            },
+            {
+              "min": "10",
+              "max": "19",
+              "unit_price": "49.0"
+            },
+            {
+              "min": "20",
+              "max": "29",
+              "unit_price": "44.0"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.08",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELSHOT-S330",
+          "source_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "buy_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "quote_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "SS-330",
+          "size": "S330",
+          "unit_price": "59.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "4",
+              "max": "9",
+              "unit_price": "55.0"
+            },
+            {
+              "min": "10",
+              "max": null,
+              "unit_price": "51.5"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.18",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Precision Finishing",
+          "part_number": "RC-STEELSHOT-S330",
+          "source_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4231",
+          "buy_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4231",
+          "quote_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4231",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        }
+      ],
+      "live_source_checks": [
+        {
+          "ok": true,
+          "url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50330",
+          "requested_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50330",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELSHOT-S330",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "requested_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELSHOT-S330",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4231",
+          "requested_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4231",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Precision Finishing",
+          "part_number": "RC-STEELSHOT-S330",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://ervinindustries.com/",
+          "requested_url": "https://ervinindustries.com/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Ervin Industries",
+          "purpose": "live_supplier_quote_route"
+        }
+      ],
+      "lead_time_estimate": {
+        "status": "needs_supplier_confirmation",
+        "total_calendar_days": null,
+        "text": "Lead time to confirm with supplier",
+        "is_delivery_commitment": false,
+        "assumptions": [
+          "Exact SKU stock/allocation, manufacturing or backorder, paperwork, handling, shipping service and destination transit require current supplier evidence"
+        ]
+      }
+    },
+    {
+      "part_number": "RC-STEELSHOT-S170",
+      "status": "needs_procurement",
+      "competitor_coverage": {
+        "required": 5,
+        "comparable_delivered_suppliers": 0,
+        "public_product_price_suppliers": 3,
+        "gap": 5
+      },
+      "public_market_prices": [
+        {
+          "supplier_sku": "SS50170",
+          "size": "S170",
+          "unit_price": "89.95",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.799",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELSHOT-S170",
+          "source_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50170",
+          "buy_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50170",
+          "quote_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50170",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "ABR-011",
+          "size": "S170",
+          "unit_price": "54.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "1",
+              "max": "9",
+              "unit_price": "54.0"
+            },
+            {
+              "min": "10",
+              "max": "19",
+              "unit_price": "49.0"
+            },
+            {
+              "min": "20",
+              "max": "29",
+              "unit_price": "44.0"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.08",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELSHOT-S170",
+          "source_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "buy_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "quote_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "SS-170",
+          "size": "S170",
+          "unit_price": "59.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "4",
+              "max": "9",
+              "unit_price": "55.0"
+            },
+            {
+              "min": "10",
+              "max": null,
+              "unit_price": "51.5"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.18",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Precision Finishing",
+          "part_number": "RC-STEELSHOT-S170",
+          "source_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4233",
+          "buy_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4233",
+          "quote_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4233",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        }
+      ],
+      "live_source_checks": [
+        {
+          "ok": true,
+          "url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50170",
+          "requested_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-shot/ss50170",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELSHOT-S170",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "requested_url": "https://www.ntruddock.com/product/steel-shot-blasting-media/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELSHOT-S170",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4233",
+          "requested_url": "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-4233",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "supplier": "Precision Finishing",
+          "part_number": "RC-STEELSHOT-S170",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://ervinindustries.com/",
+          "requested_url": "https://ervinindustries.com/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Ervin Industries",
+          "purpose": "live_supplier_quote_route"
+        }
+      ],
+      "lead_time_estimate": {
+        "status": "needs_supplier_confirmation",
+        "total_calendar_days": null,
+        "text": "Lead time to confirm with supplier",
+        "is_delivery_commitment": false,
+        "assumptions": [
+          "Exact SKU stock/allocation, manufacturing or backorder, paperwork, handling, shipping service and destination transit require current supplier evidence"
+        ]
+      }
+    },
+    {
+      "part_number": "RC-STEELGRIT-G40",
+      "status": "needs_procurement",
+      "competitor_coverage": {
+        "required": 5,
+        "comparable_delivered_suppliers": 0,
+        "public_product_price_suppliers": 2,
+        "gap": 5
+      },
+      "public_market_prices": [
+        {
+          "supplier_sku": "SG5040",
+          "size": "G40",
+          "unit_price": "89.95",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.799",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELGRIT-G40",
+          "source_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-grit/sg5040",
+          "buy_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-grit/sg5040",
+          "quote_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-grit/sg5040",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "ABR-010",
+          "size": "G40",
+          "unit_price": "65.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "1",
+              "max": "9",
+              "unit_price": "65.0"
+            },
+            {
+              "min": "10",
+              "max": "19",
+              "unit_price": "63.0"
+            },
+            {
+              "min": "20",
+              "max": "29",
+              "unit_price": "61.0"
+            },
+            {
+              "min": "30",
+              "max": "39",
+              "unit_price": "59.0"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.3",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELGRIT-G40",
+          "source_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "buy_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "quote_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        }
+      ],
+      "live_source_checks": [
+        {
+          "ok": true,
+          "url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-grit/sg5040",
+          "requested_url": "https://kleenblast.com/item/specialty-abrasives-blast-media/steel-grit/sg5040",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:25Z",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELGRIT-G40",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "requested_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELGRIT-G40",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://ervinindustries.com/",
+          "requested_url": "https://ervinindustries.com/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Ervin Industries",
+          "purpose": "live_supplier_quote_route"
+        }
+      ],
+      "lead_time_estimate": {
+        "status": "needs_supplier_confirmation",
+        "total_calendar_days": null,
+        "text": "Lead time to confirm with supplier",
+        "is_delivery_commitment": false,
+        "assumptions": [
+          "Exact SKU stock/allocation, manufacturing or backorder, paperwork, handling, shipping service and destination transit require current supplier evidence"
+        ]
+      }
+    },
+    {
+      "part_number": "RC-STEELGRIT-G25",
+      "status": "needs_procurement",
+      "competitor_coverage": {
+        "required": 5,
+        "comparable_delivered_suppliers": 0,
+        "public_product_price_suppliers": 2,
+        "gap": 5
+      },
+      "public_market_prices": [
+        {
+          "supplier_sku": "SG5025",
+          "size": "G25",
+          "unit_price": "89.95",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.799",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELGRIT-G25",
+          "source_url": "https://kleenblast.com/viewitems/specialty-abrasives-blast-media/steel-grit",
+          "buy_url": "https://kleenblast.com/viewitems/specialty-abrasives-blast-media/steel-grit",
+          "quote_url": "https://kleenblast.com/viewitems/specialty-abrasives-blast-media/steel-grit",
+          "retrieved_at": "2026-10-11T16:19:26Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        },
+        {
+          "supplier_sku": "ABR-010",
+          "size": "G25",
+          "unit_price": "65.0",
+          "unit": "bag",
+          "currency": "USD",
+          "pack_size": "50",
+          "pack_unit": "lb",
+          "published_tiers": [
+            {
+              "min": "1",
+              "max": "9",
+              "unit_price": "65.0"
+            },
+            {
+              "min": "10",
+              "max": "19",
+              "unit_price": "63.0"
+            },
+            {
+              "min": "20",
+              "max": "29",
+              "unit_price": "61.0"
+            },
+            {
+              "min": "30",
+              "max": "39",
+              "unit_price": "59.0"
+            }
+          ],
+          "tier_unit": "bag",
+          "normalized_unit": "lb",
+          "normalized_unit_price": "1.3",
+          "commercial_terms_verified": false,
+          "stock_confirmed": false,
+          "limitations": "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified.",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELGRIT-G25",
+          "source_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "buy_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "quote_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "request_id": "11cdcbc3-ffcc-42dc-bd9d-40fd487404bb",
+          "price_scope": "product_only_published_basis",
+          "usable_as_delivered_benchmark": false
+        }
+      ],
+      "live_source_checks": [
+        {
+          "ok": true,
+          "url": "https://kleenblast.com/viewitems/specialty-abrasives-blast-media/steel-grit",
+          "requested_url": "https://kleenblast.com/viewitems/specialty-abrasives-blast-media/steel-grit",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-11T16:19:26Z",
+          "supplier": "Kleen Blast",
+          "part_number": "RC-STEELGRIT-G25",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "requested_url": "https://www.ntruddock.com/product/steel-grit-blasting-media/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:27Z",
+          "supplier": "N.T. Ruddock",
+          "part_number": "RC-STEELGRIT-G25",
+          "listing_status": "exact_size_package_price_observed"
+        },
+        {
+          "ok": true,
+          "url": "https://ervinindustries.com/",
+          "requested_url": "https://ervinindustries.com/",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-10-11T16:19:24Z",
+          "supplier": "Ervin Industries",
+          "purpose": "live_supplier_quote_route"
+        }
+      ],
+      "lead_time_estimate": {
+        "status": "needs_supplier_confirmation",
+        "total_calendar_days": null,
+        "text": "Lead time to confirm with supplier",
+        "is_delivery_commitment": false,
+        "assumptions": [
+          "Exact SKU stock/allocation, manufacturing or backorder, paperwork, handling, shipping service and destination transit require current supplier evidence"
+        ]
+      }
+    }
+  ]
+}

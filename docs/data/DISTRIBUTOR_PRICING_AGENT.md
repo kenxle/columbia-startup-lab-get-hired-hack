@@ -70,6 +70,8 @@ When a push or external service fails, report the actual failure and last confir
 
 ## Verification
 
+The [abrasive live verification](../../data/distributor_pricing/abrasive_live_verification.json) records a fresh four-line public-source run on 2026-10-11. It took 5.51 seconds and found three product-price suppliers for each shot size and two for each grit size. It found no fully qualified delivered comparison and kept all selling prices and delivery commitments held. The audit is never consumed as cached quote pricing.
+
 Run `ruby -Itools/distributor_pricing/test -e 'Dir["tools/distributor_pricing/test/*_test.rb"].each { |path| require_relative path }'`. Tests use clearly synthetic commercial evidence and do not pretend that fixtures are real offers. Live runs retrieve actual public listings and material publications; absent executable terms produce a procurement hold.
 
 The authentic [Transnet RFQ example](../example_rfqs/transnet-steel-shot-2024/SOURCE.md) is an archival demand document with blank price fields. Complex public tender tables and boilerplate still require processor item-boundary work; this agent does not claim that its current intake understands every tender page.
