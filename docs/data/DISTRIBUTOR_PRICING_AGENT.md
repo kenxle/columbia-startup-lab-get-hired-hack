@@ -48,6 +48,8 @@ The Rails run can supplement a missing quantity/unit from a persisted buyer answ
 
 This handoff currently supports a single numeric free-text quantity/unit answer. Multiple-choice answers, accumulated answer strings and SKU/specification changes do not get override authority. Historical full-document digests are not stored on prior buyer answers; the run binds the current complete RFQ digest and review revision while requiring the unchanged original line. Fresh supplier, material, delivery and margin checks remain required before a supplemented line receives a selling price.
 
+Supplemental inspection of Yuval's pending full-source matcher consumer on 2026-10-11 found that its choice-only thickness-then-SKU flow aligns structurally with app attestations. A mixed typed/choice flow needs a separate regression: the processing answer path appends buyer text to matcher input, while the proposed consumer requires equality with the unchanged original source. This inspection did not execute the pending patch or provide independent Opus clearance. The pricing quantity supplement still rejects choice-derived specification overrides.
+
 `ready` exposes `unit_price`, `quote_total`, `quote_valid_until`, margin analysis and selected supplier evidence. `needs_buyer`, `needs_procurement`, `not_competitive` and `no_match` hold the selling price. A full quote total is emitted only when every item is ready and extraction has no warnings. Confirmed partial lines remain visible separately. Rep approval is required; nothing is purchased, emailed or submitted automatically.
 
 ## Provider configuration
