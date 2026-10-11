@@ -6,6 +6,45 @@ require_relative "catalog"
 
 module DistributorPricing
   class Intake
+    # Internal, in-process handoff from the persisted Rails review. Never
+    # deserialize request JSON into this type. It grants quantity authority
+    # only; catalog identity, specifications and other lines still come from
+    # the complete original RFQ.
+    class ConfirmedItems
+      attr_reader :rfq_sha256, :revision, :rows
+
+      def initialize(rfq:, revision:, rows:)
+        raise ArgumentError, "A current review revision is required" if revision.to_s.empty?
+        @rfq_sha256 = Digest::SHA256.hexdigest(rfq)
+        @revision = revision.to_s.freeze
+        @rows = Marshal.load(Marshal.dump(rows))
+      end
+    end
+
+    def apply_confirmed_items(intake, confirmed_items, rfq:)
+      return intake if confirmed_items.nil?
+      unless confirmed_items.instance_of?(ConfirmedItems) && confirmed_items.rfq_sha256 == Digest::SHA256.hexdigest(rfq)
+        raise ArgumentError, "Confirmed inputs must belong to this original RFQ"
+      end
+      confirmed_items.rows.each do |confirmed|
+        rows = intake["lines"].select { |line| line["original_text"] == confirmed["original_text"] }
+        next unless rows.one?
+        line = rows.first
+        next unless line.dig("item", "part_number") == confirmed["part_number"]
+        next unless line["conflicts"].empty? && (line["unknowns"] - %w[quantity quantity_unit]).empty?
+        # Never replace an explicit conflicting source quantity or unit.
+        next if line["quantity"] && BigDecimal(line["quantity"]) != BigDecimal(confirmed.fetch("quantity"))
+        next if line["unit"] && line["unit"] != confirmed["unit"]
+        line["quantity"], line["unit"] = confirmed.values_at("quantity", "unit")
+        line["reading"] = line["reading"].merge("quantity" => line["quantity"], "quantity_unit" => line["unit"])
+        line["evidence"] = line["evidence"].merge("quantity" => confirmed.fetch("evidence"))
+        line["unknowns"] -= %w[quantity quantity_unit]
+        line["confirmed_input"] = { "review_revision" => confirmed_items.revision,
+          "rfq_sha256" => confirmed_items.rfq_sha256, "quote_line_id" => confirmed["quote_line_id"] }
+      end
+      intake
+    end
+
     UNIT_MAP = { "ea" => "each", "pcs" => "each", "pc" => "each", "piece" => "each", "pieces" => "each",
                  "lbs" => "lb", "pound" => "lb", "pounds" => "lb", "bags" => "bag", "feet" => "ft" }.freeze
     UNIT_PATTERN = "each|ea|pcs|pc|pieces?|lbs?|pounds?|kg|bags?|ft|feet|m"

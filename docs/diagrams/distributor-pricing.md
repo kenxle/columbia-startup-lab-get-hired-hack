@@ -3,6 +3,8 @@
 ```mermaid
 flowchart TD
     RFQ[RFQ and delivery destination] --> INTAKE[Extract lines and verify specifications]
+    SAVED[Persisted buyer quantity answer] --> TRUST[Check unchanged source, current revision, SKU and evidence]
+    TRUST --> INTAKE
     INTAKE --> GROUP[Consolidate identical purchase lots]
     GROUP --> PUBLIC[Refresh five competitor sources in parallel]
     GROUP --> MATERIAL[Refresh applicable published material context]

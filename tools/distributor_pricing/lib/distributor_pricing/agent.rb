@@ -31,7 +31,7 @@ module DistributorPricing
       new(catalog: catalog, source_book: SourceBook.new(root: root), gateway: gateway, supplier_feed: feed)
     end
 
-    def call(rfq:, destination: nil, type: "email", filename: nil, currency: "USD", delivery_by: nil, requirements: {})
+    def call(rfq:, destination: nil, type: "email", filename: nil, currency: "USD", delivery_by: nil, requirements: {}, confirmed_items: nil)
       raise ArgumentError, "RFQ must be text or document bytes" unless rfq.is_a?(String)
       raise ArgumentError, "RFQ exceeds the 2 MB intake limit" if rfq.bytesize > 2_000_000
       raise ArgumentError, "Currency must be an uppercase three-letter code" unless currency.is_a?(String) && currency.match?(/\A[A-Z]{3}\z/)
@@ -41,6 +41,7 @@ module DistributorPricing
       extraction = RfqProcessing::Extractor.extract(rfq, type: type, filename: filename)
       text = extraction.lines.map(&:text).join("\n")
       intake = @intake.parse(rfq: rfq, type: type, filename: filename, destination: destination)
+      @intake.apply_confirmed_items(intake, confirmed_items, rfq: rfq)
       model_needed = intake["lines"].any? { |line| !line["quantity"] || !line["unit"] }
       interpretation = if @gateway && model_needed
         @gateway.extract(text)
@@ -49,6 +50,7 @@ module DistributorPricing
       end
       if interpretation["ok"]
         intake = @intake.parse(rfq: rfq, type: type, filename: filename, destination: destination, model_lines: interpretation["lines"])
+        @intake.apply_confirmed_items(intake, confirmed_items, rfq: rfq)
       end
       original_line_count = intake["lines"].size
       intake["lines"] = consolidate(intake["lines"])

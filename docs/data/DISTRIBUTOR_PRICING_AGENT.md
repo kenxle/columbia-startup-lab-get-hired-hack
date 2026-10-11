@@ -44,6 +44,10 @@ Use `type: "pdf"`, `encoding: "base64"` and `filename` for encoded PDF input. Th
 
 Rails calls `DistributorPricing::QuoteAgent.call(rfq:, destination:, **options)`. Its result is `distributor_pricing/v1`, with `request`, `quote`, `lines`, live source checks, material context, procurement requests and evidence. Each line's `pricing` is the existing `CatalogMatch::PricingHandoff.apply` input. The agent itself performs no database writes. RFQ processing remains the shared result assembler.
 
+The Rails run can supplement a missing quantity/unit from a persisted buyer answer using the internal `Intake::ConfirmedItems` type. It validates the deterministic answer against saved quantity, unit, buyer evidence, processing revision, unique unchanged original line, catalog identity and original specification evidence. Rep edits, conflicts, mismatched source or raw JSON cannot authorize the supplement. Original RFQ text and every other line remain in intake. The run snapshots and rechecks the current input fingerprint around external calls so a concurrent edit makes the result stale.
+
+This handoff currently supports a single numeric free-text quantity/unit answer. Multiple-choice answers, accumulated answer strings and SKU/specification changes do not get override authority. Historical full-document digests are not stored on prior buyer answers; the run binds the current complete RFQ digest and review revision while requiring the unchanged original line. Fresh supplier, material, delivery and margin checks remain required before a supplemented line receives a selling price.
+
 `ready` exposes `unit_price`, `quote_total`, `quote_valid_until`, margin analysis and selected supplier evidence. `needs_buyer`, `needs_procurement`, `not_competitive` and `no_match` hold the selling price. A full quote total is emitted only when every item is ready and extraction has no warnings. Confirmed partial lines remain visible separately. Rep approval is required; nothing is purchased, emailed or submitted automatically.
 
 ## Provider configuration

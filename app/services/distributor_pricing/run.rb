@@ -1,4 +1,5 @@
 require "digest"
+require Rails.root.join("tools/distributor_pricing/lib/distributor_pricing/intake").to_s
 
 module DistributorPricing
   class Run
@@ -63,6 +64,9 @@ module DistributorPricing
         run.reload
         next unless run.status == "queued" && eligible?(run)
         run.update!(status: "running", started_at: Time.current)
+        @confirmed_line_snapshots = @quote.quote_lines.reload.map { |line| QuoteLine.new(line.attributes.deep_dup) }
+        @confirmed_processing_revision = @quote.processing_revision&.dig("id")
+        @confirmed_input_fingerprint = self.class.input_fingerprint(@quote)
         Quote.new(source_text: @quote.source_text&.dup, source_bytes: @quote.source_bytes&.dup,
           original_filename: @quote.original_filename)
       end
@@ -73,12 +77,18 @@ module DistributorPricing
       raise InputError, "The complete attachment could not be read. Upload a readable PDF, CSV or text file before pricing." if source.warnings.any?
       text = source.sections.map { |section| section.fetch(:text) }.join("\n")
       raise InputError, "No complete RFQ text is available for pricing." if text.blank?
-      result = QuoteAgent.call(rfq: text, destination: run.destination, currency: run.currency,
-        delivery_by: run.delivery_by&.iso8601)
+      options = { delivery_by: run.delivery_by&.iso8601 }
+      confirmed = confirmed_quantity_inputs(text, run.source_revision)
+      options[:confirmed_items] = confirmed if confirmed
+      result = QuoteAgent.call(rfq: text, destination: run.destination, currency: run.currency, **options)
       raise InputError, "The price check returned incomplete evidence. Existing quote lines were preserved." unless PricingRun.valid_result?(result)
       @quote.with_lock do
         run.reload
         next unless run.status == "running" && eligible?(run)
+        if @confirmed_input_fingerprint != self.class.input_fingerprint(@quote)
+          run.update!(status: "stale", finished_at: Time.current, error_message: STALE_MESSAGE)
+          next
+        end
         applied_ids = apply_ready_lines(result, run)
         result = result.deep_dup
         result["website_binding"] = { "input_fingerprint" => self.class.input_fingerprint(@quote) }
@@ -93,6 +103,44 @@ module DistributorPricing
     end
 
     private
+
+    # Only persisted, resolved quantity answers can supplement intake. A free
+    # text answer must itself be exactly a deterministic quantity/unit phrase,
+    # and agree with the saved value and the processor's buyer evidence. SKU
+    # and specification answers are deliberately not overrides here.
+    def confirmed_quantity_inputs(text, revision)
+      return unless @confirmed_processing_revision.present?
+      intake = Intake.new.parse(rfq: text)
+      rows = @confirmed_line_snapshots.filter_map do |line|
+        next unless line.line_id.present? && Array(line.edited_fields).empty?
+        next unless (Array(line.unresolved_fields) - ["unit_price"]).empty?
+        processing = line.processing || {}
+        next unless Array(processing["conflicts"]).empty? && %w[exact scored].include?(processing.dig("match", "status"))
+        answered = processing["answered"]
+        evidence = line.evidence["quantity"]
+        next unless answered.is_a?(Hash) && answered["previous_revision"].is_a?(String) && answered["previous_revision"].present?
+        next if answered["previous_revision"] == @confirmed_processing_revision || answered["rfq_text"].present? || answered["choice_id"].present?
+        next unless evidence.is_a?(Hash) && evidence["location"] == "buyer answer" && evidence["text"].present?
+        answer = answered["free_text"]
+        next unless answer.is_a?(String) && answer == processing["answered_with"] && answer.include?(evidence["text"])
+        match = answer.strip.match(/\A(?:qty|quantity)?\s*[:=]?\s*(\d+(?:\.\d+)?)\s*(#{Intake::UNIT_PATTERN})\s*\.?\z/i)
+        next unless match && line.quantity && line.quantity.positive? && BigDecimal(match[1]) == line.quantity
+        unit = Intake::UNIT_MAP.fetch(match[2].downcase, match[2].downcase)
+        next unless unit == line.quantity_unit
+        same = @confirmed_line_snapshots.select { |other| other.original_text == line.original_text }
+        parsed = intake["lines"].select { |entry| entry["original_text"] == line.original_text }
+        next unless same.one? && parsed.one?
+        entry = parsed.first
+        next unless entry.dig("item", "part_number") == line.catalog_sku
+        next unless specifications_match?(line, entry.merge("catalog_item" => entry["item"] || {}))
+        # Every saved specification still requires original source evidence.
+        next unless line.spec.all? { |key, value| value.blank? || (line.evidence[key].is_a?(Hash) && line.original_text.include?(line.evidence[key]["text"].to_s) && line.evidence[key]["text"].present? && line.evidence[key]["location"] != "buyer answer") }
+        { "original_text" => line.original_text, "part_number" => line.catalog_sku,
+          "quantity" => line.quantity.to_s("F"), "unit" => unit,
+          "quote_line_id" => line.id, "evidence" => evidence.deep_dup }
+      end
+      Intake::ConfirmedItems.new(rfq: text, revision: revision, rows: rows) if rows.any?
+    end
 
     def runs
       PricingRun.where(quote_id: @quote.id)
