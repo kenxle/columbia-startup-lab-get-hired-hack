@@ -5,7 +5,7 @@ require_relative "additional_sources"
 module DistributorPricing
   # Routes contain identities only. Every amount comes from this run's HTML.
   module AbrasiveSources
-    HOSTS = %w[kleenblast.com catalog.precisionfinishinginc.com www.ntruddock.com].freeze
+    HOSTS = %w[kleenblast.com catalog.precisionfinishinginc.com www.ntruddock.com nationalblastsupply.com americanhawkindustrialproducts.com].freeze
     MAX_HTML_BYTES = 3_000_000
 
     def self.routes(item)
@@ -18,6 +18,8 @@ module DistributorPricing
       rows = [["Kleen Blast", kleen, sku, "kleen"],
               ["N.T. Ruddock", "https://www.ntruddock.com/product/steel-#{shot ? 'shot' : 'grit'}-blasting-media/", shot ? "ABR-011" : "ABR-010", "ruddock"]]
       rows << ["Precision Finishing", "https://catalog.precisionfinishinginc.com/item/metallic-abrasives/steel-shot/item-#{size == 'S330' ? '4231' : '4233'}", "SS-#{size[1..]}", "precision"] if shot
+      rows << ["National Blast Supply", "https://nationalblastsupply.com/products/nbs-steel-grit-50-lb-bag-g40-medium", "NBS-SG40-50", "national"] if size == "G40"
+      rows << ["AmericanHawk Industrial Products", "https://americanhawkindustrialproducts.com/product/steel-grit/", "4000", "americanhawk"] if size == "G25"
       rows.map { |supplier, url, code, parser| { "supplier" => supplier, "source_url" => url, "quote_url" => url, "supplier_sku" => code, "size" => size, "parser" => parser, "role" => "dealer" } }
     end
 
@@ -33,7 +35,29 @@ module DistributorPricing
       text = AdditionalSources.plain(html).tr("\u00a0", " ").gsub(/\s+/, " ")
       size, sku = route.values_at("size", "supplier_sku")
       tiers = []
+      hardness = nil
       case route["parser"]
+      when "national"
+        product = structured_product(html, route["source_url"])
+        return nil unless product && product["sku"] == sku && product["name"].to_s.match?(/\bG40\b/) && product["name"].to_s.match?(/\b50\s*lb\s+Bag\b/i)
+        offer = product["offers"]
+        return nil unless offer.is_a?(Hash) && offer["@type"] == "Offer" && offer["priceCurrency"] == "USD" && offer["url"] == route["source_url"]
+        amount = offer["price"]
+        hardness = text.match(/\bHardness\s+(\d+\s*[-–]\s*\d+\s*HRC)\b/i)&.[](1)
+      when "americanhawk"
+        product = structured_product(html, route["source_url"])
+        return nil unless product && product["description"].to_s.match?(/\b50\s*lbs?\s+Bag\b/i) && product["description"].to_s.match?(/Part:\s*4000\s*\(25 Steel Grit\)/i)
+        offers = product["offers"]
+        return nil unless offers.is_a?(Array) && !offers.empty? && offers.all? { |o| o.is_a?(Hash) && o["priceCurrency"] == "USD" && o["url"] == route["source_url"] }
+        form = html.scan(/<form\b[^>]*>/i).find { |tag| tag.match?(/\baction=["']#{Regexp.escape(route['source_url'])}["']/i) && tag.include?("data-product_variations=") }
+        return nil unless form
+        encoded = form.match(/\bdata-product_variations=(["'])(.*?)\1/m)&.[](2)
+        variants = JSON.parse(CGI.unescapeHTML(encoded.to_s))
+        return nil unless variants.is_a?(Array)
+        matches = variants.select { |v| v.is_a?(Hash) && v["sku"] == sku && v["attributes"] == { "attribute_pa_bags" => "g-25-steel-grit" } }
+        return nil unless matches.size == 1
+        amount = matches.first["display_price"]
+        return nil unless american_offer_agrees?(offers, variants, matches.first)
       when "kleen"
         if route["source_url"].include?("/viewitems/")
           row = html.scan(/<tr\b[^>]*>[\s\S]*?<\/tr>/i).find { |r| AdditionalSources.plain(r).match?(/\b#{Regexp.escape(sku)}\b/) }
@@ -77,7 +101,41 @@ module DistributorPricing
         "pack_size" => "50", "pack_unit" => "lb", "published_tiers" => tiers, "tier_unit" => "bag",
         "normalized_unit" => "lb", "normalized_unit_price" => (BigDecimal(amount) / 50).to_s("F"),
         "commercial_terms_verified" => false, "stock_confirmed" => false,
+        "observed_hardness" => hardness,
         "limitations" => "Product-only 50 lb bag reference. Hardness, composition, certification, allocation, quantity terms, freight, tax and delivery require confirmation. Published tiers are observations, not executable offers. Ton columns are excluded because their price basis is unverified." }
+    rescue JSON::ParserError, ArgumentError, TypeError
+      nil
+    end
+
+    def self.structured_product(html, url)
+      products = html.scan(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i).flat_map do |body|
+        data = JSON.parse(body.first)
+        nodes = data.is_a?(Array) ? data : [data]
+        nodes.flat_map { |node| node.is_a?(Hash) && node["@graph"].is_a?(Array) ? node["@graph"] : [node] }
+      end.select { |node| node.is_a?(Hash) && node["@type"] == "Product" && node["url"] == url }
+      products.one? ? products.first : nil
+    end
+
+    def self.american_offer_agrees?(offers, variants, selected)
+      price = AdditionalSources.positive(selected["display_price"])
+      return false unless price
+      offers.any? do |offer|
+        next false if offer.key?("sku") && offer["sku"].to_s != selected["sku"].to_s
+        next false if offer.key?("variation_id") && offer["variation_id"].to_s != selected["variation_id"].to_s
+        if offer["@type"] == "Offer"
+          AdditionalSources.positive(offer["price"]) == price
+        elsif offer["@type"] == "AggregateOffer"
+          # This publisher supplies bounds for all variants, not individual
+          # schema offers. Reconcile the entire set instead of assigning its
+          # lowPrice to whichever size the buyer requested.
+          amounts = variants.map { |v| v.is_a?(Hash) && AdditionalSources.positive(v["display_price"]) }
+          next false unless amounts.all? && !amounts.empty? && offer["offerCount"].to_s == variants.size.to_s
+          low, high = amounts.map { |p| BigDecimal(p) }.minmax.map { |p| p.to_s("F") }
+          AdditionalSources.positive(offer["lowPrice"]) == low && AdditionalSources.positive(offer["highPrice"]) == high
+        else
+          false
+        end
+      end
     end
 
     def self.tier(min, max, amount)

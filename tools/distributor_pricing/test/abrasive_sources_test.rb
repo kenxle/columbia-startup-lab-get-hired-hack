@@ -54,7 +54,7 @@ class AbrasiveSourcesTest < Minitest::Test
     %w[RC-STEELSHOT-S330 RC-STEELSHOT-S170 RC-STEELGRIT-G40 RC-STEELGRIT-G25].each do |part|
       item = catalog.find(part)
       refute_nil item
-      assert_equal part.include?("SHOT") ? 3 : 2, A.routes(item).size
+      assert_equal 3, A.routes(item).size
     end
     assert_empty A.routes(ITEM.merge("material" => "steel sheet"))
     assert_empty A.routes(catalog.find("RC-STAINLESSSTEELGRIT-G25"))
@@ -101,5 +101,94 @@ class AbrasiveSourcesTest < Minitest::Test
     http.instance_variable_set(:@body, kleen.sub("50lb", "25lb"))
     third = book.refresh(items: [ITEM], request: { "request_id" => "c" }).fetch(ITEM["part_number"])
     assert_empty third["public_market_prices"]
+  end
+
+  def new_source(parser)
+    route(parser, ITEM.merge("material" => "steel grit", "grade" => parser == "national" ? "G40" : "G25"))
+  end
+
+  def new_html(parser, changes = {}, variants: nil)
+    r = new_source(parser)
+    product = { "@type" => "Product", "url" => r["source_url"], "sku" => r["supplier_sku"],
+      "name" => "Steel Grit 50 lb Bag G40", "description" => "50 lbs Bag Part: 4000 (25 Steel Grit)",
+      "offers" => { "@type" => "Offer", "url" => r["source_url"], "priceCurrency" => "USD", "price" => "67.89" } }
+    product["offers"] = [product["offers"].merge("price" => "123")] if parser == "americanhawk"
+    product.merge!(changes)
+    html = '<script type="application/ld+json">' + JSON.generate(product) + '</script>'
+    if parser == "americanhawk"
+      variants ||= [{ "sku" => "4001", "attributes" => { "attribute_pa_bags" => "g-50-steel-grit" }, "display_price" => 999 },
+                    { "sku" => "4000", "attributes" => { "attribute_pa_bags" => "g-25-steel-grit" }, "display_price" => 123 }]
+      html += '<form action="' + r["source_url"] + '" data-product_variations="' + CGI.escapeHTML(JSON.generate(variants)) + '">'
+    end
+    html
+  end
+
+  def test_new_sources_require_bound_currency_package_and_valid_json
+    %w[national americanhawk].each do |parser|
+      r = new_source(parser)
+      html = new_html(parser)
+      refute_nil A.price(html, r)
+      assert_nil A.price(html.gsub("USD", "CAD"), r)
+      assert_nil A.price(html.gsub("50 lb", "25 lb"), r)
+      assert_nil A.price(html.gsub(r["supplier_sku"], "wrong-sku"), r)
+      assert_nil A.price('<script type="application/ld+json">{broken</script>', r)
+      assert_nil A.price(html.gsub(r["source_url"], "https://example.com/wrong"), r)
+    end
+  end
+
+  def test_national_price_is_product_offer_only
+    r = new_source("national")
+    html = new_html("national")
+    assert_equal "67.89", A.price('Cart $1.00 ' + html, r)["unit_price"]
+    assert_nil A.price(html.sub('"67.89"', '"-1"'), r)
+    assert_nil A.price(html.sub('"67.89"', '"Infinity"'), r)
+    assert_nil A.price(html.gsub("G40", "G25"), r)
+    assert_nil A.price(html + html, r)
+    refute A.price(html, r)["stock_confirmed"]
+  end
+
+  def test_americanhawk_selects_exact_variant_and_rejects_duplicates
+    r = new_source("americanhawk")
+    html = new_html("americanhawk")
+    assert_equal "123.0", A.price(html, r)["unit_price"]
+    assert_nil A.price(html.gsub("g-25-steel-grit", "g-50-steel-grit"), r)
+    v = { "sku" => "4000", "attributes" => { "attribute_pa_bags" => "g-25-steel-grit" }, "display_price" => 123 }
+    assert_nil A.price(new_html("americanhawk", variants: [v, v]), r)
+    assert_nil A.price(new_html("americanhawk", variants: [v.merge("display_price" => -3)]), r)
+    refute A.price(html, r)["commercial_terms_verified"]
+    assert_nil A.price(html, r)["observed_hardness"]
+    assert_nil A.price(html.sub('"price":"123"', '"price":"125"'), r)
+    assert_nil A.price(html.sub('"price":"123"', '"price":"123","sku":"4001"'), r)
+  end
+
+  def test_americanhawk_aggregate_bounds_agree_with_complete_variant_set
+    r = new_source("americanhawk")
+    offer = { "@type" => "AggregateOffer", "url" => r["source_url"], "priceCurrency" => "USD", "lowPrice" => "123", "highPrice" => "999", "offerCount" => 2 }
+    html = new_html("americanhawk", { "offers" => [offer] })
+    assert_equal "123.0", A.price(html, r)["unit_price"]
+    assert_nil A.price(new_html("americanhawk", { "offers" => [offer.merge("lowPrice" => "124")] }), r)
+    assert_nil A.price(new_html("americanhawk", { "offers" => [offer.merge("highPrice" => "998")] }), r)
+    assert_nil A.price(new_html("americanhawk", { "offers" => [offer.merge("offerCount" => 3)] }), r)
+  end
+
+  def test_new_dealers_refresh_through_source_book_without_offers
+    bodies = %w[national americanhawk].to_h { |p| [new_source(p)["source_url"], new_html(p)] }
+    calls = []
+    http = Object.new
+    http.define_singleton_method(:get) do |url|
+      calls << url
+      { "ok" => true, "body" => bodies.fetch(url, ""), "retrieved_at" => Time.now.utc.iso8601 }
+    end
+    items = DistributorPricing::Catalog.new.items.select { |i| %w[RC-STEELGRIT-G25 RC-STEELGRIT-G40].include?(i["part_number"]) }
+    book = DistributorPricing::SourceBook.new(http_client: http)
+    2.times do |n|
+      result = book.refresh(items: items, request: { "request_id" => "grit-#{n}" })
+      result.each_value do |row|
+        assert_empty row["offers"]
+        assert_equal 1, row["public_market_prices"].size
+        refute row["public_market_prices"].first["usable_as_delivered_benchmark"]
+      end
+    end
+    bodies.each_key { |url| assert_equal 2, calls.count(url) }
   end
 end
