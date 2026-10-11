@@ -6,8 +6,9 @@ module DistributorPricing
 
     def self.for_line(pricing:, source:, quantity:)
       offer = pricing.dig("procurement_plan", "supplier_offer_evidence")
-      if offer.is_a?(Hash) && offer["commercial_terms_verified"] == true && offer["stock_confirmed"] == true && offer["lead_time_days"].is_a?(Integer) && offer["lead_time_days"] >= 0
-        days = offer["lead_time_days"]
+      raw_days = offer["lead_time_days"] if offer.is_a?(Hash)
+      days = raw_days.to_i if (raw_days.is_a?(Integer) || raw_days.is_a?(String)) && raw_days.to_s.match?(/\A\d+\z/)
+      if offer.is_a?(Hash) && offer["commercial_terms_verified"] == true && offer["stock_confirmed"] == true && !days.nil?
         return { "status" => "supplier_confirmed", "total_calendar_days" => days,
                  "text" => "#{days} calendar days after order acceptance, through delivery",
                  "supplier" => offer["supplier"], "source_url" => offer["quote_url"] || offer["source_url"],
