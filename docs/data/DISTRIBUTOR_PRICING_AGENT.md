@@ -58,6 +58,8 @@ The ignored `.env` or server environment may contain `NINOO_API_KEY`, `NINOO_MOD
 
 The procurement feed is an operator-configured HTTPS adapter, not the LLM gateway. No executable procurement feed is connected yet. It must query current supplier commercial terms and five competing delivered offers for the request; a historical quote database alone is insufficient.
 
+A failed public reference page remains visible in source diagnostics and contributes no cached or inferred price. It does not veto a quote independently supported by current request-revalidated acquisition evidence, five qualified delivered benchmarks, current material evidence and all Engine checks. Missing or stale evidence actually needed for pricing still holds the quote. This availability rule does not make a public listing executable or reduce the five-competitor requirement.
+
 Tisch confirmed public sources only on 2026-10-10. Abrasive research covers [the initial three dealers](ABRASIVE_SUPPLIER_CHECK_2026-10-10.md) and [additional dealer/manufacturer routes](ABRASIVE_ADDITIONAL_SUPPLIERS.md). These are product references with specification and delivery gaps. They do not authorize invented acquisition costs, zero freight or a firm selling price.
 
 The feed receives a fresh `request_id`, `started_at`, destination, currency, deadline, item quantities/specs and per-line requirements. It returns `{request_id, checked_at, lines: {line_id: {offers, benchmarks, specifications_verified, material_price_evidence}}}`. Response `checked_at` must lie inside the current run. Every offer/benchmark also needs `revalidated_for_request_id` and `revalidated_at` for this run. The agent preserves the original observation time separately.

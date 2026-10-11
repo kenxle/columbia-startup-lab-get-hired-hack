@@ -154,9 +154,10 @@ module DistributorPricing
       if price["status"] == "ready" && !live_material
         hold!(price, "Current applicable material-market evidence is unavailable or overdue; obtain a live material source before release.")
       end
-      if price["status"] == "ready" && source["source_checks"].any? { |check| check["ok"] != true }
-        hold!(price, "An independent public supplier/market source could not be refreshed; no stale comparison was reused.")
-      end
+      # Public reference failures remain visible in live_source_checks. They do
+      # not invalidate independent, request-revalidated commercial evidence.
+      # SourceBook excludes failed listings; Engine still requires an eligible
+      # acquisition offer and five qualified delivered supplier comparisons.
       price["procurement_tasks"] ||= []
       price["procurement_tasks"] << commercial["error"] unless commercial["ok"]
       price["procurement_tasks"] << "Supplier specification fields are pending; verify them against the required standard and quote." unless item.dig("specification_verification", "dimensions_verified") != false || feed_line["specifications_verified"] == true

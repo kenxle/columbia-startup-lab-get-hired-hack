@@ -114,10 +114,45 @@ class DistributorAgentTest < Minitest::Test
     assert_equal "needs_procurement", result.dig("lines", 0, "pricing", "status")
   end
 
-  def test_live_public_source_failure_does_not_use_a_snapshot
+  def test_unrelated_public_source_failure_does_not_block_complete_commercial_evidence
     result = quote(agent(book: Book.new(failure: true)))
+    assert_equal "priced_for_rep_review", result["status"]
+    assert_equal "1.18", result.dig("quote", "total")
+    assert_equal "ready", result.dig("lines", 0, "pricing", "status")
+    assert_equal 5, result.dig("lines", 0, "competitor_coverage", "comparable_delivered_suppliers")
+    assert_equal false, result.dig("lines", 0, "live_source_checks", 0, "ok")
+    assert_empty result.dig("lines", 0, "public_market_prices")
+  end
+
+  def test_failed_public_page_without_commercial_feed_does_not_use_a_snapshot
+    result = quote(agent(book: Book.new(failure: true), feed: nil))
     assert_nil result.dig("quote", "total")
     assert_equal "needs_procurement", result.dig("lines", 0, "pricing", "status")
+    assert_empty result.dig("lines", 0, "public_market_prices")
+  end
+
+  def test_public_failure_does_not_bypass_commercial_or_material_guards
+    mutations = [
+      ->(line) { line["offers"].first["revalidated_at"] = (NOW - 1).iso8601 },
+      ->(line) { line["benchmarks"].first["revalidated_at"] = (NOW - 1).iso8601 },
+      ->(line) { line["benchmarks"].pop }
+    ]
+    mutations.each do |mutate|
+      feed = Feed.new
+      wrapper = Object.new
+      wrapper.define_singleton_method(:refresh) do |request:|
+        feed.refresh(request: request).tap { |response| response["lines"].each_value { |line| mutate.call(line) } }
+      end
+      result = quote(agent(book: Book.new(failure: true), feed: wrapper))
+      assert_nil result.dig("quote", "total")
+      assert_equal "needs_procurement", result.dig("lines", 0, "pricing", "status")
+      assert_nil result.dig("lines", 0, "pricing", "unit_price")
+    end
+
+    result = quote(agent(book: Book.new(failure: true), markets: Markets.new(status: "unavailable")))
+    assert_nil result.dig("quote", "total")
+    assert_equal "needs_procurement", result.dig("lines", 0, "pricing", "status")
+    assert_nil result.dig("lines", 0, "pricing", "unit_price")
   end
 
   def test_no_commercial_feed_means_no_deliverable_quote
