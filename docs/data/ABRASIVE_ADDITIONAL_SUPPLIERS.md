@@ -37,3 +37,13 @@ Clemtex's indexed steel-shot page is explicitly an archive and warns that prices
 ## Procurement handoff
 
 Prioritize RockRidge and Ervin for qualified grit quotations, and Miles Supply and BlastOne for shot quotations. First refresh the public pages in the actual quote run. Then obtain matched hardness, SAE standard, quantity, pack, COA, allocation, acquisition cost, currency, payment terms, freight, other landed charges, expiry and lead time. Public product prices alone cannot establish 15% target or 8% minimum gross margin for a delivered order.
+
+## Follow-up qualification, 2026-10-11
+
+Further primary-page inspection did not establish a fourth or fifth comparable delivered price. These pages are research leads, not admitted numeric benchmark observations. They were inspected through web retrieval; a search crawl date or page opening does not prove a supplier reconfirmed the price today.
+
+- [Ambica Enterprises G40](https://www.steelshotsupplier.in/product/steel-grit-g40) publishes an indicative INR 65-85/kg range, 47-63 HRC and 25 kg/50 kg/ton packaging. Export pricing requires a quote. Its conditional 1-2-week timing after purchase-order confirmation and advance payment does not establish US destination delivery. No FX, import fees, batch certification or order-specific tier was verified. Related branded domains must not be counted as additional suppliers without independent identity checks.
+- [Apex Abrasives steel grits](https://www.apexabrasives.co.in/steel-grits.html) publishes a generic INR 43-50/kg cast-grit range across multiple requested sizes. There is no exact G25/G40 quantity-tier offer. Generic supply or delivery claims cannot fill allocated-stock or destination timing fields.
+- [Sandblastingabrasives.com reclaimed grit](https://sandblastingabrasives.com/products/reclaimed-steel-grit-and-grit) offers reclaimed material with delivered pricing by request. Reclaimed condition differs from new cast media and requires explicit buyer acceptance. It cannot silently replace new G40 in a comparison.
+
+The admitted automated coverage remains three public product-price suppliers per demo size. All four lines still lack fully qualified delivered comparisons and executable acquisition terms.
